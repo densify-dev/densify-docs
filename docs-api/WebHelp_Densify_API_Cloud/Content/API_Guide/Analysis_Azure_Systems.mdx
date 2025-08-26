@@ -1,0 +1,18 @@
+---
+title: "Analysis: Azure Systems"
+---
+
+The `/analysis/cloud/azure/<analysisId>/systems` resource is used to return a collection of all the systems (Virtual Machines) that were included in the Azure optimization analysis.
+
+The recommendations from an Azure optimization analysis can be obtained using the `/analysis/cloud/azure/<analysisId>/results` resource. See [Analysis: Azure Recommendations](./Analysis_Azure_Results) for details on the Azure recommendations resource. The set of analyzed systems in an analysis may be more than the set of recommendations produced, as there can be no recommendations for some analyzed systems.
+
+## Resource
+
+```
+/analysis/cloud/azure/<analysisId>/systems
+```
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="List Azure Systems" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Systems/listAzureSystems" arrow/>
+</CardGroup>

@@ -1,0 +1,186 @@
+---
+title: "Clusters with Supply/Demand Mismatch Reports"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The Clusters with Supply/Demand Mismatch reports show how well the hardware resources (CPU, memory, disk, etc.) match the nature of the workload demand running in a cluster.
+
+A high mismatch rating is an indication that:
+
+* Supply is poorly matched--You need to adjust the hardware supply (e.g. add more resources based on the resource constraints).
+* Demand is poorly matched--You need to adjust the workloads running on the cluster, by moving workloads between clusters (e.g. if a cluster is CPU constrained, move CPU intensive workloads out of this cluster).
+
+The scope of these reports is defined by the global filter. See [Using the Global Filter](../Densify_Com/Using_the_Global_Filter) for details on defining your scope.
+
+<Note>
+Values are reported based on the Average VM size, for the selected cluster, rather than on the standard VM size. Refer to the footer in the specific report, to view the Average VM Details report.
+</Note>
+
+
+
+## Understanding the Reports
+
+The Clusters with Supply/Demand Mismatch report highlights how well the CPU, memory, storage, network I/O, etc. requirements of workloads match the containing clusters’ resources.
+
+The Supply/Demand Mismatch report is comprised of three separate reports:
+
+* Summary--This chart shows a summary of the clusters with a high mismatch and the possible density improvement that can be achieved if the resource constraints are addressed.
+
+Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see a bar-chart view of the data at a cluster level. This chart provides a graphical view of the mismatch ratings. The tiles on the left provide the same summary as that provided by the high-level summary report.
+
+* Top Clusters--Lists the top 5 clusters with high mismatch.
+
+Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the full list of clusters (with high mismatch clusters shown in yellow), plus the constraints used to determine the mismatch ratings.
+
+* History--Graphs the 90-day history of the percentage of clusters with high mismatch ratings. Historical charts show all past environments, calculating counts and percentage of clusters at that time and plotting that result in the graph.
+
+Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the same graph, together with a graph showing the total number of clusters with high mismatch ratings. These graphs do not provide a breakdown by cluster.
+
+### High, Medium, Low Mismatch Ratings
+
+The mismatch ratings go from high (i.e. poorly matched) to low (i.e. well matched):
+
+* High--Addressing one or more resource constraints (e.g. adding storage) can more than double the total capacity of the cluster.
+* Medium--Addressing one or more resource constraints can increase the total capacity by 50% or more.
+* Low--The cluster’s resource supply and demand are well matched.
+
+### Viewing and Addressing Mismatched Guests
+
+To view and address the mismatched workloads:
+
+1. Navigate to Virtual Optimization > Opportunity > Clusters with Supply/Demand Mismatch.
+2. View the clusters with a high mismatch by zooming <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> from Top Clusters with High Mismatch. If there are multiple pages for the report, use the Next /Previous buttons to see all of the clusters within the selected scope.
+3. Review the resource constraint for each cluster. You want to first target clusters with a high Mismatch Rating and no available space. The cluster capacity constraints are grouped into four categories: CPU, Memory, Storage and Other. This last group, "Other" includes disk-related workload types and network I/O. Disk and network I/O resource constraints are considered in the mismatch rating only if they are active constraints.
+<Accordion title="Figure: Determine Clusters to Target (High Mismatch and % Capacity Used)">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000060_584x243.png)</Frame>
+</Accordion>
+4. Review and evaluate your options. For the clusters shown above:
+
+1. Increase the supply--Compare the capacity numbers for each cluster and adjust rresource allocations when there is a large discrepancy.
+
+For example, in the first case above, assuming you are working with an optimized environment, you may consider increasing the amount of CPU and memory as the other capacity numbers are large enough to host many more VMs.
+
+In the second case, consider increasing the memory and storage, as CPU and the capacity of the "Other" category can host many more VMs.
+
+2. Change your workload distribution--You may want to consider moving workloads that are better suited for certain clusters. e.g. you can move CPU intensive workloads from clusters that are CPU constrained. Review the [Clusters with Surplus Capacity](./Clusters_with_Surplus_Capacity_Reports) report to determine where there may be excess capacity.
+3. Define your routing strategy--You may want to consider routing new workloads to certain clusters that are better suitable, than other clusters. e.g. route CPU intensive workloads to clusters that have more available CPU.
+4. Revisit policy settings--You may want to review your over-commit policy settings. Contact [Support@Densify.com](mailto:Support@Densify.com).
+
+Table: Possible Resolutions for High Mismatch
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>Example Constraint</p>
+</td>
+<td>
+<p>Possible Resolution</p>
+</td>
+</tr>
+</thead>
+<tr>
+<th colspan="2">
+<p>CPU</p>
+</th>
+</tr>
+<tr>
+<td>
+<p>Total CPUs</p>
+</td>
+<td rowspan="3">
+<ul>
+<li>Add more CPUs to the hosts in the cluster</li>
+<li>Fine tune your policy,<madcap:conditionaltext data-mc-conditions="CiRBA.SaaSOnly"> Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="491a3c3939263b3d090d2c273a202f30672a2624" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for details.</madcap:conditionaltext></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>CPU Utilization</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CPU Allocation</p>
+</td>
+</tr>
+<tr>
+<th colspan="2">
+<p>Memory</p>
+</th>
+</tr>
+<tr>
+<td>
+<p>Memory Utilization in Percent</p>
+</td>
+<td rowspan="2">
+<ul>
+<li>Add more memory to the hosts in the cluster</li>
+<li>Fine tune your policy. <madcap:conditionaltext data-mc-conditions="CiRBA.SaaSOnly"> Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="2a795f5a5a45585e6a6e4f4459434c5304494547" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for details.</madcap:conditionaltext></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Total Memory</p>
+</td>
+</tr>
+<tr>
+<th colspan="2">
+<p>Storage </p>
+</th>
+</tr>
+<tr>
+<td>
+<p>Datastore Number of VMs</p>
+</td>
+<td rowspan="4">
+<ul>
+<li>Distribute your VMs across other <span class="mc-variable Document.datastore variable">datastore</span>s</li>
+<li>Add more storage or disk space to the cluster</li>
+<li>Add faster storage to the cluster</li>
+<li>Fine tune your policy. <madcap:conditionaltext data-mc-conditions="CiRBA.SaaSOnly"> Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="3d6e484d4d524f497d7958534e545b44135e5250" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for details.</madcap:conditionaltext></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Datastore Total Used Space (MB)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Physical Storage Total Used Space (MB)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk I/O Bytes (% limit)</p>
+</td>
+</tr>
+<tr>
+<th colspan="2">
+<p>Other</p>
+</th>
+</tr>
+<tr>
+<td>
+<p>Network I/O Bytes (% limit)</p>
+</td>
+<td rowspan="2">
+<ul>
+<li>Investigate network I/O activity</li>
+<li>Fine tune your policy. <madcap:conditionaltext data-mc-conditions="CiRBA.SaaSOnly"> Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="22715752524d50566266474c514b445b0c414d4f" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for details.</madcap:conditionaltext></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Network I/O Packets</p>
+</td>
+</tr>
+</table>
+

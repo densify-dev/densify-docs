@@ -1,0 +1,133 @@
+---
+title: "DCE Automation Tab"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The Automation tab provides a single point of reference to view and troubleshoot Proactive Automation, performed through the Densify Connector. This tab shows the system automation results, effective automation settings, and supporting information such as HotAdd status. This report works against a given date and scope of guest systems, and reports on both Compute and Disk recommendations. Only those guest systems with recommendations are included in the report.
+
+The Automation tab also provides a way to disable automated actioning of allocation changes for a given set of systems when performing Proactive and Real-Time Automation through the Densify Connector.
+
+<Accordion title="Figure: Automation Tab">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Intelligence_Workbench_Guide/08000067.png)</Frame>
+</Accordion>
+
+<Note>
+This tab reports on VMware systems only, as automation is only supported for VMware.
+</Note>
+
+
+
+Table: Automation Tab Toolbar Buttons
+
+<table>
+<thead>
+<tr>
+<td>
+<p>Button</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td colspan="2">
+<p>Analytics</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img class="img_1" src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Intelligence_Workbench_Guide/08000068.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Click this button to define the set of systems in which actioning allocation changes needs to be disabled or re-enabled. When you disable a system, only the recommendations that have not yet started to be actioned are affected. <span class="mc-variable Document.Densify variable">Densify</span> communicates with the appropriate <span class="mc-variable Document.Densify_exe variable">Densify Connector</span>s that manages these systems to disable the allocation changes. </p>
+<p>This impacts both Proactive and Real-Time Automation through the <span class="mc-variable Document.Densify_exe variable">Densify Connector</span>. For both Proactive and Real-Time Automation, the recommendations are still generated, but are skipped for the systems that are disabled. </p>
+<p>See <a class="RefToBookmark MCXref xref xrefRefToBookmark" href="#Disablin"><u>Disabling Proactive or Real-Time Automation for a Set of Systems</u></a> and <a class="MCXref xref" href="#Viewing">DCE Automation Tab</a> for details.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img class="img_1" src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Intelligence_Workbench_Guide/08000065.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Click this button to view CPU, memory and placement action automation results, for automation performed through <span class="mc-variable Document.Densify_exe variable">Densify Connector</span>'s Proactive Automation.</p>
+<p>See <a class="RefToBookmark MCXref xref xrefRefToBookmark" href="#Troubles"><u>Troubleshooting Proactive Automation</u></a> and <a class="RefToBookmark MCXref xref xrefRefToBookmark" href="#Viewing2"><u>Viewing Supporting Information from the Last Data Collection</u></a> for details.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img class="img_1" src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Intelligence_Workbench_Guide/08000066.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Click this button to view disk action automation results, for automation performed through <span class="mc-variable Document.Densify_exe variable">Densify Connector</span>'s Proactive Automation.</p>
+<p>See <a class="RefToBookmark MCXref xref xrefRefToBookmark" href="#Troubles"><u>Troubleshooting Proactive Automation</u></a> and <a class="RefToBookmark MCXref xref xrefRefToBookmark" href="#Viewing2"><u>Viewing Supporting Information from the Last Data Collection</u></a> for details.</p>
+</td>
+</tr>
+</table>
+
+
+## Disabling Proactive or Real-Time Automation for a Set of Systems
+
+To disable actioning allocation changes for a given set of systems:
+
+1. In the Analysis Console, navigate to Data Center Explorer (DCE).
+2. Choose an appropriate View and Filter to view the required systems.
+3. Select the cluster folder in the DCE tree, to define your scope.
+4. Navigate to the Automation tab.
+5. Select the Disable Allocations button. The Disable Allocations icon will display and only displays when a cluster is selected.
+6. Select the guest systems to disable and Submit.
+7. Navigate to Administration > Densify Configuration. Define the configuration setting Enable Densify Connector Communication to "TRUE" and make sure the configuration setting Densify Connector Port is properly defined. Both these settings can be found in category Advanced - General Configuration.
+
+To re-enable a system that has been disabled, just de-select the system and Submit.
+
+## Viewing Disabled Systems
+
+To view the systems that have been disabled, navigate to Data Center Explorer (DCE) > Info tab and click on Attributes. For those guest systems disabled through [Disabling Proactive or Real-Time Automation for a Set of Systems](#Disablin), the attribute Disable Allocations in category Densify Automation contains the UTC when automation was disabled.
+
+You can also view the systems that are disabled through the Disable Allocations page, as described in [Disabling Proactive or Real-Time Automation for a Set of Systems](#Disablin) above.
+
+## Troubleshooting Proactive Automation
+
+To troubleshoot your action automation:
+
+1. In the Analysis Console, navigate to Analysis Workbench > Data Center Explorer (DCE).
+2. Choose an appropriate View and Filter to view the required systems.
+3. Choose the folder in the DCE tree, for the systems to troubleshoot.
+4. Select the Automation tab, click Compute and enter the date of the control environment refresh for which you want to view the automation results. If there are no recommendations for that day, then an appropriate message is displayed. Otherwise, the automation results are displayed from the last control environment refresh of that day, that has been populated to the reporting database.
+5. View the CPU, memory and placement automation status for each guest system in scope. "-" is used to indicate no recommendation, on columns: To, Status Detail, Automation Setting. You can hover over the <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Intelligence_Workbench_Guide/08000069.png"/> icon (displayed under the date you specified) to display information on the columns.
+6. Troubleshoot by searching for recommendations with Automation Status:
+
+* "External"--confirm that these recommendations are intended to be execution by an external system (i.e. not through the Densify server or Densify Connector)
+* "Pending"--review these recommendations, pending execution
+* "Skipped"--review the Status Details and perform the necessary actions. For example:
+
+* VMware guest tools not installed and not running--install VMware Tools, which is required for Windows Guests in order to action these recommendations
+* Environment validation failed - critical errors occurred--review and confirm the systems that have environmental drift (Densify compares the environment with the last data collection and results show, for example, that the system was actually moved or that the CPU was bumped up in the environment); this error means that the environment has changed since the recommendation was generated and as a result, Densify does not know what action to recommend
+* Recommendation for this system has been skipped as allocations have been disabled--confirm that the system was intentionally disabled for Proactive Automation, since the time specified by attribute, Disable Allocations in the category Densify Automation (see [Disabling Proactive or Real-Time Automation for a Set of Systems](#Disablin))
+
+* "Not In Plan"--confirms that these recommendations have been intentionally excluded from any action plan. Auto-creation of action plans has been disabled. This is accomplished using the policy setting, Proactive Automation > Automatically Create Action Plans (advanced setting).
+
+The Allocation Change Maintenance Window is the time window used to perform the CPU and memory allocation changes that require system power off. Contact [Support@Densify.com](mailto:Support@Densify.com) to define a maintenance window. The HotAdd values are from the last data collection for the date you specified. The Automation Setting is the setting in effect (i.e., taken from any attribute override definition, then system level policy setting, then cluster level policy setting).
+
+7. Click Disk to view the disk automation status and perform similar steps as above.
+
+## Viewing Supporting Information from the Last Data Collection
+
+From the Analysis Console, you can also use Data Center Explorer > Info > Config to view supporting information under the category Virtual Environment Properties:
+
+* VM Memory HotAdd
+* VM CPU HotAdd
+* VMware Tools Version
+* VMware Tools Status
+* In Mode Maintenance
+
+From the Analysis Console, you can also use the Data Center Explorer > Info > Attributes page to view Densify Automation attributes:
+
+* Automation Time Window--which is the date and time of the last maintenance window
+* Disable Allocations--which is the date and time when the system was disabled for actioning allocation changes. See [Disabling Proactive or Real-Time Automation for a Set of Systems](#Disablin).

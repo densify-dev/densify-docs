@@ -1,0 +1,268 @@
+---
+title: "Overview"
+---
+
+import { InlineImage } from "/snippets/InlineImage.mdx"
+
+Densify provides a wide selection of reports that cover many aspects of managing both on-premise and cloud-hosted environments, but you may still need reports that suit your specific business requirements. Densify provides the ability to create custom reports through the Densify Business Intelligence report designer, which leverages the JasperReports Server (Jaspersoft's embedded BI reporting platform).
+
+The integrated Densify Business Intelligence allows you to generate reports in Densify from dashboards created in JasperReports Server. Once the reports have been created and published, they are displayed in the My Reports menu for all Densify users.
+
+Your custom report content is populated with current data in Densify, which includes your collected and analyzed infrastructure configuration and utilization data. Report content is updated after data collection and analysis occurs in Densify.
+
+## Prerequisites
+
+In order to access Densify Business Intelligence's Configure My Reports page, you need the following:
+
+* The Densify Business Intelligence report designer feature needs to be enabled for your Densify server. Contact [Support@Densify.com](mailto:Support@Densify.com) for details on licensing and enabling this feature.
+* Report Designer Group membership--your user account, must belong to the "Report Designers" user group. Only users in the report designer group can view the Configure My Reports menu item and access the integrated JasperReports Server console. Once reports have been created and published, all Densify users can view the reports through the My Reports menu.
+<Note>
+Only one user with report designer privileges can access the Configure My Reports option at a time.
+</Note>
+
+
+
+## Creating Reports
+
+Creating custom user reports involve the following workflow:
+
+1. Create a custom report from an existing dashboard. Refer to [Creating Custom Reports](#CreatingReport) for detailed process steps.
+2. 
+
+<Accordion title="video">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/306007406" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+</Accordion>
+
+3. If an appropriate dashboard does not exist for your custom report, create a dashboard from the integrated JasperReports Server console. Refer to [Creating Dashboards](#CreatingDashboard) for detailed process steps.
+4. 
+
+<Accordion title="video">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/306051203" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+</Accordion>
+
+5. After creating your custom report, you must publish it before Densify users can view the report. See [Publishing Reports](#PublishingReport).
+6. To review your newly created custom report, see [Viewing My Reports](#ViewingReport).
+7. If you need to modify your custom report, refer to [Modifying Reports](#ModifyingReport).
+
+### Creating Dashboards
+
+As part of Densify Business Intelligence, a set of public domains are provided from which you can create your own dashboards and ad hoc views in the JasperReports Server console. The created dashboards are integrated into Densify from where you can generate custom reports.
+
+In this section you will create an ad hoc view based on a Densify public domain; then use the ad hoc view to generate the dashboard required for your custom report. See [Densify Public Domains](#Domains) for a list of public domains available in Densify.
+
+<Note>
+When creating dashboards and views, you must be familiar with Jasper reporting concepts and structures, as well as using the JasperReports Server console. Refer to Jaspersoft's JasperReports Server online documentation.
+</Note>
+
+
+
+1. Log into Densify using a user account that belongs to the "Report Designer" group.
+2. Click the My Reports > Configure My Reports option.
+
+* If there are no dashboards in Densify, the Configure My Reports page is not available and you will see the following message that prompts you to create a dashboard. Click OK to be directed to the JasperReports Server console.
+<Accordion title="Figure: Attempting to Access Configure My Reports">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000075_390x103.png)</Frame>
+</Accordion>
+* If the Configure My Reports page is displayed, but does not have an appropriate dashboard for your custom report, click Create Dashboard(s) to open the JasperReports Server console.
+
+When you get directed to the JasperReports Server console, you are automatically logged out of your Densify Console session, any unsaved work will be lost.
+
+3. In the JasperReports Server console, select Ad Hoc Views > Create. Alternately, click the toolbar Create > Ad Hoc Views.
+<Accordion title="Figure: Creating an Ad Hoc View">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000076_562x253.png)</Frame>
+</Accordion>
+4. Select a domain from the list of domains provided. Click the Choose Data button.
+5. In the Choose Data window, select one or more views from the Source list and add them to Selected Fields list. Click OK.
+<Accordion title="Figure: Choosing Data for an Ad Hoc View">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000077_594x338.png)</Frame>
+</Accordion>
+6. Select the type of view you want to create: table, chart, or crosstab. Refer to the JasperReports Server online help for details on the view types and the data required for each view type.
+7. In the New Ad Hoc View window, expand the view and drag the columns to be included in your new ad hoc view to the Columns or Row bar. Alternatively, you can drag the whole view to the Columns or Row bar and then delete the columns you do not need.
+8. Click the Save icon to save the ad hoc view into the "/Organization/My Densify/reportViews" folder.
+
+When saving the ad hoc view, you only have access to the "/Organization/My Densify" folder in the JasperReports Server file repository. If you see an error message indicating that you do not have access, expand the "Organization" folder and you will see "My Densify".
+
+<Accordion title="Figure: Creating and Saving the Ad Hoc View">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000078_587x361.png)</Frame>
+</Accordion>
+
+<Accordion title="Figure: Error Message on Save command">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000002_336x119.png)</Frame>
+</Accordion>
+9. On the JasperReports Server home page select Dashboards > Create. Alternately, click the toolbar Create > Dashboard.
+<Accordion title="Figure: Creating a Dashboard">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000003.png)</Frame>
+</Accordion>
+10. Drag your ad hoc view onto the New Dashboard design page. Add any other items to customize your dashboard.
+11. Click the Save icon to save the dashboard into the "/Organization/My Densify/dashboards" folder. When saving the dashboard, you only have access to the "/Organization/My Densify" folder on the JasperReports Server file system.
+<Accordion title="Figure: Creating and Saving a Dashboard">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000079_610x344.png)</Frame>
+</Accordion>
+
+<Note>
+You must save your dashboards in the "/Organization/My Densify/dashboards" folder in order to access the dashboards from the Densify Console.
+</Note>
+
+12. Log out of the JasperReports Server console.
+13. Log back into the Densify Console to view the new dashboard in the Configure My Reports page.
+
+A message prompting you to save your changes in the JasperReports Server console, as your changes will be lost once you log into Densify. If you have saved your view and dashboard, it is safe to click OK and continue to the Densify Console.
+
+<Accordion title="Figure: Unsaved Changes from Jasper Console Message">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000043_368x138.png)</Frame>
+</Accordion>
+
+
+### Creating Custom Reports
+
+Once a JasperReports Server dashboard has been created in the "/My Densify/dashboards" folder, the Configure My Reports page in your Densify interface is accessible.
+
+1. Log into your Densify Console and navigate to My Reports > Configure My Reports.
+2. Select an empty New My Report # report tab from the Sub-Menu Structure. Enter a name for your report in the Sub-Menu Name field. This name is then displayed on the selected report tab in the Sub-Menu Structure.
+
+You can create up to 20 reports and display these reports under the My Reports menu.
+
+3. Select New Tab 1 and enter a name for the tab in the Tab Name field.
+4. Select a linked dashboard for the tab in your new report. This dropdown list contains dashboards available in the integrated JasperReports Server repository.
+
+You can create new dashboards within the integrated JasperReports Server. Save any changes on the current page and then click Create Dashboard(s). You are re-directed to the JasperReports Server console. Any unsaved changes made on the Configure My Reports page will be lost and you will be logged out of the Densify Console. Refer to [Creating Dashboards](#CreatingDashboard) for details.
+
+<Note>
+Once a dashboard is referenced by a report, do not delete it from the JasperReports Server repository. Tabs highlighted in red indicate that the linked dashboard cannot be found in the JasperReports Server repository.
+</Note>
+
+5. Enter any specific information related to the report content in the Footnote field. Limit your footnote entry to 1000 characters.
+6. Click Add Tab to add additional tabs to your report. Specify the tab name, linked dashboard and footnote for each new tab.
+
+You can drag the tabs to re-order them. The order displayed here is the order in which the tabs are displayed in the published report.
+
+Select up to 5 tabs for your report.
+
+7. Check the Publish boxes for any new reports or report tabs. An asterisk (\*) indicates that the report has been modified and not saved. Click Save to save all changes and publish the selected items. You are not able to publish a report until:
+
+* the report name is entered;
+* a dashboard is selected for at least one published tab;
+* the tab name is entered for the published tab.
+
+Report validation errors are indicated with a caution icon (<InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000004_19x16.png"/>).
+
+<Accordion title="Figure: Configure My Reports">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000080.png)</Frame>
+</Accordion>
+8. The saved and published report now appears under the My Reports menu and contains current reporting data.
+
+<Accordion title="Table: Report Creation Functionality">
+<table>
+<thead>
+<tr>
+<th>
+<p>Column</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>Save</p>
+</td>
+<td>
+<p>Save the current settings and create/update the report. Any changes you have made are validated and any conflicts/warnings need to be resolved before your changes can be saved.</p>
+<p>Warning messages are displayed for  duplicate report, tab names, blank names, character count exceeded, etc.</p>
+<p>Validation warning messages indicate the actions required before you can save the report.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cancel</p>
+</td>
+<td>
+<p>Click this button to ignore any changes and return to the previously saved page. The <span >Cancel</span> button is not enabled until there are changes made on the page.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Publish Check boxes</p>
+</td>
+<td>
+<p>These check boxes are displayed by each report element that can be published. Check the box to indicate you want to publish the report or tab. </p>
+<p>You can un-publish a report by de-selecting the checkbox. When you click <span >Save</span>, the report or tab is removed from the <span >My Reports</span> menu. The report or tab is not deleted it is just not visible to all users. See <a class="RefToBookmark MCXref xref xrefRefToBookmark" href="#PublishingReport"><u>Publishing Reports</u></a> for details.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Create Dashboard(s)</p>
+</td>
+<td>
+<p>Click this button to navigate to the integrated <span class="mc-variable Document.Jasper variable">JasperReports Server</span>. You are logged out of your current <span class="mc-variable Document.Densify variable">Densify</span> session and re-directed to the <span class="mc-variable Document.Jasper variable">JasperReports Server</span> console. See <a class="RefToBookmark MCXref xref xrefRefToBookmark" href="#CreatingDashboard"><u>Creating Dashboards</u></a> for details.</p>
+<p>Once your dashboard is complete, you must log out of the <span class="mc-variable Document.Jasper variable">JasperReports Server</span> and then log into <span class="mc-variable Document.Densify variable">Densify</span> to access your dashboard through the <span >Configure My Reports</span> option. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Delete</p>
+</td>
+<td>
+<p>Click the Delete button (<InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000088_11x10.png"/>) to delete specific report elements. The Delete button is located beside each report and tab. </p>
+<p>When you save your changes, you will be prompted to confirm the deletion of the report or tab. These changes are immediately updated to  reports that have been published to the  <span >My Reports</span> menu.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+
+### Publishing Reports
+
+Once the report is published, it becomes available under the My Reports menu. All users are able to select and view this report. When publishing your report, observe the following:
+
+* The order of the reports in the My Reports menu is the same order as Configure My Reports > Sub-Menu Structure. You can drag and drop the Sub-Menu Structure reports to obtain the desired order.
+* The order of the tabs in your custom reports is the same as the order as Configure My Reports > Tab Structure. Again, you can drag and drop the tabs to change their order.
+* The Sub-Menu Name is used as the page title.
+
+You can un-publish or delete any report or tab, as required from the Configure My Reports page. Once you click Save, these changes are reflected in the My Reports section.
+
+### Modifying Reports
+
+You may need to modify an existing custom report to meet updated requirements. As you modify your custom report, an asterisk(\*) is displayed next to the item on the report to indicate the following changes:
+
+* changes to any labels/reports/published option on the tabs;
+* changes to the report labels in the sub-menu section;
+* tabs are re-ordered within the tab structure when a specific report is selected;
+* reports are re-ordered within the sub-reports under the sub-menu structure.
+
+If you are editing a report, select the report from the sub-menu. Update the fields as required and click Save. The updated custom report is immediately visible to Densify users after refreshing the browser page.
+
+### Densify Public Domains
+
+A domain is a metadata layer that provides a business view of the Densify analysis data accessed from the Densify reporting database. These virtual views are created and stored in the report server without modifying the data source. Through a domain, you can see columns that have been joined, filtered, and labeled for your business requirements. You can implement security policies to limit the data values that a user can access. Densify public domains are the published domains, available to Densify users with report designer privileges, for the purpose of creating customized reports.
+
+The following public domains are provided with Densify:
+
+* Environment\_Info
+* Cluster\_Info
+
+These domain names do not contain spaces to facilitate integration with the Densify Business Intelligence API.
+
+For a description of the elements available in the Densify public domains, refer to [Public Domains for JasperServer Reports](./Public_Domains_for_JasperReports_Server_).
+
+If you need to extend the Densify public domains for your business requirements, contact [Support@Densify.com](mailto:Support@Densify.com) for details on additional Densify reporting services.
+
+### Viewing My Reports
+
+Once a report has been published all users can access and view it from the My Reports menu. The My Reports menu is only displayed if custom reports have been created and published. When you select a report, it is displayed in the main pane. The order of the reports in the menu is the same as that on the Configure My Reports > Sub-Menu Structure list.
+
+The content of the custom reports are updated, like the standard Densify reports, after each data collection and analysis refresh.
+
+<Note>
+The global, guest and recommendation filters are not available for these reports.
+</Note>
+
+
+
+The License Compliance report is provided under My Reports. See [License Compliance Report](./License_Compliance_Report).

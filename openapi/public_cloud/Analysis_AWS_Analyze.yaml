@@ -1,0 +1,145 @@
+openapi: 3.0.3
+info:
+  title: Densify API – AWS Analyze
+  version: "1.0"
+servers:
+  - url: https://{host}/api/v2
+    variables:
+      host:
+        default: api.example.com
+
+paths:
+  /analysis/cloud/aws/analyze:
+    post:
+      summary: Run or re-run AWS analysis, optionally with 60-day historical audit
+      operationId: analyzeAws
+      description: >
+        Initiates AWS CloudWatch data collection and runs optimization analysis.
+        Subsequent data collection and analysis are scheduled nightly.
+        If `triggerAdhocAudit` is provided, runs a one-time historical audit
+        (up to 60 days, optionally narrowed via start/end offsets). If an
+        analysis already exists, this endpoint re-runs analysis without data
+        collection and can update the webhook for result delivery.
+      tags: [AWS Analyze]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AwsAnalyzeRequest'
+      responses:
+        "200":
+          description: Acknowledge request / analysis state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AwsAnalyzeResponse'
+        "400":
+          description: Invalid parameters
+        "401":
+          description: Authentication failed
+        "404":
+          description: Resource not found
+        "500":
+          description: Internal server error
+
+  /analysis/cloud/aws:
+    get:
+      operationId: listAwsAnalyses
+      summary: List all generated AWS analyses
+      description: Returns the set of analyses that have been created, with details needed to reference them elsewhere.
+      tags: [AWS Analyze]
+      responses:
+        "200":
+          description: List of analyses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AwsAnalysisSummary'
+        "401":
+          description: Authentication failed
+        "500":
+          description: Internal server error
+
+components:
+  schemas:
+    AwsAnalyzeRequest:
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: The AWS account ID with the CloudWatch data to collect.
+        roleArnName:
+          type: string
+          description: ARN for the IAM role created in AWS for data collection.
+        roleExternalId:
+          type: string
+          description: External ID specified for Densify when the IAM role was created.
+        connectionName:
+          type: string
+          description: Optional friendly name for this connection (max 32 chars; must be unique within type).
+        triggerAdhocAudit:
+          type: string
+          description: Optional flag to trigger a one-time 60-day historical audit.
+        startDayOffset:
+          type: string
+          description: Optional start offset from the 60-day maximum for historical collection.
+        endDayOffset:
+          type: string
+          description: Optional end offset from “yesterday” for historical collection.
+        webHook:
+          $ref: '#/components/schemas/WebHook'
+      required:
+        - accountId
+        - roleArnName
+        - roleExternalId
+
+    WebHook:
+      type: object
+      properties:
+        uri:
+          type: string
+          format: uri
+          description: Destination URI to receive results when analysis completes.
+        authType:
+          type: string
+          description: Authentication type for the webhook (e.g., basic, bearer).
+        authValue:
+          type: string
+          description: Authentication credentials/value corresponding to authType.
+
+    AwsAnalyzeResponse:
+      type: object
+      properties:
+        href:
+          type: string
+          description: Referenced resource to the analysis entity or status endpoint.
+        message:
+          type: string
+          description: Human-readable message describing the result.
+        status:
+          type: integer
+          description: HTTP response code of the request.
+
+    AwsAnalysisSummary:
+      type: object
+      description: Minimal representation of an AWS analysis created by the system.
+      properties:
+        analysisId:
+          type: string
+        accountId:
+          type: string
+        href:
+          type: string
+          description: Link to the analysis entity or status.
+        createdOn:
+          type: string
+          format: date-time
+        lastRunOn:
+          type: string
+          format: date-time
+        webhookConfigured:
+          type: boolean
+      additionalProperties: true

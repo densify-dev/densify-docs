@@ -1,0 +1,117 @@
+openapi: 3.1.0
+info:
+  title: Densify – Azure Analysis Delete API
+  version: "1.0.0"
+  description: >
+    Derived from "Analysis: Azure Delete".
+    Deletes the audit and scheduler entries for the specified Azure analysis.
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: api.example.com
+tags:
+  - name: Azure Analysis
+paths:
+  /analysis/cloud/azure/{analysisId}:
+    delete:
+      tags: [Azure Analysis]
+      operationId: deleteAzureAnalysisAudit
+      summary: Delete Azure data-collection audit for an analysis
+      description: |
+        Deletes the audit and associated scheduler entries for the specified analysis.
+        - Removes single-day and 60-day historical audits if they exist.
+        - If the connection is a **many-to-one (aggregate)** created via the Cloud Connection Wizard, the request fails and must be deleted via the Wizard.
+        - While delete is in progress, other operations (GET/PUT/POST) on the same `analysisId` will yield **400 Bad Request**.
+        - Environment/analysis structures and collected data (within retention) remain; listing endpoints will still show the analysis.
+      parameters:
+        - name: analysisId
+          in: path
+          required: true
+          description: The unique referenced ID of the Azure analysis.
+          schema:
+            type: string
+      requestBody:
+        description: Optional webhook to receive completion status.
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteWebhook'
+            examples:
+              withWebhook:
+                value:
+                  webHook:
+                    uri: "http://mywebhookserver/webhook/results"
+                    authType: "basic"
+                    authValue: "user:pass"
+      responses:
+        '200':
+          description: Delete accepted/completed; audit removed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusMessage'
+              examples:
+                ok:
+                  value:
+                    message: "OK"
+                    status: 200
+        '400':
+          description: Bad Request (e.g., other operations attempted during delete).
+        '401':
+          description: Authentication failed.
+        '404':
+          description: Analysis not found.
+        '405':
+          description: Method not allowed.
+        '500':
+          description: Server error (includes “audit in progress” or “aggregate connection” failures).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusMessage'
+              examples:
+                inProgress:
+                  summary: Attempted delete while an audit is running
+                  value:
+                    message: "Connection has an audit in progress. It cannot be deleted at this time."
+                    status: 500
+                aggregateConnection:
+                  summary: Delete fails for many-to-one (aggregate) connections
+                  value:
+                    message: "Account dfc04848-3848-44c0-b85a-02311951de36 was created via UI and subscriptions [cc377154-9605-4cb0-8b41-1b39e1c4ac0f,3d4ba999-cbd8-40b8-9998-574be6824a97] are incompatible with API use; please delete via UI"
+                    status: 500
+
+components:
+  schemas:
+    DeleteWebhook:
+      type: object
+      additionalProperties: false
+      properties:
+        webHook:
+            type: object
+            additionalProperties: false
+            properties:
+              uri:
+                type: string
+                format: uri
+                description: Destination to receive delete completion status.
+              authType:
+                type: string
+                description: Authentication scheme used by the webhook endpoint (e.g., "basic", "bearer").
+              authValue:
+                type: string
+                description: Credential value (e.g., user:pass for basic, or token).
+            required: [uri]
+    StatusMessage:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type: string
+          description: Informational message for the request result.
+        status:
+          type: integer
+          description: HTTP-like status code (200, 400, 401, 404, 405, 500).
+      required: [message, status]

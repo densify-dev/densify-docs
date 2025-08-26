@@ -1,0 +1,53 @@
+export const InlineImage = ({
+    src,
+    href,
+    alt = "",
+    size = "medium",
+    customSize,
+    position = "left",
+    children
+}) => {
+    const sizeClasses = {
+        small: "w-6 h-6",
+        medium: "w-8 h-8",
+        large: "w-12 h-12",
+        xlarge: "w-16 h-16"
+    };
+
+    const ImageComponent = () => (
+        <img
+            src={src}
+            alt={alt}
+            className={customSize ? '' : sizeClasses[size]}
+            style={{
+                verticalAlign: 'baseline',
+                display: 'inline-block',
+                margin: '0',
+                padding: '0',
+                border: 'none',
+                maxHeight: '1em',
+                ...(customSize ? { width: customSize, height: customSize } : {})
+            }}
+        />
+    );
+
+    const imageElement = href ? (
+        <a href={href} className="inline-block border-b-0 no-underline">
+            <ImageComponent />
+        </a>
+    ) : (
+        <ImageComponent />
+    );
+
+    return (
+        <>
+            {position === "left" && imageElement}
+            {position === "left" && " "}
+            {children}
+            {position === "right" && " "}
+            {position === "right" && imageElement}
+        </>
+    );
+};
+
+export default InlineImage;

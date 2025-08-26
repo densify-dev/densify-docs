@@ -1,0 +1,318 @@
+---
+title: "Metrics Viewer Tab"
+---
+
+The Densify metrics viewer allows you to view your collected and analyzed time series data to review specific container details. You can use the metrics viewer to investigate specific utilization details when deciding whether to action specific recommendations.
+
+<ol start="1">
+  <li>Select one container to review. The metrics viewer tab is not displayed until only one container is selected.</li>
+  <li>Use the tree viewer's search feature to find a specific container. Enter the name of the container, as you type, matching items are displayed in the list.</li>
+  <li>Ensure the view and filter settings are set accordingly, to locate your specific container.</li>
+</ol>
+
+
+
+
+<Frame caption="Figure: Locating the Metrics Viewer">
+![](/images/docs-kubex/Content/Kubex/03000124_630x206.png)
+</Frame>
+
+
+
+## Metrics Viewer Controls
+
+When you open the metrics viewer, the instance that was selected in the Instance Optimization Details page is displayed. You can from the tree viewer, or from the AI Analysis Details tab.
+You can configure the data you want to view for this container using the options in the dropdown menus.
+
+
+<Frame caption="Figure: Configuring the Metrics Viewer">
+![](/images/docs-kubex/Content/Kubex/03000203_695x397.png)
+</Frame>
+
+
+
+
+<Frame caption="Figure: Configuring the Metrics Viewer">
+![](/images/docs-kubex/Content/Kubex/03000073_694x349.png)
+</Frame>
+
+
+There are 3 options to configure this report:
+
+
+
+<Accordion title="Table: Metrics Viewer Controls">
+<table>
+<thead>
+<tr>
+<th>
+Setting 
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Select Charts
+</td>
+<td>
+Select the number of charts to display from the drop down list. You can view all 9 different metrics for the selected container. Scroll bars are provided as required to navigate the displayed charts.
+</td>
+</tr>
+<tr>
+<td>
+Period
+</td>
+<td>
+Figure: Metrics Viewer Controls <madcap:conditionaltext></madcap:conditionaltext>
+<a href="/images/docs-kubex/Content/Kubex/03000075.png"><img src="/images/docs-kubex/Content/Kubex/03000075.png" tabindex=""/></a> Using the slider along the bottom of the page, select the period on which you want to report. The available time range depends on the type of report selected for display. Historical daily and hourly reports can provide up to 90 days of historical data. 
+The slider is not required for the ML Model view that only shows the last 24 hours of data.
+<Note>
+<b>Note: </b><br/>
+Densify retains up to 3 months of historical data for the metrics viewer. When creating a customized period, you cannot view data older than 90 days.
+</Note>
+</td>
+</tr>
+<tr>
+<td>
+View By
+</td>
+<td>
+Figure: Metrics Viewer Chart Options <madcap:conditionaltext></madcap:conditionaltext>
+<a href="/images/docs-kubex/Content/Kubex/03000118.png"><img src="/images/docs-kubex/Content/Kubex/03000118.png" tabindex=""/></a> Select the one type of report to display the data. You can select one option. Clicking on one option disables the others.
+<ul>
+  <li>ML Mode--The 24 hours from yesterday are displayed.</li>
+  <li>Historical  daily--Data has been aggregated for daily display. Move the sliders along the bottom of the chart to define the time range.</li>
+  <li>Historical hourly --Data has been aggregated for hourly display. Move the sliders along the bottom of the chart to define the time range.</li>
+  <li>Historical (5 min)--Provides 5-minute utilization metric samples. Use the sliders to define the time range.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</Accordion>
+
+
+
+
+All of the charts, are refreshed immediately when you change any of the control options. Your settings are saved for the current user session and are returned to the default values if you log out or if another user opens the metrics viewer.
+The line chart shows the selected metric plotted by the hour or date.
+The X-axis scales based on the amount of data up to the maximum of 90-days. The X-axis will show both date and hour when the date range includes less than 7-days. Only the date is shown when there are more than 7-days of data on the chart.
+If you hover over any data point in the graph a popup indicates the values on the selected date. You can slide the mouse along the plotted lines to see data values at the specific date or time.
+If metric data is not available, the message NA:  is shown in the legend of the impacted chart.
+Where:
+
+
+<ol start="1">
+  <li>CPU and memory request and limit values are shown as straight lines.</li>
+  <li>Tool tip indicating specific values on the selected date or hour.</li>
+  <li>
+    Legend - See <a href="/docs-kubex/Content/Kubex/AI_Analysis_Details_Charts#workload-charts-details"> 1 </a>
+    .
+  </li>
+</ol>
+
+
+
+### Available Container Metrics
+
+The following table lists the complete set of metrics that you can review in the metrics viewer.
+
+
+
+<Accordion title="Table: Container Metrics">
+<table>
+<thead>
+<tr>
+<th>
+Metrics
+</th>
+<th>
+Units
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+CPU Limit - Current
+</td>
+<td>
+mCores
+</td>
+</tr>
+<tr>
+<td>
+CPU Limit - Recommended
+</td>
+<td>
+mCores
+</td>
+</tr>
+<tr>
+<td>
+CPU Request - Current
+</td>
+<td>
+mCores
+</td>
+</tr>
+<tr>
+<td>
+CPU Request - Recommended
+</td>
+<td>
+mCores
+</td>
+</tr>
+<tr>
+<td>
+CPU Utilization - Busiest Container
+</td>
+<td>
+mCores
+</td>
+</tr>
+<tr>
+<td>
+CPU Utilization - Container Average
+</td>
+<td>
+mCores
+</td>
+</tr>
+<tr>
+<td>
+Disk I/O - Busiest Container *
+</td>
+<td>
+Kbytes/s
+</td>
+</tr>
+<tr>
+<td>
+Memory (RSS) Utilization - Busiest Container
+</td>
+<td>
+MB
+</td>
+</tr>
+<tr>
+<td>
+Memory (RSS) Utilization - Container Average
+</td>
+<td>
+MB
+</td>
+</tr>
+<tr>
+<td>
+Memory (Total) Utilization - Busiest Container 
+</td>
+<td>
+MB
+</td>
+</tr>
+<tr>
+<td>
+Memory (Total) Utilization - Container Average
+</td>
+<td>
+MB
+</td>
+</tr>
+<tr>
+<td>
+Memory (Working Set) Utilization - Busiest Container
+</td>
+<td>
+MB
+</td>
+</tr>
+<tr>
+<td>
+Memory (Working Set) Utilization - Container Average 
+</td>
+<td>
+MB
+</td>
+</tr>
+<tr>
+<td>
+Memory Limit  - Current
+</td>
+<td>
+MB
+</td>
+</tr>
+<tr>
+<td>
+Memory Limit - Recommended
+</td>
+<td>
+MB
+</td>
+</tr>
+<tr>
+<td>
+Memory Request - Current
+</td>
+<td>
+MB
+</td>
+</tr>
+<tr>
+<td>
+Memory Request - Recommended
+</td>
+<td>
+MB
+</td>
+</tr>
+<tr>
+<td>
+No. of Containers
+</td>
+<td>
+Number
+</td>
+</tr>
+<tr>
+<td>
+No. of Restarts
+</td>
+<td>
+Number
+</td>
+</tr>
+</tbody>
+</table>
+</Accordion>
+
+
+
+
+#### Disk I/O
+
+\* Collecting the metric, container\_fs\_usage\_bytes is an issue if the Kubernetes cluster container uses containerd as its runtime. Since most Kubernetes clusters now use containerd as their runtime and cadvisor does not return the required metrics, you will not see Disk I/O data. If you select this metric you will see "No Data Available".
+See the following issues:
+
+
+<ul>
+  <li>
+    <a href="https://github.com/google/cadvisor/issues/2785"> https://github.com/google/cadvisor/issues/2785 </a>
+  </li>
+  <li>
+    <a href="https://github.com/google/cadvisor/issues/3315"> https://github.com/google/cadvisor/issues/3315 </a>
+  </li>
+</ul>
+
+
+Collection of this metric is supported by both Docker and CRI-O container runtimes.
+
+#### Recommended CPU and Memory Request and Limit Values
+
+When selected, recommended CPU and memory request and limit values are shown as a straight line regardless of which statistics (Peak/Sustained/Average/Min) have been selected.

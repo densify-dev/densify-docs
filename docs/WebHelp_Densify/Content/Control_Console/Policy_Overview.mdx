@@ -1,0 +1,161 @@
+---
+title: "Overview"
+---
+
+## What is a Policy
+
+Policies are settings that bring together and formalize the unique requirements and management criteria of an environment including constraints, regulations and operational goals. Densify uses these settings as a basis for recommendations and to measure and show efficiency and risk.
+
+Control policies are used with the analysis models to generate the analyses required to populate overview dashboards and charts in the Densify Console. When the environment is created the policy is specified based on your use case. You can then work with [Support@Densify.com](mailto:Support@Densify.com) to customize the policy to better suit your requirements.
+
+<Accordion title="Video: Policy-Defined Management">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/301241177" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+</Accordion>
+
+
+Densify control policies allow you to tailor the Densify analytics engine to accurately maximize efficiency and minimize risk. Policies represent the unique requirements, constraints and operational goals of your virtual environments. Once captured, policies can be customized and re-used for each of your various environments.
+
+Once selected and customized, your policy is used by the analyses to provide a true picture of infrastructure efficiency. Policies cover both quantitative criteria such as maximum and minimum utilization levels, contention tolerances, etc.; and qualitative criteria such as business rules, technical affinities/anti-affinities, security requirements, process requirements, etc.
+
+To learn more, watch the video
+
+## Mapping Your Requirements to Densify Policy Criteria
+
+In order for Densify to generate recommendations to best reflect your environment goals and requirements, you need to map your environment requirements to policies in Densify. Before setting and changing any policy settings, you need an understanding of not only your virtual infrastructure, but also of business and operational guidelines that are unique to your company or line of business.
+
+For example if your production environment requires HA infrastructure, this company policy needs to be represented in the Densify policy. In this case the corresponding policy criteria would be HA policy.
+
+<Accordion title="Figure: Mapping Your Policies to Densify Policy Criteria">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000024_576x264.png)</Frame>
+</Accordion>
+
+
+Each policy consists of a number of areas of infrastructure management considerations that impact the operation of both virtual and cloud environments. When combined, these criteria and the resulting policy help to achieve the goals for your environment, whether it be to maximize efficiency (cost) or increase performance, or a balance between efficiency and performance.
+
+Table: Infrastructure Management Considerations
+
+<table data-mc-conditions="CiRBA.CCOExclude">
+<thead>
+<tr>
+<td>
+<p>Infrastructure Management <br/>Consideration</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>VM Density</p>
+</td>
+<td>
+<p>A number of criteria affect how efficient an environment is, in terms of the number of workloads that are hosted per unit of infrastructure resource. These criteria include the maximum VMs per host, the maximum resource overcommit ratios, and maximum host utilization levels. </p>
+<p>By varying these criteria, your environment may tolerate more or less workloads, allowing organizations to find the optimal balance between performance and efficiency for each managed environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>VM Performance</p>
+</td>
+<td>
+<p>Even though an environment may have plenty of capacity, individual VMs can often experience performance problems due to misallocation of resources and poor placements of VMs on the physical hosts. To prevent this, <span class="mc-variable Document.Company variable">Densify</span> policies include a set of criteria that govern the maximum resource utilization levels for VMs that trigger actions to resize them if conditions warrant the change. </p>
+<p>In addition, contention probability analysis allows workloads to be statistically analyzed to a specific confidence level, forcing workloads to be rebalanced if the risk of contention on a host increases above acceptable levels.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>High Availability</p>
+</td>
+<td>
+<p>These criteria affect how the environment deals with various types of failure, and thus the resiliency and availability of the hosted workloads. These settings include the host-level failure policy (or "HA Policy", such as N+1, N+2), more advanced component-level failure policies (cabinet, switch, etc.), and the overall disaster recover policy (or "DR Policy", which is typically at the environment or site level). These criteria tend to vary considerably between environments based on desired system resiliency.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Compliance</p>
+</td>
+<td>
+<p>This area of the policy addresses the specific business policies, operational constraints, and data security policies that govern each environment. Examples in this area include separation of specific lines of business, honoring security zones and network segmentation rules, separating load balancers, and limiting mobility of customer data.</p>
+<p>As organizations virtualize more of their critical applications, this area of the policy becomes extremely important, and it is imperative to define the correct policy for internal and hybrid cloud environments.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Volatility</p>
+</td>
+<td>
+<p>Virtual environments can be extremely dynamic and this can be an either an advantage or a liability depending on the circumstances. This area of the policy controls the volatility of an environment by controlling how freely VMs are allowed to move between hosts. The policy can also statistically analyze operational patterns to ensure that the environment is not overly sensitive to transient conditions.</p>
+<p>For cloud environments, this area of the policy also governs how much "whitespace", or spare capacity, is kept in reserve to service new capacity requests. This allows the environment to adapt to situations caused by the volatility and unpredictable nature of user requests.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Operational Patterns</p>
+</td>
+<td>
+<p>Many IT environments have repeating operational patterns that must be taken into account when determining efficiency. If an environment has a specific daily "operational window" (such as standard business hours) then reacting to situations outside this window (such as backups or weekend maintenance) may negatively impact the repeating operational pattern.</p>
+<p>Similarly, if certain applications are busier at month-end, then this activity must be taken into account when controlling placements and resource allocations. In order to handle these cases, <span class="mc-variable Document.Company variable">Densify</span> policies include criteria that govern operational windowing, cyclical analysis, and the amount of historical data that is used to make decisions in a given environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Reclamation</p>
+</td>
+<td>
+<p>In order to achieve efficiency in virtual and cloud environments, you need to control VM efficiency through allocation policies that target resource reclamation. </p>
+<p><span class="mc-variable Document.Company variable">Densify</span> policies include a set of criteria, such as minimum VM utilization, allocation decrease deltas, that govern the maximum resource utilization levels for VMs, triggering actions to reclaim or re-allocate resources. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Automation</p>
+</td>
+<td>
+<p>In order to achieve control of virtual and cloud environments, the outcomes of any policy-based analysis must be actionable, either by IT staff, change management processes or automation systems. </p>
+<p>This area of the policy converts the analyses output into specific actions, and governs where these actions are "routed". </p>
+<p>The criteria in this area include policies on maximum changes for a given environment (e.g. VM resizing limits), lead times on actions, and exactly where to send the actions. For example, VM resizing typically needs to go through a change management processes, and the policy will therefore route these actions to a service desk or ticketing system. Rebalancing actions, on the other hand, can often be automated, and the policy for these actions can be designed to reflect this.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+Once you are able to map your specific operational requirements, such as the need for an HA configuration, or maximum host utilization, etc., to the corresponding settings, you can then adjust specific settings used to drive the analytics that provide the Control Console view of your environment.
+
+## Policy Categories Overview
+
+Each policy is organized into categories. Each category groups policy settings logically, based on how the settings are used to define your environment. These categories can be further grouped by functionality, though this additional grouping is not displayed in the dialog box.
+
+## Policy Overview - Densify Console
+
+You can review your policy settings through the Densify Console. Contact [Support@Densify.com](mailto:Support@Densify.com) to review and tune the settings to suit your business requirements.
+
+<Accordion title="Video: Cloud Policy Overview">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/371640427" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+</Accordion>
+
+
+## Commonly Tuned Policy Settings
+
+Before onboarding your environments you will meet with account manager to review the your requirements and then select the policy and tune the settings to align with your requirements. The policy spreadsheets provide a method to review and track changes setting.
+
+The following settings commonly tuned for cloud environments:
+
+* Workload history--The number of days of data required for different types of recommendations. See
+* Backfill Missing Memory--These policy settings allow you configure the way in which you account for missing memory data.
+* Service type catalog --You can use custom instances for your recommendations. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+* Service pricing and discounting--You can specify custom pricing, that you have negotiated with your cloud vendor, for your recommendations. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+* CPU, Memory and I/O Utilization Limits--These policy setting allow you to define the up/down sizing and idle detection limits.
+* Memory scoring strategy--Specify a scoring strategy for memory utilization, if you are using memory data.
+* Recommendation locking and overriding--Control Instance Type Override behaviour using a combination of policy setting and attributes.
+
+The following settings are commonly tuned for container environments:
+
+* Workload history--The number of days of data needed for different types recommendations.
+* CPU and Memory Utilization Limits--These policy settings define the up/down sizing and idle detection limits.

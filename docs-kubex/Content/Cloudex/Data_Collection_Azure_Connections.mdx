@@ -1,0 +1,85 @@
+---
+title: "Creating Azure Cloud Connections"
+---
+
+Densify uses a Service Principal to access one or more of your Azure subscriptions. See [Microsoft Azure Data Collection Prerequisites](/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal) for details on configuring the Service Principal and obtaining the required credentials.
+
+## Configuring Microsoft Azure Connections
+
+<ol start="1">
+  <li>Click the **Add** button and select Azure.</li>
+  <Frame caption="Figure: Accessing the Add Button">
+    <img src="/images/docs-kubex/Content/Cloudex/03000032_580x351.png"/>
+  </Frame>
+  <Frame caption="Figure: Azure Connection Window">
+    <img src="/images/docs-kubex/Content/Cloudex/03000034.png"/>
+  </Frame>
+  <li>
+  Enter the Azure-specific connection parameters. A link in the header takes you to the online help.
+  <p>Table: Azure Connection Parameters</p>
+    <table style={{ width: "100%", borderCollapse: "collapse" }}>
+      <colgroup>
+        <col style={{ width: "30%" }} />
+        <col style={{ width: "70%" }} />
+      </colgroup>
+      <thead>
+        <tr>
+          <th style={{ verticalAlign: "middle" }}>Field</th>
+          <th style={{ verticalAlign: "middle" }}>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style={{ verticalAlign: "middle" }}>Application ID</td>
+          <td style={{ verticalAlign: "middle" }}>
+            Specify the Application ID/Service Principal. Both the ID and the corresponding key are provided when you create the application through your Azure portal.
+          </td>
+        </tr>
+        <tr>
+          <td style={{ verticalAlign: "middle" }}>Secret Key</td>
+          <td style={{ verticalAlign: "middle" }}>
+            Enter the key corresponding to your application/service principal. This is called the Client Secret in the Azure portal interface.
+          </td>
+        </tr>
+        <tr>
+          <td style={{ verticalAlign: "middle" }}>Tenant ID</td>
+          <td style={{ verticalAlign: "middle" }}>
+            The Directory (tenant) ID is a unique identifier that represents your Azure Active Directory tenant.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+
+  <li>
+    Click **Verify Connection** to validate your settings.
+    <ul>
+    <li class="ListBullet">
+    If the credentials are valid, you will be connected and authenticated.
+    </li>
+    <li class="ListBullet">
+    If the credentials cannot be validated, then review the displayed error message and correct your credentials. See <a href="/docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/Azure_Cloud_Connections">Troubleshooting Azure Cloud Connections</a> for details.
+    </li>
+    </ul>
+  </li>
+  <li>Once the account is verified, all subscriptions that are associated with the account or Application ID are listed. Select the subscriptions that you want to include in this connection.</li>
+  <Note>
+  <strong>Note:</strong> The number of instances returned is an estimate obtained when Densify verifies the connectivity. It may not match the number of instances discovered during the more detailed, scheduled data collection.
+  </Note>
+  <Frame caption="Figure: Subscription Selection Window">
+    <img src="/images/docs-kubex/Content/Cloudex/03000037_716x400.png"/>
+  </Frame>
+
+  <li>
+    Specify a connection name to clearly identify the AWS account inDensify. This name will appear in the <strong>Cloud Connections</strong> list so you can easily identify this connection.
+    <Frame caption="Figure: Connection Confirmation Window">
+    <img src="/images/docs-kubex/Content/Cloudex/03000038_717x431.png"/>
+  </Frame>
+ <p>The connection table is updated with your new connection listed. Actual data collection will begin at the scheduled time, usually overnight.</p>
+  </li>
+  <li>If you want to add another connection, click **Add** and repeat these steps to configure the connection.</li>
+  <Note>
+  <strong>Note:</strong> If you create another connection, you must ensure subscriptions are not included in more than one cloud connection, and each connection name must be unique.
+  </Note>
+</ol>
+

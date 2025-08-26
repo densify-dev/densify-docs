@@ -1,0 +1,24 @@
+---
+title: "Analysis: AWS Systems"
+---
+
+## Description
+
+The `/analysis/cloud/aws/<analysisId>/systems` resource is used to return a collection of all systems included in an AWS optimization analysis.
+
+The recommendations from an AWS optimization analysis can be obtained using the `/analysis/cloud/aws/<analysisId>/results` resource. See [Analysis: AWS Recommendations](./Analysis_AWS_Results) for details on the AWS recommendations resource.
+
+The number of analyzed systems (i.e. `/aws/<analysisId>/systems` entities) will always be greater than or equal to the number of system recommendations produced (i.e. `/aws/<analysisId>/results` entities), as some systems may not have any recommendations.
+
+## Resource
+
+```
+/analysis/cloud/aws/
+<analysisId>
+/systems
+```
+## Endpoints
+
+<CardGroup cols={2}>
+    <Card title="List Aws Analysis System" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Systems/listAwsAnalysisSystems" arrow/>
+</CardGroup>

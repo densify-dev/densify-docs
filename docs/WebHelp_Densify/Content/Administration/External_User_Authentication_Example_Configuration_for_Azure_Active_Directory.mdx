@@ -1,0 +1,150 @@
+---
+title: "External User Authentication Example Configuration for Azure Active Directory"
+---
+
+You can use the following process to setup Azure Active Directory (AD). You need to register Densify as a web application in your Azure AD and then provide the following information to Densify:
+
+* Application (client) ID
+* Directory (tenant) ID
+* Client secret (password)
+
+### Register an Application
+
+You must have permission to manage applications in Azure AD. i.e. Application administrator or Application developer, etc.
+
+1. In the Azure portal. If you have access to multiple tenants, use the Directories + subscriptions filter in the top menu to switch to the tenant in which you want to register the application.
+2. Navigate to Azure Active Directory > App Registrations > New registration.
+<Accordion title="Figure: Creating a New Registration">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Administration_Guide/030000C6_329x191.png)</Frame>
+</Accordion>
+3. In the Register an application pane, enter the following information:
+
+* The Name of the application (i.e. Densify\_Connection)
+* Specify who can use the application. You can leave the default setting, Accounts in this organizational directory only (Default Directory only – Single tenant).
+* You do not need to add anything under the Redirect URI. You can will configure the URIs in the next section.
+
+4. Once you have entered the required information the Register button becomes available. Click Register to complete the process.
+<Accordion title="Figure: Creating a New Registration">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Administration_Guide/030000C8.png)</Frame>
+</Accordion>
+5. Once you have completed the registration, you will be directed to the overview page for your new application registration.
+
+New app registrations are hidden to other users by default. Refer to Microsoft.com for details on enabling your app registration for other users, if required.
+
+#### Obtaining the Application and Directory IDs
+
+1. In the Azure portal, navigate to Azure Active Directory > App Registrations.
+2. Select your new App Registration and copy the following values:
+
+* Application (client) ID
+* Directory (tenant) ID
+
+You need to provide these values to Densify to complete the authentication process.
+
+<Accordion title="Figure: Obtaining the Required IDs">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Administration_Guide/030000CB.png)</Frame>
+</Accordion>
+
+
+### Configuring the URIs
+
+A redirect URI is the location where the Microsoft identity platform redirects a user's client and sends back the security tokens after authentication.
+
+1. In the Azure portal, in App registrations, select your application registration.
+2. Select Authentication from the side menu.
+3. Under Platform configurations, click Add a platform and then choose Web applications > Web.
+4. Under Redirect URIs, add the following URIs:
+<Note>
+These are examples only. Contact Densify for the actual URIs.
+</Note>
+
+
+
+* https://\<instancename>.densify.com:443/redirect
+* https://\<instancename>.densify.com:443/
+* https://\<instancename>.densify.com:443/densify
+* https://\<instancename>.densify.com:443/openIdError
+
+5. Click Add URI to add each entry. You should have a total of 4 URIs.
+<Accordion title="Figure: Adding Redirect URIs">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Administration_Guide/030000CC.png)</Frame>
+</Accordion>
+6. Click Save to commit all your information.
+
+### Obtaining the Credentials
+
+The credentials generated here allow Densify to authenticate as itself, requiring no interaction from the user at runtime.
+
+A client secret is sometimes called an application password. It is a string value that Densify can use in place of a certificate to identity itself.
+
+1. In the Azure portal, in App registrations, select your application registration.
+2. Navigate to Certificates & secrets > Client secrets > New client secret.
+3. Add a description for your client secret. i.e.Densify-Client-Secret
+4. Select an expiration for the client secret or specify a custom lifetime. Please note the following:
+
+* Client secret lifetime is limited to 24 months, or less.
+* Microsoft recommends that you set an expiration value of less than 12 months.
+* You will need to renew the secret prior to the expiry date and provide the new value to Densify each time the value expires.
+
+5. Click Add to save your settings and to generate the client secret.
+<Accordion title="Figure: Copying Client Secret Value">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Administration_Guide/030000CD.png)</Frame>
+</Accordion>
+
+
+Record the displayed value, as this value will not be displayed again once you leave this page and you need to provide this value to Densify.
+
+### Configuring the API Permissions for the Connection
+
+In this section, you provide Densify, now registered with the Microsoft identity platform with access to your own web API. You also provide the client app access to Microsoft Graph.
+
+1. In the Azure portal, select App registrations and then select your application registration.
+2. Navigate to Manage > API permissions > Add a Permission > Microsoft Graph.
+<Accordion title="Figure: Configuring the API Permissions">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Administration_Guide/03200049.png)</Frame>
+</Accordion>
+3. Choose ‘Delegated Permissions’. Microsoft Graph exposes many permissions, with the most commonly used permissions shown at the top of the list.
+4. Under OpenId permissions, select:
+
+* email--Allow Densify to view the users’ email address;
+* profile--Allow Densify to view the users’ basic profile;
+
+<Accordion title="Figure: Configuring the API Permissions">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Administration_Guide/03200050.png)</Frame>
+</Accordion>
+
+
+* Under GroupMember select:
+
+* GroupMember.Read.All--Allow Densify to read all user groups.
+
+<Note>
+If the auto-provisioning feature is enabled, you need to add this permission. If the auto-provisioning is not enabled you do not need this permission.
+</Note>
+
+
+<Accordion title="Figure: Configuring the API Permissions">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Administration_Guide/03200051.png)</Frame>
+</Accordion>
+
+
+5. Under User select:
+
+* User Read--should already be delegated. Allows Densify to sign in and read user profile.
+
+6. Click Add Permissions and choose Grant admin consent confirmation. Then click ‘Yes’ when prompted.
+7. Click Yes when prompted.
+<Accordion title="Figure: Configuring the API Permissions - 2">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Administration_Guide/030000CF.png)</Frame>
+</Accordion>
+
+
+### Completing the Setup
+
+You now need to provide the following information to Densify to complete the setup:
+
+* Application (client) ID;
+* Directory (tenant) ID;
+* client secret value
+
+These settings are all configured for you by Densify. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.

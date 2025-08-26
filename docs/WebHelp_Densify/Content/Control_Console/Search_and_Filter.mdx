@@ -1,0 +1,75 @@
+---
+title: "Search and Filter"
+---
+
+## Home Page Environment, Group, Host and VM Fields
+
+From the home page, you can use these fields to search for a specific infrastructure group, host, or VM across your environments. Unlike the [Environment's Group, Host and VM Fields](#Cluster,), as documented below for a specific control environment, these fields are only used to search and not filter the Control Console home page.
+
+The Environment, Group, Host and VM fields are self-explanatory and are the names of the environment, infrastructure group, host and VM, respectively.
+
+You must enter at least three characters in any of these fields before a corresponding list of names matching this string is provided. Alternatively, you can simply hit enter and the corresponding list of all names is provided. Once you make a selection, the parent fields are automatically set showing you where the system is located. If parent fields are provided, any corresponding list of matching names are displayed with further filtering by that parent.
+
+As an example, if you enter a Host name of "esx", then the list of host names containing "esx" is displayed. From the list, select the desired host, and the owning Environment and Group fields are provided.
+
+<Note>
+For each timeframe change, first click on any of these fields to enable them. Then enter your search criteria.
+</Note>
+
+
+<Note>
+There is no Group/Host/VM search data for control environments that have never been refreshed or executed for the specific timeframe.
+</Note>
+
+
+
+## Environment's Group, Host and VM Fields
+
+When displaying the Control Console of a specific control environment, you can use the Clusters, Host and VM entry fields to search for and filter systems in your environment. To do so, you must enter at least three characters in any of these fields before a list of matching names is provided. Alternatively, you can simply hit enter and the list of all names is provided. This feature is very useful in an enterprise environment to focus on specific systems.
+
+The filtering depends on the entry fields that are specified:
+
+* Clusters--displays the selected infrastructure group and the hosts and VMs in that infrastructure group.
+* Host--displays the selected host and the VMs on that host.
+* VM--displays the selected VM and its associated host.
+
+The infrastructure group for the filtered host/VM is always displayed along with the sensors that are associated with the displayed infrastructure group and systems.
+
+You cannot filter on multiple systems. If multiple systems are selected, you will be prompted with a selection of systems from which to choose a single option.
+
+The settings for these fields will be respected as you move between timeframes within an environment. See [Timeline Slider](./Timeline_Slider). You must have the multiple timeframes enabled for the environment.
+
+## Defining a Filter
+
+To specify a filter:
+
+1. Enter the name of your infrastructure group, host or VM, for which you are searching, in the corresponding field. As you type, the Control Console will attempt to match existing system names. You must enter at least three characters as a substring.
+
+Once you have entered/selected the system of interest, only that system along with its parent/child systems will be displayed in the console.
+
+<Accordion title="Figure: Search/Filter Fields">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000011_591x262.png)</Frame>
+</Accordion>
+2. Click the Reset button to clear the search/filter and restore all systems to the spectrum view. You can also press F10.
+<Note>
+The Inbound and Outbound panes are not affected by filtering.
+</Note>
+
+
+
+You can also filter the Control Console by selecting the system directly in the Spectrum and then:
+
+* Right-clicking on the system and selecting Apply Filter from the pop-up menu,
+* Clicking the Apply Filter button in the Spectrum Details pane, or
+* Clicking on the F9 key.
+
+As before, only the selected system along with its parent/child systems will be displayed in the Control Console. Additionally the details of the filter, are displayed in Clusters, Host and VM fields.
+
+<Accordion title="Figure: Apply Filter">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000047_604x267.png)</Frame>
+</Accordion>
+
+
+## Environment's Search and Filter and the Timeline
+
+If you change the timeline slider when viewing the Spectrum of a specific environment, the same set of systems filtered through the search and filter fields are maintained. For details on the timeline slider, see [Timeline Slider](./Timeline_Slider).

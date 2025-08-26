@@ -1,0 +1,98 @@
+openapi: 3.1.0
+info:
+  title: Densify – Azure Systems API
+  version: "1.0.0"
+  description: |
+    Lists all systems (Azure Virtual Machines) included in a given Azure optimization analysis.
+    Source: “Analysis: Azure Systems”.
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: api.example.com
+tags:
+  - name: Azure Analysis
+paths:
+  /analysis/cloud/azure/{analysisId}/systems:
+    get:
+      tags: [Azure Analysis]
+      operationId: listAzureSystems
+      summary: List systems included in an Azure analysis
+      description: |
+        Returns the collection of Azure systems analyzed in the specified analysis.
+        The set of analyzed systems can be larger than the set of recommendations.
+      parameters:
+        - name: analysisId
+          in: path
+          required: true
+          description: Unique ID of the Azure analysis.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of systems in the analysis
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AzureSystem'
+              examples:
+                sample:
+                  summary: Example response (abbrev.)
+                  value:
+                    - serviceType: "Virtual Machine"
+                      resourceId: "st02-db-edge-695"
+                      powerState: "Running"
+                      currentType: "standard_a2_v2"
+                      displayName: "st02-db-edge-695"
+                      entityId: "0137f635-eacd-44da-878f-a4482166f9c1"
+                      href: "/systems/0137f635-eacd-44da-878f-a4482166f9c1"
+                    - serviceType: "Virtual Machine"
+                      resourceId: "st01-io-asop-216"
+                      powerState: "Running"
+                      currentType: "standard_d1_v2"
+                      displayName: "st01-io-asop-216"
+                      entityId: "065c44d5-040a-4392-9d08-5f581bedb401"
+                      href: "/systems/065c44d5-040a-4392-9d08-5f581bedb401"
+        '401':
+          description: Authentication failed.
+        '404':
+          description: Analysis not found.
+        '500':
+          description: Server error.
+
+components:
+  schemas:
+    AzureSystem:
+      type: object
+      description: System (VM) included in the Azure analysis.
+      properties:
+        serviceType:
+          type: string
+          description: Cloud service type (e.g., "Virtual Machine").
+        resourceId:
+          type: string
+          description: Azure unique identifier for the VM.
+        powerState:
+          type: string
+          description: Current power state of the VM.
+        currentType:
+          type: string
+          description: Current VM size/type.
+        displayName:
+          type: string
+          description: Display name of the VM (same as resourceId for Azure VMs).
+        entityId:
+          type: string
+          description: Densify entity ID of the system.
+        href:
+          type: string
+          description: Link to the `/systems/{entityId}` resource for this system.
+      required:
+        - serviceType
+        - resourceId
+        - currentType
+        - displayName
+        - entityId
+        - href

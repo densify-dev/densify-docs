@@ -1,0 +1,812 @@
+---
+title: "Understanding the Instance Optimization Details Report"
+---
+
+The Instance Optimization Details report displays instance-specific details for the instance type group selected from an optimization opportunity or Public Cloud Overview report.
+
+Open the Instance Optimization Details report, by clicking on a hyperlinked value in the Count column from a supported optimization opportunity tabular report.
+
+The Instance Optimization Details report for ASGs is covered in [Working with Auto Scaling Groups](./Working_with_ASGs).
+
+<Note>
+Cloud instances that do not have adequate information for recommendation analysis are not included in the Instance Optimization Details report. For example, this would include guests with no or incomplete benchmark data.
+</Note>
+
+<Accordion title="Video: Instance Optimization Details Overview">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/319982972" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+</Accordion>
+
+Recommendations are based on the latest cloud catalogs from the supported public cloud providers.
+
+<Accordion title="Video: Using the Latest Public Cloud Instances">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/708679005" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+</Accordion>
+
+## Page Navigation
+
+
+Use the breadcrumbs in the upper left corner or click the Back button, in the top-right corner of the page, to return to the parent dashboard. Do not use the browser's Back button for navigation within Densify. You will be logged out of your session. See [Navigating Densify](./Navigating_Densify) for other features of the Densify user interface.
+
+<Accordion title="Figure: Instance Type Optimization Details - Page Navigation">
+<table>
+<tbody>
+<tr>
+<td>
+<p class="CiRBAFigure">
+<Frame><img class="img_11" src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000254_270x121.png"/></Frame>
+</p>
+</td>
+<td>
+<p class="CiRBAFigure">
+<Frame><img class="img_11" src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000194.png"/></Frame>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+The Instance Optimization Details dashboard consists of:
+
+* A tabular report—The columns of the tabular report change depending on the selected instance type. Refer to the [Table: Instance Optimization Details Tabular Report Columns](#Instance_Optimization_Details_Component) below for details. See [Data Controls](#Data), below to search, sort, export and customize the table's content.
+* A lower pane with system details—Based on the selected system in the tabular top pane, various details and settings for the system are available in separate tabs, such as system resource utilization charts, system details, optimization approvals and modifying system attributes. See [Reviewing Specific Instance Details](#Lower_Section) for details on each tab.
+
+## Reviewing the Instance Optimization Details Table
+
+### Summary Bar
+
+A summary bar showing the number of services and potentials savings is displayed at the top of the page. These values relate only to the content of the details page and not your total environment.
+
+### Data Controls
+
+The controls, in the upper right corner of the page, provide options for managing and viewing your data more effectively. See [Data Controls on Tabular Reports](./Navigating_Densify#Data_Controls) for more details.
+
+### Tabular Report
+
+The columns of the tabular report change depending on the selected instance type. Refer to the table below for details. See [Data Controls](#Data), above to search, sort, export and customize the table's content.
+
+<Accordion title="">
+<table class="table_1">
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Component/&lt;br/&gt;Column Name </p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Included For</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Account | Project | Subscription</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The instance's parent environment. This corresponds to the:</p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">AWS Linked Account or</li>
+<li class="CiRBATableBullet">GCP Project or</li>
+<li class="CiRBATableBullet">Azure Subscription</li>
+</ul>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+<li class="CiRBATableBullet">Optimization Overview</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Availability Zone</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The cluster/availability zone that corresponds to a geographic region.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">System</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText" data-mc-conditions="CiRBA.CCOExclude">The system name is a hyperlink that takes you to the Impact Analysis and Recommendations page. You can review instance-specific details. See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="./Viewing_the_Impact_Analysis_and_Recommendation_Report">Viewing the Public Cloud Impact Analysis and Recommendation Report</a></madcap:conditionaltext>.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">System ID</p>
+</td>
+<td class="td_3">A unique key assigned by the public cloud vendors to identify this instance. </td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+<li> </li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><a name="Details_OverallStatus"></a>Overall Status</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Identifies the overall status of the optimization results based on <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="#Details_OptimizationType"><u>Optimization Type
+</u></a> and potential <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="#Details_SavingsMonth"><u>$ Savings/Month
+</u></a>:</p>
+<table>
+<tbody>
+<tr>
+<td>
+<p class="CiRBATableText">Optimal</p>
+</td>
+<td>
+<p class="CiRBATableText">These groups of cloud services are currently optimal. Optimization type is just right and there are no savings for this group.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Identified Risk</p>
+</td>
+<td>
+<p class="CiRBATableText">These groups of cloud services are at risk. This status typically occurs when the savings amount is less than \$0 (i.e. when you need to spend money to mitigate risk). </p>
+<p class="CiRBATableText">Identified Risk status is also present when the savings amount is \$0, but optimization type is upscale, upsize, or upsize to optimal family. This situation occurs when services are inactive, but they will need to be upscaled or upsized when they resume activity to mitigate risk.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Savings Opportunity</p>
+</td>
+<td>
+<p class="CiRBATableText">These groups of cloud services have saving opportunities, which occurs when their savings amount is greater than $0. </p>
+<p class="CiRBATableText">Savings opportunity status is also present when the savings amount is $0, but optimization type is terminate, modernize, modernize to optimal family, downscale, downsize, or downsize to optimal family. This situation occurs when services are inactive, but have a recommendation of terminate, modernize, downsize or downscale when they resume activity to save money.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+<li class="CiRBATableBullet">Optimization Overview</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><a name="Details_OptimizationType"></a>Optimization Type</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The recommended action for this instance. See <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="#Recommendation_Color-Coding"><u>Optimization Type Descriptions and Color-Coding</u></a> for a description of each recommendation.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Recommendation Reason/Observation</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The reason for the Optimization Type recommendation. Densify also provides any relevant details related to the recommendation.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr data-mc-conditions="">
+<td class="td_3">
+<p class="CiRBATableText">Current Instance Type</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Based on the data collected, the current instance type is listed.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr data-mc-conditions="">
+<td class="td_3">
+<p class="CiRBATableText">Recommended Instance Type</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Based on optimization analysis, the recommended catalog instance type is listed. </p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><a name="Uptime%"></a>Predicted Uptime (%)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">When using pay-per-use pricing models, the amount of time each instance has been running, is required to accurately estimate future costs. </p>
+<p class="CiRBATableText">The predicted uptime (%) for a cloud instance or container, is based on the percentage of hours CPU utilization data is present in the historical interval, as specified in the policy settings for the entity. For <span class="mc-variable Document.ASG variable">Auto Scaling group</span>s and <span class="mc-variable Document.VMSS variable">VM Scale Set</span>s and Individual child instances are not taken into account.</p>
+<p class="CiRBATableText">Predicted uptime %, for new instances or containers, that started mid-way through the historical interval, is calculated from the time/date that the instance was started as opposed to the beginning of the interval, resulting in more accurate predictions for future usage.</p>
+<p class="CiRBATableText">For example, the uptime is the number of hours that have "CPU Utilization in mcores", and the range is the lesser of when the container was discovered, or the range defined in the policy. Looking at a specific container that was discovered on Jan 5th 2024, that has workload of 42 hours since that date, then the uptime % is 42 hrs/(13 days x 24 hrs/day) = 13.4%. This is the value shown in this column.</p>
+<p class="CiRBATableText"> Click on the <span class="CiRBAcharUIElement">Predicted Uptime Details</span> tab to review the uptime details for the selected instance.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><a name="Details_EstimatedCost"></a>Current Estimated Cost ($)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The current estimated per instance cost is determined by multiplying the on-demand, monthly price of the current instance type by predicted uptime %. i.e. current per instance list price (monthly)* predicted uptime %</p>
+<p class="CiRBATableText">See <a class="MCXref xref" href="../Use_Cases_and_Troubshooting/FAQs_Cloud">FAQs</a> for examples of how the costs are calculated.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><a name="Details_RecEstimatedCost"></a>Recommended Estimated Cost ($)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Recommended estimated cost is calculated based on multiplying the on-demand price of the recommended instance type  by the uptime. </p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><a name="Details_SavingsMonth"></a>$ Savings/Month</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The estimated current and recommended instance cost is used to calculate savings per month (i.e. current estimated cost - recommended estimated cost).</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><a name="Details_Effort"></a>Effort</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">[Moderate|Low|Very Low|None]</p>
+<p class="CiRBATableText">This column describes the effort required to investigate and implement the Densify recommendations. Effort for each instance is calculated by rule-driven analytics based on factors (such as instance family change, storage change, data quality checks, feature changes, etc.) that can be configured in the policy settings and rule set which captures best practices. </p>
+<p class="CiRBATableText">Click on the <span class="CiRBAcharUIElement">Effort Details</span> tab to view  the factors that contribute to the effort level. See <a href="#Lower_Section">Reviewing the Workload Charts and Additional Details Tabs</a>, below.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Current CPU </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The current value for CPU allocation.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+<li class="CiRBATableBullet">Optimization Overview</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Recommended CPU </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The recommended value for CPU allocation.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+<li class="CiRBATableBullet">Optimization Overview</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Current CPU Benchmark </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The CPU benchmark for the current instance type.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Recommended CPU Benchmark </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The CPU benchmark for the recommended instance type.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Current Memory Allocation (GB)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The current value for memory allocation.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+<li class="CiRBATableBullet">Optimization Overview</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Recommended Memory Allocation (GB)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The recommended value for memory allocation.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+<li class="CiRBATableBullet">Optimization Overview</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Usage (%)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">[PD-55365] The percentage of CPU allocation that is used by the workload.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+<li class="CiRBATableBullet">Optimization Overview</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Active Memory Usage (%)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The percentage of active memory utilization.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory Usage (%)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The percentage of memory utilization.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+<li class="CiRBATableBullet">Optimization Overview</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">OS</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The operating system running on the instance.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Ideal CPU Allocation</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The minimum CPU allocation required to not violate the policy high limits on the recommended instance.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Ideal Memory Allocation</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The minimum memory allocation required to not violate the policy high limits on the recommended instance.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Allocation Efficiency (%)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The allocation CPU efficiency (i.e. ideal allocation / recommended allocation) is measured in percent and shows the amount of CPU resources truly require by the workload.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory Allocation Efficiency (%)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The allocation memory efficiency (i.e. ideal allocation / recommended allocation) is measured in percent and shows the amount of memory resources truly require by the workload.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><a name="Inst_Updated"></a>Instance Type Updated O</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">A value in this column indicates the instance type has been changed recently.</p>
+<p class="CiRBATableText">The workload for this instance, on which the recommendation is based, includes only the days of data from the indicated date to the current date. All historical data for this instance, collected prior to the indicated date is not included in the analysis. Previous data has been excluded because it was based on the previous instance type. <a name="kanchor252"></a></p>
+<p class="CiRBATableText">A blank cell indicates the current instance type has not changed and all available workload data within the range, defined by the policy, has been used to generate the recommendation.</p>
+<p class="CiRBATableText">Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="20735550504f52546064454e534946590e434f4d" href="/cdn-cgi/l/email-protection">[email protected]</a></span> to enable this feature. See <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Relearning_Workload_Patterns"><u>Relearning Workload Patterns</u></a> for more details.</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2, ASG</li>
+<li class="CiRBATableBullet">Virtual Machine</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"> Summary Total</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">In the top-right of the tabular report, the total number of <span class="CiRBAcharUIElement">Instances</span> and <span class="CiRBAcharUIElement">Savings/Month</span> for implementing the recommendations are displayed. </p>
+<p class="CiRBATableText">The total number of instances displayed is a total of all the instances in the optimization instance type group. This number corresponds to the number in the Count column of the parent <span class="mc-variable Document.Optimization_Opportunity variable">optimization opportunity</span> tabular report. </p>
+<p class="CiRBATableText">The amount of savings per month is a sum of all the monthly savings for each instance listed and can be negative if the recommendation is an upsize or upsize to an optimal family. </p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">EC2</li>
+<li class="CiRBATableBullet">Virtual Machines</li>
+<li class="CiRBATableBullet">Compute Engine</li>
+<li class="CiRBATableBullet">Optimization Overview</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+<Note>
+The following details are not included in this report: Disk Allocations (Current | Recommended), Individual Disk Partitions at Risk, Disk Usage and Parent.
+</Note>
+
+
+
+### Optimization Type Descriptions and Color-Coding
+
+The following descriptions and color coding apply to all AWS, Azure and GCP tabs.
+
+<Note>
+Not all optimization types are supported for all cloud providers.
+</Note>
+
+<Accordion title="Table: Optimization Type Color-Coding Summary">
+<table class="table_1">
+<thead>
+<tr>
+<th>
+<p class="CiRBATableColumnText">Optimization Type</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Just Right</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance is optimally sized for the workload.</p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p class="CiRBATableText">In general the following upsize recommendations incur additional costs. The cost increase is determined by comparing on-demand pricing for the current and recommended instance. The increased cost is required to alleviate application risk. If you have an RI or SP for the recommended upsize instance, there could be cost savings. This would still be an upsize recommendation.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Upsize - Optimal Family</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be upsized to a more optimal instance family. This will improve the workload's performance and reduce risk. </p>
+<p class="CiRBATableText">If the workload can be moved to larger instance in a different family and still reduce cost, this then becomes a Modernize recommendation. e.g. t2.medium-Linux to m3.medium-Linux</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Upsize</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be upsized to an instance within the same instance family. The hosted workload needs an instance with more CPU and\or memory resources.</p>
+<p class="CiRBATableText">e.g. r3.large to r4.xlarge, both are in the "Memory Optimized r" instance family.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Upscale</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This recommendation applies to ASGs only and indicates the ASG needs increase compute capacity by adjusting the maximum group size. </p>
+<p class="CiRBATableText">It may be more cost effective to use a larger instance for this ASG.</p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p class="CiRBATableText">Downsize recommendations reduce the allocated resources as your workload has likely been over-provisioned. Once the recommendation has been determined from CPU and memory utilization, it is further verified against policy-defined limits, before the downsize or terminate recommendations are made.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Terminate</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be terminated, as it is idle. An instance is determined to be idle if it has very low CPU utilization, network and disk I/O over an extended period of time. This will save you money. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Downsize - Optimal Family</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be downsized to an instance belonging to an instance family that more closely suits your workload's utilization.</p>
+<p class="CiRBATableText">When you downsize, CPU and\or memory will be decreased to better suit your workloads. Utilization will improve with no impact on performance. This will save you money. e.g. d2.medium-Linux to m4.medium-Linux</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Downsize</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be downsized to an instance within the same instance family. </p>
+<p class="CiRBATableText">As indicated above, CPU and\or memory will be decreased to better suit your workloads. Utilization will improve with no impact on performance. This will save you money. e.g. m3.large-Linux to m3.small-Linux</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Downscale</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This<span class="mc-variable Document.ASG variable">Auto Scaling group</span> or <span class="mc-variable Document.VMSS variable">VM Scale Set</span> should be downscaled to decrease the compute capacity by adjusting the minimum group size.</p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p class="CiRBATableText">The following modernize recommendations move your workload to a more modern instance type without changing the resource allocation, cost or performance, at a minimum. Your costs could decrease and/or you may benefit from potential utilization and performance improvements.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Modernize - Optimal Family</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be modernized to an instance belonging to a more optimal instance family. The cost of the new instance type will be less than the existing cost.</p>
+<p class="CiRBATableText">Allocated resources are not being removed and moving to an instance with more current hardware, you may also benefit potential utilization and performance improvements.</p>
+<p class="CiRBATableText">When you modernize, you will not decrease performance but will decrease cost.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Modernize </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be modernized to an instance within the same instance family. The cost of the new instance type will be less than the existing cost and as indicated above you may also get utilization and performance improvements.</p>
+<p class="CiRBATableText">For example, moving to a new generation of the same instance family (e.g. m3.large to m4.large).</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+### Reviewing Specific Instance Details
+
+Clicking on any row in the tabular report shows more detailed system information for that instance, in the 4 tabs, on the lower pane:
+
+* Resource Utilization Metrics: Cloud Tab—The charts on this tab show the utilization for various workloads for the selected instance.
+<Note>
+If no metrics are available, then the corresponding chart is not displayed.
+</Note>
+
+
+
+If a cloud instance has been optimized (i.e. instance type has been changed based on a recommendation), then on the next day you will see the Optimization Type set to "Just Right" and since the required data (as defined by the policy) has not been accumulated, only the Memory BackFill workload chart is displayed, if enabled. See the column, [Instance Type Updated On](#Inst_Updated) , above for more details.
+
+These workload charts show hourly min/max and sustained activity for the selected system. Use the left/right arrows to scroll though the various workload charts.
+
+Workload charts show current Sustained Activity in blue, while Sustained Activity on the recommended instance type is shown in green.
+
+<Note>
+When reviewing Optimal and Terminate recommendations the recommended instance type (green) is not applicable and so is not shown.
+</Note>
+
+
+
+The minimum and maximum utilization values are shown as vertical lines above and below the coloured block. The median is indicated as a black line within the coloured block. The average is indicated in brackets, in the sub-title of the chart.
+
+The scale used on the Y-axis is scaled dynamically to match the range of data. Where applicable, the pink line indicating the policy high limit, is shown, and the setting of the Y-axis scale also accounts for the policy limit setting.
+
+* System Information Tab—Click on this tab to see allocated resources and some of the organizational attributes that have been set for this guest.
+* Effort Details Tab—This tab lists the factors that contribute to the effort required to investigate and implement the Densify recommendations. Effort for each instance is calculated by rule-driven analytics based on factors (such as instance family change, storage change, data quality checks, feature changes, etc.) that can be configured in the policy settings and through analysis rule sets. A description of each rule/property and its impact on the effort to move the current instance to the recommended instance type are provided.
+
+Contact Support@Densify.com for further details on the policy settings and rule set configured for your environment.
+
+* Predicted Uptime Details Tab—This tab shows a pie chart with the uptime details for the selected instance.
+
+#### Quartiles in the Resource Utilization Charts
+
+<Accordion title="">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/356956354" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+</Accordion>
+
+In charts, workload data for each system is shown in four different bars (two yellow and two red), called quartiles, to show minimum, average, sustained and peak values. When used in the analysis, quartiles provide a good representation of system activity because the weighted scoring for sustained and peak activity produces a more accurate assessment of workload utilization patterns and requirements.
+
+Quartiles are calculated in the following manner:
+
+* Workload activity is collected every five minutes, which totals 12 times per hour.
+* The 12 values are then re-ordered in descending order and separated into equal sample sizes (quartiles), with each quartile having three values. Each quartile represents 25% of operational time.
+* The bottom of the first quartile shows the minimum value, the next quartile shows average values, the top of the third quartile shows the sustained value and the top of the fourth quartile shows the peak value.
+
+<Accordion title="Figure: Workload Data in Quartiles (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Intelligence_Workbench_Guide/08000047.png)</Frame>
+</Accordion>
+
+### Editing System Attributes
+
+The Edit System Attributes tab in the lower pane of the Instance Optimization Details report allows you to edit specific attributes of the system selected from the top pane.
+
+This feature is supported via the Densify API.
+
+<Accordion title="Figure: Edit System Attributes Tab">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000031.png)</Frame>
+</Accordion>
+
+The following default system attribute categories are available for editing:
+
+* Business
+* Routing
+
+Contact Support@Densify.com if you require additional system attributes to be exposed for editing.
+
+Attribute changes are displayed accordingly in the Edit Systems Attributes tab.
+
+Densify optimization and reporting database updates are required before the saved values are reflected in the Instance Optimization Details tabular report and footer. For example, if you update and save one of the Self-Optimizing Automation Overrides attributes, you can see the updated value in the Edit Systems Attributes tab and extract the updated attribute value from the Densify API. However, the Instance Optimization Details tabular report and footer will not display the recommendation results of the updated value until analysis has been performed and the reporting tables have been updated via the overnight scheduled job.

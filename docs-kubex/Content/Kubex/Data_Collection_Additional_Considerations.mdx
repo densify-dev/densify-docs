@@ -1,0 +1,420 @@
+---
+title: "Additional Considerations"
+---
+
+
+## Configuration for kube-state-metrics v2.x and Higher
+
+### Kubernetes Labels in kube-state-metrics
+
+In kube-state-metrics v2.x features have been added to improve performance of both kube-state-metrics, itself and the Prometheus server that collects the resulting data.
+One of these improvements affects the usage of Kubernetes object labels and annotations as Prometheus labels of the kube-state-metrics data points. In v2.x kube-state-metric, the default settings no longer include the collection of the Kubernetes object labels nor annotations and you need to configure the collection of these items using the command-line options.
+
+### Densify Container Data Collection and Kubernetes Labels
+
+Though Densify's container data collection will work without the Kubernetes object labels as kube-state-metrics labels, you may want to enable the kube-state-metrics labels for the following use cases:
+
+
+<ul>
+  <li>Node group data collection requires the node labels.</li>
+  <li>Data collection of other Kubernetes objects attempts to collect labels and annotations. These can be used to sort and filter containers in the UI or API and to create customized reports.</li>
+</ul>
+
+
+
+### Node Groups
+
+Node groups are not a Kubernetes feature, but rather are implemented by the public cloud provider's Kubernetes solution (e.g. AWS EKS, GCP GKE, Azure AKS). They are also used by 3rd party tools to provision the Kubernetes cluster (e.g. eksctl, kops).
+Collecting node group data is only meaningful if you are able to match it to the public cloud provider's node group data (e.g. AWS ASG). In this case you need to enable node group data collection with kube-state-metrics version v2.x or higher.
+
+
+<ol start="1">
+  <li>Add the following command-line argument to the kube-state-metrics container:</li>
+  `["--metric-labels-allowlist=nodes=[*]"]`
+  <li>You can replace the wildcard (*) with a comma-separated list of specific node labels. This requires specific knowledge of the available node labels in the cluster, which depends on the cloud provider's Kubernetes solution and/or the 3rd party tool used to provision the cluster and their versions. You can do this if the performance of kube-state-metrics and/or Prometheus is a consideration.</li>
+</ol>
+
+
+
+### Labels of Other Kubernetes Objects
+
+In addition to node labels, Densify attempts to collect the following data, which can be further used as sort/filter criteria and to generate custom reports:
+
+
+
+<Accordion title="Table: Optional Node Labels and Annotations">
+<table>
+<thead>
+<tr>
+<th colspan="2">Labels</th>
+<th>Annotations</th>
+</tr>
+</thead>
+<tr>
+<td>
+<ul>
+  <li>namespaces</li>
+  <li>pods</li>
+  <li>deployments</li>
+  <li>replicasets</li>
+  <li>daemonsets</li>
+</ul>
+</td>
+<td>
+<ul>
+  <li>statefulsets</li>
+  <li>jobs</li>
+  <li>cronjobs</li>
+  <li>horizontalpodautoscalers</li>
+</ul>
+</td>
+<td>
+<ul>
+  <li>namespaces</li>
+</ul>
+</td>
+</tr>
+</table>
+</Accordion>
+
+
+
+
+
+
+<ol start="1">
+  <li>If you want to collect this data with kube-state-metrics v2.x or higher, add the following command-line arguments to the kube-state-metrics container:</li>
+  ```
+  ["--metric-labels-allowlist=nodes=[*],namespaces=[*],pods=[*],deployments=[*],replicasets=[*],daemonsets=[*],statefulsets=[*],jobs=[*],cronjobs=[*],horizontalpodautoscalers=[*]", "--metric-annotations-allowlist=namespaces=[*]"]
+  ```
+  <li>
+    Optionally, you can specify only the Kubernetes object labels that you need. Contact Support@Densify.com for details.
+  </li>
+</ol>
+
+
+
+### Legacy Kube-State-Metrics
+
+Both Kubernetes and kube-state-metrics have changed over the years, including addition and removal of features. Feature changes result in changes to kube-state-metrics, including removal of, or replacement by new metrics. 
+Densify's container data collection supports kube-state-metrics, version 1.5 or higher. If your monitoring stack is running an older version, some metrics listed on Densify's Github page are absent. In this case, Densify collects the older metrics. The table below summarizes the older versions of the metrics that have been deprecated, and their replacements.
+
+
+
+<Accordion title="Table: Legacy Kube-State-Metrics">
+<table>
+<thead>
+<tr>
+<th>
+Deprecated Metric
+</th>
+<th>
+Replaced by Metric
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+kube_hpa_labels
+</td>
+<td>
+kube_horizontalpodautoscaler_labels
+</td>
+</tr>
+<tr>
+<td>
+kube_hpa_spec_max_replicas
+</td>
+<td>
+kube_horizontalpodautoscaler_spec_max_replicas
+</td>
+</tr>
+<tr>
+<td>
+kube_hpa_spec_min_replicas
+</td>
+<td>
+kube_horizontalpodautoscaler_spec_min_replicas
+</td>
+</tr>
+<tr>
+<td>
+kube_hpa_status_condition
+</td>
+<td>
+kube_horizontalpodautoscaler_status_condition
+</td>
+</tr>
+<tr>
+<td>
+kube_hpa_status_current_replicas
+</td>
+<td>
+kube_horizontalpodautoscaler_status_current_replicas
+</td>
+</tr>
+<tr>
+<td>
+kube_node_status_allocatable_cpu_cores
+</td>
+<td>
+kube_node_status_allocatable
+</td>
+</tr>
+<tr>
+<td>
+kube_node_status_allocatable_memory_bytes
+</td>
+<td>
+kube_node_status_allocatable
+</td>
+</tr>
+<tr>
+<td>
+kube_node_status_allocatable_pods
+</td>
+<td>
+kube_node_status_allocatable
+</td>
+</tr>
+<tr>
+<td>
+kube_node_status_capacity_cpu_cores
+</td>
+<td>
+kube_node_status_capacity
+</td>
+</tr>
+<tr>
+<td>
+kube_node_status_capacity_cpu_cores
+</td>
+<td>
+kube_node_status_capacity
+</td>
+</tr>
+<tr>
+<td>
+kube_node_status_capacity_pods
+</td>
+<td>
+kube_node_status_capacity
+</td>
+</tr>
+<tr>
+<td>
+kube_pod_container_resource_limits_cpu_cores
+</td>
+<td>
+kube_pod_container_resource_limits
+</td>
+</tr>
+<tr>
+<td>
+kube_pod_container_resource_limits_memory_bytes
+</td>
+<td>
+kube_pod_container_resource_limits
+</td>
+</tr>
+<tr>
+<td>
+kube_pod_container_resource_requests_cpu_cores
+</td>
+<td>
+kube_pod_container_resource_requests
+</td>
+</tr>
+<tr>
+<td>
+kube_pod_container_resource_requests_memory_bytes
+</td>
+<td>
+kube_pod_container_resource_requests
+</td>
+</tr>
+</tbody>
+</table>
+</Accordion>
+
+
+
+
+After deploying the data forwarder, contact Support@Densify.com to enable your Densify instance with container optimization.
+
+## Using an Observability Platform
+
+When using an observability platform, data is collected from multiple clusters and/or other sources. The incoming data must be identifiable by a unique set of labels (name:value) for each Kubernetes/OpenShift cluster, from which Densify is collecting data.
+The set of labels is typically obtained using "global.external\_labels" in the configuration of the source Prometheus server/OTEL collector that is sending the data to the observability platform. See https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file.
+The following applies, per cluster for both in-cluster Prometheus and observability platforms:
+
+
+<ul>
+  <li>Kube-state-metrics--Only one instance of kube-state-metrics can be scraped;</li>
+  <li>Openshift-state-metrics (OpenShift clusters only)--Only one instance of Openshift-state-metrics can be scraped;</li>
+  <li>cAdvisor--Typically runs within each node's kubelet for all cluster nodes.</li>
+  <li>Node exporter--Exports data from all of a cluster's nodes.</li>
+</ul>
+
+<Note>
+#### **Note** <br/>
+For cAdvisor and node exporter Densify needs the data from all nodes in the cluster but ONLY for the cluster nodes and not from other instances, like other nodes, VMs or cloud instances that do not belong to the clusters, that are being monitored.  
+</Note>
+ 
+  
+Collecting node exporter data from virtual machines and/or cloud instances that are not cluster nodes will cause data integrity issues.
+
+## Egress Traffic Security Considerations
+
+A Kubernetes or OpenShift cluster may run in an environment where egress (outgoing) web traffic is subject to network security devices or services. Such devices or services may perform "web filtering" by:
+
+
+<ul>
+  <li>Replacing the target certificate with their own (often self-signed) certificate for the purpose of traffic inspection;</li>
+  <li>Manipulating the HTTP request body and/or headers;</li>
+  <li>Manipulating the HTTP response body and/or headers.</li>
+</ul>
+
+
+If the data forwarder is deployed in such a cluster, this may impact:
+
+
+<ul>
+  <li>Collecting data from an external observability platform;</li>
+  <li>Uploading the data to Densify.</li>
+</ul>
+
+
+
+### Issue: Self-signed Certificate Failure
+
+If you are collecting data from an external observability platform or uploading the data to Densify and encounter failure and the Data Forwarder logs indicate the following: <br/>
+`failed to verify certificate: x509: certificate signed by unknown authority` <br/>
+or similar text, the certificate should be examined as follows:
+
+
+<ol start="1">
+  <li>In the same cluster (and same namespace), examine the logs.</li>
+  <li>
+  If at the end of the log file you see text similar to:
+  ```bash
+    --- openssl log:
+    ...
+    verify error:num=...:self-signed certificate in certificate chain
+    ...
+      ```
+  </li>
+</ol>
+
+
+Then it is likely that the genuine certificate has been replaced by a network security device/service self-signed certificate.
+This issue can also occur when you are using in-cluster, Authenticated Prometheus where the CA certificate is not configured correctly. This case should be resolved by fixing the configuration.
+
+### Resolution
+
+Turn off web filtering, either globally or for the selected target.
+
+### Issue: Request/Response Manipulation
+
+If you are collecting data from an external observability platform, this issue may result in failure to collect your container data.
+When uploading data to Densify, this issue may result in failure to upload any data due to authentication failure. Please verify that the username and (encrypted) password are correct, and then contact Support@Densify.com for assistance.
+If the Data Forwarder logs include text similar to:
+```
+{"level":"fatal","pkg":"default","error":"HTTP status code: 400, Message: message: Unauthorized,status: 400",...,"message":"failed to initialize Densify client"}
+```
+And the HTTP status code for Unauthorized is 400 (Bad Request), not 401, it's likely that the request has been manipulated. An incorrect username/(encrypted) password combination will return a 401 status code.
+
+### Resolution
+
+Turn off web filtering, either globally or for the selected target.
+
+## Understanding Memory Metrics
+
+Densify collects 3 memory metric types from cAdvisor: 
+
+
+<table>
+<tr><td colspan="2" align='center'>
+**container_memory_usage_bytes**
+</td></tr>
+<tr><td>
+Kubex Workload metric name:
+</td><td>
+Memory Utilization
+</td></tr>
+<tr><td>
+Kubex uses this metric for:
+</td><td>
+Default policy settings for Requests and Limits:
+<ul>
+  <li>Requests use the memory utilization of the average container</li>
+  <li>Limits use the memory utilization of the busiest container</li>
+</ul>
+</td></tr>
+<tr><td>
+Description:
+</td><td>
+<ul>
+  <li>Provides the size of the overall memory used, regardless of whether it is used for mapping from disk or for memory allocation.</li>
+  <li>Includes both RSS (memory not used to map files from the disk) as well as the page cache (uses memory exclusively to map files from the disk), so in effect this metric counts memory access indiscriminately of its purpose.</li>
+  <li>Measures the current memory usage, including all memory regardless of when it was accessed.</li>
+</ul>
+</td></tr>
+<tr><td colspan="2" align='center'>
+**container_memory_working_set**
+</td></tr>
+<tr><td>
+Workload metric name:
+</td><td>
+Memory Working Set
+</td></tr>
+<tr><td>
+Kubex uses this metric for:
+</td><td>
+Used for detecting hidden process kills.
+</td></tr>
+<tr><td>
+Description:
+</td><td>
+<ul>
+  <li>When this metric hits the MEM limit an OOM kill occurs.</li>
+  <li>Represents the minimum amount of memory a process needs to keep running during a period of time.</li>
+  <li>Includes the memory for active files cache.</li>
+  <li>Unlike fixed metrics (i.e. "cache" or "buffer"), which have specific values in the operating system, the working set is a calculated value determined in various ways.</li>
+  <li>cAdvisor calculates the working set as follows: total memory usage - inactive files</li>
+  <li>It includes all anonymous (non-file-backed) memory since Kubernetes does not support swap memory.</li>
+  <li>The metric typically also includes some cached (file-backed) memory, because the host OS cannot always reclaim such pages.</li>
+  <li>container_memory_usage_bytes is ≥ container_memory_working_set.</li>
+</ul>
+</td></tr>
+<tr><td colspan="2" align='center'>
+**container_memory_rss**
+</td></tr>
+<tr><td>
+Description:
+</td><td>
+<ul>
+  <li>Represents the amount of physical memory that a process has in the main memory that doesn’t correspond to anything on disk.</li>
+  <li>Typically includes stacks, heaps, and anonymous memory maps.</li>
+  <li>Size of memory not used for mapping files from the disk</li>
+  <li>Number of bytes of anonymous and swap cache memory (includes transparent pages).</li>
+  <li>Container_memory_rss container_memory_working_set</li>
+</ul>
+</td></tr>
+</table>
+
+
+
+#### container\_memory\_rss
+
+
+
+<ul>
+  <li>Represents the amount of physical memory that a process has in the main memory that doesn’t correspond to anything on disk.</li>
+  <li>Typically includes stacks, heaps, and anonymous memory maps.</li>
+  <li>Size of memory not used for mapping files from the disk</li>
+  <li>Number of bytes of anonymous and swap cache memory (includes transparent pages).</li>
+  <li>Container_memory_rss container_memory_working_set</li>
+</ul>
+

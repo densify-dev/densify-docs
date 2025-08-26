@@ -1,0 +1,92 @@
+---
+title: "Introduction"
+---
+
+The Densify API is the foundation for the next generation of capacity intelligence for your cloud infrastructure. The Densify API connects to your other infrastructure software components such as cloud stacks and provides rich capacity information and recommended optimization actions. With the Densify API, these systems become aware of the overall capacity and can make better automatic choices with a fully-informed model of the infrastructure.
+
+The Densify API is a REST-based web service that is designed for the following:
+
+* to connect to your cloud platforms and collect cloud infrastructure data;
+* perform optimization <Tooltip tip="Collected data is analyzed using Densify&#x27;s patented analytics and results are loaded into the reporting database for viewing through various reports, consoles, dashboards, and user interfaces.">analysis</Tooltip> on the collected data;
+* provide <Tooltip tip="One or more actions for moving or resizing cloud or VM instances that will result in improved peformance and/or reduced cost.">recommendations</Tooltip> to reduce risk and cost, for automated execution or downstream processing;
+
+You can view this information as a PDF that contains the API references for public cloud, containers [Densify-API-Reference-Guide](../Resources/PDFs/Densify-API-Reference-Guide.pdf).
+
+## New Features
+
+New features and functionality are added in each Densify release. See [Densify API New Features](./API_New_Features). to see what's new in each version.
+
+## RESTful API
+
+The Densify API has been implemented as a RESTful web service. Requests and responses are built around the transfer of representations of resources.
+
+The Densify RESTful web API is a web API implemented using HTTP. It is a collection of resources, with three defined aspects:
+
+* the base URI for the web API, such as http://localhost:8086/api/v2/.
+* the Internet media type of the data supported by the web API. The Densify API supports JSON.
+* the set of operations supported by the web API using HTTP methods (e.g. GET, PUT, POST, or DELETE).
+
+The following table shows the HTTP methods used to implement the web API.
+
+Table: RESTful Web API HTTP Methods
+
+<table width="100%">
+<col/>
+<col/>
+<col/>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>Resource</p>
+</td>
+<td>
+<p>GET</p>
+</td>
+<td>
+<p>PUT</p>
+</td>
+<td>
+<p>POST</p>
+</td>
+<td>
+<p>DELETE</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Collection URI, such as <span>http://localhost:8086/</span><span>api/v2/\<<span>resource</span>>/</span></p>
+</td>
+<td>
+<p>List the URIs and perhaps other details of the collection's members.</p>
+</td>
+<td>
+<p>Not used.</p>
+</td>
+<td>
+<p>Create a new entry in the collection. The new entry's URI is assigned automatically and is usually returned by the operation.</p>
+</td>
+<td>
+<p>Not used.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Element URI, such as <span>http://localhost:8086/</span><span>api/v2/\<<span>resource</span>>/\<<span>item</span>></span></p>
+</td>
+<td>
+<p>Retrieve a representation of the addressed member of the collection, expressed in an appropriate Internet media type.</p>
+</td>
+<td>
+<p>Modify the addressed member.</p>
+</td>
+<td>
+<p>Not generally used, but is used to modify attributes and multiple objects within a given collection. </p>
+</td>
+<td>
+<p>Delete the addressed member of the collection.</p>
+</td>
+</tr>
+</table>

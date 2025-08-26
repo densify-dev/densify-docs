@@ -1,0 +1,149 @@
+---
+title: "Defining New Datastores"
+---
+
+New datastores can be planned and managed through the Plan Datastores screen. Through this screen, you can add new datastores, e.g. for a new project that is starting in a few months or for an over-provisioned environment. Once new datastores are added, the capacity for that hosting venue is available immediately for new workloads, starting at the Planned Date when the datastore is planned to be provisioned. Results are visible through:
+
+* Route and Reserve Demand page--so that you can define and route new workloads with that new capacity after the Planned Date (see [Defining Demand](../Route_And_Reserve_Demand/Defining_Demand)).
+* Executive Summary Report--so that you can view the new capacity after the Planned Date (see [Viewing the Optimization Overview Report (Virtual)](../Reporting_Framework/Viewing_the_Optimization_Overview_Report__Virtual_)).
+* Forecast Report--so that you can view the new capacity details after the Planned Date (see [Forecasting](../Reporting_Framework/Forecasting)).
+
+## Adding New Planned Datastores
+
+When creating a new datastore, a set amount of mandatory information needs to be entered including the expected name, the hosting venue, the planned date and model/sizing information. Once a datastore has been added, only its name can be updated.
+
+To begin defining your planned datastores, navigate to the Plan and Manage Supply page and click on the Plan Datastores link. Click Add. The Add Datastore Supply dialog box is displayed. Define your datastores, section by section as described below. After you click on Save, the new planned datastores are added to the displayed list (with booking type "Add"). At this point, you can only edit the Datastore Name.
+
+### Step 1: Defining Datastore's Detail
+
+<Accordion title="Figure: Datastore&#x27;s Detail Section">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Plan_And_Manage_Supply/03000007_622x483.png)</Frame>
+</Accordion>
+
+
+Table: Fields in the Datastore's Detail Section
+
+<table>
+<thead>
+<tr>
+<th>
+<p>Field</p>
+</th>
+<th>
+<p>Description </p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Datastore Name*</p>
+</td>
+<td>
+<p>The expected <span class="mc-variable Document.datastore variable">datastore</span> name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Hosting Venue*</p>
+</td>
+<td>
+<p>The hosting venues to share this <span class="mc-variable Document.datastore variable">datastore</span>. This field provides a dropdown list of all the <span class="mc-variable Document.HV variable">hosting venue</span>s eligible for <span class="mc-variable Document.datastore variable">datastore</span>s (i.e. those already defined with existing <span class="mc-variable Document.datastore variable">datastore</span>s). The list also respects the hosting venues scope defined by the global filter (see <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="../Densify_Com/Using_the_Global_Filter">Using the Global Filter</a></madcap:conditionaltext>). Select one or more hosting venues (all belonging to the same environment). </p>
+<p>Once the hosting venues are selected, this field shows the selected hosting venues separated by comma "\<<span class="CiRBAcharEmphasis">environment name</span>> - \<<span class="CiRBAcharCrossreference">hosting venue name</span>>,\<<span class="CiRBAcharCrossreference">hosting venue name</span>>,\<<span class="CiRBAcharCrossreference">hosting venue name</span>>...".</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Capacity (GB)*</p>
+</td>
+<td>
+<p>The size in GB of the <span class="mc-variable Document.datastore variable">datastore</span>. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Tier*</p>
+</td>
+<td>
+<p>The name of the storage tier that this <span class="mc-variable Document.datastore variable">datastore</span> should belong. The Default definition is selected, by default. </p>
+<p data-mc-conditions="CiRBA.SaaSOnly">To define other tier definitions, contact your <span class="mc-variable Document.Densify_Rep variable">Cloud Advisor</span>. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Planned Date*</p>
+</td>
+<td>
+<p>The date the <span class="mc-variable Document.datastore variable">datastore</span> is expected to be running and available for placing VMs. This date is based on the <span class="mc-variable Document.Company variable">Densify</span> server’s time zone, which is shown with a GMT offset, e.g. "(UTC -4:00)". The calendar picker shows the date based on the <span class="mc-variable Document.Company variable">Densify</span> server’s time zone. The earliest date is tomorrow's date, i.e. the <span class="mc-variable Document.datastore variable">datastore</span> must be provisioned today ready for placing VMs tomorrow.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Copies</p>
+</td>
+<td>
+<p>Enter the number of copies, to create multiple copies of the same <span class="mc-variable Document.datastore variable">datastore</span>. The Datastore Name is appended by a counter, e.g. if Datastore Name is "ds" and you enter 3, then three <span class="mc-variable Document.datastore variable">datastore</span> records are created as "ds1", "ds2" and "ds3".</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>Although you can create up to 999 <span class="mc-variable Document.datastore variable">datastore</span>s at one time, <span class="mc-variable Document.Company variable">Densify</span> will require significant processing time if you create more than 100 copies.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Project</p>
+</td>
+<td>
+<p>Enter the project name or application that this <span class="mc-variable Document.datastore variable">datastore</span> is associated with. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Customer Name</p>
+</td>
+<td>
+<p>Add the name of the <span class="mc-variable Document.datastore variable">datastore</span> owner.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Customer Email</p>
+</td>
+<td>
+<p>Enter the email for the person who requested the new <span class="mc-variable Document.datastore variable">datastore</span>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Description</p>
+</td>
+<td>
+<p>Enter an optional description.</p>
+</td>
+</tr>
+</table>
+
+
+### Step 2: Confirming the Datastore Placement
+
+You can see these new datastore bookings when you move the timeline after the date when the corresponding datastores are planned to come online. An analytics refresh is first required to incorporate the bookings into the environment. See [Bookings and the Timeline](../Control_Console/Timeline_Slider#Bookings) for details.
+
+These new datastore bookings are now available for new workloads having later planned start dates. See [Defining Demand](../Route_And_Reserve_Demand/Defining_Demand) for details on planning new workloads.
+
+## Listing Planned Datastores
+
+The Plan Datastores of the Plan and Manage Supply page provides a list of planned datastores. If the datastore is not provisioned by the planned date, the planned datastore expires and is removed from the list.
+
+The Plan Datastores list is filtered according to the global filter. See [Using the Global Filter](../Densify_Com/Using_the_Global_Filter).
+
+## Changing the Datastore Name
+
+Often the name of the planned datastore changes and you need to edit it, so that the incoming datastore can be reconciled during the analysis refresh.
+
+You can select and Edit one datastore at a time, to change its expected name. The update is reflected in the displayed list of datastores.
+
+No other fields are editable.
+
+## Canceling Planned Datastores
+
+If you need to cancel any of the new planned datastores, e.g. the project is downsized or canceled, you can select multiple datastores in the list and click on Delete. The available capacity is immediately adjusted and the datastores are removed from the displayed list.
+
+## Copying a New Planned Datastore
+
+You can copy an existing planned datastore, by selecting it in the list and clicking on Copy. Change fields as needed. The new datastores are added to the displayed list.

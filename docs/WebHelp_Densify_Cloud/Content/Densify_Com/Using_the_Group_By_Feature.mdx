@@ -1,0 +1,187 @@
+---
+title: "Using the Group By Feature"
+---
+
+The Group By option allows you to group results by properties and tags. Your selection defines the structure of various tabular reports.
+
+<Accordion title="Video: Investigating Optimization Recommendations by Application">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/669867455" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+</Accordion>
+
+
+You must tag your instances and then map your cloud resource tags to Densify attributes so the tags will be included in the analyses.Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+
+The feature is available on the following pages:
+
+* Optimization Overview dashboard > Data Tab.
+* Public Cloud Optimization for AWS dashboard
+* Public Cloud Optimization for Azure dashboard
+* Public Cloud Optimization for GCP dashboard
+* Container Optimization > Data Tab.
+
+The Group By dropdown menu is located at the right edge of the filter strip. The menu is populated with the properties and tags that have been assigned to your instances.
+The following options are available for cloud environments:
+
+<table>
+<col/>
+<col/>
+<col/>
+<tbody>
+<tr>
+<td>
+<ul>
+<li>Account</li>
+<li>Application</li>
+<li>Availability Zone</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Business Unit</li>
+<li>Current Instance Type</li>
+<li>Estimated Effort</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Optimization Type</li>
+<li>Owner</li>
+<li>Region</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+The following options are available for Kubernetes container environments:
+
+<table>
+<col/>
+<col/>
+<col/>
+<tbody>
+<tr>
+<td>
+<ul>
+<li>Application</li>
+<li>Business Unit</li>
+<li>Cluster</li>
+<li>Component</li>
+<li>Container Name</li>
+<li>Container Security Group</li>
+<li>Controller Type</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Cost Center</li>
+<li>Department</li>
+<li>Deployment Type</li>
+<li>Inventory Code</li>
+<li>Namespace</li>
+<li>Operational Environment</li>
+<li>Owner</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Pod Host IP</li>
+<li>Product Code</li>
+<li>Project</li>
+<li>Quotas</li>
+<li>Quotas Cluster</li>
+<li>Quotas Namespace</li>
+<li>Respository</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+The options in the dropdown menu are specific to the tab from which you are setting the Group By option. For example if you are on the GCP tab, "Account" becomes "Project".
+
+<Accordion title="Figure: Group By Drop Down Menu (Cloud) ">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000175.png)</Frame>
+</Accordion>
+
+
+1. Click within the Group By dropdown list to expand it.
+2. Review the list and click the option to use for grouping your instances | containers.
+
+* Cloud--The default value is Account, since all instances will have this resource tag defined.
+* Containers--The default value is Cluster.
+
+3. The tabular report updates with the new setting used as the first column. The report is now grouped by this setting.
+
+If, in your list there are instances that do not have attributes assigned, they are indicated as "Unassigned" when grouping them. The available Group By options are based on the instances defined by your guest filter and recommendations filter settings.
+
+The selected option is persistent across platform-specific optimization reports that support the Group By option. For example, the selected Group By option applied to the AWS EC2 report is also applied to the Azure and GCP pages.
+
+The Group By selection also persists across user login sessions. When you log out and log back into Densify, your filtering and Group By selections are retained for each cloud optimization report that supports the Group By feature.
+
+The values, in the Summary bar, at the top of the overview dashboards, are not affected by the Group By feature.
+
+### Optimization Overview - Data Tab
+
+This feature is available on the Optimization Overview dashboard > Data Tab, but is not applicable to the Summary tab.
+
+The options in the Group By list are specific to the Data tab and are a subset of the options available on the cloud-specific pages.
+
+<table>
+<col/>
+<col/>
+<col/>
+<tbody>
+<tr>
+<td>
+<ul>
+<li>Account</li>
+<li>Application</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Availability Zone</li>
+<li>Business Unit</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Owner</li>
+<li>Region</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+The Group By selection persists across user login sessions. When you log out and log back into Densify, your Group By selections are retained for the Data Tab. The data settings are not (i.e. hiding columns, and sorted data).
+
+The selected option is not persistent across the cloud-specific optimization pages (i.e. AWS EC2, Azure or GCP).
+
+When you make a selection in the Group By list:
+
+* The summary bar at the top of the page is not affected by your selection;
+* The first column header is updated to match your selection and the report, including the Totals, at the bottom of the table are refreshed;
+* The Details or the Allocation & Utilization reports, at the bottom of the page are also refreshed.
+
+See [Optimization Overview Report - Data Tab](./Optimization_Overview_Report_-_Data_Tab) for details.
+
+### Kubernetes Container Optimization - Data Tab
+
+This feature is also available on the Kubernetes Container Optimization dashboard > Data Tab, but is not applicable to the Container Summary tab.
+
+The Group By selection persists across user login sessions. When you log out and log back into Densify, your Group By selections are retained for the Data Tab. The data control settings are not (i.e. hiding columns and sorted data).
+
+When you make a selection in the Group By list:
+
+* The summary bar at the top of the page is not affected by your selection;
+* The first column header is updated to match your selection and the report, including the Totals, at the bottom of the table are refreshed;
+* The Cluster Breakdown or the Allocation reports, at the bottom of the page are also refreshed.
+
+See [Optimizing Your Containers - Data Tab](./Optimizing_Your_Containers_-_Data_Tab) for details.

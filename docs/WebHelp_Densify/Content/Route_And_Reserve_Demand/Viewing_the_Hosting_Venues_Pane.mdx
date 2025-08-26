@@ -1,0 +1,335 @@
+---
+title: "Overview"
+---
+
+The Hosting Venues pane shows the hosting venues defined in Densify. This pane is used to determine the best hosting venue to manually and automatically route your booking requests. Only those hosting venues displayed are evaluated for routing.
+
+Details for each hosting venue is shown in its own tile of the Hosting Venues pane at the right side of the screen by default. When you click to the Manage Reservations screen, the same Hosting Venues pane is displayed on the left with the Reservation Details pane displayed on the right.
+
+The Hosting Venue tile shows the server model name and icon in the bottom-left area of the tile and the hosting platform in the bottom right. You can search for specific hosting venues using the Filters box and the Routing Preference routing strategy, and control how they are sorted using the Options button. For more information, see [Filtering and Sorting Hosting Venues](./Filtering_and_Sorting_Hosting_Venues).
+
+To learn more, watch the video
+
+<iframe allowfullscreen="allowfullscreen" allowtransparency="true" class="vidyard_iframe" frameborder="0" height="351" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" scrolling="no" src="https://player.vimeo.com/video/323551970" webkitallowfullscreen="webkitallowfullscreen" width="624"></iframe>
+
+
+
+The following buttons expand or collapse hosting venue tiles:
+
+<Accordion title="Figure: Expand/Collapse Buttons">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030025_426x214.png)</Frame>
+</Accordion>
+
+
+1. Expands or collapses the tile for this hosting venue. When the hosting venue is collapsed, the status and available space amount are shown in the heading. If the hosting venue is being evaluated for a booking request, the score is shown in the heading.
+2. Expands or collapses all hosting venues.
+
+## Hosting Venue Tile Overview
+
+The information shown in each hosting venue tile is dependent both on your user preferences and whether the hosting venue is in a scored or unscored state. A score is derived after clicking Evaluate Hosting Options to evaluate a set of booking requests against the displayed hosting venues for the specified criteria--the better the fit, the higher the score. When you initially navigate to the Route and Reserve Demand page, all hosting venues are unscored, showing either Open or Closed.
+
+<Accordion title="Figure: Hosting Venue Tile Overview">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030047.png)</Frame>
+</Accordion>
+
+
+## Tile Colors
+
+The Hosting Venue tiles are color coded by platform (e.g. internal virtual, internal physical, external public cloud vendors such as AWS, Google and Azure). In this way, you can quickly identify the platform categories.
+
+The colors align with the logos, as shown below.
+
+<Accordion title="Figure: Tile Colors">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030055.png)</Frame>
+</Accordion>
+
+
+## Status
+
+A hosting venue is marked as Open if it is accepting new booking requests and marked as Closed if it is not accepting new booking requests. A hosting venue can be closed for several reasons, including:
+
+* An administrator manually modifying the hosting venue to not allow new VM bookings,
+* The hosting venue being disqualified due to analysis errors or missing benchmarks, or
+* The hosting venue reaching a percentage of under-provisioned VMs or hosts.
+
+For more information on unavailable hosting venues, see [Unavailable Hosting Venues](#Unavaila).
+
+If the hosting venue is not fit for purpose (based on resource, business, security and technical details), the hosting venue is marked as Rejected.
+
+<Note>
+Although you can force a new workload into a rejected hosting venue, you cannot force a workload into a closed hosting venue.
+</Note>
+
+
+
+## Unscored Hosting Venues and Capacity Unit Measurements
+
+If you have Display Available Space/Unit Cost selected in the Options window, the Available Space value is calculated based on the values entered for the capacity unit (also set in the Options window). The Route and Reserve Demand page uses this capacity unit's CPU, memory and storage values along with its workload profile to calculate how many times it can fit within the hosting venue and reports this as Available Space, essentially this provides the number of availble slots.
+
+If you select a routing strategy that includes a cost amount (relative cost, blended), the unit cost is included as well.
+
+<Accordion title="Figure: Unscored Hosting Venue with Unit Cost and Available Space">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030029_449x132.png)</Frame>
+</Accordion>
+
+
+* To change the capacity unit used by the Route and Reserve Demand page, click Options and enter the required values in the Capacity Unit section.
+
+If your routing strategy is set to the default value of capacity, the unit cost is not shown. Also if you do not want to calculate available space for each hosting venue, you can clear the Display Available Space/Unit Cost option.
+
+<Accordion title="Figure: Unscored Hosting Venue without Available Space Calculation">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030041.png)</Frame>
+</Accordion>
+
+
+## Unavailable Hosting Venues
+
+When the hosting venue tile shows closed, it is unavailable for new guest bookings. The following situations prevent you from routing booking requests to a hosting venue:
+
+Table: Messages for Unavailable Hosting Venues
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>Message</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Infrastructure unavailable: analysis is out of date</p>
+</td>
+<td>
+<p>The infrastructure group or containing environment has gone too long without the analysis being refreshed in <span class="mc-variable Document.Company variable">Densify</span>. By default, the environment has to have been refreshed in the last 48 hours.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Infrastructure unavailable: analysis is being refreshed</p>
+</td>
+<td>
+<p>The infrastructure group or containing environment is currently being refreshed and has never been refreshed before.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Infrastructure unavailable, analysis has not been run</p>
+</td>
+<td>
+<p>The containing environment has never been refreshed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Infrastructure unavailable for analysis on \<<span class="CiRBAcharCrossreference">date</span>></p>
+</td>
+<td>
+<p>The infrastructure group does not have analytic data for the \<<span class="CiRBAcharCrossreference">date</span>> specified on the timeline. This is because the environment does not have that timeframe enabled. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Infrastructure Group has critical notifications</p>
+</td>
+<td>
+<p>The infrastructure group has a critical notification that has caused it to be disqualified.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>\<%> of Hosts/VMs in the Infrastructure Group are Under-Provisioned, exceeds policy limit \<%></p>
+<p>\<#> Hosts/VMs in the Infrastructure Group are Under-Provisioned, exceeds policy limit \<#></p>
+</td>
+<td>
+<p>The infrastructure group has been automatically blocked to receive new guest bookings, as the infrastructure group is at performance risk.<madcap:conditionaltext data-mc-conditions="CiRBA.SaaSOnly"> Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="97c4e2e7e7f8e5e3d7d3f2f9e4fef1eeb9f4f8fa" href="/cdn-cgi/l/email-protection">[email protected]</a></span> to automatically mark a hosting venue as unavailable when at performance risk.</madcap:conditionaltext></p>
+</td>
+</tr>
+<tr>
+<td>
+<p>New VM Bookings have been Blocked by Operations</p>
+</td>
+<td>
+<p>The hosting venue has been manually blocked as being unavailable.<madcap:conditionaltext data-mc-conditions="CiRBA.SaaSOnly"> Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="53002623233c21271317363d203a352a7d303c3e" href="/cdn-cgi/l/email-protection">[email protected]</a></span> to block a hosting venue.</madcap:conditionaltext></p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Custom message</p>
+</td>
+<td>
+<p>The hosting venue has been marked as not accepting any VM bookings for the reason given. </p>
+</td>
+</tr>
+</table>
+
+
+## Hosting Venue Tiles for Internal Hosting Venues
+
+Hosting venue tiles show different information depending on whether the hosting venues are in an unscored or scored state. The following table shows information that is shown in unscored and scored states as well as the common information that is displayed regardless of the state:
+
+Table: Hosting Venue Tile Data for Internal Hosting Venues
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Data</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td colspan="2">
+<p>Common Information</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Amenities</p>
+</td>
+<td>
+<p>Details for the hosting venue, such as supported hardware, licensed software, compute and storage information, are listed when you click the <span >Amenities</span> link. Note that the infrastructure details at the bottom left and the Storage details at the bottom right are not applicable for non-control hosting venues.</p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p>Unscored Information</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Status</p>
+</td>
+<td>
+<p>
+Shows if the hosting venue is open or closed for new bookings.
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Unit Cost</p>
+</td>
+<td>
+<p>This is the cost of hosting the incoming workload in this hosting venue, relative to other hosting venues within the same environment. This cost is shown as an amount on a scale that represents where it sits in terms of the least expensive hosting venue on one side and most expensive hosting venue on the other side.</p>
+<p>In the unscored state, the cost is calculated by dividing the cost associated with the hosting venue by the number of times the capacity unit VM can be placed within this group.</p>
+<p>Note that the host cost is reve to other hosting venues--it should be used as a tool to make decisions about where to route workloads. It does not represent an exact cost that can be used for accounting purposes.</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>The Unit Cost section is hidden when the routing strategy is set to Capacity, which is the default setting. Similarly, the unit cost is not calculated when the <span >Display Available Space/Unit Cost</span> is not selected.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Available Space</p>
+</td>
+<td>
+<p>This number shows how many times the capacity unit VM fits into this hosting venue's unused space. Note that when the hosting venue is overbooked (with respect to the policy high limits), the available space shows negative capacity (e.g. -2). Also note that when the timeline is beyond the enabled timeframes for the hosting venue, the available space shows 0.</p>
+<p>Available space is only shown if you have the <span >Display Available Space/Unit Cost</span> option selected in the Options window. </p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p>Scored Information</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Hosting Score</p>
+</td>
+<td>
+<p>After you select a booking request and click the <span >Evaluate Hosting Options</span> button, a score is displayed for each available hosting venue that has not been rejected. The hosting score ranges from 0-100 and is derived from a combination of the available capacity and the cost to host this workload in this hosting venue. The higher the score, the more appropriate for the workload to be hosted in this group. </p>
+<p>
+If the hosting venue is not fit for purpose (based on resource, security, business and technical details), it will show that it is Rejected. If it is unavailable, it will show Closed.
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Status</p>
+</td>
+<td>
+<p>If a hosting score is not shown, a status of Rejected is displayed indicating that the hosting venue does not meet the Fit-for-Purpose requirements for the booking request (based on resource, security, business and technical details).</p>
+<p>
+If the hosting venue is unavailable, it will show Closed.
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Fit for Purpose</p>
+</td>
+<td>
+<p>Fit for Purpose d\<ls show the\<ting venue's capabilities for hosting the selected unrouted booking requests. This is evaluated by comparing the resource, security, business and technical requirements for the selected booking requests against the hosting venue's capabilities. Click the Fit for Purpose section to show additional details. If the hosting venue has the capability to host the selected booking requests, such as supporting the correct OS, compatible security and storage, and necessary licenses, the hosting venue passes the fit for purpose checks. If the hosting venue does not have the capability to host the booking requests, the hosting venue is considered not fit for purpose and is rejected. </p>
+<p>For more information on Fit for Purpose validation, see <a class="MCXref xref" href="./Fit-for-Purpose_Validation">Fit-for-Purpose Validation</a>.</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>When quick evaluation mode is enabled, Fit-for-Purpose results for a rejected hosting venue are not shown on the hosting venue tile. If you hover over the Fit-for-Purpose section, the tooltip "Hosting Venue is Not Fit for Purpose. Click for more details." is displayed. Click to view the Fit for Purpose details, as stated above.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Relative Cost</p>
+</td>
+<td>
+<p>This is the estimated cost to host the selected booking requests in this hosting venue relative to other hosting venues being evaluated. This cost is shown as an amount that runs from the least expensive hosting venue being evaluated to the most expensive hosting venue being evaluated.</p>
+<p>The cost to host \<ing request\< a hosting venue is calculated by 	dividing the total cost associated with the hosting venue by the number of times the selected booking requests fit in this hosting venue when empty.</p>
+<p>Note that the hosting cost is relative between hosting venues--it should be used as a tool to make decisions about where to route workloads. It does not represent an exact amount to be used for accounting purposes.</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>The Relative Cost section is hidden when the routing strategy is set to Capacity, which is the default setting.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Required Space</p>
+</td>
+<td>
+<p>This shows the percentage of this hosting venue's available space that the selected booking requests would occupy. This amount is displayed when there is enough available space to host the selected booking requests.</p>
+</td>
+</tr>
+</table>
+
+
+## Hosting Venue Tiles for External Hosting Venues
+
+For external hosting venues, the tiles are similar to internal hosting venues with some exceptions. Typically external venues are intended to model cloud providers.
+
+For external hosting venues (with potentially infinite capacity), only the capacity routing strategy applies. Hence, for the unscored state, Unit Cost is always 0 and Available Space is always Unlimited (sorted as the largest value).
+
+<Accordion title="Figure: Unscored with Unit Cost and Available Space">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030048_483x193.png)</Frame>
+</Accordion>
+
+<Accordion title="Figure: Unscored Collapsed">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030051_485x47.png)</Frame>
+</Accordion>
+
+
+For the scored state, Hosting Score is 100% as long as the hosting venue passes the Fit-for-Purpose requirements (or 0 otherwise), Relative Cost is always 0 and Required Space is always 0% of available capacity.
+
+<Accordion title="Figure: Scored with Unit Cost and Available Space">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030049.png)</Frame>
+</Accordion>
+
+<Accordion title="Figure: Scored Collapsed">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030050.png)</Frame>
+</Accordion>
+
+
+## Displaying Top Constraints
+
+The hosting venue's top five constraints, ordered with the top constraint first, is displayed when you click on the Available Space/Required Space area of the Hosting Venue tile.
+
+When clicking on Available Space, the constraints are listed by the number of times the capacity unit VM fits into this hosting venue's available space. e.g. 49 VMs fit into the available CPU Utilization for the example shown below.
+
+When clicking on Required Space, the constraints are listed by percentage of this hosting venue's available space. e.g. 6% of the available space is required for Total Memory.
+
+<Accordion title="Figure: Available Space Details">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030064_371x280.png)</Frame>
+</Accordion>
+

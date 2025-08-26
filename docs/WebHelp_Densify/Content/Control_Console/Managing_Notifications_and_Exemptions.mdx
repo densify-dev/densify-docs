@@ -1,0 +1,462 @@
+---
+title: "Managing Notifications and Exemptions"
+---
+
+import { InlineImage } from "/snippets/InlineImage.mdx"
+
+The Notifications pane provides indicators to show if problems exist with the data after it has been audited and analyzed. Notifications are shown if systems are missing benchmarks, missing associated child or parent system information, or offline or in maintenance mode. A notification will also show if problems occurred when the analysis was run for the environment. Depending on the problem, the system may or may not be excluded from the analysis and different icons are shown in the Notifications pane. For more information, see [Viewing Notifications in the Spectrum](#Viewing_Notifications).
+
+When granting an exemption, you manually remove any system from the analysis due to a known issue, or if the circumstances for the system are going to change, such as a system that is scheduled to be taken offline. Unlike a notification, you have control over which system you want to exclude from the analysis. For more information, see [Granting Exemptions](#Granting_Exemptions).
+
+<Note>
+The Notifications and Exemptions panes do not show on the Spectrum if no notifications and no exemptions exist for the selected environment.
+</Note>
+
+## Viewing Notifications in the Spectrum
+
+If any systems have been identified by the analysis, then notification icons are shown in the Notifications pane on the left side of the Spectrum. Notifications are shown when the following occurs:
+
+* Hosts or VMs are missing benchmarks.
+* An error occurred during the execution of an analysis.
+* Hosts in the environment have had children systems excluded.
+* VMs in the environment have had parent systems excluded.
+* VMs cannot be placed by Densify's rebalancing solution.
+* Hosts or VMs are offline or in maintenance mode (VMware only).
+
+Analysis errors and missing mandatory benchmark data cause critical severity notifications and all systems in the same infrastructure group are removed from the main Spectrum with the problematic systems being shown in the Notifications pane. Note that for missing mandatory benchmark data and for the entire infrastructure group to be disqualified, at least one host must be missing a mandatory benchmark or more than 20% of the VMs must be missing one or more mandatory benchmarks.
+
+If the audit is missing workload data, the infrastructure group is shown in the middle of the Spectrum. To fix missing workload data, Contact [Support@Densify.com](mailto:Support@Densify.com)..
+
+<Note>
+Although notifications are shown for systems with missing benchmarks in the Control Console, it is still recommended that you perform the data validation step in Data Center Explorer before enabling the Control Console.
+</Note>
+
+
+
+* Click an icon in the Notifications pane to show the names of the systems and open the Notifications tab of the Spectrum Detail pane. The Notifications tab shows the details of the systems including the system name, infrastructure group, details, severity level and reason for the notification.
+
+<Accordion title="Figure: Notifications Tab in Spectrum Detail">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000110_556x84.png)</Frame>
+</Accordion>
+
+
+Details for the following types can be displayed in the Notifications tab:
+
+Table: Information in the Notifications tab
+
+<table>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Icon</p>
+</th>
+<th>
+<p>Severity</p>
+</th>
+<th>
+<p>Entity</p>
+</th>
+<th>
+<p>Reason</p>
+</th>
+<th>
+<p>Details</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="5">
+<p>Missing Benchmarks</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000108.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Critical</p>
+</td>
+<td>
+<p>Infrastructure Group</p>
+</td>
+<td>
+<p>Infrastructure Group Disqualified</p>
+</td>
+<td>
+<p>In the infrastructure group, at least one host or more than 20% of the VMs are missing a mandatory benchmark.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000108.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Critical</p>
+</td>
+<td>
+<p>Host</p>
+</td>
+<td>
+<p>Missing Host Benchmarks</p>
+</td>
+<td>
+<p>\<benchmark name> benchmark not found. Host is missing mandatory benchmark data.</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span><span class="CiRBAcharStrong">Note</span>: When a host is missing benchmark data, the associated infrastructure group is disqualified from the analysis and will not be shown in the Spectrum.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000109.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Warning</p>
+</td>
+<td>
+<p>VM</p>
+</td>
+<td>
+<p>Missing VM Benchmarks</p>
+</td>
+<td>
+<p>\<benchmark name> benchmark not found. VM is missing mandatory benchmark data. </p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span><span class="CiRBAcharStrong">Note</span>: When more than 20% of the VMs in the infrastructure group are missing benchmark data, the infrastructure group is disqualified from the analysis and will not be shown in the Spectrum.</p>
+</td>
+</tr>
+<tr>
+<td colspan="5">
+<p>Analysis Execution Error</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000108.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Critical</p>
+</td>
+<td>
+<p>Infrastructure Group</p>
+</td>
+<td>
+<p>Analysis Execution Error</p>
+</td>
+<td>
+<p>Infrastructure group has been disqualified as the <span class="mc-variable Document.Company variable">Densify</span> analytics encountered an execution error. Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="affcdadfdfc0dddbefebcac1dcc6c9d681ccc0c2" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for details. </p>
+</td>
+</tr>
+<tr>
+<td colspan="5">
+<p>Missing Relationship Data</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000109.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Warning</p>
+</td>
+<td>
+<p>Host</p>
+</td>
+<td>
+<p>Child Entities Excluded</p>
+</td>
+<td>
+<p>\<Number> children have been excluded from \<infrastructure group name>: \<VM names></p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000109.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Warning</p>
+</td>
+<td>
+<p>VM</p>
+</td>
+<td>
+<p>Parent Entity Excluded</p>
+</td>
+<td>
+<p>Parent, \<parent name> has been excluded from \<infrastructure group name></p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000109.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Warning</p>
+</td>
+<td>
+<p>VM</p>
+</td>
+<td>
+<p>VM cannot be placed</p>
+</td>
+<td>
+<p>Unable to place the VM on any host in the infrastructure group.</p>
+</td>
+</tr>
+<tr>
+<td colspan="5">
+<p>Offline/Maintenance Mode (<span class="mc-variable Document.VM2 variable">VMware</span> only)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000109.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Warning</p>
+</td>
+<td>
+<p>Host</p>
+</td>
+<td>
+<p>Offline host used as placement target</p>
+</td>
+<td>
+<p>Placement analysis considers offline Host, \<host name>, as a target. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000129_15x15.png" /></Frame>
+</p>
+</td>
+<td>
+<p>Information</p>
+</td>
+<td>
+<p>Host</p>
+</td>
+<td>
+<p>Offline Host Evacuated</p>
+</td>
+<td>
+<p>Placement analysis will evacuate VMs from offline Host, \<host name>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000109.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Warning</p>
+</td>
+<td>
+<p>Host name</p>
+</td>
+<td>
+<p>Host in maintenance mode used as placement target</p>
+</td>
+<td>
+<p>Placement analysis considers \<host name>, which is in maintenance mode, as a target.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000129_15x15.png" /></Frame>
+</p>
+</td>
+<td>
+<p>Information</p>
+</td>
+<td>
+<p>Host</p>
+</td>
+<td>
+<p>Host in Maintenance Mode Evacuated</p>
+</td>
+<td>
+<p>Placement analysis will evacuate VMs from \<host name>, which is in Maintenance Mode.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000129_15x15.png" /></Frame>
+</p>
+</td>
+<td>
+<p>Information</p>
+</td>
+<td>
+<p>Host</p>
+</td>
+<td class="td=3">
+<p>No placement changes for host in maintenance mode</p>
+</td>
+<td>
+<p>No placement changes will be recommended for \<host name>, which is in Maintenance Mode. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000129_15x15.png" /></Frame>
+</p>
+</td>
+<td>
+<p>Information</p>
+</td>
+<td>
+<p>VM</p>
+</td>
+<td>
+<p>Offline VM Included in Analysis</p>
+</td>
+<td>
+<p>Offline VM, \<VM name>, has been included in the control analysis.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000129_15x15.png" /></Frame>
+</p>
+</td>
+<td>
+<p>Information</p>
+</td>
+<td>
+<p>VM</p>
+</td>
+<td>
+<p>Offline VM excluded from analysis</p>
+</td>
+<td>
+<p>Offline VM, \<VM name>, has been excluded from the control analysis.</p>
+</td>
+</tr>
+<tr>
+<td colspan="5">
+<p>Partial Infrastructure Group Refresh</p>
+</td>
+</tr>
+<tr>
+<td colspan="5">
+<p>Infrastructure Group Refresh</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000109_15x15.png" /></Frame>
+</p>
+</td>
+<td>
+<p>Warning</p>
+</td>
+<td>
+<p>Infrastructure Group</p>
+</td>
+<td>
+<p>CEI is Very High.</p>
+</td>
+<td>
+<p>CEI for \<<span class="CiRBAcharAttributeValue">infrastructure group name</span>> at \<<span class="CiRBAcharAttributeValue">CEI value</span>> exceeds 2.0. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000129_15x15.png" /></Frame>
+</p>
+</td>
+<td>
+<p>Info</p>
+</td>
+<td>
+<p>Infrastructure Group</p>
+</td>
+<td>
+<p>Infrastructure group has no VMs</p>
+<p>Infrastructure group has no hosts</p>
+</td>
+<td>
+<p>\<<span class="CiRBAcharAttributeValue">infrastructure group name</span>> contains no VMs </p>
+<p>\<<span class="CiRBAcharAttributeValue">infrastructure group name</span>> contains no hosts.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000109_15x15.png" /></Frame>
+</p>
+</td>
+<td>
+<p>Warning</p>
+</td>
+<td>
+<p>Infrastructure Group</p>
+</td>
+<td>
+<p>Stale data</p>
+</td>
+<td>
+<p>\<# of VMs> of \<total VMs> VMs have no workload data for the last \<#> days.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+* A critical notification <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000108.png"/> causes all systems in its infrastructure group to be disqualified from the analysis and they are not shown in the Spectrum.
+* Systems with a warning notification <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000109.png"/> are shown in the Spectrum.
+* Systems with an information notification <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000129_17x17.png"/> are not shown in the Spectrum. When an offline VM has been excluded from the analysis based on policy, it is not displayed in the Spectrum and the notification will only be displayed in the Notifications tab in the Spectrum Detail tab. The Notifications area in the Spectrum is closed by default if only information notifications exist for the environment.
+
+Due to the large number of information icons that can be displayed for an environment, information notifications are disabled by default.
+
+
+<Accordion title="Figure: Notifications in the Control Console">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000100_210x263.png)</Frame>
+</Accordion>
+
+
+If all infrastructure groups have been disqualified due to missing benchmarks, the Compute Efficiency Index (CEI) is displayed as (N/A) beside the environment in the Spectrum. If only some of the infrastructure groups have been disqualified, the CEI is based on the remaining infrastructure groups not disqualified. If more than 20% of the VMs or at least one host is missing mandatory benchmark data, then all systems in the infrastructure group are disqualified, removed from the analysis and Spectrum, and the CEI is N/A.
+
+## Resolving Benchmarks in the Spectrum
+
+When a notification is identified in the Notifications area as missing a benchmark for a host or VM, you can resolve this notification by adding the benchmark values directly to the system in the Control Console. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+
+## Granting Exemptions
+
+You can grant an exemption to a host or VM if you want to ignore the CPU and memory recommendations for that system. Rebalancing recommendations are still generated and included in actions plans. Exemptions are useful for acknowledging transient conditions with long term Control Console usage. Contact [Support@Densify.com](mailto:Support@Densify.com) for details or to grant exemptions.
+
+## Opening or Closing the Notifications/Exemptions panes
+
+When the Notifications and Exemptions panes are open on the Control Console, you can close them using the icon at the top of the either pane.
+
+* At the top of either pane, click the arrow icon <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000111.png"/>. The Notifications and Exemptions panes will close. Click the icon again to display these panes again.
+
+<Note>
+If you have any critical or warning notifications, the Notifications and Exemptions panes are open by default when the screen is initially displayed. If no notifications or exemptions exist, the Notifications and Exemptions panes are not displayed. Similarly if you only have information type notifications, the Notifications and Exemptions panes are closed by default.
+</Note>
+
+

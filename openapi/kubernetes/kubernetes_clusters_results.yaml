@@ -1,0 +1,225 @@
+openapi: 3.0.3
+info:
+  title: Densify API – Kubernetes Clusters Results
+  version: 1.0.0
+  description: |
+    Container right-sizing recommendations at the cluster level.
+    Returns all analyzed containers in the specified cluster.
+
+servers:
+  - url: https://api.example.com
+
+tags:
+  - name: Kubernetes Cluster Results
+    description: Container recommendations for a given cluster
+
+paths:
+  /kubernetes/clusters/{clusterName}/containers:
+    get:
+      tags: [Kubernetes Cluster Results]
+      summary: List container recommendations for a cluster
+      operationId: getKubernetesClusterContainers
+      description: |
+        Returns recommendation details for container manifests in the specified cluster.
+        When `details=true`, additional fields are included. Fields with no value may be omitted from the response.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/k8s_clusterName'
+        - $ref: '#/components/parameters/details'
+      responses:
+        '200':
+          description: Array of container recommendations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContainerRecommendation'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Cluster not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /analysis/containers/kubernetes/clusters/{clusterName}/containers:
+    get:
+      tags: [Kubernetes Cluster Results]
+      summary: List container recommendations for a cluster (detailed)
+      operationId: getKubernetesClusterContainersDetailed
+      description: |
+        Detailed variant that includes the same fields as `/kubernetes/clusters/{clusterName}/containers`
+        with `details=true`.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/k8s_clusterName'
+        - $ref: '#/components/parameters/detailsTrueDefault'
+      responses:
+        '200':
+          description: Array of container recommendations with additional details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContainerRecommendation'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Cluster not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  # ===== Parameters (no examples here) =====
+  parameters:
+    k8s_clusterName:
+      name: clusterName
+      in: path
+      required: true
+      description: Unique cluster name from `/kubernetes/clusters` or the Kubex UI Connections tab.
+      schema:
+        type: string
+    details:
+      name: details
+      in: query
+      required: false
+      description: Include additional fields (`predictedUptime`, `configLastChangedOn`, `nodeGroup`, `oomKills_last7days`, `dateFirstAudited`, `dateLastAudited`).
+      schema:
+        type: boolean
+        default: false
+    detailsTrueDefault:
+      name: details
+      in: query
+      required: false
+      description: Same as `details`; defaults to true for this resource.
+      schema:
+        type: boolean
+        default: true
+
+  # ===== Schemas =====
+  schemas:
+    ContainerRecommendation:
+      type: object
+      description: Container recommendation entry. Fields without values may be omitted.
+      properties:
+        cluster:
+          type: string
+          description: Cluster name as specified in the config.yaml files.
+        namespace:
+          type: string
+          description: Namespace associated with the container.
+        podOwnerName:
+          type: string
+          description: Name of the controller or pod owning the container.
+        podOwnerKind:
+          type: string
+          description: Controller type (e.g., DaemonSet, Deployment, ReplicaSet, ReplicationController, StatefulSet).
+        container:
+          type: string
+          description: Container manifest name.
+        entityId:
+          type: string
+          description: Unique identifier for the selected cluster assigned by Densify.
+        containerId:
+          type: string
+          description: Unique identifier for the listed container.
+        avgContainerCount:
+          type: integer
+          description: Average number of containers from the "In Service Instances" metric.
+        currentCpuRequestmCores:
+          type: integer
+          description: Current CPU request (mCores).
+        currentCpuLimitmCores:
+          type: integer
+          description: Current CPU limit (mCores).
+        currentMemRequestBytes:
+          type: integer
+          description: Current memory request (bytes).
+        currentMemLimitBytes:
+          type: integer
+          description: Current memory limit (bytes).
+        recommendedCpuRequestmCores:
+          type: integer
+          description: Recommended CPU request (mCores).
+        recommendedCpuLimitmCores:
+          type: integer
+          description: Recommended CPU limit (mCores).
+        recommendedMemRequestBytes:
+          type: integer
+          description: Recommended memory request (bytes).
+        recommendedMemLimitBytes:
+          type: integer
+          description: Recommended memory limit (bytes).
+        estimatedSavingsPerContainer:
+          type: number
+          format: float
+          description: Estimated savings per container when applying the recommendations.
+        analyzedOn:
+          type: string
+          format: date-time
+          description: Most recent analysis refresh (UTC, `YYYY-MM-DDTHH:mm:ssZ`).
+
+        # --- Additional fields when details=true ---
+        predictedUptime:
+          type: number
+          format: float
+          description: Predicted uptime percentage for the container.
+        configLastChangedOn:
+          type: string
+          format: date-time
+          description: Timestamp of the most recent change to requests/limits.
+        nodeGroup:
+          type: array
+          items:
+            type: string
+          description: Names of associated node groups.
+        oomKills_last7days:
+          type: integer
+          description: Number of OOM events in the last 7 days.
+        dateFirstAudited:
+          type: string
+          format: date-time
+          description: When this container was first audited (from workload history).
+        dateLastAudited:
+          type: string
+          format: date-time
+          description: When this container was last audited (from workload history).
+
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

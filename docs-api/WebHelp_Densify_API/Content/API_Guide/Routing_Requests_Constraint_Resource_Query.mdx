@@ -1,0 +1,31 @@
+---
+title: "Overview"
+---
+
+## Description
+
+The Routing Request can be posted with `constraint-resource-query` to help understand why workloads cannot be routed.
+
+The syntax of the POST is the same as that of the Routing Request Available Capacity Query. The Routing Request Constraint Resource Query accepts UNROUTED or REJECTED Workloads, or REJECTED Routing Requests.
+
+The elements returned are the same as that for the Routing Request Available Capacity Query; however, only the failed Fit-for-Purpose checks (element `fit_for_purpose`) and only the slot metrics having 0 or negative capacity (i.e. metrics of `subslots[]`, `sensor_capacity:` `subslots[]`, `sensor_capacity:` `tiers:` `subslots[]` and `host_capacity: hosts: subslots[]`) are returned.
+
+### Options for Returned Details
+
+You can extend the query with one or all of the following, as documented in [Options for Returned Details](./Routing_Requests_Available_Capacity_Query#Options) for the [Routing Requests–Available Capacity Query](./Routing_Requests_Available_Capacity_Query):
+
+* `?subslots=true`--if true, only the 0 or negative capacity slot metrics are returned.
+* `?detailed_sensor_calc=true`
+* `?ffp_enabled=false`--if true, only the failed Fit-for-Purpose checks are returned; if false, returns the same elements as described for the Available Capacity Query including an adjusted `hosting_score`.
+* `?negative_slots=true`
+* `?detailed_host_calc=true`--if true, only the hosts that have a `subslots[]` entry are included and in turn, only the `subslots[]` metric entries with 0 or negative capacity are included. See [Routing Requests–Constraint Resource Query](#Example:).
+
+### Capacity/Cost Mode Option and Hosting Score
+
+There are three modes that are supported, which can be specified as part of the query. For details, see [Capacity/Cost Mode Option and Hosting Score](./Routing_Requests_Available_Capacity_Query#Capacity) for the [Routing Requests–Available Capacity Query](./Routing_Requests_Available_Capacity_Query).
+
+## Resource
+
+```json
+/routing-requests/constraint-resource-query
+```

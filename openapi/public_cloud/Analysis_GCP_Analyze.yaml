@@ -1,0 +1,240 @@
+openapi: 3.1.0
+info:
+  title: Densify – GCP Analysis API
+  version: "1.0.0"
+  description: |
+    POST `/analysis/gcp/analyze`:
+      - First run: creates the connection (for the given GCP service account + project),
+        collects data, runs analysis, and (optionally) sends results to a webhook.
+      - Re-run: runs analysis only (no data collection); can update webhook.
+      - Historical audit: once-off collection of up to 30 days of past data via
+        `/analysis/cloud/gcp/analyze` with offsets.
+    GET `/analysis/cloud/gcp`: lists generated analyses to obtain `analysisId`.
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: api.example.com
+tags:
+  - name: GCP Analysis
+paths:
+  /analysis/gcp/analyze:
+    post:
+      tags: [GCP Analysis]
+      operationId: analyzeGcp
+      summary: Run GCP data collection+analysis, or re-run analysis
+      description: |
+        - **Initial run**: provide a GCP service account credential and `projectId`. Schedules
+          nightly collection and analysis; can set `connectionName` and a `webHook`.
+        - **Re-run**: call again with the same `projectId` (+ optional new `webHook`); does **not**
+          collect data.
+        - Request is rejected if collection/analysis is in progress or within ~30 minutes of the
+          scheduled tasks.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GcpAnalyzeRequest'
+            examples:
+              initialRun:
+                summary: Create connection, collect, analyze, set webhook
+                value:
+                  connectionName: "gcp-testing"
+                  policyInstanceId: "583e0068-45a3-4c4e-baec-473d4daa4095"
+                  projectId: "pm-testing-608378"
+                  credential:
+                    type: "service_account"
+                    project_id: "engineering-183318"
+                    private_key_id: "REDACTED"
+                    private_key: "-----BEGIN PRIVATE KEY-----\n…\n-----END PRIVATE KEY-----"
+                    client_email: "[email protected]"
+                    client_id: "28884131006232124"
+                    auth_uri: "https://accounts.google.com/o/oauth2/auth"
+                    token_uri: "https://oauth2.googleapis.com/token"
+                    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs"
+                    client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/…"
+                  webHook:
+                    uri: "http://mywebhookserver/webhook/results"
+                    authType: "basic"
+                    authValue: "tester:testerpassword"
+              rerun:
+                summary: Re-run analysis only (no collection)
+                value:
+                  projectId: "pm-testing-608378"
+                  credential: "…same service-account JSON as string or object…"
+                  webHook:
+                    uri: "https://example.test/webhook/results"
+      responses:
+        '200':
+          description: Accepted / analysis initiated or in progress
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeStatusMessage'
+              examples:
+                inProgress:
+                  value:
+                    href: "Not available"
+                    message: "Analysis in progress"
+                    status: 200
+        '400':
+          description: Invalid parameters.
+        '401':
+          description: Authentication failed.
+        '404':
+          description: Resource not found.
+        '500':
+          description: Internal server error.
+
+  /analysis/cloud/gcp/analyze:
+    post:
+      tags: [GCP Analysis]
+      operationId: historicalAuditGcp
+      summary: Run a once-off historical audit (up to 30 days)
+      description: |
+        Requires an existing connection for the specified project. Collects historical data
+        with optional start/end offsets; fails if collection/analysis is running or scheduled
+        within ~30 minutes. Offsets are measured from "30 days ago" and "yesterday".
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GcpHistoricalAuditRequest'
+            examples:
+              audit30dDefault:
+                value:
+                  credential: "…service-account JSON…"
+                  projectId: "pm-testing-608378"
+                  triggerAdhocAudit: "true"
+              auditCustomRange:
+                value:
+                  credential: "…service-account JSON…"
+                  projectId: "pm-testing-608378"
+                  triggerAdhocAudit: "true"
+                  startDayOffset: "10"
+                  endDayOffset: "5"
+      responses:
+        '200':
+          description: Audit accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeStatusMessage'
+        '400':
+          description: Invalid parameters.
+        '401':
+          description: Authentication failed.
+        '404':
+          description: Resource not found.
+        '500':
+          description: Internal server error.
+
+  /analysis/cloud/gcp:
+    get:
+      tags: [GCP Analysis]
+      operationId: listGcpAnalyses
+      summary: List all generated GCP analyses
+      description: Return analyses with details and links; use this to obtain `analysisId` for other calls.
+      responses:
+        '200':
+          description: Array of analyses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GcpAnalysisItem'
+        '401':
+          description: Authentication failed.
+        '500':
+          description: Internal server error.
+
+components:
+  schemas:
+    WebHook:
+      type: object
+      additionalProperties: false
+      properties:
+        uri:
+          type: string
+          format: uri
+        authType:
+          type: string
+          description: Authentication scheme used by the webhook endpoint (e.g., basic, bearer).
+        authValue:
+          type: string
+          description: Credential value (e.g., user:pass for basic, or token).
+      required: [uri]
+
+    CredentialStringOrObject:
+      description: GCP service account credential (inline JSON). Docs show both string and object usage.
+      oneOf:
+        - type: string
+          description: Raw JSON string of the `.json` keyfile
+        - type: object
+          additionalProperties: true
+          description: Parsed JSON object of the keyfile
+
+    GcpAnalyzeRequest:
+      type: object
+      properties:
+        connectionName:
+          type: string
+          maxLength: 32
+          description: Unique within GCP connections; defaults to the project ID.
+        policyInstanceId:
+          type: string
+          description: Policy instance to use for analysis (optional, shown in example).
+        projectId:
+          type: string
+          description: GCP project ID to analyze (required even if the credential maps to multiple projects).
+        credential:
+          $ref: '#/components/schemas/CredentialStringOrObject'
+        webHook:
+          $ref: '#/components/schemas/WebHook'
+      required: [projectId, credential]
+
+    GcpHistoricalAuditRequest:
+      type: object
+      properties:
+        credential:
+          $ref: '#/components/schemas/CredentialStringOrObject'
+        projectId:
+          type: string
+          description: GCP project ID.
+        triggerAdhocAudit:
+          type: string
+          description: "Flag to trigger the once-off historical audit (docs specify string flag)." # true/false as string
+        startDayOffset:
+          type: string
+          description: Offset from 30 days in the past for the start of the range.
+        endDayOffset:
+          type: string
+          description: Offset from yesterday for the end of the range.
+      required: [projectId, credential, triggerAdhocAudit]
+
+    AnalyzeStatusMessage:
+      type: object
+      properties:
+        href:
+          type: string
+          description: Link to recommendations (if available).
+        message:
+          type: string
+        status:
+          type: integer
+          format: int32
+          description: One of 200, 400, 401, 404, 500.
+      required: [message, status]
+
+    GcpAnalysisItem:
+      type: object
+      properties:
+        analysisName:
+          type: string
+          description: GCP project ID associated with the analysis.
+        href:
+          type: string
+          description: Link

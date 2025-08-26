@@ -1,0 +1,355 @@
+---
+title: "New Features"
+---
+
+This topic summarizes both new and updated Densify features introduced in version 14.8.7.
+
+<Note>
+After any upgrade you must clear your browser cache before logging into the Densify Console. This is required regardless of the type or version of browser you are using.
+</Note>
+
+
+<Accordion title="Densify 14.8.x Patches">
+<Accordion title="14.8.7 - June 11, 2024">
+The Jasper Service License has been updated. The new license required a rebuild of the web service container with the new license file.
+
+This patch does not require a schema update, package update or JRSImport.
+</Accordion>
+
+<Accordion title="14.8.6 - February 12, 2025">
+Densify's Azure AD solution has been updated to use the Azure API call `https://graph.microsoft.com/.default`. Previously, the API, `https://graph.windows.net/User.Read` was used and this API has now been deprecated.
+
+The deprecated API should be removed from your configuration and the Azure Active Directory Graph User.Read permission can be revoked. Refer to https://techcommunity.microsoft.com/blog/microsoft-entra-blog/june-2024-update-on-azure-ad-graph-api-retirement/4094534
+
+The API permissions for the Densify web application need to be updated to add "GroupMember.Read.All".
+
+See [Configuring External User Authentication](../Administration/Configuring_External_User_Authentication) for details of configuring Open ID and [External User Authentication Example Configuration for Azure Active Directory](../Administration/External_User_Authentication_Example_Configuration_for_Azure_Active_Directory) for specific details of Azure EntraID configuration.
+
+This patch does not require a schema update, package update or JRSImport.
+</Accordion>
+
+<Accordion title="August 14, 2024">
+The online help for Virtualization Optimizer has been updated to remove all cloud and container references. Contact [Support@Densify.com](mailto:Support@Densify.com) for details of managing your cloud and container environments in Densify.
+</Accordion>
+
+<Accordion title="14.8.3 - January 25, 2024">
+When using the fill-and-spill features the logic has been corrected select the datastore with the least available capacity when "fill" is selected.
+
+This patch does not require a schema update, package update or JRSImport.
+
+See [14.8.3 - January 25, 2024](./Resolved_Issues#densify-14.8.3) for the list of resolved defects.
+</Accordion>
+
+<Accordion title="14.8.2 - November 3, 2023">
+When editing attributes, you now see a warning message if more than 1000 systems will be affected by the change. An override option is provided for cases where more than 1000 systems must be updated.
+
+This patch does not require a schema update, package update or JRSImport.
+
+See [Densify 14.8.2 - November 3, 2023](./Resolved_Issues#densify-14.8.2) for the list of resolved defects.
+</Accordion>
+
+<Accordion title="14.8.1 - October 18, 2023">
+The option to select hourly information has been added back to the Workload Extract report. This report is not intended for large data sets. The option to review all available data has been removed. This report is now configured through an external file. Contact [Support@Densify.com](mailto:Support@Densify.com) to change any of the following default settings:
+
+* The default number of systems is 1000.
+* The default number of days is 30.
+* The default number of workload types is 4.
+
+See [Configuring the Hourly Extract Report](../Analysis_Workbench/DCE_Workload_Data#Hourly_Report).
+
+This patch does not require a schema update, package update or JRSImport.
+
+See [14.8.1 - October 18, 2023](./Resolved_Issues#densify-14.8.1) for the list of resolved defects.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.8.0 - August 23, 2023">
+<Accordion title="Rebranding">
+In this release, this version of Densify is officially branded as Virtualization Optimizer. Logos throughout the product and on the Densify website have been updated.
+
+Additionally, the product version has been added to the About dialog box. See [Common UI Features](../Densify_Com/Navigating_Densify#Common_UI_Features) for details.
+
+This version is intended for optimizing your private cloud. Contact your Densifyaccoutn manager if you want to optimize your cloud or container environments.
+</Accordion>
+
+<Accordion title="Hourly Information has been Deprecated from the Workload Extract Report">
+The option to select hourly information has been deprecated from the Workload Extract report. This report was not intended for large data sets.
+
+Users can still obtain this report using the Daily Information option.
+</Accordion>
+
+<Accordion title="Postman Collection Updated">
+The Supply and Demand Postman collection has been updated in this release. The updated supply and demand API examples are provided as a separate collection. See [Postman Collection](https://densify.com/docs-api/WebHelp_Densify_API/Content/API_Guide/Postman_Collection).
+</Accordion>
+
+<Accordion title="Resolved Issues">
+See [14.8.0 - August 23, 2023](./Resolved_Issues#densify-14.8) for the list of resolved defects.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.7.0 - December 14, 2022">
+<Accordion title="Routing and Reservation Updates">
+Two significant updates have been made to the route and reserve features in this release:
+
+* During routing of incoming workloads, any clusters that are undergoing sensor data recalculation (i.e. sensor capacity data is not available) are now excluded from consideration as a hosting option. This ensures that valid sensor capacity data is used when making routing decisions. See [Working with Sensors](../Control_Console/Working_with_Sensors#Sensor_Recalc).
+* You now have the option to select a sensor "fill and spill" placement strategy for routed workloads. In addition to the existing balancing strategy that distributes incoming workloads across all suitable datastores, you now have the option to fill a datastore and then move to the next one. You can specify a sensor placement strategy when submitting a routing request (via the API) or you can define the strategy globally using a configuration setting. See [Working with Sensors](../Control_Console/Working_with_Sensors#Placement).
+
+Also see [Routing Requests](https://densify.com/docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests#Placement) in the Densify API documentation.
+</Accordion>
+
+<Accordion title="Resolved Issues">
+See [14.7.0 - December 14, 2022](./Resolved_Issues#densify-14.7) for the list of resolved defects.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.6.0 - October 5, 2022">
+<Accordion title="Security Updates">
+Further to the updates started in the last release the following additional security updates have been completed:
+
+* Strict Transport Security Has Been Implemented--An HTTP Strict Transport Security (HSTS) policy has been implemented. As part of this policy, users are no longer redirected from HTTP to HTTPS. You must use the correct HTTPS URL to access your Densify instance.
+</Accordion>
+
+<Accordion title="Resolved Issues">
+See [14.6.0 - October 5, 2022](./Resolved_Issues#densify-14.6) for the list of resolved defects.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.5.0 - August 17, 2022">
+<Accordion title="Security Updates">
+This release includes a number of security updates.
+
+* User Access upon Account Deactivation--When user accounts are deactivated or deleted, any existing sessions for that user are terminated on the server-side to prevent unauthorized use of the application. The same applies for situations where a user loses higher access privileges.
+* User Account Notifications--The existing feature has been enhanced to send a notification when a user changes their email address or password. In the event of an email address change, a confirmation message is sent to the original email address.
+* Browser Caching--Sensitive content is no longer cached by setting the "no-store" directive in the Cache-Control response in the HTTP headers. These changes to the Cache-Control response in the HTTP headers mean that you will likely have to clear your browser cache more frequently than before. This change will make the UI more responsive.
+</Accordion>
+
+<Accordion title="Resolved Issues">
+See [14.5.0 - August 17, 2022](./Resolved_Issues#densify-14.5) for the list of resolved defects.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.4.0 - July 27, 2022">
+<Accordion title="Security Update">
+Vulnerability
+
+The following vulnerabilities that may impact Densify have been identified:
+
+* [CVE-2022-22965](https://nvd.nist.gov/vuln/detail/CVE-2022-22965)--Spring Framework has released versions 5.3.18 and 5.2.20 to address this RCE vulnerability known as “Spring4Shell”.
+
+A remote attacker could exploit this vulnerability to take control of an affected system.
+
+SaaS Instances
+
+Densify uses Cloudflare Web Application Firewall (WAF), which was patched on March 31, 2022, to mitigate this risk. Please review this [Cloudflare link](https://blog.cloudflare.com/waf-mitigations-spring4shell/) for details.
+
+Impacted Densify Applications
+
+Densify uses JasperReports Server Professional and the JasperReports Library, which in turn utilize the Spring Framework.
+
+Densify has not identified any risk to customer data, but has completed the following steps according to the CVE notification:
+
+* JasperReports Library 6.2 (Spring-beans 4.1) is used by both the Analysis Console and Densify Console and has been updated to JasperReports Library 6.19.1 in this release.
+
+See [Third Party Software](./Third_Party_Software_Updates) for the changes to list of third-party software.
+</Accordion>
+
+<Accordion title="User Interface Performance Enhancements">
+A number of updates have been completed in this release that improve UI performance. The changes, started in this release will be completed in the next release. Changes consist mainly of improved database queries and table optimization.
+</Accordion>
+
+<Accordion title="Resolved Issues">
+See [14.4.0 - July 27, 2022](./Resolved_Issues#densify-14.4) for the list of resolved defects.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.3.0 - June 1, 2022">
+<Accordion title="Security Updates">
+§§ACCORDIONPRESERVEc8163a52f83f4386a7d01b91c90a5ef5§§
+§§ACCORDIONPRESERVE847bb08632394f74944a2c6b97ad1e1b§§
+</Accordion>
+
+<Accordion title="Resolved Issues">
+See [14.3.0 - June 1, 2022](./Resolved_Issues#densify-14.3) for the list of resolved defects.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.2.0 - February 23, 2022">
+<Accordion title="Security Updates">
+The following security update has been made in this release:
+
+* Both Densify v14.2 and the Densify Connector have been updated with the Apache Log4j 2.17.1 jar files to address a security vulnerability related to Apache Log4j (CVE-2021-45046, CVE-2021-45105 and CVE-2021-44228).
+
+You must download and install the new version of the connector. See [Installing the Densify Connector](../Densify_Com/Data_Collection_Connector_Installing) for details on installing and configuring the Densify Connector.
+
+Your Densify SaaS instance has been patched automatically.
+</Accordion>
+
+<Accordion title="Browser Support for the Control Console and Analysis Console">
+You can now access the Control Console and the Analysis Console using Microsoft Edge configured for Internet Explorer mode. Internet Explorer will be retired in June 2022, so using Edge's IE mode allows you to continue using these consoles.
+
+In general you can access most of Densify's features through the Densify Console and the Cloud Cost Intelligence module which both run in a number of modern browsers.
+
+See [Browser Requirements](../Densify_Com/Browser_Requirements) for supported browser versions.
+</Accordion>
+
+<Accordion title="Performance Improvements">
+§§ACCORDIONPRESERVE376f09934bfc41769044252a367d9c82§§
+§§ACCORDIONPRESERVEc7852444f52c4011a3dd1c5c569b24ed§§
+</Accordion>
+
+<Accordion title="Resolved Issues">
+See  [14.2.0 - February 16, 2022](./Resolved_Issues#densify-14.2) for the list of resolved defects.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.1.x Patches">
+<Accordion title="Densify 14.1.2 - January 5, 2022">
+The following updates have been made in this release:
+
+* Apache Log4j Security UpdateDensify and the JasperReports Server have been updated with the Apache Log4j 2.17.1 jar files to address security vulnerability CVE-2021-45046 and CVE-2021-45105, after the issue was initially reported in CVE-2021-44228.
+
+Your Densify SaaS instance will be patched automatically.
+
+See [Resolved and Known Issues](./Resolved_Issues#densify-14.1.2) for the list of resolved defects.
+</Accordion>
+
+<Accordion title="Densify 14.1.1 - December 16, 2021">
+The following updates have been made to address the security vulnerability CVE-2021-44228:
+
+* Both Densify and the Densify Connector have been updated with the Apache Log4j 2.15.0 jar files to address this issue.
+* The JasperReports Server was also updated with the Apache Log4j 2.15.0 jar files. The JasperReports Server is used to deliver Densify's BI features.
+
+You must download and install the new version of the connector. See [Installing the Densify Connector](../Densify_Com/Data_Collection_Connector_Installing) for details on installing and configuring the Densify Connector.
+
+Your Densify SaaS instance will be patched automatically.
+
+See [Resolved and Known Issues](./Resolved_Issues#densify-14.1.1) for the list of resolved defects.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.1.0 - December 8, 2021">
+<Accordion title="Densify Training Platform">
+The Densify training modules have been migrated to the Densify website for ease of access. Users no longer need to create an account and login to access the training modules.
+
+All existing modules are available from the Training Library: https://www.densify.com/training/Content/Training_Library
+
+You can also view modules sorted by use case/role, from the main training page: https://www.densify.com/training/Content/Welcome_Training
+</Accordion>
+
+<Accordion title="Resolved Issues">
+See [14.1.0 - December 8, 2021](./Resolved_Issues#densify-14.1) for the list of resolved defects.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.0.0 - October 20, 2021">
+<Accordion title="Supported Data Collection Platforms">
+The following change has been made to data collection in this release:
+
+* In the Densify Connector v2.2.4.1 has been certified with:
+
+* vROps version 8.4;
+
+If you are using a previous version of the Densify Connector, Densify recommends that you upgrade your connector to the current version.
+
+See [Connector Prerequisites](../Densify_Com/Connector_Prerequisites) for the full list of supported VMware versions.
+</Accordion>
+
+<Accordion title="Resolved Issues">
+See  [14.0.0 - October 20, 2021](./Resolved_Issues#densify-14.0) for the list of resolved defects.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify Connector">
+<Accordion title="2.2.4.9 - December 21, 2022">
+The Densify Connector has been updated to add additional cipher suites to better support TLS 1.2. [Supported TLS Versions](../Densify_Com/Appendix-Supported_TLS_Versions) for the complete list of supported cipher suites.
+
+You can download and install the latest version of the connector if you are using action automation and for standard VMware data collection. See [Installing the Densify Connector](../Densify_Com/Data_Collection_Connector_Installing) for details on installing and configuring the Densify Connector. A new version of the JRE will be deployed (jdk11.0.11\_9).
+
+If v2.2.4.8 is installed and running as expected and you are using one of the currently supported cipher suites, then you do not need to upgrade, immediately.
+
+This version of the connector has been certified with PowerCLI 12.5.0 and 12.7.0. See [Densify Connector Compatibility](../Densify_Com/Action_Automation_Appendix) for version details.
+
+See  [2.2.4.9 - December 21, 2022](./Resolved_Issues#densify-2.2.4.9) for the list of resolved defects.
+</Accordion>
+
+<Accordion title="2.2.4.8 - September 27, 2022">
+The Densify Connector has been updated to address an issue with action automation.
+
+You can download and install the latest version of the connector if you are using action automation and for standard VMware data collection. See [Installing the Densify Connector](../Densify_Com/Data_Collection_Connector_Installing) for details on installing and configuring the Densify Connector.
+
+If v2.2.4.7 is installed and running as expected, and you are not using action automation, then you do not need to upgrade, immediately.
+
+This version of the connector has been certified with PowerCLI 12.5.0 and 12.7.0. See [Densify Connector Compatibility](../Densify_Com/Action_Automation_Appendix) for version details.
+
+See [2.2.4.8 - September 27, 2022](./Resolved_Issues#densify-2.2.4.8) for the list of resolved defects.
+</Accordion>
+
+<Accordion title="2.2.4.7 - August 30, 2022">
+The Densify Connector has been updated to address a security issue related to [CVE-2022-22950](https://nvd.nist.gov/vuln/detail/CVE-2022-22950): Spring Expression DoS Vulnerability.
+
+This version is not supported for Action Automation. You must use v2.2.4.8 if you are using action automation. See [Densify Connector Compatibility](../Densify_Com/Action_Automation_Appendix) for version details.
+
+<Note>
+All versions of the connector prior to 2.2.4.7, are no longer supported or certified as they do not contain both the Log4J and Spring security updates. Densify recommends upgrading your connector to the latest version.
+</Note>
+
+
+
+See [2.2.4.7 - August 30, 2022](./Resolved_Issues#densify-2.2.4.7) for the list of resolved defects.
+</Accordion>
+
+<Accordion title="2.2.4.6 - June 1, 2022">
+The Densify Connector has been updated to address an issue related to "hot adding" memory.
+
+See  [2.2.4.6 - June 1, 2022](./Resolved_Issues#densify-2.2.4.6) for the list of resolved defects.
+</Accordion>
+
+<Accordion title="2.2.4.5 - March 11, 2022">
+The Densify Connector has been updated to address issues related to token-based authentication and failure to retry status monitoring connections.
+
+See  [2.2.4.5 - March 11, 2022](./Resolved_Issues#densify-2.2.4.5) for the list of resolved defects.
+</Accordion>
+
+<Accordion title="2.2.4.4 - February 4, 2022">
+The Densify Connector has been updated to update the list of data collection modules, previously removed in v2.2.4.3.
+
+See  [2.2.4.4 - February 4, 2022](./Resolved_Issues#densify-2.2.4.4) for the list of resolved defects.
+</Accordion>
+
+<Accordion title="2.2.4.3 - January 7, 2022">
+The Densify Connector has been updated to address the following:
+
+* The collection of data, not used by any analyses, has been discontinued. This update will reduce data collection and load times and improve overall data collection performance.
+* The security vulnerability [CVE-2021-45046](https://nvd.nist.gov/vuln/detail/CVE-2021-45046) and [CVE-2021-45105](https://nvd.nist.gov/vuln/detail/CVE-2021-45105), after the Apache Log4j issue was initially reported in [CVE-2021-44228](https://nvd.nist.gov/vuln/detail/CVE-2021-44228). The Densify Connector has been updated with the Apache Log4j 2.17.1 jar files.
+
+See  [2.2.4.3 - January 7, 2022](./Resolved_Issues#densify-2.2.4.3) for the list of resolved defects.
+</Accordion>
+
+<Accordion title="2.2.4.2 and 2.2.4.1 - January 4, 2022">
+The Densify Connector has been updated to address an Apache Log4j security vulnerability.
+
+See  [2.2.4.1 and 2.2.4.2 - January 4, 2022](./Resolved_Issues#densify-2.2.4.1-2) for the list of resolved defects.
+</Accordion>
+
+<Accordion title="2.2.4.2 - December 16, 2021">
+The following updates have been made to address the security vulnerability [CVE-2021-44228](https://nvd.nist.gov/vuln/detail/CVE-2021-44228):
+
+* Both Densify and the Densify Connector have been updated with the Apache Log4j 2.15.0 jar files to address this issue.
+* The JasperReports Server was also updated with the Apache Log4j 2.15.0 jar files. The JasperReports Server is used to deliver Densify's BI features.
+
+See  [2.2.4.2 - December 16, 2021](./Resolved_Issues#densify-2.2.4.2) for the list of resolved defects.
+</Accordion>
+
+</Accordion>
+

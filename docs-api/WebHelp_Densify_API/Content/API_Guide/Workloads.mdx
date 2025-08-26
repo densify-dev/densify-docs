@@ -1,0 +1,139 @@
+---
+title: "Overview"
+---
+
+## Description
+
+A Workload is a representation of a new workload being placed in the environment.
+
+For every Workload object created, a corresponding Booking object is also created. Each Booking object is auto-created with the same `name` as that of its Workload.
+
+The following table provides the Workload to Booking state mappings. For a complete overview of the states through create, modify and delete operations, see [State Diagrams for Demand](./State_Diagrams_for_Demand).
+
+Table: Workload and Corresponding Booking States
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>Workload State</p>
+</td>
+<td>
+<p>Booking State</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>UNROUTED</p>
+</td>
+<td>
+<p>DRAFT</p>
+</td>
+<td>
+<p>Workload is defined but not included in a Routing Request (i.e. not routed).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>ANALYZING</p>
+</td>
+<td>
+<p>PENDING</p>
+</td>
+<td>
+<p>Workload included in a Routing Request.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>BOOKED</p>
+</td>
+<td>
+<p>PENDING to COMMITTED to LATE to COMPLETED</p>
+</td>
+<td>
+<p>When routed to a full control hosting venue with a future date, associated Booking is in PENDING state until it is included in the analytics through an environment refresh, when it is changed to COMMITTED. Changes to LATE when the incoming workload is late (i.e. <code>expected_date</code> arrives and <code>late_days</code> is > 0). The Booking becomes COMPLETED when the corresponding workload comes online and is auto-reconciled with the environment refresh.</p>
+<p>When routed to a guest-level hosting venue with an immediate or future date, associated Booking is in PENDING state until it is included in the analytics through an environment refresh, when it is changed to COMMITTED. Changes to LATE when the incoming workload is late (i.e. <code>expected_date</code> arrives and <code>late_days</code> is > 0). The Booking becomes COMPLETED when the corresponding workload comes online and is auto-reconciled with the environment refresh.</p>
+<p>When routed to a non-control hosting venue, the associated Booking becomes COMMITTED (bypassing the PENDING state as the analytic refresh is not applicable). It then changes to LATE when the incoming workload is late (i.e. <code>expected_date</code> arrives and <code>late_days</code> is > 0). The Booking becomes COMPLETED when manually updated through a PUT request.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="PLACED"></a>PLACED</p>
+</td>
+<td>
+<p>(PENDING to) COMMITTED to LATE to COMPLETED </p>
+</td>
+<td>
+<p>These states only apply when routed to a full control hosting venue.</p>
+<p>A workload is PLACED in the following cases:</p>
+<ul>
+<li>workload routed with today's date</li>
+<li>incoming workload arrives before extended expected date (including \<n> days of grace defined by <code>late_days</code>)</li>
+<li>a <code>GET</code> request is executed on an individual Workload in <code>BOOKED</code> status with <code>expected_date</code> of today (or <code>expected_date</code> has passed but Booking has not <code>EXPIRED</code>). </li>
+</ul>
+<p>Associated Booking is in PENDING state until it is included in the analytics through an environment refresh, when it changes to COMMITTED. Changes to LATE when incoming workload is late (i.e. <code>expected_date</code> arrives and <code>late_days</code> is > 0). Changes to COMPLETED only when the incoming workload is reconciled. See <a class="RefToBookmark MCXref xref xrefRefToBookmark" href="#Placemen"><u>Placement and Option for Placement</u></a> for further details.</p>
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<p>REJECTED</p>
+</td>
+<td>
+<p>DRAFT</p>
+</td>
+<td>
+<p>Could not route or reserve space. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>EXPIRED</p>
+</td>
+<td>
+<p>No incoming workload by the extended expected date (including the \<n> days of grace defined by <code>late_days</code>). </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>N/A</p>
+</td>
+<td>
+<p>CANCELLED</p>
+</td>
+<td>
+<p>Routing Request deleted.</p>
+</td>
+</tr>
+</table>
+
+When a Workload is defined, a catalog specification (element `catalog_spec`) is specified which acts as a reference system or template that resembles the Workload. Some elements from the catalog specification (like OS, CPU, memory and storage) are copied from that `catalog_spec` and set as elements of the Workload. When the Workload is created, some of these elements can be overwritten as part of the `POST`.
+
+### Placement and Option for Placement
+
+When a Workload is PLACED (see [PLACED](#PLACED) above and [State Diagram--Create Scenario](./State_Diagrams_for_Demand#State2)), the recommended host placement is the host with the most available capacity. For VMware environments, the recommended host placement is the host with the most available capacity.
+
+Note that when a Workload is PLACED other than for immediate placement, the recommended host may not be the host with the most capacity at that time, as the placement is determined from the last analysis.
+
+You can configure how host placement is determined, based on whether or not recommendations are being actioned. If the policy setting Today Timeframe Uses in category Available Capacity & Performance Risks is "'Existing Placements and Allocations", then the analytics without actions is used to determine host placement. Otherwise, the analytics with actions is used.
+
+Along with host placement (element `host`), the best sensors for that host are determined (element `sensors`).
+
+If no placement is found to satisfy both capacity and health status requirements, the next best placement for host and sensors within the same hosting venue is determined. This placement is a forced placement and the `status_reason` will be "Force to place".
+
+You can extend the individual get request `GET /workloads/<id>` with the following option:
+
+* `?recheckHost=true`--to recheck the recommended host and sensor placement for a Workload in PLACED state. If the recommended host/sensor is currently not healthy (i.e. real-time placement is enabled and the monitored host/sensor shows unhealthy), a new placement is provided. This option is used by the Route and Reserve Demand page when the user clicks on the Validate Placement button of the Guest Booking dialog box.
+
+## Resource
+
+```json
+/workloads
+```

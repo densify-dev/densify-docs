@@ -1,0 +1,184 @@
+---
+title: "Summary Tab"
+sidebarTitle: "Summary Tab - Cloud"
+---
+
+This tab is the landing page for your cloud environments. The charts on this tab allow you to quickly understand the optimization potential in your public cloud environments. Your environment's efficiency and wasted spend are shown in the status bar at the top.
+
+
+<Frame caption="Figure: Locating the Summary Tab">
+![](/images/docs-kubex/Content/Cloudex/03000005_717x356.png)
+</Frame>
+
+
+The charts provide a concise summary of the environment and a breakdown of how optimization recommendations can provide immediate savings. You can clearly see the impact of taking the recommendations to reduce risk in your environment. You can also see the wasted resources that can be safely removed after you have eliminated risks.
+
+The content on this tab is based on your selection in the tree viewer.
+
+When a single instance is selected in the tree viewer, you will see the [Overview](/docs-kubex/Content/Cloudex/Overview_Tab-Cloud) and the [Catalog Map](/docs-kubex/Content/Cloudex/Catalog_Map_Tab) tabs.
+
+## Overall Monthly Spend
+
+This first chart summarizes your current spend and compares this to what you should be spending, based on utilization.
+
+
+<Frame caption="Figure: Current Monthly Spend and Monthly Waste">
+![](/images/docs-kubex/Content/Cloudex/03000006_763x143.png)
+</Frame>
+
+
+These cards provide:
+
+
+<ul>
+  <li>
+    A link to the <a href="/docs-kubex/Content/Cloudex/AI_Analysis_Details_Table-Cloud">
+    AI Analysis Details</a> page, filtered to the selected scope of systems.
+  </li>
+  <li>A link to open a modal view showing a breakdown of spending on each service type and possible savings.</li>
+  <li>The overall efficiency rating.</li>
+</ul>
+
+
+
+### Efficiency Rating
+
+The Efficiency Rating provides an indication of the health of your aggregated environment.
+
+
+<ul>
+  <li>A value of 1 indicates that, at an aggregate level, the environment is efficient according to the defined policy settings.</li>
+  <li>A value less than 1 indicates potential savings opportunities due to over-allocated resources.</li>
+  <li>A value greater than 1 indicates potential risks due to under-allocated resources. The value is indicated in red, when it is greater than 1.</li>
+</ul>
+
+
+
+### Wasted/Shortfall Spend Estimates
+
+The current and recommended estimated instance costs are used to calculate potential savings or additional spend.
+
+Calculated as: (current estimated cost - recommended estimated cost).
+
+
+<ul>
+  <li>The total estimated **Monthly Waste** is the sum of the selected instances with positive savings values.</li>
+  <li>The shortfall cost (also in the summary bar) is the sum of all selected instances with negative savings values.</li>
+</ul>
+
+
+
+## Modal Views
+
+The modal views show an inventory of the selected items, broken down by instance type, for the selected provider.
+Links at each level take you to the [AI Analysis Details](/docs-kubex/Content/Cloudex/AI_Analysis_Details_Table-Cloud) page, filtered to the specific scope of systems.
+
+
+<Frame caption="Figure: Modal View">
+![](/images/docs-kubex/Content/Cloudex/03000040_509x434.png)
+</Frame>
+
+
+
+## Optimization Breakdown
+
+This bar chart shows the breakdown of your cloud spending: 
+
+
+<Frame caption="Figure: Optimization Breakdown">
+![](/images/docs-kubex/Content/Cloudex/03000155_749x476.png)
+</Frame>
+
+
+
+
+
+<Accordion title="Table: Optimization Breakdown Table">
+<table style={{ width: "100%", borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "20%" }} />
+    <col style={{ width: "80%" }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th style={{ verticalAlign: "middle" }}>Column</th>
+      <th style={{ verticalAlign: "middle" }}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle" }}>Current Spend</td>
+      <td style={{ verticalAlign: "middle" }}>
+        The bar shows what you are currently spending on the instances, selected in the tree viewer.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle" }}>Immediate Savings</td>
+      <td style={{ verticalAlign: "middle" }}>
+        Immediate savings can be achieved by optimizing specific instances.
+        <br />
+        A container qualifies for immediate savings if the "% of Nodes with CPU Saturation" is below a predefined threshold. For example, if the threshold is set at 50%, only containers where "% of Nodes with CPU Saturation" is less than 50% should be considered.
+        <br />
+        Immediate savings can be achieved by adjusting the Memory Request settings only for containers within Node Groups where Memory Request is the primary constraint.
+        <br />
+        Calculated as: Sum of immediate CPU savings + Sum of immediate memory savings
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle" }}>Risk Removal</td>
+      <td style={{ verticalAlign: "middle" }}>
+        Surplus CPU and memory are aggregated for all containers in the selected scope and used to determine this value.
+        <br />
+        Calculated as: Sum(Surplus CPU > 0 (in mcores)) / 1000 mcores/core * CPU unit cost/core + Sum(Surplus mem > 0 (in MB)) / 1024 MB/GB * Memory unit cost/GB
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle" }}>Optimal Cost</td>
+      <td style={{ verticalAlign: "middle" }}>
+        This is what the infrastructure should cost to run the selected workloads.
+        <br />
+        Calculated as ($Total Cost - $Total Estimated Waste).
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle" }}>Additional Waste</td>
+      <td style={{ verticalAlign: "middle" }}>
+        This is possible, additional savings that can be achieved.
+        <br />
+        Calculated as ($Total Cost + Risk Removal - Immediate Savings - Optimal Cost).
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</Accordion>
+
+
+
+
+## Optimization Breakdown - Details
+
+These cards list the aggregated recommendations for the selected scope of systems, broken down by the same optimization opportunities listed above. These cards provide the details of the recommendations that comprise the total in the corresponding bar chart.
+The values are colour-coded to easily identify wasted resources and systems at risk.
+Links to the AI Analysis Details page, with the appropriate view applied, are provided so you can investigate the recommendation.
+
+
+<Frame caption="Figure: Optimization Breakdown - Aggregated Recommendations">
+![](/images/docs-kubex/Content/Cloudex/03000023_755x463.png)
+</Frame>
+
+
+<Frame caption="Figure: Optimization Breakdown - Hyperlinks and Status">
+![](/images/docs-kubex/Content/Cloudex/03000013.png)
+</Frame>
+
+Each card provides a hyperlink that takes you to the AI Analysis Details page, with the [relevant view](/docs-kubex/Content/Kubex/AI_Analysis_Details_Table#pre-cfg-views) selected.
+
+#### Video Resources
+<AccordionGroup>
+<Accordion title="Using the Tree Viewer">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Using the Tree Viewer</a>
+</Accordion>
+
+</AccordionGroup>

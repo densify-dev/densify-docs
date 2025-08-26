@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: Densify API
+  description: API for workload routing and capacity analysis.
+  version: 1.0.0
+servers:
+  - url: https://api.densify.com/v1
+paths:
+  /routing-requests/candidate-infrastructure-groups:
+    post:
+      summary: Query candidate infrastructure groups for workload routing.
+      description: |
+        This endpoint returns only the infrastructure groups that pass the Fit-for-Purpose checks.
+        Groups without sufficient capacity but that still pass the checks are also returned.
+      operationId: getCandidateInfrastructureGroups
+      requestBody:
+        description: Parameters for querying candidate infrastructure groups.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum: [capacity_sensitive, cost_sensitive, cost_and_capacity]
+                  description: Calculation mode for hosting score.
+                subslots:
+                  type: boolean
+                  description: Include subslots in the analysis.
+                detailed_sensor_calc:
+                  type: boolean
+                  description: Include detailed sensor calculations.
+                negative_slots:
+                  type: boolean
+                  description: Consider negative slots.
+                detailed_host_calc:
+                  type: boolean
+                  description: Include detailed host calculations.
+              required:
+                - mode
+      responses:
+        "200":
+          description: List of candidate infrastructure groups.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hosting_venues:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Infrastructure group ID.
+                        name:
+                          type: string
+                          description: Infrastructure group name.
+                        hosting_score:
+                          type: integer
+                          description: Hosting score of the group.
+                        tests:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              status:
+                                type: string
+                                enum: [PASS]
+                                description: Test status.
+                              status_reasons:
+                                type: array
+                                items:
+                                  type: string
+                                description: Reasons for the test status.
+                          description: Fit-for-Purpose test results.
+        "400":
+          description: Invalid request.
+        "500":
+          description: Internal server error.
+components:
+  schemas:
+    HostingVenue:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Infrastructure group ID.
+        name:
+          type: string
+          description: Infrastructure group name.
+        hosting_score:
+          type: integer
+          description: Hosting score of the group.
+        tests:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                enum: [PASS]
+                description: Test status.
+              status_reasons:
+                type: array
+                items:
+                  type: string
+                description: Reasons for the test status.
+          description: Fit-for-Purpose test results.

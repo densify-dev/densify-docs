@@ -1,0 +1,90 @@
+---
+title: "GPU Tab"
+---
+
+The cards on this tab provide a visual overview of a single container's GPU allocation and utilization details. When navigating the [tree viewer](/docs-kubex/Content/Kubex/Using_the_Tree_Viewer), you will see this tab when a single item, with allocated GPU resources, is selected. 
+
+You will see the [Summary Tab](/docs-kubex/Content/Kubex/Summary_Tab) when more than one container is selected.
+
+<Frame caption="Figure: Locating the GPU Tab">
+![](/images/docs-kubex/Content/Kubex/03000223_694x253.png)
+</Frame>
+
+
+
+## GPU Summary
+
+This card summarizes the GPU allocation and for the selected container. This card is only displayed if the GPU resources have been allocated to this container. A hyperlink at the bottom of the card takes you to the GPU page.
+
+
+<Frame caption="Figure: GPU Summary">
+![](/images/docs-kubex/Content/Kubex/03000222_646x175.png)
+</Frame>
+
+
+
+
+<table>
+<tbody>
+<tr><td>
+<ul>
+  <li>
+    <Tooltip tip="The GPU model configured on the parent node.">GPU Model</Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The method used to allow multiple containers to share a single GPU.">Sharing Strategy</Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The total GPU request value, determined as the average number of containers multiplied by the GPU request value.">Total GPU Request</Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The GPU request per container, as specified in the manifest.">GPU Request</Tooltip>
+  </li>
+</ul>
+</td><td>
+<ul>
+  <li>
+    <Tooltip tip="The total GPU memory request value, determined as the average number of containers multiplied by the GPU memory request value.">Total GPU Memory Request</Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The GPU memory request per container, as specified in the manifest.">GPU Memory Request</Tooltip>
+  </li>
+</ul>
+</td></tr>
+</tbody>
+</table>
+
+
+
+## Utilization Charts
+
+The last section provides utilization charts that show hourly min/max and sustained activity for the selected container. See [AI Analysis Details Utilization Charts](/docs-kubex/Content/Kubex/AI_Analysis_Details_Charts) for details on using these charts to review workload data.
+
+
+<Frame caption="Figure: GPU Utilization Chart - Modal View">
+![](/images/docs-kubex/Content/Kubex/03000226_610x343.png)
+</Frame>
+
+
+
+
+<table>
+<tbody>
+<tr><td>
+<ul>
+  <li>GPU Utilization (GPUs) - Average Container</li>
+  <li>Number of Containers</li>
+</ul>
+</td><td>
+<ul>
+  <li>GPU Memory Utilization (MB) - Average Container</li>
+  <li>GPU Memory Utilization (%) - Average Container</li>
+</ul>
+</td></tr>
+</tbody>
+</table>
+
+
+All other metrics are available on the [Metrics Viewer Tab](/docs-kubex/Content/Kubex/Metrics_Viewer_Tab) tab. You can also expand any chart to the modal view and adjust the timeline and the type of data to view ML model for the last day or historical data.
+
+A link at the bottom of the modal page takes you to the [Overview Tab](/docs-kubex/Content/Kubex/Overview_Tab) tab for the selected instance.

@@ -1,0 +1,222 @@
+---
+title: "Routing Workloads for Immediate Placement"
+---
+
+## Routing Workloads for Immediate Placement
+
+This use case determines the optimal host and datastore placement of one or more Workloads for immediate deployment in the cloud infrastructure.
+
+A common scenario for this use case is initiated when a user makes a request to a cloud provisioning portal to provision one or more virtual machines. The cloud provisioning system, in turn, queries Densify for the best placements for the incoming Workload demand. Based on the results of the query to Densify, the cloud provisioning system is able to start the guests on the appropriate hosts in the cloud infrastructure.
+
+To perform this process through the Densify API, follow the sections below:
+
+1. [Describing Workloads to Place](#_Describe_Workloads_to)
+2. [Submitting Routing Request](#_Submit_Routing_Request)
+3. [Polling for Routing Results](#_Poll_for_Routing)
+4. [Placing the VMs](#_Placing_the_VM)
+
+### Describing Workloads to Place
+
+Use the `/workloads` resource to create one or more Workload definitions which describe the capacity requirements for new instances that will be started. The descriptions include the name, a reference system that acts like a clone to copy, resource allocations, and attributes for each Workload to be placed.
+
+The following example request creates 2 workloads named vm1 and vm2. They both resemble the Reference System of a `"lin-small-2gb"` machine, having a single disk defined by default. The other elements describe the resource allocations.
+
+<Accordion title="Example: Creating Two Workloads">
+Request:
+
+```json
+POST /workloads
+{
+  "name": "vm1",
+  "catalog_spec": "lin-small-2gb",
+  "workload_profile": "Medium_Utilization",
+  "project": "Project X",
+  "vcpu": 4,
+  "memory": 8192,
+  "attributes":[
+    { "name": "Department", "value": "Financial Services" },
+    { "name": "Security Zone", "value": "Level 1" }
+  ]
+}
+```
+
+
+
+
+Request:
+
+```json
+POST /workloads
+{
+  "name": "vm2",
+  "catalog_spec": "lin-small-2gb",
+  "workload_profile": "Medium_Utilization",
+  "project": "Project X",
+  "vcpu": 6,
+  "memory": 8192,
+  "attributes":[
+    { "name": "Department", "value": "Financial Services" },
+    { "name": "Security Zone", "value": "Level 1" }
+  ]
+}
+```
+
+
+
+
+Response for vm2:
+
+```json
+[
+  {
+    "id": "d7b7a938-4059-42ed-86cb-da016321de82",
+    "name": "vm2",
+    "status": "UNROUTED",
+    "sensors": [],
+    "workload_profile": "Medium_Utilization",
+    "booking": {
+      "id": "5fdd3189-f3ac-4403-9271-933a0d9963d8",
+      "name": "vm2",
+      "href": "/bookings/5fdd3189-f3ac-4403-9271-933a0d9963d8"
+    },
+    "project": "Project X",
+    "owner": "admin",
+    "attributes": [
+      {
+        "id": "attr_2",
+        "name": "Department",
+        "value": "Financial Services"
+      },
+      {
+        "id": "attr_IPAddressesAssigned",
+        "name": "IP Addresses Assigned",
+        "value": "1"
+      },
+      {
+        "id": "attr_SecurityZone",
+        "name": "Security Zone",
+        "value": "Level 1"
+      },
+      {
+        "id": "attr_Workload_Profile",
+        "name": "Workload_Profile",
+        "value": "Medium_Utilization"
+      },
+      {
+        "id": "in_maint_mode",
+        "name": "In Maintenance Mode",
+        "value": "N/A"
+      },
+      {
+        "id": "state_power",
+        "name": "Power State",
+        "value": "N/A"
+      },
+      {
+        "id": "vmotion_enabled",
+        "name": "VMotion Enabled",
+        "value": "N/A"
+      }
+    ],
+    "vcpu": 6,
+    "memory": 8192,
+    "os": "Linux",
+    "description": "",
+    "bookingHostName": "c01e70d1-c098-4af7-8f8a-b18310bf2351",
+    "disks": [
+      {
+        "name": "SYSTEM",
+        "attributes": [],
+        "provisioned_space": 81920,
+        "used_space": 20480
+      }
+    ],
+    "href": "/workloads/d7b7a938-4059-42ed-86cb-da016321de82",
+    "expected_date": 1377230400000,
+    "creation_time": 1377291933320,
+    "catalog_spec": "lin-small-2gb",
+    "catalog_spec_id": "53a234b0-90d2-44ee-ab54-bc06934b2c27",
+    "cpu_entitlement": 6,
+    "profile_strength": 80,
+    "owner_email": "",
+    "late_days": 14,
+    "provisioned_space": 81920,
+    "used_space": 20480
+  }
+]
+```
+
+
+
+</Accordion>
+
+
+If the request to create the Workload is successful, the response includes a Workload object with an [ID, Name and Self Reference (id, name, href)](./Common_Elements) that can be used to build a subsequent request to route the Workloads. For more information about the format of the Workload response, see [Workloads](./Workloads).
+
+### Submitting Routing Request
+
+Use the `/routing-requests` resource to submit a request to route the Workloads to the optimal environment, hosting venue, hosts and datastores according to resource requirements, current utilization patterns, business constraints, and other policy considerations.
+
+<Accordion title="Example: Submitting a Routing Request">
+Request:
+
+```json
+POST /routing-requests
+{
+  "workloads": [
+    {"id": "4134bf9a-4b2e-45dc-9dc6-23b0bca95315"},
+    {"id": "d7b7a938-4059-42ed-86cb-da016321de82"}
+  ]
+}
+```
+
+
+
+
+Response:
+
+```json
+{
+  "id": "da5e1438-17ea-4a88-8c50-ef88eb3409ca",
+  "status": "ANALYZING",
+  "expected_date": "1381377600000",
+  "requester": "admin",
+  "workloads": [
+    {
+      "id": "4134bf9a-4b2e-45dc-9dc6-23b0bca95315",
+      "name": "vm1",
+      "href": "/workloads/4134bf9a-4b2e-45dc-9dc6-23b0bca95315"
+    },
+    {
+      "id": "d7b7a938-4059-42ed-86cb-da016321de82",
+      "name": "vm2",
+      "href": "/workloads/d7b7a938-4059-42ed-86cb-da016321de82"
+    }
+  ],
+  "href": "/routing-requests/da5e1438-17ea-4a88-8c50-ef88eb3409ca"
+}
+```
+
+
+
+</Accordion>
+
+
+The Routing Request is evaluated against all available hosting venues and datastores according to cost, capacity and Fit-for-Purpose validation, as described later in [Routing Requests–Available Capacity Query](./Routing_Requests_Available_Capacity_Query). The Workloads are routed to a hosting venue where the aggregate utilization of all Workloads fit and the policy constraints are satisfied. The Workloads may be routed and placed on different hosts and datastores within the hosting venue.
+
+The Routing Request can optionally include a subset of hosting venues to consider. This limits the scope of the routing algorithm to only the specified hosting venues. See the [Routing Requests: Examples](./Routing_Requests#_Examples) on how to define the `scopes` element.
+
+Once the Routing Request has been created, the Routing Request object contains an [ID, Name and Self Reference (id, name, href)](./Common_Elements) that can be used to query for status. For more information about the format of the Routing Request response, see [Routing Requests](./Routing_Requests).
+
+### Polling for Routing Results
+
+Creating the Routing Request is asynchronous, allowing API callers to handle lost connections and subsequently reconnect to obtain the results of the Routing Request.
+
+When the Routing Request for immediate placement is fully processed, the state of the Routing Request is set from `ANALYZING` to one of:
+
+* `PLACED`--Densify has routed, reserved space, and found a host/sensor placement for all the Workloads specified in the Routing Request. All Workloads are updated to `PLACED`.
+* `REJECTED`--Densify could not route, reserve space, or find a host/sensor for at least one Workload specified in the Routing Request.
+
+### Placing the VMs
+
+If the Workloads were successfully routed and optimal host/datastore placement determined, the caller can query each Workload for its routing details, including the target environment, hosting venue, and host/sensor placement. The Workload (guest) can then be started on the specified host.

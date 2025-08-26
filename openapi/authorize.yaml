@@ -1,0 +1,144 @@
+openapi: 3.0.3
+info:
+  title: Densify Authorize API
+  version: "1.0.0"
+  description: ""
+  contact:
+    name: Densify Support
+    email: Support@Densify.com
+
+servers:
+  - url: https://api.example.com
+    variables:
+      host:
+        default: api.example.com
+        description: Replace with your Densify API host
+paths:
+  /authorize:
+    post:
+      tags:
+        - Authorization
+      operationId: authorize-user
+      summary: Obtain a JWT API token
+      description: |
+        Returns a JWT token for any **active** Densify user when valid credentials are provided.
+        Only tokens for **API-enabled** users can be used to make authorized API calls.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorizeRequest'
+            examples:
+              validCredentials:
+                summary: Example request with valid credentials
+                value:
+                  userName: apiUser
+                  pwd: apiPassword
+              invalidCredentials:
+                summary: Example request with invalid credentials
+                value:
+                  userName: APIUser
+                  pwd: wrongPassword
+      responses:
+        '200':
+            description: Successful authorization
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/AuthorizeSuccess'
+                examples:
+                  success:
+                    summary: Example successful response
+                    value:
+                      apiToken: eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzNzI2Yzk0NC0wMmE4LTRlYzQtOGE2Ny04ODBmMDM2OTRhZDciLCJpYXQiOjE1NDI2NTI0MDUsInN1YiI6InZhbiIsImlzcyI6IkRlbnNpZnkuY29tIiwiZXhwIjoxNTQyNjUyNzA1fQ.cJd8qFJfRoPnMEU7GzcdYGBT8WwlgmviQ1OQp8P_w9VUcjQA3FJaB9QkqJJ6d7zbrY5yjc4w0rOWjY-PPdbmqw
+                      expires: 1542652705869
+                      status: 200
+        '400':
+          description: Bad request (null/invalid payload; empty or invalid userName/pwd)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizeError'
+        '401':
+          description: Unauthorized (user does not exist, incorrect password, or account locked)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizeError'
+              examples:
+                unauthorized:
+                  summary: Example unauthorized response
+                  value:
+                    message: Unauthorized
+                    status: 401
+        '403':
+          description: Forbidden (trial or subscription expired)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizeError'
+        '429':
+          description: Too Many Requests (rate limiting / progressive delay)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizeError'
+        '500':
+          description: Internal server error (or web server/connectivity issues)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizeError'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        Apply to **other** API endpoints after obtaining a token from `/authorize`.
+        Example: `Authorization: Bearer <apiToken>`
+  schemas:
+    AuthorizeRequest:
+      type: object
+      required: [userName, pwd]
+      properties:
+        userName:
+          type: string
+          description: Username of an **active** Densify user account
+        pwd:
+          type: string
+          format: password
+          description: Password corresponding to `userName`
+
+    AuthorizeSuccess:
+      type: object
+      required: [apiToken, expires, status]
+      properties:
+        apiToken:
+          type: string
+          description: |
+            JWT string (RFC 7519) to include as a Bearer token on subsequent requests.
+        expires:
+          type: number
+          format: int64
+          description: Epoch time in **milliseconds** when the token expires.
+        status:
+          type: integer
+          description: HTTP status code of the authorization request.
+          enum: [200]
+
+    AuthorizeError:
+      type: object
+      required: [status]
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        status:
+          type: integer
+          description: HTTP status code.
+          enum: [400, 401, 403, 429, 500]
+
+security: []

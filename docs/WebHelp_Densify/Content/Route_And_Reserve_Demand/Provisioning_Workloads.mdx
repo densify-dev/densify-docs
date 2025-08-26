@@ -1,0 +1,60 @@
+---
+title: "Provisioning Workloads"
+---
+
+To provision your workloads, first define the scope of guest bookings, and then output these bookings to a CSV file so they can be provisioned. Provisioning is done through the Manage Reservations link.
+
+Figure: Provisioning Workloads
+
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030061.png)</Frame>
+
+## Step 1: Defining Your Booking Scope
+
+The bookings displayed in the Reservation Details pane is the scope of your export. From the Manage Reservations screen, filter the bookings using the timeline and/or the filter dropdowns, as appropriate. See [Filtering Bookings Using the Timeline Slider](./Viewing_the_Reservation_Details_Pane#Filterin), [Filtering Routed Bookings Using the Filter Dropdown](./Viewing_the_Reservation_Details_Pane#Filterin2) and [Filtering and Sorting Hosting Venues](./Filtering_and_Sorting_Hosting_Venues).
+
+For example, to provision by project, update the Group Filter to filter your specific project. Also, to provision bookings planned for today, update the timeline to the Today timeframe.
+
+## Step 2: Exporting Bookings
+
+You can export the booking details, including placement answers, for all incoming/outgoing guest bookings displayed in the Reservation Details pane. To do so, click on Export in the toolbar. All bookings currently displayed are exported to a .csv file.
+
+Multi-valued attributes are exported by separating the values with a pipe "|" separator:
+
+```
+<value1>|<value2>...
+```
+
+
+
+
+Multi-disk attributes are exported using a separate column for each attribute, using a numeric to distinguish one disk definition from the other. For example, when two disks are defined, the first disk is exported with column names appended with "1" and the second disk is exported with column names appended with "2":
+
+```
+Datastore Tier1, Datastore Tier2, Provisioned Space (MB)1, Provisisioned Space (MB)2, Used Space (MB)1, Used Space (MB)2, Disk Name1, Disk Name2, Datastore1, Datastore2 
+```
+
+
+
+<Note>
+Depending on the settings in your browser, either you will see a download window where you can select the location to download the booking files or the file will be automatically downloaded to a designated download directory.
+</Note>
+
+
+
+To learn more watch the video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/301298654" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+
+## Step 3: Provisioning Workloads
+
+Use the CSV produced in [Step 2](#Exportin) to provision your workloads.
+
+## Step 4: Completing Your Bookings
+
+For bookings routed to internal hosting venues, an audit and environment refresh are required before your bookings are automatically reconciled with the provisioned workloads. At this point the bookings are updated to the Completed status. Once in that status, they are automatically removed from the Reservation Details pane.
+
+The same thing happens for bookings routed to external hosting venues belonging to cloud environments where guests are audited and cloud analytics run.
+
+However, for bookings routed to external hosting venues that are not audited, you need to manually mark the booking as Completed. Contact [Support@Densify.com](mailto:Support@Densify.com) to do this.

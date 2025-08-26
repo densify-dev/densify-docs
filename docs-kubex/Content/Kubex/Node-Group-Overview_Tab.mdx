@@ -1,0 +1,263 @@
+---
+title: "Node Group Overview Tab"
+---
+import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
+
+The cards on this tab provide a visual overview of a single node group. When navigating the tree viewer, you will see this tab when a single node group is selected. This page is different from the [Node Overview](/docs-kubex/Content/Kubex/Node-Overview-Tab) page that is displayed when a single node is selected.
+
+You will see the [Node Group Analysis Tab](/docs-kubex/Content/Kubex/Node_Group_Analysis_Table) tab when more than one mode group is selected.
+
+
+<Frame caption="Figure: Locating the Node Group Overview">
+![](/images/docs-kubex/Content/Kubex/03000143_661x199.png)
+</Frame>
+
+
+
+## Analysis Summary
+
+Click on any of the listed settings to see a brief description. Complete descriptions of each setting are provided in the [Node Group Analysis Tab](/docs-kubex/Content/Kubex/Node_Group_Analysis_Table) tab.
+Identifying details and the recommendation are displayed on this card.
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", gap:"20px"}}>
+  <Frame caption="Figure: Analysis Summary Details">
+    ![](/images/docs-kubex/Content/Kubex/03000144_545x195.png)
+  </Frame>
+  <ul style={{ width: "50%"}}>
+    <li>
+      <Tooltip tip="Indicates the reason that more containers cannot be added to this node group.">
+      Primary Constraints
+      </Tooltip>
+    </li>
+    <li>
+      <Tooltip tip="This is the estimated wasted spend per month. If the value is negative your infrastructure may be under-provisioned.">
+      Estimated Monthly Waste
+      </Tooltip>
+    </li>
+    <li>
+      <Tooltip tip="The current cost of running this node. The calculation is based on whether the primary node type has been defined.">
+      Current Monthly Cost
+      </Tooltip>
+    </li>
+    <li>
+      <Tooltip tip="The cost of running this node on the optimal instance type. The calculation is based on whether the primary node type has been defined.">
+      Fully Optimized Cost
+      </Tooltip>
+    </li>
+    <li>
+      <Tooltip tip='One of the following: “Compute Optimized", “General Purpose”, or “Memory Optimized”. If the node is not one of these, then this value cannot be determined and is indicated as a dash (-).'>
+      Node Family
+      </Tooltip>
+    </li>
+    <li>
+      <Tooltip tip="Use this value to determine if your nodes are utilized as efficiently as possible. Both CPU and memory utilization are used to determine this ratio.">
+      Fully Optimized Node Family
+      </Tooltip>
+    </li>
+  </ul>
+</div>
+
+## Node Group Information
+
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", gap:"20px"}}>
+<Frame caption="Figure: Node Group Information">
+ <img src="/images/docs-kubex/Content/Kubex/03000146.png" />
+</Frame>
+<ul style={{ width: "50%"}}>
+  <li>
+      <Tooltip tip="The cluster name containing the node group.">
+
+    Cluster
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="The most common instance type. For example, if there are 20 r6i.large instances and 10 m6i.large instances, the primary node type is r6i.large.">
+
+    Primary Node Type
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="The average number of nodes in the node group, for in-service instances with non-zero workload.">
+
+    Avg. No. Nodes
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="The cumulative number of hours that all nodes in the group have been up and running, with CPU or memory utilization.">
+
+    Total Node Hours
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="The total number of unique nodes that are part of this node group, . The value of node ID is used to determine if a node is unique.">
+
+    Unique No. of Nodes
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="The number of container manifests in the node group being analyzed during the last analysis run. Only containers that were part of the selected node group AND not part of another node group, in the past 7 days, are counted.">
+
+    No of Container Manifests
+      </Tooltip>
+  </li>
+</ul>
+</div>
+
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", gap:"20px"}}>
+<Frame caption="Figure: Node Group Health Details">	
+  <img src="/images/docs-kubex/Content/Kubex/03000145_537x180.png" />
+</Frame>
+<ul style={{ width: "50%"}}>
+  <li>
+      <Tooltip tip="The status of the selected group based on a number of factors, including restarts and CPU or memory saturation. See the description below.">
+      Overall Status
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="The percentage of nodes with peak CPU utilization above the configurable, saturation threshold (default: 0%) . The value is expressed as a percentage of the total number of nodes. If the value exceeds the threshold the cell is shaded red.">
+
+    Nodes with Saturation
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="The ratio of the busiest (top 10%) to least busy (bottom 10%) nodes within a node group. Use this value to assess the distribution of CPU resources across the nodes in a cluster.
+    A value of between 1 to 1.5 is ideal. If the ratio exceeds a value of 2 the cell is shaded to clearly indicate that resource allocation should be investigated.">
+
+    Node Balance Ratio
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="The number of container manifests in the node group which have exceeded the working set memory limit, in the last day.">
+
+    No. Of Nodes at Max Pod Capacity
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="The number of container manifests in this node group with containers that were restarted in the last day. Only containers that were part of the selected node group AND not part of another node group, in the last day, are counted.">
+
+    Restarts
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="The number of container manifests in the node group which have exceeded the working set memory limit, in the last day.">
+
+    Memory Limit Events (Last Day)
+      </Tooltip>
+  </li>
+</ul>
+</div>
+
+
+The overall risk indicated in the top right corner of this card, is an aggregate of various factors for all of the nodes in the group, that impact the node group's ability to reliably host your container workloads.
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", gap:"20px"}}>
+  <div style={{ width: "120px", minWidth: "120px" }}>
+    <Frame>
+      <img src="/images/docs-kubex/Content/Kubex/03000215_120x39.png" width={"100%"} style={{ height: "40px", objectFit: "contain" }}/>
+    </Frame>
+  </div>
+  <div style={{ flex: 1 }}>
+    <p>The node group is considered low risk if both CPU and memory saturation are 0 and there are no memory limit events.</p>
+  </div>
+</div>
+
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", gap:"20px"}}>
+  <div style={{ width: "120px", minWidth: "120px" }}>
+    <Frame>
+      <img src="/images/docs-kubex/Content/Kubex/03000214_120x39.png" width={"100%"} style={{ height: "40px", objectFit: "contain" }}/>
+    </Frame>
+  </div>
+  <div style={{ flex: 1 }}>
+    <p>The node group is considered medium risk if both CPU and memory saturation are > 0 but  < 50% and there are no memory limit events or restarts.</p>
+  </div>
+</div>
+
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", gap:"20px"}}>
+  <div style={{ width: "120px", minWidth: "120px" }}>
+    <Frame>
+      <img src="/images/docs-kubex/Content/Kubex/03000213_120x39.png" width={"100%"} style={{ height: "40px", objectFit: "contain" }}/>
+    </Frame>
+  </div>
+  <div style={{ flex: 1 }}>
+    <p>The node group is considered high risk if both CPU and memory saturation are > 50%;</p>
+    <p>Or the balance ratio is ≥ 10;</p>
+    <p>Or memory limit events or restarts have occurred.</p>
+  </div>
+</div>
+
+
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", gap:"20px"}}>
+<Frame caption="Resource Summary">	
+  <img src="/images/docs-kubex/Content/Kubex/03000147_501x271.png" />
+</Frame>
+<ul style={{ width: "50%"}}>
+  <li>
+      <Tooltip tip="The available CPU (Cores) and memory (GB).">
+
+    Capacity
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="This is the average number of cores available that you can allocate to your container workloads. This value is determined from the number of hours each node was running in the last 7  days and using that value to calculate how many cores are available, on average.">
+
+    Allocatable
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="The percentage of total allocatable CPU capacity that is already allocated to CPU requests.">
+
+    Request (% of Allocatable)
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="The average CPU and memory utilization. This value is weighted by the number of hours that each node in the group ran. The CPU utilization is multiplied by the number of running hours for the node before calculating the average.">
+
+    Average Utilization
+      </Tooltip>
+  </li>
+  <li>
+      <Tooltip tip="The number of surplus CPU cores and memory GB that is currently provisioned. This is the surplus CPU and memory for the selected node group, based on how many resources are utilized as compared to the total allocatable resources.">
+
+    Surplus
+      </Tooltip>
+  </li>
+</ul>
+</div>
+
+## Utilization Charts
+
+The last section provides utilization charts that show hourly min/max and sustained activity for the selected node group. You can also expand any chart to the modal view and select other views. See [AI Analysis Details Table](/docs-kubex/Content/Kubex/AI_Analysis_Details_Table) for details on using these charts to review workload data.
+
+
+<ul>
+  <li>CPU Utilization (%)</li>
+  <li>Actual Memory Utilization (%)</li>
+  <li>No. Of Nodes</li>
+  <li>Memory Utilization (%)</li>
+</ul>
+
+
+
+
+<Frame caption="Figure: Utilization Charts">
+![](/images/docs-kubex/Content/Kubex/03000230_737x127.png)
+</Frame>
+
+#### Video Resources
+<AccordionGroup>
+<Accordion title="Using the Tree Viewer">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Using the Tree Viewer</a>
+</Accordion>
+
+<Accordion title="Using the Utilization Charts">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1042992591?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1042992591?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Using the Utilization Charts</a>
+</Accordion>
+
+</AccordionGroup>

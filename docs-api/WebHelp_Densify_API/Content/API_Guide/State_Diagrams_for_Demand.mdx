@@ -1,0 +1,84 @@
+---
+title: "State Diagrams for Demand"
+---
+
+## State Diagrams for Demand
+
+Specific details of associated Booking states are described in [Workloads](./Workloads).
+
+### State Diagram--Create Scenario
+
+#### Routing to Full Control Hosting Venues
+
+<Accordion title="Figure: State Diagram--Create Scenario when Routing to Full Control Hosting Venues">
+<Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000004.png)</Frame>
+</Accordion>
+
+
+The Booking and Workload objects are kept in sync, as noted.
+
+Once the Workload is routed, the environment, hosting venue, and datastores are set.
+
+The host/sensor placement is updated if the assigned placement has become bad (i.e. insufficient capacity or is unhealthy), in the following cases:
+
+* PLACED--When the Workload is updated with a `PLACED` status
+* ?recheckHost--When the `?recheckHost=true` option is used with the Workload or Routing Request
+* Refresh--When the environment or infrastructure group is refreshed
+
+#### Routing to Guest-Level Hosting Venues
+
+<Accordion title="Figure: State Diagram--Create Scenario when Routing to Guest-Level Hosting Venues">
+<Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000010.png)</Frame>
+</Accordion>
+
+
+When routing to guest-level hosting venues, instead of to full control hosting venues, the main differences are:
+
+* PLACED status does not apply--a Workload stays in BOOKED status, unless it is deleted or rejected, as there is no host/sensor placement
+* BOOKED status--for both future and immediate routing, a Workload is updated with status of BOOKED, as PLACED status does not apply
+
+#### Routing to Non-Control Hosting Venues
+
+<Accordion title="Figure: State Diagram--Create Scenario when Routing to Non-Control Hosting Venues">
+<Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000007.png)</Frame>
+</Accordion>
+
+
+When routing to non-control hosting venues, instead of to full control hosting venues, the main differences are:
+
+* PENDING status does not apply--a Booking goes directly into COMMITTED status, as there are no analytics to refresh
+* PLACED status does not apply--a Workload stays in BOOKED status, unless it is deleted or rejected, as there is no host/sensor placement
+* BOOKED status--for both future and immediate routing, a Workload is updated with status of BOOKED, as PLACED status does not apply
+* manually COMPLETED--a Booking must be manually updated with status of COMPLETED, as there is no auto-reconciliation (no audit and no analytic refresh)
+
+### State Diagram--Modify Scenario
+
+#### Routing to Full Control Hosting Venues
+
+<Accordion title="Figure: State Diagram--Modify Scenario when Routing to Full Control Hosting Venues">
+<Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000005.png)</Frame>
+</Accordion>
+
+
+A Workload can be modified in the `UNROUTED` state. When the Workload is in `BOOKED` or `PLACED` state and the respective Booking is not yet `Completed`, the Workload can still be modified but only the expected system name (i.e. the `name` element). In this way, the expected name can be updated and appropriately reconciled with the actual system coming online. The `attributes` of the Workload object can be modified or deleted in any state.
+
+#### Routing to Non-Control and Guest-Level Hosting Venues
+
+When routing to non-control and guest-level hosting venues, the modify actions and corresponding states are similar to that for full control hosting venues. The only difference is that the PLACED status is not applicable for the non-control and guest-level hosting venue case.
+
+### State Diagram--Delete Scenario
+
+#### Routing to Full Control Hosting Venues
+
+<Accordion title="Figure: State Diagram--Delete Scenario when Routing to Full Control Hosting Venues">
+<Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000006.png)</Frame>
+</Accordion>
+
+
+If the expected date of the Workload is for today or for the future, then the Workload goes back to the `UNROUTED` state and the capacity is no longer reserved. The same holds true for a Workload in `REJECTED` state. An `UNROUTED` Workload can then be re-applied in a new Routing Request.
+
+As seen above, the Workload and Booking objects are kept in sync. When the Workload changes state, the corresponding Booking object also changes state. When the Workload is deleted, the Booking object is also deleted.
+
+#### Routing to Non-Control and Guest-Level Hosting Venues
+
+When routing to non-control and guest-level hosting venues, the delete actions and corresponding states are similar to that for full control hosting venues. The only difference is that the PLACED status is not applicable for the non-control and guest-level hosting venue case.

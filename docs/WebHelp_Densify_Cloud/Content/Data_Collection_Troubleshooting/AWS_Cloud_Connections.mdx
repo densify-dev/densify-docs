@@ -1,0 +1,28 @@
+---
+title: "AWS Cloud Connections"
+---
+
+### Event: Account does not exist or incorrect permissions
+
+The following are common issues when working with AWS cloud connections:
+
+<Accordion title="Cause: AWS Account no longer exists">
+Solution: If the account no longer exists, the connection can be deleted using the Public Cloud Connection Wizard. See [Deleting a Connection](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard.htm#Deleting).
+</Accordion>
+<Accordion title="Cause: Account exists, but has incorrect permissions">
+Solution: Ensure the [Minimum Permissions for CloudWatch Data Collection](../Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_.htm#Limited_Access_IAM_Policy) are set correctly.
+
+Once the permissions have been corrected, you can verify the connection using the Public Cloud Connection Wizard. See [Reviewing a Connection](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard.htm#Review_Conn).
+</Accordion>
+<Accordion title="Cause: Account exists, but is configured incorrectly">
+Solution:Ensure the [AWS Data Collection Prerequisites for an IAM Role](../Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_.htm) are setup correctly, Including that the External ID you have entered corresponds to the correct IAM Role.
+
+Once the prerequisites and credentials have been corrected, you can verify the connection using the Public Cloud Connection Wizard. See [Reviewing a Connection](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard.htm#Review_Conn).
+</Accordion>
+<Accordion title="Cause: Systems within the AWS account are not supported">
+Solution: If your account only contains services that Densify does not analyze, then the audit will fail. i.e. DynamoDB, Redshift, Lambda, ElasticCache, etc.
+
+Within Densify you need to manually delete the Cloud Environments associated with these accounts.
+</Accordion>
+
+If none of the above issues apply to your environment, contact Support@Densify.com to review your connectivity details and receive further guidance.

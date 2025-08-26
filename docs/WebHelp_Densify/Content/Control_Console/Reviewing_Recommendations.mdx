@@ -1,0 +1,542 @@
+---
+title: "Reviewing Recommendations"
+---
+
+import { InlineImage } from "/snippets/InlineImage.mdx"
+
+## Reviewing Today’s Recommendations
+
+1. In the Control Console select an environment in the Environment Navigator.
+
+The spectrum is displayed for the selected environment. The Spectrum Detail, shown as the bottom of the screen, shows the recommendations for today, for the environment. The number in brackets in the title of the tab indicates the number of recommendations for the selected entity. If you select an infrastructure group, host, VM or sensor, the list of recommendations is updated to display only the items for that selected entity.
+
+This is also applicable if you select a group of entities in the Spectrum by dragging the mouse. The displayed list of recommendations is updated to show detailed information only for those selected entities. This is also the case when the Reveal feature is used to filter the entities displayed in the Spectrum. Only the recommendations for the selected entities are shown in Spectrum Details. See [Working with the Spectrum](./Working_with_the_Spectrum).
+
+<Accordion title="Figure: Recommendations for \<Selected Day> Tab">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/0300001C_570x159.png)</Frame>
+</Accordion>
+2. Review the recommendations on this tab. You can use the scroll bar to review the complete list of recommendations. You can enlarge the Spectrum Detail pane by dragging the top border upwards.
+3. There are a number of columns in this tab. Click on any column to sort the list by the selected criteria, in ascending or descending order. The column header, used for sorting, is indicated with an up or down arrow head.
+<Accordion title="Figure: Sorting Listed Recommendations">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/0300001D_524x150.png)</Frame>
+</Accordion>
+
+
+When the spectrum is run initially, a large number of recommendations may be generated. It is highly recommended that you filter the list according to your specific requirements, in order to view a more manageable list of recommendations.
+
+## Recommendations for \<Selected Day> Tab Details
+
+The following columns are displayed in Recommendations for \<Selected Day> tab:
+
+Table: Recommendations for \<Selected Day> Tab Columns
+
+<table>
+<thead>
+<tr>
+<th>
+<p>Column</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Reason</p>
+</td>
+<td>
+<p>This is the reason that the recommendation was generated. This column is color-coded:</p>
+<ul>
+<li>Red--Immediate attention is required to reduce risk.</li>
+<li>Yellow--Attention is required in order to improve efficiency. </li>
+<li>No Color--Planned actions are listed for information only.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Entity</p>
+</td>
+<td>
+<p>This is the infrastructure group, host, VM or sensor that generated the recommendation. You can copy the displayed name into the corresponding search field to find the system in the Spectrum. </p>
+<p>You can click on the name link to see the system details. This launches the <span >System Dashboard</span> showing the system details for the selected system.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Entity Type</p>
+</td>
+<td>
+<p>This is the entity type. </p>
+<p>For <span class="mc-variable Document.VM2 variable">VMware</span> entities, the entity type can be:</p>
+<ul>
+<li>VMWARE VM</li>
+<li>VMWARE HOST</li>
+<li>VMWARE DATASTORE</li>
+<li>VMWARE RESOURCE POOL</li>
+<li>VMWARE PHYSICAL STORAGE </li>
+</ul>
+<p>Generic entity types include:</p>
+<ul>
+<li>Active VM Booking--for an inbound VM booking</li>
+<li>Active Host Booking--for an inbound host booking</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recom-<br/>mendation</p>
+</td>
+<td>
+<p>This is a description of the required recommendation. Green arrows are used to indicate increase actions (up arrow), decrease actions (down arrow) and VM placement actions (side arrow). Possible recommendations:</p>
+<ul>
+<li>Increase allocated resources</li>
+<li>Decrease allocated resources</li>
+<li>A potential VM move </li>
+<li>Investigate sensor entity exceeding limit</li>
+<li>Sensor entity is full</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>From/To</p>
+</td>
+<td>
+<p>If a move is required, these columns provide the source system/workload and the proposed target. </p>
+<p>You can click on the name link to see the system details. This launches the <span >System Dashboard</span> showing the system details for the selected system.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Action Plan</p>
+</td>
+<td>
+<p>The unique ID of the action plan, created to act upon the recommendations. Once the Action Plan is committed,  the <span >Action Plan</span> column is populated and you can click on the Action Plan to see additional details for the associated Action Plan. Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="44173134342b36300400212a372d223d6a272b29" href="/cdn-cgi/l/email-protection">[email protected]</a></span> to define action plans.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Effective Date</p>
+</td>
+<td>
+<p>This is the date until which, the recommendation is effective. Past this date, it may be necessary to collect more recent data and run the analyses in order to obtain an updated recommendation list. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Owner</p>
+</td>
+<td>
+<p>The owner is the entity that can perform the recommendation. The owner is defined by the policy.</p>
+</td>
+</tr>
+</table>
+
+
+## Filtering the Spectrum Based on the Recommendations
+
+You can filter the recommendations list by system. Right-click a recommendation for the system of interest and select Filter Action. Both the recommendation list and the spectrum are filtered to display the system and its parent and child systems and the recommendations associated with the selected system. The details of the filter, i.e. \<GroupLabel>, Host and/or VM names are used to populate the filter criteria, located above the spectrum.
+
+Click the Reset button to clear the filter. You can also press F10 to clear the filter.
+
+<Accordion title="Figure: Filter Actions Based on a Selected System">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000034_360x309.png)</Frame>
+</Accordion>
+
+
+## Viewing Recommendation Details
+
+Double-click a recommendation (or right-click View Details) to open the Recommendation Detail dialog box. Review the details on the General tab. Click the Details tab, to see notes or comments about the proposed recommendation.
+
+<Accordion title="Figure: Recommendations Details Dialog Box">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/0300001E_326x390.png)</Frame>
+</Accordion>
+
+
+## Viewing Recommendations For a System
+
+1. Right-click a recommendation for the system of interest and select Open This System's Recommended Actions. The Recommendations dialog box is displayed.
+<Accordion title="Figure: Recommendations for Entity Dialog Box">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/0300001F_550x341.png)</Frame>
+</Accordion>
+2. You can group the system's recommendations by selecting an option from the Grouping dropdown. The displayed recommendations are grouped by the selected criteria. Select Analysis and observe the results. Re-select By Time (default). Click <InlineImage src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Analysis_Console_Getting_Started_Guide/03000007.png"/> to refresh the displayed list. Click Close to close this window and return to the Spectrum Detail pane.
+
+## Types of Recommendations
+
+In general there are three types of recommendations for VMs. These recommendations are applied in the following order:
+
+* VM moves/placements rebalance workloads across hosts to optimizes fit on each host device. This action must be performed first.
+* VM allocation (CPU, memory, disk space) increase can be performed after optimizing available space, to utilize any additional capacity.
+* VM allocation (CPU, memory, disk space) decrease frees up capacity and can be done at anytime.
+
+The following table lists the possible types of recommendations that you may encounter depending on the systems shown within the Spectrum (i.e. a host (H), VM (V), or sensor (S)).
+
+Table: Recommendations
+
+<table>
+<thead>
+<tr>
+<th rowspan="2">
+<p>Recommendation </p>
+</th>
+<th colspan="3">
+<p>Applies to</p>
+</th>
+<th rowspan="2">
+<p>Description</p>
+</th>
+<th rowspan="2">
+<p>Action Data</p>
+</th>
+</tr>
+<tr>
+<th>
+<p>H</p>
+</th>
+<th>
+<p>V</p>
+</th>
+<th>
+<p>S</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>VM Placement</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Recommended placement for VM to rebalance workloads evenly across hosts and account for recommended increases in VM allocations.</p>
+<p>VM placements to rebalance VM workloads across hosts consider all recommended VM allocation increases. The recommended VM allocation decreases are not presumed in the rebalancing analysis, and thus are not a prerequisite for implementing the rebalance moves.</p>
+</td>
+<td>
+<p>Affected VM, Current host placement, Recommended host placement</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Increase CPU Allocation</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Increase vCPU allocation for the VM due to CPU utilization levels that exceed the policy high limit.</p>
+</td>
+<td>
+<p>Affected VM, Current vCPU allocation, Recommended vCPU allocation</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Decrease CPU Allocation</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Decrease vCPU allocation for the VM due to CPU utilization levels that are below the policy low limit.</p>
+<p>CPU allocation decreases are typically not actionable in assessment-based analysis, due to the limited amount of historical data that is collected.</p>
+</td>
+<td>
+<p>Affected VM, Current vCPU allocation, Recommended vCPU allocation</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Increase CPU Reservation</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Increase CPU reservation for the VM due to eCPU utilization levels that exceed the policy high limit.</p>
+</td>
+<td>
+<p>Affected VM, Current CPU reservation, Recommended CPU reservation</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Decrease CPU Reservation</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Decrease CPU reservation for the VM due to eCPU utilization levels that are below the policy low limit.</p>
+<p>CPU reservation decreases are typically not actionable in assessment-based analysis, due to the limited amount of historical data that is collected.</p>
+</td>
+<td>
+<p>Affected VM, Current CPU reservation, Recommended CPU reservation</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Increase Disk Allocation</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Increase the aggregate disk allocation for the VM due to disk space usage levels that exceed the policy high limit.</p>
+<p>This recommendation is not actionable through Proactive Automation, but can be actioned manually through an external system.</p>
+</td>
+<td>
+<p>Affected VM, Current disk space usage in MB, Recommended disk space usage in MB</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Decrease Disk Allocation</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Decrease the aggregate disk allocation for the VM due to disk space usage levels that are below the policy low limit.</p>
+<p>This recommendation is not actionable through Proactive Automation, but can be actioned manually through an external system.</p>
+</td>
+<td>
+<p>Affected VM, Current disk space usage in MB, Recommended disk space usage in MB</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Increase Per Disk Allocation</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Increase a specific disk's allocation for the VM due to disk space usage levels that exceed the policy high limit.</p>
+</td>
+<td>
+<p>Affected VM and disk, Current disk space usage in MB, Recommended disk space usage in MB</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Decrease Per Disk Allocation</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Decrease a specific disk's allocation for the VM due to disk space usage levels that are below the policy low limit.</p>
+<p>This recommendation is not actionable through Proactive Automation.</p>
+</td>
+<td>
+<p>Affected VM and disk, Current disk space usage in MB, Recommended disk space usage in MB</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Increase Memory Allocation</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Increase memory allocation for the VM due to memory utilization levels that exceed the policy high limit.</p>
+</td>
+<td>
+<p>Affected VM, Current memory allocation in MB, Recommended memory allocation in MB</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Decrease Memory Allocation</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Decrease memory allocation for the VM due to memory utilization levels that are below the policy low limit.</p>
+<p>Memory allocation decreases are typically not actionable in assessment-based analysis, due to the limited amount of historical data that is collected.</p>
+</td>
+<td>
+<p>Affected VM, Current memory allocation in MB, Recommended memory allocation in MB</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Investigate Potentially Idle VM</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Notification to investigate potentially idle VM. Both CPU Utilization and Actual Memory Utilization metrics are below their corresponding VM Level Utilization (Low Limits) policy settings (i.e. settings CPU Utilization and Memory Utilization). </p>
+</td>
+<td>
+<p>Affected VM, Current memory allocation in MB, Current CPU allocation</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Investigate Disk I/O Bytes</p>
+</td>
+<td>H</td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Notification to investigate high disk I/O activity levels (bytes/sec) on hosts or VMs that exceed the policy high limit.</p>
+</td>
+<td>
+<p>Affected host/VM, Workload type with high activity (i.e. Disk I/O Bytes)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Investigate Disk I/O Operations</p>
+</td>
+<td>H</td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Notification to investigate high disk I/O activity levels (IOPS) on hosts or VMs that exceed the policy high limit.</p>
+</td>
+<td>
+<p>Affected host/VM, Workload type with high activity (i.e. Disk I/O Operations)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Investigate Network I/O Bytes</p>
+</td>
+<td>H</td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Notification to investigate high network I/O activity levels (bytes/s) on hosts or VMs that exceed the policy high limit</p>
+</td>
+<td>
+<p>Affected host/VM, Workload type with high activity (i.e. Network I/O Bytes)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Investigate Network I/O Packets</p>
+</td>
+<td>H</td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Notification to investigate high network I/O activity levels (packets/s) on hosts or VMs that exceed the policy high limit. </p>
+</td>
+<td>
+<p>Affected host/VM, Workload type with high activity (i.e. Network I/O Packets)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Investigate CPU Ready</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Notification to investigate high CPU Ready Time levels on VMs that exceed the policy high limit. </p>
+</td>
+<td>
+<p>Affected VM, Workload type with high activity (i.e. CPU Ready)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Investigate Disk Latency</p>
+</td>
+<td>H</td>
+<td> </td>
+<td> </td>
+<td>
+<p>Notification to investigate high disk I/O latency levels on hosts that exceed the policy high limit. </p>
+</td>
+<td>
+<p>Affected host, Workload type with high activity (i.e. Disk Latency)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Investigate sensor entity exceeding limit</p>
+</td>
+<td> </td>
+<td> </td>
+<td>S</td>
+<td>
+<p>Notification to investigate a sensor's metric, as it breaches the high limit specified in the policy. The metric details are provided in the Recommendation Detail dialog box.</p>
+<p>For example, View Details may show: "Total Provisioned Space (MB) at 90% exceeds capacity limit of 80%".</p>
+</td>
+<td>
+<p> </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Sensor entity is full</p>
+</td>
+<td> </td>
+<td> </td>
+<td>S</td>
+<td>
+<p>Notification to investigate a sensor's metric, as it is at 100% capacity or exceeds the full capacity threshold specified in the policy. The metric details are provided in the Recommendation Detail dialog box. When this recommendation occurs, the sensor is displayed to the far left of the spectrum.</p>
+</td>
+<td>
+<p> </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Increase Cloud Instance</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Increase the instance size of the VM in the cloud due to memory utilization levels that exceed the policy high limit (for infrastructure groups being managed as clouds).</p>
+</td>
+<td>
+<p> </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Decrease Cloud Instance</p>
+</td>
+<td> </td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Reduce the instance size of the VM in the cloud due to memory utilization levels that are below the policy low limit (for infrastructure groups being managed as clouds).</p>
+</td>
+<td>
+<p> </p>
+</td>
+</tr>
+</table>
+
+
+## Reviewing Future Recommendations
+
+You can also see recommendations for the predictive views into the future for the selected environment. The purpose of these recommendations is to show what adjustments may be required, provided the changes in the environment occur as predicted based on current placements, which may change in any of these future timeframes.
+
+1. Select your environment in the Environment Navigator.
+2. Move the Timeline slider to the right and stop on any available date in the future.
+<Accordion title="Figure: Timeline Slider">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000012_572x92.png)</Frame>
+</Accordion>
+3. The columns displayed in the Recommendations for \<Selected Day> tab for a future date are the same as those displayed for today. Also, the right-click options are the same as for the current day.
+
+## Recommendations Override Feature
+
+Densify provides the ability to specify a value for CPU/Memory or Disk recommendation indefinitely or until a given date. This is typically used to freeze a Densify recommendation for a specific VM until it goes through a company-specific approval process, which could potentially be more than one day.
+
+This feature is primarily intended for automated integration with ticketing systems and ensures a consistent recommendation is generated every day though the approval cycle and also for implementing pre-scheduled allocation changes via the Densify action automation system.
+
+Contact [Support@Densify.com](mailto:Support@Densify.com) to configure this feature.

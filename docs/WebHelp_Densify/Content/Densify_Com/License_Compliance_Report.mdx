@@ -1,0 +1,122 @@
+---
+title: "License Compliance Report"
+---
+
+## License Compliance Report
+
+The License Compliance Report allows you to monitor your Densify license compliance and then request additional licenses via an expansion quote, when necessary. Since Densify license compliance is based on constantly changing numbers and types of instances in your various environments this report shows your license usage in an easy-to-understand chart format.
+
+Densify requires that you license each “Instance” that is analyzed, where an “Instance”: is one of the following:
+
+* Public cloud instance (e.g. AWS EC2 or Azure Dv3 or GCP E2)
+* Public cloud scale sets (e.g. ASG and Azure VM Scale Sets
+* Kubernetes Container;
+* VMware VM
+* IBM PowerVM LPAR
+
+Densify uses a factor of 1:1 (one Densify license for each cloud instance.
+
+When working with Kubernetes containers, a license is required for the in-scope containers, and also for the infrastructure on which the containers are running, i.e. EC2 instances, ASGs or VM/hosts for on-premise infrastructure.
+
+### Counting Cloud Instances for Licensing
+
+Densify is priced and licensed based on a count of the number of running Instances that are analyzed. An instance is deemed to have been running if it has started at least once during the day. Additionally, an instance has been analyzed if it:
+
+* Has been included in a Densify analysis;
+* Meets the minimum policy requirements to be analyzed (e.g. has minimum number of days of utilization data).
+
+License usage overages of up to 20% are permitted for up to 4 days per month. Compliance is tracked using this License Compliance report.
+
+Daily counts of licensed instances, by type, are stored in the Densify database to support historical reporting of license usage.
+
+When counting the instances to be licensed, please note the following:
+
+* Not all instances in your inventory are analyzed or even powered on every day, so inventory counts are typically larger than the licensed count.
+* Densify will analyze instances that are powered off if they are in-scope and they meet the policy requirements (e.g. have 7 days of utilization data available in the last 30 days) so in this case the number of analyzed instances may be larger than the license count.
+
+### Counting Scale Group Instances for Licensing
+
+When working with scale groups (i.e. groups (AWS ASGs or Azure VM Scale Sets) with max size set to 1 (singletons) they are treated as EC2 or Azure VM instances and licensed using the above method,
+
+When determining license counts for scale sets where max size ≠ 1, then the average size of each scale group is used to determine the license count. The average size of each scale group will be summed and used to determine the license count.
+
+The average size of the scale group is determined using the date range, defined in the policy. The value for each scale set is summed for the environment and this value is used to determine the license count. i.e. if there are 3 scale sets and the sum of the average size is 332.2. This value is then rounded up to 333 and 333 licenses are used.
+
+#### Additional Considerations for ASGs
+
+For new customers starting in Densify v2.9, the licensing model will be based on the method outlined above.
+
+Customers that have ASGs licensed prior to Densify v2.9 have been using a different licensing model. In these cases, ASGs use a formula of 1 ASG = 4 licenses.
+
+After the upgrade to Densify v2.9 you will not automatically be switched to the “average” method, outlined above. Contact [Support@Densify.com](mailto:Support@Densify.com) to change to this new method, if desired.
+
+This option cannot be used for Azure VM Scale Sets.
+
+### Determining the License Count for Kubernetes Containers
+
+The logic for determining the number of licenses to use for Kubernetes containers is more involved than assigning licenses to cloud instances. The following steps are used to determine container license counts.
+
+Densify uses 5 methods to determine license counts:
+
+* Based on container manifests with 2 manifests using 1 Densify license i.e. weighting factor for a container is then 0.5.
+* Based on the number of pods, with 5 pods using 1 Densify license, i.e. weighting factor for a container is then 0.2.
+* Based on Node CPU cores with each core using 1 license.
+* Based on Nodes, as outlined below
+* Based on containers with each container using using 1 license.
+
+For the first 2 options, the number of manifest or pods are obtained from the analysis and the weighting factor is applied.
+
+For container licensing based on nodes, the following steps are used to determine the number of nodes to license:
+
+1. Using the containers manifests, determine the number that have been analyzed. i.e. if 1000 containers are discovered but only 600 are analyzed then only 600 move to the next step.
+2. From the number of analyzed instances, get the containers manifests that have recommendations i.e. CPU or Memory request/limit change recommendation. This includes containers sized from unspecified.
+3. Next, for containers with recommendations, check which of these have containers have utilization in the last calendar day. The workload types: "CPU utilization in mcores" OR "memory utilization"are used to determine if there is any utilization. i.e. if the license report is run on Sept 8 at 2PM, then check that there is at least one hour of utilization data anytime on Sept 7th or Sept 8th.
+4. Using the subset of containers look up the Container Optimization > "Current Nodes" attribute, which provides a list of nodes that the container runs on. The "Current Nodes" attribute is a multi-value attribute and there may be more than one node listed for a single container. Additionally, many containers will run on a single node, so a node may appear many times for different containers.
+5. The last step is to determine the unique set of nodes from all qualifying containers and this is the number of nodes that are shown in the license report.
+
+To calculate the value of Node Cores, use the same set of nodes determined above, and the sum of the number of cores for these nodes.
+
+Both nodes and node cores will never be non-zero at the same time. In fact, only one of manifest/container/node/nodecore/pods will be set (i.e. have a non-zero value). Based on how each customer is using Densify for their container environments, the Densify support team configures the license based on the terms of the licensing agreement.
+
+### Determining the License Count for ECS
+
+AWS ECS services are also licensed. ECS analysis results are not reported in the Densify or Kubex UIs, but in a custom report. Contact your account manager for details.
+
+The number of daily ECS entities is used as the count. The licence count = entity\_count \* licensing\_factor, where the licensing factor for ECS is1.
+
+### Determining Compliance
+
+License compliance is defined as whether or not the customer is within the daily count of purchased Densify licenses allotted to their instance. When determining license compliance Densify uses the following:
+
+* If the number of analyzed instances does not exceed the number at any time during the month OR
+* If the number of analyzed instances exceeds the number of licenses by a value of up to 20%, up to 4 times within the month then the balance of the month is considered compliant.
+
+The following will result in non-compliance:
+
+* The number of analyzed instances exceeds the number of licenses by a value of up to 20%, more than 4 times within the month, then the balance of the month is considered non-compliant.
+* The number of analyzed instances exceeds the number of licenses by a value greater than 20%.
+
+The license counter is reset at the beginning of each month.
+
+### Reviewing the Reports
+
+To review these reports:
+
+1. Log into your Densify Console and navigate to My Reports > License Compliance.
+2. Select the License Compliance report.
+3. The License Compliance Daily tab is selected by default. You will see your current compliance data.
+4. Review the header to see the status. If you have exceeded your license count and are not compliant. Contact [Support@Densify.com](mailto:Support@Densify.com) for details on expanding your license.
+5. Click the License Compliance Monthly tab and select a historical report to review.
+
+<Accordion title="Densify Compliance Report - Compliant">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000185.png)</Frame>
+</Accordion>
+
+<Accordion title="Densify Compliance Report - Non-Compliant">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000186.png)</Frame>
+</Accordion>
+
+
+### Exporting the Reports
+
+The above reports can be exported to various formats from within the dashboard viewer. Select the output type to generate the report. The report is generated and you can access it from the lower left corner of your browser window.

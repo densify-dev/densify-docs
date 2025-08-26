@@ -1,0 +1,31 @@
+---
+title: "Analysis: Azure Recommendations"
+---
+
+
+The `/analysis/cloud/azure/<analysisId>/results` resource is used to return a collection of Azure Virtual Machine instance recommendations after the optimization analysis has been performed on your collected Azure infrastructure data.
+
+For each instance recommendation, you can also download a PDF version of the Impact Analysis and Recommendation Report, which details system impact based on the recommendation. This report is useful to application owners who need to review recommended changes to their application resources. See the [rptHref](#_rptHref) resource element for details on how to download this report.
+
+To return a collection of all instances included in an Azure optimization analysis, see [Analysis: Azure Systems](./Analysis_Azure_Systems).
+
+To see the catalog map for a selected instance, see [Systems: Analysis Details](./Systems_Analysis_Details)
+
+<Note>
+When using the Densify API only one subscription is processed per analysis This is the case, even if more than one subscription is associated with the service principle. If the connection was created through the Cloud Connection wizard in the UI, all subscriptions that were selected, when the connection was created, and associated with the `<analysisId>`are returned.
+</Note>
+
+
+## Resource
+
+```
+/analysis/cloud/azure/
+<analysisId>
+/results
+```
+
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="List Azure Recommendations" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results/listAzureRecommendations" arrow/>
+</CardGroup>

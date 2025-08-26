@@ -1,0 +1,185 @@
+---
+title: "Overview"
+---
+
+Densify provides the capability to authenticate users through external identity providers, that support the OpenID Connect specification. OpenID provides a framework for communicating between an identity provider and the OpenID acceptor, such as Okta and Microsoft Azure AD.
+
+When authenticating users externally, authentication of Densify users is first delegated to an external identity provider.
+
+A user can be authenticated in one of two ways:
+
+* Local user--The account is created and validated within Densify. For on-premise deployments, you can configure a local account linked to a Windows® Active Directory™ account to access Densify. Windows® Active Directory™ is not supported for SaaS deployments.
+* Externally authentication--These users are authenticated through an external identity provider, that support the OpenID Connect specification. Only the following external identity providers are supported:
+<table>
+<col/>
+<col/>
+<tbody>
+<tr>
+<td>
+<ul>
+<li><a href="./External_User_Authentication_Example_Configuration_for_Google_OpenID">Google OpenID</a></li>
+<li><a href="./External_User_Authentication_Example_Configuration_for_Azure_Active_Directory">Microsoft Azure AD</a></li>
+</ul>
+</td>
+<td>
+<ul>
+<li><a href="./External_User_Authentication_Example_Configuration_for_Okta">Okta</a></li>
+<li>Ping</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+<Note>
+Once Open ID is enabled, users must exist in their OpenID provider before they can access Densify. Users that are created in the Densify user management console must use the same email address as their user ID in Azure, Okta or Google.
+</Note>
+
+
+
+Once configured you can access either the Densify Console or the Analysis Console using the configured connection.
+
+<Note>
+The one exception is Google OpenID. When using Google Open ID, only the Densify Console is supported. If you try to access the Analysis Console, the connection request will fail. If you need to access the Analysis Console, use AzureAD, Okta or Ping.
+</Note>
+
+
+
+## Prerequisites
+
+### Identity Provider Requirements
+
+Before you can configure the feature in Densify, you must register Densify with your identity provider. You need to provide information about the application type, login/logout URLs etc. This is a standard procedure across all applications using OpenID for authentication.
+
+Densify supports: [Google OpenID](./External_User_Authentication_Example_Configuration_for_Google_OpenID), [Microsoft Azure AD](./External_User_Authentication_Example_Configuration_for_Azure_Active_Directory), [Okta](./External_User_Authentication_Example_Configuration_for_Okta) and Ping as external identity providers.
+
+<Accordion title="Table: Configuring Densify with the Identity Provider">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>Setting</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Application Type</p>
+</td>
+<td>
+<p>Select Single Page Application (SPA) with Implicit grant type enabled. You must also allow ID Token and Access Token. </p>
+<p>If the ID Token or Access Token options are not available, please consult your Identity Provider’s administrator to determine where these are specified, or if they are implicitly set as a part of registering an SPA application with Implicit grant type. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Login redirect URIs:</p>
+</td>
+<td>
+<p>This is the callback URL to your <span class="mc-variable Document.Densify variable">Densify</span> instance where the identity provider redirects the user after they have been authenticated. </p>
+<p>https://\<my-densify-instance>:443/</p>
+<p>The HTTP redirect URIs must be protected with TLS security, so the service will only redirect to URIs beginning with "https". This prevents tokens from being intercepted during the authorization process.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Logout redirect URIs:</p>
+</td>
+<td>
+<p>A logout URL is a URL in  your <span class="mc-variable Document.Densify variable">Densify</span> instance that the identity provider can return to after the user has been logged out of the authorization server. </p>
+<ul>
+<li>https://\<my-densify-instance>/ (for the <span class="mc-variable Document.Densify_Console variable">Densify Console</span>)</li>
+<li>https://\<my-densify-instance>:443/admin (for the <span class="mc-variable Document.Analysis_Console variable">Analysis Console</span>)</li>
+<li>https://\<my-densify-instance>:443/openIdError</li>
+</ul>
+<p>When using Google OpenID Connect only the following is required:</p>
+<ul>
+<li>https://\<my-densify-instance>:443/openIdError</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Required Scopes</p>
+</td>
+<td>
+<ul>
+<li>Profile</li>
+<li>Email – If not available, <span class="mc-variable Document.Company variable">Densify</span> will use the preferred user name (preferred_username) value of the claim to verify that the user is registered with <span class="mc-variable Document.Company variable">Densify</span>. <span class="mc-variable Document.Company variable">Densify</span> assumes this is an email address.</li>
+</ul>
+</td>
+</tr>
+</table>
+
+</Accordion>
+
+
+### Densify User Configuration
+
+The user's login ID returned from the identity provider must be in the form of an email address, and this email address must correspond to the email address in the Densify user ’s profile.
+
+## Authentication Code Workflow
+
+When this option is enabled, rather than transmit the user details, the identity provider sends a special, one-time-use authentication code that can be exchanged for an access token. This exchange includes the client\_id and client\_secret in addition to the authentication code.
+
+The Densify user, attempting to access Densify is still redirected to their identity provider's login screen where they enter their credentials.
+The user must be registered with the identity provider and must have valid credentials to access Densify.
+
+Upon successful login, Densify validates the user using the ID token returned by the identity provider, as defined by the OpenID Connect specification. Additionally, the identity provider returns an authorization code to the browser.
+
+The Densify web server now uses the supplied authorization code to request an access token. The identity provider validates the authorization code and sends the access token.
+
+Validation is completed by Densify when a user profile with an email address that matches the user's email address is located in the Densify database.
+
+<Accordion title="Figure: Authentication Code Workflow">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Administration_Guide/03200038_465x271.png)</Frame>
+</Accordion>
+
+
+### Configuring Authentication Code
+
+1. You must first register Densify with your identity provider. This is a standard procedure across all applications using OpenID for authentication. See [Configuring External User Authentication](#Table_Configuring_ID_Provider), above
+2. You now need to provide the following information to Densify. These settings are all configured for you by Densify. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+<table data-mc-conditions="CiRBA.SaaSOnly">
+<col/>
+<col/>
+<tbody>
+<tr>
+<td>
+<ul>
+<li>Enable OpenID Connect Authentication</li>
+<li>OpenID Connect Identity Provider </li>
+<li>OpenID Connect Authentication Mode </li>
+<li>OpenID Connect Login URL</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>OpenID Connect ID Token Issuer </li>
+<li>OpenID Connect Client ID</li>
+<li>OpenID Connect Client Secret</li>
+<li>Use static page for OpenID Connect logout </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+Once the configuration has been completed, both Densify and the user are verified by your authentication provider and then permitted access to Densify, upon user login.
+
+### Validation Failure
+
+If user validation fails at any point the user is re-directed to a login failure page. This page is configured and managed by the identity provider.
+Similarly all session timeouts result in a session timeout call to the external identity provider and users are re-directed to the session time out page, that is configured and managed by the identity provider.
+
+This feature only applies to the Densify application and is not applicable to Densify's REST API.
+
+Validation is only performed on the mandatory fields defined in the OpenID Connect specification.
+
+The next section contains the following topics:

@@ -1,0 +1,21 @@
+---
+title: "Overview"
+---
+
+## Description
+
+The Outbound Host is a representation of an existing host being planned for removal.
+
+### Full Control Hosting Venues
+
+This API supports only full control hosting venues (i.e. infrastructure groups), as hosts are not managed in other hosting venues.
+
+### Available Capacity
+
+The available capacity is immediately decreased when an Outbound Host is created, for all timeframes after the planned removal date. Similarly, the available capacity is immediately restored if the Outbound Host is deleted. An environment refresh is not required.
+
+## Resource
+
+```json
+/outbound-hosts
+```

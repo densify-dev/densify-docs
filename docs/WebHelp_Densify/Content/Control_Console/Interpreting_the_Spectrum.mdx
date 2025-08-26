@@ -1,0 +1,246 @@
+---
+title: "Interpreting the Spectrum"
+---
+
+When you first open the Spectrum, some interpretation may be required to understand the displayed information. The Spectrum, though easy to view and generally interpret can be a powerful solution to manage your virtualized infrastructure.
+
+You can gain significant insight if you know how to interpret the placement of the various systems. You should be able to determine:
+
+* Potential risks at the host and VM levels
+* What changes in the environment would reduce risk and right size systems
+* How the environment can be characterized based on the patterns exhibited in the spectrum
+
+Patterns at each level in the spectrum (infrastructure group, host, VM) can indicate issues or operational scenarios such as:
+
+* Management tooling gaps or issues
+* Operational process issues
+* Opportunities for optimization
+
+The following sections show some basic examples of system placement during the ramp up phase. General patterns at the environment and infrastructure group level are provided first, followed by examples at the host and VM-level.
+
+To learn more, watch the video
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/324322152" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+
+## CEI Overview
+
+The display of the Spectrum is all based on CEI calculations (see [Compute Efficiency Index (CEI)](../Concepts/Compute_Efficiency_Index_CEI) for details).
+
+In the home page view each environment is shown with its Compute Efficiency Index (<Tooltip tip="Compute Efficiency Index. Calculation that measures the efficiency of your environment by evaluating the infrastructure that you have compared to the amount of infrastructure that you need. CEI reflects the amount of infrastructure required for both workload and policies given business, technical and resource constraints in your environment.">CEI</Tooltip>) value located in the corresponding section. In the single-environment view of the spectrum, infrastructure groups are indicated with their name and CEI. Ideally, the CEI should be between 0.75 and 1.00, to be in the Just Right (green) region.
+
+This value enables you to measure the efficiency of your environment with a single metric. CEI reflects the amount of infrastructure required for both work and policies, giving you a true representation of how well you are leveraging infrastructure given business, technical and resource constraints in your environment. The workload levels and patterns stack up to exactly use the available capacity:
+
+* A value of 1.0 means the infrastructure capacity and workload demands are perfectly aligned, and based on policy, the workload levels and patterns stack up to exactly use the available capacity;
+* A value of 0.75, for example, means that the workloads could be safely hosted on three-quarters of the capacity currently deployed, signifying that the environment is over-provisioned and that there is space for new workloads (or, put another way, density can be safely increased);
+* A value >1.0 means the environment is not only full, but also under-provisioned, and new capacity must be introduced (or demand removed) in order to alleviate the problem.
+
+For example a value of 0.25 indicates you have 4 times the amount of infrastructure required; whereas a value of 1.25 indicates you may need 25% more infrastructure.
+
+The actual position of an infrastructure group is the average position of all its contained hosts. The value is calculated based on your policy specifications and collected workload data. See [Compute Efficiency Index (CEI)](../Concepts/Compute_Efficiency_Index_CEI) for more on how CEI is calculated.
+
+## Environment-Level Patterns
+
+### New Environment
+
+If the CEI for your environment has a value of 0 or near 0, then this is a new environment that has just been created. There are likely very few, if any VMs created/running.
+
+This environment should be the target of new booking and significant migration/transform activity.
+
+<Accordion title="Figure: Environment with CEI Close to Zero">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000139_563x158.png)</Frame>
+</Accordion>
+
+
+### Environment with Ample Spare Capacity
+
+If the CEI is 0.50, again this is likely a relatively new environment, which is still being filled up.
+
+If your VMs are in the green, this indicates that from a capacity perspective, resources have been allocated correctly. Your hosts may be in the yellow so can add more VMs, continuing to fill the environment, while monitoring the CEI.
+
+<Accordion title="Figure: Environment with CEI < 0.50">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000140_612x172.png)</Frame>
+</Accordion>
+
+
+If the CEI indicates that you require 3 of the 8 available hosts. Then you have a rough idea of how many more VMs can be added to this environment.
+
+The defragmentation analysis, which is part of the analytics package tells you the minimum number of hosts needed to fit all your workloads, efficiently. This analysis takes into consideration history, representative workload and scoring strategies, as specified through the policy.
+
+Depending on your policy settings, the resulting recommendations indicate that workloads should be distributed evenly across all available hosts in order to make the best use of the host devices. The CEI is then based on the fact that, if you wanted to, you could fit your current workload onto 3 of the 8 hosts.
+
+The Densify rebalancing analysis, which is part of the analytics package, will try to load each host equally, and place each host in the yellow, rather than pack the 3 hosts and leave 5 hosts empty. This is a better way to utilize the existing infrastructure.
+
+If your CEI is \<50 and you have VMs in the yellow, then, you should adjust their resource allocation before adding more VMs. Though VMs that are in the yellow are not constrained, it is a best practice, that you follow the recommendations and move these VMs to the green before adding more VMs.
+
+This will provide a more accurate representation of the capacity of your environment. Failure to right-size your VMs into the green may cause your environment to become saturated prematurely.
+
+If your CEI is < 0.50 and you are encountering performance issues, then you have not sized/allocated your VMs correctly. Again use the Densify recommendations to resolve issues in the environment before adding any new VMs. VM users maybe encountering performance issues while available resources are idle.
+
+### Environment has Available Capacity
+
+This scenario is most commonly seen in mature environments. In this example, the CEI is greater than 0.50, but less than 0.75 (0.50\<CEI\<0.75). The environment appears to be full and when Densify is installed, the Spectrum shows that more VMs can be added. As indicated above, if there are VMs in the red or yellow, adjust their allocations according to the Densify recommendations before adding additional capacity.
+
+If any VMs are in the red and cannot be corrected by adjusting the available resources, then the environment may actually be at capacity and additional resources or more hosts may be required to move VMs to the green.
+
+<Accordion title="Figure: Environment with 0.50 < CEI < 0.75">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000141_563x158.png)</Frame>
+</Accordion>
+
+
+### Environment at or Near Capacity
+
+Environment is appropriately full. When determining the number of hosts Densify always rounds up to next whole number. i.e. as soon as you need 6.01 hosts, the CEI will indicate that you need 7 hosts.
+
+In the following Spectrum, there may still be some room for new VMs/bookings but the environment is considered optimum.
+
+<Accordion title="Figure: Environment with CEI=1.00">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000142_564x158.png)</Frame>
+</Accordion>
+
+
+You may encounter scenario (D) due to policy considerations. For example, if you have a policy that stipulates that two departments must be on separate hosts (anti-affinity) and you have an HA policy that requires a dedicated failover host, then even though your workloads may appear to fit on 2 hosts, 4 are required and if there are 4 hosts the CEI will be 1.00. This is a policy constraint issue and not a capacity issue. However each of these hosts may be able to take on additional capacity, and as a result your environment will remain at 1.00 as you add more VMs to each department’s server.
+
+In scenario (E), the environment is appropriately full, and is at its capacity. In this case there is less than one server-equivalent of spare capacity. You do not want to add anymore VMs. You only want to allow bookings if your timeline shows that the CEI will drop before the booked workloads enter the environment. i.e. capacity (host devices or resources) are due to be added, or VMs/applications are being removed from the environment.
+
+### Environment Over-Capacity
+
+When the CEI is greater than 1.00 the environment maybe over capacity. The CEI may be the result of policy infringements.
+
+<Accordion title="Figure: Environment with CEI > 1.00">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000143_625x175.png)</Frame>
+</Accordion>
+
+
+The environment is at high risk when the CEI > 1.00. VMs will run, but policy infringements are likely occurring. That is:
+
+* no capacity for failover
+* departments that are supposed to be on separate hosts are not
+* CPUs that are supposed to run at 70% but are running at 80%, etc.
+
+This is not the ideal situation (F), but everything is running. For example, you have 8 hosts and need 9 hosts to run the environment according to the defined policies.
+
+When the CEI is significantly greater than 1.00 (G), then the environment is critically saturated. This could be due to policy issues, but it is more likely that you are running too many VMs on your available hardware and performance is an issue.
+
+In this environment, VMs will start to fail, or may crash due to insufficient resources.
+
+If VMs are running without any issue and this is how you want to run your environment, (i.e. CPUs that are supposed to run at 80%, are running at 80% but the policy has been set to 70%) then you need to update the policy to reflect your actual requirements. i.e. remove the HA policy, increase threshold to permit CPUs to run at 80%, etc.
+
+## Host-Level Patterns
+
+### Balanced Hosts
+
+In this case current VM allocation(s) and placement respect host workload threshold limits (both high and low), including reservations and overcommit settings. VMs are still in the red while others are in the yellow.
+
+Host systems may be grouped closely together, implying they are evenly loaded.
+
+* If the host grouping is in the green--infrastructure group is balanced and healthy.
+* If the host grouping is in the yellow--infrastructure group is balanced and has room for more VMs (the is environment is wasteful).
+* If the host grouping is in the red--infrastructure group is balanced but has critical shortage of capacity. Too many VMs on each host.
+
+<Accordion title="Figure: Environment with Balanced Hosts">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000146_624x173.png)</Frame>
+</Accordion>
+
+
+Common causes of hosts in the red are:
+
+* Insufficient capacity to do the actual work being allocated to hosts.
+* Insufficient capacity to support the total VM resource allocations.
+* Insufficient capacity to meet non-technical policy requirements. CPU and memory have not exceeded capacity but there are other policy violations. For example, there are not enough resources to satisfy the equivalent HA server requirements with HA policy requirement of N+1.
+* Inability to model capacity.
+
+If left in this state, you may encounter the following:
+
+* If VMs are in the yellow, then infrastructure group resources are allocated but not used, thus exhausting capacity while resulting in unreasonably low utilization.
+* If VMs are in the red, then VMs may experience performance issues or may crash due to insufficient resources.
+
+Review the generated Densify recommendations and adjust the vCPU and memory allocations. VM placement changes may also be recommended. Your first step is to verify the required size of the VMs and then adjust the allocations based on Densify’s recommendations.
+
+### Unbalanced Hosts
+
+In this scenario, hosts are spread across the green and yellow areas of the spectrum.
+
+<Accordion title="Figure: Environment with Unbalanced Hosts">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000147_628x175.png)</Frame>
+</Accordion>
+
+
+Common causes of this scenario are:
+
+* Initial placements and/or load balancing are being done manually. VMs may be running on the wrong hosts relative to the performance and capacity of other hosts.
+* Imbalance results from resource issues other than CPU and memory allocations.
+* Failure to model complete operational cycles/trends during planning stage.
+
+If left in this state, you may encounter the following:
+
+* Infrastructure group resources are allocated but not used, thus exhausting capacity while resulting in unreasonably low utilization.
+
+### Critically Unbalanced Hosts
+
+In this scenario, hosts are spread across the red, green and yellow areas of the spectrum and are not grouped together. This is the result of VM allocation(s) and placements that do not respect host workload threshold limits (high or low).
+
+<Accordion title="Figure: Environment with Critically Unbalanced Hosts">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000148_620x173.png)</Frame>
+</Accordion>
+
+
+Common causes of this scenario are:
+
+* Simplistic initial placements and/or load balancing. i.e. If you are performing heavy workload migration into the environment that was not planned/forecasted correctly.
+* Imbalances occurring in resources other than CPU and Memory, i.e. VM was initially placed based on CPU and memory but not network and disk I/O.
+* Failure to model operational cycles/trends in planning/management. When allocating resources, inadequate history was used to determine values. History did not include complete operational cycles/trends and these spikes push VMs into the red.
+* Policy settings do not accurately match the intended usage of the environment.
+
+If left in this state, you may encounter the following:
+
+* Fire-fighting performance issues versus proactively preventing issues. This leads to a reactive management approach.
+* Difficultly in scaling and managing this environment, due to the resulting reactive management of the environment.
+* Further transformation are stalled because performance of VMs that have been moved are in jeopardy and this makes environment seem full, even though the CEI of the environment and the hosts, indicate there is available capacity.
+
+## VM-Level Patterns
+
+### Under-Allocated VMs
+
+In the following diagram VMs are aggregated in the red, while their host systems are in the yellow. This indicates that the VMs have exceeded their "High Limit" workload thresholds. This means that based on the current policy settings, and based on the peak activity over the last 30 days, these systems have exceeded specific policy settings and have been flagged as "starving guests".
+
+<Accordion title="Figure: Environment with Under-Allocated VMs">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000144_622x174.png)</Frame>
+</Accordion>
+
+
+Common causes of this scenario are:
+
+* Initial sizing of the guest is incorrect. VMs that may have been okay at the start are now insufficient due to growth.
+* There are no tools or processes in place to manage guest allocations or monitor the status of the environment.
+* There is no guidance on how VMs should be sized.
+
+If left in this state, you may encounter the following:
+
+* Fire-fighting performance issues versus proactively preventing issues. This leads to a reactive management approach.
+* Difficulty in scaling and managing this environment, due to the resulting reactive management of the environment.
+* Further transformations are stalled because performance of VMs that have been moved are in jeopardy and this makes the environment seem full, even though the CEI of the environment and the hosts, indicate there is available capacity.
+
+These policy settings may have been set incorrectly or the VMs resource allocation may be insufficient. When the VMs are in the red, Densify generates recommendations to increase the vCPU and memory allocations. If these values are correct then you need to review the policy settings.
+
+### Over-Allocated VMs
+
+In this case VMs are aggregated in the yellow, while their host systems are in the green or possibly in the red. This indicates that the VMs have exceeded their "Low Limit" workload thresholds and this triggers recommendations for decreasing vCPU and memory allocations.
+
+<Accordion title="Figure: Environment with Over-Allocated VMs">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000145_630x176.png)</Frame>
+</Accordion>
+
+
+Common causes of this scenario are:
+
+* Use of self-service portals and/or users choosing containers that are too big for their requirement. i.e. the user creates a VM with 4 CPUs and 16 GB of memory, but only really needs 1 CPU and 4 GB.
+* Overly conservative allocations are intentionally made to offset risk. i.e. when moving from physical to virtual systems, the user is allowed to maintain the same allocation. If they had 4 CPUs and 16 GB on their physical system, this is provided on the guest when again, the user only needs 1 CPU and 4 GB.
+* Available resources have been allocated incorrectly. VMs are all in the yellow, but the hosts are in the red. If overcommit is set to 400%, then for each 4-CPU host then 16 vCPUs can be allocated, so the overly large VMs exceed the available number of vCPUs.
+
+If left in this state, you may encounter the following:
+
+* Infrastructure group resources are allocated but not used, thus exhausting capacity while resulting in unreasonably low utilization.
+
+As indicated above, policy settings may have been set incorrectly or the VMs resource allocation may be incorrect. When the VMs are in the yellow, Densify generates recommendations to decrease the vCPU and memory allocations. Your first step is to verify the required size of the VMs and then adjust the allocations based on Densify’s recommendations.

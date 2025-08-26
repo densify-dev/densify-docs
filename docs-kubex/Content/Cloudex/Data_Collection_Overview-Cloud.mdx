@@ -1,0 +1,70 @@
+---
+title: "Overview"
+---
+Use the <strong>Cloud Connections</strong> > <strong>Add</strong> button to create your cloud connections. Collected configuration and workload data from your public cloud accounts is analyzed and used to generate sizing and instance type recommendations. 
+
+
+<Frame caption="Figure: Accessing the Add Button">
+![](/images/docs-kubex/Content/Cloudex/03000032_580x351.png)
+</Frame>
+
+
+## Required User Roles
+
+When working with cloud connections, all users can access and view the cloud connections page.
+
+Only a user assigned to the "SaaS\_Audit\_Admin" group can create public cloud connections. See [Managing Densify User Accounts](/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Managing_Densify_User_Accounts) for details on adding the role to your user account.
+
+<Frame caption="Figure: User Access">
+  <img src="/images/docs-kubex/Content/Cloudex/03000039.png"/>
+</Frame>
+
+## Supported Public Cloud Providers
+
+The following cloud platforms are currently supported in Cloudex:
+
+
+<ul>
+  <li>
+    <a href="#aws-connection">
+    Amazon Web Services
+    </a>
+  </li>
+  <li>
+    <a href="#azure-connection">
+    Azure Cloud
+    </a>
+  </li>
+</ul>
+
+
+You can use the existing Cloud Connection wizard in the Densify Console to create GCP connections. You can also edit and delete all cloud connection using the Cloud Connection wizard. These features will be available in Cloudex in an upcoming release.
+
+## API Access
+
+You can collect and analyze cloud data through the Densify API. Refer to the following use cases for examples:
+
+
+<ul>
+  <li>
+    <a href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_AWS_EC2_Instances">
+    Optimizing AWS EC2 Instances
+    </a>
+  </li>
+  <li>
+    <a href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Microsoft_Azure_Virtual_Machine_Instances">
+    Optimizing Microsoft Azure Virtual Machine Instances
+    </a>
+  </li>
+  <li>
+    <a href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_GCP_Compute_Engine_Instances">
+    Optimizing GCP Compute Engine Instances
+    </a>
+  </li>
+</ul>
+
+
+
+## Considerations when Working with Large Environments
+
+In large environments, Densify highly recommends batching your accounts into smaller groups for improved performance when creating the cloud connections. i.e. 10 accounts at a time. You can use a resource tag, such as organization or business unit to split the total number of accounts so that is collected in manageable batches

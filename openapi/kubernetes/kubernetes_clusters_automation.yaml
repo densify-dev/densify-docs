@@ -1,0 +1,156 @@
+openapi: 3.0.3
+info:
+  title: Densify API -- Kubernetes Clusters Automation
+  version: "1.0"
+paths:
+  "/kubernetes/clusters/{clusterName}/automation":
+    get:
+      operationId: listClusterAutomationContainers
+      summary: List containers enabled for automation in a cluster
+      description: |
+        Returns container recommendations for the specified Kubernetes cluster,
+        limited to containers that have been enabled for automation via the UI.
+        If a property or value is not set or not available, it is omitted
+        from the response.
+      parameters:
+        - $ref: "#/components/parameters/ClusterName"
+      responses:
+        "200":
+          description: Automation-enabled container recommendations for the cluster.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/K8sAutomationResponse"
+        "400":
+          description: Bad request (e.g., invalid cluster name).
+        "404":
+          description: Cluster not found.
+components:
+  parameters:
+    ClusterName:
+      name: clusterName
+      in: path
+      required: true
+      description: The unique cluster name (from `/kubernetes/clusters` or Kubex UI Connections).
+      schema:
+        type: string
+
+  schemas:
+    K8sAutomationResponse:
+      type: object
+      properties:
+        checksum:
+          type: string
+          description: Hash of the result set for change detection.
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/K8sAutomationItem"
+      required:
+        - results
+
+    K8sAutomationItem:
+      type: object
+      additionalProperties: false
+      properties:
+        # Core identity
+        cluster:
+          type: string
+          description: Cluster name from the config.yaml.
+        namespace:
+          type: string
+          description: Namespace of the container.
+        podOwnerName:
+          type: string
+          description: Name of the controller or pod.
+        podOwnerKind:
+          type: string
+          description: Controller type (e.g., DaemonSet, Deployment, ReplicaSet, StatefulSet).
+        container:
+          type: string
+          description: Container manifest name.
+        entityId:
+          type: string
+          description: Densify-assigned unique identifier for the selected cluster.
+        containerId:
+          type: string
+          description: Unique identifier for the listed container.
+
+        # Current settings
+        avgContainerCount:
+          type: integer
+          description: Average number of containers ("In Service Instances").
+        currentCpuRequestmCores:
+          type: integer
+          description: Current CPU request (mCores).
+        currentCpuLimitmCores:
+          type: integer
+          description: Current CPU limit (mCores).
+        currentMemRequestBytes:
+          type: integer
+          description: Current memory request (bytes).
+        currentMemLimitBytes:
+          type: integer
+          description: Current memory limit (bytes).
+
+        # Recommended settings
+        recommendedCpuRequestmCores:
+          type: integer
+          description: Recommended CPU request (mCores).
+        recommendedCpuLimitmCores:
+          type: integer
+          description: Recommended CPU limit (mCores).
+        recommendedMemRequestBytes:
+          type: integer
+          description: Recommended memory request (bytes).
+        recommendedMemLimitBytes:
+          type: integer
+          description: Recommended memory limit (bytes).
+
+        # Economics / metadata
+        estimatedSavingsPerContainer:
+          type: number
+          format: float
+          description: Estimated savings per container when applying recommendations.
+        analyzedOn:
+          type: string
+          format: date-time
+          description: Timestamp of the most recent analysis refresh (UTC).
+
+        # Automation-specific fields
+        kubexAutomation:
+          type: boolean
+          description: Indicates whether automation is enabled for this container.
+        automationPolicy:
+          type: boolean
+          description: Indicates whether an automation policy is applied.
+        hpaMetricName:
+          type: string
+          description: Metric used to trigger autoscaling (e.g., "cpu utilization").
+        hpaMetricThreshold:
+          type: string
+          description: Threshold value used to trigger autoscaling.
+
+        # Additional details (may be omitted if not available)
+        predictedUptime:
+          type: number
+          format: float
+          description: Predicted uptime percentage based on presence of CPU utilization data in the historical interval.
+        configLastChangedOn:
+          type: string
+          format: date-time
+          description: Timestamp when request/limit values were last changed (UTC).
+        nodeGroup:
+          type: string
+          description: Name of the associated node group.
+        oomKills_last7days:
+          type: integer
+          description: Count of OOM events in the last 7 days.
+        dateFirstAudited:
+          type: string
+          format: date-time
+          description: First audit timestamp from workload history (UTC).
+        dateLastAudited:
+          type: string
+          format: date-time
+          description: Most recent audit timestamp from workload history (UTC).

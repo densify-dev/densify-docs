@@ -1,0 +1,172 @@
+openapi: 3.1.0
+info:
+  title: Densify API - Inbound Datastores
+  description: API for managing inbound datastores in Densify's full control hosting venues.
+  version: 1.0.0
+servers:
+  - url: https://api.densify.com/v1
+    description: Densify API Server
+paths:
+  /inbound-datastores:
+    get:
+      summary: Retrieve a list of inbound datastores
+      operationId: getInboundDatastores
+      responses:
+        "200":
+          description: A list of inbound datastores
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/InboundDatastore"
+    post:
+      summary: Create one or more inbound datastores
+      operationId: createInboundDatastore
+      requestBody:
+        description: Inbound datastore(s) to be created
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: "#/components/schemas/InboundDatastore"
+                - type: object
+                  properties:
+                    num_copy:
+                      type: integer
+                      description: Number of inbound datastores to create
+                    name:
+                      type: string
+                      description: Base name for the new datastores
+      responses:
+        "201":
+          description: Inbound datastore(s) created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/InboundDatastore"
+  /inbound-datastores/{id}:
+    get:
+      summary: Retrieve details of a specific inbound datastore
+      operationId: getInboundDatastore
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the inbound datastore
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Inbound datastore details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InboundDatastore"
+    put:
+      summary: Modify an existing inbound datastore
+      operationId: modifyInboundDatastore
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the inbound datastore
+          schema:
+            type: string
+      requestBody:
+        description: Updated inbound datastore information
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InboundDatastore"
+      responses:
+        "200":
+          description: Inbound datastore updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InboundDatastore"
+    delete:
+      summary: Delete a specific inbound datastore
+      operationId: deleteInboundDatastore
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the inbound datastore
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Inbound datastore deleted
+components:
+  schemas:
+    InboundDatastore:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the inbound datastore
+        name:
+          type: string
+          description: Name of the inbound datastore
+        href:
+          type: string
+          description: URI of the inbound datastore
+        capacity:
+          type: string
+          description: Size of the datastore in MB
+        control_environment:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            href:
+              type: string
+            icon:
+              type: string
+        creation_time:
+          type: integer
+          description: Timestamp when the datastore was created
+        description:
+          type: string
+          description: Arbitrary description of the datastore
+        expected_date:
+          type: integer
+          description: Expected date when the datastore will be running
+        infrastructure_groups:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              href:
+                type: string
+        owner:
+          type: string
+          description: Owner or customer name of the datastore
+        owner_email:
+          type: string
+          description: Email address of the owner
+        project:
+          type: string
+          description: Project associated with the datastore
+        status:
+          type: string
+          enum:
+            - PENDING
+            - COMMITTED
+            - COMPLETED
+            - EXPIRED
+            - CANCELLED
+          description: Current status of the inbound datastore
+        tier:
+          type: string
+          description: Storage tier of the datastore

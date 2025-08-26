@@ -1,0 +1,76 @@
+openapi: 3.1.0
+info:
+  title: Densify – Analysis Status API
+  version: "1.0.0"
+  description: >
+    GET `/analysis/{platformType}/{platformSubType}/{analysisId}/status` returns the current
+    analysis stage and webhook status for an analysis (cloud or containers).
+servers:
+  - url: https://{host}
+    variables: { host: { default: api.example.com } }
+tags:
+  - name: Analysis Status
+paths:
+  /analysis/{platformType}/{platformSubType}/{analysisId}/status:
+    get:
+      tags: [Analysis Status]
+      operationId: getAnalysisStatus
+      summary: Get analysis status
+      description: |
+        Returns the current status for an analysis.
+        Examples in docs show AWS/Azure/GCP and Kubernetes variants.
+      parameters:
+        - name: platformType
+          in: path
+          required: true
+          schema: { type: string, enum: [cloud, containers] }
+          description: Technology platform.
+        - name: platformSubType
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [aws, gcp, azure, kubernetes]
+          description: Vendor/subtype (depends on platformType).
+        - name: analysisId
+          in: path
+          required: true
+          schema: { type: string }
+          description: Analysis GUID.
+      responses:
+        '200':
+          description: Status payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisStatus'
+              examples:
+                completed:
+                  value:
+                    analysisStage: "Completed"
+                    webHookStatus: "Success"
+                    statusMessage: "Analysis … was last completed on Thu Jan 24 09:36:36 EST 2019."
+        '400': { description: Invalid parameters.}
+        '401': { description: Authentication failed.}
+        '404': { description: Resource not found.}
+        '500': { description: Internal server error. }
+
+components:
+  schemas:
+    AnalysisStatus:
+      type: object
+      properties:
+        analysisStage:
+          type: string
+          description: 'e.g., "Analyzing : 38% Completed", "Not analyzed", "Completed".'
+        webHookStatus:
+          type: string
+          description: Status of last webhook POST.
+        statusMessage:
+          type: string
+          description: Message for the analysis status.
+        # error fields when applicable:
+        message: { type: string }
+        status:
+          type: integer
+          description: '200, 400, 401, 404, 500.'

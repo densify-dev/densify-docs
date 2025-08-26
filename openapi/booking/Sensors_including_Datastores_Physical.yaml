@@ -1,0 +1,235 @@
+openapi: 3.1.0
+info:
+  title: Densify Sensors API
+  description: |
+    The Densify Sensors API allows you to access information about Datastore Sensors, Physical Storage, and Resource Pools.
+  version: 1.0.0
+servers:
+  - url: https://api.densify.com/v1
+    description: Production API
+paths:
+  /sensors:
+    get:
+      summary: Returns the available sensor types
+      operationId: getSensorTypes
+      responses:
+        '200':
+          description: List of sensor types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Sensor type name
+                    href:
+                      type: string
+                      description: Sensor type URL
+                    disk_sensor_link_attribute_id:
+                      type: string
+                      description: Disk sensor link attribute ID
+                    sensor_link_attribute_id:
+                      type: string
+                      description: Sensor link attribute ID
+  /sensors/{type}:
+    get:
+      summary: Returns the sensors of a specific type
+      operationId: getSensorsByType
+      parameters:
+        - name: type
+          in: path
+          required: true
+          description: Sensor type (e.g., datastores, physical_storage, resource_pools)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of sensors of the specified type
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Sensor name
+                    id:
+                      type: string
+                      description: Sensor ID
+                    href:
+                      type: string
+                      description: Sensor URL
+                    host_name:
+                      type: string
+                      description: Sensor host name
+  /sensors/{type}/{id}:
+    get:
+      summary: Returns the details of a specific sensor
+      operationId: getSensorDetails
+      parameters:
+        - name: type
+          in: path
+          required: true
+          description: Sensor type
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: Sensor ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Sensor details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  href:
+                    type: string
+                  control_environment:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      platform:
+                        type: string
+                      platform_category:
+                        type: string
+                      control_type:
+                        type: string
+                      href:
+                        type: string
+                      icon:
+                        type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        metrics:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                              name:
+                                type: string
+                              high_limit:
+                                type: integer
+                              low_limit:
+                                type: integer
+                              full_limit:
+                                type: integer
+                        short_name:
+                          type: string
+                        start_date:
+                          type: integer
+                  host_name:
+                    type: string
+                  infrastructure_groups:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        href:
+                          type: string
+                  sensor_type:
+                    type: string
+                  start_date:
+                    type: integer
+components:
+  schemas:
+    Sensor:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        href:
+          type: string
+        control_environment:
+          $ref: '#/components/schemas/ControlEnvironment'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Data'
+        host_name:
+          type: string
+        infrastructure_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/InfrastructureGroup'
+        sensor_type:
+          type: string
+        start_date:
+          type: integer
+    ControlEnvironment:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        platform:
+          type: string
+        platform_category:
+          type: string
+        control_type:
+          type: string
+        href:
+          type: string
+        icon:
+          type: string
+    Data:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metric'
+        short_name:
+          type: string
+        start_date:
+          type: integer
+    Metric:
+      type: object
+      properties:
+        value:
+          type: integer
+        name:
+          type: string
+        high_limit:
+          type: integer
+        low_limit:
+          type: integer
+        full_limit:
+          type: integer
+    InfrastructureGroup:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        href:
+          type: string

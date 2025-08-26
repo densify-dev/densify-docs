@@ -1,0 +1,212 @@
+---
+title: "Adding Supply"
+---
+
+## Adding Supply
+
+When planning new hosts and datastores, the process is much simpler than when planning new workloads.
+
+The steps are similar for hosts and datastores. The following describes how to add your hosts:
+
+1. [Describing Inbound Hosts](#_Describe_Workloads_to)
+2. [Renaming Inbound Hosts](#Renaming)
+3. [Provisioning Hosts](#Provisio)
+
+### Describing Inbound Hosts
+
+Use the `/inbound-hosts` resource to create two host definitions which describe the system hardware (including the manufacturer, platform, CPU and memory requirements), the target Infrastructure Group and the planned expected date.
+
+Before doing this, you may need to calculate the CPU benchmark. To do this, use the `/helper-utilities/resolve-cpu-benchmark` resource.
+
+<Accordion title="Example: Calculating CPU Benchmark">
+Request:
+
+```json
+POST /helper-utilities/resolve-cpu-benchmark
+{
+      "manufacturer" : "HP",
+  "platform_model" : "ProLiant DL380 G7",
+  "cpu_model": "Intel Xeon X5690",
+  "cpu_speed": 3466,
+  "total_physical_cpus": 2,
+  "cores_per_cpu": 6,
+  "threads_per_core": 2
+}
+```
+
+
+Response:
+
+```json
+Response:
+[
+      {
+        "name": "CINT2006 Rate",
+    "score_type": "cint2006rate",
+    "value": 404.47
+  }
+]
+```
+
+</Accordion>
+
+
+The following example request creates 2 hosts named ucs-host21 and ucs-host22, with the determined CPU benchmark.
+
+<Accordion title="Example: Creating Multiple Inbound Hosts">
+Request:
+
+```json
+POST /inbound-hosts
+{
+      "num_copy":2,
+  "name": "ucs-host2",
+  "manufacturer": "HP",
+  "platform_model": "ProLiant DL380 G7",
+  "cpu_model": "Intel Xeon X5690",
+  "total_physical_cpus": "2", 
+  "cores_per_cpu": "6",
+  "threads_per_core": "2",
+  "cpu_allocation": "12.00",
+  "cpu_speed": "3466",
+  "memory": "131072",
+  "owner": "Melissa",
+  "owner_email": "[email protected]",
+  "project": "UCS hardware refresh",
+  "attributes": [
+        {
+          "name": "Security Zone",
+      "value": "Level 1"
+    }
+  ],
+  "expected_date": 1472659206000,
+  "cpu_benchmarks": [
+        {
+          "name": "CINT2006 Rate",
+      "score_type": "cint2006rate",
+      "value": 404.47
+    }
+  ],
+  "I/O_benchmarks": [
+        {
+          "name": "Maximum Network Throughput (bytes/s)",
+      "score_type": "net",
+      "value": 1342177280
+    },
+    {
+          "name": "Maximum Disk Throughput (bytes/s)",
+      "score_type": "disk",
+      "value": 1342177280
+    }
+  ],
+  "infrastructure_group": {
+        "id": "2baa1ac4-4ffe-4e79-a73d-d038145bca8d"
+  }
+}
+```
+
+
+Response:
+
+```json
+[
+      { 
+        "id": "0d69655a-d10b-4d76-88e2-5bc3916c8e07", 
+    "name": "ucs-host21",
+    "href": "/inbound-hosts/0d69655a-d10b-4d76-88e2-5bc3916c8e07",
+    "manufacturer": "HP",
+    "platform_model": "ProLiant DL380 G7", 
+    "cpu_model": "Intel Xeon X5690",
+    "total_logical_cpus": 24,
+    "total_physical_cpus": 2,
+    "cores_per_cpu": 6, 
+    "threads_per_core": 2, 
+    "cpu_allocation": "12.0",
+    "cpu_speed": 3466, 
+    "memory": 131072,
+    "status": "PENDING", 
+    "owner": "Melissa",
+    "project": "UCS hardware refresh",
+    "description": "",
+    "expected_date": 1472659206000, 
+    "creation_time": 1470844834427, 
+    "owner_email": "[email protected]", 
+    "attributes": [
+          { 
+            "id": "attr_SecurityZone",
+        "name": "Security Zone", 
+        "value": "Level 1"
+      }
+    ], 
+    "cpu_benchmarks": [
+          { 
+            "name": "CINT2006 Rate", 
+        "score_type": "cint2006rate", 
+        "value": 404.47
+      }
+    ],
+    "I/O_benchmarks": [ 
+          { 
+            "name": "Maximum Disk Throughput (bytes/s)", 
+        "score_type": "disk",
+        "value": 1342177280
+      }, 
+      {  
+            "name": "Maximum Network Throughput (bytes/s)", 
+        "score_type": "net",
+        "value": 1342177280
+      }
+    ],
+    "infrastructure_group": { 
+          "id": "2baa1ac4-4ffe-4e79-a73d-d038145bca8d",
+      "name": "Prod2_BDVC-01",
+      "href": "/infrastructure-groups/2baa1ac4-4ffe-4e79-a73d-d038145bca8d"
+    },
+    "control_environment": {
+          "id": "26092815-9d17-4e6a-abbd-f5b05a853bff",
+      "name": "Boston", 
+      "href": "/control-environments/26092815-9d17-4e6a-abbd-f5b05a853bff", 
+      "icon": "/control-environments/26092815-9d17-4e6a-abbd-f5b05a853bff/icon" 
+    }
+  },
+  {
+        // ... *SNIP* of Inbound Host "ucs-host22 ...
+}
+]
+```
+
+</Accordion>
+
+
+If the request to create the Inbound Hosts is successful, the response includes two Inbound Host objects with an [ID, Name and Self Reference (id, name, href)](./Common_Elements). For more information about the format of the Inbound Host response, see [Inbound Hosts](./Inbound_Hosts).
+
+### Renaming Inbound Hosts
+
+The following example updates the Inbound Host name from "ucs-host21" to "ucs-host1".
+
+<Accordion title="Example: Modifying an Inbound Host Name">
+Request:
+
+```json
+PUT /inbound-hosts/d274c5ed-b53e-4020-9e42-bc072c6d4816
+{
+      "name": "ucs-host1"
+}
+```
+
+</Accordion>
+
+
+### Provisioning Hosts
+
+The host can then be provisioned, by performing the following request to obtain the details. The example returns all the Inbound Hosts scheduled to be provisioned up to the end of September. The response of Inbound Hosts can be given to the person who will provision the supply.
+
+<Accordion title="Example: Getting a Collection of Inbound Hosts">
+Request:
+
+```json
+GET /inbound-hosts/?expected_date_to=1475280000000
+```
+
+</Accordion>
+

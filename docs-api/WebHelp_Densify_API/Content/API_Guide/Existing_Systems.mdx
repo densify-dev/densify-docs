@@ -1,0 +1,26 @@
+---
+title: "Existing Systems"
+sidebarTitle: Overview
+---
+
+This resource is used to return the host and guest systems within Densify. This list matches that returned by the Data Collection > Discovered Systems Explorer in the Analysis Console, but only systems that are included in a control environment. Systems that are loaded through data collection but are not analyzed, are not returned by this resource object.
+
+### Sorting By Size
+
+You can sort any collection using the hidden `size` element.
+
+The sort logic is calculated based on the following priority order:
+
+* `memory`
+* `total_physical_cpus`
+* `cores_per_cpu`
+
+For example, if two hosts have the same total memory, the one with the higher count of total physical CPUs is considered the larger host.
+
+Systems with any "\_Unknown\_" values are sorted at the end of the collection independent of the specified sort order.
+
+## Resource
+
+```
+/existing-systems
+```

@@ -1,0 +1,86 @@
+---
+title: "Viewing the Booking Requests to be Routed Pane"
+---
+
+The Booking Requests to be Routed pane shows all draft booking requests that have not been routed to a hosting venue. Using this pane, you can review, profile and manage workload routing and reservation requests. Booking requests are grouped by project name, and along with the filters and timeline, help you to work through the process of routing and reserving these requests. You can expand groups to view all booking requests that are contained in the group.
+
+The booking request table contains the following columns:
+
+<table>
+<col/>
+<col/>
+<tbody>
+<tr>
+<td>
+<ul>
+<li>Name</li>
+<li>Customer Name</li>
+<li>Creation Date</li>
+<li>Planned Start Date</li>
+<li>Profile Strength</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>CPUs</li>
+<li>Memory (GB)</li>
+<li>Storage (GB)</li>
+<li>OS</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+You can select any column header to sort the booking requests within each group in ascending or descending order.
+
+## How the Profile Strength is Calculated
+
+The profile strength is displayed both in the booking requests table and the Guest Booking Request dialog box. It is an indication of the amount of information that has been captured about the booking request's requirements. The more requirements contained in the booking request, the higher the profile strength.
+
+<Accordion title="Figure: Profile Strength">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030014.png)</Frame>
+</Accordion>
+
+
+The profile strength uses a point system (0-100) and is gauged in the following manner:
+
+* If any mandatory data is missing, then the value will be 0 and the indicator will show insufficient data. You cannot save the request if it has insufficient data when adding guests using the New Guest Booking Request dialog box.
+<Accordion title="Figure: Insufficient Data for Profile Strength">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030038.png)</Frame>
+</Accordion>
+* If only the mandatory data is available but no other information, the profile has a value of 40.
+* An additional 20 points is added for every category (Security Requirements, Business Requirements, Technical Requirements) where at least one requirement has been defined.
+
+<Note>
+If the booking request is missing mandatory data, the profile strength will always be zero, even if additional requirements have been defined.
+</Note>
+
+
+<Note>
+The profile strength for a group is shown as the average of profile strength calculations for all booking requests within the group unless at least one request has insufficient data. In this case, the group's profile strength shows as insufficient data.
+</Note>
+
+
+
+## Filtering Booking Requests Using the Filters Dropdown
+
+You can filter the content of the list using one or both of the Group and OS fields. Select an option from the list for each field that you want to use. Clear any filters by clicking Reset. You can collapse the timeline slider in this pane to better view the booking requests.
+
+<Accordion title="Figure: Filters for Booking Requests">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030018_212x282.png)</Frame>
+</Accordion>
+
+
+## Filtering Booking Requests Using the Timeline Slider
+
+The Booking Requests To Be Routed pane has a timeline slider so booking requests can be viewed at set intervals in the future. Since only those booking requests that have a requested start date less than or equal to the date selected on the timeline are shown, you can filter requests by selecting a date on the timeline slider. Booking requests earlier than the today's date are also displayed as long as they have not expired. For example, if today's date is July 26 and the timeline is set to 60-day (Sep. 24) the Booking Requests To Be Routed table shows booking requests with a planned start date up to and including Sep. 24 that have not expired. When the timeline slider is moved, the booking requests shown update based on the selected date. For more information on the booking workflow, see [Guest Booking Life Cycle](./Guest_Booking_Life_Cycle).
+
+* When opening the Route and Reserve Demand page, the timeline is set to "All."
+
+<Note>
+Any settings that you have applied to filter the hosting venues will still be applied as you move between timeframes.
+</Note>
+
+

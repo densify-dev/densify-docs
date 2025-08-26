@@ -1,0 +1,205 @@
+openapi: 3.1.0
+info:
+  title: Densify Infrastructure Groups API
+  description: |
+    API for managing Infrastructure Groups in Densify, including operations for retrieving group details, amenities, and performing Fit-for-Purpose checks.
+  version: 1.0.0
+servers:
+  - url: https://api.densify.com/v1
+    description: Densify API Server
+paths:
+  /infrastructure-groups:
+    get:
+      summary: Retrieve a collection of infrastructure groups
+      operationId: getInfrastructureGroups
+      responses:
+        "200":
+          description: A list of infrastructure groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    platform:
+                      type: string
+                    platform_category:
+                      type: string
+                    href:
+                      type: string
+                    hardware_name:
+                      type: string
+                    hardware_icon:
+                      type: string
+                    control_type:
+                      type: string
+                    color_code_selected:
+                      type: string
+                    color_code_unselected:
+                      type: string
+  /infrastructure-groups/{id}:
+    get:
+      summary: Retrieve details of a specific infrastructure group
+      operationId: getInfrastructureGroupById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the infrastructure group
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Details of the specified infrastructure group
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  platform:
+                    type: string
+                  platform_category:
+                    type: string
+                  href:
+                    type: string
+                  hardware_name:
+                    type: string
+                  hardware_icon:
+                    type: string
+                  control_type:
+                    type: string
+                  color_code_selected:
+                    type: string
+                  color_code_unselected:
+                    type: string
+    put:
+      summary: Modify the state of a specific infrastructure group
+      operationId: modifyInfrastructureGroup
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the infrastructure group
+          schema:
+            type: string
+      requestBody:
+        description: The state to modify the infrastructure group to
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                allow_new_workloads:
+                  type: string
+                  enum:
+                    - DO_NOT_ALLOW_IF_RISK
+                    - ALLOW
+                    - DO_NOT_ALLOW
+                # Add other properties as needed
+      responses:
+        "200":
+          description: The modified infrastructure group
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  # Include other properties as needed
+  /infrastructure-groups/{id}/amenities:
+    get:
+      summary: Retrieve amenities of a specific infrastructure group
+      operationId: getInfrastructureGroupAmenities
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the infrastructure group
+          schema:
+            type: string
+        - name: host_summary
+          in: query
+          required: false
+          description: Whether to include host summary
+          schema:
+            type: boolean
+        - name: sensor_capacities
+          in: query
+          required: false
+          description: Whether to include sensor capacities
+          schema:
+            type: boolean
+        - name: capability_groups
+          in: query
+          required: false
+          description: Whether to include capability groups
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: Amenities of the specified infrastructure group
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  host_summary:
+                    type: array
+                    items:
+                      type: object
+                  sensor_capacities:
+                    type: array
+                    items:
+                      type: object
+                  capability_groups:
+                    type: array
+                    items:
+                      type: object
+  /infrastructure-groups/{id}/ffp-check:
+    post:
+      summary: Perform Fit-for-Purpose checks for a specific infrastructure group
+      operationId: postInfrastructureGroupFfpCheck
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the infrastructure group
+          schema:
+            type: string
+      requestBody:
+        description: The Fit-for-Purpose check parameters
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                workload_placement:
+                  type: string
+                # Add other properties as needed
+      responses:
+        "200":
+          description: The results of the Fit-for-Purpose checks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Define the response properties as per the API documentation
+                  result:
+                    type: string
+                  # Add other properties as needed
+components:
+  schemas:
+    # Define reusable schemas here if needed

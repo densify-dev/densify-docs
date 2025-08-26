@@ -1,0 +1,538 @@
+---
+title: "Viewing the Virtual Guest Impact Analysis and Recommendation Report"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The Virtual Guest Impact Analysis and Recommendation report allows you to review details and impact assessment for a specific virtual guest, before implementing Densify's guest sizing recommendations. Specifically, the report provides:
+
+* Optimization Reasoning--the data and the policy settings that resulted in the resource allocation recommendations being made;
+* Verification--ensure that the recommendation aligns with your financial and organizational goals.
+
+The report contains the following sections:
+
+* Virtual guest system name and the date of the last data collection;
+* Report description;
+* [Summary](#Summary) --Provides an overview of the recommendations for the virtual guest;
+* [System Information](#Properties)--Provides system properties, location, tags, and configuration details for the selected virtual guest;
+* [Predicted Utilization (All Metrics)](#PredictedUtilization)--A number of sections that show current resources, workload and predicted utilization charts.
+
+You can scroll through the report or you can click on one of the Details: tabs at the top of the page to jump to the relevant section within the report.
+
+You can access this report by clicking on the system name hyperlink from the virtual guest [System Details](./Guest_Sizing_Accuracy_Reports#System_Details) report.
+
+<Accordion title="Figure: Virtual Guest System Details Report">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000053.png)</Frame>
+</Accordion>
+
+<Accordion title="Figure: Virtual Guest Impact Analysis and Recommendation Report">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000055_453x454.png)</Frame>
+</Accordion>
+
+
+Navigate to the virtual guest [System Details](./Guest_Sizing_Accuracy_Reports#System_Details) report via Private Cloud > Optimization Overview > Guest Sizing Accuracy (click zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/>) > System Details tab. See [System Details](./Guest_Sizing_Accuracy_Reports#System_Details) for other navigation paths to the virtual guest System Details report.
+
+## Creating a PDF Version of the Report
+
+You can create a PDF version of the report by clicking the Export to PDF <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000053_14x14.png"/> button located at the top-right corner of the display.
+
+The export file is named "SystemAnalysisVmware.pdf" and is saved to the download folder defined by your browser. You may want to modify the file name to match the selected virtual guest, if you are planning to review and distribute reports for multiple systems.
+
+## Summary
+
+### Summary Table
+
+The summary table identifies the virtual guest and provides an overview of the generated recommendations based on the policy or overrides used.
+
+Table: Summary Report Descriptions
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Column</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td rowspan="1">
+<p>System Name</p>
+</td>
+<td>
+<p>The virtual guest system name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment</p>
+</td>
+<td>
+<p>The environment to which the virtual guest belongs.</p>
+<p>An environment is a grouping of virtual guest systems, against which, a set of analyses (as defined by the analysis model) are run in order to generate recommendations.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster</p>
+</td>
+<td>
+<p>The cluster containing the virtual guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>vCenter</p>
+</td>
+<td>
+<p>The vCenter or PowerVM containing the virtual guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Owner</p>
+</td>
+<td>
+<p>The assigned owner for the virtual guest. "-" is displayed if the owner is not assigned.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Application</p>
+</td>
+<td>
+<p>The assigned application for the virtual guest. "-" is displayed if the application is not assigned.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Guest OS</p>
+</td>
+<td>
+<p>The operating system deployed on the virtual guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommendation Status</p>
+</td>
+<td>
+<p>The overall recommendation status for the virtual guest. The following are the potential recommendation status:</p>
+<ul>
+<li><span class="CiRBAcharStrong">Just Right</span>--all resource allocations are just right;</li>
+<li><span class="CiRBAcharStrong">Oversized</span>-- at least one CPU/memory/disk resource is oversized and the remaining resource allocations are just right;</li>
+<li><span class="CiRBAcharStrong">Undersized</span>--at least one CPU/memory/disk resource is undersized and the remaining resource allocations are just right; or when there is an individual disk partition at risk and all remaining resources are just right;</li>
+<li><span class="CiRBAcharStrong">Undersized/Oversized CPU</span>, <span class="CiRBAcharStrong">Undersized/Oversized Memory</span>, <span class="CiRBAcharStrong">Undersized/Oversized Disk</span>--a combination of undersized and oversized resources.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommendation Details</p>
+</td>
+<td>
+<p>Detailed description of resource recommendation specifics.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommendation Reason/Observations</p>
+</td>
+<td>
+<p>The undersized/oversized recommendation reasons, as well as reasons why systems are not analyzed (e.g."Unable to perform Sizing Analysis") or why disk metrics are not available for analysis (e.g. "<span class="mc-variable Document.VM2 variable">VMware</span> Tools not running"). In addition, resource observations are listed, comparing resource utilization to the limits specified in the policy.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>VM Level Overrides</p>
+</td>
+<td>
+<p>If this virtual guest has specific resource overrides, which supersedes the recommendations by <span class="mc-variable General.ProductName variable">Densify</span>, then all the overrides in place are listed. This field is not displayed if there is no override.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Policy</p>
+</td>
+<td>
+<p>The <span class="mc-variable General.ProductName variable">Densify</span> policy that is applied to the virtual guest environment.	The policy name and a description are provided. <madcap:conditionaltext data-mc-conditions="CiRBA.SaaSOnly">Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="12416762627d60665256777c617b746b3c717d7f" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for details of the policy settings.</madcap:conditionaltext> </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>VM Level Policy</p>
+</td>
+<td>
+<p>If a policy override is applied to this specific virtual guest, which supersedes the policy listed above, then the override policy name and a description are provided. This field is not displayed if there is no override.</p>
+</td>
+</tr>
+</table>
+
+
+### Optimization Benefits
+
+This section of the summary lists the benefits that can be gained from implementing the recommendation. A list of bullet points maps the values of Recommendation Status to the actual benefits, in terms of both efficiency and performance.
+
+If the Recommendation Status for the selected virtual guest is Just Right, then this section is not displayed.
+
+### Predicted Utilization
+
+This table provides the impact to CPU, memory, and disk as percent (%) utilization if you were to implement the recommended resource allocations. A change indicator, the last column, shows you at a glace whether utilization impact is negative, positive, or if there is no impact. This column is shown only if there is at least one resource recommendation.
+
+## System Information
+
+The System Information table provides the following details of the selected virtual guest.
+
+Table: System Information
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Column</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>System Name</p>
+</td>
+<td>
+<p>The virtual guest system name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>OS</p>
+</td>
+<td>
+<p>The operating system deployed on the virtual guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment</p>
+</td>
+<td>
+<p>The environment to which the virtual guest belongs.</p>
+<p>An environment is a grouping of virtual guest systems, against which, a set of analyses (as defined by the analysis model) are run in order to generate recommendations.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster</p>
+</td>
+<td>
+<p>The cluster containing the virtual guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>vCenter</p>
+</td>
+<td>
+<p>The vCenter or PowerVM containing the virtual guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Department</p>
+</td>
+<td rowspan="8">
+<p>These are user-specified attributes that are displayed if the virtual guest has been tagged accordingly. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Location</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Application</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Application Tier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Operational Environment</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Security Zone</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>IP Address</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Host</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>State</p>
+</td>
+<td>
+<p>This is the current power state of the guest. This value is only displayed if available.</p>
+</td>
+</tr>
+</table>
+
+
+## Predicted Utilization (All Metrics)
+
+<Note>
+The metrics displayed in the following tables and charts will vary depending on availability for each guest.
+</Note>
+
+
+
+### Resource Allocation Comparison
+
+This table provides you the comparison of current resource allocations to those of the recommended allocations for the guest. A change indicator in the last column shows you whether allocation recommendations have increased, decreased, or have remained the same. The table below lists the resources for allocation comparison.
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Resource</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>CPU (vCPU)</p>
+</td>
+<td>
+<p>The CPU allocation for this virtual guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Memory (GB)</p>
+</td>
+<td>
+<p>The memory allocation for this virtual guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>All Disk (GB)</p>
+</td>
+<td>
+<p>The total disk allocation for this virtual guest. If current disk allocation is unknown and there is no recommended allocation, then this row is not displayed.</p>
+</td>
+</tr>
+</table>
+
+
+If the recommended allocations are the same as the current allocations, then the Recommended and Change columns are not displayed.
+
+### Disk Allocation Increase Recommendations
+
+This table is displayed only if there is a recommended increase in a particular disk volume. A change indicator in the last column shows you, at a glance, the amount of increased disk space required.
+
+### Resource Utilization Impact
+
+This table provides the impact to CPU utilization, memory utilization, as well as to network and disk IO throughput if you were to implement the recommended resource allocations. A change indicator, in the last column, shows you at a glance whether utilization impact is negative, positive or if there is no impact and utilization remains the same as compared to the current resource allocation. This column is shown only if there is a resource allocation recommendation.
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Utilization Metric</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>CPU Utilization (%)</p>
+</td>
+<td>
+<p>This is the CPU utilization as percentage of the total available CPU cycles. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Actual Memory Utilization (%)</p>
+</td>
+<td>
+<p>This is the memory consumed by the VM, as percentage of the total available memory, and does not include any overhead memory allocated outside of the guest OS.</p>
+<p>For VMware, this value is calculated from the vSphere "VM Memory Consumed" metric.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Active Memory Usage (%)</p>
+</td>
+<td>
+<p>This is the active memory used  at any given period of time, as percentage of the total available memory.</p>
+<p>For VMware, this is taken from the vSphere "Active Memory" metric and can also be backfilled by "Guest Needed Memory" from vROPs, if Active Memory is not available.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Memory Required (%)</p>
+</td>
+<td>
+<p>This is Densify's predicted memory required by the VM to operate normally. This value is calculated based on the VM's active/actual memory, total memory allocation, age, and other factors, including the policy applied.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Network IO Throughput (MB/s)</p>
+</td>
+<td>
+<p>This is the network throughput in MB/s. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Network IO (pkts/s)</p>
+</td>
+<td>
+<p>This is the network I/O in pkts/s. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk IO Throughput (MB/s)</p>
+</td>
+<td>
+<p>This is the disk throughput in MB/s.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk IO Operations (IOPS)</p>
+</td>
+<td>
+<p>This is the disk I/O in ops/s.</p>
+</td>
+</tr>
+</table>
+
+
+If the utilization metric percentage is not available, then the metric row is not displayed.
+
+If the recommended allocations are the same as the current allocations, then the Recommended and Change columns are not displayed.
+
+### Workload Charts
+
+The following workload charts are provided so you can compare utilization with the current resource allocation against that of the recommended resource allocation for the virtual guest. The charts for the current allocations are shown on the left side and the charts for the recommended allocations are shown on the right side. Charts are displayed based on availability of metrics:
+
+* If utilization metrics are not available, the corresponding chart is not displayed.
+* Only the current utilization charts are shown for virtual guests that are right sized (i.e. identified as "Just Right").
+* When actual memory data is not collected, and memory workloads are backfilled with the memory usage as defined by the policy, no recommended memory workload chart is displayed.
+
+The Utilization Metrics: Checked for Over-allocated Resources using Low Limit tab displays utilization charts with the lower limits of the policy, exposing over-allocated resources.
+
+Table: Utilization Metrics: Checked for Over-allocated Resources using Low Limits
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Current and Recommended Charts</p>
+</th>
+<th>
+<p>Current Charts</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td rowspan="1">
+<p>Utilization charts for both current and recommended resource allocations, showing the lower limits of the policy are provided for the following metrics:</p>
+<ul>
+<li>Actual Memory Utilization in Percent</li>
+<li>CPU Utilization</li>
+<li>Disk Space Usage in Percent</li>
+<li>Memory Required (%)</li>
+</ul>
+</td>
+<td>
+<p>Workload charts for only the current resource allocated guest are provided for the following metrics:</p>
+<ul>
+<li>Disk I/O Bytes</li>
+<li>Disk I/O Operations</li>
+<li>Disk Space Usage</li>
+<li>Network I/O Bytes</li>
+<li>Network I/O Packets</li>
+</ul>
+</td>
+</tr>
+</table>
+
+
+The Utilization Metrics: Checked for Under-allocated Resources using High Limit tab displays utilization charts with the higher limits of the policy, exposing under-allocated resources.
+
+Table: Utilization Metrics: Checked for Under-allocated Resources using High Limits
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Current and Recommended Charts</p>
+</th>
+<th>
+<p>Current Charts</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td rowspan="1">
+<p>Utilization charts for both current and recommended resource allocations, showing the higher limits of the policy are provided for the following metrics:</p>
+<ul>
+<li>Actual Memory Utilization in Percent</li>
+<li>CPU Utilization</li>
+<li>Disk Space Usage in Percent</li>
+<li>Memory Active (%)</li>
+<li>Memory Required (%)</li>
+</ul>
+</td>
+<td>
+<p>Workload charts for only the current instance type are provided for the following metrics:</p>
+<ul>
+<li>CPU Ready Time (%)</li>
+<li>CPU Utilization (Reservation)</li>
+<li>Disk I/O Bytes</li>
+<li>Disk I/O Operations</li>
+<li>Disk Space Usage</li>
+<li>Network I/O Bytes</li>
+<li>Network I/O Packets</li>
+</ul>
+</td>
+</tr>
+</table>
+

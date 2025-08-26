@@ -1,0 +1,237 @@
+openapi: 3.1.0
+info:
+  title: Densify – Azure Analysis API
+  version: "1.0.0"
+  description: |
+    OpenAPI derived from "Analysis: Azure Analyze" documentation.
+    POST `/analysis/azure/analyze` initiates the first collection+analysis,
+    re-runs an existing analysis, or triggers a historical audit depending on payload.
+    GET `/analysis/cloud/azure` lists created analyses.
+    GET `/analysis/azure/{subscriptionId}/status` returns analysis status for a subscription.
+    Sources: Analysis: Azure Analyze. 
+    See also references to `/analysis/azure/{subscriptionId}/status` and list endpoint.
+servers:
+  - url: https://{host}
+    description: Your Densify API host
+    variables:
+      host:
+        default: api.example.com
+tags:
+  - name: Azure Analysis
+paths:
+  /analysis/azure/analyze:
+    post:
+      tags: [Azure Analysis]
+      operationId: analyzeAzure
+      summary: Run Azure data collection/analysis, re-run analysis, or trigger historical audit
+      description: |
+        - **Initial run**: provide subscription and credentials; schedules nightly collection and analysis.  
+        - **Re-run analysis**: provide subscription and (optionally) a new webhook; does **not** collect data.  
+        - **Historical audit**: set `triggerAdhocAudit=true` and optionally `startDayOffset` / `endDayOffset` to collect up to 30 days of historical data.  
+        Notes: request is rejected if collection/analysis is in progress or within ~30 minutes of scheduled time.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeRequest"
+            examples:
+              initialRun:
+                summary: Creating new Azure data collection and analysis
+                value:
+                  subscriptionId: "cc377154-9605-4cb0-8b41-1b39e1c4ac0f"
+                  applicationId: "bd6529bf-85d8-410d-a207-ce963b4dd398"
+                  secretKey: "REDACTED"
+                  tenantId: "6c9190a7-bca6-4fcd-b35e-36378aadc695"
+                  connectionName: "AzureEnvTest"
+                  webHook:
+                    uri: "https://example.test/webhook/results"
+                    authType: "basic"
+                    authValue: "user:pass"
+              rerun:
+                summary: Re-run existing analysis (no collection)
+                value:
+                  subscriptionId: "cc377154-9605-4cb0-8b41-1b39e1c4ac0f"
+                  applicationId: "bd6529bf-85d8-410d-a207-ce963b4dd398"
+                  secretKey: "REDACTED"
+                  tenantId: "6c9190a7-bca6-4fcd-b35e-36378aadc695"
+                  webHook:
+                    uri: "https://example.test/webhook/results"
+              historicalAudit:
+                summary: Trigger a one-time historical audit (up to 30 days)
+                value:
+                  subscriptionId: "cc377154-9605-4cb0-8b41-1b39e1c4ac0f"
+                  applicationId: "bd6529bf-85d8-410d-a207-ce963b4dd398"
+                  secretKey: "REDACTED"
+                  tenantId: "6c9190a7-bca6-4fcd-b35e-36378aadc695"
+                  triggerAdhocAudit: true
+                  startDayOffset: "10"
+                  endDayOffset: "5"
+      responses:
+        "200":
+          description: Accepted / analysis initiated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnalyzeResponse"
+              examples:
+                inProgress:
+                  value:
+                    href: "Not available"
+                    message: "Analysis in progress"
+                    status: 200
+        "400":
+          description: Invalid parameters.
+        "401":
+          description: Authentication failed.
+        "404":
+          description: Resource not found.
+        "500":
+          description: Internal server error.
+
+  /analysis/cloud/azure:
+    get:
+      tags: [Azure Analysis]
+      operationId: listAzureAnalyses
+      summary: List all generated Azure analyses
+      description: Returns analyses created for Azure subscriptions; obtain `analysisId` for other operations.
+      responses:
+        "200":
+          description: Array of analyses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AnalysisItem"
+        "401":
+          description: Authentication failed.
+        "500":
+          description: Internal server error.
+
+  /analysis/azure/{subscriptionId}/status:
+    get:
+      tags: [Azure Analysis]
+      operationId: getAzureAnalysisStatus
+      summary: Get analysis status by subscription
+      description: Check the status of collection/analysis for a given Azure subscription.
+      parameters:
+        - name: subscriptionId
+          in: path
+          required: true
+          description: Azure subscription ID
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Status information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnalysisStatus"
+        "404":
+          description: Analysis not found.
+        "500":
+          description: Internal server error.
+
+components:
+  schemas:
+    WebHook:
+      type: object
+      properties:
+        uri:
+          type: string
+          format: uri
+        authType:
+          type: string
+          description: Authentication type used by the webhook endpoint.
+          examples: ["basic", "bearer"]
+        authValue:
+          type: string
+          description: Credential value (e.g., `user:pass` for basic, or token for bearer).
+      required:
+        - uri
+    AnalyzeRequest:
+      type: object
+      description: >
+        Supply subscription and credentials. For historical audit, set `triggerAdhocAudit=true`
+        and optionally set `startDayOffset`/`endDayOffset`. Only one subscription is processed per request.
+      properties:
+        subscriptionId:
+          type: string
+          description: Azure Subscription ID.
+        applicationId:
+          type: string
+          description: Azure AD application (client) ID.
+        secretKey:
+          type: string
+          description: Client secret for the application.
+        tenantId:
+          type: string
+          description: Azure AD tenant ID.
+        serviceAcctJSON:
+          type: string
+          description: |
+            Credentials provided as a JSON file, supplied here as a string (implementation-specific).
+        connectionName:
+          type: string
+          description: Optional display name (<= 32 chars) for this connection. Must be unique within Azure connections.
+          maxLength: 32
+        webHook:
+          $ref: "#/components/schemas/WebHook"
+        triggerAdhocAudit:
+          type: boolean
+          description: Trigger a one-time historical audit (requires an existing connection).
+        startDayOffset:
+          type: string
+          description: Offset from 30 days in the past to set the start of the historical range.
+        endDayOffset:
+          type: string
+          description: Offset from yesterday to set the end of the historical range.
+      required:
+        - subscriptionId
+        - applicationId
+        - secretKey
+        - tenantId
+    AnalyzeResponse:
+      type: object
+      properties:
+        href:
+          type: string
+          description: Link to analysis recommendations (if available).
+        message:
+          type: string
+        status:
+          type: integer
+          format: int32
+          description: HTTP-like status code (200, 400, 401, 404, 500).
+      required: [message, status]
+    AnalysisItem:
+      type: object
+      description: Entry describing an Azure analysis.
+      properties:
+        analysisName:
+          type: string
+          description: Typically the Azure subscription ID.
+        href:
+          type: string
+          description: Link to recommendations for this analysis.
+        completed:
+          type: string
+          description: Milliseconds timestamp when last analysis completed.
+        analysisId:
+          type: string
+          description: Densify-internal analysis ID.
+        phase:
+          type: string
+          description: "Current phase, e.g., `analyzing: 42%` or `not analyzing`."
+        message:
+          type: string
+        status:
+          type: integer
+          format: int32
+      required: [analysisName, analysisId, status]
+    AnalysisStatus:
+      allOf:
+        - $ref: "#/components/schemas/AnalysisItem"
+      description: Same shape commonly used to report status for an analysis.

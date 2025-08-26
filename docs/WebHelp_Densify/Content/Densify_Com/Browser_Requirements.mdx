@@ -1,0 +1,187 @@
+---
+title: "Browser Requirements"
+---
+
+Refer to the following table for the browser requirements for each of Densify's components/consoles.
+
+Table: Supported Browsers
+
+<table>
+<tr>
+<td style={{textAlign: 'center', verticalAlign: 'top', color: 'white', backgroundColor: '#003660'}}>
+<p>Analysis Console<br/></p>
+</td>
+<td>
+<ul>
+<li>Internet Explorer using Microsoft Edge's IE mode.</li>
+</ul>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>">
+<span class="autonumber">
+<span><b>Note: </b></span>
+</span>
+Other versions of Internet Explorer, and other browsers such as Firefox and Chrome are not supported.
+</p>
+</td>
+</tr>
+<tr data-mc-conditions="CiRBA.CCOExclude">
+<td style={{textAlign: 'center', verticalAlign: 'top', color: 'white', backgroundColor: '#003660'}}>
+<p>
+<span class="mc-variable Document.Control_Console variable">Control Console</span>
+</p>
+</td>
+<td>
+<ul>
+<li>Internet Explorer using Microsoft Edge's IE mode:</li>
+<li>Google Chrome™ 102.0.5005.63 or later;</li>
+<li>Microsoft Edge™ Chromium version ;</li>
+</ul>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>">
+<span class="autonumber">
+<span><b>Note: </b></span>
+</span>
+When using the <span class="mc-variable Document.Control_Console variable">Control Console</span> in browsers other than Internet Explorer and Microsoft Edge's IE mode, some features may not be available. See <a class="MCXref xref" href="../Control_Console/Control_Console_Spectrum_Overview">Control Console Spectrum Overview</a>.
+</p>
+</td>
+</tr>
+<tr>
+<td style={{textAlign: 'center', verticalAlign: 'top', color: 'white', backgroundColor: '#003660'}}>
+<p>
+<span class="mc-variable Document.Densify_Console variable">Densify Console</span>
+</p>
+</td>
+<td>
+<div>
+<p>For the <span class="mc-variable Document.Densify_Console variable">Densify Console</span>, the following browsers have been certified: </p>
+<ul>
+<li data-mc-conditions="CiRBA.CCOExclude">Google Chrome™ 117.0.5938.92 or later</li>
+<li data-mc-conditions="CiRBA.CCOExclude">Microsoft Edge™ Chromium version</li>
+<p>There is a known issue when using Safari on MacOS v13.3.1. The Densify UI does not load and an error is displayed when trying to login to <span class="mc-variable General.ProductName variable">Densify</span> when using this version of Safari. As a workaround, use a supported version of Chrome or Edge.</p>
+</ul>
+<p>Also note the following information: </p>
+<p>
+<span class="CiRBAcharStrong">**Clearing the Browser Cache**</span>--After any Densify upgrade, you must clear your browser cache before re-opening the <span class="mc-variable Document.Densify_Console variable">Densify Console</span>.
+</p>
+<p>
+<span class="CiRBAcharStrong">**Optimized Browser**</span>--The <span class="mc-variable Document.Densify_Console variable">Densify Console</span> has been optimized for Google Chrome and Microsoft Edge. These browsers are highly recommended for the richest user experience.
+</p>
+<p>
+<span class="CiRBAcharStrong">**Secured Connection**</span>--If you are using an HTTPS connection, ensure your <span class="mc-variable Document.Densify variable">Densify</span> URL has been added as a trusted site and the security level is defined as "Medium" or "Medium High".
+</p>
+<p>
+<span class="CiRBAcharStrong">**Compatibility Message**</span>--When your browser version differs from the above-listed browsers, a confirmation message is displayed. Densify highly recommends that you use one of the certified browser versions for optimal display and end-user experience.
+</p>
+<p>
+<span class="CiRBAcharStrong">**Monitor Resolution**</span>--You require a monitor/video card combination that can support 1920 x 1080 dpi for optimal viewing of the Densify Console. When viewing the <span class="mc-variable Document.Analysis_Console variable">Analysis Console</span>, set your  resolution to a minimum of 1024 x 768.  
+</p>
+<p>
+<span class="CiRBAcharStrong">**Browser Zoom Setting**</span>--Ensure your browser is at 100% zoom. 
+</p>
+</div>
+</td>
+</tr>
+</table>
+
+
+Additionally, refer the [Product Support Policy](/images/docs/WebHelp_Densify/Content/Resources/PDFs/Densify-Product-Support-Policy-VO.pdf) for changes to the list of supported browsers and browser features.
+
+## Additional Considerations for Internet Explorer
+
+Internet Explorer was retired in June 2022. The Analysis Console now runs in Microsoft Edge configured for IE-compatibility mode.
+
+Use the following instructions to configure Edge to display Densify in IE-compatibility mode.
+
+### Enabling Internet Explorer Mode in Microsoft Edge
+
+You must have a supported version of Microsoft Edge and have the appropriate permissions to enable Internet Explorer (IE) mode.
+
+To configure IE mode:
+
+1. From Microsoft Edge, expand the settings dropdown menu.
+2. Navigate to **Settings > Default Browser**. Contact your system administrator if you cannot enable IE-compatibility mode.
+3. In the **Default Browser** pane, locate **Allow sites to be reloaded in Internet Explorer mode** and set this to "Allow": This setting allows the Analysis Console to be reloaded in Internet Explorer mode.
+4. You may need to restart the browser to enable the change.
+
+<Accordion title="Enabling IE Mode in Microsoft Edge">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000087.png)</Frame>
+</Accordion>
+
+
+If you are logged into Edge, this setting should be saved with your other customized settings. If you are not logged in or are in an InPrivate session, the setting is not saved and you may need to set it each time you use the Analysis Console. Even if the setting is saved, it will expire in 30-days and must be reset.
+
+### Accessing the Analysis Console
+
+<Note>
+Not all user roles can access the Analysis Console.
+</Note>
+
+
+
+The first time you access the Analysis Console or you may see an error message indicating the current browser is not supported. In this case open the settings and reload the page in IE mode.
+
+<Accordion title="Resolving Unsupported Browser Error Message">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000090.png)</Frame>
+</Accordion>
+
+
+Once the page opens you may be prompted to save the settings for this page.
+
+<Accordion title="Messages in Edge&#x27;s Internet Explorer Mode">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000089.png)</Frame>
+</Accordion>
+
+
+Additionally, a message bar is displayed indicating that IE-compatibility mode is not recommended. In this case close the dialog by clicking the "X" at the end of the message bar. Do not click the **Leave** button. If you leave IE mode, you will see the error message in the image above.
+
+### Browser Plug-ins
+
+Densify recommends that you disable any plug-in browser toolbars as they may impact Internet Explorer's performance and reliability.
+
+### Using Internet Explorer
+
+You can continue to use Internet Explorer until it is deprecated in June 2022; however, Densify highly recommends using Microsoft Edge, as outlined above.
+
+It is important that IE is correctly configured, so that the system checks for newer versions of stored pages. To configure your browser, perform these steps.
+
+1. From your browser, click **Tools > Internet Options**. This opens the **Internet Options** dialog box.
+2. From the **General** tab, look for the **Browsing History** section or the **Temporary Internet Files** section, based on your browser version. Click the **Settings** button and enable the Check for newer versions of stored pages: **Every time I visit the webpage**. Click **OK**.
+3. Click on the **Security** tab. Click on Trusted Sites and ensure your Densify website (e.g., `https://<cirbaserverhostname>`) is added as a trusted site and the security level is defined as "Medium" or "Medium High". Click **OK**.
+
+## Browser Locale Settings
+
+The format of the date information that is appended to downloaded files uses the date format of your browser's locale setting. Some countries display the date as month-day-year, while others use day-month-year or year-month-day. Refer to your browser for details on determining the locale or changing the date format.
+
+## Navigation Considerations when using Safari on a MAC
+
+Safari users viewing Densify from an Apple device will notice the scroll bars may not be displayed consistently on all consoles and dashboards.
+
+In general, there are a few ways to scroll up/down and right/left in Safari:
+
+* If the scroll bars are not visible on the right or bottom of the page you can left-click on empty space or drag the bar with the left-click.
+* If the scroll bars are not displayed you can only use the mouse's scrolling wheel or touchpad, if available.
+
+## Enabling Densify Popups
+
+If you encounter any issues with popup login window, dialog boxes or other informational windows, you can enable permission for Densify popups:
+
+1. From Microsoft Edge, expand the settings dropdown menu.
+2. Navigate to **Settings** > **Cookies and site permissions**. Contact your system administrator if you cannot access these options.
+3. In the **Site Permissions** list, scroll down to locate **Pop-ups and redirects** and set this to "Allow": This setting allows the Analysis Console to be reloaded in Internet Explorer mode.
+4. Expand the ... options and select **Edit**.
+5. Enter the following [\*.]densify and click **Add**
+
+<Accordion title="Enabling Densify Pop-Ups">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000092_476x283.png)</Frame>
+</Accordion>
+
+
+Other Resources
+
+1. https://docs.microsoft.com/en-us/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list
+
+## Using the Simplified Control Console
+
+When you access the simplified Control Console in one of these browsers, a subset of features allows you to view and mange your on-premise infrastructure.
+
+When using the Control Console in browsers other than Internet Explorer and Microsoft Edge's IE mode, some features may not be available.
+
+See [Control Console Spectrum Overview](../Control_Console/Control_Console_Spectrum_Overview) and [Spectrum Detail](../Control_Console/Spectrum_Detail) for details.

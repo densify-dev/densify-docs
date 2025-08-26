@@ -1,0 +1,134 @@
+---
+title: "AI Analysis Details - Instance Details View"
+sidebarTitle: "AI Analysis Details - Modal View"
+---
+import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
+
+A hyperlink in the AI Analysis Details page opens this page showing significant details of the selected instance provided in a format that is easier to view and compare the current versus the recommended instance types.
+
+## Instance Optimization Details
+
+This card lists the following details for the current instance type.
+
+<div style={{ width: "55%", display:"flex", flexDirection:"row", justifyContent: "space-between" }}>
+<ul>
+  <li>Optimization Type</li>
+  <li>Policy</li>
+</ul>
+
+<ul>
+  <li>Monthly Waste</li>
+  <li>Effort</li>
+</ul>
+</div>
+
+These additional details are listed for both instance types for easy comparison.
+
+<div style={{ width: "55%", display:"flex", flexDirection:"row", justifyContent: "space-between" }}>
+
+<ul>
+  <li>Instance Type</li>
+  <li>Monthly Cost</li>
+</ul>
+
+<ul>
+  <li>CPUs</li>
+  <li>CPU Benchmark</li>
+  <li>Memory (GB)</li>
+</ul>
+</div>
+
+Descriptions for all of these values are provided in the [AI Analysis Details](/docs-kubex/Content/Cloudex/AI_Analysis_Details_Tab-Cloud) table.
+
+### Impact Analysis and Recommendation Report
+
+The Impact Analysis and Recommendation report provides a PDF version of the instance details. You can easily share this report with the application owner to share your proposed sizing recommendations. 
+
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", justifyContent: "space-between", gap: "6px" }}>
+  <div>
+    <Frame caption="Figure: Generating the Impact Analysis and Recommendation Report">
+    <img src="/images/docs-kubex/Content/Cloudex/03000026_304x121.png" style={{width: "304",height: "121"}} />
+    </Frame>
+
+    <Frame caption="Figure: Downloading the PDF">
+      <img src="/images/docs-kubex/Content/Cloudex/03000027_304x121.png" style={{width: "304",height: "121"}} />
+    </Frame>
+  </div>
+
+  <div>
+    <Note>
+    Note:  This report is not available for Azure VM Scale Sets.
+    </Note>
+
+    Click the link in the upper corner to download a PDF version of the Impact Analysis and Recommendation Report.
+    <br />
+    <br />
+    When you click the button, a popup opens with a link. You can save or download the file.
+    <br />
+    <br />
+    The filename will be ```<cloud provider>_<system name>_<system_id>.pdf```
+  </div>
+</div>
+
+<Frame caption="Figure: Instance Optimization Summary Details">
+  <img src="/images/docs-kubex/Content/Cloudex/03000020.png" width="100%" />
+</Frame>
+
+
+## System Information
+
+This card indicates identifying details for the selected instance.
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", gap: "6px" }}>
+
+  <Frame caption="Figure: System Information Card">
+    <img src="/images/docs-kubex/Content/Cloudex/03000021.png" width="100%" />
+  </Frame>
+
+  <ul>
+    <li>Cloud Provider</li>
+    <li>
+      <a href="/docs-kubex/Content/Cloudex/AI_Analysis_Details_Table-Cloud#service-type">
+      Service Type
+      </a>
+    </li>
+    <li>System Name</li>
+    <li>Instance ID</li>
+    <li>Instance OS</li>
+    <li>Account Name/ID</li>
+    <li>Region/Availability Zone</li>
+  </ul>
+</div>
+
+## Status Overview
+
+This card indicates the status of the current instance.
+
+<Frame caption="Figure: Status Overview">
+    <img src="/images/docs-kubex/Content/Cloudex/03000022.png" width="100%" />
+</Frame>
+
+## CPU | Memory Request and Limits
+
+These blocks lists the current and recommended allocation settings, based on utilization for the selected container. The values are colour-coded to easily identify savings and wasted resources. A dash (-) indicates no value has been set.
+
+These values are per container if there is more than 1 container defined by the selected manifest
+
+<Frame caption="Figure: CPU Request and Limits">
+  <img src="/images/docs-kubex/Content/Cloudex/03000033.png" width="100%" />
+</Frame>
+
+<Frame caption="Figure: Memory Request and Limits">
+  <img src="/images/docs-kubex/Content/Cloudex/03000033.png" width="100%" />
+</Frame>
+
+## Total Surplus Resources
+
+These blocks list the aggregated CPU and memory for the selected manifest. The value is colour-coded to easily identify savings. Wasted spend is listed in the last block. A negative value indicates you need to increase the CPU or memory setting to eliminate risk.
+
+
+<Frame caption="Figure: Total Surplus CPU | Memory and Estimated Waste">
+![](/images/docs-kubex/Content/Cloudex/03000159_760x101.png)
+</Frame>
+

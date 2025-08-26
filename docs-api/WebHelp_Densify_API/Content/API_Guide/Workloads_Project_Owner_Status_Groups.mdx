@@ -1,0 +1,31 @@
+---
+title: "Overview"
+---
+
+## Description
+
+Workloads can be grouped by `project`, `owner` or `status` so that they can be ordered in a specific priority. To obtain a collection of one of these groups, simply append the group name (i.e. `projects`, `owners` or `status`) to your Workload collection request (e.g. by project, use `/workloads/projects`). If the project or owner element has not been defined, then "`__Unknown__`" can be used to query with no project/owner name. The collection by group is returned in alphabetical order by name, with "`__Unknown__`" objects at the end.
+
+When performing a collection by group, the following options are supported:
+
+* [Collection Details](./Common_Operations#_Collection_Details)--to obtain the Workload details for each group object.
+* [Paging](./Common_Operations#_Paging_2)--to page the group collection. Note that the Workloads are not part of the paging size.
+* [Filters](./Common_Operations#_Filters_1)--to filter the Workloads using the filtering elements of the Workload. If there are qualifying Workloads, the collection returns the group and their qualifying Workloads (if `&details=true`). Otherwise, if there are no qualifying Workloads for a given group, the group is not returned.
+
+## Resource
+
+```json
+/workloads/projects
+```
+
+
+
+```json
+/workloads/owners
+```
+
+
+
+```json
+/workloads/status
+```

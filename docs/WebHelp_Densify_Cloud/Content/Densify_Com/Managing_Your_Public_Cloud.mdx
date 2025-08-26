@@ -1,0 +1,41 @@
+---
+title: "Managing Your Public Cloud"
+---
+
+When you create your connections through the Public Cloud connection wizard, <Tooltip tip="Data collection is the process of discovering and collecting configuration and workload data from cloud or virtualized environments. Data collection is usually scheduled to run once nightly. Data collection may also be referred to as an audit.">data collection</Tooltip> is configured and scheduled to run, nightly, followed by <Tooltip tip="Collected data is analyzed using Densify&#x27;s patented analytics and results are loaded into the reporting database for viewing through various reports, consoles, dashboards, and user interfaces.">analysis</Tooltip> of the collected data and a refresh of the <Tooltip tip="When the Densify scheduled analyses are completed, specific analysis data is loaded into a reporting database. The reporting database is updated nightly on a predefined schedule and forms the basis of the Densify Console.">reporting database</Tooltip>, on which the Densify Console is built.
+
+If you are performing transformation scenarios, additional configuration is required.Contact [Support@Densify.com](mailto:Support@Densify.com) to perform the necessary setup.
+
+## Data Collection
+
+The Public Cloud Connections wizard guides you through the steps to create and schedule data collection from your public cloud accounts. See [Using the Public Cloud Connections Wizard](./Using_the_Public_Cloud_Connection_Wizard).
+
+The following instance types are supported for collection and analysis:
+
+* AWS ECS, RDS, ASGs and EKS;
+* Azure VMs, VM Scale Sets and AKS
+* Google Compute Engine (GCE) instances and GKE
+
+## Viewing Guest Sizing Recommendations
+
+To view and address guest sizing recommendations, see the following reports:
+
+* **Public Cloud** > **Optimization Overview**--An aggregated report for all your cloud instances. The scope of systems is defined by various filters. See [Viewing the Optimization Overview Report](./Viewing_the_Optimization_Overview_Report).
+* **Public Cloud** > Cloud Provider--Reports that are specific to the selected cloud provider. See [Optimizing Your Public Cloud](./Optimizing_Your_Public_Cloud)
+* Catalog Map--Shows a range of recommended instance type options. The map view shows the entire AWS or Azure catalog scored for your selected workload using Densify's analytics. See [Using the Catalog Map](./Using_the_Catalog_Map).
+* Impact Analysis and Recommendation Report--Shows the data and policy settings that resulted in the recommendation being made. See [Viewing the Public Cloud Impact Analysis and Recommendation Report](./Viewing_the_Impact_Analysis_and_Recommendation_Report).
+* Metrics Viewer--Shows you to the collected and analyzed time series data to review specific instance details. See [Using the Metrics Viewer](./Using_the_Metrics_Viewer).
+
+## Using the Group By Feature
+
+The **Group By** option allows you to group results by properties and tags. Your selection defines the structure of various tabular reports. See [Using the Group By Feature](./Using_the_Group_By_Feature) for details.
+
+## Using the Guest Filter
+
+You can use this filter to include or exclude systems that are hosted in the public cloud. See [Using the Guest Filter](./Using_Guest_Filters) for details.
+
+All reports do not include guest filtering, but do provide other filtering options.
+
+## Using the Recommendation Filter
+
+You can use the this filter to include or exclude systems based on right-sizing recommendations. See [Using the Recommendation Filter Menu](./Using_the_Recommendation_Filter_Menu) for details.

@@ -1,0 +1,186 @@
+openapi: 3.1.0
+info:
+  title: Densify Workload Grouping API
+  description: API for grouping workloads by project, owner, or status.
+  version: 1.0.0
+servers:
+  - url: https://api.densify.com/v1
+    description: Densify API Server
+paths:
+  /workloads/projects:
+    get:
+      summary: Retrieve a collection of workload projects.
+      operationId: getWorkloadProjects
+      responses:
+        "200":
+          description: A list of workload projects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the project.
+                    href:
+                      type: string
+                      description: The URI of the project.
+  /workloads/owners:
+    get:
+      summary: Retrieve a collection of workload owners.
+      operationId: getWorkloadOwners
+      responses:
+        "200":
+          description: A list of workload owners.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the owner.
+                    href:
+                      type: string
+                      description: The URI of the owner.
+  /workloads/status:
+    get:
+      summary: Retrieve a collection of workload statuses.
+      operationId: getWorkloadStatuses
+      responses:
+        "200":
+          description: A list of workload statuses.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the status.
+                    href:
+                      type: string
+                      description: The URI of the status.
+  /workloads/projects/{name}:
+    get:
+      summary: Retrieve details of a specific workload project.
+      operationId: getWorkloadProjectByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: The name of the project.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Details of the specified workload project.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  href:
+                    type: string
+                  workloads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        status:
+                          type: string
+  /workloads/owners/{name}:
+    get:
+      summary: Retrieve details of a specific workload owner.
+      operationId: getWorkloadOwnerByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: The name of the owner.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Details of the specified workload owner.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  href:
+                    type: string
+                  workloads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        status:
+                          type: string
+  /workloads/status/{name}:
+    get:
+      summary: Retrieve details of a specific workload status.
+      operationId: getWorkloadStatusByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: The name of the status.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Details of the specified workload status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  href:
+                    type: string
+                  workloads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        status:
+                          type: string
+components:
+  schemas:
+    Workload:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        project:
+          type: string
+        owner:
+          type: string

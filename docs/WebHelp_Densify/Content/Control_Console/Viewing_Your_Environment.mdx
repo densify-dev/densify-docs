@@ -1,0 +1,67 @@
+---
+title: "Viewing Your Environment"
+---
+
+<Note>
+When using the simplified version of the Control Console in browsers other than Internet Explorer some features may not be available. See [Control Console Spectrum Overview](./Control_Console_Spectrum_Overview).
+</Note>
+
+
+
+To learn more about the Control Console watch the following video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/306236926" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+
+Once a control environment is created with the configuration and utilization data collected and analyzed, you can view how optimized your environment is through the Control Console:
+
+1. From Densify, click on Control Console and launch the Control Console using a supported Internet Explorer version.
+2. Select your environment in the Environment Navigator at the top.
+<Accordion title="Figure: Environment Navigator">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000021_579x80.png)</Frame>
+</Accordion>
+3. Review the Spectrum for today.
+4. Review the infrastructure groups. The infrastructure groups are indicated with the assigned name and their Compute Efficiency Index. See [Control Console Spectrum Overview](./Control_Console_Spectrum_Overview) for details of how to interpret the CEI value. If sensor information is not available for the environment, the sensor level is not displayed.
+<Accordion title="Figure: Viewing Your Environment">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000018_594x242.png)</Frame>
+</Accordion>
+5. Inspect hosts, VMs and sensors with Too Little Infrastructure (red), Just Right (green), and Too Much Infrastructure (yellow).
+6. Click the host or VM and inspect the per-system details using the tabs in the Spectrum Detail pane to drill down and get specific workload and configuration information, and recommendations.
+7. Inspect the utilization charts, provided on the Resource Utilization Metrics tab.
+8. Inspect the per-host details on the System Detail tab.
+
+* Utilization charts
+* Host hardware and OS configuration (for hosts); VM allocations
+* Business attributes
+
+9. Review the recommendations, listed on the Recommendations for \<Selected Date> tab. See [Reviewing Recommendations](./Reviewing_Recommendations).
+10. Click Yes for the Display with recommendations applied to view the Spectrum based on all recommendations being performed. Click No to view the Spectrum without the recommendations. Display with recommendations applied is set to No by default.
+11. Select one or more sensors and inspect the recommendations and sensor details using the tabs in the Spectrum Detail pane.
+12. Press Ctrl + Shift + F10 to return to the default view of the Control Console.
+
+<Note>
+If sufficient workload data does not exist after data is collected, Densify cannot determine where to place the dot in the Control Console. In situations when insufficient data prevents an accurate calculation, the dot is shown in the center line in the middle of the Control Console. To investigate missing workload data, you need to perform data validation. Contact [Support@Densify.com](mailto:Support@Densify.com).
+</Note>
+
+
+
+## Using the Timeline Slider
+
+The timeline available in the Control Console enables you to see your environment's current state, as well as historical views and predictive timeframes. These views allow you to understand the environment's status and requirements over time.
+
+The predictive timeframes include system growth, as defined by your policy, as well as both inbound and outbound bookings.
+
+1. Inspect the available dates on the timeline. The date is shown as you slide the indicator along the timeline. The available data, as well as the setting for the growth modeling features within the analysis, determines the available options on the timeline.
+2. Slide the indicator along the timeline and observe the environment change from the current state to a forward-looking projection.
+3. Review the Spectrum for your environment at a timeframe in the future. If inbound and outbound bookings have been defined, the hosts, datastores and VMs are added and removed from the environment as the dates are viewed.
+4. Click the Reveal button and then select the options to highlight specific systems of interest.
+5. Inspect the systems’ details, with and without the recommendations applied, using the Display with recommendations applied option.
+6. Select a host, VM or sensor, and review the details in the Spectrum Details tabs, located at the bottom of the console.
+<Note>
+Several metrics that are available in the Today Only timeframe (e.g. Disk I/O Average Latency, Disk I/O Maximum Latency and CPU Ready) are not included in future timeframes.
+</Note>
+
+
+
+Any settings that you have applied to filter the environment will be respected as you move between the timeframes within an environment. This is also the case if Reveal is enabled. See [Reveal](./Reveal).

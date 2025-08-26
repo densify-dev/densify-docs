@@ -1,0 +1,26 @@
+---
+title: "Overview"
+---
+
+The Route and Reserve Demand page allows you to create and route your new workloads, either manually or automatically, to the preferred or best hosting venue. The hosting venue can be your internal infrastructure (e.g. VMware environment) or a public cloud offering (e.g. AWS®, Azure®, Google Cloud Platform®).
+
+Route and Reserve finds the optimal environment and server placement in real-time for new VM requests based on criteria, including workload requirements, technical requirements, operational and business policies, and relative cost in order to meet workload requirements and balance demand. Densify automates new VM routing and reserves capacity for those VMs to guarantee availability when needed.
+
+To view and manage planned hardware changes, navigate to Demand Planning > Plan and Manage Supply page. See the topic set [Planning and Managing Supply](../Plan_And_Manage_Supply/Planning_and_Managing_Supply).
+
+## Hosting Venues
+
+You can route demand to two types of hosting venue:
+
+* Internal--This refers to on-premise environments (e.g. VMware). Hosts and guests are audited and analyzed through control analytics. Capacity is calculated based on daily audits, and planned supply and demand. These are considered full control hosting venues.
+* External--This refers to public cloud environments. Instance utilization data may or may not be collected, but control analytics are not performed, and infinite capacity is assumed. These are considered either guest-level or non-control hosting venues, depending on whether or not data is collected for these guests, respectively.
+
+## Target Audience
+
+The Route and Reserve Demand page is intended for users who create and route new workloads to hosting venues as part of their role, such as a Demand Manager or Capacity Planner. To plan for the removal of existing workloads from your environment, contact [Support@Densify.com](mailto:Support@Densify.com).
+
+To plan and manage supply such as hosts and datastores, use the Plan and Manage Supply page (see [Planning and Managing Supply](../Plan_And_Manage_Supply/Planning_and_Managing_Supply)).
+
+## Data Requirements
+
+The Route and Reserve Demand page requires that you first have your hosting venues defined. For full control hosting venues, the control environments must be created with control analytics run at least once. For guest-level hosting venues, the cloud environments must be created with cloud analytics run at least once. For non-control hosting venues, you must manually define them using the Routing Workbench > Hosting Venues screen.

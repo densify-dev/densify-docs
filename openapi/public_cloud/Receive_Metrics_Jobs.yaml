@@ -1,0 +1,410 @@
+openapi: 3.0.1
+info:
+  title: Densify – Receive Metrics Jobs API
+  version: "1.0.0"
+  description: |
+    Create, list, view, upload to, execute/schedule, download from, and delete Receive Metrics jobs
+    used to transfer utilization metrics into Densify. Download endpoints return a ZIP
+    (application/octet-stream).
+
+servers:
+  - url: https://{host}
+    variables: { host: { default: api.example.com } }
+tags:
+  - name: Receive Metrics Jobs
+paths:
+  /receive/metrics/jobs:
+    post:
+      tags: [Receive Metrics Jobs]
+      operationId: createMetricsJob
+      summary: Create a Receive Metrics job
+      description: Create a job. If `name` is omitted, it defaults to the job GUID.
+      externalDocs:
+        url: https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs.htm
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateJobRequest' }
+      responses:
+        '200':
+          description: Job created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JobCreated' }
+        '403': { description: Limit number of active jobs has been reached. }
+        '400': { description: Malformed request. }
+        '500': { description: Server error. }
+    get:
+      tags: [Receive Metrics Jobs]
+      operationId: listMetricsJobs
+      summary: List all Receive Metrics jobs
+      description: List all jobs.
+      externalDocs:
+        url: https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs.htm
+      responses:
+        '200':
+          description: Jobs list
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/JobListItem' }
+
+  /receive/metrics/jobs/{jobId}:
+    get:
+      tags: [Receive Metrics Jobs]
+      operationId: getMetricsJob
+      summary: View job details
+      description: View job details (including parameters, audit info, input files, logs, and status).
+      externalDocs:
+        url: https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs.htm
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+        - $ref: '#/components/parameters/lines_to_tail_in_logs'
+      responses:
+        '200':
+          description: Job details
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Job' }
+        '404': { description: The job does not exist in the system. }
+    post:
+      tags: [Receive Metrics Jobs]
+      operationId: uploadFileAndOptionallyExecute
+      summary: Upload a file and (optionally) execute or schedule
+      description: Upload a file to the job. With `execute=true`, run now or at `time` (HH:mm 24-hour). With `execute=false`, only upload.
+      externalDocs:
+        url: https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs.htm
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+        - $ref: '#/components/parameters/execute'
+        - $ref: '#/components/parameters/time'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: { file: { type: string, format: binary } }
+              required: [file]
+      responses:
+        '200':
+          description: Upload accepted; execution may be scheduled or performed
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JobCreated' }
+        '400': { description: Invalid arguments (e.g. time format). }
+        '409': { description: Job currently running; action canceled. }
+        '500': { description: Server or ingestion error. }
+    delete:
+      tags: [Receive Metrics Jobs]
+      operationId: deleteMetricsJob
+      summary: Delete a job and all its contents
+      description: Delete the job and all related contents.
+      externalDocs:
+        url: https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs.htm
+      parameters: [ { $ref: '#/components/parameters/jobId' } ]
+      responses:
+        '200': { description: OK (deleted). }
+        '404': { description: Job not found. }
+
+  /receive/metrics/jobs/{jobId}/input:
+    get:
+      tags: [Receive Metrics Jobs]
+      operationId: listJobInputFiles
+      summary: List input files for a job
+      description: List the input files for the job.
+      externalDocs:
+        url: https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs.htm
+      parameters: [ { $ref: '#/components/parameters/jobId' } ]
+      responses:
+        '200':
+          description: Input files
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobInputFilesResponse'
+
+  /receive/metrics/jobs/{jobId}/logs:
+    get:
+      tags: [Receive Metrics Jobs]
+      operationId: listJobLogFiles
+      summary: List log files for a job
+      description: List the log files for the job (optionally tail N lines).
+      externalDocs:
+        url: https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs.htm
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+        - $ref: '#/components/parameters/lines_to_tail_in_logs'
+      responses:
+        '200':
+          description: Log files (with optional tail)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobLogsResponse'
+
+  /receive/metrics/jobs/{jobId}/audit_info:
+    get:
+      tags: [Receive Metrics Jobs]
+      operationId: getJobAuditInfo
+      summary: View job audit information
+      description: View audit information for the job.
+      externalDocs:
+        url: https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs.htm
+      parameters: [ { $ref: '#/components/parameters/jobId' } ]
+      responses:
+        '200':
+          description: Audit info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAuditInfoResponse'
+
+  /receive/metrics/jobs/{jobId}/download/files:
+    get:
+      tags: [Receive Metrics Jobs]
+      operationId: downloadJobFiles
+      summary: Download generated files (ZIP)
+      description: Download generated files as a ZIP (`{jobId}_download.zip`). Use `file` to download a specific file.
+      externalDocs:
+        url: https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs.htm
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+        - $ref: '#/components/parameters/file'
+      responses:
+        '200':
+          description: Zipped files
+          content:
+            application/octet-stream:
+              schema: { type: string, format: binary }
+
+  /receive/metrics/jobs/{jobId}/logs/files:
+    get:
+      tags: [Receive Metrics Jobs]
+      operationId: downloadJobLogs
+      summary: Download log files (ZIP)
+      description: Download log files as a ZIP (`{jobId}_logs.zip`). Use `file` to download a specific log.
+      externalDocs:
+        url: https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs.htm
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+        - $ref: '#/components/parameters/file'
+      responses:
+        '200':
+          description: Zipped logs
+          content:
+            application/octet-stream:
+              schema: { type: string, format: binary }
+
+  /receive/metrics/jobs/{jobId}/contents/input:
+    delete:
+      tags: [Receive Metrics Jobs]
+      operationId: deleteJobInputFiles
+      summary: Delete all input files for a job
+      description: Delete all input files for the job.
+      externalDocs:
+        url: https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs.htm
+      parameters: [ { $ref: '#/components/parameters/jobId' } ]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/StatusMessage' }
+
+  /receive/metrics/jobs/{jobId}/contents/logs:
+    delete:
+      tags: [Receive Metrics Jobs]
+      operationId: deleteJobLogFiles
+      summary: Delete all log files for a job
+      description: Delete all log files for the job.
+      externalDocs:
+        url: https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs.htm
+      parameters: [ { $ref: '#/components/parameters/jobId' } ]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/StatusMessage' }
+
+  /receive/metrics/jobs/{jobId}/parameters:
+    put:
+      tags: [Receive Metrics Jobs]
+      operationId: updateJobParameters
+      summary: Replace job parameters (PUT)
+      description: Replace the job’s parameters. Provide the full list; PUT overwrites the existing set.
+      externalDocs:
+        url: https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs.htm
+      parameters: [ { $ref: '#/components/parameters/jobId' } ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items: { $ref: '#/components/schemas/Parameter' }
+      responses:
+        '200':
+          description: Updated job details
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Job' }
+
+components:
+  parameters:
+    jobId:
+      name: jobId
+      in: path
+      required: true
+      schema: { type: string }
+      description: Job GUID.
+    lines_to_tail_in_logs:
+      name: lines_to_tail_in_logs
+      in: query
+      required: false
+      schema: { type: integer, default: -1 }
+      description: Tail N lines from each log; -1 returns the entire file.
+    execute:
+      name: execute
+      in: query
+      required: false
+      schema: { type: string, enum: ["true","false"] }
+      description: Execute now or at `time` (true) or just upload (false; default).
+    time:
+      name: time
+      in: query
+      required: false
+      schema: { type: string, pattern: "^(?:[01]\\d|2[0-3]):[0-5]\\d$" }
+      description: HH:mm (24-hour) time used with `execute=true`.
+    file:
+      name: file
+      in: query
+      required: false
+      schema: { type: string }
+      description: Exact filename to download (files or logs).
+
+  schemas:
+    CreateJobRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Defaults to the job GUID when omitted.
+        parameters:
+          type: array
+          items: { $ref: '#/components/schemas/Parameter' }
+          description: Array of name/value pairs; supported keys depend on your ingestion endpoint.
+    Parameter:
+      type: object
+      properties:
+        name: { type: string }
+        value: { type: string }
+      required: [name, value]
+    JobListItem:
+      type: object
+      properties:
+        jobId: { type: string }
+        name: { type: string }
+      required: [jobId, name]
+    JobCreated:
+      type: object
+      properties:
+        jobId: { type: string }
+        name: { type: string }
+        job_status: { $ref: '#/components/schemas/JobStatus' }
+      required: [jobId, name]
+    Job:
+      type: object
+      properties:
+        jobId: { type: string }
+        name: { type: string }
+        parameters:
+          type: array
+          items: { $ref: '#/components/schemas/Parameter' }
+        audit_info: { $ref: '#/components/schemas/JobAuditInfo' }
+        input_files: { $ref: '#/components/schemas/JobInputFiles' }
+        lines_to_tail_in_logs: { type: integer }
+        logs: { $ref: '#/components/schemas/JobLogs' }
+        job_status: { $ref: '#/components/schemas/JobStatus' }
+    JobInputFiles:
+      type: array
+      items:
+        type: object
+        properties:
+          name: { type: string, description: "Filename" }
+          size: { type: integer, description: "Bytes" }
+    JobLogs:
+      type: array
+      items:
+        type: object
+        properties:
+          name: { type: string, description: "Log filename" }
+          contents: { type: string, description: "Tail contents depending on lines_to_tail_in_logs" }
+    JobAuditInfo:
+      type: object
+      properties:
+        audit_name: { type: string }
+        audit_date: { type: string }
+        audit_path: { type: string }
+        target_audit: { type: integer }
+        targets_failed: { type: integer }
+        audit_end_date: { type: string }
+        load_date: { type: string }
+        load_end_date: { type: string }
+        load_status: { type: string }
+      description: Last audit details, when present.
+    JobInputFilesResponse:
+      type: object
+      properties:
+        jobId: { type: string }
+        name: { type: string }
+        parameters:
+          type: array
+          items: { $ref: '#/components/schemas/Parameter' }
+        input_files: { $ref: '#/components/schemas/JobInputFiles' }
+    JobLogsResponse:
+      type: object
+      properties:
+        jobId: { type: string }
+        name: { type: string }
+        parameters:
+          type: array
+          items: { $ref: '#/components/schemas/Parameter' }
+        logs: { $ref: '#/components/schemas/JobLogs' }
+    JobAuditInfoResponse:
+      type: object
+      properties:
+        jobId: { type: string }
+        name: { type: string }
+        parameters:
+          type: array
+          items: { $ref: '#/components/schemas/Parameter' }
+        audit_info: { $ref: '#/components/schemas/JobAuditInfo' }
+    JobStatus:
+      type: object
+      description: |
+        Status of the last/active job operation:
+        - `code`: 0 success; -1 error (or last audit load code if no statuscode.txt)
+        - `message`: from statusmessage.txt (or last audit load status)
+        - `files`: non-status files in the job status folder.
+      properties:
+        code: { type: integer }
+        message: { type: string }
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              size: { type: integer }
+    StatusMessage:
+      type: object
+      properties:
+        message: { type: string }
+        status:
+          type: integer
+          description: '200 OK; 404 not found; 409 running; 400 invalid/permissions; 500 other.'
+      required: [message, status]

@@ -1,0 +1,340 @@
+openapi: 3.0.3
+info:
+  title: Densify – Subscriptions API
+  version: "1.0.0"
+  description: |
+    Create and manage subscription-based notifications for Densify cloud and container recommendations.
+    - `GET /subscriptions/{platformType}` lists subscriptions with filters.
+    - `POST /subscriptions/{platformType}` creates **one or more** subscriptions (bulk add, all-or-nothing).
+    - `PUT /subscriptions/{platformType}/{subscriptionRef}` replaces an existing subscription.
+    - `DELETE /subscriptions/{platformType}` deletes **one or more** subscriptions.
+    - `DELETE /subscriptions/{platformType}/{subscriptionRef}` deletes a single subscription.
+    Notes:
+    • `platformType` is `cloud` or `containers`; `/subscriptions` (no platform) behaves like `/subscriptions/cloud` for backward compatibility. 
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: api.example.com
+tags:
+  - name: Subscriptions
+paths:
+  /subscriptions:
+    get:
+      tags: [Subscriptions]
+      operationId: listSubscriptionsDefaultPlatform
+      summary: List subscriptions (alias of /subscriptions/cloud)
+      description: Behaves the same as `GET /subscriptions/cloud`. Backward compatibility alias. 
+      parameters:
+        - $ref: '#/components/parameters/type'
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/subscriptionRefQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/SubscriptionList'
+  /subscriptions/{platformType}:
+    get:
+      tags: [Subscriptions]
+      operationId: listSubscriptions
+      summary: List subscriptions for a platform
+      description: |
+        Returns a list of existing platform-specific subscriptions. Filters:
+        - `type` → all | global | owner
+        - `owner` (admin only) → list another user's private subs with `type=owner`
+        - `subscriptionRef` → return a single subscription by ID. 
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+        - $ref: '#/components/parameters/type'
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/subscriptionRefQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/SubscriptionList'
+        '400': { description: Bad Request (e.g. querying owner you don't own and you're not admin). }
+        '401': { description: Authentication failed. }
+        '500': { description: Server error. }
+    post:
+      tags: [Subscriptions]
+      operationId: createSubscriptions
+      summary: Create subscriptions (bulk)
+      description: |
+        Creates a **collection** of platform-specific subscriptions in one request. The operation
+        is committed as a whole: any creation failure rolls back the entire batch. Non-admin users
+        are auto-assigned as `owner`; admins may create global (owner="") or assign any owner. 
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items: { $ref: '#/components/schemas/SubscriptionUpsert' }
+            examples:
+              createOne:
+                value:
+                  - subscriptionName: "My Weekly Cloud Feed"
+                    description: "Finance BU, prod apps; weekly"
+                    owner: ""
+                    active: "true"
+                    webhook: { uri: "https://hooks.example/teams", authType: "basic", authValue: "user:pass" }
+                    tagReferences:
+                      - { tagID: "business_unit", operator: "equals", values: ["Finance"] }
+                    propertyReferences:
+                      - { propertyID: "serviceType", operator: "equals", values: ["Virtual Machine"] }
+                    suppressionReferences:
+                      - { suppressionID: "no-m3", operator: "like", values: ["m3*"], revokeBy: "1735689600000" }
+                    returnStructure:
+                      showAliases: true
+                      fields: ["name","region","currentType","recommendedType","savingsEstimate","rptHref"]
+                    schedule:
+                      frequency: "WEEKLY"
+                      at: "08:30"
+      responses:
+        '200':
+          description: Created (batch result)
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Subscription' }
+        '400': { description: Validation/logic error; entire batch rolled back. }
+        '401': { description: Authentication failed. }
+        '500': { description: Server error. }
+    delete:
+      tags: [Subscriptions]
+      operationId: deleteSubscriptions
+      summary: Delete subscriptions (bulk)
+      description: |
+        Deletes a **collection** of subscriptions by ID. Each delete is independent; an error on one
+        does not affect others. Success returns **204 No Content**; **404 Not Found** if a sub doesn't
+        exist or you lack privilege (non-owner, non-admin). Admins may delete any global/private subs. 
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+      responses:
+        '204': { description: No Content (all attempted deletes processed).  }
+        '404': { description: Not Found / No privilege.  }
+        '401': { description: Authentication failed. }
+        '500': { description: Server error. }
+  /subscriptions/{platformType}/{subscriptionRef}:
+    put:
+      tags: [Subscriptions]
+      operationId: replaceSubscription
+      summary: Replace an existing subscription (full PUT)
+      description: |
+        Replaces **all** parameters of an existing subscription. You must supply all body parameters
+        required by the existing subscription. Non-admin users can only modify their own private subs;
+        admins can also promote private→global by setting `owner: ""`. 
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+        - $ref: '#/components/parameters/subscriptionRef'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/SubscriptionUpsert' }
+      responses:
+        '200':
+          description: Updated subscription
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Subscription' }
+        '400': { description: Validation/logic error. }
+        '401': { description: Authentication failed. }
+        '404': { description: Subscription not found / no privilege. }
+        '500': { description: Server error. }
+    delete:
+      tags: [Subscriptions]
+      operationId: deleteSubscription
+      summary: Delete a single subscription
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+        - $ref: '#/components/parameters/subscriptionRef'
+      responses:
+        '204': { description: No Content (deleted). }
+        '404': { description: Not Found / No privilege. }
+        '401': { description: Authentication failed. }
+
+components:
+  parameters:
+    platformType:
+      name: platformType
+      in: path
+      required: true
+      description: Technology platform (`cloud` or `containers`). 
+      schema:
+        type: string
+        enum: [cloud, containers]
+    subscriptionRef:
+      name: subscriptionRef
+      in: path
+      required: true
+      description: Unique subscription identifier. 
+      schema: { type: string }
+    subscriptionRefQuery:
+      name: subscriptionRef
+      in: query
+      required: false
+      description: Return details for a single subscription by ID. 
+      schema: { type: string }
+    type:
+      name: type
+      in: query
+      required: false
+      description: |
+        Which subscriptions to list:
+        - `all` (default): global + your private (admins see all)
+        - `global`: all global
+        - `owner`: user-specific; combine with `owner=` (admin can query any user) 
+      schema:
+        type: string
+        enum: [all, global, owner]
+      example: owner
+    owner:
+      name: owner
+      in: query
+      required: false
+      description: Densify username to scope `type=owner` queries (admins only for others). 
+      schema: { type: string }
+
+  responses:
+    SubscriptionList:
+      description: Array of subscriptions
+      content:
+        application/json:
+          schema:
+            type: array
+            items: { $ref: '#/components/schemas/Subscription' }
+
+  schemas:
+    WebHook:
+      type: object
+      properties:
+        uri: { type: string, format: uri }
+        authType: { type: string }
+        authValue: { type: string }
+      required: [uri]
+      description: Webhook destination for delivering subscription notifications. 
+    PropertyCondition:
+      type: object
+      properties:
+        propertyID: { type: string }
+        operator: { type: string }
+        values:
+          type: array
+          items: { type: string }
+      required: [propertyID, operator, values]
+      description: Filter on recommendation fields. Requires at least one **core** property overall. 
+    TagCondition:
+      type: object
+      properties:
+        tagID: { type: string }
+        operator: { type: string }
+        values:
+          type: array
+          items: { type: string }
+      required: [tagID, operator, values]
+      description: Filter on system attributes (e.g., account, BU, app). 
+    SuppressionCondition:
+      type: object
+      properties:
+        suppressionID: { type: string }
+        operator: { type: string }
+        values:
+          type: array
+          items: { type: string }
+        revokeBy:
+          type: string
+          description: Unix time (ms) when suppression expires; omit for no expiry. 
+      required: [suppressionID, operator, values]
+      description: Exclude systems/recommendations from the output. 
+    ReturnStructure:
+      type: object
+      properties:
+        showAliases:
+          type: boolean
+          default: false
+          description: Use field aliases as element keys when true. 
+        fields:
+          type: array
+          items: { type: string }
+          description: Fields to include in returned dataset. 
+    Schedule:
+      type: object
+      properties:
+        frequency:
+          type: string
+          description: Implementation-defined frequency (e.g., NIGHTLY, WEEKLY). 
+        at:
+          type: string
+          description: "HH:mm (24h) time string for trigger." 
+      description: If omitted, notifications typically trigger nightly after analysis/reporting. 
+
+    SubscriptionUpsert:
+      type: object
+      properties:
+        subscriptionName: { type: string, description: "Unique per platform if global; unique per owner if private." }
+        owner:
+          type: string
+          description: '"" for global (admin only) or username for private; non-admins default to their username.' 
+        description: { type: string }
+        outputType:
+          type: string
+          enum: ["application/json"]
+          default: "application/json"
+          description: Only supported output type. 
+        active:
+          type: string
+          enum: ["true","false"]
+          default: "false"
+          description: 'true=active; false=dormant (no scheduled posts; on-demand still available).' 
+        webhook: { $ref: '#/components/schemas/WebHook' }
+        propertyReferences:
+          type: array
+          items: { $ref: '#/components/schemas/PropertyCondition' }
+        tagReferences:
+          type: array
+          items: { $ref: '#/components/schemas/TagCondition' }
+        suppressionReferences:
+          type: array
+          items: { $ref: '#/components/schemas/SuppressionCondition' }
+        returnStructure: { $ref: '#/components/schemas/ReturnStructure' }
+        schedule: { $ref: '#/components/schemas/Schedule' }
+      description: |
+        Provide at least **one** of: `propertyReferences`, `tagReferences`, or `suppressionReferences`. 
+
+    Subscription:
+      type: object
+      properties:
+        subscriptionRef: { type: string, description: "Unique ID assigned to the subscription." }
+        subscriptionName: { type: string }
+        description: { type: string }
+        owner: { type: string, description: "Empty for global; username for private." }
+        outputType: { type: string }
+        active: { type: string, enum: ["true","false"] }
+        webhook: { $ref: '#/components/schemas/WebHook' }
+        propertyReferences:
+          type: array
+          items: { $ref: '#/components/schemas/PropertyCondition' }
+        tagReferences:
+          type: array
+          items: { $ref: '#/components/schemas/TagCondition' }
+        suppressionReferences:
+          type: array
+          items: { $ref: '#/components/schemas/SuppressionCondition' }
+        returnStructure: { $ref: '#/components/schemas/ReturnStructure' }
+        schedule: { $ref: '#/components/schemas/Schedule' }
+        webhookStatus:
+          type: string
+          description: 'Success | Failure of last push to webhook (with timestamp).' 
+        lastTriggered:
+          type: string
+          description: 'On-Demand Success/Failure or Scheduled Success/Failure with timestamp.' 
+        message: { type: string, description: "Error/status message (on error)." }
+        status:
+          type: integer
+          description: 'HTTP-like status code (200, 204, 400, 401, 404, 415, 500).' 
+      required:
+        - subscriptionRef
+        - subscriptionName

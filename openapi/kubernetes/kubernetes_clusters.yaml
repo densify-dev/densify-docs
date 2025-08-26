@@ -1,0 +1,170 @@
+openapi: 3.0.3
+info:
+  title: Densify API – Kubernetes Clusters
+  version: 1.0.0
+  description: |
+    Endpoints to list Kubernetes clusters configured in the data forwarder
+    and to retrieve structured details for a specific cluster. No filtering
+    is applied. Unlike the /systems and /results endpoints, these do not
+    require an analysis ID.
+servers:
+  - url: https://api.example.com
+tags:
+  - name: Kubernetes Clusters
+    description: Clusters discovered via the data forwarder
+paths:
+  /kubernetes/clusters:
+    get:
+      tags: [Kubernetes Clusters]
+      summary: List Kubernetes clusters
+      operationId: listKubernetesClusters
+      description: Returns all clusters from which data is being collected. No filtering is applied.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Array of clusters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClusterSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /kubernetes/clusters/{clusterName}:
+    get:
+      tags: [Kubernetes Clusters]
+      summary: Get details for a Kubernetes cluster
+      operationId: getKubernetesClusterDetails
+      description: Returns namespaces, pods, and containers for the specified cluster.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/k8s_clusterName'
+      responses:
+        '200':
+          description: Cluster details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterDetails'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Cluster not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    k8s_clusterName:
+      name: clusterName
+      in: path
+      required: true
+      description: Unique cluster name from /kubernetes/clusters or the Kubex UI Connections tab.
+      schema:
+        type: string
+
+  schemas:
+    ClusterSummary:
+      type: object
+      properties:
+        cluster:
+          type: string
+          description: Cluster name as specified in config.yaml.
+        firstCollectionTime:
+          type: string
+          format: date-time
+          description: When data collection started (UTC).
+        lastCollectionTime:
+          type: string
+          format: date-time
+          description: Most recent data collection time (UTC).
+        nodeCount:
+          type: string
+          description: Number of nodes discovered in the cluster.
+        nodeGroupCount:
+          type: string
+          description: Number of node groups discovered in the cluster.
+        containerCount:
+          type: string
+          description: Number of containers discovered in the cluster.
+        kubexAgentVersion:
+          type: string
+          description: Data forwarder (Kubex agent) version.
+        kubernetesVersion:
+          type: string
+          description: Kubernetes version.
+        prometheusVersion:
+          type: string
+          description: Prometheus version.
+
+    ClusterDetails:
+      allOf:
+        - $ref: '#/components/schemas/ClusterSummary'
+        - type: object
+          properties:
+            namespaces:
+              type: array
+              description: Namespaces discovered in the cluster.
+              items:
+                $ref: '#/components/schemas/Namespace'
+
+    Namespace:
+      type: object
+      properties:
+        namespace:
+          type: string
+          description: Namespace name.
+        pods:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pod'
+
+    Pod:
+      type: object
+      properties:
+        podOwnerName:
+          type: string
+          description: The owner (controller) name for the pod.
+        containers:
+          type: array
+          description: Container names in the pod.
+          items:
+            type: string
+
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

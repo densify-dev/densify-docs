@@ -1,0 +1,25 @@
+---
+title: "Common Elements"
+---
+
+To be consistent across the Densify API, there are some components that are common across all the resources.
+
+## ID, Name and Self Reference (id, name, href)
+
+Every instance of an individual persistent resource is referable via its own URI. Thus each resource instance has a unique ID with a corresponding self link element that any integration code can store to refer back to that element.
+
+In general, each resource object and any reference to a resource object use the following three elements to identify the object:
+
+* `id`--UUID of the resource
+* `name`--name of the resource (if applicable)
+* `href`--link to the resource
+
+Every collection request returns the above elements of each object in the collection.
+
+<Note>
+Densify API elements, parameters, and filters are case-sensitive.
+</Note>
+
+## Date-Time
+
+Date-time elements are specified in Coordinated Universal Time (UTC) format, using the UNIX epoch time in milliseconds.

@@ -1,0 +1,155 @@
+---
+title: "Overview"
+---
+import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
+
+## Data Collection Status Details
+
+<InlineImageWithText src="/images/docs-kubex/Content/Kubex/03000109_64x59.png">
+Access this page from the side panel. The Connections icon is the last option in the Containers bar. 
+You can monitor the status of data collection for each of your clusters, from this page. 
+</InlineImageWithText>
+
+<br/><br/>
+
+
+<Frame caption="Figure: Data Collection Status Page">
+![](/images/docs-kubex/Content/Kubex/03000095_756x443.png)
+</Frame>
+
+
+
+See [Using Table Column Features](/docs-kubex/Content/Kubex/Using_Table_Column_Features) for details on setting filters and customizing views of the table's content.
+
+## Standard Data Collection Method
+
+Kubex collects your container configuration and utilization data and then analyzes the data to provide resizing recommendations to run your container-based applications on the correct infrastructure.
+You need to deploy the Densify data forwarder to collect data from your various clusters.Densify recommends using the [Kubex Automation Stack Helm Chart](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack). This Helm chart bundles all of the components required for the data forwarder and is the preferred method of enabling data collection.
+
+### Obtaining Secure Connection Parameters
+
+Before using the Helm chart, you need to obtain the required credentials using the link in the Connections tab:
+
+
+<Frame caption="Figure: Obtaining Secure Connection Parameters">
+![](/images/docs-kubex/Content/Kubex/03000178_566x348.png)
+</Frame>
+
+
+
+
+<Frame caption="Figure: Copy Secure Connection Parameters">
+![](/images/docs-kubex/Content/Kubex/03000177_571x406.png)
+</Frame>
+
+
+
+
+<Frame caption="Figure: Paste Connection Parameters into values.edit.yaml">
+![](/images/docs-kubex/Content/Kubex/03000179_571x264.png)
+</Frame>
+
+
+You can use the same credentials for each connection that you create. i.e. you can either save the block of text from the Secure Connection Parameters dialog box or reuse the values.edit.yaml file with the existing credentials and update the cluster details, as required.
+
+### Reviewing Data Collection Status
+
+Once the Kubex Automation Stack is installed and configured, data will be collected and stored for detailed analysis. As data is collected the Connections table is populated/updated with the incoming, clusters' status details.
+Densify analyzes the collected and aggregated data once daily. Once data collection has been initiated, the status details will appear in this table within 15 minutes, approximately. Your cluster will not appear in the tree viewer until it has been analyzed, within the next 24-hrs. This is also the case for all reports/tabs that report the analyzed data.
+
+
+
+<Accordion title="Table: Connections Table">
+<table>
+<thead>
+<tr>
+<th>
+Column
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Cluster
+</td>
+<td>
+The name of cluster.
+</td>
+</tr>
+<tr>
+<td>
+First Collection Time
+</td>
+<td>
+The date and time on which data was first collected.
+</td>
+</tr>
+<tr>
+<td>
+Last Collection Time
+</td>
+<td>
+The date and time on which data was last collected.
+</td>
+</tr>
+<tr>
+<td>
+Latest Node Count
+</td>
+<td>
+The number of nodes that were discovered during the last collection.
+</td>
+</tr>
+<tr>
+<td>
+Latest Node Group Count
+</td>
+<td>
+The number of node groups that were discovered during the last collection.
+</td>
+</tr>
+<tr>
+<td>
+Latest Container Count
+</td>
+<td>
+The number of containers that were discovered during the last collection.
+</td>
+</tr>
+<tr>
+<td>
+Cluster Version
+</td>
+<td>
+The version number, as obtained from each public cloud provider.
+</td>
+</tr>
+<tr>
+<td>
+Kubex Automation Stack Version
+</td>
+<td>
+The version number of the currently deployed data forwarder.
+</td>
+</tr>
+</tbody>
+</table>
+</Accordion>
+
+
+
+
+The container, node and node group counts in this table are updated each time data is collected. This could be every 15 minutes, depending on how you have configured the cronjob.
+Data is not aggregated or averaged, only reported for each cluster that is connected to Densify.
+#### Video Resources
+<AccordionGroup>
+<Accordion title="Credentials For the Forwarder">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1072244370?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1072244370?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Credentials For the Forwarder</a>
+</Accordion>
+
+</AccordionGroup>

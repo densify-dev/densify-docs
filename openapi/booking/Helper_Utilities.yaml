@@ -1,0 +1,117 @@
+openapi: 3.1.0
+info:
+  title: Densify API
+  version: 1.0.0
+  description: API for Densify Helper Utilities
+servers:
+  - url: https://api.densify.com/v1
+    description: Densify API Server
+paths:
+  /helper-utilities/resolve-cpu-benchmark:
+    post:
+      summary: Resolve CPU Benchmark
+      description: Calculate the CPU benchmark for the specified system.
+      operationId: resolveCpuBenchmark
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                manufacturer:
+                  type: string
+                  description: Manufacturer of the CPU.
+                platform_model:
+                  type: string
+                  description: Platform/Model of the system.
+                cpu_model:
+                  type: string
+                  description: CPU model.
+                cpu_speed:
+                  type: integer
+                  description: CPU speed in MHz.
+                total_physical_cpus:
+                  type: integer
+                  description: Total number of physical CPUs.
+                cores_per_cpu:
+                  type: integer
+                  description: Number of cores per CPU.
+                threads_per_core:
+                  type: integer
+                  description: Number of threads per core.
+              required:
+                - manufacturer
+                - platform_model
+                - cpu_model
+                - cpu_speed
+                - total_physical_cpus
+                - cores_per_cpu
+                - threads_per_core
+      responses:
+        "200":
+          description: Successfully calculated CPU benchmark
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Benchmark name.
+                    score_type:
+                      type: string
+                      description: Type of the score.
+                    value:
+                      type: integer
+                      description: Benchmark value.
+              example:
+                - name: CINT2006 Rate
+                  score_type: cint2006rate
+                  value: 160
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+components:
+  schemas:
+    CpuBenchmarkRequest:
+      type: object
+      properties:
+        manufacturer:
+          type: string
+        platform_model:
+          type: string
+        cpu_model:
+          type: string
+        cpu_speed:
+          type: integer
+        total_physical_cpus:
+          type: integer
+        cores_per_cpu:
+          type: integer
+        threads_per_core:
+          type: integer
+      required:
+        - manufacturer
+        - platform_model
+        - cpu_model
+        - cpu_speed
+        - total_physical_cpus
+        - cores_per_cpu
+        - threads_per_core
+    CpuBenchmarkResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        score_type:
+          type: string
+        value:
+          type: integer
+      example:
+        name: CINT2006 Rate
+        score_type: cint2006rate
+        value: 160

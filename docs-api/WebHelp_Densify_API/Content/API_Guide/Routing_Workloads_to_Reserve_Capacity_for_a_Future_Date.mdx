@@ -1,0 +1,62 @@
+---
+title: "Routing Workloads to Reserve Capacity for a Future Date"
+---
+
+## Routing Workloads to Reserve Capacity for a Future Date
+
+This use case determines where best to route a given set of Workloads at a future date. When the call is successful, capacity is reserved in the target environment and hosting venue for the future Workloads.
+
+A common scenario for this use case is initiated when a user makes a request to a cloud portal to reserve capacity for one or more virtual machines for a future date. The cloud portal, in turn, queries Densify for the best environment/hosting venue for the incoming Workload demand. Based on the results of the query, the cloud portal reserves capacity for the guests in the appropriate cloud infrastructure. The Routing Request is evaluated against all available hosting venues and the Workloads are routed to a hosting venue where the aggregate utilization of all Workloads fit and the policy constraints are satisfied. The Workloads may be routed and placed on different hosts within the hosting venue.
+
+To perform this process through the Densify API, follow the sections below:
+
+1. [Describing Workloads to Place](./Routing_Workloads_for_Immediate_Placement#_Describe_Workloads_to)
+2. [Submitting Routing Request for Future Reservations](#_Submitting_Routing_Request)
+3. [Polling for Routing Results](#_Polling_for_Routing)
+4. [Placing the VMs](#Placing)
+
+Step 1 is identical to the [Routing Workloads for Immediate Placement](./Routing_Workloads_for_Immediate_Placement#_Routing_Workloads_for) process described above. Steps 2 and 3 require small modifications to accommodate future reservations. Step 4 is similar to the [Routing Workloads for Immediate Placement](./Routing_Workloads_for_Immediate_Placement#_Routing_Workloads_for) process; however, you can place VMs one at a time as the `expected_date` arrives.
+
+### Submitting Routing Request for Future Reservations
+
+To reserve capacity for a future date, the Routing Request needs to include a future expected date. The following example shows how the Routing Request would be structured for March 20, 2016:
+
+<Accordion title="Example: Submitting Routing Request for Future Reservations">
+Request:
+
+```json
+POST /routing-request
+{
+  "expected_date": 1458486159000,
+  "workloads": [
+    {"id": "140d5327-cec4-4f86-a5c1-bb59b9d0d639",
+     "id": "54e01c38-c87d-4fcb-a8b1-380d5ba46f64"}
+  ]
+}
+```
+
+
+
+</Accordion>
+
+
+Once the Routing Request is created, a Routing Request object is immediately returned with an [ID, Name and Self Reference (id, name, href)](./Common_Elements) that can be used to query for status. For more information about the format of the Routing Request response, see [Routing Requests](./Routing_Requests).
+
+### Polling for Routing Results
+
+When the Routing Request for future reservations is fully processed, the state of the Routing Request object is set to one of:
+
+* `BOOKED`--Densify has routed and reserved space for all the Workloads specified in the Routing Request.
+* `REJECTED`--Densify could not route or reserve space for at least one Workload in the Routing Request.
+
+On the day that the Routing Request is to be fulfilled, the status of the Routing Request changes to `PLACED` (or `REJECTED` if no matching workload comes online or if it fails to find a qualified host). A Routing Request is `PLACED` when all its Workloads are also `PLACED`. The Workloads are updated with the recommended hosts where the incoming workloads should be placed.
+
+### Placing the VMs
+
+When you are ready to create a guest in your environment, you can perform a `GET` on Workload objects in `BOOKED` status with `expected_date` of today. Determine the specific Workload you would like to first place and perform a `GET` on that object. This will determine the recommended `host`/`sensor` placement and will update the Workload to `PLACED`. Start the Workload (guest) on the specified host.
+
+<Note>
+Once this `host`/`sensors` element is defined, it is not updated on subsequent `GET` individual requests.
+</Note>
+
+

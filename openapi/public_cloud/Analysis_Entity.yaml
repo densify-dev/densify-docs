@@ -1,0 +1,157 @@
+openapi: 3.1.0
+info:
+  title: Densify – Analysis Entity API
+  version: "1.0.0"
+  description: |
+    Access Densify analysis entities for various platforms (cloud and container).
+    Use GET to list analyses or fetch details for a specific analysis.  
+    Supports platformType (`cloud`, `containers`) and platformSubType (`aws`, `gcp`, `azure`, `kubernetes`).  
+    See "Analysis: Entity" documentation for details.  
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: api.example.com
+tags:
+  - name: Analysis Entity
+paths:
+  /analysis/{platformType}/{platformSubType}:
+    get:
+      tags: [Analysis Entity]
+      operationId: listAnalysisEntities
+      summary: List analysis entities for a given platform/subtype
+      description: |
+        Returns a collection of analysis entities for the specified platform and vendor.
+        Each entity represents infrastructure analyzed by Densify within a scope (account, subscription, cluster, etc.).  
+      parameters:
+        - name: platformType
+          in: path
+          required: true
+          description: Platform type (`cloud` or `containers`)
+          schema:
+            type: string
+            enum: ["cloud", "containers"]
+        - name: platformSubType
+          in: path
+          required: true
+          description: Platform subtype (e.g. `aws`, `gcp`, `azure`, `kubernetes`)
+          schema:
+            type: string
+            enum: ["aws", "gcp", "azure", "kubernetes"]
+        - name: analysisName
+          in: query
+          required: false
+          description: Exact-match filter on analysis name (e.g. account ID, subscription ID, project, cluster name)
+          schema:
+            type: string
+        - name: analysisName_like
+          in: query
+          required: false
+          description: Substring match filter for analysis name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of available analysis entities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AnalysisEntity'
+        '400':
+          description: Invalid platform type or subtype
+        '401':
+          description: Authentication failed
+        '404':
+          description: No analyses found for given platform/subtype
+        '500':
+          description: Server error
+
+  /analysis/{platformType}/{platformSubType}/{analysisId}:
+    get:
+      tags: [Analysis Entity]
+      operationId: getAnalysisEntity
+      summary: Get details for a specific analysis entity
+      description: |
+        Retrieve details for the specified analysis entity, including links to results, status, and policy info.  
+      parameters:
+        - name: platformType
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: ["cloud", "containers"]
+        - name: platformSubType
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: ["aws", "gcp", "azure", "kubernetes"]
+        - name: analysisId
+          in: path
+          required: true
+          description: Unique identifier of the analysis
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Details of the specified analysis entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisEntity'
+        '400':
+          description: Invalid parameters
+        '401':
+          description: Authentication failed
+        '404':
+          description: Analysis entity not found
+        '500':
+          description: Server error
+
+components:
+  schemas:
+    AnalysisEntity:
+      type: object
+      description: |
+        Represents an analysis within Densify defined for a given platform and vendor.
+        Contains metadata and links to follow-on resources.  
+      properties:
+        accountId:
+          type: string
+          description: Account identifier (for cloud) or cluster scope (for containers)  
+        accountName:
+          type: string
+          description: Human-readable name for the account or cluster scope  
+        analysisCompletedOn:
+          type: integer
+          format: int64
+          description: Timestamp in milliseconds when the analysis last completed (or 0 if never completed)  
+        analysisId:
+          type: string
+          description: Unique identifier for the analysis entity  
+        analysisName:
+          type: string
+          description: Name of the analysis--usually account/subscription/project/cluster name  
+        href:
+          type: string
+          description: Link to this analysis entity resource  
+        analysisResults:
+          type: string
+          description: Link to the recommendations/results resource for this analysis  
+        analysisStatus:
+          type: string
+          description: Link to the status resource for this analysis  
+        policyInstanceId:
+          type: string
+          description: Identifier of policy instance used for the analysis  
+        policyName:
+          type: string
+          description: Name of the policy applied during analysis  
+      required:
+        - analysisId
+        - analysisName
+        - href
+        - analysisResults
+        - analysisStatus

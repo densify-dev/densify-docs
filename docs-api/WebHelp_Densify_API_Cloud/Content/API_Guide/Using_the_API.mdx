@@ -1,0 +1,114 @@
+---
+title: "Using the API"
+---
+
+## Authentication
+
+### Authentication Methods
+
+Densify supports only token-based authentication for securing API requests. Densify employs the JSON Web Token (JWT) standard. You need to obtain a signed token using an `/authorize` request, which can then be used for authenticating subsequent Densify API calls. See [Authorize](./Authorize) for details.
+
+### API-enabled User Credentials
+
+To access the API, you need Densify API-enabled user credentials. An API-enabled user must have the SaaS\_User role assigned.
+
+## Configuration Settings
+
+The following configuration settings can affect your API requests.
+
+Table: API and Report Settings
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>Setting</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+<td>
+<p>Default Value</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>API Detailed Logging<br/>(key=rest.api.logging)<br/><a name="kanchor36"></a></p>
+</td>
+<td>
+<p>Enables additional logging of API requests to the <span class="mc-variable Document.Company variable">Densify</span> web server log file, /var/opt/CRBAcat/logs/web-service.log. </p>
+</td>
+<td>
+<p>OFF</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>API Page Size<br/>(key=rest.api.paging.pageSize)<br/><a name="kanchor37"></a></p>
+</td>
+<td>
+<p>The number of objects returned when performing a <code>GET</code> request on a collection of objects. To override the page size, use the following syntax (see <a class="RefToBookmark MCXref xref xrefRefToBookmark" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Common_Operations#_Paging_2"><u>Paging</u></a> for details): </p>
+<p><code>GET /\<resource object>/?page=\<pagenumber>&page_size=\<pagesize>]</code></p>
+</td>
+<td>
+<p>100</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>API Key Rotation (Days)<br/>(key=rest.api.key.rotation)<a name="kanchor38"></a></p>
+</td>
+<td>
+<p>Specifies the number of days the <span class="mc-variable Document.Densify variable">Densify</span> API key is rotated.</p>
+</td>
+<td>
+<p>30</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>API Token Expiring (Minutes)<br/>(key=rest.api.token.expiry)<a name="kanchor39"></a></p>
+</td>
+<td>
+<p>Specifies the JWT API token expiry time, in minutes. Configuring a short expiry time is recommended.</p>
+</td>
+<td>
+<p>5</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Enable Password Policy<br/>(key=password.policy.enabled)<a name="kanchor40"></a></p>
+</td>
+<td>
+<p>Enables the password policy and enforces password character, length and lockout policies. See <i>Managing Configuration Settings</i>> <span class="CiRBAcharCrossreference">Password Policy</span> (Help Topic ID 111250).</p>
+<p>If this setting is set to TRUE, <span class="mc-variable Document.API variable">Densify API</span> user accounts are subjected to the Password policy rules on login attempts, expiry date, and inactivity lockout.</p>
+<Note><b>Note: </b>The <span class="mc-variable Document.API variable">Densify API</span> does not enforce Character and Length Password policies during authentication.</Note>
+</td>
+<td>
+<p>FALSE</p>
+</td>
+</tr>
+</table>
+
+Contact Support@Densify.com for details on changing any of these properties
+
+<Note>
+Densify API elements, parameters, and filters are case-sensitive.
+</Note>
+
+## Logging
+
+You can view the requests and the owner who performed the requests in the web server log file (`%CIRBA_HOME%\logs\cirba-webserver.log`). The log file also includes POST request details such as creation and state changes. This information is logged independently of configuration setting, API Detailed Logging, below.
+
+To enable detailed logging, specify the configuration setting API Detailed Logging to "ON":
+
+```
+rest.api.logging=ON
+```
+
+Contact Support@Densify.com for details on changing any of these properties

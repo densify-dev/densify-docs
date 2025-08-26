@@ -1,0 +1,92 @@
+---
+title: "Overview"
+---
+
+## Description
+
+A Routing Request can be posted with an available capacity query before actually creating the Routing Request. This query can be used to determine the best placement based on cost, capacity and Fit-for-Purpose. Workloads can then be manually routed to your preferred hosting venues.
+
+The Routing Request Available Capacity Query accepts UNROUTED or REJECTED Workloads, or REJECTED Routing Requests.
+
+Available capacity is determined using a conservative approach, reserving capacity for Workloads specified in Routing Requests that are not yet placed for all future timeframes and continuing to reserve capacity for outbound Bookings that are still online. Also, the available capacity query returns capacity for new planned hosts and sensors, including those sensors that are shared among open and closed hosting venues. Infinite capacity is calculated for non-control and guest-level environments and hosting venues.
+
+For Fit-for-Purpose, the query returns the Fit-for-Purpose results for the hosting venues and datastores. This includes fit according to software requirements, fit for business rules, fit for storage tiers, etc. A Routing Request cannot be routed to a hosting venue that is not fit, i.e. does not pass the Fit-for-Purpose rules, does not have enough capacity, and does not Allow New VM Bookings.
+
+<Note>
+The results of this query INCLUDE sensors that do not Allow New VM Bookings.
+</Note>
+
+
+
+The query can be posted by defining a scope of environments and/or hosting venues to consider. In this way, you can narrow your query as needed.
+
+### Hosting Venues
+
+This API supports a mix of full control hosting venues (i.e. infrastructure groups), non-control hosting venues and guest-level hosting venues.
+
+With respect to this API, the difference between these venues is as follows:
+
+* Supported Operations--all operations are supported for all three hosting venues except:
+
+* for non-control and guest-level hosting venues, options `?detailed_sensor_calc=true` and `?detailed_host_calc=true` do not apply
+
+* Resource Elements--only elements that are applicable to the hosting venue is returned in the response. Also, some elements may have special values as non-control and guest-level hosting venues have infinite capacity. Specifically:
+
+* for non-control and guest-level hosting venues and their environments, element `cei`, `constraint` and `constraint_name` are not returned
+* for non-control and guest-level hosting venues and environments, empty array elements `"subslots": []`, `"sensor_capacity": []`, `"host_capacity": []` are returned
+* for non-control and guest-level hosting venues of infinite capacity, `slots` is set to MAXINT (with a `"hosting_score": 100`) if the hosting venue passes the Fit-for-Purpose requirements and is 0 otherwise (with a `"hosting_score": 0`)
+* for environments of non-control and guest-level hosting venues, `total_slots` is set to MAXINT if at least one of its hosting venues has `slots` set to MAXINT and is 0 otherwise
+* for non-control and guest-level hosting venues, the capacity/cost mode does not apply. The mode is always assumed `capacity_sensitive` and element `"hosting_cost": 0` is returned.
+
+### Options for Returned Details
+
+You can extend the query with one or all of the following:
+
+* `?subslots=true` (default is `false`)--to return the slot workload metrics which can be used to determine the primary `constraint` for the available capacity. When set to true, the query returns the elements of the `subslots` array for each hosting venue (even if the Infrastructure Group is closed/blocked), `subslots` and `tiers` array for each sensor type (where applicable), and `subslots` array for each host.
+* `?detailed_sensor_calc=true` (default is `false`)--to return sensor metrics using a highly detailed computation of sensor capacity that also consolidates duplicate sensors across Control Environments. The recommendation is to use this flag when trying to determine available capacity at the environment level. If you are only considering available capacity at a hosting venue level, then the recommendation is not to use this flag. When `?detailed_sensor_calc=true` is not used, the query aggregates all sensor metrics before determining slot counts, instead of aggregating slot counts based on individual sensor metrics.
+* `?ffp_enabled=false` (default is `true`)--to return available capacity without Fit-for-Purpose calculations. With this option, all Fit-for-Purpose tests pass. The `"categories": []` is returned empty and the resulting pass status `"status": "PASS"` is returned. The `hosting_score` (described below) is calculated assuming the Fit-for-Purpose tests all pass. This option is used when the Route and Reserve Demand page is first displayed and can be used when generating slot reports.
+* `?negative_slots=true` (default is `false`)--to perform capacity calculations and then either return actual slot counts even if negative (when true) or show negative slot counts as 0. This affects element `slots` for the number of Workloads and Sensors that can fit in this hosting venue, element `subslots value` for specific slot and sensor metrics, and element `total_slots` for the total sum of `slots` elements for the hosting venues within the environment. All constraints and sums are calculated first before any values are updated when `?negative_slots=false`. For example, if IG1=10 and IG2=-5, then IG1=10, IG2=-5 and Env=5 are returned with `?negative_slots=true`, and IG1=10, IG2=0 and Env=5 are returned with `?negative_slots=false`. The `constraint` is the same, independent of this `?negative_slots` option.
+* `?detailed_host_calc=true` (default is `false`)--to return the slot count, primary constraint and subslot metrics on a per host basis for today. When set to true and if the `expected_date` is today, the query returns the element `host_capacity`.
+
+### Capacity Based on Expected Date
+
+This `POST` returns the following capacity information based on the `expected_date` (or today if no `expected_date` is specified). For each hosting venue that matches the request, the number of available slots (i.e. the number of Workloads that can fit including sensor capacity), CEI, `subslot` metrics, Fit-for-Purpose tests and `hosting_score` are returned. The `hosting_score` is a standard metric with a range 0..100 to determine the best routing choice. For each Control Environment that matches the request, `total_slots`, CEI and `subslot` metrics are returned. The `total_slots` and `subslot` metrics of each environment is equal to the total of all slots and `subslot` metrics from the returned list of matching hosting venues, only if sensors are not shared across hosting venues or other environments.
+
+### Capacity/Cost Mode Option and Hosting Score
+
+The available capacity query calculates the `hosting_score` as an integer from 0..100 where 0 means no placement and 100 provides the best placement out of the specified scope. There are three modes that are supported, which affect this score. You can either take the default mode as defined by the configuration setting API Default Routing Strategy (see [Configuration Settings](./Using_the_API#Configur)) or you can specify the mode as part of the query:
+
+* `?mode=capacity_sensitive`--Calculates the `hosting_score` according to the available capacity of the hosting venues. The more capacity available, the higher the score.
+* `?mode=cost_sensitive`--Calculates the `hosting_score` according to the cost while ensuring there is enough capacity. The higher the cost, the lower the score. If the `hosting_cost` is 0, then the `hosting_score=0`.
+* `?mode=cost_and_capacity`--Calculates the `hosting_score` as the average of the `capacity_sensitive` and `cost_sensitive`. This is the default.
+
+<Note>
+If an Infrastructure Group has an `availability_status=UNAVAILABLE` or `BLOCKED_BY_USER`, has no available slots (i.e. `slots<=0` or `sensor_capacity slots<=0`), or fails the Fit-for-Purpose tests, then the returned `hosting_score` is 0 for that Infrastructure Group. Workloads cannot be routed to such Infrastructure Groups, unless the placement is forced.
+</Note>
+
+
+
+### Available Slots
+
+The number of available slots is the number of Workloads (taking into account sensor capacity requirements) that can fit within a hosting venue. The size of each slot is defined by the aggregate of the Workloads specified in the Routing Request. For example, if there are 2 available slots, then that means two Routing Requests with the same Workload requirements can fit.
+
+The available slots is defined in element `slots` and can take on any of the following values (rounded down to the nearest integer):
+
+* MAXINT--applies only to a non-control or guest-level hosting venue, if it passes the Fit-for-Purpose requirements
+* positive integer--number of such Workloads that can still fit in the hosting venue. Capacity is still available and is limited by the policy high limits.
+* 0--no available capacity, or the Infrastructure Group has an `availability_status` of `"UNAVAILABLE"`. 0 is also returned if the hosting venue does not pass the Fit-for-Purpose validation or if the `expected_date` is past the timeline for that hosting venue. If there is no capacity, option `?negative_slots=false` always updates the slot count to 0.
+* negative integer--number of such Workloads that have been over-provisioned to the hosting venue. This number of Workloads should be moved to another hosting venue. There is no capacity left, as defined by the policy high limits.
+
+### Notes
+
+If there is no data for the timeframe as specified by the `requested_date` of the Routing Request, the CEI for today and the slot capacity of 0 are returned.
+
+See [Querying Available Capacity for Specified Workloads](./Querying_Available_Capacity_for_Specified_Workloads) for more information on slots.
+
+This query supports inline Workloads having only single disk requirements with no storage tier specified and with no attributes specified.
+
+## Resource
+
+```json
+/routing-requests/available-capacity-query
+```

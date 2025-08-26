@@ -1,0 +1,41 @@
+---
+title: "Overview"
+---
+
+## Description
+
+A Catalog Specification represents a pre-configured specification for a new guest or host. All Catalog Specifications shipped with Densify are defined with a medium utilization Workload Profile and one disk definition.
+
+When you create a Workload, you specify the Catalog Specification using element `catalog_spec`.
+
+## Manufacturer, OS Groups
+
+The Catalog Specification collection is currently grouped by manufacturer and operating system. To obtain this list of supported groups, simply perform a collection request using `/catalog-spec-groups`.
+
+To obtain the group collection, simply append the group name (i.e. `manufacturer` or `os`) to your Catalog Specification Group collection request (e.g. use `/catalog-spec-groups/os` to obtain the list of operating systems). The group collection is returned in alphabetical order by name.
+
+To obtain the list of Catalog Specifications for a specific manufacturer or operating system, use `/catalog-spec-groups/<group>/<group name>` (e.g. `/catalog-spec-groups/os/AIX` to obtain the Catalog Specifications supporting AIX).
+
+## Resource
+
+```json
+/catalog-specs
+```
+
+
+
+```json
+/catalog-spec-groups
+```
+
+
+
+```json
+/catalog-spec-groups/manufacturer
+```
+
+
+
+```json
+/catalog-spec-groups/os
+```

@@ -1,0 +1,45 @@
+---
+title: "Overview"
+---
+
+## Description
+
+A Routing Request can be posted with a Candidate Infrastructure Group query. This query is similar to `/routing-requests/available-capacity-query`, but returns only the hosting venues that pass the Fit for Purpose checks from the specified scope.
+
+The specifics for the Routing Requests--Candidate Infrastructure Groups are:
+
+* same input and output format as Routing Requests--Available Capacity Query
+* returns only the subset of hosting venues that pass the Fit for Purpose checks from the specified scope
+* returns only the test element as follows, as all tests have "PASS" status
+```json
+"test": [
+  {
+    "status_reasons": [],
+    "status": "PASS"
+  }
+]
+```
+
+
+* supports options `mode`, `subslots`, `detailed_sensor_calc`, `?negative_slots=true` and `detailed_host_calc=true` but not `ffp_enabled` (which is ignored if specified)
+
+Note that this query returns those hosting venues that pass the Fit for Purpose checks. Hosting venues that do not have enough available capacity, but that pass the Fit for Purpose checks, are also returned.
+
+### Options for Returned Details
+
+You can extend the query with one or all of the following, as documented in [Options for Returned Details](./Routing_Requests_Available_Capacity_Query#Options) for the [Routing Requests–Available Capacity Query](./Routing_Requests_Available_Capacity_Query):
+
+* `?subslots=true`
+* `?detailed_sensor_calc=true`
+* `?negative_slots=true`
+* `?detailed_host_calc=true`
+
+### Capacity/Cost Mode Option and Hosting Score
+
+You can extend the query by specifying a mode to calculate the hosting score, as documented in [Capacity/Cost Mode Option and Hosting Score](./Routing_Requests_Available_Capacity_Query#Capacity) for the [Routing Requests–Available Capacity Query](./Routing_Requests_Available_Capacity_Query):
+
+## Resource
+
+```json
+/routing-requests/candidate-infrastructure-groups
+```

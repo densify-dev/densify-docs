@@ -1,0 +1,44 @@
+---
+title: "Clusters with Insufficient Capacity Reports"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The Clusters With Insufficient Capacity reports show the clusters (as defined by your global filter) with insufficient capacity and could be at risk. Clusters with insufficient capacity are considered at risk when the available space is 0 or negative, which is determined by your policy settings. See [Compute Efficiency Index (CEI)](../Concepts/Compute_Efficiency_Index_CEI) for details on how this value is calculated.
+
+Risks can be reduced for clusters with insufficient capacity, highlighted in red, by:
+
+* adding resources,
+* moving workloads,
+* when appropriate, modifying overly constrained policy settings.
+
+<Note>
+Capacity is calculated based on average VM size or standard VM size, depending on your settings. The footnote, shown only in the zoomed <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> reports, details the VM size used. See [Reporting Based on Average or Standard VM](../Densify_Com/Reporting_Based_on_Average_or_Standard_VM) for details.   
+Also, these reports provide details only for the scope defined by your global filter. See [Using the Global Filter](../Densify_Com/Using_the_Global_Filter) for details.
+</Note>
+
+
+
+## Understanding Clusters With Insufficient Capacity Reports
+
+The Clusters With Insufficient Capacity report is comprised of three separate reports, as explained by the figure below:
+
+* Summary--This report shows which clusters are at risk in the environment due to not having enough infrastructure to support the running workloads, based on the operational policy settings. From the example, 6 out of the 28 clusters in scope, as defined by the global filter, have insufficient capacity. Of the 6 clusters, all 6 are open (i.e. 0 are closed).
+
+Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the clusters with insufficient capacity (zero or negative), graphed by the percentage of available capacity in terms of standard/average VM capacity units that are oversubscribed, resulting in a negative value. The expanded report also shows the available capacity in terms of the number of standard/average VM capacity units that are oversubscribed, according to policy. The standard/average VM capacity unit definition is also provided with this report.
+
+* Top Clusters--Lists the top 5 clusters by percentage that have insufficient capacity. Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the full list of all clusters (with or without risk) showing the available capacity (in terms of the number of standard/average VM capacity units) and the primary constraint.
+* History--Graphs the 90-day history of the percentage of clusters with insufficient capacity across all clusters in scope. Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the same graph, together with a graph showing the total number of clusters with insufficient capacity for all clusters in the scope. These graphs do not provide a breakdown by cluster.
+
+<Accordion title="Figure: Clusters at Risk Report">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000042.png)</Frame>
+</Accordion>
+
+
+## Monitoring Clusters with Insufficient Capacity
+
+To view and address the clusters at risk:
+
+1. Navigate to Virtual Optimization > Risk > Clusters with Insufficient Capacity.
+2. View the clusters at risk by zooming <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> from the Summary. This gives you an idea which clusters have most risk and which have little risk. During the initial ramp-up phase you may need to review your policy settings if the summary does not coincide with the performance of these clusters.
+3. View the primary constraint for each of these clusters by zooming <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> from Top Clusters. The primary resource constraint is based on the operational policy settings. Risks can be reduced by addressing rebalancing recommendations and adding more hosts. See [Viewing and Addressing Hosts at Risk](./Hosts_at_Risk_Reports#Viewing) to perform rebalancing recommendations and [Environment and Cluster Host Summary](../Control_Console/Control_Console_Spectrum_Overview#Environm) to view the number of required hosts on the Spectrum.
+4. View the History of Clusters with Insufficient Capacity the next day to monitor the capacity. You should expect to see the number of clusters that are at risk, decreasing over time, as resourcing recommendations are addressed. If you have continued unavailable capacity, you may want to add more supply. View the Required Hosts in the Control Console, as described in [Environment and Cluster Host Summary](../Control_Console/Control_Console_Spectrum_Overview#Environm).

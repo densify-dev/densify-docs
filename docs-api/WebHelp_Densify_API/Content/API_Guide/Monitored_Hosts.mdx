@@ -1,0 +1,15 @@
+---
+title: "Overview"
+---
+
+## Description
+
+This resource is used to return the health status of the monitored hosts. The returned specifics match that provided by the DCE System Health Status dashboard. See [System Health Status](https://www.densify.com/docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_System_Health_Tab#System2).
+
+You can also use this resource to override the health status of a monitored host. For example, to override a host to healthy (or unhealthy) for a specified time, health check monitoring for that host stops until the specified date/time has past. When you override the health status, the `details` is set to "Status Override Executed". After the specified date/time, regular monitoring rules for the host resumes.
+
+## Resource
+
+```json
+/monitored-hosts
+```

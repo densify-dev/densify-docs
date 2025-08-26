@@ -1,0 +1,19 @@
+---
+title: "Enabling Self-Aware Self-Optimizing Instances"
+---
+
+The process of optimizing cloud instances can be fully automated, replacing the manual task with an API-driven process. Densify enables your cloud-based applications to become self-aware of their resource requirements and then uses Terraform, CloudFormation or CloudForms to automate the process of moving the workloads to their optimum instance size and family.
+
+Using machine learning to characterize your workloads and then determining the optimal cloud offering to host them, it is possible to continuously align your application needs with optimal resources, thus reducing cloud costs, while at the same time reducing operational risks.
+
+<Accordion title="Figure: Self-Aware/Self-Optimizing Continuous Optimization">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000149.png)</Frame>
+</Accordion>
+
+1. Densify collects and analyzes data from your existing cloud infrastructure for optimal insights. See [Performing Data Collection](../Performing_Data_Collection) for details.
+2. Insights and recommendations from analyses can be automatically sent to external applications using the Densify API. Refer to the [Optimizing AWS EC2 Instances](/docs-api/WebHelp_Densify_API/Content/API_Guide/Optimizing_AWS_EC2_Instances) use case to see examples of how to send Densify recommendations to your DevOps pipeline.
+3. Specific insights can be sent to application owners for review. See [Viewing the Public Cloud Impact Analysis and Recommendation Report](./Viewing_the_Impact_Analysis_and_Recommendation_Report) for details of the recommendation impact analysis PDF report available to application owners.
+4. Densify offers an integrated Terraform module from GitHub to enable cloud and container resources to be "self-aware" by updating their property tags. See [https://github.com/densify-dev/terraform-null-optimization-as-code](https://github.com/densify-dev/terraform-null-optimization-as-code "Login into GitHub to obtain the Densify Terraform Optimization-as-code module.") for details.
+5. Use the integrated Terraform module from GitHub to action the approved recommendations. See [https://github.com/densify-dev/terraform-null-optimization-as-code](https://github.com/densify-dev/terraform-null-optimization-as-code "Login into GitHub to obtain the Densify Terraform Optimization-as-code module.") for details on how to setup the "self-optimizing" component.
+
+Contact [[email protected]](/cdn-cgi/l/email-protection) for further details on adding continuous optimization into your CI/CD framework.

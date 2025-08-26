@@ -1,0 +1,230 @@
+---
+title: "Reviewing Cloud Recommendations"
+---
+
+## Locating Cloud Recommendations
+
+When reviewing Densify's recommendations start from the [Optimization Overview](./Viewing_the_Optimization_Overview_Report) dashboard that aggregates your analyzed cloud services. Cloud instances that do not have adequate information for analysis, such as instances with incomplete or missing benchmark data, are not included in this report.
+
+1. In the Densify Console the [Optimization Overview](./Viewing_the_Optimization_Overview_Report) dashboard is the default start page once data has been collected.
+
+When the analysis is run initially, a large number of recommendations may be generated. It is highly recommended that you filter the list according to your specific requirements, in order to view a more manageable list of recommendations. Use the [Recommendation](./Using_the_Recommendation_Filter_Menu) or [Guest](./Using_Guest_Filters) filter to pare down the set of data to be viewed, if necessary.
+
+2. Review the Summary bar at the top of the page to see a high level summary of potential savings or systems at risk.
+3. Click on of the links on the right side of the dashboard to drill down to the specific cloud provider instances.
+
+<Accordion title="Figure: Optimization Overview - Total No. of Services">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000112_281x353.png)</Frame>
+</Accordion>
+
+Recommendations are based on the latest cloud catalogs from the supported public cloud providers. The cloud catalogs are updated in each Densify release.
+
+To learn more watch the video,
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/708679005" webkitallowfullscreen="webkitallowfullscreen" width="640"></iframe>
+
+## Viewing Recommendation Details
+
+You can view details of specific recommendation from the [Instance Optimization Details](./Understanding_the_Instance_Details_Report) page. The tabular data provides a break down of current and recommended CPU and memory utilization for each instance. The charts in the [lower pane](./Understanding_the_Instance_Details_Report#Lower_Section) provided a visual indication of the workload on the current and the recommended instances. Additionally, you can view the following:
+
+* System information for the selected instance.
+* Effort details to investigate and implement the recommendations.
+* Predicted uptime for the selected instance.
+* Selected system attributes for the selected instance
+
+To learn more watch the following videos:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/308576681" webkitallowfullscreen="webkitallowfullscreen" width="640"></iframe>
+
+Public Cloud Optimization Reports<br/>Part 1
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/411532962" webkitallowfullscreen="webkitallowfullscreen" width="640"></iframe>
+
+Public Cloud Optimization Reports<br/>Part 2
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/494121314" webkitallowfullscreen="webkitallowfullscreen" width="640"></iframe>
+
+Investigating Optimization<br/>Recommendations
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/542858527" webkitallowfullscreen="webkitallowfullscreen" width="640"></iframe>
+
+Data Tab Data<br/>Management Features
+
+## Using the Impact Analysis and Recommendation Report
+
+You may also want to see more details of your particular cloud service, before implementing Densify's recommendations.
+Specifically:
+
+* Optimization Reasoning—The data and the policy settings that resulted in the recommendation being made.
+* Verification—Ensure that the recommendation aligns with your financial and organizational goals.
+* In PDF format that can be distributed to application owners, or management.
+
+1. From the [Instance Optimization Details](./Understanding_the_Instance_Details_Report) page click the the System Name hyperlink to open the Impact Analysis and Recommendation Report.
+2. The PDF is opens and can be downloaded for distribution. See [Viewing the Public Cloud Impact Analysis and Recommendation Report](./Viewing_the_Impact_Analysis_and_Recommendation_Report).
+
+To learn more watch the video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/304378476" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+## Understanding the Types of Recommendations
+
+There are a number of different recommendations for cloud instance. The following descriptions and color coding apply to all AWS, Azure and GCP tabs.
+
+<Note>
+Not all optimization types are supported for all cloud providers.
+</Note>
+
+<Accordion title="Table: Optimization Type Color-Coding Summary">
+<table class="table_1">
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p class="CiRBATableColumnText">Optimization Type</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Just Right</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance is optimally sized for the workload.</p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p class="CiRBATableText">In general the following upsize recommendations incur additional costs. The cost increase is determined by comparing on-demand pricing for the current and recommended instance. The increased cost is required to alleviate application risk. If you have an RI or SP for the recommended upsize instance, there could be cost savings. This would still be an upsize recommendation.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Upsize - Optimal Family</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be upsized to a more optimal instance family. This will improve the workload's performance and reduce risk. </p>
+<p class="CiRBATableText">If the workload can be moved to larger instance in a different family and still reduce cost, this then becomes a Modernize recommendation. e.g. t2.medium-Linux to m3.medium-Linux</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Upsize</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be upsized to an instance within the same instance family. The hosted workload needs an instance with more CPU and\or memory resources.</p>
+<p class="CiRBATableText">e.g. r3.large to r4.xlarge, both are in the "Memory Optimized r" instance family.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Upscale</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This recommendation applies to ASGs only and indicates the ASG needs increase compute capacity by adjusting the maximum group size. </p>
+<p class="CiRBATableText">It may be more cost effective to use a larger instance for this ASG.</p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p class="CiRBATableText">Downsize recommendations reduce the allocated resources as your workload has likely been over-provisioned. Once the recommendation has been determined from CPU and memory utilization, it is further verified against policy-defined limits, before the downsize or terminate recommendations are made.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Terminate</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be terminated, as it is idle. An instance is determined to be idle if it has very low CPU utilization, network and disk I/O over an extended period of time. This will save you money. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Downsize - Optimal Family</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be downsized to an instance belonging to an instance family that more closely suits your workload's utilization.</p>
+<p class="CiRBATableText">When you downsize, CPU and\or memory will be decreased to better suit your workloads. Utilization will improve with no impact on performance. This will save you money. e.g. d2.medium-Linux to m4.medium-Linux</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Downsize</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be downsized to an instance within the same instance family. </p>
+<p class="CiRBATableText">As indicated above, CPU and\or memory will be decreased to better suit your workloads. Utilization will improve with no impact on performance. This will save you money. e.g. m3.large-Linux to m3.small-Linux</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Downscale</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This<span class="mc-variable Document.ASG variable">Auto Scaling group</span> or <span class="mc-variable Document.VMSS variable">VM Scale Set</span> should be downscaled to decrease the compute capacity by adjusting the minimum group size.</p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p class="CiRBATableText">The following modernize recommendations move your workload to a more modern instance type without changing the resource allocation, cost or performance, at a minimum. Your costs could decrease and/or you may benefit from potential utilization and performance improvements.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Modernize - Optimal Family</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be modernized to an instance belonging to a more optimal instance family. The cost of the new instance type will be less than the existing cost.</p>
+<p class="CiRBATableText">Allocated resources are not being removed and moving to an instance with more current hardware, you may also benefit potential utilization and performance improvements.</p>
+<p class="CiRBATableText">When you modernize, you will not decrease performance but will decrease cost.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="CiRBATableText">Modernize </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This instance should be modernized to an instance within the same instance family. The cost of the new instance type will be less than the existing cost and as indicated above you may also get utilization and performance improvements.</p>
+<p class="CiRBATableText">For example, moving to a new generation of the same instance family (e.g. m3.large to m4.large).</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+## Relearning Workload Patterns
+
+The quality of the recommendation is based on the collected and analyzed data. When working with recommendations for cloud and container instances a change to a container object or cloud instance type may result in misaligned representative day curves and/or recommendations because the workload history collected prior to the instance change, is typically no longer relevant to the new instance type.
+
+Densify allows you to identify when a configuration change occurs for an instance, set an attribute and then invalidate the workload collected previous to the configuration change. This effectively eliminates workload metrics that may lead to the generation of misleading recommendations.
+
+Excluding workload data, collected from the previous instance and relearning the workload patterns provides more accurate recommendations. The historical data is only excluded from the analysis and is not deleted. The excluded data is maintained for the defined retention period.
+
+Contact [[email protected]](/cdn-cgi/l/email-protection) for details on tagging your container and cloud instances to enable this feature.
+
+When the workload has been invalidated for either a cloud or container instance, normally, that instance would not re-appear in the UI until the required number of days of data has been collected, as defined in the policy. However, in the case of invalidated data, the cloud or container instance appears in the UI, identified as "Just Right". This is done to prevent systems from disappearing from UI dashboards and reports, unexpectedly.
+
+This is also applicable to the VM Scale Set. It appears in the UI with the Optimization Type set to "Just Right", until the required data has been collected.
+
+The date on which the instance change was made and when Densify begins to relearn the workload patterns, is shown in a column on the corresponding page:
+
+* EC2 | RDS | Azure VM | GCP Instance Optimization Details—The column, "Cloud Configuration Updated On" is located at the end of the table on these pages. See [Understanding the Instance Optimization Details Report](./Understanding_the_Instance_Details_Report).
+   or [Understanding the Instance Optimization Details for RDS](./Understanding_the_Instance_Details__RDS_).
+* ASG Optimization Details—The column, "Configuration Updated On" is located at the end of the table on this page. See [Working with Auto Scaling Groups](./Working_with_ASGs) tab.
+* VM Scale Set Optimization Details—The column, "Configuration Updated On" is located at the end of the table on this page. See [Working with Virtual Machine Scale Sets](./Working_with_VMSS) tab.
+* Kubernetes Container Optimization Details—The column, "Container Configuration Updated On" is located at the end of the table on this page. See [Optimizing Your Containers - Details Tab](./Optimizing_Your_Containers_-_Details_Tab).
+
+This column is disabled by default you can enable it for display as required. See [Data Controls](./Understanding_the_Instance_Details_Report#Data) for details on customizing the columns that are displayed.
+
+When historical workload has been excluded, after an instance change, the system is not displayed in the Densify Console until the systems meets the requirements for the number of days of data collected, as defined by a policy setting.
+
+## Automating Densify's Recommendation
+
+Densify provides API features that allow you to automate cloud your optimization recommendations. See [Enabling Self-Aware Self-Optimizing Instances](./Enabling_Self-Aware_Self-Optimizing_Instances).
+
+Contact [[email protected]](/cdn-cgi/l/email-protection) for enabling and configuring these features.

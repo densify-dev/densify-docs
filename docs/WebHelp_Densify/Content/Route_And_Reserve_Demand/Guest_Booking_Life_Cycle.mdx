@@ -1,0 +1,49 @@
+---
+title: "Guest Booking Life Cycle"
+---
+
+Inbound guest bookings define expected new application workloads to reserve capacity and accurately manage infrastructure forecasting and budgeting. These bookings go through a life cycle, from when they are created to when they are auto-reconciled with the matching incoming VMs. Through the Route and Reserve Demand page, you can see all incoming booking requests whether they were created within the Route and Reserve Demand page or through the Densify API.
+
+Figure: Inbound Guest Booking Life Cycle
+
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030037_624x286.png)</Frame>
+
+To learn more watch the video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/307119223" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+
+## Defining the Booking Request
+
+When the required information (the expected VM name, the planned start date and the reference system) is saved in the booking request, but not yet routed, the booking request has a status of Draft. A booking in the Draft state indicates that the booking has not been routed to a hosting venue, and it can be edited at any time.
+
+When creating the booking request, if you specify the preferred environment and hosting venue, the Route button becomes available and you can route the booking request to the hosting venue directly from the Guest Booking Request dialog box.
+
+If you do not route the booking request directly from the Guest Booking Request dialog box, you have two options for routing after you have selected booking requests that you would like to route:
+
+* Click the Evaluate Hosting Options button to score all the hosting venues as to their suitability for hosting the booking request. Review the Hosting Score, capacity, Fit for Purpose, Relative Cost and Required Space results for each hosting venue and then drag and drop the booking request onto the desired hosting venue tile.
+* Click the Auto Route Booking Requests button to have the booking request automatically routed to the best-rated hosting venue in the Hosting Venues pane.
+
+In all cases, the booking goes through Fit-for-Purpose validation and capacity checks. If the booking fails at either, you can manually force route the booking provided the hosting venue is not closed to accepting new bookings.
+
+## Routing to Internal Hosting Venues
+
+When the booking request is routed to an internal hosting venue (a venue with control analytics that can be viewed through the Control Console), the booking now has a status of Pending Commit and moves to the Reservation Details pane with a hosting venue placement. Capacity is reserved for the booking as soon as it is routed (according to the planned start date) and the available space for the hosting venue is updated accordingly. During this state, you can only update the System Name by double-clicking the booking or clicking the View button in the action bar.
+
+When the environment or hosting venue is refreshed, the booking in Pending Commit state is analyzed to determine optimal placement and the state changes to Committed. Once in the Committed state, the booking is included in all subsequent environment/hosting venue analyses and is visible in the Control Console Spectrum as you move the Timeline slider into the future.
+
+When the planned start date arrives and the corresponding system comes online and is discovered by a Densify audit, auto-reconciliation marks the matching inbound booking as Completed if its name can be matched with the booking's expected name. If the system is not found during the audit or has been created with a different name than the booking name, the booking either becomes Late or Expired. A booking becomes Late if the booking is defined with grace days to hold the reservation. If a booking has 0 grace days, then the booking becomes Expired (bypassing the Late state).
+
+## Routing to External Hosting Venues
+
+When routing to an external hosting venue (i.e. without control analytics), the state of the booking request differs depending if the external hosting venue belongs to a cloud environment or not.
+
+* If the guests belong to a cloud environment (i.e. audited and analysed through Densify's cloud analytics), the state changes are similar to that when routing to an internal hosting venue. The booking request goes into the Pending Commit state, then Committed state when the cloud environment is refreshed. The state is automatically updated to Completed when the corresponding system comes online, is audited and then auto-reconciled by the cloud environment refresh.
+* If the guests do not belong to a cloud environment, the booking request is updated with a state of Committed (bypassing the Pending Commit state as there is no environment to refresh). When the corresponding system comes online, you need to mark the booking as Completed. Contact [Support@Densify.com](mailto:Support@Densify.com). If you have access to the API, use the Densify API, specifically the `PUT /booking/<id>` request with the `status` update.
+
+Similar to routing to internal control hosting venues, the booking moves to the Reservation Details pane and only the System Name can be updated. If the booking is not Completed, the booking either becomes Late or Expired. With external hosting venues, infinite capacity is assumed.
+
+## Late Bookings
+
+A Late booking is treated similar to a booking in the Committed state, however, providing a delay for the incoming VM by extending the reservation beyond the planned start date.

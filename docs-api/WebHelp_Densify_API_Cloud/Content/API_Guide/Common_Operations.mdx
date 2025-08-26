@@ -1,0 +1,180 @@
+---
+title: "Common Operations"
+---
+
+## Summary
+
+When performing a `GET` request, you can qualify the request using one or more operations described in this section, e.g. specifying a sort order or a filter.
+
+This following table summarizes which operations can be combined with other operations. For example, the [Filters](#_Filters_1) operation can be combined with [Paging](#_Paging_2), [Collection Details](#_Collection_Details) and [Sort By](#_Sort_By_1), as shown by the Filter row.
+
+For example, if you want the detailed list of all AWS Systems, listed in alphabetical order by name, you would do the following:
+
+Request:
+
+```
+GET /systems/?platform=AWS&sort_by=name
+```
+
+or without trailing '/':
+
+```
+GET /systems?platform=AWS&sort_by=name
+```
+
+Table: Operations Summary
+
+| Operation           | Filters | Paging | Collection Details | Sort By |
+|---------------------|---------|--------|--------------------|---------|
+| [Filters](#filters) |         | ✔️      | ✔️                  | ✔️       |
+| [Paging](#paging)   | ✔️       |        | ✔️                  | ✔️       |
+| [Collection Details](#collection-details) | ✔️       | ✔️      |                    | ✔️       |
+| [Sort By](#sort-by) | ✔️       | ✔️      | ✔️                  |         |
+
+
+## Filters
+
+Most collections can be filtered based on the elements of the resource objects within the collection. The elements that support filtering are identified in the **Filter** column (marked "F") of each Resource Elements table within this reference. If the filter finds no matching objects, an empty list is returned. If matching objects are found, a list of objects (in the form [ID, Name and Self Reference (id, name, href)](./Common_Elements#_ID,_Name_and) for each object) is returned. Note that for date/time elements, only a range is supported as described below. To define an exact match for a date/time element, specify the exact match value using the `_from` and `_to` tags.
+
+To filter the list of resource objects, simply provide a query string after the resource object of interest, where both `<element>` and `<value>` are case insensitive (with no quotes specified):
+
+```
+GET /<resource object>/?<element>=<value>
+```
+
+For example, if you wanted to filter the list of Systems that are of type `host` you would do the following:
+
+<Accordion title="Example: Filtering a List for Host Systems">
+Request:
+
+```
+GET /systems/?type=host
+```
+
+Response:
+
+```json
+[
+  {
+    "id": "844608bd-2e6a-4201-a9f2-edb4b84389bc",
+    "name": "esx-host-82",
+    "href": "/systems/844608bd-2e6a-4201-a9f2-edb4b84389bc",
+    "resource_id": "ac-59d7-339",
+    "type": "host",
+    "platform_model": "PowerEdge M610",
+    ...
+```
+</Accordion>
+
+
+More complex filtering is supported using any combination of the following:
+
+* **Multiple Criterion**--specifying `"&"` to logically AND criteria.
+
+    `/<resource object>/?<element1>=<value1>[&<element2>=<value2>]…`
+* **Multiple Values**--specifying `","` between values to logically OR a list of possible values for an element. 
+
+    `/<resource object>/?<element>=<value1>[,<value2>]…`
+* **Ranges**--specifying "`_from`" and "`_to`" appended to the end of the element name to specify from/to values, respectively. All elements of type number (including date/time elements) support a range. The values must be valid values (e.g. valid UTC values for date/time types); otherwise, a wrong format error is returned.
+* **Multi-Valued Elements**--specifying at least one value of the multi-valued element.
+* **Special Character Support**--for filter values with characters that have special meaning in the query string, use the following URL encoding characters instead:
+
+    * "%2B" for "+"
+    * "_" or "+" for space
+
+For example, to filter cluster name "eastus+test" and platform category "External Cloud", use:
+
+```
+GET /systems/?infrastucture_group=eastus%2Btest&platform_category=External+Cloud
+```
+
+* **Name\_Like**--use `?name_like="<substring>"` in your collection request. The '%' character can be used to match zero or more characters.
+
+<Note>
+Densify API elements, parameters, and filters are case-sensitive.
+</Note>
+
+## Paging
+
+When performing a `GET` request on a collection of objects, a page of objects can be returned instead of the entire collection. To retrieve a specific page, supply the page number (integer >= 0, where 0 is the first page) and the page size, as follows:
+
+```
+GET /<resource object>/?page=<pagenumber>[&page_size=<pagesize>]
+```
+
+
+
+If the page size is not specified, then the page size will be taken from configuration setting API Page Size (parameter key `rest.api.paging.pageSize`).
+
+For example, suppose you have 125 Systems and you want to see the last 25 (with a page size of 100):
+
+```
+GET /systems/?page=1
+```
+
+<Note>
+If the collection changes in between page requests, the items are shifted appropriately.
+</Note>
+
+## Collection Details
+
+Most collection `GET` requests support a `details` option, which returns the details of every resource object in the collection:
+
+```
+GET /<resource object>/?details=true
+```
+
+
+
+The default is `?details=false`, if not specified. This option is supported for most collections.
+
+## Individual Details
+
+Every individual `GET` request uses an `id` or `name` to identify the resource object instance to retrieve (where `name` is used only if the resource object does not have an `id`). The individual `GET` request returns all the elements of the identified or named resource object.
+
+```
+GET /<resource object>/<id>
+```
+
+
+```
+GET /<resource object>/\<name>
+```
+
+
+
+When `name` is used, the search is case insensitive and returns all matching instances.
+
+## Sort By
+
+Some collection requests support a `sort_by` option. This option returns the collection of objects in ascending or descending order by the element specified:
+
+```
+GET /<resource object>/?sort_by=<element>[,asc|desc]
+```
+
+
+
+The elements that support sorting are identified in the **Sort By** column (marked "S") of each Resource Elements table within this reference. The objects are returned in ascending order by default (or if `asc` is specified) or descending order if `desc` is specified. If the collection is sorted with objects having "`__Unknown__`" values, these objects are listed at the end independent of the sort order applied to such an element. The sorting is alphabetical or numerical, depending if the `<element>` type is a string or a number, respectively. If the `sort_by` is not specified, a default sort order is provided and is documented in the Supported Operations section of each resource object.
+
+If the `<element>` is not a valid element for the resource object (note that `<element>` is case insensitive), then an error is returned.
+
+For example, to sort all Systems by `name` in ascending order, specify:
+
+```
+GET /systems/?sort_by=name
+```
+
+To sort all Systems by `size` in descending order, specify the following:
+
+```
+GET /systems/?sort_by=size,desc
+```
+
+<Note>
+Densify API elements, parameters, and filters are case-sensitive.
+</Note>
+
+## Other Operations (Create/Modify)
+
+The **Create/Modify-(Req)** column of each Resource Elements table within this reference is used to identify the elements that can be specified when the resource object is created or modified. The elements for create are marked "C" and the elements for modify are marked "M". Elements that must be specified for create are marked "-R" for required.

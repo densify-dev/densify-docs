@@ -1,0 +1,211 @@
+openapi: 3.1.0
+info:
+  title: Densify API -- Bookings Project & Status Groups (Unofficial)
+  version: 1.0.0
+  description: |
+    OpenAPI description for the **Bookings Project, Status Groups** endpoints.
+    Based on Densify's public API docs. Some schemas are simplified (e.g., Booking),
+    as the authoritative Booking schema is defined elsewhere in the docs.
+
+servers:
+  - url: /
+    description: Relative server; prepend your Densify API base path as needed.
+
+tags:
+  - name: Bookings
+    description: Endpoints for grouping bookings by project or status.
+
+paths:
+  /bookings/status:
+    get:
+      tags: [Bookings]
+      summary: List booking status groups
+      description: |
+        Returns all status values defined by existing booking objects. These are **not** instantiated objects; only `name` and `href` are returned.
+      parameters:
+        - $ref: "#/components/parameters/sortByName"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/page_size"
+        - $ref: "#/components/parameters/details"
+      responses:
+        "200":
+          description: Array of status group items (and, if `details=true`, items with embedded bookings)
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/GroupCollection"
+                  - $ref: "#/components/schemas/GroupWithBookingsCollection"
+              examples:
+                simple:
+                  summary: Example -- status list
+                  value:
+                    - name: COMMITTED
+                      href: /bookings/status/COMMITTED
+                    - name: DRAFT
+                      href: /bookings/status/DRAFT
+                    - name: EXPIRED
+                      href: /bookings/status/EXPIRED
+                    - name: LATE
+                      href: /bookings/status/LATE
+                    - name: PENDING
+                      href: /bookings/status/PENDING
+  /bookings/projects:
+    get:
+      tags: [Bookings]
+      summary: List booking project groups
+      description: |
+        Returns all project names derived from existing bookings. Use filters (e.g., `status=EXPIRED`) and `details=true` to embed booking details per project.
+
+        **Default sort** is `?sort_by=name`. When paging, note from docs: *“Bookings are not part of the paging size.”*
+      parameters:
+        - $ref: "#/components/parameters/status"
+        - $ref: "#/components/parameters/details"
+        - $ref: "#/components/parameters/sortByName"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/page_size"
+      responses:
+        "200":
+          description: Array of project group items (and, if `details=true`, items with embedded bookings)
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/GroupCollection"
+                  - $ref: "#/components/schemas/GroupWithBookingsCollection"
+              examples:
+                filtered:
+                  summary: Example -- projects with status=EXPIRED
+                  value:
+                    - name: Cloud Wave 1
+                      href: "/bookings/projects/Cloud Wave 1?status=EXPIRED"
+                    - name: Consolidation W1
+                      href: "/bookings/projects/Consolidation W1?status=EXPIRED"
+  /bookings/status/{name}:
+    get:
+      tags: [Bookings]
+      summary: Get bookings by status name
+      description: |
+        Returns all bookings that are in the specified status (case-insensitive). The `name` can be one of the known values or other defined statuses.
+      parameters:
+        - in: path
+          name: name
+          required: true
+          description: Status value, e.g., `COMMITTED`, `DRAFT`, `EXPIRED`, `LATE`, `PENDING`.
+          schema:
+            type: string
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/page_size"
+      responses:
+        "200":
+          description: Group object with embedded bookings for the given status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupWithBookings"
+  /bookings/projects/{name}:
+    get:
+      tags: [Bookings]
+      summary: Get bookings by project name
+      description: |
+        Returns all bookings under the specified project name (case-insensitive). Use `__Unknown__` to query for bookings without a project name.
+      parameters:
+        - in: path
+          name: name
+          required: true
+          description: Project name. Use `__Unknown__` to represent bookings with no project.
+          schema:
+            type: string
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/page_size"
+      responses:
+        "200":
+          description: Group object with embedded bookings for the given project
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupWithBookings"
+
+components:
+  parameters:
+    details:
+      in: query
+      name: details
+      description: When `true`, embed full booking details in each group item.
+      schema:
+        type: boolean
+        default: false
+    sortByName:
+      in: query
+      name: sort_by
+      description: Sort by element name; default is `name` (ascending). Append `,asc` or `,desc` to control order.
+      schema:
+        type: string
+        default: name
+    page:
+      in: query
+      name: page
+      description: Page number (>= 0). When paging group collections, note that embedded bookings are not counted towards the page size.
+      schema:
+        type: integer
+        minimum: 0
+    page_size:
+      in: query
+      name: page_size
+      description: Page size for collections.
+      schema:
+        type: integer
+        minimum: 1
+    status:
+      in: query
+      name: status
+      description: Filter projects to those containing bookings with the specified status.
+      schema:
+        type: string
+        enum: [COMMITTED, DRAFT, EXPIRED, LATE, PENDING]
+  schemas:
+    GroupItem:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Group name (project or status)
+        href:
+          type: string
+          description: Link to the group resource
+      required: [name, href]
+    GroupCollection:
+      type: array
+      items:
+        $ref: "#/components/schemas/GroupItem"
+    Booking:
+      type: object
+      description: |
+        Simplified Booking schema. The authoritative set of elements is defined in the Bookings resource.
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+      additionalProperties: true
+    GroupWithBookings:
+      type: object
+      properties:
+        name:
+          type: string
+        href:
+          type: string
+        bookings:
+          type: array
+          items:
+            $ref: "#/components/schemas/Booking"
+      required: [name, href]
+    GroupWithBookingsCollection:
+      type: array
+      items:
+        $ref: "#/components/schemas/GroupWithBookings"
+
+x-notes:
+  - "Case-insensitive matching for {name} is supported per docs."
+  - "Use __Unknown__ as a project name to query bookings without a project."

@@ -1,0 +1,31 @@
+---
+title: "Overview"
+---
+
+Defining demand is basically a two step process. First, you have to define what you need in a booking request, then you need to route it to the preferred or best hosting venue. Defining demand is done through the Route Demand link.
+
+<Accordion title="Figure: Defining Demand">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030056.png)</Frame>
+</Accordion>
+
+
+* [Defining Booking Requests](./Defining_Booking_Requests)--define your VM in terms of capability and capacity, among other things:
+
+* the expected name of the VM
+* the planned start date when the VM is to be provisioned
+* the CPU, memory, OS and workload profile requirements (initially defined by your reference system)
+* optionally the preferred placement (preferred environment and hosting venue)
+* disk requirements
+* resource, security, business and technical capabilities
+
+* [Routing Booking Requests](./Routing_Booking_Requests)--route your booking request, either manually or automatically, to the appropriate hosting venue, depending on:
+
+* relative cost
+* capacity
+* Fit-for-Purpose validation
+
+If a new project requires 100 new VMs, for example, then you need to create your 100 booking requests (in one time if they are all the same) and then route them collectively to reserve the capacity.
+
+Once routed, they are moved to the Reservation Details pane, where they can be later provisioned. See [Provisioning Workloads](./Provisioning_Workloads) for details.
+
+Booking reconciliation is done during environment refresh instead of by an overnight job (for NONE and GUEST LEVEL environments)

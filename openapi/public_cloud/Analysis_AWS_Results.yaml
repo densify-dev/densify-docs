@@ -1,0 +1,328 @@
+openapi: 3.0.3
+info:
+  title: Densify API – AWS Recommendations
+  version: "1.0"
+servers:
+  - url: https://{host}/api/v2
+    variables:
+      host:
+        default: api.example.com
+
+paths:
+  /analysis/cloud/aws/{analysisId}/results:
+    get:
+      operationId: getAwsRecommendations
+      tags: [AWS Analysis]
+      summary: List AWS recommendations for an analysis
+      description: >
+        Returns optimization recommendations for systems (EC2, RDS, ASG, SPOT) in the
+        specified analysis. Use the `Accept` header to choose the representation:
+        `application/json` (array of recommendation objects) or `application/terraform-map`
+        (Terraform-style map where each key is the system's **provisioningId** or name).
+        To include workload collection details per metric, use the `dataQuality` query.
+        To include system attributes, set `includeAttributes=true`.
+      parameters:
+        - in: path
+          name: analysisId
+          required: true
+          description: Unique reference ID of the AWS analysis.
+          schema: { type: string }
+        # Element filters (fields marked "F" are filterable)
+        - in: query
+          name: entityId
+          schema: { type: string }
+          description: Filter by Densify entity ID.
+        - in: query
+          name: resourceId
+          schema: { type: string }
+          description: Filter by cloud resource identifier (e.g., EC2/RDS ID).
+        - in: query
+          name: accountIdRef
+          schema: { type: string }
+          description: Filter by AWS account ID.
+        - in: query
+          name: region
+          schema: { type: string }
+          description: Filter by AWS region (e.g., us-east-1).
+        - in: query
+          name: recommendationType
+          schema:
+            type: string
+            enum:
+              - "Just Right"
+              - "Upsize - Optimal Family"
+              - "Upsize"
+              - "Terminate"
+              - "Downsize - Optimal Family"
+              - "Downsize"
+              - "Modernize - Optimal Family"
+              - "Modernize"
+              - "Not Analyzed"
+              - "Upscale"     # ASG only
+              - "Downscale"   # ASG only
+          description: Filter by recommended action.
+        - in: query
+          name: recommendedType
+          schema: { type: string }
+          description: Filter by recommended instance type.
+        - in: query
+          name: implementationMethod
+          schema:
+            type: string
+            enum: ["Self Optimization","Manual","N/A"]
+          description: Filter by implementation method.
+        - in: query
+          name: name
+          schema: { type: string }
+          description: Filter by system name (usually the "Provisioning Id" tag).
+        - in: query
+          name: powerState
+          schema: { type: string }
+          description: Filter by power state.
+        - in: query
+          name: serviceType
+          schema:
+            type: string
+            enum: [EC2, RDS, ASG, SPOT]
+          description: Filter by AWS service type.
+        - in: query
+          name: approvalType
+          schema: { type: string }
+          description: Filter by approval setting ("na", "all", or a specific instance type).
+        - in: query
+          name: densifyPolicy
+          schema: { type: string }
+          description: Filter by the Densify policy used for analysis.
+        - in: query
+          name: effortEstimate
+          schema:
+            type: string
+            enum: ["Moderate","Low","Very Low","None","Impossible"]
+          description: Filter by effort estimate.
+        - in: query
+          name: recommendedHostEntityId
+          schema: { type: string }
+          description: Filter by catalog entity ID of the recommended instance type.
+        # Other query options
+        - in: query
+          name: includeAttributes
+          schema: { type: boolean, default: false }
+          description: Return system attributes when true.
+        - in: query
+          name: dataQuality
+          schema:
+            type: string
+            description: >
+              Comma-separated list of workload type names to include (quote the value
+              in raw HTTP). Example: "CPU Utilization,Disk I/O Operations".
+          example: "CPU Utilization,Disk I/O Operations"
+      responses:
+        "200":
+          description: Recommendations returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Recommendation' }
+              examples:
+                sample:
+                  summary: EC2 Upsize example
+                  value:
+                    - entityId: "49fb3629-1f2b-4039-b146-918eb8009184"
+                      resourceId: "i-06d390ca1a0c59d95"
+                      accountIdRef: "209726931496"
+                      region: "us-east-1"
+                      currentType: "t3.micro"
+                      recommendationType: "Upsize"
+                      recommendedType: "t3.small"
+                      implementationMethod: "Manual"
+                      predictedUptime: 92.29
+                      totalHoursRunning: 1329
+                      name: "SQL Express"
+                      rptHref: "/systems/49fb3629-1f2b-4039-b146-918eb8009184/analysis-report"
+                      approvalType: "na"
+                      densifyPolicy: "Initial Assessment"
+                      savingsEstimate: -5.4850235
+                      effortEstimate: "Very Low"
+                      powerState: "Running"
+                      recommendedHostEntityId: "9a67bfc4-7d30-4e75-9c4d-1ca501b0c4fd"
+                      serviceType: "EC2"
+                      currentCost: 14.31
+                      recommendedCost: 28.62
+                      currentHourlyRate: 0.02
+                      recommendedHourlyRate: 0.04
+                      currentRiCoverage: 0
+                      recommFirstSeen: 1579680587657
+                      recommLastSeen: 1589008760293
+                      recommSeenCount: 24
+                      auditInfo:
+                        dataCollection:
+                          dateFirstAudited: 1571949272133
+                          dateLastAudited: 1588997132907
+                          auditCount: 103
+                        workloadDataLast30:
+                          firstDate: 1687009600000
+                          lastDate: 1688910400000
+                          totalDays: 23
+                          seenDays: 7
+                      dataQuality:
+                        - workloadName: "CPU Utilization"
+                          firstSeen: 1666705600000
+                          lastSeen: 1688910400000
+                          completeDays: 161
+                          partialDays: 0
+            application/terraform-map:
+              schema:
+                $ref: '#/components/schemas/TerraformMapRecommendations'
+              examples:
+                sample:
+                  summary: Terraform-map example (ASG)
+                  value:
+                    densify_recommendations:
+                      "mobile-svc-asg-analysisGrid":
+                        currentType: "c4.large"
+                        recommendedType: "c5.large"
+                        approvalType: "na"
+                        predictedUptime: "81.53"
+                        recommendationType: "Downsize"
+                        powerState: "Running"
+                        savingsEstimate: "114.57644"
+                        effortEstimate: "Low"
+                        densifyPolicy: "AWS General Prod"
+                        minGroupCurrent: "4"
+                        minGroupRecommended: "2"
+                        maxGroupCurrent: "16"
+                        maxGroupRecommended: "8"
+                        avgInstanceCountCurrent: "2.9568965"
+                        currentDesiredCapacity: "4"
+                        avgInstanceCountRecommended: "1.6321839"
+        "400":
+          description: Bad request (e.g., unsupported workload name in dataQuality)
+        "401":
+          description: Authentication failed
+        "404":
+          description: Analysis not found
+        "500":
+          description: Server error
+
+components:
+  schemas:
+    Recommendation:
+      type: object
+      properties:
+        entityId: { type: string, description: Densify entity ID of the system }
+        resourceId: { type: string, description: Cloud resource ID }
+        accountIdRef: { type: string }
+        region: { type: string }
+        currentType: { type: string }
+        recommendationType:
+          type: string
+          description: Recommended action (see enums in parameter definition)
+        recommendedType: { type: string }
+        implementationMethod:
+          type: string
+          enum: ["Self Optimization","Manual","N/A"]
+        predictedUptime: { type: number, format: float, description: Percent (0-100) }
+        totalHoursRunning: { type: number }
+        name: { type: string, description: System name or "Provisioning Id" }
+        rptHref:
+          type: string
+          description: >
+            Link to download the Impact Analysis and Recommendation Report PDF for
+            this system; set `Accept: application/octet-stream` when calling it.
+        approvalType: { type: string }
+        densifyPolicy: { type: string }
+        savingsEstimate:
+          type: number
+          description: Current minus recommended catalog cost (see docs for details)
+        effortEstimate:
+          type: string
+          enum: ["Moderate","Low","Very Low","None","Impossible"]
+        powerState: { type: string }
+        recommendedHostEntityId: { type: string }
+        currentCost: { type: number }
+        recommendedCost: { type: number }
+        serviceType:
+          type: string
+          enum: [EC2, RDS, ASG, SPOT]
+        currentHourlyRate: { type: number }
+        recommendedHourlyRate: { type: number }
+        currentRiCoverage: { type: integer }
+        recommFirstSeen: { type: integer, format: int64 }
+        recommLastSeen: { type: integer, format: int64 }
+        recommSeenCount: { type: integer }
+        # ASG details (returned when serviceType=ASG and max group size > 1)
+        minGroupCurrent: { type: integer }
+        minGroupRecommended: { type: integer }
+        maxGroupCurrent: { type: integer }
+        maxGroupRecommended: { type: integer }
+        currentDesiredCapacity: { type: integer }
+        # Optional analytics blocks
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        dataQuality:
+          type: array
+          items: { $ref: '#/components/schemas/DataQualityItem' }
+        # Attributes (returned only when includeAttributes=true)
+        attributes:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              name: { type: string }
+              value: { type: string }
+    AuditInfo:
+      type: object
+      properties:
+        dataCollection:
+          type: object
+          properties:
+            dateFirstAudited: { type: integer, format: int64 }
+            dateLastAudited: { type: integer, format: int64 }
+            auditCount: { type: integer }
+        workloadDataLast30:
+          type: object
+          properties:
+            firstDate: { type: integer, format: int64 }
+            lastDate: { type: integer, format: int64 }
+            totalDays: { type: integer }
+            seenDays: { type: integer }
+    DataQualityItem:
+      type: object
+      properties:
+        workloadName: { type: string }
+        firstSeen: { type: integer, format: int64 }
+        lastSeen: { type: integer, format: int64 }
+        completeDays: { type: integer }
+        partialDays: { type: integer }
+    TerraformMapRecommendations:
+      type: object
+      description: >
+        Terraform-map representation. Each key under `densify_recommendations`
+        is the provisioningId (or system name when the tag is absent).
+      properties:
+        densify_recommendations:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/TerraformRecommendation'
+    TerraformRecommendation:
+      type: object
+      properties:
+        currentType: { type: string }
+        recommendedType: { type: string }
+        approvalType: { type: string }
+        predictedUptime: { type: string }
+        recommendationType: { type: string }
+        powerState: { type: string }
+        savingsEstimate: { type: string }
+        effortEstimate: { type: string }
+        densifyPolicy: { type: string }
+        deferRecommendation: { type: string }
+        minGroupCurrent: { type: string }
+        minGroupRecommended: { type: string }
+        maxGroupCurrent: { type: string }
+        maxGroupRecommended: { type: string }
+        currentDesiredCapacity: { type: string }
+        avgInstanceCountCurrent: { type: string }
+        avgInstanceCountRecommended: { type: string }

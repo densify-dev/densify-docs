@@ -1,0 +1,32 @@
+---
+title: "Audit Not Received-Connector Issues"
+---
+
+### Event: Audit has not been received in 2 or more days
+
+<Accordion title="Cause: There is an issue with the Densify Connector service">
+This typically indicates that the Densify Connector service is not running or is in an unhealthy state.
+
+Solution: Restart the connector service to cycle the application using the following steps:
+
+1. On the server where the Densify Connector is installed, open the Window’s Start Menu and type "services.msc" to open the Services management window.
+2. Locate and select the service, Densify Connector.
+3. Right-click the service. Click Properties and confirm that the Startup type is set to “Automatic”.
+
+* If the service is running, then click Restart.
+* If the service is not running, click Start.
+
+For detailed prerequisites and configuration details, see [Connector Prerequisites](../Densify_Com/Connector_Prerequisites).
+
+If the service still does not start, then do the following:
+
+1. Create a zipped archive of the following folder: `C:/Program Files/Densify Connector/logs`.
+
+If you installed the connector in a location other than the default, then create a zipped archive of the logs folder in the location where you installed the Densify Connector
+
+2. Once created, send the file to [Support@Densify.com](mailto:Support@Densify.com) to review the details, and receive further guidance.
+3. If you have recently removed this vCenter from your Densify Connector, please let the Densify Support Team know so that the corresponding Control Environment can be removed.
+</Accordion>
+
+
+If none of the above issues apply to your environment, contact [Support@Densify.com](mailto:Support@Densify.com) to review your connectivity details and receive further guidance.

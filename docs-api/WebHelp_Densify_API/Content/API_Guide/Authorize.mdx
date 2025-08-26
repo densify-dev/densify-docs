@@ -1,0 +1,34 @@
+---
+sidebarTitle: Overview
+title: "Authorize"
+---
+
+The `authorize` resource is used to obtain a JSON Web Token (JWT) for Densify users to make authorized API requests. The resource will return a token for any active Densify user when the proper credentials are provided. Only API-enabled users can make authorized API calls. See [Using the API: Authentication](./Using_the_API#_Authentication) for details on API-enabled users.
+
+The JWT API token is only valid within the expiry time of the token, which by default is set to 60 minutes.
+
+The key used to validate the token is also refreshed every 30 days.
+
+<Note>
+To access the Densify API, you need user credentials with membership in the following Densify user group: SaaS\_User\_Admin.or SaaS\_User.
+</Note>
+
+## Security Considerations
+
+The authorization workflow provides a progressively longer delay each time an invalid password is entered in an Authorize request.
+
+This behaviour is applied regardless of whether or not you have enabled the Densify password policy. The workflow does change if the password policy has been enabled. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+
+Contact [Support@Densify.com](mailto:Support@Densify.com) for details on configuring the Densify password policy.
+
+## Resource
+
+```
+/authorize
+```
+
+## Endpoints
+
+<CardGroup cols={2}>
+  <Card title="Authorize User" href="/docs-api/WebHelp_Densify_API/Content/API_Guide/Authorize/authorize-user" arrow />
+</CardGroup>

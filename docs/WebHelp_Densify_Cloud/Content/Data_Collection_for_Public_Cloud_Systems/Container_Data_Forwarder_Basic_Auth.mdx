@@ -1,0 +1,401 @@
+---
+title: "Container Data Collection using Basic Authentication"
+---
+
+This topic shows you how to configure the data forwarder to connect to Prometheus or another observability platform that supports the Prometheus API with HTTP basic authentication (e,g, Grafana Cloud) and sends container data from multiple clusters to Densify on an hourly basis.
+
+Before you begin, ensure you meet all the prerequisite software and configuration requirements. See [Container Data Collection Prerequisites](./Container_Data_Collection_Prerequisites).
+
+Navigate to:
+https://github.com/densify-dev/container-data-collection/tree/main/multi-cluster/examples/basic for instructions.
+
+<Accordion title="Figure: Data Collection from an Observability Platform">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000284.png)</Frame>
+</Accordion>
+
+### Configuring the Data Forwarder Using configmap.yaml
+
+Use the configmap.yaml to provide connectivity details for Densify, Prometheus and identity details for all of the clusters to be analyzed. If necessary, refe to the table below, for details of the required settings.
+
+<Accordion title="Table: Data Forwarder Settings in configmap.yaml">
+Table: Data Forwarder Settings in config.yaml
+
+<table class="table_1" width="100%">
+<col/>
+<col/>
+<col/>
+<thead>
+<tr>
+<td class="td_2">
+<p class="CiRBATableColumnText">Term</p>
+</td>
+<td class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</td>
+<td class="td_2">
+<p class="CiRBATableColumnText">Value</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td class="td_2" colspan="3">
+<p class="CiRBATableColumnText">Forwarder Section</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">scheme</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify the protocol to be used to when connecting to the <span class="mc-variable General.ProductName variable">Densify</span> REST API interface. </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">https</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">host</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify your <span class="mc-variable Document.Densify variable">Densify</span> server host (e.g. myCompany.densify.com). You may need to specify the <span class="mc-variable General.ProductName variable">Densify</span> server’s DNS name or fully qualified domain name (FQDN) or IP address.</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">&lt;name&gt;.densify.com</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">port</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify the TCP/IP port used to connect to the <span class="mc-variable General.ProductName variable">Densify</span> server. </p>
+<p class="CiRBATableText">You should not need to change this port number. See the <span class="mc-variable General.ProductName variable">Densify</span> URL.</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">443</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">username</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify the <span class="mc-variable Document.Densify variable">Densify</span> user account that the <span class="mc-variable Document.forwarder variable">data forwarder</span> will use. This user must already exist in your <span class="mc-variable Document.Company variable">Densify</span> instance and have API access privileges. </p>
+<p class="CiRBATableText">Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="3f6c4a4f4f504d4b7f7b5a514c565946115c5052" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for the <span class="mc-variable Document.Densify variable">Densify</span> user and epassword required to connect to your <span class="mc-variable Document.Densify variable">Densify</span> instance. </p>
+<p class="CiRBATableText">This user will be authenticated by the Densify server. </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">&lt;username&gt;</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">password</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify a password associated with the <span class="mc-variable Document.Densify variable">Densify</span> user, indicated above. If using this option then specify the password in plain text. </p>
+<p class="CiRBATableText">Ensure that only one of the password options is enabled (i.e uncommented.)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">&lt;password&gt;</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">encrypted_password</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify encrypted password for the <span class="mc-variable Document.Densify variable">Densify</span> user. The password must be encryptedand supersedes any value that has been specified in the password field, above. </p>
+<p class="CiRBATableText">Typically, the encrypted password is used. Typically, <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="7b280e0b0b14090f3b3f1e1508121d0255181416" href="/cdn-cgi/l/email-protection">[email protected]</a></span> will provide a <span class="mc-variable General.ProductName variable">Densify</span> username and corresponding encrypted password when you are setup for container data collection. </p>
+<p class="CiRBATableText">Ensure that only one of the password options is enabled (i.e uncommented.)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">&lt;encrypted password&gt;</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">endpoint</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the connection endpoint for the API. You can leave the default value.</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">/api/v2/</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">retry</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The retry settings are optional and if not set specifically, then the default values are used. See <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Container_Data_Forwarder_Optional_Configuration#Retry"><u>Configuring  Retry Connection Attempts</u></a> for setting details.</p>
+</td>
+<td class="td_3">
+<p> </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">proxy</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">If you need to configure data collection through a proxy server, see <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Container_Data_Forwarder_Optional_Configuration#Proxy"><u>Configuring  a Proxy Host</u></a>.</p>
+</td>
+<td class="td_3">
+<p> </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">prefix</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify a prefix for the compressed filename.</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">&lt;zip file name&gt;</p>
+</td>
+</tr>
+<tr>
+<td class="td_2" colspan="3">
+<p class="CiRBATableColumnText">Prometheus Settings</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">scheme</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify the protocol to be used to connect to the Densify REST API interface. Select http or https.</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">http</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">host</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify the Prometheus hostname.</p>
+<p class="CiRBATableText">In a single cluster configuration, the <span class="mc-variable Document.forwarder variable">data forwarder</span> can be deployed in the same cluster as the Prometheus server. In this case you need to specify the internal service name of Prometheus, in the following format:</p>
+```
+<service name>.<namespace>.svc 
+```
+
+
+
+<p class="CiRBATableText">If the <span class="mc-variable Document.forwarder variable">data forwarder</span> is not deployed in the same cluster as Prometheus, you need to specify a fully qualified domain name. (i.e. kubemain.int.company.com)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">&lt;Prometheus hostname&gt; </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">port</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify your Prometheus service connection port. The default port is 9090. </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">9090</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">username</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify the Prometheus basic authentication username that the <span class="mc-variable Document.forwarder variable">data forwarder</span> will use to connect and collect data. This user must be setup on your Prometheus server or observability platform and have the required access privileges. </p>
+<p class="CiRBATableText">The value can be the actual username or the name and location of a file containing the information.</p>
+<p class="CiRBATableText">This user will be authenticated by the Prometheus server. </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">&lt;username&gt;</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">password</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify a password associated with  the username, indicated above.</p>
+<p class="CiRBATableText">The value can be the actual password or the name and location of a file containing the information.</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">&lt;password&gt;</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">bearer_token</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Not required for this configuration. </p>
+</td>
+<td class="td_3">
+<p> </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">ca_cert</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Not required for this configuration. </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">&lt;filename&gt;</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">sigv4</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Not required for this configuration. </p>
+</td>
+<td class="td_3">
+<p> </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">retry</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The retry settings are optional and if not set specifically, then the default values are used. See <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Container_Data_Forwarder_Optional_Configuration#Retry"><u>Configuring  Retry Connection Attempts</u></a>, below for setting details.</p>
+</td>
+<td class="td_3">
+<p> </p>
+</td>
+</tr>
+<tr>
+<td class="td_2" colspan="3">
+<p class="CiRBATableColumnText">Collection Settings</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">include</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Use this section to specify the infrastructure to be included for data collection. If commented or empty then all entity types are included.</p>
+</td>
+<td class="td_3">
+<p> </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">interval</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Optional: Specify interval type. Set one of Days, Hours or Minutes. </p>
+<p class="CiRBATableText">These interval settings need to correspond with cron job settings.</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">minutes</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">interval_size</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Optional: Specify a numerical value for the interval size. i.e. if the interval is set to hours and you set the interval to 4, then data is collected every 4 hours. </p>
+<p class="CiRBATableText">These interval settings need to correspond with your cron job settings.</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">1</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">history</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Optional: Specify a numerical value for the interval history. i.e. if the interval . </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">1</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">offset</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify an offset value.</p>
+</td>
+<td class="td_3">
+<p> </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">sample_ rate</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Specify the sample rate.</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText"> </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">node_group_list</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Optional: Specify a nodegroup label reference. By default,  the "node_group_list" parameter is commented out and the <span class="mc-variable Document.forwarder variable">data forwarder</span> use the values, listed: </p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">label_cloud_google_com_gke_nodepool,</li>
+<li class="CiRBATableBullet">label_eks_amazonaws_com_nodegroup,</li>
+<li class="CiRBATableBullet">label_agentpool,</li>
+<li class="CiRBATableBullet">label_pool_name,</li>
+<li class="CiRBATableBullet">label_alpha_eksctl_io_nodegroup_name,</li>
+<li class="CiRBATableBullet">label_kops_k8s_io_instancegroup</li>
+<li class="CiRBATableBullet">label_karpenter_sh_nodepool</li>
+</ul>
+<p class="CiRBATableText">If  you want to specify a node group label that is not included in the following list, uncomment this parameter and specify your node group label. See <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Container_Data_Forwarder_Optional_Configuration#Node_Grp_Label"><u>Configuring Node Group Collection</u></a> for more details.</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">&lt;nodegroup label reference&gt;</p>
+</td>
+</tr>
+<tr>
+<td class="td_2" colspan="3">
+<p class="CiRBATableColumnText">Cluster Settings </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">name</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">When configuring multiple clusters, you must specify the name of each cluster to be included as well as each cluster's set of unique identifiers.</p>
+<p class="CiRBATableText">In a multi-cluster configuration, each cluster must have a unique name. The cluster name is mandatory  and must be unique customer-wide.</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">&lt;cluster_name&gt;</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">identifiers</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Identifiers map Prometheus labels (name:value) to uniquely identify each cluster. One or more identifiers must be specified for each cluster in a multi-cluster configuration.</p>
+<p class="CiRBATableText">&lt;label name&gt;: &lt;label value&gt;</p>
+</td>
+<td class="td_3">
+<p> </p>
+</td>
+</tr>
+</table>
+
+</Accordion>

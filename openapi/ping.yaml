@@ -1,0 +1,92 @@
+openapi: 3.0.3
+info:
+  title: Densify Ping API
+  version: "1.0.0"
+  description: |
+    Health-check endpoint for the Densify API subsystem.
+    No credentials required.
+servers:
+  - url: https://{host}/CIRBA/api
+    variables:
+      host:
+        default: api.example.com
+        description: Replace with your Densify API host
+tags:
+  - name: Health
+    description: Endpoints to check API health
+paths:
+  /ping:
+    get:
+      operationId: ping
+      tags:
+        - Health
+      summary: Ping Densify API subsystem
+      description: |
+        End-to-end connectivity check to ensure the API subsystem
+        and database are reachable.
+      parameters:
+        - name: timeout
+          in: query
+          description: >
+            Maximum time in seconds for the server to respond before returning
+            a timeout error. Default is 30. Valid range is 15–180.
+          required: false
+          schema:
+            type: integer
+            minimum: 15
+            maximum: 180
+            default: 30
+          examples:
+            valid:
+              value: 100
+            tooSmall:
+              value: 10
+      responses:
+        "200":
+          description: Successful response; API subsystem is healthy.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PingResponse"
+              examples:
+                ok:
+                  summary: Healthy
+                  value:
+                    message: ok
+                    status: 200
+        "400":
+          description: Malformed request (e.g., timeout outside the 15–180 second range).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PingResponse"
+              examples:
+                invalidTimeout:
+                  summary: Timeout out of range
+                  value:
+                    message: "Timeout value valid range: 15-180"
+                    status: 400
+        "500":
+          description: Server error connecting to the API subsystem.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PingResponse"
+components:
+  schemas:
+    PingResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Detailed message for the response status.
+        status:
+          type: integer
+          description: HTTP response code for the request.
+          enum:
+            - 200
+            - 400
+            - 500
+      required:
+        - status
+security: []

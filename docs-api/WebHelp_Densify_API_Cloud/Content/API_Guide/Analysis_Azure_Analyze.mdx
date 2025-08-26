@@ -1,0 +1,95 @@
+---
+title: "Analysis: Azure Analyze"
+---
+
+The `/analysis/azure/analyze` resource is used to collect Microsoft Azure infrastructure data and initiate optimization analysis with the collected data. The following processes occur when the first `/analysis/azure/analyze` request is triggered:
+
+1. Set up and initiate data collection of the specified Azure subscription and schedule it to run automatically on a nightly basis.
+2. Initiate analysis on the data collected using the default policy.
+   * Subsequent analysis is scheduled to run on a nightly basis after the completion of data collection.
+   * Optionally, you can configure the results to be sent to a webhook URI upon analysis completion. See [Add webhook to an analysis](./Analysis_Webhook#_AddWebhook) for details.
+3. While data collection or analysis is in progress, you can check the status (using `/analysis/azure/<``subscriptionId``>/status` resource) or wait for the results to be published to an optional webhook URI.
+4. The reporting database update is scheduled to run automatically on a nightly basis after the completion of the analysis. This process produces reports for each instance recommendation, which is useful for analysts or application owners. These reports are only created after the scheduled analysis is completed, and may therefore only be available on the following day for a new analysis. Exact timing depends on the size of your environment.
+
+The `/analysis/cloud/azure` resource is also used to return a list of Microsoft Azure optimization analyses currently in the Densify.
+
+### Ad-Hoc Tasks
+
+Generally you do not need to run once-off tasks as both data collection and analysis tasks are scheduled automatically. In cases where you need make an ad-hoc request in addition to the scheduled job, the functionality exists for this endpoint.
+
+#### Historical Data Collection
+
+When Densify initiates data collection, normally audits collect only the last 24 hours of data. You can optionally collect up to 30 days of historical data. The historical data provides a more representative set of data on which to base resizing and optimization recommendations. You can run an ad-hoc task to collect the historical data.
+
+<Note>
+Collection of historical data can take a significant amount of time, depending on the number of instances from which Densifyis collecting data. Contact [Support@Densify.com](mailto:Support@Densify.com) to enable historical data collection and details of the performance impact.
+</Note>
+
+
+The following settings define the range of historical data to be collected:
+
+* Start date offset--This is the number of days from the 30-day maximum, used to define the start of the range.
+* End date offset--This is number of days from yesterday, to end the range of data collected.
+
+These parameters allow you to reduce the number of days of historical data to be collected. If, for example, the daily audit has been running for a few days before the historical audit can be executed then you can set the end offset to exclude the number of days that have already been collected. Thirty days is the maximum number of days that you can go back and collect historical data for Azure and GCP environments.
+
+A connection to the specified cloud account must already exist before you can run an ad hoc audit. When you execute an ad hoc refresh an audit task will be configured but a new connection will not be created. If the cloud connection does not already exist and the API POST contains `triggerAdhocAudit=true`, then you will get an error message.
+
+If there is more than one account associated with the specified account ID (i.e. a payer account with many linked accounts), the Densify API handles it in the same way that analyses are currently rerun using the POST operation.
+
+Once the audit is complete you need to rerun the associated analyses as indicated below or you can wait for the next scheduled execution of the analyses and RDB populate.
+
+#### Analysis Update
+
+You can make an ad-hoc request to refresh an existing analysis, outside of the scheduled nightly run using `/analysis/cloud/<aws|azure|gcp>/analyze`. This manual, ad hoc analysis request does not perform data collection or reporting database updates. It only runs the analysis on the existing data collected with the following behavior:
+
+* The analysis uses the policy that is configured for the analysis. Contact [Support@Densify.com](mailto:Support@Densify.com) to change the configured policy.
+* If a new webhook is provided, the analysis will send results to the new webhook URI. If no webhook is provided, the analysis will send results to the existing webhook, if configured.
+* If the same analysis is already running, the request does not proceed and an appropriate message is returned.
+* If the specified analysis has data collection scheduled within 30 minutes, the request does not proceed and an appropriate message is returned. For example, if data collection is scheduled to run at 12:05 AM, and you initiate a manual, ad hoc analyze request at 11:45 PM, then the analysis will not proceed and an error message is returned.
+
+### Prerequisite Configuration
+
+Before you can collect Azure cloud infrastructure data in Densify, you need to create a service principle and configure a secret key. See [Microsoft Azure Data Collection Prerequisites for a Service Principal](https://densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal) for details on creating and configuring the service principle.
+
+<Note>
+When using the Densify API only the Azure "Service Principal" can be used to connect to your Azure subscriptions.
+</Note>
+
+
+If you are using the API, data collection and analysis are created and then refreshed daily on a per subscription basis (1-to-1). You can associate many subscriptions with a service principle, but when using the API to initiate data collection, you must specify a subscription ID and the audit and analysis are created for each subscription, separately.
+
+When using the Connection Wizard in the Densify UI, you do not need the subscription ID, as all subscriptions that are associated with the service principle are collected and listed once the connection has been verified. You can then select one or more of the subscriptions that you want to analyze (1-to-Many). When using the Connection Wizard, data collection and analysis are created and then refreshed daily for all of the subscriptions that you selected when you created the connection.
+
+<Note>
+When using the Densify API only one subscription will be processed per API request. This is the case, even if more than one subscription is associated with the service principle.
+</Note>
+
+
+### Changing Credentials
+
+When you need to change the credentials for the subscription or the service principle, you need to delete the data collection audit and recreate it. When you delete the audit, only the audit and all associated scheduler entries are removed, so you can recreate the audit with the new credentials and continue without any loss of data.
+
+## Resource
+
+```
+/analysis/cloud/azure/analyze
+```
+
+```
+/analysis/cloud/azure
+```
+
+## Endpoints
+
+<CardGroup cols={2}>
+    <Card title="Analyze Azure" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze/analyzeAzure" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Get Azure Analyses Status" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze/getAzureAnalysisStatus" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="List Azure Analyses" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze/listAzureAnalyses" arrow/>
+</CardGroup>

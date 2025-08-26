@@ -1,0 +1,58 @@
+---
+title: "Viewing Available Capacity"
+---
+
+You can view the available capacity for each hosting venue through the Hosting Venues pane. The available capacity is displayed in terms of the number of VMs that can be added, based on a capacity unit you define in Options. It also takes into account the policy settings defined for each hosting venue, so as to not over-exceed policy limits. The value is always up-to-date, as new bookings are routed.
+
+To define the capacity unit and view the number of VMs that can be added:
+
+1. Make sure your capacity unit is properly defined, from the Options button of the Hosting Venues pane. See [Changing the Capacity Unit](#Changing) for details. Click Save to refresh the Hosting Venues pane with the unscored state details.
+2. Filter and sort the hosting venues, if required, to narrow and sort your hosting venue scope. See [Filtering and Sorting Hosting Venues](./Filtering_and_Sorting_Hosting_Venues).
+3. Update the timeline to see the available space for a specific timeframe in the future. Notice that for today, hosting venue Houston - HV-PRD-App1 has 54 slots, based on the current policy settings. For 30 days from today, the same hosting venue will be out of capacity.
+<Accordion title="Figure: Available Capacity by Timeline">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030062_593x442.png)</Frame>
+</Accordion>
+4. When you route new bookings, that hosting venue's available capacity is decreased appropriately. For example, if you have 3 bookings the same size as that of the capacity unit, then the hosting venue's Available Space is reduced by 3 after the bookings are routed (for the planned date and into the future).
+
+## Changing the Capacity Unit
+
+The capacity unit values define a VM size that serves as a measuring unit for calculating available space and unit cost. The amount of available space is calculated by how many times the capacity unit can fit into the hosting venue. Capacity unit values are shown as CPUs, memory (GB), provisioned and used storage space, and workload profile. For more information on how the capacity unit is used in the hosting venue tile, see [Unscored Hosting Venues and Capacity Unit Measurements](./Viewing_the_Hosting_Venues_Pane#Unscored).
+
+<Note>
+Capacity unit calculations (Available Space, Unit Cost) are only shown in the Hosting Venue tile if the Display Available Space/Unit Cost option is enabled. It is significantly faster to show information in the hosting venue tiles when this option is disabled.
+</Note>
+
+
+
+1. In the Hosting Venues pane, click the Options button.
+2. In the Capacity Unit section, enter the details for the capacity unit that you want to use:
+
+* In CPUs, enter the vCPU amount.
+* In Memory, enter the memory amount in GB.
+* In Storage Provisioned Space, enter the amount in GB.
+* In Storage Used Space, enter the amount in GB.
+* In the Workload Profile, select the workload profile for the capacity unit.
+
+3. After setting the capacity unit, click Save.
+<Note>
+Capacity unit values are saved as a user preference in the Densify database and are used until new values are saved.
+</Note>
+
+
+<Accordion title="Figure: Entering Capacity Unit Values">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030023_340x382.png)</Frame>
+</Accordion>
+
+
+After changing the capacity unit, the unit cost and available space amount change to reflect the new amounts, if set to display.
+
+As a best practices, you should configure the same baseline capacity unit for both the Route and Reserve Demand page and the API:
+
+* Route and Reserve Demand page--through the Options button of the Hosting Venues pane (see [Changing the Capacity Unit](#Changing) for details).
+* API--Contact [Support@Densify.com](mailto:Support@Densify.com) to ensure this setting is consistently defined.
+
+## Available Capacity through Reports
+
+You can also view the available capacity from the Forecast report. For details, see [Forecasting](../Reporting_Framework/Forecasting).
+
+The available capacity shown through this report may differ from that of the Route and Reserve Demand page, if you override the capacity unit option for the Route and Reserve Demand page.

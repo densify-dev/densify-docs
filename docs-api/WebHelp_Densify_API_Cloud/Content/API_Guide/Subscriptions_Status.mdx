@@ -1,0 +1,35 @@
+---
+title: "Subscriptions: Status"
+---
+
+The `/subscriptions/<platformType>/<subscriptionId>/status` resource is used to return the status of the results posted to a webhook for a specific subscription in Densify.
+
+Refer to [Subscriptions](./Subscriptions) for details on subscription results and defining a webhook.
+
+## Resource
+
+```
+/subscriptions/cloud/<subscriptionId>/status
+```
+
+```
+/subscriptions/containers/<subscriptionId>/status
+```
+
+```
+/subscriptions/<subscriptionId>/status
+```
+
+<Note>
+If you use this resource without the `<platformType>` specified (i.e. without `cloud` or `containers` specified), the behavior is exactly the same as specifying the `cloud`-specific resource. This behavior enables backward compatibility with scripts using the Densify API prior to release 12.1.6, where the platform-specific indicator was not available.
+</Note>
+
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="Get Subscriptions Status" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status/getSubscriptionStatus" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Get Subscriptions Status Default Plataform" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status/getSubscriptionStatusDefaultPlatform" arrow/>
+</CardGroup>

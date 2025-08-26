@@ -1,0 +1,816 @@
+---
+title: "Defining Booking Requests"
+---
+
+Booking requests can be created manually from within the Route Demand screen of the Route and Reserve Demand page.
+
+Booking requests have a profile strength that indicates how much information has been captured about the booking request. The more details that you add when you create the booking request, the higher the profile strength. See [How the Profile Strength is Calculated](./Viewing_the_Bookings_Requests_To_Be_Routed_Pane#How) for details.
+
+## Creating Booking Requests
+
+When creating a new booking request, a set amount of mandatory information needs to be entered to enable proper routing, for instance selecting a reference system that is used to populate several values in the booking request, such as the required vCPUs, memory and OS. Other information about the booking request can also be populated to ensure the booking is routed to the ideal hosting venue and to enforce specific policy rules during placement and rebalancing, such as keeping load balancing members and security zones apart based on the load balancing group and security zone specified. This type of information can also be inherited if it has been included with a reference system.
+
+To learn more watch the video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/306888542" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+
+To begin defining your booking request, navigate to the Route and Reserve Demand page to the Route Demand screen. Click Add. The New Guest Booking Request dialog box is displayed and needs to be defined, section by section.
+
+### Step 1: Defining Guest's Booking Information
+
+<Accordion title="Figure: Guest&#x27;s Booking Information Section">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030015_620x481.png)</Frame>
+</Accordion>
+
+
+Table: Fields in the Guest's Booking Information Section
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Field</p>
+</th>
+<th>
+<p>Description </p>
+</th>
+</tr>
+</thead>
+<tr>
+<td colspan="2">
+<p>Guest's Booking Information</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>System Name *</p>
+</td>
+<td>
+<p>Add the expected VM name. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Customer Name</p>
+</td>
+<td>
+<p>Add the name of the VM owner.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Planned Start Date *</p>
+</td>
+<td>
+<p>This date is based on the <span class="mc-variable Document.Company variable">Densify</span> server’s time zone, which is shown in the above figure with a GMT offset "(UTC -4:00)". Enter the expected date that the VM will be needed. The calendar picker shows the date based on the <span class="mc-variable Document.Company variable">Densify</span> server’s time zone. The <span class="CiRBAcharStrong">Today</span> button allows you to choose today's date for immediate placement. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Hold Reservation \<<span class="CiRBAcharEmphasis">n</span>> days after Planned Start Date</p>
+</td>
+<td>
+<p>Enter the number of days after the <span >Planned Start Date</span> to hold the booking, in case the incoming VM is late. Enter 0 if you do not want a grace period.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Copies</p>
+</td>
+<td>
+<p>Enter the number of copies you need if you want to create multiple copies of booking requests.</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>Although you can create up to 999 booking requests at one time, your system will require significant processing time if you create more than 100 copies.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Project</p>
+</td>
+<td>
+<p>Enter the project name or application that this VM is associated with. After the new booking request is saved, it is grouped and displayed under the project name in both the <span >Booking Requests to be Routed</span> pane and <span >Reservation Details</span> pane.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Customer Email</p>
+</td>
+<td>
+<p>Enter the email for the person who requested the VM.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Description</p>
+</td>
+<td>
+<p>Enter an optional description, to a maximum of 1024 characters. </p>
+</td>
+</tr>
+</table>
+
+
+### Step 2: Defining Guest's Resource Request
+
+<Accordion title="Figure: Guest&#x27;s Resource Request Section">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030032_607x472.png)</Frame>
+</Accordion>
+
+
+Table: Fields in the Guest's Resource Request Section
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Field</p>
+</th>
+<th>
+<p>Description </p>
+</th>
+</tr>
+</thead>
+<tr>
+<td colspan="2">
+<p>Guest's Resource Request</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CPUs *</p>
+</td>
+<td>
+<p>The Original/From Reference System column shows the values of the reference system and these values can be reused or overridden in the Requested column for the new VM.</p>
+<p>Selecting a reference system is mandatory.</p>
+<p>If required, override the CPU value in the Requested column with the number of vCPUs required for the new VM.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Memory (GB) *</p>
+</td>
+<td>
+<p>If required, override the memory value in the Requested column with the memory requirement for the new VM.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>OS *</p>
+</td>
+<td>
+<p>Shows the OS from the reference system. If you need to change the operating system, select a different reference system with the OS type that is the same as the new VM.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Reference System *</p>
+</td>
+<td>
+<p>Select a reference system to use its values for the requested system. Selecting a reference system is mandatory but values can be overridden in the Requested column. Note that other requirements and attribute values set on the reference system will be loaded when that reference system is selected.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Preferred Environment</p>
+</td>
+<td>
+<p>Select the preferred environment for this system. </p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>This field is not constrained by the global filter.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Preferred Hosting Venue</p>
+</td>
+<td>
+<p>Select the preferred hosting venue for this system. This field is only enabled once a preferred environment has been selected.</p>
+<p>After selecting a preferred environment and hosting venue, you can route the booking request directly by clicking the <span >Route</span> button. See <a class="RefToBookmark MCXref xref xrefRefToBookmark" href="#Routing"><u>Routing from the Booking Request Dialog Box</u></a>.</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>This field is not constrained by the global filter.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk *</p>
+</td>
+<td>
+<p>If the reference system has an associated disk, those disk values are populated in the lower section. If you want to change the disk values, you can override them. </p>
+<p>If the VM is associated with multiple disks, such as when the operating system, the database, and the log files for a VM are each located on a different disk, click <span >Add Disk</span> to add disk information. </p>
+<p>The VM will only be routed to hosting venues that contain datastores of the appropriate tier (each disk may be required to belong to a different datastore because of security, performance, etc.) and that have enough capacity to host the booking request's disks.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Provisioned Space (GB)</p>
+</td>
+<td>
+<p>If required, you can override the provisioned space value  with the amount of space (GB) for the datastore that is required for this disk. This field is ignored during routing if 0 or no value is specified.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Datastore Preference</p>
+</td>
+<td>
+<p>Specify the preferred <span class="mc-variable Document.datastore variable">datastore</span> for this disk. <a name="kanchor304"></a></p>
+<p>If the datastore preference is specified in the Workload disk definition, <span class="mc-variable Document.Densify variable">Densify</span> will try to respect the preferred placement according to the best candidate environment and hosting venue selected. If the preferred datastore is not available in the selected hosting venue, does not satisfy the tier condition, or does not have enough capacity, then the next suitable datastore available in the venue will be used. Regardless if the preferred datastore is used during routing, the Datastore Preference value is still preserved in the Workload disk definition after placement.</p>
+<p>
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Tiers</p>
+</td>
+<td>
+<p>Select the storage tier required for this disk. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Used Space (GB)</p>
+</td>
+<td>
+<p>If required, you can override the used space value with the amount of used space (GB) for the datastore required for this disk. This field is ignored during routing if 0 or no value is specified.</p>
+</td>
+</tr>
+</table>
+
+
+### Step 3: Defining Guest's Utilization Profile
+
+<Accordion title="Figure: Guest&#x27;s Utilization Profile Section">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030033_567x349.png)</Frame>
+</Accordion>
+
+
+Table: Fields in the Guest's Utilization Profile Section
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Field</p>
+</th>
+<th>
+<p>Description </p>
+</th>
+</tr>
+</thead>
+<tr>
+<td colspan="2">
+<p>Guest's Utilization Profile</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Workload Profile *</p>
+</td>
+<td>
+<p>Select a workload profile from the list below that best reflects the new workload. </p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>The workload profile is inherited from the reference system when a reference system is selected or changed. This will replace any existing workload profile value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Workload Type</p>
+</td>
+<td>
+<p>Select a workload type from the list below. After selecting the workload profile and type, the corresponding chart is shown.</p>
+</td>
+</tr>
+</table>
+
+
+A workload profile is a model used for characterizing the expected utilization levels and patterns for multiple resource types, and a workload type is a resource utilization metric associated with a single system or a group of systems. You need to select a workload profile and type for the booking request that best reflects this new VM so the required resources are accurately calculated for this new workload.
+
+Each profile, such as Memory Intensive, Medium Utilization, etc. has several associated workload types, i.e. CPU utilization and Disk I/O Operations. Review the available profiles in the following table. Review their corresponding workload charts to determine which option to use for your bookings.
+
+Table: Sample Representative Workloads
+
+<table>
+<col/>
+<col/>
+<col/>
+<col/>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Workload Profile</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+<th>
+<p>CPU <br/>Utilization</p>
+</th>
+<th>
+<p>Actual Memory<br/>Utilization</p>
+</th>
+<th>
+<p>Disk I/O Operations</p>
+</th>
+<th>
+<p>Network I/O Activity</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>CPU_Intensive_Peak</p>
+</td>
+<td>
+<p>Workload with a high level of peak CPU utilization.</p>
+</td>
+<td>
+<p>Very High Peak (100%), Nominal Sustained (20%)</p>
+</td>
+<td>
+<p>Nominal (70% Actual, 30% Active)</p>
+</td>
+<td>
+<p>Nominal</p>
+</td>
+<td>
+<p>Nominal</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CPU_Intensive_Sustained</p>
+</td>
+<td>
+<p>Workload with a high level of sustained CPU utilization.  </p>
+</td>
+<td>
+<p>High Sustained (60%), High Peak (80%)</p>
+</td>
+<td>
+<p>Nominal (70% Actual, 30% Active)</p>
+</td>
+<td>
+<p>Nominal</p>
+</td>
+<td>
+<p>Nominal</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk_Intensive</p>
+</td>
+<td>
+<p>Workload with high level disk I/O activity.</p>
+</td>
+<td>
+<p>Nominal (40% Peak, 20% Sustained)</p>
+</td>
+<td>
+<p>Nominal (70% Actual, 30% Active)</p>
+</td>
+<td>
+<p>High</p>
+</td>
+<td>
+<p>Nominal</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Low_Utilization</p>
+</td>
+<td>
+<p>Workload with low levels of resource utilization (CPU, memory, disk and network I/O).</p>
+</td>
+<td>
+<p>Low (20% Peak, 2% Sustained)</p>
+</td>
+<td>
+<p>Low (20% Actual, 2% Active)</p>
+</td>
+<td>
+<p>Low</p>
+</td>
+<td>
+<p>Low</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Medium_Utilization</p>
+</td>
+<td>
+<p>Workload with medium levels of resource utilization.</p>
+</td>
+<td>
+<p>Nominal (40% Peak, 20% Sustained)</p>
+</td>
+<td>
+<p>Nominal (70% Actual, 30% Active)</p>
+</td>
+<td>
+<p>Nominal</p>
+</td>
+<td>
+<p>Nominal</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Memory_Intensive</p>
+</td>
+<td>
+<p>Workload with high levels of memory utilization.</p>
+</td>
+<td>
+<p>Nominal (40% Peak, 20% Sustained) </p>
+</td>
+<td>
+<p>High (90% Actual, 50% Active)</p>
+</td>
+<td>
+<p>Nominal</p>
+</td>
+<td>
+<p>Nominal</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Network_Intensive</p>
+</td>
+<td>
+<p>Workload with high level of network I/O activity </p>
+</td>
+<td>
+<p>Nominal (40% Peak, 20% Sustained)</p>
+</td>
+<td>
+<p>Nominal (70% Actual, 30% Active)</p>
+</td>
+<td>
+<p>Nominal</p>
+</td>
+<td>
+<p>High</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Zero_Utilization</p>
+</td>
+<td>
+<p>Workload with zero resource utilization.</p>
+</td>
+<td>
+<p>N/A</p>
+</td>
+<td>
+<p>N/A</p>
+</td>
+<td>
+<p>N/A</p>
+</td>
+<td>
+<p>N/A</p>
+</td>
+</tr>
+</table>
+
+
+### Step 4: Defining Guest's Security Requirements
+
+<Accordion title="Figure: Guest&#x27;s Security Requirements Section">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030034_610x286.png)</Frame>
+</Accordion>
+
+
+Table: Fields in the Guest's Security Requirements Section
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Field</p>
+</th>
+<th>
+<p>Description </p>
+</th>
+</tr>
+</thead>
+<tr>
+<td colspan="2">
+<p>Guest's Security Requirements</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Data Jurisdiction</p>
+</td>
+<td>
+<p>Select the jurisdiction for this workload, such as Canada or US. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Compliance</p>
+</td>
+<td>
+<p>Select the compliance for this workload, such as PCI or HIPAA. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Encryption and Key Management</p>
+</td>
+<td>
+<p>Select the encryption key management for this workload, such as 128-bit based or 256-bit based. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Identity and Access Management</p>
+</td>
+<td>
+<p>Select the identity and access management (IAM) requirements for this workload, such as Active Directory. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Security Zone</p>
+</td>
+<td>
+<p>Select the security zone for the VM if applicable.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Network Isolation</p>
+</td>
+<td>
+<p>Select the network isolation capabilities for this workload, such as Logical or Physical. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Intel TXT Support</p>
+</td>
+<td>
+<p>Select if this workload supports Intel Trusted Execution Technology. </p>
+</td>
+</tr>
+</table>
+
+
+### Step 5: Defining Guest's Business Requirements
+
+<Accordion title="Figure: Guest&#x27;s Business Requirements Section">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030035_624x228.png)</Frame>
+</Accordion>
+
+
+Table: Fields in the Guest's Business Requirements Section
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Field</p>
+</th>
+<th>
+<p>Description </p>
+</th>
+</tr>
+</thead>
+<tr>
+<td colspan="2">
+<p>Guest's Business Requirements</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Location</p>
+</td>
+<td>
+<p>Select the location for this VM.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Service Level</p>
+</td>
+<td>
+<p>Select the service level required by this VM.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Department</p>
+</td>
+<td>
+<p>Select the department for this VM.</p>
+</td>
+</tr>
+</table>
+
+
+### Step 6: Defining Guest's Technical Requirements
+
+<Accordion title="Figure: Guest&#x27;s Technical Requirements Section">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030036_622x308.png)</Frame>
+</Accordion>
+
+
+Table: Fields in the Guest's Technical Requirements
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Field</p>
+</th>
+<th>
+<p>Description </p>
+</th>
+</tr>
+</thead>
+<tr>
+<td colspan="2">
+<p>Guest's Technical Requirements</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Hosting Platform </p>
+</td>
+<td>
+<p>Select the hosting platform for the VM, e.g. Amazon Web Services, VMware. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Context Switches</p>
+</td>
+<td>
+<p>Enter the number of context switches per second that the VM will require. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk IO (Ops)</p>
+</td>
+<td>
+<p>Enter the Disk IO requirement for the VM in operations per second. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Network IO (Packets)</p>
+</td>
+<td>
+<p>Enter the Network IO requirement for the VM in packets per second. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Application Tier</p>
+</td>
+<td>
+<p>Select the application tier for the VM if applicable.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>High Availability Group</p>
+</td>
+<td>
+<p>Select the high availability group for the VM if applicable.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Allocation Sync Group</p>
+</td>
+<td>
+<p>Select the allocation sync group if applicable. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Software Licenses</p>
+</td>
+<td>
+<p>Select the software licenses for the VM, e.g. Windows and MSSQL.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>IP Addresses Assigned</p>
+</td>
+<td>
+<p>Enter the number of IP addresses to be assigned to this booking, from your defined IP address pool sensors. Typically this will be set to 1, but can be set to values >1 if there are multiple NICs or if the VM needs multiple IP interfaces for other reasons.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Hypervisor Type</p>
+</td>
+<td>
+<p>Select the hypervisor type for the VM, e.g. Hyper-V, VMware, PowerVM.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk IO (Bytes)</p>
+</td>
+<td>
+<p>Enter the Disk IO requirement for the VM in bytes per second. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Network IO (Bytes)</p>
+</td>
+<td>
+<p>Enter the Network IO requirement for the VM in bytes per second. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Operational Environment</p>
+</td>
+<td>
+<p>Select the operational environment for the VM if applicable. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Load Balancing Group</p>
+</td>
+<td>
+<p>Select the load balancing group for the VM if applicable. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Static Source Placement</p>
+</td>
+<td>
+<p>Select whether VMs should not be moved during rebalancing and defragmentation. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>License Group</p>
+</td>
+<td>
+<p>Select the license group for this workload, such as database or platform. </p>
+</td>
+</tr>
+</table>
+
+
+## Editing Booking Request Details
+
+After the booking request has been created but is still unrouted, you can select and then Edit all details for the request except for the reference system.
+
+To learn more watch the video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/301299587" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+
+## Editing One or More Booking Requests
+
+You can edit multiple booking requests at the same time.
+
+Select the specific projects or the specific booking requests, using the standard SHIFT or CTRL key for multi-select. If different values have been entered previously for different booking requests, the field will show "multiple values". Any value that you enter will overwrite any value previously entered.
+
+<Accordion title="Figure: Multiple Values for Different Booking Requests">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030039_495x240.png)</Frame>
+</Accordion>
+
+
+## Routing from the Booking Request Dialog Box
+
+If you know the environment and hosting venue where you want to place the new booking request, you can route the booking request directly from the New/Edit Guest Booking Request dialog box.
+
+After the Preferred Environment and Preferred Hosting Venue are specified, click the Route button. If the hosting venue is suitable for hosting the booking request, it is routed to that group. The booking is then moved to the Reservation Details pane.
+
+## Deleting Booking Requests
+
+You can select and Delete multiple booking requests at the same time.

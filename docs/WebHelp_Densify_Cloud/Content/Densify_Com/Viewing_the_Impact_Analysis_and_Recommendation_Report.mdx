@@ -1,0 +1,670 @@
+---
+title: "Viewing the Public Cloud Impact Analysis and Recommendation Report"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+As the application owner, you want to see more details of your particular cloud service, before implementing Densify's recommendations.
+Specifically:
+
+* Optimization Reasoning--The data and the policy settings that resulted in the recommendation being made.
+* Verification--Ensure that the recommendation aligns with your financial and organizational goals.
+
+<Accordion title="Video: Viewing the Impact Analysis and Recommendation Report">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/304378476" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+</Accordion>
+
+
+Recommendation are based on the latest cloud catalogs from the supported public cloud providers.
+
+To learn more watch the video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/708679005" webkitallowfullscreen="webkitallowfullscreen" width="640"></iframe>
+
+You can access this report from the following pages:
+
+* Instance Optimization Details Report--Click the Analysis Report hyperlink in the lower pane of Instance Optimization Details page. See [Understanding the Instance Optimization Details Report](./Understanding_the_Instance_Details_Report#Lower_Section).
+* Auto Scaling Group Optimization Opportunity Report--Click the Analysis Report hyperlink in the lower pane of Instance Optimization Details page to open the Impact Analysis and Recommendation Report for the selected group. The ASG-specific report is covered in [Viewing the ASG Impact Analysis and Recommendation Report](./Viewing_the_Impact_Analysis_and_Recommendation_Report_-_ASG).
+
+The Impact Analysis and Recommendation report provides the following details for a selected cloud service:
+
+* System or Scale Group Name, and the date of the last data collection.
+* Report description;
+* [Summary](#Summary) --Provides an overview of the public cloud instance. An AWS ASG-specific report is covered in [Viewing the ASG Impact Analysis and Recommendation Report](./Viewing_the_Impact_Analysis_and_Recommendation_Report_-_ASG).
+* [System Information](#Properties) | [Scale Group Information](./Viewing_the_Impact_Analysis_and_Recommendation_Report_-_ASG#ASGProperties)--Provides properties and configuration details for the selected cloud service;
+* [Recommendation Details](#RecommendationDetails)--A number of sections that show workload charts and the impact of making the recommended changes;
+* [Effort to Optimize Instance Type](#Effort)--Lists the factors that contribute to the effort required to investigate and implement the recommendation;
+* [Cost Impact](#Cost)--Provides the cost benefits of implementing the recommendation.
+
+You can scroll through the report or you can click on one of the Details tabs at the top of the page to jump to the relevant section within the report.
+
+## Creating a PDF Version of the Report
+
+You can create a PDF version of the report by clicking the Export to PDF <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_Reporting_Framework/03000053_14x14.png"/> button located at the top-right corner of the display.
+
+The export file is named "SystemAnalysis.pdf" and is saved to the download folder defined by your browser. You may want to modify the filename to match the selected instance, if you are planning to review and distribute reports for multiple instances.
+
+## Summary
+
+### Summary Table
+
+The summary table identifies the cloud service with any user defined tags, and provides an overview of any generated recommendations, predicted uptime, and policy used for the service.
+
+<Accordion title="Table: Summary Report Descriptions">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Column</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td rowspan="1">
+<p>System Name</p>
+</td>
+<td>
+<p>This is the system or scale group name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>System ID</p>
+</td>
+<td>A unique key assigned by the public cloud vendors to identify this instance. </td>
+</tr>
+<tr>
+<td>
+<p>Public Cloud</p>
+</td>
+<td>
+<p>This is the public cloud provider (e.g. AWS, Azure, or GCP).</p>
+</td>
+</tr>
+<tr>
+<td>
+<ul>
+<li>Account Name (AWS)</li>
+<li>Subscription Name (Azure)</li>
+<li>Project Name (GCP)</li>
+</ul>
+</td>
+<td>
+<p>This is the cloud platform client account to which the service belongs. This could be Account Name, Subscription Name or Project Name depending on the cloud vendor of the service.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>System Type</p>
+</td>
+<td>
+<p>This is the type of cloud service (e.g. EC2 instance, <span class="mc-variable Document.ASG variable">Auto Scaling group</span>, Virtual Machine instance, etc.).</p>
+<Note>
+  For ASGs configured with maximum group size =1, the displayed service type is "ASG" and not EC2.
+</Note>
+</td>
+</tr>
+<tr>
+<td>
+<p>Instance Type</p>
+</td>
+<td>
+<p>This is the current, cloud service instance type. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Instance OS</p>
+</td>
+<td>
+<p>This is the OS deployed on the service instance.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Instance Type Recommendation</p>
+</td>
+<td>
+<p>For the other supported cloud services, this is the change to the instance type that <span class="mc-variable Document.Company variable">Densify</span> recommends. The optimization type (i.e. recommendation category) is also specified. See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="RefToBookmark MCXref xref xrefRefToBookmark" href="./Understanding_the_Instance_Details_Report#Recommendation_Color-Coding"><u>Optimization Type Descriptions and Color-Coding</u></a></madcap:conditionaltext> for a description of each optimization type recommendation.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Predicted Uptime %</p>
+</td>
+<td>
+<p>For a cloud instance service, this is the percentage of time that the instance has been up and running since the instance was started. The actual values in days and hours is also shown. If you have 24 or  more days of data then you will see something like 21 days (504 hours) over a period of 26 days (624 hours).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Instance Type Override (User-defined)</p>
+</td>
+<td>
+<p>If the "Instance Type Override" attribute is set, you will see one of following values:</p>
+<ul>
+<li>Unlocked--Ignore the instance type constraint in the policy;</li>
+<li>Locked--Keep current instance type;</li>
+<li>Family Locked--Keep the current instance family;</li>
+<li>FamilyGen Locked--Keep the current instance family and generation;</li>
+<li>Any other value--Use instance type: \<<span class="CiRBAcharCrossreference">attribute value</span>>;</li>
+<li>N/A--No override, this row is hidden.</li>
+</ul>
+<p>Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="9fcceaefeff0edebdfdbfaf1ecf6f9e6b1fcf0f2" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for override details.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Policy</p>
+</td>
+<td>
+<p>This is the Densify policy that is applied to the <span class="mc-variable Document.ClEnv variable">cloud environment</span>.	The policy name and a description are provided. </p>
+<p>Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="ebb89e9b9b84999fabaf8e8598828d92c5888486" href="/cdn-cgi/l/email-protection">[email protected]</a></span><madcap:conditionaltext data-mc-conditions="CiRBA.SaaSOnly"> for details of the policy settings.</madcap:conditionaltext> </p>
+</td>
+</tr>
+</table>
+
+</Accordion>
+
+
+### Optimization Benefits
+
+This section of the summary lists the benefits that can be gained from implementing the recommendation. A list of bullet points maps the values of Overall Status and Optimization Types to the actual benefits to you, as the application owner, in terms of both cost and performance.
+
+If the overall status for the selected instance is Optimal, then this section is not displayed.
+
+### Predicted Utilization (CPU and Memory)
+
+This table provides the impact to CPU and memory utilization if you were to move your application to the recommended instance type. A change indicator, in the last column, shows you at a glance whether utilization impact is negative, positive or if there is no impact and utilization remains the same as compared to the current instance type. This column is shown only if there is a recommended instance type.
+
+The workload charts following the Predicted Utilization table show CPU utilization and memory utilization (%) of the current instance and these same metrics as they would be on the recommended instance type.
+
+Instances that have been identified as "Just Right" or "Terminate" do not have any recommendations and only the current utilization data and charts are shown.
+
+<Note>
+If the metrics are not available, then the corresponding chart is not displayed.
+</Note>
+
+
+
+When actual memory data is not collected, and memory workloads are backfilled as defined in the policy, a footnote will be added to indicate that memory utilization is based on user-defined policy settings.
+
+## System Information
+
+For a cloud instance report, the System Information table provides the following details of the selected instance.
+
+<Accordion title="Table: System Properties Report">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Column</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>System Name</p>
+</td>
+<td rowspan="2">
+<p>This is the name and unique ID for the selected system.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>System ID</p>
+</td>
+</tr>
+<tr>
+<td rowspan="1">
+<ul>
+<li>Account </li>
+<li>Subscription</li>
+<li>Project</li>
+</ul>
+</td>
+<td rowspan="2">
+<p>These are the details of the account (AWS), the subscription (Azure) or the project (GCP) to which this instance belongs.</p>
+</td>
+</tr>
+<tr>
+<td rowspan="1">
+<ul>
+<li>Account Name</li>
+<li>Subscription Name</li>
+<li>Project Name</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Instance Type</p>
+</td>
+<td>
+<p>This is the current instance type. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Instance OS</p>
+</td>
+<td>
+<p>This information is displayed if it is available. The deployed OS may not always be available.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Department</p>
+</td>
+<td rowspan="9">
+<p>These are user-specified attributes that are displayed if the instance has been tagged accordingly. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Owner</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Business Unit</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Application</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Operational Environment</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Inventory Code</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Project </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cost Center</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Product Code</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Region</p>
+</td>
+<td>
+<p>This is the region containing the selected instance.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Availability Zone</p>
+</td>
+<td>
+<p>This is the availability zone containing the selected instance, if applicable. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Creation Date</p>
+</td>
+<td>
+<p>This is the date on which the instance was created. This value is only displayed if available.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>State</p>
+</td>
+<td>
+<p>This is the current power state of the instance. This value is only displayed if available.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Start Date</p>
+</td>
+<td>
+<p>This is the date on which the instance was started. This value is only available if the instance is running.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Stop Date</p>
+</td>
+<td>
+<p>This is the date on which the instance was stopped. This value is only displayed if available.</p>
+</td>
+</tr>
+</table>
+
+</Accordion>
+
+
+## Recommendation Details
+
+<Note>
+Not all utilization metrics are available for all cloud providers. The metrics displayed in the following tables and charts will vary depending on the selected service type and cloud provider.
+</Note>
+
+
+
+### Resource Utilization Impact
+
+This table provides the impact to CPU utilization, memory utilization, as well as to network and disk IO throughput if you were to move your application to the recommended instance type. A change indicator, in the last column, shows you at a glance whether utilization impact is negative, positive or if there is no impact and utilization remains the same as compared to the current instance type. This column is shown only if there is a recommended instance type.
+
+<Accordion title="Table: Resource Utilization Descriptions">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Metric</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>CPU Utilization %</p>
+</td>
+<td>
+<p>This is the CPU utilization as percentage of the total available CPU cycles. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Memory Utilization (%)</p>
+</td>
+<td>
+<p>This is the memory utilization as percentage of the total available memory. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Network IO Throughput (MB/s)</p>
+</td>
+<td>
+<p>This is the network throughput in MB/s. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Network IO (pkts/s)</p>
+</td>
+<td>
+<p>This is the network I/O in pkts/s. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk IO Throughput (MB/s)</p>
+</td>
+<td>
+<p>This is the disk throughput in MB/s.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk IO Operations (IOPS)</p>
+</td>
+<td>
+<p>This is the disk I/O in ops/s.</p>
+</td>
+</tr>
+</table>
+
+</Accordion>
+
+
+If the Optimization Type is "Just Right" or "Terminate" then there is no recommended instance column.
+
+### Resource Allocation Comparison
+
+For cloud instances, the Resource Allocation Comparison table allows you to compare the allocated resources on your current instance type to those allocated in the recommended instance type.
+
+For Auto Scaling groups, the Resource Allocation Comparison (per Instance) table allows you to compare the allocated resources on the instance type, configured currently in your scale group launch configuration, to those allocated to the recommended instance type.
+
+The column at the right end of the chart highlights differences between your current instance type and the recommended instance type allocations.
+
+If there is no recommended instance type, the title of the table changes to Resource Allocation for cloud instances or Resource Allocation (per Instance) for scale groups. In this situation, the Recommended and Change columns are not displayed.
+
+<Accordion title="Table: Resource Allocation Comparison">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Metric</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>CPU Count</p>
+</td>
+<td>
+<p>This is the CPU utilization as percentage of the total available CPU cycles. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CPU Benchmark</p>
+</td>
+<td>
+<p>This is the CPU benchmark that indicates CPU performance.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Memory Allocation (GB)</p>
+</td>
+<td>
+<p>This is the available memory, in GB.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Max Network I/O Throughput (MB/s)</p>
+</td>
+<td>
+<p>This is the maximum network throughput in MB/s.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Max Network I/O (pks/s)</p>
+</td>
+<td>
+<p>This is the maximum network IO in pks/s.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Local Storage Size (GB)</p>
+</td>
+<td>
+<p>This is the disk space allocated to the instance, if applicable.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Max Local Disk I/O Throughput (MB/s)</p>
+</td>
+<td>
+<p>This is the data transfer speed in megabytes per second. This information is only displayed if there is disk space allocated to the instance.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Max Local Disk I/O Operations (IOPS)</p>
+</td>
+<td>
+<p>This is the rate of the I/O operations measured in 1/sec. It is a ratio of the number of operations executed by your storage device within a period of time to the duration of this period of time, in seconds. This information is only displayed if there is disk space allocated to the instance.</p>
+</td>
+</tr>
+</table>
+
+</Accordion>
+
+
+### Workload Charts
+
+The following workload charts are provided so you can compare utilization on the current service against that of the recommended service configuration or instance type. The charts for the current service are shown on the left side and the charts for the recommended service are shown on the right side.
+
+If utilization metrics are not available, the corresponding chart is not displayed.
+
+Cloud services that are identified as "Just Right" or "Terminate" only have current utilization charts shown.
+
+When actual memory data is not collected, and memory workloads are backfilled with the memory usage as defined by the policy, no recommended memory workload chart is displayed.
+
+<Accordion title="Table: Predicted Resource Utilization Charts for Cloud Instances">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Current and Recommended Charts</p>
+</th>
+<th>
+<p>Current Charts</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td rowspan="1">
+<p>Workload charts for both the current instance and the recommended instance type are provided for the following metrics:</p>
+<ul>
+<li>CPU Utilization - Predicted Day</li>
+<li>CPU Utilization - Busiest Day</li>
+<li>Memory Utilization in Percent</li>
+</ul>
+</td>
+<td>
+<p>Workload charts for only the current instance type are provided for the following metrics:</p>
+<ul>
+<li>Network I/O Bytes</li>
+<li>Network I/O Packets</li>
+<li>Disk I/O Bytes</li>
+<li>Disk I/O Operations</li>
+</ul>
+</td>
+</tr>
+</table>
+
+</Accordion>
+
+
+## Effort to Optimize Instance Type
+
+This table lists the factors that contribute to the effort required to investigate and implement the Densify recommendations. Effort for the selected instance is calculated by rule-driven analytics based on various factors (such as instance family change, storage change, data quality checks, feature changes, group size changes etc.) that can be configured in the policy settings and through analysis rule sets.
+
+A description of each rule and its impact on the effort to move the current service to the recommended service type or configuration is provided.
+
+This is the same information that is reported on the Effort Details tab in the Instance Optimization Details dashboard. See [Understanding the Instance Optimization Details Report](./Understanding_the_Instance_Details_Report).
+
+Contact [Support@Densify.com](mailto:Support@Densify.com) for details on the policy settings and rule sets configured for your environment.
+
+The Effort to Optimize \{service type} table is not displayed for the "Just Right" optimization type as no effort is required to remain at the current service
+
+## Cost Impact
+
+This section provides a cost summary that shows you the benefits of implementing the recommendation as well as details that allow you to compare the cost of the current instance to the recommended instance type.
+
+<Accordion title="Table: Cost Impact Descriptions">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Item</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Current Monthly Cost</p>
+</td>
+<td rowspan="2">
+<p>This bar chart shows you the current and recommend instance costs and allows you compare the costs. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommended Cost</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Monthly Savings</p>
+</td>
+<td>
+<p>This will be your monthly savings if the recommendation is implemented.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Savings %</p>
+</td>
+<td>
+<p>This will be your  monthly savings, as a percentage if the recommendation is implemented.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Predicted Uptime</p>
+</td>
+<td>
+<p>This is the percentage of time that the instance has been up and running out of the total time you have had the instance. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>On-Demand ($/Month)</p>
+</td>
+<td>
+<p>This is the on-demand price for the current instance and the recommended instance type. </p>
+</td>
+</tr>
+</table>
+
+</Accordion>
+
+<Note>
+If the Optimization Type is "Just Right" then no Recommended Cost value is displayed.
+</Note>
+
+

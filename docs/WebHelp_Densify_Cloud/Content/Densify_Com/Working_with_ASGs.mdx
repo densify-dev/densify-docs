@@ -1,0 +1,576 @@
+---
+title: "Working with Auto Scaling Groups"
+---
+
+The Auto Scaling Groups (ASG) tab displays optimization opportunities for AWS Auto Scaling groups discovered through CloudWatch data collection. Optimization opportunities include group sizing and instance type recommendations based on predictive workload analytics.
+
+<Accordion title="Video: Public Cloud AWS Auto-Scaling Groups Overview">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/372647271" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+</Accordion>
+
+
+When working with ASGs note the following:
+
+* EC2 instances that belong to an ASG are logically treated as part of the ASG service entity and recommendations are made for the group and not for the individual instances.
+* Auto Scaling groups configured with maximum group size = 1, are only included in the EC2 tab. ASGs configured with maximum group size > 1, are included in the Auto Scaling Groups tab.
+* If an ASG is associated with an ECS or EKS service, the Densify analysis requires additional information to ensure the ASG can satisfy all of the container reservation requests. Additional data should be collected by deploying the Densify container data forwarder into this cluster. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+* ASGs configured to use the 'Combined Purchasing Options and Instance Types' feature will have an attached policy that defines the mix of instance types on which the ASG can run. Densify cannot analyze these ASGs. However, an ASG with a mixed policy attached, can still be configured to run on one instance type. These ASGs can be analyzed.
+* If memory data is not available for ASGs, memory utilization of the parent ECS or EKS service will be used and if that data is also not available, the backfill memory settings will be used for the analysis. See [ASG Backfilling Memory](#Backfill_Mem).
+
+The ASG optimization opportunity report is divided into two sections:
+
+* The [tabular report](#Tabular_Report) in the upper pane, shows details of the ASGs and their recommendations.
+* [Tabs](#Lower_Pane) in the lower pane display the selected ASG's predicted scaling activity and resource utilization details. A third tab shows the effort required to implement the recommendations.
+
+<Accordion title="Figure: AWS > Auto Scaling Groups Tab ">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000115.png)</Frame>
+</Accordion>
+
+
+### Summary Bar
+
+Summary totals are displayed in the upper right corner of the page. These totals are for the systems displayed on the current page and not all analyzed containers.
+
+<Note>
+This summary bar will not be updated based on the criteria in the table filter. See [Using the Table Filter](./Using_Container_Filters#Table_Filter)  for details on using the filter table.
+</Note>
+
+
+<Note>
+When exported to .CSV the Total Savings value may not match the value in the exported .CSV file because the .CSV format does not support formulas and the total savings are a calculation per line, of the number of containers multiplied by savings.
+Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+</Note>
+
+
+
+### Data Controls
+
+The controls, in the upper right corner of the page, provide options for managing and viewing your data more effectively. See [Data Controls on Tabular Reports](./Navigating_Densify#Data_Controls) for more details.
+
+#### ASG Tabular Report Sorting
+
+The ASG tabular report is ordered based on the following sorting keys:
+
+<Accordion title="Table: ASG Sort Key Priority">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Sort Key</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>    1. <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="#Reviewing_OverallStatus"><u>Overall Status</u></a></p>
+</td>
+<td>
+<div>
+<p>The Auto scaling groups are first sorted by Overall Status, in the following order:</p>
+<ol class="ol_1">
+<li value="1">Savings Opportunity</li>
+<li value="2">Optimal</li>
+<li value="3">Identified Risk</li>
+</ol>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<p>2. <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="#Reviewing_OptimizationType"><u>Optimization Type</u></a></p>
+</td>
+<td>
+<p>If the Overall Status is the same, then the secondary sort key is Optimization Type. ASGs are sorted by Optimization Type in the following order:</p>
+<table>
+<tbody>
+<tr>
+<td>
+<ol class="ol_1">
+<li value="1">Terminate</li>
+<li value="2">Modernize</li>
+<li value="3">Modernize - Optimal Family</li>
+<li value="4">Downscale</li>
+<li value="5">Downsize</li>
+</ol>
+</td>
+<td>
+<ol class="ol_1" start="5">
+<li value="5">Downsize - Optimal Family</li>
+<li value="6">Just Right</li>
+<li value="7">Upscale</li>
+<li value="8">Upsize</li>
+<li value="9">Upsize - Optimal Family</li>
+</ol>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<p>3. <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="#Reviewing_Account"><u>Account</u></a></p>
+</td>
+<td>
+<p>If Overall Status and Optimization Types are the same for the ASGs, then the tertiary sort key is the Account number, in ascending order.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>4. <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="#Reviewing_ASGName"><u>Auto Scaling Group</u></a> name</p>
+</td>
+<td>
+<p>If all of the above sort keys are the same, then the final sorting is done by the Auto Scaling group name, in ascending, alphabetical order.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+
+#### Filtering by Recommendation
+
+You can filter the ASG optimization tabular report based on recommendations using the Recommendation Filter Menu. This filter allows you to narrow the results of your report based on overall status, optimization type, effort required and whether or not the recommendation should be deferred. For details, see [Using the Recommendation Filter Menu](./Using_the_Recommendation_Filter_Menu).
+
+### Mixed Mode Services
+
+Densify cannot analyze ASGs with a set of mixed instance types i.e. ASGs configured to use the 'Combined Purchasing Options and Instance Types' feature. However, an ASG with a mixed policy attached, can still be configured to run on one instance type and Densify can analyze these ASGs.
+
+Densify checks the ASG's attached policy to determine if it is actually configured to run on a single instance type. Mixed groups are tagged by setting the attribute, "Mixed Instance Policy Set" to True and these ASGs are filtered from the analysis using the Cloud Environment filter.
+
+Additionally, Densify detects mixed instance configurations that result from changes to the launch configuration/scale set model. When the configuration of an ASG changes then in the event of scale out, new instances are created based on the new configuration, while the existing child instances continue to run with the previous configuration.
+
+In the event of a scale in, ASGs are typically set to favour terminating instance types created via the old launch template. This behaviour may result in a mix of instance types in the ASG.
+
+Densify detects these changes and excludes services where the configuration of the ASG has changed but the running child-instances have not been affected.
+
+### Tabular Data
+
+The tabular report displays the current and recommended instance sizing and cost details for each ASG associated with downsizing, upsizing, or modernizing the instance type in the ASG's configuration. See the recommended [Instance Type](#Reviewing_Catalog) column for instance sizing recommendations.
+
+The report also displays recommended group sizing associated with downscaling or upscaling the ASG. See the [Min Group Size](#Reviewing_ASGMinSize) or the [Current Maximum Size](#Reviewing_ASGMaxSize) columns for the recommended group size. Refer to [Reviewing the ASG Optimization Opportunity Report Columns](#Reviewing_ASGComponent) for a description of the ASG tabular report columns.
+
+### Reviewing Specific Instance Details
+
+The bottom pane of the ASG report provides the following information for the ASG, selected in the tabular report:
+
+* Metrics Viewer--The link in the left side of the lower pane, opens the metrics viewer. You can use the metrics viewer to investigate details when deciding whether to action specific recommendations. See [Using the Metrics Viewer](./Using_the_Metrics_Viewer).
+<Accordion title="Figure: Accessing the Metrics Viewer">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000141.png)</Frame>
+</Accordion>
+
+
+* In Service Instances--Shows workload charts for current and recommended predicted scaling activities for the selected ASG. For ASGs identified as "Just Right" or "Terminate" (optimization type), only the current in-service auto scaling activity chart is displayed.
+* ASG Utilization --Shows charts for current and recommended CPU Utilization, Memory Utilization for the selected ASG. Network I/O, Disk I/O workload charts are also included, showing utilization at the ASG level. For ASGs belonging to ECS clusters, additional CPU and Memory Reservation charts are displayed. You can view workload charts for each group member from the [Working with Auto Scaling Groups](#ASGInServiceInstanceDetails) page.
+* Effort Details Tab--This table lists the factors that contribute to the effort required to investigate and implement the Densify recommendations. Effort for each group is calculated by rule-driven analytics based on factors (such as instance family change, data quality checks, feature changes, etc.) that can be configured in the policy settings and through analysis rule sets. A description of each rule and its impact on the effort to implement the recommended changes are provided.
+
+### Reviewing the ASG Optimization Opportunity Report Columns
+
+<Accordion title="Table: ASG Report Column Descriptions">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Column Name </p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p><a name="Reviewing_Account"></a>Account</p>
+</td>
+<td>
+<p>The AWS linked account containing the <span class="mc-variable Document.ASG variable">Auto Scaling group</span>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Region</p>
+</td>
+<td>
+<p>The region containing the <span class="mc-variable Document.ASG variable">Auto Scaling group</span>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Reviewing_ASGName"></a>Auto Scaling Group</p>
+</td>
+<td>
+<p>The AWS EC2 <span class="mc-variable Document.ASG variable">Auto Scaling group</span> name, discovered during data collection.</p>
+<p data-mc-conditions="CiRBA.CCOOnly">The <span class="mc-variable Document.ASG variable">Auto Scaling group</span> name is a hyperlink that  that takes you to the <span >Analysis Details</span> page. You can access the <a href="./Using_the_Metrics_Viewer">Metrics Viewer</a> and the <a href="./Viewing_the_Impact_Analysis_and_Recommendation_Report"><span>Impact Analysis and Recommendation Report</span></a>. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="SystemID"></a>System ID</p>
+</td>
+<td>
+<p>A unique key assigned by the public cloud vendors to identify this instance. </p>
+<p></p><p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Reviewing_EKSCluster"></a>Kubernetes Cluster <br/>(from AWS)</p>
+</td>
+<td>
+<p>This column indicates the name of the Kubernetes cluster that the ASG is hosting. When populated the analysis requires additional information to ensure the ASG can satisfy all of the container requests. </p>
+<p>If the column "K8s Node Group" is populated with a dash (-) or the column is not visible, then consider deploying the <span class="mc-variable General.ProductName variable">Densify</span> §§TOOLTIPPRESERVE1815ff1904f043a6875419a2e7581032§§ into this cluster to collect the additional data. Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="50032520203f22241014353e233936297e333f3d" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for details.  </p>
+<Note>
+  This column is available only if the Auto Scaling group is hosting a Kubernetes cluster.
+</Note>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="EKSCluster"></a>Kubernetes Cluster <br/>(from Forwarder)</p>
+</td>
+<td>
+<p>This column indicates the name of the Kubernetes cluster name as configured in the <span class="mc-variable General.ProductName variable">Densify</span> <span class="mc-variable Document.forwarder variable">data forwarder</span>.</p>
+<p></p><p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="EKSCluster"></a>K8s Node Group</p>
+</td>
+<td>
+<p>This column indicates the name of the Kubernetes node group associated with this ASG. When populated, Densify has the data required for enhanced Scale Group analysis.  </p>
+<Note>
+  This column is available only if the Auto Scaling group is hosting a Kubernetes cluster.
+</Note>
+<p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Reviewing_ECSCluster"></a>ECS Reference</p>
+</td>
+<td>
+<p>The name of the ECS cluster hosted by the <span class="mc-variable Document.ASG variable">Auto Scaling group</span>. The additional cluster-level information is used for enhanced ASG analysis, resulting in more accurate recommendations. <a name="kanchor36"></a></p>
+<Note>
+  This column is available only if the Auto Scaling group is hosting an ECS instance.
+</Note>
+<p></p><p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+<p>For ECS services, capacity providers can be used to manage the infrastructure that the tasks in your clusters use. Capacity providers for ECS allow for multiple ASGs to support an ECS cluster. The reference in this column accounts for  created capacity providers and indicates the ECS service cluster that is associated with this ASG.</p>
+<p>There will be an impact to the effort value for ASGs, hosting a Kubernetes cluster, and not linked with a ECS/EKS reference (i.e. has no parent). </p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Reviewing_Catalog"></a>Instance Type</p>
+</td>
+<td>
+<p>The current catalog instance is listed. This value is based on the  data collected.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Avg Group Size</p>
+</td>
+<td>
+<p>The average instance count when the ASG is running.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Reviewing_ASGMinSize"></a>Min Group Size</p>
+</td>
+<td>
+<p>The minimum number of instances/hour currently configured in the scale group.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Reviewing_ASGMaxSize"></a>Current Maximum Size</p>
+</td>
+<td>
+<p>The maximum number of instances/hour currently configured in the scale group.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Total Hrs</p>
+</td>
+<td>
+<p>The total number of hours since the ASG was created.</p>
+<p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Running Hrs</p>
+</td>
+<td>
+<p>The number of hours that the ASG has been running.</p>
+<p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+<p>Both Total Hrs and Running Hrs are restricted by the historical time range defined in the policy (i.e. 60d history).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Uptime (%)</p>
+</td>
+<td>
+<p>The Predicted_uptime%, and not the observed uptime percent.</p>
+<p>When using pay-per-use pricing models, the amount of time each instance has been running, is required to accurately estimate future costs. </p>
+<p>The predicted uptime (%) for a cloud instance or container, is based on the percentage of hours CPU utilization data is present in the historical interval, as specified in the policy settings for the entity. For <span class="mc-variable Document.ASG variable">Auto Scaling group</span>s and <span>VM Scale Set</span>s and Individual child instances are not taken into account.</p>
+<p>Predicted uptime %, for new instances or containers, that started mid-way through the historical interval, is calculated from the time/date that the instance was started as opposed to the beginning of the interval, resulting in more accurate predictions for future usage.</p>
+<p>For example, the uptime is the number of hours that have "CPU Utilization in mcores", and the range is the lesser of when the container was discovered, or the range defined in the policy. Looking at a specific container that was discovered on Jan 5th 2024, that has workload of 42 hours since that date, then the uptime % is 42 hrs/(13 days x 24 hrs/day) = 13.4%. This is the value shown in this column.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Life Cycle</p>
+</td>
+<td>
+<p>This is the instance market option configured for the <span class="mc-variable Document.ASG variable">Auto Scaling group</span>.</p>
+<ul>
+<li>Normal--The ASG is configured to run with On-Demand instances.</li>
+<li>Spot--The  ASG is configured to run with Spot instances.</li>
+</ul>
+<p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Reviewing_OverallStatus"></a>Overall Status</p>
+</td>
+<td>
+<p>Identifies the overall status of the optimization results based on <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="#Reviewing_OptimizationType"><u>Optimization Type</u></a> and potential <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="#Reviewing_MonthlySavings"><u>Net Savings ($/Month)</u></a>:</p>
+<p>
+</p><table>
+<col/>
+<col/>
+<tbody>
+<tr>
+<td>
+<p>Optimal</p>
+</td>
+<td>
+<p>These instance types are currently sized correctly and there are no costs savings for this group of systems.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Identified Risk</p>
+</td>
+<td>
+<p>These instance types are at risk. This status occurs when the savings amount is less than \$0 (i.e. you need to spend money to mitigate risk).</p>
+<p>Identified Risk status is also indicated when the savings amount is $0, but optimization type is upscale, upsize, or upsize to optimal family. This situation occurs when services are inactive, however, they will need to be upscaled or upsized to mitigate risk when they resume activity.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Savings Opportunity</p>
+</td>
+<td>
+<p>These instance types can provide saving opportunities that greater than \$0. </p>
+<p>Savings opportunity status is also indicated when the savings amount is \$0, but optimization type is terminate, modernize, modernize to optimal family, downscale, downsize, or downsize to optimal family. This situation occurs when services are inactive, but have a recommendation of terminate, modernize, downsize or downscale when they resume activity to save money.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Reviewing_OptimizationType"></a>Optimization Type</p>
+</td>
+<td>
+<p>The recommended action for the group of instances.  See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="RefToBookmark MCXref xref xrefRefToBookmark" href="./Understanding_the_Instance_Details_Report#Recommendation_Color-Coding"><u>Optimization Type Descriptions and Color-Coding</u></a></madcap:conditionaltext> for a description of each recommendation.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommended Instance Type</p>
+</td>
+<td>
+<p>This is the recommended catalog instance, based on optimization analysis.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Reviewing_ASGAvgInstCount"></a> Predicted Avg Group Size</p>
+</td>
+<td>
+<p>The predicted average instance count on the recommended instance type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recom. Min Group Size</p>
+</td>
+<td>
+<p>The minimum number of instances recommended for the scale group.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recom. Max Group Size</p>
+</td>
+<td>
+<p>The maximum number of instances recommended for the scale group.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Reviewing_MonthlySavings"></a>Net Savings ($/Month)</p>
+</td>
+<td>
+<p>The estimated cost savings per month. The predicted average instance counts, the instance type cost and predicted uptime are used to calculate the current and recommended estimated cost. The savings are calculated as the current estimated cost minus the recommended estimated cost. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Scaling_Policies"></a><a name="ScalingPolicy"></a>Scaling Policies</p>
+</td>
+<td>
+<p>This value indicates whether the scaling mode  needs to be reviewed. Possible values are: </p>
+<ul>
+<li>No Value-If the optimization type = Terminate, then:</li>
+<ul>
+<li>In the UI, a dash, "--" is displayed.</li>
+<li>In the API,"Terminate" is returned by the <code>/results</code> endpoint.</li>
+</ul>
+<li>Keep--If the current average group size, minimum and maximum group size are not changed.</li>
+<li>Adjust--The current average group size is different than the predicted average group size AND the instance type,  minimum and maximum group size do not change.</li>
+<li>Review--If <span class="mc-variable General.ProductName variable">Densify</span> recommends changing one or more of instance type, average, minimum or maximum group size.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Current CPU </p>
+</td>
+<td>
+<p>The CPU allocation for the current instance type. This value is for a single instance and is not multiplied by the average number of instances.</p>
+<p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommended CPU</p>
+</td>
+<td>
+<p>The CPU allocation for the recommended instance type. This value is for a single instance and is not multiplied by the average number of instances.</p>
+<p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Current CPU Benchmark </p>
+</td>
+<td>
+<p>The CPU benchmark for the current instance type.</p>
+<p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Current Memory Allocation (GB)</p>
+</td>
+<td>
+<p>The memory allocation for the current instance type. This value is for a single instance and is not multiplied by the average number of instances.</p>
+<p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommended Memory</p>
+</td>
+<td>
+<p>The memory allocation for the recommended instance type.  This value is for a single instance and is not multiplied by the average number of instances.</p>
+<p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommended Memory Benchmark </p>
+</td>
+<td>
+<p>The memory benchmark for the recommended instance type.</p>
+<p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Reviewing_Effort"></a>Effort</p>
+</td>
+<td>
+<p>[ High | Medium | Low | None ]</p>
+<p>This column describes the effort required to investigate and implement the Densify recommendations. The displayed group effort is an average of all the calculated efforts for each instance (or service) in the group. Effort for each instance is calculated by rule-driven analytics based on factors  (such as family change, storage change, data quality checks, feature changes, etc.) that can be configured in the policy settings and rule set which captures best practices.</p>
+<p>See the <a alt="Effort Details" href="#effort_tab" title="Effort Details">Effort Details tab</a> in the lower pane for additional effort details for the selected ASG. </p>
+<p>There will be an impact to the effort value for ASGs, hosting a Kubernetes cluster, and not linked with a ECS/EKS reference (i.e. has no parent). </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Instance Type Updated On</p>
+</td>
+<td>
+<p>A value in this column indicates the instance type has been changed recently.</p>
+<p>The workload for this instance, on which the recommendation is based, includes only the days of data from the indicated date to the current date. All historical data for this instance, collected prior to the indicated date is not included in the analysis. Previous data has been excluded because it was based on the previous instance type. <a name="kanchor37"></a></p>
+<p>A blank cell indicates the current instance type has not changed and all available workload data within the range, defined by the policy, has been used to generate the recommendation.</p>
+<p>Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="174462676778656357537279647e716e3974787a" href="mailto:Support@Densify.com">Support@Densify.com</a></span> to enable this feature. See <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Relearning_Workload_Patterns"><u>Relearning Workload Patterns</u></a> for more details.</p>
+<p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Total Savings ($/Month)</p>
+</td>
+<td>
+<p>Total savings based on making all of the recommended changes. This is the sum of all net monthly savings. If the number of ASGs spans multiple pages this is the total for all pages. </p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+
+### Exporting the ASG Optimization Opportunity Report
+
+1. Click the download [CSV icon](#CSV-icon) to export the content of the Auto Scaling Group dashboard to a .CSV file.
+
+The AutoScalingGroupsSummary report contains the tabular list of ASGs from the Auto Scaling Group optimization opportunity tabular list view. All filtering options will be applied to the exported data
+
+2. Locate and open your download folder to see your exported data.
+
+<Accordion title="Figure: ASG Export Buttons">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000071.png)</Frame>
+</Accordion>
+
+
+### Additional Considerations for ASG Recommendations
+
+#### EKS-aware ASG Recommendations
+
+ASGs and their EC2 group members are loaded from AWS audits and Kubernetes entities are collected via the Densify Data Forwarder from Prometheus data. Linking these entities is extremely complex as even the Kubernetes cluster names may not match.
+
+A single Kubernetes cluster can run on one or more ASG with each ASG running in a node group within the cluster; however it is possible to skip node groups, and in this case the ASG must be linked directly to the cluster entity.
+
+Densify matches, counts and links entities and ASG recommendations are made based on the established EKS-ASG associations.
+
+<Accordion title="Video:ASGs Hosting Containers">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/683872968" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+</Accordion>
+
+
+#### ASG Backfilling Memory
+
+If you are not collecting memory metrics, Densify provides a method to simulate memory utilization using backfill memory policy settings. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.

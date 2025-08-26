@@ -1,0 +1,37 @@
+---
+title: "Overview"
+---
+
+## Description
+
+A Routing Request can be posted with an available sensor capacity query before the Routing Request is created. This query can be used to create reports on sensor capacity (e.g. as used by the Spare VM Capacity Reports).
+
+The POST is similar to POSTs to `/routing-requests` and `/routing-requests/available-capacity-query`, except that it returns the sensor details grouped by sensor type, for each Control Environment in scope (as defined by the [Routing Requests: Form Definition](./Routing_Requests#_Form_Definition)). When specified with `?subslots=true`, metrics are also provided for each sensor and the total metrics for each sensor type. The sensors and metrics are returned according to the `expected_date` of the Routing Request.
+
+This query differs with [Routing Requests–Available Capacity Query](./Routing_Requests_Available_Capacity_Query) in that the totals returned by this query take into account sensors that are shared across Infrastructure Groups or other Control Environments.
+
+<Note>
+This query does not take into account tier requirements. Also, this query supports inline Workloads with single disk requirements only.
+</Note>
+
+
+
+### Full Control Hosting Venues
+
+Non-control and guest-level hosting venues do not host sensors. This API only returns sensor details for full control hosting venues in scope.
+
+### Options for Returned Details
+
+You can extend the query with one or all of the following, as documented in [Options for Returned Details](./Routing_Requests_Available_Capacity_Query#Options) for the [Routing Requests–Available Capacity Query](./Routing_Requests_Available_Capacity_Query):
+
+You can extend the query with one or all of the following:
+
+* `?subslots=true` (default is `false`)--to return the slot sensor metrics which can be used to determine the primary `constraint` for the available capacity. When set to true, the query returns the metric elements of the `subslots` array for each sensor and each sensor type.
+* `?negative_slots=true` (default is `false`)--to perform capacity calculations and then either return actual slot counts even if negative (when true) or show negative slot counts as 0. This affects element `slots` for the number of Sensors that can fit in the Control Environments and Infrastructure Groups in scope, and element `subslots value` for specific sensor metrics. All constraints and sums are calculated first before any values are updated when `?negative_slots=false`.
+* `?omit_closed_sensors=true` (default is `false`)--to return only sensors (entries of the `sensors` array) associated with open Infrastructure Groups. When true, the aggregated `slots` count reflect accessible capacity only (i.e. total of all `slots` within the returned `sensors` array).
+
+## Resource
+
+```json
+/routing-requests/available-sensor-capacity-query
+```

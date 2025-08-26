@@ -1,0 +1,38 @@
+---
+title: "Understanding Software Resource Optimization"
+---
+
+## Overview
+
+Densify collects and analyzes data to enable identification of the software running on your discovered cloud instances. This information can then be used to generate recommendations to run your software on its optimal infrastructure.
+
+Densify collects and analyzes the data required to identify the software which can then be used to:
+
+* Group and filter data based on the identified software, enhancing how you work with the recommendations that are generated. For example, grouping recommendations in the user interface to assess the risk and efficiency of the infrastructure on which the software is running.
+* Filter data using the subscription API, based on the identified software information. For example, you can automate recommendations for instances with only the specified software application.
+* Working with Densify's Services team, the identified software information can be used to drive advanced use cases. For example you can apply software-specific policy settings, and add customized analysis rules for a specific software application.
+
+## Prerequisites
+
+The following additional permissions are required for each of your public cloud accounts to collect the additional data.
+
+* AWS--The permissions, "ec2:DescribeSecurityGroupRules" and
+
+  "ec2:DescribeSecurityGroups" must be added to the list if you have enabled the minimum set of permissions. If, instead you have set the role to use AWS's predefined **ReadOnlyAccess** policy, then no change is required. See [AWS Data Collection Using a CloudFormation Template](../Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template#Limited_Access_IAM_Policy)
+* Microsoft Azure--The permissions, "Microsoft.Network/networkSecurityGroups/read" and "Microsoft.Network/virtualNetworks/read" must be added to the list if you have enabled the minimum set of permissions, instead of setting the reader role for the Service Principal. See [Configuring a Role with Minimum Permissions for Data Collection](../Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal#Min_Permission)
+* GCP--The option, `compute.firewalls.list` must be added to the list if you have enabled the minimum set of permissions, instead of setting the Project role to "Viewer". See [Creating a Role with Minimum Permissions for Data Collection](../Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites#Min_Policy)
+
+Additional collected data consists of port ranges and related security groups and installed software details.
+
+Contact [Support@Densify.com](mailto:Support@Densify.com) for details on configuring and using this feature.
+
+## Software Identification
+
+Densify determines the software on each instance using data collected from a combination of the following:
+
+* Both private and public, shared or AWS Marketplace AMIs;
+* Port "fingerprints" for security group ports;
+* Customer's naming/tagging conventions including host name patterns and applied tags;
+* Container image metadata including image names, paths, tags, SHAs.
+
+The data and a ruleset are used to determine a weighted matching value. Image name and image description are provided by AWS only.

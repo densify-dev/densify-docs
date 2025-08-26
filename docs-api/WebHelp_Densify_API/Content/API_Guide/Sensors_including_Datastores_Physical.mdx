@@ -1,0 +1,20 @@
+---
+title: "Overview"
+---
+
+## Description
+
+Densify provides a framework that allows additional analytics to be easily added to a Densify installation as sensors. For example, sensors can be added to include the analytics of application data or network data. Currently, Densify supports three sensors, including that for datastores (i.e. type is `datastores`), physical storage (i.e. type is `physical_storage`) and resource pools (i.e. type is `resource_pools`). To define your own sensors, contact Densify Technical Services.
+
+With the sensors API, the list of sensor types and sensor details are available for the Control Environments, so that Workloads can be routed appropriately. The details are provided at each defined timeframe of the timeline.
+
+Also see [Routing Requests](./Routing_Requests) for details on sensor considerations when creating routing requests.
+
+## Resource
+
+```json
+/sensors
+/sensors/<
+type
+>
+```

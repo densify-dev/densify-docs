@@ -1,0 +1,113 @@
+openapi: 3.1.0
+info:
+  title: Densify Workloads API
+  version: 1.0.0
+  description: API to manage workloads in the Densify platform.
+servers:
+  - url: https://api.densify.com/v1
+paths:
+  /workloads:
+    get:
+      summary: Lists all workloads.
+      operationId: listWorkloads
+      responses:
+        "200":
+          description: List of workloads successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Workload"
+    post:
+      summary: Creates a new workload.
+      operationId: createWorkload
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Workload"
+      responses:
+        "201":
+          description: Workload successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Workload"
+  /workloads/{id}:
+    get:
+      summary: Retrieves details of a specific workload.
+      operationId: getWorkload
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Workload ID.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Workload details successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Workload"
+    put:
+      summary: Updates an existing workload.
+      operationId: updateWorkload
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Workload ID.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Workload"
+      responses:
+        "200":
+          description: Workload successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Workload"
+    delete:
+      summary: Deletes a specific workload.
+      operationId: deleteWorkload
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Workload ID.
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Workload successfully deleted.
+components:
+  schemas:
+    Workload:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the workload.
+        name:
+          type: string
+          description: Name of the workload.
+        status:
+          type: string
+          description: Current status of the workload.
+        createdAt:
+          type: string
+          format: date-time
+          description: Date and time when the workload was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date and time of the last workload update.

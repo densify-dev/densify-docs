@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: Densify API
+  description: API to query available capacity for workloads.
+  version: 1.0.0
+servers:
+  - url: https://api.densify.com/v1
+paths:
+  /routing-requests/available-capacity-query:
+    post:
+      summary: Query available capacity for specified workloads.
+      description: |
+        This endpoint allows querying the available capacity for unrouted or rejected workloads in defined environments and hosting venues.
+      operationId: queryAvailableCapacity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                expected_date:
+                  type: integer
+                  description: Expected date in Unix timestamp format (milliseconds).
+                workloads:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: Workload ID.
+              required:
+                - expected_date
+                - workloads
+      parameters:
+        - name: subslots
+          in: query
+          description: Returns detailed subslot metrics.
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: detailed_sensor_calc
+          in: query
+          description: Returns detailed sensor metrics.
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: ffp_enabled
+          in: query
+          description: Enables or disables Fit-for-Purpose calculations.
+          required: false
+          schema:
+            type: boolean
+            default: true
+      responses:
+        "200":
+          description: Available capacity successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hosting_venues:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Hosting venue ID.
+                        available_slots:
+                          type: integer
+                          description: Number of available slots.
+                        hosting_score:
+                          type: integer
+                          description: Hosting venue suitability score.
+        "400":
+          description: Invalid request.
+        "500":
+          description: Internal server error.

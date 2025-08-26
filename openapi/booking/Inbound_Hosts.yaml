@@ -1,0 +1,267 @@
+openapi: 3.1.0
+info:
+  title: Densify Inbound Hosts API
+  version: 1.0.0
+  description: API for managing inbound hosts in Densify infrastructure groups.
+servers:
+  - url: https://api.densify.com/v1
+    description: Densify API Server
+paths:
+  /inbound-hosts:
+    get:
+      summary: Retrieve a collection of inbound hosts
+      operationId: getInboundHosts
+      parameters:
+        - name: attribute.attr_SecurityZone
+          in: query
+          description: Filter inbound hosts by security zone
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of inbound hosts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InboundHost'
+    post:
+      summary: Create one or more inbound hosts
+      operationId: createInboundHosts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/InboundHost'
+      responses:
+        '201':
+          description: Inbound hosts created successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InboundHost'
+  /inbound-hosts/{id}:
+    get:
+      summary: Retrieve an individual inbound host by ID
+      operationId: getInboundHostById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the inbound host
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Details of the inbound host
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboundHost'
+    put:
+      summary: Modify an existing inbound host
+      operationId: modifyInboundHost
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the inbound host
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InboundHost'
+      responses:
+        '200':
+          description: Inbound host updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboundHost'
+    delete:
+      summary: Delete an inbound host
+      operationId: deleteInboundHost
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the inbound host
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Inbound host deleted successfully
+components:
+  schemas:
+    InboundHost:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the inbound host
+        name:
+          type: string
+          description: Name of the inbound host
+        href:
+          type: string
+          description: URI of the inbound host
+        attributes:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Identifier of the attribute
+              name:
+                type: string
+                description: Name of the attribute
+              value:
+                type: string
+                description: Value of the attribute
+        control_environment:
+          type: object
+          properties:
+            id:
+              type: string
+              description: ID of the control environment
+            name:
+              type: string
+              description: Name of the control environment
+            href:
+              type: string
+              description: URI of the control environment
+            icon:
+              type: string
+              description: Icon associated with the control environment
+        cores_per_cpu:
+          type: string
+          description: Number of cores per CPU
+        cpu_allocation:
+          type: string
+          description: CPU allocation details
+        cpu_benchmarks:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the benchmark
+              value:
+                type: string
+                description: Value of the benchmark
+        memory:
+          type: string
+          description: Memory capacity of the host
+        memory_benchmarks:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the benchmark
+              value:
+                type: string
+                description: Value of the benchmark
+        storage:
+          type: string
+          description: Storage capacity of the host
+        storage_benchmarks:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the benchmark
+              value:
+                type: string
+                description: Value of the benchmark
+        network:
+          type: string
+          description: Network capacity of the host
+        network_benchmarks:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the benchmark
+              value:
+                type: string
+                description: Value of the benchmark
+        status:
+          type: string
+          description: Current status of the inbound host
+        state:
+          type: string
+          description: State of the inbound host
+        planned_start:
+          type: string
+          format: date-time
+          description: Planned start date and time for the host
+        planned_end:
+          type: string
+          format: date-time
+          description: Planned end date and time for the host
+        provisioning_start:
+          type: string
+          format: date-time
+          description: Actual provisioning start date and time
+        provisioning_end:
+          type: string
+          format: date-time
+          description: Actual provisioning end date and time
+        auto_reconciliation:
+          type: boolean
+          description: Indicates if auto-reconciliation is enabled
+        auto_reconciliation_status:
+          type: string
+          description: Status of the auto-reconciliation process
+        auto_reconciliation_message:
+          type: string
+          description: Message related to the auto-reconciliation process
+        auto_reconciliation_href:
+          type: string
+          description: URI for auto-reconciliation details
+        auto_reconciliation_id:
+          type: string
+          description: ID associated with auto-reconciliation
+        auto_reconciliation_name:
+          type: string
+          description: Name associated with auto-reconciliation
+        auto_reconciliation_type:
+          type: string
+          description: Type of auto-reconciliation
+        auto_reconciliation_status_code:
+          type: string
+          description: Status code of the auto-reconciliation process
+        auto_reconciliation_status_message:
+          type: string
+          description: Status message of the auto-reconciliation process
+        auto_reconciliation_status_href:
+          type: string
+          description: URI for auto-reconciliation status details
+        auto_reconciliation_status_id:
+          type: string
+          description: ID associated with auto-reconciliation status
+        auto_reconciliation_status_name:
+          type: string
+          description: Name associated with auto-reconciliation status
+        auto_reconciliation_status_type:
+          type: string
+          description: Type of auto-reconciliation status
+ 

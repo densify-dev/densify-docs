@@ -1,0 +1,177 @@
+openapi: 3.1.0
+info:
+  title: Densify API - Outbound Hosts
+  description: API to manage hosts planned for removal in Densify.
+  version: 1.0.0
+servers:
+  - url: https://api.densify.com/v1
+    description: Main Densify API server
+paths:
+  /outbound-hosts:
+    get:
+      summary: Retrieve list of hosts planned for removal
+      operationId: getOutboundHosts
+      responses:
+        "200":
+          description: List of hosts planned for removal
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OutboundHost"
+    post:
+      summary: Create a new host planned for removal
+      operationId: createOutboundHost
+      requestBody:
+        description: Data of the host to be removed
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OutboundHost"
+        required: true
+      responses:
+        "201":
+          description: Host successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OutboundHost"
+  /outbound-hosts/{id}:
+    get:
+      summary: Retrieve details of a host planned for removal
+      operationId: getOutboundHostById
+      parameters:
+        - name: id
+          in: path
+          description: Host ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Host details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OutboundHost"
+    delete:
+      summary: Remove a host planned for removal
+      operationId: deleteOutboundHost
+      parameters:
+        - name: id
+          in: path
+          description: Host ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Host successfully removed
+components:
+  schemas:
+    OutboundHost:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Host ID
+        name:
+          type: string
+          description: Host name
+        href:
+          type: string
+          description: Host URL
+        description:
+          type: string
+          description: Reason for host removal
+        expected_date:
+          type: string
+          format: date-time
+          description: Expected removal date
+        infrastructure_group:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Infrastructure group ID
+            name:
+              type: string
+              description: Infrastructure group name
+            href:
+              type: string
+              description: Infrastructure group URL
+        existing_system:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Existing system ID
+            name:
+              type: string
+              description: Existing system name
+            href:
+              type: string
+              description: Existing system URL
+            type:
+              type: string
+              description: Existing system type
+        control_environment:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Control environment ID
+            name:
+              type: string
+              description: Control environment name
+            href:
+              type: string
+              description: Control environment URL
+            icon:
+              type: string
+              description: Control environment icon
+        cores_per_cpu:
+          type: string
+          description: Number of cores per CPU
+        cpu_allocation:
+          type: string
+          description: CPU allocation
+        cpu_benchmarks:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: CPU benchmark name
+              score_type:
+                type: string
+                description: Benchmark score type
+              value:
+                type: string
+                description: Benchmark value
+        cpu_model:
+          type: string
+          description: CPU model
+        cpu_speed:
+          type: string
+          description: CPU speed (MHz)
+        creation_time:
+          type: string
+          format: date-time
+          description: Host creation date and time
+        attributes:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Attribute ID
+              name:
+                type: string
+                description: Attribute name
+              value:
+                type: string
+                description: Attribute value

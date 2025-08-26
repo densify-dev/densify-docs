@@ -1,0 +1,99 @@
+---
+title: "Filtering and Sorting Hosting Venues"
+---
+
+When evaluating hosting options, you use the details and metrics provided for each hosting venue to decide where to place booking requests. Several tools are available in the Hosting Venues pane for you to search and organize information to evaluate and find the best hosting venue. These tools include filter options so you can quickly find the right hosting venue, and a capacity unit option that allows you to change the measuring unit to determine available space in a hosting venue. For details on the capacity unit option, see [Changing the Capacity Unit](./Viewing_Available_Capacity#Changing).
+
+After you have selected a workload and clicked the Evaluate Hosting Options button, you can sort hosting venues by occupancy, fit for purpose, cost, hosting score or hosting venue name. Click a tile's title bar to select this hosting venue. For a description of the details available for each hosting venue, see [Viewing the Hosting Venues Pane](./Viewing_the_Hosting_Venues_Pane).
+
+<Note>
+Options in these windows are saved as user preferences.
+</Note>
+
+
+
+To learn more watch the video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/301299397" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+
+## Searching for Hosting Venues
+
+You can search for specific hosting venues using the global filter (as described in [Using the Global Filter](../Densify_Com/Using_the_Global_Filter)) and the Filters button. The Filters button allows you to filter on specific platform types.
+
+Note that the resulting list of hosting venues may be affected by the Hosting Preference routing strategy, if "Internal Only" or "External Only" is selected. For more information on the Hosting Preference routing strategy, see [Step 3b: Specifying the Routing Strategy](./Routing_Booking_Requests#Specifyi).
+
+With the Filter dropdown, you can remove the filter by selecting Reset. You can collapse each hosting venue tile to better view other panes. The hosting venue tiles are displayed with the Status and, if enabled, Unit Cost and Available Space values until you click the Evaluate Hosting Options button. This Available Space value is the number of times the capacity unit VM value will fit into the hosting venue.
+
+## Sorting Hosting Venues
+
+Several sort options are available for you to quickly find a hosting venue that suits the requirements for your workloads. You sort using the Options button to sort by specific values (e.g. hosting scores, hosting venue names, cost, available space).
+
+Note that this list may be affected by the Hosting Preference routing strategy, if "Internal First" or "External First" is selected. For more information on the Hosting Preference routing strategy, see [Step 3b: Specifying the Routing Strategy](./Routing_Booking_Requests#Specifyi).
+
+The default sort option is Available Space in descending order, when the Display Available Space/Unit Cost option has been selected. The default sort is Hosting Venue name in ascending order, when the Display Available Space/Unit Cost option has not been selected. Closed hosting venues are shown at the bottom in all cases. Clear the Sort Descending check box if you want to toggle between sorting in descending/ascending order. Note that only after you click on Evaluate Hosting Options, the sort order is always reset to sort on descending Hosting Score.
+
+1. In the Hosting Venues pane, click the Options button.
+<Accordion title="Figure: Sort Options for Hosting Venues">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030022_347x410.png)</Frame>
+</Accordion>
+2. In the Sort by field, select the sort method. The currently-selected sort option is shown in bold. The following options are available:
+
+Table: Sorting Options for Hosting Venues
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>Setting </p>
+</td>
+<td>
+<p>Description </p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Available Space</p>
+</td>
+<td>
+<p>Sorts based on the available space score for each hosting venue. The <span >Display Available Space/Unit Cost</span> option must be enabled before this sort option is available.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Hosting Venue</p>
+</td>
+<td>
+<p>Sorts based on hosting venue name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Hosting Score</p>
+</td>
+<td>
+<p>Sorts based on the highest or lowest hosting score for each hosting venue. You can only use this sort option after you select the <span >Evaluate Hosting Options</span> button.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cost</p>
+</td>
+<td>
+<p>Sorts based on the relative cost to implement the workload in a hosting venue. Uses the unit cost as the sort value before you click the <span >Evaluate Hosting Options</span> button (when the <span >Display Available Space/Unit Cost</span> option is enabled) and the relative cost as the sort value afterward. You can only use this sort option when the routing strategy is set to Relative Cost or Blended.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>% of Available Space Required</p>
+</td>
+<td>
+<p>Sorts based on the percentage of available space required for this workload. You can only use this sort option after you select the <span >Evaluate Hosting Options</span> button.</p>
+</td>
+</tr>
+</table>
+

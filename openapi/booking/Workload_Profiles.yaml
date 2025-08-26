@@ -1,0 +1,258 @@
+openapi: 3.1.0
+info:
+  title: Densify Workload Profiles API
+  version: 1.0.0
+  description: |
+    This API provides access to Densify's workload profile data, allowing users to retrieve information about workload types, specific profiles, and their associated utilization patterns.
+servers:
+  - url: https://api.densify.com/v1
+    description: Densify API Server
+paths:
+  /workload-profiles:
+    get:
+      summary: Retrieve all workload profile types
+      operationId: getWorkloadProfileTypes
+      responses:
+        "200":
+          description: A list of workload profile types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the workload profile type
+                    href:
+                      type: string
+                      description: The URL to access this workload profile type
+              example:
+                - name: Control_SPPNA_30d
+                  href: /workload-profiles/Control_SPPNA_30d
+                - name: Blank_Workload
+                  href: /workload-profiles/Blank_Workload
+                - name: Booking
+                  href: /workload-profiles/Booking
+  /workload-profiles/{workloadProfileType}:
+    get:
+      summary: Retrieve all workload profiles of a specific type
+      operationId: getWorkloadProfilesByType
+      parameters:
+        - name: workloadProfileType
+          in: path
+          required: true
+          description: The type of the workload profiles to retrieve
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A list of workload profiles for the specified type
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the workload profile
+                    id:
+                      type: string
+                      description: The unique identifier of the workload profile
+                    href:
+                      type: string
+                      description: The URL to access this workload profile
+              example:
+                - name: Low_Utilization
+                  id: Low_Utilization
+                  href: /workload-profiles/Booking/Low_Utilization
+                - name: Medium_Utilization
+                  id: Medium_Utilization
+                  href: /workload-profiles/Booking/Medium_Utilization
+                - name: Memory_Intensive
+                  id: Memory_Intensive
+                  href: /workload-profiles/Booking/Memory_Intensive
+  /workload-profiles/{workloadProfileType}/{workloadProfileName}:
+    get:
+      summary: Retrieve utilization patterns for a specific workload profile
+      operationId: getUtilizationPatterns
+      parameters:
+        - name: workloadProfileType
+          in: path
+          required: true
+          description: The type of the workload profile
+          schema:
+            type: string
+        - name: workloadProfileName
+          in: path
+          required: true
+          description: The name of the workload profile
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Utilization patterns for the specified workload profile
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  utilization_values:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: The name of the utilization type
+                        values:
+                          type: string
+                          description: A link to retrieve the values for this utilization type
+                        image:
+                          type: string
+                          description: A link to retrieve the graphical chart of the values
+              example:
+                utilization_values:
+                  - name: CPU Utilization
+                    values: /workload-profiles/Booking/Low_Utilization/cpu/values
+                    image: /workload-profiles/Booking/Low_Utilization/cpu/image
+                  - name: Memory Utilization
+                    values: /workload-profiles/Booking/Low_Utilization/memory/values
+                    image: /workload-profiles/Booking/Low_Utilization/memory/image
+  /workload-profiles/{workloadProfileType}/{workloadProfileName}/{utilizationType}/values:
+    get:
+      summary: Retrieve hourly utilization values for a specific utilization type
+      operationId: getHourlyUtilizationValues
+      parameters:
+        - name: workloadProfileType
+          in: path
+          required: true
+          description: The type of the workload profile
+          schema:
+            type: string
+        - name: workloadProfileName
+          in: path
+          required: true
+          description: The name of the workload profile
+          schema:
+            type: string
+        - name: utilizationType
+          in: path
+          required: true
+          description: The specific utilization type (e.g., cpu, memory)
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Hourly utilization values for the specified utilization type
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hour:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: integer
+                          description: The hour of the day (1–24)
+                        value:
+                          type: number
+                          format: float
+                          description: The utilization value for that hour
+              example:
+                hour:
+                  - key: 1
+                    value: 0.5
+                  - key: 2
+                    value: 0.55
+                  - key: 3
+                    value: 0.6
+                  - key: 4
+                    value: 0.65
+                  - key: 5
+                    value: 0.7
+                  - key: 6
+                    value: 0.75
+                  - key: 7
+                    value: 0.8
+                  - key: 8
+                    value: 0.85
+                  - key: 9
+                    value: 0.9
+                  - key: 10
+                    value: 0.95
+                  - key: 11
+                    value: 1.0
+                  - key: 12
+                    value: 1.05
+                  - key: 13
+                    value: 1.1
+                  - key: 14
+                    value: 1.15
+                  - key: 15
+                    value: 1.2
+                  - key: 16
+                    value: 1.25
+                  - key: 17
+                    value: 1.3
+                  - key: 18
+                    value: 1.35
+                  - key: 19
+                    value: 1.4
+                  - key: 20
+                    value: 1.45
+                  - key: 21
+                    value: 1.5
+                  - key: 22
+                    value: 1.55
+                  - key: 23
+                    value: 1.6
+                  - key: 24
+                    value: 1.65
+components:
+  schemas:
+    WorkloadProfile:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the workload profile
+        id:
+          type: string
+          description: The unique identifier of the workload profile
+        href:
+          type: string
+          description: The URL to access this workload profile
+    UtilizationValues:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the utilization type
+        values:
+          type: string
+          description: A link to retrieve the values for this utilization type
+        image:
+          type: string
+          description: A link to retrieve the graphical chart of the values
+    HourlyUtilization:
+      type: object
+      properties:
+        hour:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: integer
+                description: The hour of the day (1–24)
+              value:
+                type: number
+                format: float
+                description: The utilization value for that hour

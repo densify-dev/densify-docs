@@ -1,0 +1,72 @@
+openapi: 3.0.3
+info:
+  title: Densify API – AWS Delete
+  version: "1.0"
+servers:
+  - url: https://{host}/api/v2
+    variables:
+      host:
+        default: api.example.com
+
+paths:
+  /analysis/cloud/aws/{analysisId}:
+    delete:
+      operationId: deleteAwsAnalysis
+      tags: [AWS Analysis]
+      summary: Delete AWS audit and scheduler entries for an analysis
+      description: >
+        Deletes the single-day and 60-day audits and all associated scheduler entries
+        for the specified analysis. Collected data and the analysis entity are retained
+        for reporting or future restart. During deletion, any attempt to access other
+        endpoints for this analysisId (GET/PUT/POST) returns 400 Bad Request. While the
+        operation is in progress, poll `/analysis/cloud/aws/{analysisId}/status` or
+        provide a webhook to receive completion status.
+      parameters:
+        - in: path
+          name: analysisId
+          required: true
+          description: Unique referenced ID of the AWS analysis.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Delete request acknowledged / completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleStatusResponse'
+        "400":
+          description: Invalid parameter or conflicting in-progress operation
+        "401":
+          description: Authentication failed
+        "404":
+          description: Resource not found
+        "405":
+          description: Method not allowed
+        "500":
+          description: Internal server error (e.g., payer/linked multi-account deletion not supported via API)
+
+components:
+  schemas:
+    WebHook:
+      type: object
+      properties:
+        uri:
+          type: string
+          format: uri
+          description: Destination URI to receive completion status.
+        authType:
+          type: string
+          description: Authentication type for the webhook (e.g., basic, bearer).
+        authValue:
+          type: string
+          description: Authentication credentials/value for the chosen authType.
+    SimpleStatusResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Informational message returned with the status.
+        status:
+          type: integer
+          description: HTTP response code.

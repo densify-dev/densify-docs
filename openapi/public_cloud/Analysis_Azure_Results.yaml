@@ -1,0 +1,310 @@
+openapi: 3.1.0
+info:
+  title: Densify – Azure Recommendations API
+  version: "1.0.0"
+  description: |
+    GET `/analysis/cloud/azure/{analysisId}/results` returns a collection of Azure VM/VMSS
+    recommendations after analysis. Use `Accept: application/json` for the full JSON model
+    or `Accept: application/terraform-map` for the Terraform-map variant.
+servers:
+  - url: https://{host}
+    description: Your Densify API host
+    variables:
+      host:
+        default: api.example.com
+tags:
+  - name: Azure Analysis
+paths:
+  /analysis/cloud/azure/{analysisId}/results:
+    get:
+      tags: [Azure Analysis]
+      operationId: listAzureRecommendations
+      summary: List recommendations for an Azure analysis
+      description: |
+        Returns Azure recommendations for a completed analysis.
+
+        **Content negotiation**
+        - `Accept: application/json` → JSON recommendation objects
+        - `Accept: application/terraform-map` → Terraform-map objects
+
+        **Filtering**
+        - Element-based filters are supplied as ordinary query pairs named after fields
+          (e.g., `recommendationType=Upsize`). Not all fields are filterable.
+
+        **Attributes/data quality**
+        - `includeAttributes=true` returns the `attributes` array.
+        - `dataQuality` accepts a quoted, comma-separated list of workload names.
+      parameters:
+        - name: analysisId
+          in: path
+          required: true
+          description: Unique ID of the Azure analysis.
+          schema:
+            type: string
+        - name: includeAttributes
+          in: query
+          required: false
+          description: Return system attributes when `true`.
+          schema:
+            type: boolean
+            default: false
+        - name: dataQuality
+          in: query
+          required: false
+          description: >
+            Quoted, comma-separated workload type names to include in the `dataQuality` block
+            (e.g., `"CPU Utilization (CINT2006 Rate),Memory Utilization in Percent"`).
+          schema:
+            type: string
+        - name: recommendationType
+          in: query
+          required: false
+          description: Filter by recommendation action (e.g., `Upsize`, `Downsize`, `Modernize`, `Just Right`, `Terminate`, etc.).
+          schema:
+            type: string
+        - name: region
+          in: query
+          required: false
+          description: Filter by Azure region.
+          schema:
+            type: string
+        - name: currentType
+          in: query
+          required: false
+          description: Filter by current instance type.
+          schema:
+            type: string
+        - name: serviceType
+          in: query
+          required: false
+          description: Filter by service type (`Virtual Machine` or `VM Scale Set`).
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          description: Filter by system name.
+          schema:
+            type: string
+        - name: entityId
+          in: query
+          required: false
+          description: Filter by Densify entity ID.
+          schema:
+            type: string
+        - name: accountIdRef
+          in: query
+          required: false
+          description: Filter by Azure subscription ID.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Collection of recommendations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AzureRecommendation'
+              examples:
+                jsonExample:
+                  summary: JSON example (abbrev.)
+                  value:
+                    - entityId: "12345"
+                      resourceId: "/subscriptions/cc377154.../resourceGroups/rg/providers/Microsoft.Compute/virtualMachines/vm01"
+                      accountIdRef: "cc377154-9605-4cb0-8b41-1b39e1c4ac0f"
+                      region: "eastus"
+                      currentType: "Standard_D2s_v3"
+                      recommendationType: "Downsize"
+                      recommendedType: "Standard_B2s"
+                      implementationMethod: "Manual"
+                      predictedUptime: "98.5"
+                      totalHoursRunning: "712"
+                      totalHours: "720"
+                      name: "vm01"
+                      rptHref: "https://{host}/reports/impact?entityId=12345"
+                      approvalType: "na"
+                      densifyPolicy: "Default Azure Policy"
+                      savingsEstimate: "24.50"
+                      serviceType: "Virtual Machine"
+                      currentHourlyRate: "0.096"
+                      recommendedHourlyRate: "0.062"
+                      recommFirstSeen: 1715731200000
+                      recommLastSeen: 1718323200000
+                      recommSeenCount: 4
+                      auditInfo:
+                        dataCollection:
+                          dateFirstAudited: 1713312000000
+                          dateLastAudited: 1718323200000
+                          auditCount: 31
+                        workloadDataLast30:
+                          firstDate: 1715731200000
+                          lastDate: 1718323200000
+                          totalDays: 30
+                          seenDays: 29
+                      dataQuality:
+                        - workloadName: "CPU Utilization (CINT2006 Rate)"
+                          firstSeen: 1715731200000
+                          lastSeen: 1718323200000
+                          completeDays: 28
+                          partialDays: 1
+                      attributes:
+                        - id: "attr-1"
+                          name: "Environment"
+                          value: "prod"
+            application/terraform-map:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TerraformMapRecommendation'
+              examples:
+                tfExample:
+                  summary: Terraform-map example (abbrev.)
+                  value:
+                    - provisioningId: "vm01"
+                      approvalType: "na"
+                      currentType: "Standard_D2s_v3"
+                      densifyPolicy: "Default Azure Policy"
+                      effortEstimate: "Low"
+                      implementationMethod: "Manual"
+                      powerState: "running"
+                      recommendationType: "Downsize"
+                      predictedUptime: "98.5"
+                      recommendedType: "Standard_B2s"
+                      savingsEstimate: "24.50"
+                      avgInstanceCountCurrent: 1
+                      avgInstanceCountRecommended: 1
+                      minGroupCurrent: 1
+                      minGroupRecommended: 1
+                      maxGroupCurrent: 1
+                      maxGroupRecommended: 1
+        '400':
+          description: Bad Request (e.g., unsupported workload type in `dataQuality`)
+        '401':
+          description: Authentication failed
+        '404':
+          description: Analysis not found
+        '500':
+          description: Server error
+
+components:
+  schemas:
+    AzureRecommendation:
+      type: object
+      description: Azure recommendation object (JSON representation).
+      properties:
+        accountIdRef:
+          type: string
+          description: Azure subscription identifier.
+        approvalType:
+          type: string
+          description: Approval setting for the recommendation.
+        attributes:
+          type: array
+          description: Only returned when `includeAttributes=true`.
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              name: { type: string }
+              value: { type: string }
+        auditInfo:
+          type: object
+          properties:
+            dataCollection:
+              type: object
+              properties:
+                dateFirstAudited: { type: integer, format: int64 }
+                dateLastAudited: { type: integer, format: int64 }
+                auditCount: { type: integer }
+            workloadDataLast30:
+              type: object
+              properties:
+                firstDate: { type: integer, format: int64 }
+                lastDate: { type: integer, format: int64 }
+                totalDays: { type: integer }
+                seenDays: { type: integer }
+        currentCost: { type: string }
+        currentHourlyRate: { type: string }
+        currentType: { type: string }
+        dataQuality:
+          type: array
+          items:
+            type: object
+            properties:
+              workloadName: { type: string }
+              firstSeen: { type: integer, format: int64 }
+              lastSeen: { type: integer, format: int64 }
+              completeDays: { type: integer }
+              partialDays: { type: integer }
+        densifyPolicy: { type: string }
+        effortEstimate:
+          type: string
+          enum: ["Moderate","Low","Very Low","None","Impossible"]
+        entityId: { type: string }
+        implementationMethod:
+          type: string
+          description: Self-Optimization status. Not returned for VMSS with more than one VM instance.
+        name: { type: string }
+        powerState: { type: string, description: "Not available for VMSS." }
+        predictedUptime: { type: string }
+        region: { type: string }
+        resourceId: { type: string }
+        recommendationType:
+          type: string
+          description: Recommended action (e.g., Just Right, Upsize, Downsize, Modernize, Terminate, Not Analyzed; for VMSS also Upscale/Downscale).
+        recommendedCost: { type: string }
+        recommendedHostEntityId: { type: string }
+        recommendedType: { type: string }
+        recommFirstSeen: { type: integer, format: int64 }
+        recommLastSeen: { type: integer, format: int64 }
+        recommSeenCount: { type: integer }
+        rptHref:
+          type: string
+          format: uri
+          description: >
+            Link to Impact Analysis and Recommendation Report PDF.
+            Use `Accept: application/octet-stream` to download.
+        savingsEstimate: { type: string }
+        serviceType:
+          type: string
+          enum: ["Virtual Machine","VM Scale Set"]
+        totalHours: { type: string }
+        totalHoursRunning: { type: string }
+        # VMSS-specific (JSON)
+        autoScaling: { type: object, additionalProperties: true }
+        avgInstanceCountCurrent: { type: number }
+        avgInstanceCountRecommended: { type: number }
+        minGroupCurrent: { type: integer }
+        minGroupRecommended: { type: integer }
+        maxGroupCurrent: { type: integer }
+        maxGroupRecommended: { type: integer }
+        orchestrationMode: { type: string }
+        profiles: { type: array, items: { type: object } }
+        scalingPolicies: { type: array, items: { type: object } }
+
+    TerraformMapRecommendation:
+      type: object
+      description: Terraform-map representation of a recommendation.
+      properties:
+        provisioningId: { type: string, description: "Label for the terraform-map recommendation (often taken from a resource tag)." }
+        approvalType: { type: string }
+        currentType: { type: string }
+        densifyPolicy: { type: string }
+        effortEstimate:
+          type: string
+          enum: ["Moderate","Low","Very Low","None","Impossible"]
+        implementationMethod: { type: string }
+        powerState: { type: string }
+        recommendationType: { type: string }
+        predictedUptime: { type: string }
+        recommendedType: { type: string }
+        savingsEstimate: { type: string }
+        # VMSS-specific (terraform-map)
+        avgInstanceCountCurrent: { type: number }
+        avgInstanceCountRecommended: { type: number }
+        minGroupCurrent: { type: integer }
+        minGroupRecommended: { type: integer }
+        maxGroupCurrent: { type: integer }
+        maxGroupRecommended: { type: integer }

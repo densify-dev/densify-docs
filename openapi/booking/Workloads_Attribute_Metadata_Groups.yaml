@@ -1,0 +1,93 @@
+openapi: 3.1.0
+info:
+  title: Densify API
+  description: API to retrieve metadata of Workload attributes.
+  version: 1.0.0
+servers:
+  - url: https://api.densify.com/v1
+    description: Main Densify API server
+paths:
+  /workloads/attribute-metadata:
+    get:
+      summary: Retrieves all metadata of Workload attributes
+      operationId: getAllWorkloadAttributeMetadata
+      responses:
+        "200":
+          description: List of Workload attribute metadata
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WorkloadAttributeMetadataGroup"
+  /workloads/attribute-metadata/{name}:
+    get:
+      summary: Retrieves the metadata of a specific Workload attribute
+      operationId: getWorkloadAttributeMetadataByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: Name of the Workload attribute group
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Workload attribute metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkloadAttributeMetadataGroup"
+components:
+  schemas:
+    WorkloadAttributeMetadataGroup:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Attribute group ID
+        name:
+          type: string
+          description: Attribute group name
+        description:
+          type: string
+          description: Attribute group description
+        attributes:
+          type: array
+          items:
+            $ref: "#/components/schemas/WorkloadAttribute"
+    WorkloadAttribute:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Attribute ID
+        name:
+          type: string
+          description: Attribute name
+        overridable:
+          type: boolean
+          description: Indicates if the attribute can be overridden
+        displayable:
+          type: boolean
+          description: Indicates if the attribute is displayed
+        values:
+          type: array
+          items:
+            type: string
+          description: Possible values for the attribute
+        multiple:
+          type: boolean
+          description: Indicates if multiple values can be specified
+        category-id:
+          type: string
+          description: Attribute category ID
+        parameter-type:
+          type: string
+          enum:
+            - enum
+            - freeform
+          description: Attribute parameter type
+        required:
+          type: boolean
+          description: Indicates if the attribute is required

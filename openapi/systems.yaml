@@ -1,0 +1,545 @@
+openapi: 3.0.3
+info:
+  title: Densify Systems API
+  version: "1.0.0"
+  description: |
+    Endpoints for retrieving and managing systems discovered via Densify data collection.
+
+    Notes:
+    - Returned element values match those shown in Densify Analysis Console (DSE > System Summary / Attributes).
+    - Filtering supports element filters and advanced attribute filters (see query parameters on `GET /systems`).
+    - Some fields appear only when `details=true` is requested.
+
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: api.example.com
+        description: Replace with your Densify API host
+
+tags:
+  - name: Systems
+    description: Systems collection and single-system resources
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    Page:
+      name: page
+      in: query
+      description: Zero-based page index (page=0 is the first page)
+      schema: { type: integer, minimum: 0, default: 0 }
+    PageSize:
+      name: page_size
+      in: query
+      description: Page size when paging is enabled
+      schema: { type: integer, minimum: 1, maximum: 500, default: 25 }
+    Details:
+      name: details
+      in: query
+      description: Include extra details for applicable elements (e.g., `children`, `manufacturer`, `os`)
+      schema: { type: boolean, default: false }
+
+  schemas:
+    AttributeTriple:
+      type: object
+      description: Attribute entry stored as [id, name, value]
+      required: [id, name, value]
+      properties:
+        id:
+          type: string
+          description: Unique attribute ID (e.g., attr_ObservedUptime)
+        name:
+          type: string
+          description: Human-readable attribute name
+        value:
+          type: string
+          description: Attribute value
+    ControlEnvironmentRef:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        platform_category:
+          type: string
+          description: Control environment category
+          enum: [External Cloud, Internal Virtual]
+        href: { type: string }
+        icon: { type: string, description: Path to icon resource }
+    InfrastructureGroupRef:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        href: { type: string }
+    CpuBenchmark:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Benchmark label
+          enum: [CINT2000, "CINT2000 Rate", "CINT2006 Rate", RPE2]
+        score_type:
+          type: string
+          enum: [cint2000, cint2000rate, cint2006rate, rpe2]
+        value:
+          type: number
+          format: float
+    IoBenchmark:
+      type: object
+      properties:
+        name:
+          type: string
+          enum: ["Maximum Disk Throughput (bytes/s)", "Maximum Network Throughput (bytes/s)"]
+        score_type:
+          type: string
+          enum: [disk, net]
+        value:
+          type: number
+          description: A value of -1 means no value specified
+    System:
+      type: object
+      description: A discovered system
+      properties:
+        id: { type: string, description: Densify unique system ID }
+        name: { type: string }
+        href: { type: string }
+        resource_id:
+          type: string
+          description: Cloud/provider unique ID (when applicable)
+        type:
+          type: string
+          description: System type
+          enum:
+            - host
+            - guest
+            - vm
+            - arm_vm
+            - classic_vm
+            - rds
+            - asg
+            - ecs_svc
+        platform:
+          type: string
+          description: System platform
+          enum: [VMWARE, HMC, AWS, GCP, AZURE, CONTAINERS]
+        platform_model:
+          type: string
+          description: Host model (hosts) or instance type (cloud instances)
+        total_physical_cpus:
+          type: string
+          description: Secondary sort key for `sort_by=size`
+        total_logical_cpus:
+          type: string
+        cores_per_cpu:
+          type: string
+          description: Tertiary sort key for `sort_by=size`
+        threads_per_core:
+          type: string
+        memory:
+          type: string
+          description: Normalized total memory (MB). Primary sort key within `size`
+        parent:
+          type: string
+          description: Parent host name for VMs; "N/A" for hosts
+        children:
+          type: string
+          description: Number of child systems (returned when `details=true` and applicable)
+        manufacturer:
+          type: string
+          description: Returned when `details=true`
+        os:
+          type: string
+          description: Returned when `details=true`
+        os_patch_level:
+          type: string
+        os_version:
+          type: string
+        ip_address:
+          type: string
+        mac_address:
+          type: string
+        entity_role_name:
+          type: string
+          description: Role derived from platform/role (e.g., VMWARE_VM)
+        entity_type:
+          type: string
+          description: Entity type derived from platform/system type
+        control_environment:
+          $ref: '#/components/schemas/ControlEnvironmentRef'
+        infrastructure_group:
+          $ref: '#/components/schemas/InfrastructureGroupRef'
+        cpu_benchmarks:
+          type: array
+          items: { $ref: '#/components/schemas/CpuBenchmark' }
+        I/O_benchmarks:
+          type: array
+          items: { $ref: '#/components/schemas/IoBenchmark' }
+        attributes:
+          type: array
+          items: { $ref: '#/components/schemas/AttributeTriple' }
+      required: [id, name, href]
+
+security:
+  - bearerAuth: []
+
+paths:
+  /systems:
+    get:
+      tags: [Systems]
+      operationId: listSystems
+      summary: Get Collection
+      description: |
+        Returns configuration and attribute information for systems tracked by recent data collection.
+
+        Notes:
+        - By default, only attributes with set values are returned.
+        - `attributes_mode=Off` hides attributes, except when any attribute filter is used (it is then ignored and attributes are shown).
+      parameters:
+        # --- Common collection options ---
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Details'
+
+        # --- Sorting ---
+        - name: sort_by
+          in: query
+          description: |
+            Sort the collection.
+
+            Supported:
+            - `size` (primary: memory; secondary: total_physical_cpus; tertiary: cores_per_cpu)
+            - `name`
+
+            Add `,desc` for descending order (default ascending). Examples: `size,desc`, `name`.
+          schema: { type: string }
+
+        # --- Attribute visibility / categories ---
+        - name: attributes_mode
+          in: query
+          description: Show (`On`) or hide (`Off`) set attributes for each system. Ignored if any attribute filter is used.
+          schema: { type: string, enum: [On, Off], default: On }
+        - name: setdisplay_category
+          in: query
+          description: >
+            Comma-separated list of attribute categories to return (e.g., `Business,Transformation,Public Cloud`).
+          schema: { type: string }
+
+        # --- Element filters ---
+        - name: name
+          in: query
+          schema: { type: string }
+          description: Exact match on system name
+        - name: name_like
+          in: query
+          schema: { type: string }
+          description: >
+            Case-insensitive substring match. Use `%` to match zero or more chars (e.g., `%test%`).
+        - name: resource_id
+          in: query
+          schema: { type: string }
+          description: Cloud/provider system ID
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [host, guest, vm, arm_vm, classic_vm, rds, asg, ecs_svc]
+          description: Filter by system type
+        - name: platform
+          in: query
+          schema: { type: string, description: Comma-separated list allowed }
+          description: >
+            Filter by platform; supports multiple values (comma-separated). Supported: `vmware, hmc, aws, gcp, azure, containers`
+        - name: infrastructure_group
+          in: query
+          schema: { type: string }
+          description: Filter by infrastructure group (cluster) name
+        - name: control_environment
+          in: query
+          schema: { type: string }
+          description: Filter by control environment name
+        - name: platform_category
+          in: query
+          schema: { type: string, enum: ["External Cloud", "Internal Virtual"] }
+          description: Filter by control environment category
+
+        - name: attribute_name_like
+          in: query
+          schema: { type: string }
+          description: >
+            Returns systems having attributes whose names contain the given substring (supports `%` wildcard).
+        - name: attribute_id
+          in: query
+          schema: { type: string }
+          description: Comma-separated attribute IDs (logical OR)
+        - name: attribute_name
+          in: query
+          schema: { type: string }
+          description: Comma-separated attribute names (logical OR). URL-encode spaces as `+`.
+        - name: attribute_id_value
+          in: query
+          schema:
+            type: string
+          description: >
+            Semicolon-separated ID,value pairs (logical AND across pairs).
+        - name: attribute_name_value
+          in: query
+          schema:
+            type: string
+          description: >
+            Semicolon-separated name,value pairs (logical AND across pairs).
+
+      responses:
+        '200':
+          description: Collection of systems
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/System' }
+              examples:
+                azureNameLikeTest:
+                  summary: Azure systems with name containing "test"
+                  value:
+                    - id: 5da2be9c-3915-46df-a127-387e837a0697
+                      name: esx-test-274
+                      href: /systems/5da2be9c-3915-46df-a127-387e837a0697
+                      resource_id: esx-test-274
+                      type: classic_vm
+                      platform_model: standard_a0
+                      platform: AZURE
+                      total_physical_cpus: "1"
+                      cores_per_cpu: "1"
+                      memory: "768"
+                      infrastructure_group:
+                        id: c55e12ae-d568-427b-997d-1d5c54065a2d
+                        name: eastus-test-vm
+                        href: /infrastructure-groups/c55e12ae-d568-427b-997d-1d5c54065a2d
+                      control_environment:
+                        id: da70ab94-cea1-4a8a-83d7-c26a675ce650
+                        name: cc377154-9605-4cb0-8b41-1b39e1c4ac0f
+                        platform_category: External Cloud
+                        href: /control-environments/da70ab94-cea1-4a8a-83d7-c26a675ce650
+                        icon: /control-environments/da70ab94-cea1-4a8a-83d7-c26a675ce650/icon
+                      attributes:
+                        - { id: attr_azure_resource_group, name: "Resource Group", value: test-vm }
+                        - { id: attr_azure_tenant_id, name: "Tenant ID", value: 6c9190a7-bca6-4fcd-b35e-36378aadc695 }
+        '400':
+          description: Malformed query (e.g., invalid sort or filter syntax)
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+
+  /systems/{id}:
+    get:
+      tags: [Systems]
+      operationId: getSystem
+      summary: Get Individual System
+      description: Returns configuration and attribute information for a specific system.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+          description: Densify unique system ID
+        - $ref: '#/components/parameters/Details'
+      responses:
+        '200':
+          description: System
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/System' }
+        '401':
+          description: Unauthorized
+        '404':
+          description: System not found
+        '500':
+          description: Internal server error
+
+  /systems/{id}/analysis-details:
+    post:
+      tags: [Systems]
+      operationId: getSystemAnalysisDetails
+      summary: Get System's Instance Type Details
+      description: |
+        Provides instance-type details for the system and optimal instance targets.
+        Additional targets may be returned based on spend/effort tolerance attributes supplied.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+          description: Densify unique system ID
+      requestBody:
+        required: true
+        description: Array of attribute criteria (name/value pairs)
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                required: [name, value]
+                properties:
+                  name: { type: string }
+                  value: { type: string }
+            examples:
+              sample:
+                value:
+                  - { name: spendTolerance, value: medium }
+                  - { name: effortTolerance, value: low }
+      responses:
+        '200':
+          description: Instance-type details and optimization targets
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Implementation-specific analysis payload
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+        '404':
+          description: System not found
+        '500':
+          description: Internal server error
+
+  /systems/{id}/analysis-report:
+    get:
+      tags: [Systems]
+      operationId: downloadAnalysisReport
+      summary: Get Report PDF
+      description: |
+        Downloads the Impact Analysis and Recommendation Report (Application Owner report) as a PDF.
+        Use `Accept: application/octet-stream` to download the file.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+          description: Densify unique system ID
+      responses:
+        '200':
+          description: PDF report
+          headers:
+            Content-Disposition:
+              description: Suggested filename for the downloaded PDF
+              schema: { type: string, example: attachment; filename="analysis-report.pdf" }
+          content:
+            application/pdf:
+              schema: { type: string, format: binary }
+            application/octet-stream:
+              schema: { type: string, format: binary }
+        '401':
+          description: Unauthorized
+        '404':
+          description: System or report not found
+        '500':
+          description: Internal server error
+
+  /systems/{id}/attributes:
+    put:
+      tags: [Systems]
+      operationId: modifySystemAttributes
+      summary: Modify System Attributes
+      description: |
+        Modifies attribute values for a system. For existing attributes, updates their values.
+        For non-existent attributes, adds the `[name, value]` tuple.
+
+        For multi-value attributes, adding a `[name, value]` not present will append a new entry.
+        To overwrite a multi-value attribute value, delete the existing value first.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+          description: Densify unique system ID
+      requestBody:
+        required: true
+        description: Array of attributes to set/add
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                required: [name, value]
+                properties:
+                  name: { type: string }
+                  value: { type: string }
+            examples:
+              modifyExample:
+                value:
+                  - { name: "Observed Uptime", value: "0.33" }
+                  - { name: "Cost", value: "17" }
+      responses:
+        '200':
+          description: System with attributes modified
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/System' }
+        '400':
+          description: Invalid attribute payload
+        '401':
+          description: Unauthorized
+        '404':
+          description: System not found
+        '500':
+          description: Internal server error
+
+    delete:
+      tags: [Systems]
+      operationId: deleteSystemAttributes
+      summary: Delete System Attributes
+      description: |
+        Deletes attributes from a system using either:
+        - `[id, value]` pairs to delete specific values, or
+        - `[id]` to delete all values for the given attribute ID (for multi-value attributes).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+          description: Densify unique system ID
+      requestBody:
+        required: true
+        description: Array of attribute delete directives
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                required: [id]
+                properties:
+                  id: { type: string, description: Attribute ID to delete }
+                  value:
+                    type: string
+                    description: Optional. If provided, deletes only the entry matching this value.
+            examples:
+              deleteExample:
+                value:
+                  - { id: attr_3, value: "0.3" }
+                  - { id: attr_10 }
+                  - { id: attr_11 }
+      responses:
+        '200':
+          description: System with attributes deleted
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/System' }
+        '400':
+          description: Invalid attribute delete payload
+        '401':
+          description: Unauthorized
+        '404':
+          description: System not found
+        '500':
+          description: Internal server error

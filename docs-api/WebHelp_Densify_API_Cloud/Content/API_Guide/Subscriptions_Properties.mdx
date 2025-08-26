@@ -1,0 +1,83 @@
+---
+title: "Subscriptions: Properties"
+---
+
+The `/subscriptions/<platformType>/properties` resource is used to store a list of recommendation properties available to the [Subscriptions](./Subscriptions) resource for the purpose of filtering recommendations from the resulting subscription data set.
+
+This resource acts as a catalog of recommendation properties to be referenced by the [propertyReferences](./Subscriptions#propertyReferences) parameter in a subscription. Properties not defined in the `/subscriptions/<platformType>/properties` resource, cannot be referenced by a subscription property filter condition. See [Subscriptions](./Subscriptions) for details on defining a subscription and using property filter conditions.
+
+There is a catalog for each supported `<platformType>`, which can only be referenced by the corresponding `<platformType>` subscription. For example, a container subscription (i.e. `/subscriptions/containers`) can only reference properties from the Container Subscriptions Properties catalog (i.e. `/subscriptions/containers/properties`).
+
+Densify provides a default set of properties for each `<platformType>` catalog. You can extend these default sets by adding additional properties, or you can customize the sets by modify or deleting existing properties.
+
+For the full set of available properties to add to the Cloud Subscriptions Properties catalog, refer to the cloud recommendation response schema:
+
+* See [Analysis: AWS Recommendations: Response](./Analysis_AWS_Results#_ResultElements) for a list of all the recommendation elements available for the AWS instances.
+* See [Analysis: Azure Recommendations: Response](./Analysis_Azure_Results#_ResultElements) for a list of all the recommendation elements available for the Azure instances.
+* See [Analysis: GCP Recommendations: Response](./Analysis_GCP_Results#_ResultElements) for a list of all the recommendation elements available for the GCP instances.
+
+See [Default Cloud Properties](#DefaultProperties) for the list of default cloud properties.
+
+<Note>
+Some recommendation elements are not common to all technologies. It is good practice to indicate the technology for an element that is technology-specific in the [aliasName](#aliasName) (e.g. aliasName = "AWS minGroupRecommended"). This practice is helpful when you use the Cloud Subscriptions Properties catalog to form property conditions.
+</Note>
+
+For the full set of available properties to add to the Container Subscriptions Properties catalog, refer to the container recommendation response schema:
+
+* See [Analysis: Kubernetes Container Recommendations: Response](./Analysis_Kubernetes_Results#_ResultElements) for a list of all the recommendation elements available for Kubernetes containers.
+
+See [Default Container Properties](#containerDefaultProperties) for the list of default cloud properties.
+
+Properties in the platform-specific Subscriptions Properties catalogs can be declared as: global or private (i.e. user-specific). Global properties can be used by any API enabled user, while private properties can only be used by their owners. An exception to this rule is that <Tooltip tip="An administrative user is a Densify user in the Administrator user group or with the Analysis Admin role.">administrative users</Tooltip> have access to all properties - global or private user-specific.
+
+## Resource
+
+```
+/subscriptions/cloud/properties
+```
+
+```
+/subscriptions/containers/properties
+```
+
+```
+/subscriptions/properties
+```
+
+<Note>
+If you use this resource without the `<platformType>` specified (i.e. without `cloud` or `containers` specified), the behavior is exactly the same as specifying the `cloud`-specific resource. This behavior enables backward compatibility with scripts using the Densify API prior to release 12.1.6, where the platform-specific indicator was not available.
+</Note>
+
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="Add Subscriptions Properties" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/addSubscriptionProperties" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Delete Subscriptions Properties" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/deleteSubscriptionProperties" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Delete Subscriptions Property" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/deleteSubscriptionProperty" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Get Subscriptions Property" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/getSubscriptionProperty" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="List Subscriptions Properties" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/listSubscriptionProperties" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Get Subscriptions Properties Default Plat" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/listSubscriptionPropertiesDefaultPlatform" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Replace Subscriptions Properties" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/replaceSubscriptionProperties" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Replace Subscriptions Property" href="/docs-api\WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/replaceSubscriptionProperty" arrow/>
+</CardGroup>

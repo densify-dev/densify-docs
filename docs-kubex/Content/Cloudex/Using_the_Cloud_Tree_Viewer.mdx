@@ -1,0 +1,229 @@
+---
+title: "Using the Cloud Tree Viewer"
+sidebarTitle: "Using Cloud the Tree Viewer"
+---
+import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
+
+The tree viewer offers an intuitive and efficient way to navigate and explore your cloud environments.
+
+
+<Frame caption="Figure: Locating the Tree Viewer">
+![](/images/docs-kubex/Content/Cloudex/03000019_748x338.png)
+</Frame>
+
+
+Use the tree viewer to select the scope of systems on which to report. As you navigate through the tree, the reports on the right update automatically to show your selected scope.
+If you are using Kubex for container optimization, then see the following:
+
+
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", justifyContent: "center" }}>
+  <Frame>
+    <img src="/images/docs-kubex/Content/Cloudex/03000174.png"/>
+  </Frame>
+  
+  <div style={{ width: "100%", display:"flex", flexDirection:"column" }}>
+    <div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems: "center" }}>
+      <Frame>
+        <img src="/images/docs-kubex/Content/Cloudex/03000004.png" maxWidth={55} height={58}/>
+      </Frame>
+      <p class="Body">Use the <a href="/docs-kubex/Content/Kubex/Using_the_Tree_Viewer">container tree viewer</a> to navigate your container environment.</p>
+    </div>
+
+    <div style={{display:"flex", flexDirection:"row", alignItems: "center"}}>
+      <Frame>
+        <img src="/images/docs-kubex/Content/Cloudex/03000092.png" width={55} height={58}/>
+      </Frame>
+      <p class="Body">Use the <a href="/docs-kubex/Content/Kubex/Using_the_Node_Tree_Viewer">node tree viewer</a> to navigate node groups supporting your container environments.</p>
+    </div>
+  </div>
+</div>
+
+## Hiding the Tree Viewer
+
+Once you have selected the scope of systems to review you can hide the tree viewer. If you are working on a smaller screen or laptop it will be easier to view tables and charts with the increased screen space.
+
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", gap:"20px"}}>
+  <div style={{ width: "300px", minWidth: "300px" }}>
+    <Frame>
+      <img src="/images/docs-kubex/Content/Cloudex/03000185_277x37.png" width={"100%"} style={{ height: "40px", objectFit: "contain" }}/>
+    </Frame>
+  </div>
+  <div style={{ flex: 1 }}>
+    <p>By default, the tree view is pinned to the left side of the screen.</p>
+    <p>When the viewer is pinned, click the chevrons to open/close the tree viewer.</p>
+  </div>
+</div>
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", gap:"20px"}}>
+  <div style={{ width: "300px", minWidth: "300px" }}>
+    <Frame>
+      <img src="/images/docs-kubex/Content/Cloudex/03000184_275x34.png" width={"100%"} style={{ height: "40px", objectFit: "contain" }}/>
+    </Frame>
+  </div>
+  <div style={{ flex: 1 }}>
+    <p>Click the pin to hide the tree viewer.</p>    
+    Use the <InlineImageWithText src="/images/docs-kubex/Content/Cloudex/03000186.png" />icon on the main page, to open the tree viewer as required and the X to close it, when not required.
+  </div>
+</div>
+
+## Views and Filters
+
+The default view is your container hierarchy i.e. Cloud Provider > Cluster> Region> Service > Instance. This view can be customized to better manage your data. See [Creating Custom Views](/docs-kubex/Content/Kubex/Creating_Custom_Views).
+You can also create customized filters to manage large sets of data. See [Creating Custom Filters](/docs-kubex/Content/Kubex/Creating_Custom_Filters).
+
+## Navigating the Tree Viewer
+
+The following icons are available, by default. You can create custom views based on other attributes that may not include any of the following items.
+
+
+
+<Accordion title="Table: Tree Viewer Icons">
+<table style={{ width: "100%", borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "25%" }} />
+    <col style={{ width: "20%" }} />
+    <col style={{ width: "55%" }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th style={{ verticalAlign: "middle", textAlign: "center" }}>Icon</th>
+      <th style={{ verticalAlign: "middle", textAlign: "center" }}>Entity</th>
+      <th style={{ verticalAlign: "middle", textAlign: "center" }}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        <img src="/images/docs-kubex/Content/Cloudex/03000162.png" />
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>Cloud Environment</td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        The top level entity that contains your cloud infrastructure.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        <img src="/images/docs-kubex/Content/Cloudex/03000163.png" />
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>Region</td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        This represents a region. The region is the geographic location where your public cloud resources are located.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        <img src="/images/docs-kubex/Content/Cloudex/03000166.png" /> 
+        <img src="/images/docs-kubex/Content/Cloudex/03000167.png" /> 
+        <img src="/images/docs-kubex/Content/Cloudex/03000168.png" />
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>Service Type</td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        This represents the type of service. Currently Cloudex supports:
+        <ul style={{ paddingLeft: "1.2rem", textAlign: "left" }}>
+          <li>AWS EC2, RDS and ASG</li>
+          <li>Azure VM and VM Scale Sets</li>
+          <li>GCP Compute Instance</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        <img src="/images/docs-kubex/Content/Cloudex/03000165.png" /> 
+        <img src="/images/docs-kubex/Content/Cloudex/03000169.png" /> 
+        <img src="/images/docs-kubex/Content/Cloudex/03000170.png" />
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>Provider</td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        This represents your public cloud provider. Currently Cloudex supports AWS, Azure and GCP.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        <img src="/images/docs-kubex/Content/Cloudex/03000164.png" />
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>Instance</td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        This represents an individual instance.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        <img src="/images/docs-kubex/Content/Cloudex/03000084.png" />
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>Other Grouping</td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        Represents other attributes or labels that have been used to group the data.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+
+
+
+## Instance Counts
+
+You can see a count of the number of instances at each branch of the tree viewer. When counts are very large, consider creating a [view](/docs-kubex/Content/Kubex/Creating_Custom_Views) or a [filter](/docs-kubex/Content/Kubex/Creating_Custom_Filters) to more efficiently view your systems.
+
+
+<Frame caption="Figure: Instance Counts">
+![](/images/docs-kubex/Content/Cloudex/03000004_295x283.png)
+</Frame>
+
+
+
+## Using the Tabs
+
+Based on your selection in the tree viewer various tabs are displayed to view the selected data. When multiple systems are selected you see:
+
+
+<ul>
+  <li>
+    <a href="/docs-kubex/Content/Cloudex/Summary_Tab-Cloud">
+    Summary
+    </a>
+    --Shows you a summary of how effectively your resources are being utilized.
+  </li>
+  <li>
+    <a href="/docs-kubex/Content/Cloudex/AI_Analysis_Details_Table-Cloud">
+    AI Analysis Details
+    </a>
+    --Shows analysis details of the selected scope of your environment in various tabular views with utilization charts for a selected system.
+  </li>
+</ul>
+
+
+When a single instance is selected you see:
+
+
+<ul>
+  <li>
+    <a href="/docs-kubex/Content/Cloudex/Overview_Tab-Cloud">
+    Overview
+    </a>
+    --Shows you the utilization and recommendation details for the selected instance.
+  </li>
+  <li>
+    <a href="/docs-kubex/Content/Cloudex/Catalog_Map_Tab">
+    Catalog Map
+    </a>
+    --Shows you collected and analyzed data for the selected instance.
+  </li>
+</ul>
+
+#### Video Resources
+<AccordionGroup>
+<Accordion title="Searching for a System">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1044765242?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1044765242?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Searching for a System</a>
+</Accordion>
+
+<Accordion title="Using the Tree Viewer">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Using the Tree Viewer</a>
+</Accordion>
+
+</AccordionGroup>

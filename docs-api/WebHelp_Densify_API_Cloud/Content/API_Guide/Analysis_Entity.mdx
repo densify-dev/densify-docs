@@ -1,0 +1,28 @@
+---
+title: "Analysis: Entity"
+---
+
+## Description
+
+The `/analysis/<platformType>/<platformSubType>` resource is used to return a list of analyses currently in the Densify system. The `/analysis/<platformType>/<platformSubType>/<analysisId>` resource is used to return the details of a specific analysis currently in Densify. An analysis entity encompasses infrastructure resources within a predefined environment scope, specific to the platform and cloud vendor. The infrastructure resources are analyzed to determine optimal recommendations.
+
+See [Analysis: Cloud](./Analysis_Cloud) and [Analysis: Containers](./Analysis_Container) for the two platform types of analyses supported in Densify.
+
+## Resource
+
+```
+/analysis/<platformType>/<platformSubType>
+```
+
+```
+/analysis/<platformType>/<platformSubType>/<analysisId>
+```
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="Get Analysis Entity" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity/getAnalysisEntity" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="List Analysis Entities" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity/listAnalysisEntities" arrow/>
+</CardGroup>

@@ -1,0 +1,104 @@
+---
+mode: "custom"
+title: "Densify Online Help Documentation"
+---
+
+<div className="relative w-full flex items-center justify-center" style={{ height: '26rem', overflow: 'hidden'}}>
+
+<div id="background-div" className="absolute inset-0 h-full bg-gradient-to-t from-[#164e79] dark:from-[#164e79] to-[#67b7c2] to-[#000000] bg-cover bg-center"></div>
+
+<div style={{ position: 'absolute', textAlign: 'center', padding: '0 1rem' }}>
+  <div
+    className="text-5xl font-bold w-full mt-12 text-white leading-[1.2] tracking-tight"
+  >
+   Densify Documentation & Training
+  </div>
+
+    <p className="text-lg text-white" style={{  fontWeight: '500' , maxWidth: '40rem', margin: '0 auto', marginTop: '0.5rem'}}>
+      Feature Descriptions and Product Reference
+    </p>
+
+    <div className="flex items-center justify-center" style={{ maxWidth: '800px', margin: '0 auto' }}>
+      <button
+        type="button"
+        className="hidden w-full lg:flex items-center text-sm leading-6 py-4 pl-4 pr-4 text-gray-500 rounded-full"
+        id="home-search-entry"
+        style={{
+          marginTop: '2rem',
+          maxWidth: '40rem',
+          background: '#FFF',
+          boxShadow: '0px 1px 4px 0px rgba(8, 9, 10, 0.25), 0px 0px 0px 4px rgba(255, 255, 255, 0.20)',
+          cursor: 'pointer',
+          textAlign: 'left',
+        }}
+        onClick={()=> document.getElementById('search-bar-entry').click()}
+      >
+        <svg
+          className="h-4 w-4 ml-1.5 flex-none bg-primary hover:bg-gray-600 dark:bg-primary-dark dark:hover:bg-white/70"
+          style={{
+          marginRight: '0.5rem',
+          maskImage:
+            'url("https://mintlify.b-cdn.net/v6.5.1/solid/magnifying-glass.svg")',
+          maskRepeat: 'no-repeat',
+          maskPosition: 'center center',
+          }}
+        />
+        Search or ask...
+      </button>
+    </div>
+  </div>
+</div>
+
+<div className="home_card_container">
+<div
+  style={{maxWidth: '70rem', marginLeft: 'auto',
+  marginRight: 'auto', paddingLeft: '1.25rem',
+  paddingRight: '1.25rem' }}
+>
+
+  <Columns cols={2}>
+    <Card href="/docs-kubex/Content/Kubex/Getting_Started_with_Kubex">
+      <img src="https://www.densify.com/wp-content/uploads/kubex-logo-reverse.svg" alt="Densify Logo" style={{ width: '100px', height: '100px', display: 'block', margin: '0 auto' }} noZoom />
+      <br/>
+      <h3 style={{ textAlign: 'center', fontSize: '1rem' }}> **Product Documentation**</h3>
+
+      <p style={{ textAlign: 'center' }}>Access documentation to optimize your container environment.</p>
+    </Card>
+
+    <Card href="/docs-kubex/Content/Cloudex/Getting_Started_with_Cloudex">
+      <img src="https://www.densify.com/wp-content/uploads/cloudex-logo-reverse.png" alt="Densify Logo" style={{ width: '130px', height: '100px', display: 'block', margin: '0 auto' }} noZoom />
+      <br/>
+      <h3 style={{ textAlign: 'center', fontSize: '1rem' }}> **Product Documentation**</h3>
+
+      <p style={{ textAlign: 'center' }}>Access documentation to optimize your cloud environments.</p>
+    </Card>
+
+  </Columns>
+
+  <Columns cols={3}>
+    <Card href="/docs-api/WebHelp_Densify_API_Cloud/Content/APIHome_Cloud" iconType="solid">
+      <img src="https://www.densify.com/wp-content/uploads/densify-light-1.svg" alt="Densify Logo" style={{ width: '100px', height: '100px', display: 'block', margin: '0 auto' }} noZoom />
+      <br/>
+      <h3 style={{ textAlign: 'center', fontSize: '1rem' }}> **API Documentation**</h3>
+
+      <p style={{ textAlign: 'center' }}>Access the API features to review and optimize your cloud and container environments.</p>
+    </Card>
+    <Card href="/docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud" iconType="solid">
+      <img src="https://www.densify.com/wp-content/uploads/densify-light-1.svg" alt="Densify Logo" style={{ width: '100px', height: '100px', display: 'block', margin: '0 auto' }} noZoom />
+      <br/>
+      <h3 style={{ textAlign: 'center', fontSize: '1rem' }}> **New Features**</h3>
+
+      <p style={{ textAlign: 'center' }}>See a summary of new features in the latest version.</p>
+    </Card>
+
+    <Card href="/docs/WebHelp_Densify/Content/Densify_ADVANCED" iconType="solid">
+      <img src="https://www.densify.com/wp-content/uploads/densify-light-1.svg" alt="Densify Logo" style={{ width: '100px', height: '100px', display: 'block', margin: '0 auto' }} noZoom />
+      <br/>
+      <h3 style={{ textAlign: 'center', fontSize: '1rem' }}> **Other Documentation**</h3>
+
+      <p style={{ textAlign: 'center' }}>Access advanced topics and the Virtual Optimizer documentation.</p>
+    </Card>
+  </Columns>
+
+</div>
+</div>

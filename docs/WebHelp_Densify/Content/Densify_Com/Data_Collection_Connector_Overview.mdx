@@ -1,0 +1,31 @@
+---
+title: "Overview"
+---
+
+The Densify Connector is a self-contained, Windows-based application. It allows you to perform automated, scheduled data collection from your vCenter Servers and transfer that data via HTTPS to Densify where data analysis is performed. Optionally, you can connect to vRealize Operations (vROps) to obtain historical workload data.
+
+<Note>
+You cannot perform a vROps-only audit.
+</Note>
+
+
+
+Though, vROps is very useful for collecting historical workload data, Densify also requires access to your vCenter in order to collect configuration data and hierarchy information, including information on datastores, storage, etc. Additionally, if you plan to use action automation, access to the vCenter is required.
+
+If you are only using a vCenter connection, then workload and configuration and hierarchy information are collected from each vCenter Server. Only the current day's data (yesterday) is collected and depending on your policy setting you may need to collect a few days of data before reliable analysis results are generated.
+
+For added security, the Densify Connector polls and pushes data to the remote Densify server, no data is ever pushed from the Densify server. The connector allows you to collect vCenter data within your firewall without Densify connecting to your internal network.
+
+Review the [prerequisites](./Connector_Prerequisites) before starting, to ensure your system meets the minimum requirements.
+
+To learn more watch the video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/301238060" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+You can also use the Data Collection for VMware training module that provides details of configuring and using the Densify Connector. This module is the first part of the course, called Optimizing Your VMware Environments.
+
+### Download the Connector
+
+Download a current version of the Densify Connector from the Densify Console via the **Private Cloud** menu > **Download Connector**
+
+Contact [Support@Densify.com](mailto:Support@Densify.com) for assistance if these options are not available to you.

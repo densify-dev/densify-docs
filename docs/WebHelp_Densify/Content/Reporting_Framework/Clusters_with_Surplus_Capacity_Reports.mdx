@@ -1,0 +1,53 @@
+---
+title: "Clusters with Surplus Capacity Reports"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The Clusters With Surplus Capacity reports show the clusters (as defined by your global filter) with excess infrastructure, by showing the number of extra VMs that can be placed. Clusters are considered to have surplus capacity if the number of surplus VM capacity units is greater than 0.
+
+Surplus capacity in a cluster, highlighted in yellow, can be reduced by:
+
+* running more workloads,
+* opening clusters that have been closed early or unnecessarily and then running more workloads,
+* redeploying excess resources to other environments, or
+* decommissioning excess resources.
+
+<Note>
+Capacity is calculated based on average VM size or standard VM size, depending on your settings. The footnote, shown only in the zoomed <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> reports, details the VM size used. See [Reporting Based on Average or Standard VM](../Densify_Com/Reporting_Based_on_Average_or_Standard_VM) for details.   
+Also, these reports provide details only for the scope defined by your global filter. See [Using the Global Filter](../Densify_Com/Using_the_Global_Filter) for details.
+</Note>
+
+
+
+## Understanding Clusters With Surplus Capacity Reports
+
+The Clusters with Surplus Capacity report is comprised of three separate reports, as explained by the figure below:
+
+* Summary--A cluster is considered to have surplus capacity if the number of surplus VM capacity units is greater than 0. From the example, 22 out of the 28 clusters in scope have a surplus capacity. Out of the 22 clusters, 9 are open and 13 are closed.
+
+Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the clusters with surplus capacity, sorted in descending order by % of surplus capacity (which is the # of standard/average VM units in surplus divided by the total number of VMs in the cluster). The Oversized Guests report also shows the surplus capacity in terms of the number of standard/average VM capacity units that can still fit according to the defined policy.
+
+* Top Clusters--Lists the top 5 clusters by the number of standard/average VM capacity units that can still fit according to policy.
+
+Zoom<InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/>to see the full list of all clusters showing the available capacity (in terms of the number of standard/average VM capacity units) and the primary constraint. This will be the primary constraint once the available capacity has been consumed.
+
+* History--Graphs the 90-day history of the percentage of clusters with surplus capacity within the defined scope.
+
+Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the expanded view containing a graph showing the total number of clusters with surplus capacity for all clusters in scope, as well as the initial chart showing the percentage of clusters with surplus capacity. These graphs do not provide a breakdown by cluster.
+
+You can hover the mouse over trace in either graph to see the values on the selected date.
+
+
+<Accordion title="Figure: Clusters with Surplus Capacity Report">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000043.png)</Frame>
+</Accordion>
+
+
+## Monitoring Clusters with Surplus Capacity
+
+To view and address the clusters at risk:
+
+1. Navigate to Virtual Optimization > Opportunity > Clusters with Surplus Capacity.
+2. View the surplus clusters by zooming in from the summary report. This gives you an idea which clusters have the most surplus. During the initial ramp-up phase you may need to review your policy settings if the summary does not coincide with the performance of these clusters.
+3. View the primary constraint for each of these clusters by zooming <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> from Top Clusters. The primary constraint is based on the operational policy settings. Surplus can be reduced by removing hosts, and adding them to clusters that are at risk (see [Defining New Hosts](../Plan_And_Manage_Supply/Defining_New_Hosts)). The Clusters with Surplus Capacity report can also be used to determine the best locations to route new guests, based on infrastructure availability.
+4. View the History of Clusters with Surplus Capacity the next day to monitor the capacity, as necessary.

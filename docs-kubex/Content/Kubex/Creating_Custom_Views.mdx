@@ -1,0 +1,81 @@
+---
+title: "Creating Custom Views"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx"
+
+You can create your own views allowing you to navigate your Kubernetes environment and report on specific systems. Create views to see only those containers of interest. Save the view to help you and others quickly identify risk and waste for a subset of the environment.
+
+<Frame caption="Creating Custom Views">
+![](/images/docs-kubex/Content/Kubex/03000123.png)
+</Frame>
+
+You can create custom views from the tree viewer or any table. 
+
+
+<ol start="1">
+  <li>From the tree viewer click <InlineImage customSize="5" src="/images/docs-kubex/Content/Kubex/03000050_14x14.png">to open the **Manage Views** dialog box.</InlineImage></li>
+  <li>
+    Click **New** or **Copy**. <br/>
+    You cannot modify an original system view or a public view, that is in use by other users.
+    <Frame caption="Figure: Manage Views Dialog Box">
+    <img src="/images/docs-kubex/Content/Kubex/03000051_647x491.png" alt="Remove property" />
+    </Frame>
+  </li>
+  <li>Enter the name and description of your new view.</li>
+  <li>
+    In the **Property Selection** list, select a property and then click > to add the property. Your selection appears in the **Property Breakdown** pane.
+    <ol class="ol_2" start="">
+    <li class="Number" value="1">
+    Move the added property  up or down to create the desired view.
+    </li>
+    <li class="Number" value="2">
+    To remove a property, select it and press < to return it to the selection list.
+    </li>
+    </ol>
+  </li>
+  <li>
+    Select the options, as applicable:
+    <ul>
+    <li class="ListBullet">
+    **Set as my default view**--This view will be selected each time you open
+    <span class="mc-variable Document.Kubex variable">
+    Kubex
+    </span>
+    .
+    </li>
+    <li class="ListBullet">
+    **Set as public view**--All users can use this view. If unchecked, then this view is set as private.
+    </li>
+    <li class="ListBullet">
+    **Read-only for other users**--All users can use this view, but cannot edit it.
+    </li>
+    </ul>
+  </li>
+  <li>Click **OK** to save the view or **Apply** to save and apply the view.</li>
+</ol>
+
+
+Your new view is now selectable from the Tree Viewer.
+
+<Frame caption="Figure: Manage Views Context Menu">
+![](/images/docs-kubex/Content/Kubex/03000103.png)
+</Frame>
+
+To further limit the number of systems you can now create a filter for this view. See [Creating Custom Filters](/docs-kubex/Content/Kubex/Creating_Custom_Filters).
+A number of views are provided with Kubex to facilitate the selection of systems and to provide a template for creating new views.
+
+## Creating Views from a Table
+
+You can also create a view from any table, using the columns to define your view: 
+
+
+<ol start="1">
+  <li>From any page that includes a Table View field, click to open the context menu.</li>
+  <Frame caption="Figure: Manage Views Context Menu">
+  <img src="/images/docs-kubex/Content/Kubex/03000054_406x307.png" alt="Table View Context Menu" />
+  </Frame>
+  <li>Click **+ Add new view** and enter a name for your view.</li>
+  <li>Click on the column header and drag it to the header bar.</li>
+  <li>Move the column around until you have the desired view.</li>
+</ol>
+

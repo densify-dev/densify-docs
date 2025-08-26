@@ -1,0 +1,419 @@
+---
+title: "Using the Metrics Viewer for Containers"
+---
+
+import { InlineImage } from "/snippets/InlineImage.mdx"
+
+The Densify metrics viewer allows you to view your collected and analyzed time series data to review specific container details. You can use the metrics viewer to investigate details when deciding whether to action specific recommendations.
+
+This topic covers metrics viewer when reviewing your Kubernetes containers. The metrics viewer is also available for:
+
+* Nodes—See [Using the Metrics Viewer for Nodes](Using the Metrics Viewer-Nodess).
+* Public Cloud—See [Using the Metrics Viewer](./Using_the_Metrics_Viewer) .
+
+## Page Navigation
+
+Access the metrics viewer from:
+
+* Container Optimization > [Details](./Optimizing_Your_Containers_-_Details_Tab) tab > "Container Name" column
+* Container Optimization > [Details](./Optimizing_Your_Containers_-_Details_Tab) tab > lower pane icon
+
+<Accordion title="Figure: Accessing the Container Metrics Viewer (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000237.png)</Frame>
+</Accordion>
+
+Use the breadcrumbs in the upper left corner or click the Back button, in the top-right corner of the page, to return to the parent dashboard. Do not use the browser's Back button for navigation within Densify. You will be logged out of your session. See [Navigating Densify](./Navigating_Densify) for other features of the Densify user interface.
+
+<Accordion title="Figure: Metrics Viewer - Page Navigation">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000256.png)</Frame>
+</Accordion>
+
+Clicking the icon in the Details page opens the metrics viewer showing the selected instance. The page opens with either the default or saved filter settings, if you are within the same session.
+
+<Accordion title="Figure: Metrics Viewer for Containers (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000148.png)</Frame>
+</Accordion>
+
+## Metrics Viewer Controls
+
+When you open the metrics viewer, the instance that was selected in the Instance Optimization Details page is displayed. You can also select another container from the drop down menu.. You can now configure the data you want to view for this container using the options in the dropdown controls.
+
+<Accordion title="Figure: Metrics Viewer Controls">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000149.png)</Frame>
+</Accordion>
+
+There are 3 options to configure this report:
+
+<Accordion title="Table: Metrics Viewer Controls">
+<table class="table_1" >
+&lt;col/&gt;
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Setting </p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Default </p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Containers</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Selected container from the <span class="CiRBAcharUIElement">Details</span> page</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This dropdown list is populated with the container from the <span class="CiRBAcharUIElement">Optimization Details</span> page from where the <span class="mc-variable Document.metrics_viewer variable">metrics viewer</span> was opened. i.e. all of the containers displayed in the tabular report in the upper pane, are available here.</p>
+<p class="CiRBATableText">Containers in this list are named using the convention &lt;container (cluster, namespace, controller pod&gt;. The selected container is at the top of the list and the rest are listed in alphabetical order.</p>
+<p class="CiRBATableText">You can select one container to review.</p>
+<p class="CiRBATableText">To search for a specific container enter the name of the container, as you type, matching strings are displayed in the list. You can also paste a string into this field and if a match exists, it is displayed. </p>
+<p class="CiRBATableText">Only the containers from the parent <span class="mc-variable Document.Instance_Optimization_Details variable">Instance Optimization Details</span> page are searched.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Period</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Last 30 Days</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Select the period on which you want to report. There are 4 pre-defined options as well as the option to customize a date range.</p>
+<p class="CiRBATableText">Select "Other" and enter your start and end dates in the calendar. Click <span class="CiRBAcharUIElement">Apply</span> to close the calendar and update the charts with the new period.</p>
+<p class="CiRBATableNote" data-mc-autonum="&lt;b&gt;Note: &lt;/b&gt;"><span class="autonumber"><span><b>Note: </b></span></span><span class="mc-variable General.ProductName variable">Densify</span> retains up to 3 months of historical data for the <span class="mc-variable Document.metrics_viewer variable">metrics viewer</span>. When creating a customized period, you cannot view data older than 90 days.</p>
+<p class="CiRBATableText">If a recommendation has been implemented that results in a container configuration change during the selected period, you may observe data missing from the charts. See <a class="MCXref xref" href="./Relearning_Workload_Patterns">Relearning Workload Patterns</a>.<a name="kanchor183"></a></p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">View By</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Daily</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Select the unit of time to use for displaying the data. In this initial release, you can select hourly or daily.</p>
+<p class="CiRBATableText">The option to display hourly data is only available when the date range is less than 7-days. When reporting on more than 7-days, only the daily option is available.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">
+<Frame><img src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000133.png"/></Frame>
+</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">
+</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Click this button to reset all of the settings to their default values. You will be prompted and then the menu options are reset and the charts are refreshed accordingly using the default values.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+All of the charts, are refreshed immediately when you change any of the control options. Your settings are saved for the current user session and are returned to the default values if you log out or if another user opens the metrics viewer.
+
+### Status Bar
+
+Details of the selected instance are displayed in the upper right corner of the page.
+
+<Accordion title="Figure: Status Bar">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000239_391x197.png)</Frame>
+</Accordion>
+
+Clicking on the icon <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000059.png"/> on the Recommended Request displays the details of the recommended container sizing.
+
+### Configuring the Individual Charts
+
+You can configure each of the 4 charts separately using the 2 dropdown controls above each chart.
+
+<Accordion title="Table: Metrics Viewer Chart Controls">
+<table class="table_1">
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Setting </p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Options</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Metrics</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">See <a href="#Metrics">Table: Container Metrics</a></p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This dropdown list is populated with <a href="#Metrics">metrics</a> that can be added to the selected chart. Select or remove any metrics and click <span class="CiRBAcharUIElement">Apply</span> to update the chart. See below for the list of available metrics.</p>
+<p class="CiRBATableText">Metrics that are not compatible with the selected items are disabled (greyed out). Only metrics with the same units can be viewed in a single chart.</p>
+<p class="CiRBATableText">Click <span class="CiRBAcharUIElement">Clear All</span> to clear the current selections and enable all metrics. You can now select other metrics with the same units. This also clears the <span class="CiRBAcharUIElement">Show selected items only</span> box.</p>
+<p class="CiRBATableText">Use the <a href="#Search">search feature</a> to find a specific metric. </p>
+<p class="CiRBATableText">Check the <span class="CiRBAcharUIElement">Show selected items only</span> box to hide the list of other metrics. If this option is enabled and you use the search feature, only items that are shown in this list are searched. Disable this box to search all metrics.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Statistic</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">Peak</li>
+<li class="CiRBATableBullet">Sustained</li>
+<li class="CiRBATableBullet">Average</li>
+<li class="CiRBATableBullet">Minimum</li>
+</ul>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Select the workload scoring strategies to be plotted on the chart. Peak, Sustained and Average are selected by default. Minimum is the other available option. </p>
+<p class="CiRBATableText">See <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Understanding_the_Instance_Details_Report#Quartiles"><u>Quartiles in the Resource Utilization Charts</u></a> for details of how peak, sustained, etc are determined.</p>
+<p class="CiRBATableText">A legend below each chart shows the line colour that corresponds to the statistic.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+<Accordion title="Figure: Configuring the Charts (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000240.png)</Frame>
+</Accordion>
+
+The line chart shows the selected metric plotted by the hour or date.
+
+The X-axis scales based on the amount of data up to the maximum of 90-days. The X-axis will show both date and hour when the date range includes less than 7-days. Only the date is shown when there are more than 7-days of data on the chart.
+
+If you hover over any data point in the graph a popup indicates the values on the selected date. You can slide the mouse along the plotted lines to see data values at the specific date or time.
+
+If metric data is not available, the message NA: \<Metric>\<Statistic> is shown in the legend of the impacted chart.
+
+<Accordion title="">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000241.png)</Frame>
+</Accordion>
+
+Where:
+
+1. CPU and memory request and limit values are shown as straight lines.
+2. Tool tip indicating specific values on the selected date
+3. Legend
+4. Date on which the container configuration changed, if applicable
+5. A footnote listing the following details: Cluster, Namespace, Pod
+
+### Relearning Workload
+
+If a recommendation has been implemented that results in an instance type change during the selected period, you may observe data missing from the charts.
+
+If the selected container has been recently optimized. (i.e. changed configuration), then any historical data that was collected before the instance type was changed is not displayed. A footnote indicating the change is displayed, under the legend: "Container Configuration Updated On: MMM-DD-YYYY" See Figure: Chart Details, above.
+
+Possible data inconsistency issues may result from the following situations:
+
+* The value of "Container Configuration Updated On" information is from the system attributes table which is only refreshed by the weekly RDB populate, so there may be a discrepancy or data inconsistency if, for example, the configuration was changed 2 days ago and the RDB was refreshed 5 days ago.
+* Densify shows the last time that the configuration changed. If the container configuration has changed 3 times during the selected period, the note shows the date of the most recent change.
+
+See [Relearning Workload Patterns](./Relearning_Workload_Patterns) for more details on using this feature.
+
+### Available Container Metrics
+
+The following table lists the complete set of metrics that you can review in the metrics viewer.
+
+<Accordion title="Table: Container Metrics">
+<table class="table_1">
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Metrics</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Units</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Limit - Current</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">mCores</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Limit - Recommended</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">mCores</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Request - Current</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">mCores</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Request - Recommended</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">mCores</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Utilization - Busiest Container</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">mCores</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Utilization - Container Average</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">mCores</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Disk I/O - Busiest Container *</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Kbytes/s</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory (RSS) Utilization - Busiest Container</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">MB</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory (RSS) Utilization - Container Average</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">MB</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory (Total) Utilization - Busiest Container </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">MB</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory (Total) Utilization - Container Average</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">MB</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory (Working Set) Utilization - Busiest Container</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">MB</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory (Working Set) Utilization - Container Average </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">MB</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory Limit  - Current</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">MB</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory Limit - Recommended</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">MB</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory Request - Current</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">MB</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory Request - Recommended</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">MB</p>
+</td>
+</tr>
+<tr data-mc-conditions="">
+<td class="td_3">
+<p class="CiRBATableText">No. of Containers</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Number</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">No. of Restarts</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Number</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+#### Disk I/O
+
+\* Collecting the metric, container\_fs\_usage\_bytes is an issue if the Kubernetes cluster container uses containerd as its runtime. Since most Kubernetes clusters now use containerd as their runtime and cadvisor does not return the required metrics, you will not see Disk I/O data. If you select this metric you will see "No Data Available".
+
+See the following issues:
+
+* https://github.com/google/cadvisor/issues/2785
+* https://github.com/google/cadvisor/issues/3315
+
+Collection of this metric is supported by both Docker and CRI-O container runtimes.
+
+#### Recommended CPU and Memory Request and Limit Values
+
+When selected, recommended CPU and memory request and limit values are shown as a straight line regardless of which statistics (Peak/Sustained/Average/Min) have been selected.
+
+These metrics will be indicated in the legend. See [Chart Details](#ChartDetails), above.

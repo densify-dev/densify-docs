@@ -1,0 +1,81 @@
+---
+title: "Overview"
+---
+import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
+
+## Automating Container Recommendation
+
+Densify provides a solution to automate pod resource configuration using Densify’s optimization engine via a <Tooltip tip="The Mutating Admission Controller in Kubernetes is a special component that intercepts requests to the Kubernetes API server and modifies the objects before they are persisted to etcd (Kubernetes’ internal database)">Mutating Admission Controller</Tooltip>. Densify provides the tools to enable your clusters for automation and a set of APIs to implement sizing recommendations.
+
+Configuring the automation behaviour and the Mutating Admission Controller are separate from the data forwarder.
+
+### Enabling Automation
+
+There are a few of steps to enable automation for your environment:
+
+
+<ol start="1">
+  <li>
+    Deploy the Mutating Admission Controller in each cluster with containers that you want to optimize. All of the required files and detailed instructions are provided  in GitHub [
+    <a href="https://github.com/densify-dev/container-automation-deployment"> Mutating Admission Controller </a>
+    ].
+  </li>
+  <li>
+    Request user credentials for the Densify API from <a href="mailto:Support@Densify.com"> Support@Densify.com</a>.
+    <br/>
+    These credentials will be used for automation. This is a separate user than the one that is used for the data forwarder.
+  </li>
+  <li>
+    The configuration settings in the densify-automation-policy.yaml file, determine how you enable the automation:
+    <ul>
+    <li>
+    If you have set "remoteenablement" to False, then no external trigger is required and you only need to restart the pods, that are to be optimized, for the mutation to occur.
+    <br/>
+    In this case, the trigger condition you have defined in the densify-mutating-webhook-config.yaml will be the source of what is actually enabled for automation.
+    </li>
+    <li>
+    If you have set "remoteenablement" to True, then in the Kubex tree viewer you need to remotely enable items for automated optimization. Right-click at any level of the tree viewer and enable or disable automation
+    </li>
+    In this case, a combination of what has been defined in the densify-mutating-webhook-config.yaml file, as well as what you have enabled for automation through the Kubex tree viewer, is enabled for automation
+    See [
+    <a href="https://github.com/densify-dev/container-automation-deployment/blob/main/Documentation/Multi-Policy-Support.md#supported-out-of-the-box-policies"> Multi-Policy Support </a>
+    ], in GitHub for details of the required configuration switches.
+    <br/><br/>
+<InlineImageWithText 
+  src="/images/docs-kubex/Content/Kubex/03000194_298x216.png" 
+  alt="Enabling Automation" 
+  width="400px"
+>
+  **Figure: Enabling Automation**
+  
+  Once the Mutating Admission Controller has been deployed and the clusters are configured correctly, you can optionally enable or disable automation directly from the container tree viewer.
+  
+  Right-click at any level of the tree viewer and enable or disable automation.
+</InlineImageWithText>
+    </ul>
+  </li>
+  <li>
+    Open the <a href="/docs-kubex/Content/Kubex/Automation_Tab"> Automation status </a> page to monitor the details of the changes.
+  </li>
+  <li>You can also use the filter, "With Automation Enabled", in the tree viewer to see only those containers that are enabled for automation.</li>
+</ol>
+
+
+
+### Automation and Horizontal Pod Autoscaling (HPA)
+
+When automation is enabled on containers that are also enabled for HPA, Kubex first determines which metrics HPA is configured to use. 
+
+If HPA is configured to scale on a single metric, for example CPU , then Kubex can optimize the containers based on recommended memory metrics.
+
+If HPA is configured to scale on a both metrics, CPU and memory, Kubex still generates recommendations for these containers, but Kubex automation ignores the recommendations and HPA scales as configured.
+
+### Automation Policies
+
+A set of automation policies are defined in the `densify-automation-policy.yaml`. Within each cluster, these policies will be triggered based on the webhook definition you have defined in the `densify-mutating-webhook-config.yaml` file. 
+
+You can also define your own conditions on which to trigger the webhook. Within the webhook, you can also describe which policy should be triggered. If no policy is explicitly defined, then Densify uses the default policy, cpu-reclaim, that is defined in `densify-automation-policy.yaml`.
+
+By structuring multiple webhook rules within the same mutating webhook configuration, you can manage resource optimization different policies across different Kubernetes environments and workload types. Each webhook can use a specific policy path or the default policy.
+
+See [Multi-Policy-Support](https://github.com/densify-dev/container-automation-deployment/blob/main/documentation/Multi-Policy-Support.md#example-webhook-structure) for detailed instructions

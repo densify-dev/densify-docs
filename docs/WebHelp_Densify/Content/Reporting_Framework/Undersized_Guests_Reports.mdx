@@ -1,0 +1,102 @@
+---
+title: "Undersized Guests Reports"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The Undersized Guests reports show the guests (as defined by your global filter) that are undersized and perhaps at risk. Guests are considered undersized when they have been allocated too little resources according to operational policy. CPU, memory and disk metrics are considered.
+
+Only on-premise guests are reported (i.e. those with control analytics).
+
+<Note>
+These reports provide details for the scope of systems defined by your global filter. See [Using the Global Filter](../Densify_Com/Using_the_Global_Filter) for details.
+</Note>
+
+
+
+## Understanding the Undersized Guests Reports
+
+The Undersized Guests report is comprised of three separate reports:
+
+* Summary--Summarizes the number of guests in scope that are undersized and how many guests are still at risk after right-sizing. From the example, 125 out of the 1572 guests in scope are undersized. If the bump-up recommendations are performed, you can reduce your risk from 125 guests in the red to 5, which is a 96% reduction (i.e. 120/125). Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the full list of clusters with undersized guests, ordered in descending order by % of Undersized Guests.
+* Top Clusters--Lists the top 5 clusters by percentage that have undersized guests. This list contains the number of undersized guests and the % of undersized guests. If there are only 3 guests in the cluster and all of them are undersized, then 100% of the guests in that cluster are undersized.
+
+Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the full list of all clusters (with or without guest risk). This detailed reports contains links to undersized guest details (with undersized reasons and bump ups in red) and links to the bump-up recommendations for each cluster.
+
+If you click on the number of undersized guests per cluster, you can view system details for each undersized guest. See [System Details](../Densify_Com/Guest_Sizing_Accuracy_Reports#System_Details) for more information.
+
+If you click on a specific disk allocation recommendation, you can view details per disk. Per disk details are only available if enabled through policy. See [Reporting on Aggregate versus Per Disk](../Densify_Com/Reporting_on_Aggregate_versus_Per_Disk) for details.
+
+* History--Graphs the 90 day history of the total % of undersized guests for all guests in scope. Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the same graph, together with a graph showing the total number of undersized guests for all guests in scope. These graphs do not provide a breakdown by cluster.
+
+<Accordion title="Figure: Undersized Guests Report">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000041.png)</Frame>
+</Accordion>
+
+
+## Viewing and Addressing Undersized Guests
+
+To view and address the undersized guests at risk:
+
+1. Navigate to Private Cloud > Virtual Environments > Risk > Undersized Guests.
+2. Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> from the Top Clusters with Undersized Guests report to open the Clusters with Undersized Guests report. The rows are sorted so that the clusters with the greatest percentage of guests at risk appear at the top.
+
+Table: Clusters with Undersized Guests Report
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Columnn</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>Undersized Guests</p>
+</td>
+<td>
+<p>This column shows the number of undersized guests. Click the link, to display the <span >Undersized Guest Details</span> report that shows each guest's details as well as the reason why each listed guest is not sized efficiently. </p>
+<p> <a name="kanchor331"></a>When you select a system in the Details report, utilization metrics, if available, are displayed on the <span >Resource Utilization Metrics High/Low Limits</span> tabs. Use the left/right arrows to scroll though the various workload charts. If no data has been collected or is not available, the corresponding chart is not displayed.</p>
+<p>Workload charts display current sustained activity in blue, while sustained activity on the recommended instance type chart is shown in green. The minimum and maximum utilization values are shown as vertical lines above and below the coloured block. The median is indicated as a black line within the coloured block. The average is indicated in brackets, in the sub-title of the chart.</p>
+<p>The scale used on the Y-axis is scaled dynamically to match the range of data. The pink line indicating the high policy limit setting is shown, and the setting of the Y-axis scale also accounts for this value. The yellow line indicates the policy low limit. If the high and low are the same, the dashed yellow/pink line indicates the value.</p>
+<p>Click on the <span >System Details</span> tab to see allocated resources and the relevant attributes that have been set for this guest.</p>
+<p>For more information about the Guest Details report for each cluster, see <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="RefToBookmark MCXref xref xrefRefToBookmark" href="../Densify_Com/Guest_Sizing_Accuracy_Reports#System_Details"><u>System Details</u></a></madcap:conditionaltext>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Total Guests</p>
+</td>
+<td>
+<p> This column shows the total number of analyzed guests. </p>
+<p>Values marked with an asterisk (*) indicate some of these guests are considered both undersized and oversized. This is the case if a system does not have enough allocated CPUs and has excess memory, for example. A footnote indicates the number of systems that are in this category and are thus counted twice, as oversized and undersized. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>%</p>
+</td>
+<td>
+<p>This is the percentage of guests that are undersized within the specified cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Bump Up Recommendations</p>
+</td>
+<td>
+<p>This column shows the total number of recommendations. Any value greater than 0 is displayed as a link. </p>
+<p>Click the hyperlink to view the list of bump-up recommendations. You can see per disk recommendation details when you click on a Per Disk Allocation recommendation.</p>
+<p>If you are executing these recommendations manually, you can start with the clusters at the highest risk by applying your customer-specific, scripted solution or third-party tool. </p>
+<p>You can execute these recommendations through Action Automation. Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="1c4f696c6c736e685c5879726f757a65327f7371" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+3. Review the History of Undersized Guests the next day to see the impact of these bump-up recommendations. If you apply these recommendations regularly, you can use the History of Undersized Guests to monitor continued progress.

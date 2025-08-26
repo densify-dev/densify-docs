@@ -1,0 +1,63 @@
+---
+title: "Subscriptions: Suppressions"
+---
+
+The `/subscriptions/<platformType>/suppressions` resource is used to store a list of attribute tags and recommendation properties available to the [Subscriptions](./Subscriptions) resource for the purpose of suppressing specific sets of system recommendations from the resulting subscription data set.
+
+This resource acts as a catalog of the suppression tags or properties to be referenced by the [suppressionReferences](./Subscriptions#suppressionReferences) parameter in the [Subscriptions](./Subscriptions) resource . Suppression entries (tags or properties) not defined in a `/subscriptions/<platformType>/suppressions` resource cannot be referenced; you must define the suppression entries before using them in a suppression condition. See [Subscriptions](./Subscriptions) for details on defining a subscription.
+
+There is a catalog for each supported `<platformType>`, which can only be referenced by the corresponding `<platformType>` subscription. For example, a container subscription (i.e. `/subscriptions/containers`) can only reference suppressions from the Container Subscriptions Suppressions catalog (i.e. `/subscriptions/containers/suppressions`).
+
+Suppression entries can be declared as global or private (i.e. user-specific). Global suppression entries can be used by any API enabled user, while private entries can only be used by their owners. Note that <Tooltip tip="An administrative user is a Densify user in the Administrator user group or with the Analysis Admin role.">administrative users</Tooltip> have access to all suppression entries - global or private user-specific.
+
+## Resource
+
+```
+/subscriptions/cloud/suppressions
+```
+
+```
+/subscriptions/containers/suppressions
+```
+
+```
+/subscriptions/suppressions
+```
+
+<Note>
+If you use this resource without the `<platformType>` specified (i.e. without `cloud` or `containers` specified), the behavior is exactly the same as specifying the `cloud`-specific resource. This behavior enables backward compatibility with scripts using the Densify API prior to release 12.1.6, where the platform-specific indicator was not available.
+</Note>
+
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="Create Suppressions" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/createSuppressions" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Delete Suppression" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/deleteSuppression" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Delete Suppressions" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/deleteSuppressions" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Get Suppressions" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/getSuppression" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="List Suppressions" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/listSuppressions" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="List Suppressions Default Platform" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/listSuppressionsDefaultPlatform" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Replace Suppression" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/replaceSuppression" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Replace Suppressions" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/replaceSuppressions" arrow/>
+</CardGroup>

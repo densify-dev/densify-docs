@@ -1,0 +1,68 @@
+---
+title: "Receive Metrics Jobs"
+---
+
+The Receive Metrics Jobs resource is part of a series of data management tools using the Data Ingestion API framework for users on SaaS deployments to transfer utilization data into Densify.
+
+The Data Ingestion API framework allows you to customize and extend data transfer capabilities (such as transferring metrics, configuration, attributes, or commands) for Densify SaaS deployments in a secure job execution framework. The framework encapsulates a custom data management tool into a Job entity in Densify, where you can create, list, schedule, execute, and delete. When you schedule the Densify job for execution, the custom data management tool is invoked. The framework also allows you to upload and download job artifacts, such as data or log files.
+
+By default, Densify is installed with the Metrics data management tool which allows SaaS users to invoke a standard Receive Metrics Jobs resource from the Densify REST API. This resource allows you to upload a metrics file into a Densify job and schedule the job for processing, which transfers the metrics data to their respective services for analysis. You can also use the Receive Metrics Jobs resource to download any result files or logs of the job execution.
+
+## Resource
+
+```
+/receive/metrics/jobs/
+```
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="Create Metris Job" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/createMetricsJob" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Delete Job Input Files" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/deleteJobInputFiles" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Delete Job Log Files" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/deleteJobLogFiles" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Delete Metrics Job" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/deleteMetricsJob" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Download Job Files" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/downloadJobFiles" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Download Job Logs" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/downloadJobLogs" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Get Job Audit Info" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/getJobAuditInfo" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Get Metrics Job" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/getMetricsJob" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="List Job Input Files" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/listJobInputFiles" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="List Job Log Files" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/listJobLogFiles" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="List Metrics Jobs" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/listMetricsJobs" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Update Job Parameters" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/updateJobParameters" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Upload File And Optionally Execute" href="/docs-api/WebHelp_Densify_API_Cloud\Content/API_Guide/Receive_Metrics_Jobs/uploadFileAndOptionallyExecute" arrow/>
+</CardGroup>

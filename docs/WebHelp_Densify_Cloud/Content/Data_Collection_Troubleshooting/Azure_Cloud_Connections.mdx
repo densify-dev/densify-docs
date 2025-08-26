@@ -1,0 +1,39 @@
+---
+title: "Azure Cloud Connections"
+---
+
+### Event: Subscription does not exist or incorrect permissions
+
+The following are common issues when working with Azure cloud connections:
+
+<Accordion title="Cause: Subscription no longer exists">
+Solution: If the subscription no longer exists, the connection can be deleted using the Public Cloud Connection Wizard. See [Deleting a Connection](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard.htm#Deleting).
+</Accordion>
+<Accordion title="Cause: Subscription no longer exists, but connection is valid">
+Solution: If the Subscription no longer exists, but the connection is still valid, you can re-discover and update subscriptions for the existing connection.
+
+1. In the Cloud Connection Wizard, click the Click to Refresh Account Connection and Discover Subscriptions button.
+
+* If the credentials are valid, you will be connected and authenticated. Once the account is verified, all subscriptions that are associated with the account or Application ID are listed. Select the subscriptions that you want to include in the audit.
+* If the credentials cannot be validated, then review the displayed error message and correct your credentials. It is possible that the user account does not have the required permissions.
+
+The user account/Service Principal to be used for data collection only requires the "Reader" role privileges to collect utilization data. See [Microsoft Azure Data Collection Prerequisites](../Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal.htm) for details.
+
+
+2. In the Subscriptions In Scope section, the subscription may be removed automatically or may show a “No permission in Azure” message.
+3. From the Subscriptions In Scope section, if you want to remove existing audited subscriptions, de-select the desired subscriptions and click Save Connection.
+4. If you want to select additional subscriptions to be audited, select the desired subscriptions and click Save Connection.
+5. The Subscriptions In Scope list will not be up-to-date if subscriptions in the service account are modified after the last Click to Refresh Account Connection and Discover Subscriptions action.
+6. If you de-select all subscriptions associated with the Azure connection and try to save the connection, Densify displays a message indicating the connection will be deleted if you save an empty subscription connection.
+7. Close the Public Cloud Connections wizard.
+</Accordion>
+<Accordion title="Cause: Subscription exists, but has incorrect permissions">
+Solution: Ensure [Minimum Permissions](../Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal.htm#Min_Permission) are set correctly.
+</Accordion>
+<Accordion title="Cause: Subscription exists, but is configured incorrectly">
+Solution: If the minimum permissions are set correctly, see [Microsoft Azure Data Collection Prerequisites for a Service Principal](../Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal.htm) or Microsoft Azure Data Collection Prerequisites to verify the prerequisites are setup correctly.
+
+Once the account and credentials have been corrected, verify the connection using the Public Cloud Connection Wizard. See [Reviewing a Connection](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard.htm#Review_Conn).
+</Accordion>
+
+If none of the above issues apply to your environment, contact Support@Densify.com to review your connectivity details and receive further guidance.

@@ -1,0 +1,183 @@
+openapi: 3.1.0
+info:
+  title: Densify – Analysis Webhook API
+  version: "1.0.0"
+  description: >
+    Manage webhook definitions for analyses. Supports listing by platform, getting,
+    adding, updating, and deleting a webhook for a specific analysis.
+servers:
+  - url: https://{host}
+    variables: { host: { default: api.example.com } }
+tags:
+  - name: Analysis Webhook
+paths:
+  /webhook/analysis/{platformType}:
+    get:
+      tags: [Analysis Webhook]
+      operationId: listAnalysisWebhooksByPlatform
+      summary: List webhooks by platform
+      description: List all analysis webhooks for a platform (cloud or containers).
+      parameters:
+        - name: platformType
+          in: path
+          required: true
+          schema: { type: string, enum: [cloud, containers] }
+      responses:
+        '200':
+          description: Collection of webhook definitions
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/WebhookDefinition' }
+        '401': { description: Authentication failed. }
+        '500': { description: Server error. }
+
+  /webhook/analysis/{platformType}/{platformSubType}/{analysisId}:
+    get:
+      tags: [Analysis Webhook]
+      operationId: getAnalysisWebhook
+      summary: Get webhook definition for an analysis
+      parameters:
+        - name: platformType
+          in: path
+          required: true
+          schema: { type: string, enum: [cloud, containers] }
+        - name: platformSubType
+          in: path
+          required: true
+          schema: { type: string, enum: [aws, gcp, azure, kubernetes] }
+        - name: analysisId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Webhook definition
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/WebhookDefinition' }
+        '404': { description: Analysis webhook not found. }  # e.g., message "Analysis webhook not found."
+
+    post:
+      tags: [Analysis Webhook]
+      operationId: addAnalysisWebhook
+      summary: Add webhook to an analysis
+      description: Only allowed if the analysis does not already have a webhook.
+      parameters:
+        - name: platformType
+          in: path
+          required: true
+          schema: { type: string, enum: [cloud, containers] }
+        - name: platformSubType
+          in: path
+          required: true
+          schema: { type: string, enum: [aws, gcp, azure, kubernetes] }
+        - name: analysisId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/WebhookRequest' }
+            examples:
+              add:
+                value:
+                  uri: "https://mycallbackServer:443/api/test/webhook"
+                  authType: "basic"
+                  authValue: "saasUser:password1"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/StatusMessage' }
+              examples:
+                ok: { value: { message: "ok", status: 200 } }  # example from docs
+        '400': { description: "Analysis webhook already exists." }  # example message
+        '404': { description: "Analysis webhook not found." }       # for some error cases
+
+    put:
+      tags: [Analysis Webhook]
+      operationId: updateAnalysisWebhook
+      summary: Update webhook for an analysis
+      parameters:
+        - name: platformType
+          in: path
+          required: true
+          schema: { type: string, enum: [cloud, containers] }
+        - name: platformSubType
+          in: path
+          required: true
+          schema: { type: string, enum: [aws, gcp, azure, kubernetes] }
+        - name: analysisId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/WebhookRequest' }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/StatusMessage' }
+        '404': { description: "Analysis webhook not found." } 
+
+    delete:
+      tags: [Analysis Webhook]
+      operationId: deleteAnalysisWebhook
+      summary: Delete webhook from an analysis
+      parameters:
+        - name: platformType
+          in: path
+          required: true
+          schema: { type: string, enum: [cloud, containers] }
+        - name: platformSubType
+          in: path
+          required: true
+          schema: { type: string, enum: [aws, gcp, azure, kubernetes] }
+        - name: analysisId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/StatusMessage' }
+        '404': { description: "Analysis webhook not found." } 
+
+components:
+  schemas:
+    WebhookRequest:
+      type: object
+      properties:
+        uri:
+          type: string
+          format: uri
+          description: Fully-qualified webhook URI reachable by Densify.
+        authType: { type: string, description: 'e.g., "Basic", "Bearer".' } 
+        authValue: { type: string, description: "Credential (user:pass or token)." } 
+      required: [uri]
+    WebhookDefinition:
+      type: object
+      properties:
+        analysisId: { type: string }
+        analysisName: { type: string }
+        href: { type: string }
+        uri: { type: string, format: uri }
+        webHookStatus: { type: string }
+      required: [analysisId, href, uri]
+    StatusMessage:
+      type: object
+      properties:
+        message: { type: string }
+        status: { type: integer }
+      required: [message, status]

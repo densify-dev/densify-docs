@@ -1,0 +1,55 @@
+---
+title: "Cluster Capacity in VM Units Reports"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+To learn more watch the following video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/355991316" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+
+The Cluster Capacity in VM Units reports show the current breakdown of available infrastructure (as defined by your global filter) based on what is required (assuming the bump-down recommendations are performed), what is available and what is reclaimable.
+
+Reclaiming resources allows you to make the environment more efficient. In this case, reclaimable resources are those unused resources caused by:
+
+* closing infrastructure unnecessarily
+* closing infrastructure due to performance risks
+* over-allocated resources, and
+* non-optimal guest placement
+
+Reclaimable capacity, highlighted in yellow, can be reduced by:
+
+* opening clusters that have been closed early or unnecessarily, and
+* implementing bump-down and rebalancing recommendations.
+
+<Note>
+Capacity is calculated based on average VM size or standard VM size, depending on your settings. The footnote, shown only in the zoomed <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> reports, details the VM size used. See [Reporting Based on Average or Standard VM](../Densify_Com/Reporting_Based_on_Average_or_Standard_VM) for details.   
+Also, these reports provide details only for the scope defined by your global filter. See [Using the Global Filter](../Densify_Com/Using_the_Global_Filter) for details.
+</Note>
+
+
+
+## Understanding the Reports
+
+* Summary--Shows a breakdown of the required, available and reclaimable capacity in standard/average VM units. Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the same breakdown but by cluster, in standard/average VM units and as a percentage of resources. The primary constraint is also shown by cluster.
+* Top Clusters with Reclaimable Capacity--Shows a tabular breakdown summary of the required, available and reclaimable capacity in standard/average VM units. The table is sorted by the reclaimable capacity, which defines the potential number of standard/average VM capacity units that can be made available. The reclaimable capacity is highlighted in yellow and can be reclaimed by opening closed clusters, and actioning the listed rebalancing and bump-down recommendations. Note that when a cluster is closed, all available resources are deemed reclaimable (i.e. 0 available).
+* History of Cluster Capacity in VM Units--Shows the historical view of required, available and reclaimable resources over time, in standard/average VM units.
+
+Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the full version of the charts. The first chart shows the data as an absolute number of systems that are required, that are available and that are reclaimable. The second chart shows the same thing, but as percentage of all resources.
+
+The reclaimable resources <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000047.png"/> should increase as reclaimable resources are freed, or may decrease as they are consumed by incoming workloads.
+
+Significant changes, on any given day may be the result of policy changes, new hardware being added or decommissioned, etc.
+
+In a new environment, without 90 days of historical data, you will see whatever data has been collected, to date. In an environment with more than 90 days of historical data, only the last 90 days will be displayed.
+
+## Viewing and Reclaiming Resources
+
+To view and reclaim resources:
+
+1. Navigate to Virtual Optimization > Opportunity > Cluster Capacity in VM Units.
+2. View the clusters with reclaimable capacity by zooming <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> from Top Clusters with Reclaimable Capacity. The clusters are sorted so that the greatest reclaim appears at the top.
+3. For each of these clusters with reclaimable capacity (shown in yellow), click on the Rebalance Recommendations and Bump-Down Recommendations to review the recommendations. If you are executing these recommendations manually, start with the clusters having the highest reclaim applying your customer-specific scripted solution or third-party tool. You can execute these recommendations through Action Automation. Contact [Support@Densify.com](mailto:Support@Densify.com) for details
+4. To reopen hosting venues that have been manually closed, contact [Support@Densify.com](mailto:Support@Densify.com).
+5. View the History of Cluster Capacity in VM Units the next day to see the impact of these recommendations. If you apply these recommendations regularly, you can use the History of Cluster Capacity in VM Units to monitor progress (with available capacity increasing and reclaimable capacity decreasing).

@@ -1,0 +1,18 @@
+---
+title: "Analysis: GCP Systems"
+---
+
+The `/analysis/cloud/gcp/<analysisId>/systems` resource is used to return a collection of all the systems that were included in the Google Cloud Platform (GCP) optimization analysis.
+
+The recommendations from an GCP optimization analysis can be obtained using the `/analysis/cloud/gcp/<analysisId>/results` resource. See [Analysis: GCP Recommendations](./Analysis_GCP_Results) for details on the GCP recommendations resource. The set of analyzed systems may be more than the set of recommendations produced, as there can be potentially no recommendations for some analyzed systems.
+
+## Resource
+
+```
+/analysis/cloud/gcp/<analysisId>/systems
+```
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="List Gcp System" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Systems/listGcpSystems" arrow/>
+</CardGroup>

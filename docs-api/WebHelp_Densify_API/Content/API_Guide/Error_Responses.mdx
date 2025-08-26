@@ -1,0 +1,88 @@
+---
+title: "Error Responses"
+---
+
+All error responses (logical or caught exceptions) are in JSON format as:
+
+```json
+{
+  "message" : "error details",
+  "status" : errorCode
+}
+```
+
+Handled exceptions do not expose stack traces, to avoid security threats. Detailed stack traces are logged to the server logs for diagnostics.
+
+## Properties Returned
+
+Table: Error Responses
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead>
+
+<tr>
+<td>
+
+<p>**Element** </p>
+</td>
+<td>
+<td style={{ padding: "8px 16px" }}>**Type**</td>
+</td>
+<td>
+<p>**Description** </p>
+</td>
+</tr>
+
+</thead>
+
+<tr>
+<td>
+<p>message</p>
+</td>
+<td>
+<td style={{ padding: "8px 16px" }}>string</td>
+</td>
+<td>
+<p>Detailed message of the exception. </p>
+</td>
+
+</tr>
+<tr>
+<td>
+<p>status</p>
+</td>
+<td>
+<td style={{ padding: "8px 16px" }}>errorCode</td>
+</td>
+<td>
+<p>The HTTP response status code (e.g. 500, 403).</p>
+</td>
+</tr>
+</table>
+
+## Examples
+
+### Example: Caught Exceptions
+
+The response message when a UUID is expected:
+
+<Accordion title="Example: Caught Exception">
+Request:
+
+```
+GET /systems/badparm
+```
+
+Response:
+
+```json
+{
+  "status" : 404,
+  "message" : "UUID is malformed"
+}
+```
+</Accordion>
+

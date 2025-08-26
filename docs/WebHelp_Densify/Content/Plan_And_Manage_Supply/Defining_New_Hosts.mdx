@@ -1,0 +1,281 @@
+---
+title: "Defining New Hosts"
+---
+
+New hosts can be planned and managed through the Plan Hosts screen. Through this screen, you can add new hosts, e.g. for a new project that is starting in a few months or for an over-provisioned environment. Once new hosts are added, the capacity for that hosting venue is available immediately for new workloads, starting at the Planned Date when the host is planned to be provisioned. New hosts are automatically connected to all datastores available to the environment. Results are visible through:
+
+* Route and Reserve Demand page--so that you can define and route new workloads with that new capacity after the Planned Date (see [Defining Demand](../Route_And_Reserve_Demand/Defining_Demand)).
+* By the Numbers dashboard--you can view the new capacity after the Planned Date. See[Understanding the By the Numbers Report](../Reporting_Framework/Understanding_the_By_the_Numbers_Report)).
+* Forecast Report--so that you can view the new capacity details after the Planned Date (see [Forecasting](../Reporting_Framework/Forecasting)).
+
+## Adding New Planned Hosts
+
+When creating a new host, a set amount of mandatory information needs to be entered including the expected system name, the target hosting venue, the planned date and model/sizing information. Once a host has been added, only the system name can be updated.
+
+To begin defining your planned hosts, navigate to the Plan and Manage Supply page to the Plan Hosts screen. Click Add. The Add Host Supply dialog box is displayed. Define your hosts, section by section as described below. After you click on Save, the new planned hosts are added to the displayed list (with booking type "Add"). At this point, you can only edit the System Name.
+
+### Step 1: Defining Host's Detail
+
+<Accordion title="Figure: Host&#x27;s Detail Section">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Plan_And_Manage_Supply/03000002_622x483.png)</Frame>
+</Accordion>
+
+
+Table: Fields in the Host's Detail Section
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Field</p>
+</th>
+<th>
+<p>Description </p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>System Name*</p>
+</td>
+<td>
+<p>The expected host name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Project</p>
+</td>
+<td>
+<p>Enter the project name or application that this host is associated with. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Hosting Venue*</p>
+</td>
+<td>
+<p>The hosting venue to place this host. This field provides a dropdown list of all the full control <span class="mc-variable Document.HV variable">hosting venue</span>s. It is also further filtered by the global filter (see <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="../Densify_Com/Using_the_Global_Filter">Using the Global Filter</a></madcap:conditionaltext>). </p>
+<p>Once the hosting venue is selected, this field shows "\<<span class="CiRBAcharEmphasis">environment name</span>> - \<<span class="CiRBAcharCrossreference">hosting venue name</span>>".</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Planned Date*</p>
+</td>
+<td>
+<p>The date the host is expected to be running and available for placing VMs. This date is based on the <span class="mc-variable Document.Company variable">Densify</span> server’s time zone, which is shown with a GMT offset, e.g. "(UTC -4:00)". The calendar picker shows the date based on the <span class="mc-variable Document.Company variable">Densify</span> server’s time zone. The earliest date is tomorrow's date, i.e. the host must be provisioned today ready for placing VMs tomorrow.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Copies</p>
+</td>
+<td>
+<p>Enter the number of copies, to create multiple copies of the same host. The System Name is appended by a counter, e.g. if System Name is "ucs-host" and you enter 3, then three host records are created as "ucs-host1", "ucs-host2" and "ucs-host3".</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>Although you can create up to 999 hosts at one time, <span class="mc-variable Document.Company variable">Densify</span> will require significant processing time if you create more than 100 copies.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Customer Name</p>
+</td>
+<td>
+<p>Add the name of the host owner.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Customer Email</p>
+</td>
+<td>
+<p>Enter the email for the person who requested the new host.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Description</p>
+</td>
+<td>
+<p>Enter an optional description.</p>
+</td>
+</tr>
+</table>
+
+
+### Step 2: Defining Host's Resource Request
+
+<Accordion title="Figure: Host&#x27;s Resource Request Section">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Plan_And_Manage_Supply/03000003_630x372.png)</Frame>
+</Accordion>
+
+
+Table: Fields in the Host's Resource Request Section
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Field</p>
+</th>
+<th>
+<p>Description </p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Make Host System Like*</p>
+</td>
+<td>
+<p>Once the <span class="CiRBAcharStrong">Hosting Venue</span> is selected from <a class="RefToBookmark MCXref xref xrefRefToBookmark" href="#Guest's"><u>Step 1: Defining Host's Detail</u></a>, this field shows the largest host residing in that <span class="mc-variable Document.HV variable">hosting venue</span>. </p>
+<p>If this is not what you want, you can either:</p>
+<ul>
+<li>select another host to clone from the dropdown, which lists a catalog of all hosts from all environments and <span class="mc-variable Document.HV variable">hosting venue</span>s. </li>
+<li>select the next toggle and choose a host from the host catalog dropdown.</li>
+</ul>
+<p>Once a system is selected, the rest of the fields within this section are updated with the specifics of this clone.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Customize this configuration*</p>
+</td>
+<td>
+<p>You can customize your clone by selecting the Yes toggle. This will enable the remaining fields in this section to allow for editing. You can edit any field, including the CPU Benchmark.</p>
+<p>If you change any of the fields, you should recalculate the CPU Benchmark by clicking on the <span class="CiRBAcharStrong">Lookup</span> button.</p>
+</td>
+</tr>
+</table>
+
+
+### Step 3: Defining Host's Security Requirements
+
+<Accordion title="Figure: Host&#x27;s Security Requirements Section">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Plan_And_Manage_Supply/03000004_556x136.png)</Frame>
+</Accordion>
+
+
+Table: Fields in the Host's Security Requirements Section
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Field</p>
+</th>
+<th>
+<p>Description </p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Security Zone</p>
+</td>
+<td>
+<p>Select the security zone for the host if applicable.</p>
+</td>
+</tr>
+</table>
+
+
+### Step 4: Defining Host's Business Requirements
+
+<Accordion title="Figure: Host&#x27;s Business Requirements Section">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Plan_And_Manage_Supply/03000005_556x147.png)</Frame>
+</Accordion>
+
+
+Table: Fields in the Host's Business Requirements Section
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Field</p>
+</th>
+<th>
+<p>Description </p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Department</p>
+</td>
+<td>
+<p>Select the department for this host.</p>
+</td>
+</tr>
+</table>
+
+
+### Step 5: Defining Host's Technical Requirements
+
+<Accordion title="Figure: Host&#x27;s Technical Requirements Section">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Plan_And_Manage_Supply/03000006_556x169.png)</Frame>
+</Accordion>
+
+
+Table: Fields in the Host's Technical Requirements
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Field</p>
+</th>
+<th>
+<p>Description </p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Operational Environment</p>
+</td>
+<td>
+<p>Select the operational environment for the host if applicable. </p>
+</td>
+</tr>
+</table>
+
+
+### Step 6: Confirming the Host Placement
+
+You can see these new host bookings when you move the timeline after the date when the corresponding hosts are planned to come online. An analytics refresh is first required to incorporate the bookings into the environment. See [Bookings and the Timeline](../Control_Console/Timeline_Slider#Bookings) for details.
+
+These new host bookings are now available to host new workloads having later planned start dates. See [Defining Demand](../Route_And_Reserve_Demand/Defining_Demand) for details on planning new workloads.
+
+## Listing Planned Hosts
+
+The Plan Hosts of the Plan and Manage Supply page provides a list of planned hosts. If the host is not provisioned by the planned date, the planned host expires and is removed from the list.
+
+The Plan Hosts list is filtered according to the global filter. See [Using the Global Filter](../Densify_Com/Using_the_Global_Filter).
+
+## Changing the System Name
+
+Often the name of the planned host changes and you need to edit it, so that the incoming host can be reconciled during the analysis refresh.
+
+You can select and Edit one host at a time, to change its expected name. The update is reflected in the displayed list of hosts.
+
+No other fields are editable.
+
+## Canceling Planned Hosts
+
+If you need to cancel any of the new planned hosts, e.g. the project is downsized or canceled, you can select multiple hosts in the list and click on Delete. The available capacity is immediately adjusted and the hosts are removed from the displayed list.
+
+## Copying a New Planned Host
+
+You can copy an existing planned host, by selecting it in the list and clicking on Copy. Change fields as needed. The new hosts are added to the displayed list.

@@ -1,0 +1,91 @@
+---
+title: "Exporting Report Data"
+---
+
+import { InlineImage } from "/snippets/InlineImage.mdx"
+
+
+You can export most tabular reports to Microsoft® Excel . Dashboards and drill-down pages that support export functionality have the export to Excel icon available in the toolbar. You may also see the download to CSV icon
+
+<AccordionGroup>
+  <Accordion title="Figure: Download to .CSV ">
+    <Frame>
+      <img src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000197.png" />
+    </Frame>
+  </Accordion>
+  <Accordion title="Figure: Export to Excel - AWS > RDS Only">
+    <Frame>
+      <img src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000176.png" />
+    </Frame>
+  </Accordion>
+</AccordionGroup>
+
+
+The following options are covered here:
+
+* Exporting Data from Public Cloud reports
+* [Exporting Data from Container dashboards](#Container)
+
+## Exporting Public Cloud Tabular Reports
+
+When viewing the all cloud pages (except AWS > RDS) you can configure the tabular data using the filters, grouping options and data controls and then export the data to a .CSV file.
+
+Click the download to .CSV icon (<InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000063.png"/>) to export the content of the currently displayed table to .CSV format.
+
+### AWS > RDS Report
+
+<Note>
+The pop-up blocker must be turned off for Densify in all supported browsers.
+</Note>
+
+
+
+The process applies only to the RDS report.
+
+1. In the Densify Console navigate to the cloud report you want to export.
+2. Define the scope of your report, if applicable. For example, using one or more of the following filters:
+
+* Guest Filter--See [Using the Guest Filter](./Using_Guest_Filters). This filter is applicable only for public cloud dashboards and pages.
+* Recommendation Filter--See [Using the Recommendation Filter Menu](./Using_the_Recommendation_Filter_Menu). This filter is applicable only for public cloud dashboards and pages.
+
+3. Click the Export to Excel (<InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000016_15x15.png"/>) icon located at the top-right of the toolbar. This button is disabled when there is no data to export or if export is not supported for the dashboard/page. Tabular data is exported to an Excel spreadsheet. Charts and graphs are not currently exported.
+4. You can see the progress of the export in the lower left corner of your browser window. Save the Excel spreadsheet file with a new name.
+
+The export file is appropriately named and is saved to the download folder defined by your browser. The file includes all pages of the report. The first row of the spreadsheet includes the name of the dashboard or page, the date and time of the export and the name of the user who exported the data.
+
+The .CSV file is a data dump without any formatting. You can open the exported file in Excel, and format or modify the data as required.
+
+When you are exporting filtered lists, only the systems that match the filtering criteria are exported to the Excel file. When working with the guest filter and dynamic attributes, you may want to refresh the list before exporting it. See [Using the Guest Filter](./Using_Guest_Filters)
+
+### Exporting from the Instance Optimization Details Pages
+
+Due to the volume of data being aggregated and formatted, when exporting data from the [Instance Optimization Details](./Understanding_the_Instance_Details_Report) page, you may see the following message:
+
+<Accordion title="Figure: Export Warning Message">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000187_256x106.png)</Frame>
+</Accordion>
+
+
+This message indicates that the report is being built in the background. To view the report:
+
+1. Click OK to close the warning message.
+2. Allow a few minutes for the report generation to complete. This will take, on average 3-5 min or up to 10 min, depending on the number of records in the report. You can navigate away from this page and return to view the export progress.
+3. Click the Export icon again, while your session is still active, to view the generated report.
+
+## Exporting Container Reports
+
+### Data Tab
+
+When viewing the [Data tab](./Optimizing_Your_Containers_-_Data_Tab), you can configure the tabular data using the filters, grouping options and data controls and then export the data to a .CSV file.
+
+Click the download to .CSV icon (<InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000063.png"/>) to export the content of the currently displayed table to .CSV format.
+
+### Details Tab
+
+When you are viewing the [Details report](./Optimizing_Your_Containers_-_Details_Tab), the displayed set of container data will be exported from this tab. The data has already been filtered, depending on how you arrived at the Details tab.
+
+Click the download to .CSV icon (<InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000063.png"/>) to export the content of the currently displayed table to .CSV format.
+
+When exported to .CSV the total of "Net Savings
+($/month)" column may not match the value in the exported file because the .CSV format does not support formulas.
+Contact [Support@Densify.com](mailto:Support@Densify.com) for details.

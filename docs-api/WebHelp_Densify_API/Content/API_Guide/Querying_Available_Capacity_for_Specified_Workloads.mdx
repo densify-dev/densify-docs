@@ -1,0 +1,350 @@
+---
+title: "Querying Available Capacity for Specified Workloads"
+---
+
+## Querying Available Capacity for Specified Workloads
+
+This use case assesses the available capacity of one or more hosting venues, given specific workload requirements. For example, an environment may have space for a different number of small, medium, or large Workloads, and for Workloads that meet specific business constraints.
+
+When assessing multiple hosting venues, the available capacity of each hosting venue is assessed according to cost, capacity and Fit-for-Purpose, as described in [Routing Requests–Available Capacity Query](./Routing_Requests_Available_Capacity_Query). This operation does not place Workloads or reserve capacity.
+
+To perform this query through the Densify API, follow the sections below:
+
+1. [Describing Workloads to Assess](#_Describing_Workloads_to_1)
+2. [Querying Available Capacity](#_Querying_for_Available)
+3. [Processing Capacity Query Results](#_Processing_Capacity_Query_1)
+
+### Describing Workloads to Assess
+
+Use the `/workloads` resource in the same way as the [Routing Workloads for Immediate Placement](./Routing_Workloads_for_Immediate_Placement) or [Routing Workloads to Reserve Capacity for a Future Date](./Routing_Workloads_to_Reserve_Capacity_for_a_Future_Date) use cases to create one or more Workload definitions that specify the name, the reference system that acts like a clone, resource allocations and attributes for each Workload being assessed.
+
+If the Workload requests are successful, the responses include [ID, Name and Self Reference (id, name, href)](./Common_Elements) to the newly created Workload objects. The Workloads can then be referenced in subsequent API calls such as querying for available capacity for the Workloads.
+
+### Querying Available Capacity
+
+Use the `/routing-requests/available-capacity-query` resource to submit a request to determine the available capacity for the specified Workloads in the hosting venues in the request scope. This resource is used in the same way as the `/routing-requests` resource itself.
+
+For the example below, as no environments and hosting venues are specified, the available capacity for all environments and their corresponding hosting venues are returned.
+
+<Accordion title="Example: Querying Available Capacity">
+Request:
+
+```
+POST /routing-requests/available-capacity-query/
+{
+  "expected_date": 1426545823000,
+  "workloads": [
+    {"id": "140d5327-cec4-4f86-a5c1-bb59b9d0d639"},
+    {"id": "54e01c38-c87d-4fcb-a8b1-380d5ba46f64"}
+  ]
+}
+```
+
+
+
+</Accordion>
+
+
+Optionally, the available capacity query can include specifications to narrow the scope of environments and/or hosting venues to consider.
+
+<Accordion title="Example: Querying Available Capacity with Defined Scope">
+Request:
+
+```
+POST /routing-requests/available-capacity-query/
+{
+  "scopes": [ 
+    {
+      "control_environment": "Boston"
+    }
+  ],
+  "expected_date": 1426545823000,
+  "workloads": [
+    {"id": "140d5327-cec4-4f86-a5c1-bb59b9d0d639"},
+    {"id": "54e01c38-c87d-4fcb-a8b1-380d5ba46f64"}
+  ]
+}
+```
+
+
+
+</Accordion>
+
+
+### Processing Capacity Query Results
+
+For each hosting venue assessed by the query, the available capacity is expressed in terms of the number of available slots for the specified Workloads, the number of available slots for the sensor requirements, the hosting cost, the Fit-for-Purpose tests, and the overall hosting score, as described in [Routing Requests–Available Capacity Query](./Routing_Requests_Available_Capacity_Query).
+
+The number of available slots is estimated by computing the number of instances of the aggregate Workloads that can fit in the hosting venue. Thus, the higher the number of available slots in a hosting venue, the greater the amount of available capacity for the specified group of Workloads.
+
+An example set of the available capacity query results is listed below:
+
+<Accordion title="Example: Processing Capacity Query Results">
+Response:
+
+```json
+[
+  {
+    "infrastructure_groups": [
+      {
+        "id": "f7a5ef21-3d0a-442e-b65c-541b0084b950",
+        "name": "Cluster1",
+        "slots": 20,
+        "cei": 0.88,
+        "subslots": [],
+        "constraint": "Total_Memory",
+        "constraint_name": "Total Memory",
+        "href": "/infrastructure-groups/f7a5ef21-3d0a-442e-b65c-541b0084b950",
+        "control_type": "FULL",
+        "hosting_cost": 38,
+        "fit_for_purpose": {
+          "categories": [
+            {
+              "name": "Resource",
+              "test": [
+                {
+                  "name": "Datastore Tier",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Operating Systems",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Guest Sizes",
+                  "status_reasons": [],
+                  "status": "PASS"
+                }
+              ],
+              "status": "PASS"
+            },
+            {
+              "name": "Security",
+              "test": [
+                {
+                  "name": "Data Jurisdiction",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Compliance",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Encryption and Key Management",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Identity and Access Management",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Security Zones",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Network Isolation",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Intel TXT Support",
+                  "status_reasons": [],
+                  "status": "PASS"
+                }
+              ],
+              "status": "PASS"
+            },
+            {
+              "name": "Business",
+              "test": [
+                {
+                  "name": "Location",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Departments",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Service Level",
+                  "status_reasons": [],
+                  "status": "PASS"
+                }
+              ],
+              "status": "PASS"
+            },
+            {
+              "name": "Technical",
+              "test": [
+                {
+                  "name": "Hosting Platform",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Hypervisor",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Maximum Guest I/O",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Operational Environments",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "DPDK",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Software Licenses",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Crypto H/W Acceleration",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "License Groups",
+                  "status_reasons": [],
+                  "status": "PASS"
+                },
+                {
+                  "name": "Transport Zone",
+                  "status_reasons": [],
+                  "status": "PASS"
+                }
+              ],
+              "status": "PASS"
+            }
+          ],
+          "status": "PASS"
+        },
+        "sensor_capacity": [
+          {
+            "type": "datastore",
+            "slots": 56,
+            "constraint": "98EA05B5-E0E1-4828-A3DD-919C5738D29A",
+            "constraint_name": "Number of VMs",
+            "subslots": []
+          },
+          {
+            "type": "phystor",
+            "slots": 105,
+            "constraint": "509E681F-0C7A-4193-95B0-9523C14E0FED",
+            "constraint_name": "Total Used Space (MB)",
+            "subslots": []
+          },
+          {
+            "type": "ipaddresspools",
+            "slots": 2147483647,
+            "constraint": "62d95498-6fdb-4fce-aebe-5f297ca0f7c3",
+            "constraint_name": "IP Addresses Assigned",
+            "subslots": []
+          }
+        ],
+        "hosting_score": 97
+      },
+      {
+        "id": "6b717553-ddcb-4333-bbc6-8c55e830d54f",
+        "name": "Cluster2",
+        "slots": 28,
+        "cei": 0.78,
+        "subslots": [],
+        "constraint": "Total_Memory",
+        "constraint_name": "Total Memory",
+        "href": "/infrastructure-groups/6b717553-ddcb-4333-bbc6-8c55e830d54f",
+        "control_type": "FULL",
+        "hosting_cost": 0,
+        "fit_for_purpose": {
+          // ... *SNIP* of categories ...
+        },
+        "sensor_capacity": [
+          {
+            "type": "datastore",
+            "slots": 76,
+            "constraint": "98EA05B5-E0E1-4828-A3DD-919C5738D29A",
+            "constraint_name": "Number of VMs",
+            "subslots": []
+          },
+          {
+            "type": "phystor",
+            "slots": 129,
+            "constraint": "509E681F-0C7A-4193-95B0-9523C14E0FED",
+            "constraint_name": "Total Used Space (MB)",
+            "subslots": []
+          },
+          {
+            "type": "ipaddresspools",
+            "slots": 2147483647,
+            "constraint": "62d95498-6fdb-4fce-aebe-5f297ca0f7c3",
+            "constraint_name": "IP Addresses Assigned",
+            "subslots": []
+          }
+        ],
+        "hosting_score": 48
+      }
+    ],
+    "control_environment": {
+      "id": "e6cf1672-77ff-4e7d-9dda-5387b0bc95cc",
+      "name": "Boston",
+      "platform": "VMWARE",
+      "platform_category": "Internal Virtual",
+      "control_type": "FULL",
+      "total_slots": 48,
+      "cei": 0.82,
+      "href": "/control-environments/e6cf1672-77ff-4e7d-9dda-5387b0bc95cc",
+      "subslots": [],
+      "sensor_capacity": [
+        {
+          "type": "datastore",
+          "slots": 132,
+          "constraint": "98EA05B5-E0E1-4828-A3DD-919C5738D29A",
+          "constraint_name": "Number of VMs",
+          "subslots": []
+        },
+        {
+          "type": "phystor",
+          "slots": 234,
+          "constraint": "509E681F-0C7A-4193-95B0-9523C14E0FED",
+          "constraint_name": "Total Used Space (MB)",
+          "subslots": []
+        },
+        {
+          "type": "ipaddresspools",
+          "slots": 2147483647,
+          "constraint": "62d95498-6fdb-4fce-aebe-5f297ca0f7c3",
+          "constraint_name": "IP Addresses Assigned",
+          "subslots": []
+        }
+      ],
+      "icon": "/control-environments/e6cf1672-77ff-4e7d-9dda-5387b0bc95cc/icon"
+    }
+  }
+]
+```
+
+
+
+</Accordion>
+
+
+Based on the above example, the first Infrastructure Group can accommodate `"slots": 20` of the aggregate demand of the specified Workloads and the second Infrastructure Group can accommodate `"slots": 28`, with a total of `"slots": 48` for the Control Environment.
+
+The best hosting option is the first Infrastructure Group, as it has the highest score of `"hosting_score": 97`.

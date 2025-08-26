@@ -1,0 +1,209 @@
+openapi: 3.1.0
+info:
+  title: Densify – GCP Recommendations API
+  version: "1.0.0"
+  description: |
+    GET `/analysis/cloud/gcp/{analysisId}/results` returns Compute Engine recommendations.
+    Use `Accept: application/json` for JSON objects or `Accept: application/terraform-map` for
+    terraform-map output. Supports element filters, `includeAttributes`, and `dataQuality`
+    (quoted, comma-separated workload names).
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: api.example.com
+tags:
+  - name: GCP Analysis
+paths:
+  /analysis/cloud/gcp/{analysisId}/results:
+    get:
+      tags: [GCP Analysis]
+      operationId: listGcpRecommendations
+      summary: List recommendations for a GCP analysis
+      description: |
+        Returns a collection of recommendations.  
+        Content negotiation:
+        - `application/json` → JSON recommendation objects  
+        - `application/terraform-map` → terraform-map objects  
+        Element filters are standard query pairs (e.g., `recommendationType=Upsize`).  
+        `includeAttributes=true` returns the `attributes` array.  
+        `dataQuality` takes a quoted, comma-separated list of workload names; unsupported names yield 400.
+      parameters:
+        - name: analysisId
+          in: path
+          required: true
+          description: Unique ID of the GCP analysis.
+          schema: { type: string }
+        - name: includeAttributes
+          in: query
+          required: false
+          schema: { type: boolean, default: false }
+          description: Return system attributes when true.
+        - name: dataQuality
+          in: query
+          required: false
+          schema: { type: string }
+          description: Quoted, comma-separated workload names for data-quality details.
+        - name: recommendationType
+          in: query
+          required: false
+          schema: { type: string }
+          description: Filter by recommendation action (e.g., Upsize, Downsize, Modernize, Just Right, Terminate, Not Analyzed, etc.).
+        - name: region
+          in: query
+          required: false
+          schema: { type: string }
+          description: Filter by GCP region.
+        - name: currentType
+          in: query
+          required: false
+          schema: { type: string }
+          description: Filter by current instance type.
+        - name: serviceType
+          in: query
+          required: false
+          schema: { type: string }
+          description: Filter by service type (Compute Engine).
+        - name: name
+          in: query
+          required: false
+          schema: { type: string }
+          description: Filter by system name.
+        - name: entityId
+          in: query
+          required: false
+          schema: { type: string }
+          description: Filter by Densify entity ID.
+        - name: accountIdRef
+          in: query
+          required: false
+          schema: { type: string }
+          description: Filter by GCP project identifier.
+      responses:
+        '200':
+          description: Collection of recommendations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GcpRecommendation'
+            application/terraform-map:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TerraformMapRecommendation'
+        '400':
+          description: Bad Request (e.g., unsupported `dataQuality` workload).
+        '401':
+          description: Authentication failed.
+        '404':
+          description: Analysis not found.
+        '500':
+          description: Server error.
+
+components:
+  schemas:
+    GcpRecommendation:
+      type: object
+      description: GCP recommendation object (JSON representation).
+      properties:
+        entityId: { type: string, description: "Densify entity ID." }
+        resourceId: { type: string, description: "GCP identifier for the Compute Engine system." }
+        accountIdRef: { type: string, description: "GCP project ID." }
+        region: { type: string }
+        currentType: { type: string }
+        recommendationType:
+          type: string
+          description: >
+            Action type (e.g., Just Right, Upsize/Downsize [Optimal Family or same family],
+            Modernize [Optimal Family or same family], Terminate, Not Analyzed).
+        recommendedType: { type: string }
+        implementationMethod:
+          type: string
+          description: "Self Optimization | Manual | N/A."
+        predictedUptime: { type: number, description: "Percent." }
+        totalHoursRunning: { type: string }
+        totalHours: { type: string }
+        name: { type: string }
+        rptHref:
+          type: string
+          format: uri
+          description: "Use Accept: application/octet-stream over HTTPS to download the PDF report."
+        approvalType: { type: string }
+        densifyPolicy: { type: string }
+        savingsEstimate:
+          type: string
+          description: "Catalog-cost delta (current - recommended); PDF uses predicted uptime in its calc."
+        effortEstimate:
+          type: string
+          enum: ["Moderate","Low","Very Low","None","Impossible"]
+        powerState: { type: string }
+        recommendedHostEntityId: { type: string }
+        currentCost: { type: string }
+        recommendedCost: { type: string }
+        serviceType:
+          type: string
+          description: "Compute Engine."
+        currentHourlyRate: { type: string }
+        recommendedHourlyRate: { type: string }
+        attributes:
+          type: array
+          description: "Returned only when includeAttributes=true."
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              name: { type: string }
+              value: { type: string }
+        # Visibility/history
+        recommFirstSeen: { type: integer, format: int64 }
+        recommLastSeen: { type: integer, format: int64 }
+        recommSeenCount: { type: integer }
+        # Audit info
+        auditInfo:
+          type: object
+          properties:
+            dataCollection:
+              type: object
+              properties:
+                dateFirstAudited: { type: integer, format: int64 }
+                dateLastAudited: { type: integer, format: int64 }
+                auditCount: { type: integer }
+            workloadDataLast30:
+              type: object
+              properties:
+                firstDate: { type: integer, format: int64 }
+                lastDate: { type: integer, format: int64 }
+                totalDays: { type: integer }
+                seenDays: { type: integer }
+        # Data quality (optional; only when dataQuality is specified)
+        dataQuality:
+          type: array
+          items:
+            type: object
+            properties:
+              workloadName: { type: string }
+              firstSeen: { type: integer, format: int64 }
+              lastSeen: { type: integer, format: int64 }
+              completeDays: { type: integer }
+              partialDays: { type: integer }
+    TerraformMapRecommendation:
+      type: object
+      description: Terraform-map recommendation representation.
+      properties:
+        provisioningId:
+          type: string
+          description: "Label for the terraform-map recommendation (often from a resource label)."
+        currentType: { type: string }
+        recommendedType: { type: string }
+        approvalType: { type: string }
+        predictedUptime: { type: string }
+        recommendationType: { type: string }
+        powerState: { type: string }
+        implementationMethod: { type: string }
+        savingsEstimate: { type: string }
+        effortEstimate:
+          type: string
+          enum: ["Moderate","Low","Very Low","None","Impossible"]
+        densifyPolicy: { type: string }

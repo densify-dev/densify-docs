@@ -1,0 +1,207 @@
+---
+title: "Viewing the Optimization Overview Report"
+---
+
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The Public Cloud Overview report provides a summary of optimization opportunities and ways to mitigate risk for your public cloud instances. This report aggregates the analysis results for all your public cloud platforms.
+
+Data is displayed as charts on the **Summary** tab or as detailed tabular data on the [Data tab](./Optimization_Overview_Report_-_Data_Tab).
+
+<Accordion title="Video: Viewing the Public Cloud Overview Report">
+<Frame>
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/301254996" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+</Frame>
+</Accordion>
+
+
+<Accordion title="Figure: Public Cloud Overview - Summary Tab ">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_Reporting_Framework/03000066.png)</Frame>
+</Accordion>
+
+
+### Services Included in the Public Cloud Overview Report
+
+The Public Cloud Overview report aggregates your cloud services that have been analyzed by Densify. Cloud instances that do not have adequate information for analysis, such as guests with incomplete or missing benchmark data, are not included in this report.
+
+Optimization opportunities for specific cloud platforms are options on the Public Cloud menu. See [Optimizing Your Public Cloud](./Optimizing_Your_Public_Cloud) for details. Also see [Viewing Cloud Optimization Reports - RDS](./Viewing_Cloud_Optimization_Reports_-_RDS).
+
+You can display specific cloud services using the following grouping and filtering options:
+
+* Recommendation Filter Menu--See [Using the Recommendation Filter Menu](./Using_the_Recommendation_Filter_Menu);
+* Guest filter--See [Using the Guest Filter](./Using_Guest_Filters) and for details on configuring and using these filters.
+
+Three sections with 5 charts provide a visual overview of your environments.
+
+### Summary Banner
+
+Key metrics are displayed in a banner at the top of the report.  If you have applied filters, the totals, displayed in this summary, reflect the filtered results.
+
+<Accordion title="Figure: Summary Banner ">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000273.png)</Frame>
+</Accordion>
+
+<Accordion title="Table: Summary Banner Descriptions">
+<table style={{ borderCollapse: "collapse" }}>
+  <col />
+  <col />
+  <thead>
+    <tr>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Column</th>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="Efficiency_Rating"></a>Efficiency Rating
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        The Efficiency Rating provides an indication of the health of your aggregated environment. The value is indicated in red, when it is greater than 1.
+        <ul>
+          <li>A value of 1 indicates that, at an aggregate level, the environment is efficient according to the defined policy settings.</li>
+          <li>A value less than 1 indicates potential savings opportunities due to over-allocated resources.</li>
+          <li>A value greater than 1 indicates potential risks due to under-allocated resources. The value is indicated in red, when it is greater than 1.</li>
+        </ul>
+        Click <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000059.png"/> to see a description of the Efficiency Rating.
+        <br />
+        The Efficiency Rating is calculated:
+        <br />
+        <img src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000243_304x40.png" />
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Current Monthly Costs</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        The current monthly cost for your aggregated cloud services, across all accounts, subscriptions and projects that Densify analyzes.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Optimization Savings</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        This is the monthly savings that can be achieved from downsizing, modernizing or terminating over-provisioned and idle instances.
+        <br />
+        Click <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000059.png"/> to see a note indicating that the Monthly Savings are calculated from downsizing, modernizing or terminating over-provisioned and idle systems.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Upsize Cost</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        This is the monthly cost increase to upsize or upscale your services that are at risk. This cost will be offset by the total savings indicated by the Optimization Savings. This amount shows the costs associated with systems with identified risk.
+        <br />
+        Click <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000059.png"/> to see a note indicating that the monthly upsize cost is required to fix under-provisioned systems.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+<Note>
+Spot instances are not included in this table or in the **Summary** tab. Refer to [Viewing Cloud Optimization Reports - RDS](./Viewing_Cloud_Optimization_Reports_-_RDS) for details,
+</Note>
+
+
+
+### Total Number of Services
+
+This table shows the total number of instances within the analyzed environments. Inventory is then broken down by cloud platform and the type of provider service.
+
+<table>
+<col/>
+<tbody>
+<tr>
+<td>
+<ul>
+<li>AWS > EC2</li>
+<li>AWS > RDS </li>
+<li>AWS > Auto Scaling Groups</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Azure > Virtual Machines</li>
+<li>Azure > VM Scale Sets</li>
+<li>GCP > Compute Engine</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+Each ASG or VMSS counts as one service. In-service EC2s or VM instances that make up the group are not counted separately. ASGs/VM Scale Sets configured with maximum group size = 1 are only included in the EC2/Virtual Machine optimization opportunity report and groups configured with maximum group size > 1 are included in the ASG/VM Scale Sets optimization opportunity report.
+
+In the inventory section, the total count for service types are provided as links. Click the value to navigate to the corresponding overview tab or dashboard.
+
+There are two footnotes at the bottom of the page:
+
+* The first one shows you the number of instances that have not been analyzed due to a lack of collected data. This value is not affected by Guest Filter or Recommendation Filter settings.<br/>
+
+    Contact [Support@Densify.com](mailto:Support@Densify.com) for details on resolving issues related to these systems.
+
+* The second, indicates that all the costs shown in the report are estimated costs only, based on per instance costs and predicted uptime.
+
+### Status of all Analyzed Services
+
+The recommendations for your cloud services in your environment are summarized in the pie chart. This chart shows the breakdown of instance recommendations by Optimization Type as shown below.
+
+<Accordion title="Table: Summary Banner">
+<table style={{ borderCollapse: "collapse", width: "100%" }}>
+  <colgroup>
+    <col style={{ width: "30%" }} />
+    <col style={{ width: "70%" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", backgroundColor: "#b4dfb4", border: "1pt solid #C0C0C0", padding: "6px" }}>
+
+        Optimal
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "left", border: "1pt solid #C0C0C0" }}>
+        These instance types are currently optimal. The Optimization type is just right and there are no costs savings for this group.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", backgroundColor: "#f36e4b", border: "1pt solid #C0C0C0", padding: "6px"}}>
+        Identified Risk
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "left", border: "1pt solid #C0C0C0" }}>
+        These instance types are at risk. This status occurs when the savings amount is less than $0 (i.e. you need to spend money to mitigate risk).
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", backgroundColor: "#c5d9f1", border: "1pt solid #C0C0C0", padding: "6px" }}>
+        Savings Opportunity
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "left", border: "1pt solid #C0C0C0" }}>
+        These instance types can provide saving opportunities that greater than $0.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+</Accordion>
+
+
+### History of Optimal Service %
+
+The line chart shows the number of instances that are sized correctly over time. For each date, optimal service percentage is calculated as the ratio of (the number of systems that are sized correctly) divided by (the total number of systems, defined by the set of filters on that day).
+
+The axis scales based on the amount of data up to the maximum of 6 months. If you hover over any data point in the graph a popup indicates the percentage of systems that are "Just Right" on the selected date. As you apply the recommendations, the number of right-sized instances should increase over time.
+
+<Note>
+Systems with 'No Data' are not included in these counts.
+</Note>
+
+
+
+### Predicted Utilization
+
+These pie charts show the potential percentage improvement in CPU and memory resource allocations when the Densify recommendations have been actioned.
+
+### Resource Allocation
+
+The bar chart at the bottom shows the current allocations and the recommended allocations for both CPU and memory. Values are aggregated to show the total increase or decrease of required resources.
+
+Current and Recommended values are always displayed, regardless of the selected systems' optimization types. If, for example, the systems are all optimal, each chart will still show both bars with the same Current and Recommended values

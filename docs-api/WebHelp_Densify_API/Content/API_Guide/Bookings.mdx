@@ -1,0 +1,87 @@
+---
+title: "Overview"
+---
+
+## Description
+
+A Booking represents an inbound or outbound host, an inbound datastore, or an inbound or outbound VM.
+
+A Booking object is automatically created with a specified type element when the corresponding resource object is created through the API or UI:
+
+Table: Inbound and Outbound Bookings
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>booking</p>
+</td>
+<td>
+<p>API</p>
+</td>
+<td>
+<p>UI</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>type=INBOUND_GUEST</p>
+</td>
+<td>
+<p>workloads</p>
+</td>
+<td>
+<p><span class="mc-variable Document.Res_Console variable">Route and Reserve Demand page</span> or though the Booking Manager </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>type=INBOUND_HOST</p>
+</td>
+<td>
+<p>inbound-hosts</p>
+</td>
+<td>
+<p>Plan and Manage Supply page or though the Booking Manager </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>type=INBOUND_DATSTORE</p>
+</td>
+<td>
+<p>inbound-datastores</p>
+</td>
+<td>
+<p>Plan and Manage Supply page or though the Booking Manager </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>type=OUTBOUND_HOST</p>
+</td>
+<td>
+<p>outbound-hosts</p>
+</td>
+<td>
+<p><span class="mc-variable Document.Control_Console variable">Control Console</span> Spectrum</p>
+</td>
+</tr>
+</table>
+
+The Booking objects are kept in synch with their API counterparts such that any updates made to the API objects are automatically made to the Booking objects, and vice-versa.
+
+<Note>
+Only the Booking object is updated on analysis refreshes, with state updates.
+</Note>
+
+
+## Resource
+
+```json
+/bookings
+```

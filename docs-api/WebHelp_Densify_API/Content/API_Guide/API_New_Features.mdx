@@ -1,0 +1,119 @@
+---
+title: "Densify API New Features"
+---
+
+The following new features and updates are specific to the Densify API.
+<AccordionGroup>
+<Accordion title="August 14, 2024">
+Updated Online Documentation--The online help for Virtualization Optimizer has been updated to remove all cloud and container references. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+</Accordion>
+
+<Accordion title="Densify 14.8 - August 23, 2023">
+<Accordion title="Basic Authentication has Been Deprecated">
+Basic authentication for accessing the Densify API has been deprecated in this release. Only token-based authentication is supported, for enhanced security. See [Authorize](./Authorize) for details.
+
+To ease the transition of any integrations, basic authentication functionality can temporarily be extended to September 30th, 2023. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+</Accordion>
+
+<Accordion title="Postman Collection Updated">
+The Supply and Demand Postman collection has been updated in this release. The updated supply and demand API examples is provided as a separate collection. See [Postman Collection](./Postman_Collection).
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.7 - December 14, 2022">
+<Accordion title="New 60-Day Historical Audit">
+The `/analysis` endpoint for AWS has been updated to support execution of the 60-day historical audit, on an ad hoc basis.
+
+The ability to disable the 60-day historical audit was provided in a previous release to address performance issues that may be encountered during initial data collection in very large AWS environments. The option to run the 60-day historical audit has always been available through the Analysis Console. This update extends the existing `/analysis` endpoint to trigger a one-time, 60-day historical audit for an AWS account that has existing daily audits configured.
+
+See [Analysis: AWS Analyze](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze) for details.
+</Accordion>
+
+<Accordion title="Routing and Reservation Updates">
+The following updates have been made in this release:
+
+* During routing of incoming workloads, any clusters that are undergoing sensor data recalculation (i.e. sensor capacity data is not available) are now excluded from consideration as a hosting option. This ensures that valid sensor capacity data is used when making routing decisions. See [Routing Requests](./Routing_Requests#Sensor_Lockout).
+* You now have the option to select a sensor placement strategy for routed workloads. In addition to the existing balancing strategy that distributes incoming workloads across all suitable datastores, you now have the option to fill a datastore and then move to the next one. You can specify a sensor placement strategy when submitting a routing request (via the API) or you can define the strategy globally using a configuration setting. See [Routing Requests](./Routing_Requests#Placement).
+</Accordion>
+
+<Accordion title="Updated Context Paths">
+The URLs for the Densify, Analysis Console, as well as the JasperReports Server artifacts have been updated to remove references to CIRBA. Use the following URLs to access the various consoles:
+
+* Densify 2022: \<customer\_name>.densify.com/densify
+* Analysis Console:
+  \<customer\_name>.densify.com[:8443]/admin
+* JasperReports Server artifacts have been updated to rename "CIRBA" to "densify" in the folder hierarchy.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.6 - October 5, 2022">
+There are no new API features or updates in this release.
+</Accordion>
+
+<Accordion title="Densify 14.5 - August 17, 2022">
+There are no new API features or updates in this release.
+</Accordion>
+
+<Accordion title="Densify 14.4 - July 27, 2022">
+<Accordion title="New /systems ECS Object">
+The /systems endpoint has been updated to include the `ecs_svc` object. The following operations are supported for systems with object type=ecs\_svc:
+
+* /systems GET
+* /systems/\<ID> GET
+* /systems/\<ID>/attributes PUT
+* /systems/\<ID>/attributes DELETE
+
+See [Systems](./Systems) for details of using the /systems endpoint.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.3 - June 1, 2022">
+<Accordion title="Authorize API Security Updates">
+When accessing the Densify user interface a malicious actor cannot perform a brute force attack because the user account is locked after three failed login attempts for a predefined timeout period.
+
+Since users can also authenticate through the ‘authorize’ API call using the same credentials, the safeguards in place that reduce the risk of a successful brute-force attack have been updated. The delay between failed attempts now doubles and if an attempt is made during the lockout period, the delay is doubled, again. See [Authorize](./Authorize#Security_Considerations)
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.2 - February 23, 2022">
+<Accordion title="Impact Analysis and Recommendation Report Report is now Accessible During RDB Refresh">
+When using either API System or Results resources, you no longer need to wait for the reporting database refresh to complete before requesting the Impact Analysis and Recommendation Report. Upon making the request via the API, you will get the latest version of the report, based on the current set of data in the reporting database.
+
+This is already the behaviour when accessing the Impact Analysis and Recommendation Report through the Densify Console.
+
+See [Analysis: AWS Recommendations](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results) and [Systems](./Systems).
+</Accordion>
+
+<Accordion title="Expose an ASG&#x27;s Parent ECS or EKS Cluster">
+When working with ASGs that are hosting a Kubernetes clusters, the parent cluster name is returned, in both the `/system` and `/subscriptions` API resource response objects, and is stored in the attribute, "Kubernetes Cluster". This value was previously collected but not stored in an attribute and was not used.
+
+See [Working with Auto Scaling Groups](/docs/WebHelp_Densify/Content/Densify_Com/Working_with_ASGs#ECS_and_EKS_clusters) in the Densify Online Help.
+</Accordion>
+
+<Accordion title="Effort Estimate in the Subscription API">
+When using the standard API, Densify does not return an effortEstimate for systems that are ‘Not Analyzed’; however, when using the Subscription API Densify returns an effortEstimate of "Impossible" for systems that are ‘Not Analyzed’.
+
+As a work-around, when enabling effortEstimate for the Subscription API Results, you need to add logic to trap and handle the effortEstimate for systems that are ‘Not Analyzed’.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify 14.1 - December 8, 2021">
+There are no new API features or updates in this release.
+</Accordion>
+
+<Accordion title="Densify 14.0 - October 13, 2021">
+There are no new API features or updates in this release.
+</Accordion>
+
+</AccordionGroup>
+
+<Note>
+See the [Densify Online Help](https://www.densify.com/docs/WebHelp_Densify/Content/Release_Notes/New_Features) for other features and updates.
+</Note>
+
+

@@ -1,0 +1,415 @@
+---
+title: "Optimization Overview Report - Data Tab"
+---
+
+The Optimization Overview report provides a summary of optimization opportunities and ways to mitigate risk for your public cloud instances. This report aggregates the analysis results for all your public cloud platforms.
+
+Data is displayed as charts on the [Summary](./Viewing_the_Optimization_Overview_Report) tab or as detailed tabular data on the **Data** tab, covered here.
+
+You can group and filter your data using the following options:
+
+* Group By --See [Using the Group By Feature](./Using_the_Group_By_Feature);
+* Recommendation Filter Menu--See [Using the Recommendation Filter Menu](./Using_the_Recommendation_Filter_Menu);
+* Guest filter--See [Using the Guest Filter](./Using_Guest_Filters) and for details on configuring and using these filters.
+
+Filter settings defined using any of the above options are persistent between user login sessions, for this page.
+
+<Accordion title="Figure: Optimization Overview - Data Tab">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000060.png)</Frame>
+</Accordion>
+
+
+### Summary Banner
+
+Key metrics are displayed in a banner at the top of the report.  If you have applied filters, the totals, displayed in this summary, reflect the filtered results. See [Summary Banner](./Viewing_the_Optimization_Overview_Report#Summary_Banner) for details.
+
+### Data Controls
+
+The controls, in the upper right corner of the page, provide options for managing and viewing your data more effectively. See [Data Controls on Tabular Reports](./Navigating_Densify#Data_Controls) for more details.
+
+### Tabular Data
+
+The breakdown of the data for your aggregated cloud environment is displayed on this tab. You can control how the data is displayed in this table using the **Group By** feature. The **Group By** setting is used in the first column and data is retrieved and displayed accordingly.
+
+For example, if you wanted to group the data based on Business Unit, Densify displays the analyzed data sorted based on the value of the Business Unit resouce tag. See [Using the Group By Feature](./Using_the_Group_By_Feature).
+
+The top table provides a breakdown as follows:
+
+Table: Optimization Overview - Data Tab Columns
+
+<table style={{ borderCollapse: "collapse" }}>
+  <col />
+  <col />
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'center', color: 'white', backgroundColor: '#003660' }}>Column(s)</th>
+      <th style={{ textAlign: 'center', color: 'white', backgroundColor: '#003660' }}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
+        Group By selection: Account | Application | <br/>Availability Zone | Business Unit | Owner | Region
+      </td>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
+        The first column is determined by your Group By selection. You can control how the data is displayed in this table using the <span>Group By</span> feature. Your <span>Group By</span> selection is used in the first column and data is retrieved and displayed accordingly.
+        <br />
+        Account--The AWS account, Azure subscription or GCP project used for data collection.
+        <br />
+        Application--The value of the application tag, You must set the resource tag for the instance accordingly.
+        <br />
+        Availability Zone--The availability zone in which the instance is running.
+        <br />
+        Business Unit--The value of the business unit tag, You must set the resource tag for the instance accordingly.
+        <br />
+        Owner--The owner of the cloud instance. You must set the resource tag for the instance accordingly.
+        <br />
+        Region--The region in which the instance is running.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>Efficiency Rating<a name="kanchor166"></a></td>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
+        The Efficiency Rating provides an indication of the health of your aggregated environment. The value is indicated in red, when it is greater than 1.
+        <ul>
+          <li>A value of 1 indicates that, at an aggregate level, the environment is efficient according to the defined policy settings.</li>
+          <li>A value less than 1 indicates potential savings opportunities due to over-allocated resources.</li>
+          <li>A value greater than 1 indicates potential risks due to under-allocated resources. The value is indicated in red, when it is greater than 1.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>Total Services</td>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
+        The total number of services in the selected grouping. The grouping is defined in the first column. You can change the Grouping options using the <a href="./Using_the_Group_By_Feature">Group By</a> feature.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>AWS EC2 | AWS RDS | AWS ASG | Azure VM | GCP CE</td>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
+        This is a breakdown by instance type and cloud provider.
+        <br />
+        The number of instances listed in this column is a hyperlink that takes you to the Instance Optimization Details page for the selected grouping. Only the specific systems, as indicated by the count in the originating table cell, are shown in the Instance Optimization Details.
+        <br />
+        For ASGs see <a href="./Working_with_ASGs">Working with Auto Scaling Groups</a>.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>Optimal | Identified Risk | Savings Opportunity</td>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
+        These 3 columns provide a breakdown by recommendation type.
+        <ul>
+          <li>Optimal--These services are currently sized correctly and there are no cost savings for this group of systems.</li>
+          <li>Identified Risk--These services are at risk. Services are also identified to be at risk if the savings amount is $0, but the optimization type is upscale, upsize, or upsize to optimal family. This situation occurs when services are inactive, and need to be upscaled or upsized to mitigate risk when they resume activity.</li>
+          <li>Savings opportunity--These services are oversized. Services are also identified as a savings opportunity if the savings amount is $0, but the optimization type is terminate, modernize, modernize to optimal family, downscale, downsize, or downsize to optimal family. This situation occurs when services are inactive, but need to be terminated, modernized, downsized or downscaled when they resume activity.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>Percent Optimal (%)</td>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>This is the percentage of total services that are currently sized correctly.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>Current Cost ($/month)</td>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
+        The estimated cost is the aggregate cost of all of the services in the selected account, as indicated by <span>Total Services</span> for each row.
+        <br />
+        The estimated cost (both current and recommended) takes into account uptime and does not assume systems are running all the time.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>Net Savings ($/month)</td>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
+        If the recommendations are implemented, the net savings indicated here can be achieved.
+        <br />
+        This value is calculated as the current estimated cost minus the estimated cost of the recommended instances.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>Impact to CPU Utilization (%) | Impact to Memory Utilization (%)</td>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
+        These two columns indicate the percentage resource impact if the recommendations are made.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>vCPU Surplus | Memory Surplus (GB)</td>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
+        These two columns indicate the change in actual vCPUs and memory that will result if the recommendations are made.
+        <br />
+        vCPU Surplus is the difference between (SUM of the total Current vCPU - SUM of total Recommended vCPU).
+        <br />
+        Memory Surplus is the difference between (SUM of the total memory - SUM of total Recommended memory)
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>Current # of Instances | Recommended # of Instances</td>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
+        These two columns indicate the current number of instances and the number of instances if the recommendations are made.
+        <br />
+        This information can be useful when a group contains ASG instances.
+        <br />
+        The average number of systems in the ASG is used for these value so the values shown in these 2 columns may not always be an integer. This average instance count can be found when you drill down to the Instance Optimization Details report in the "Current Predicted Average Instance Count" and "Recommended Predicted Average Instance Count" columns.
+        <br />
+        Additionally, you may observe that these values may not match the value of the Total Services. This happens because child ASGs are included in this calculation, whereas the Total Services only contains the parent ASG.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>Totals</td>
+      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
+        The totals at the bottom of the table indicate the total for each column, for all pages, if you have a multi-page report.
+        <br />
+        Vertical scroll bars may be displayed to scroll through the entire list, so lower rows may be momentarily hidden behind the row of Totals.
+        <br />
+        The number of instances listed in this column is a hyperlink that takes you to the Instance Optimization Details page for the selected grouping. Only the specific systems, as indicated by the count in the originating table cell, are shown in the Instance Optimization Details. For more information, see <a href="./Understanding_the_Instance_Details_Report">Understanding the Instance Optimization Details Report</a>.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<Note>
+Spot instances are not included in this table or in the **Summary** tab. Refer to [Viewing Cloud Optimization Reports - RDS](./Viewing_Cloud_Optimization_Reports_-_RDS) for details,
+</Note>
+
+
+
+### Details Tab
+
+The details of the row selected in the top table is expanded and displayed on two tabs on the lower part of the page. The **Details** tab provides a subset of the information from the top of the page, for only the selected row, expanded by Service Type and sorted by **Service Type** and Overall Status, rather than aggregated.
+
+Additionally, any filter criteria selected in the Guest Filter and Recommendation Filter are applied to the date displayed on both the **Details** and **Allocations and Utilization** tabs.
+
+<Note>
+In the following table, costs, savings, vCPU/memory surplus values and totals are estimated based on per instance costs and allocations, predicted uptime and predicted average instance counts. This is indicated as a footnote as the bottom of the page.
+</Note>
+
+
+
+Table: Optimization Overview - Details Tab Columns
+
+<table style={{ borderCollapse: "collapse" }}>
+<col />
+<col />
+<thead>
+<tr>
+<th style={{ textAlign: 'center', color: 'white', backgroundColor: '#003660' }}>Column(s)</th>
+<th style={{ textAlign: 'center', color: 'white', backgroundColor: '#003660' }}>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>Public Cloud</p>
+</td>
+<td>
+<p>This is the cloud vender associated with the row selected in the primary table at the top of the page. </p>
+<p>The value is one of Amazon Web Services, Microsoft Azure and Google Cloud.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Service Type</p>
+</td>
+<td>
+<p>This is the type of service. The value is one of EC2, RDS, Auto Scaling Groups, Virtual Machines and Compute Engines.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Overall Status</p>
+</td>
+<td>
+<p>This the recommendation for the selected account. </p>
+<ul>
+<li>Optimal--These systems are currently sized correctly and there are no costs savings for this group of systems.</li>
+<li>Identified Risk--These systems are at risk.</li>
+<li>Savings Opportunity--These instance types can provide saving opportunities. </li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Count</p>
+</td>
+<td>
+<p>The total number of systems in the selected account,</p>
+<p>The number of instances listed in this column is a hyperlink that takes you to the <span class="mc-variable Document.Instance_Optimization_Details variable">Instance Optimization Details</span> page for the selected  grouping. i.e. Only the specific systems, as indicated by the count in the originating table cell, are shown in the <span class="mc-variable Document.Instance_Optimization_Details variable">Instance Optimization Details</span>. For more information, see <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="./Understanding_the_Instance_Details_Report">Understanding the Instance Optimization Details Report</a></madcap:conditionaltext>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Current Cost ($/month)</p>
+</td>
+<td>
+<p>The estimated cost is the cost of all of the services of this type, as indicated by <span >Count</span> for each row. </p>
+<p>The estimated cost (both current and recommended) takes into account uptime, based on the assumption that services are not running all the time.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Net Savings ($/month)</p>
+</td>
+<td>
+<p>If the recommendation is implemented, the net savings indicated here can be achieved.</p>
+<p>This value is calculated as the current estimated cost minus the estimated cost of the recommended instances. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Impact to CPU Utilization (%) | Impact to Memory Utilization (%)</p>
+</td>
+<td>
+<p>These two columns indicate the percentage resource impact if the recommendation is made. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>vCPU Surplus |  Memory Surplus (GB)</p>
+</td>
+<td>
+<p>These two columns indicate the change in actual vCPUs and memory that will result if the recommendation is made. </p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### Allocations and Utilization Tab
+
+The allocation and utilization details of the row selected in the top table is expanded and displayed on this tab in the lower part of the page. The **Allocations and Utilization** tab provides a subset of the information shown at the top of the page, but only for the selected row.
+
+<Note>
+In the following table, all allocations totals are estimated based on per instance allocations, predicted uptime and predicted average instance counts. This is indicated in a footonote as the bottom of the page.
+</Note>
+
+
+<Note>
+In the following table, some values may not match the aggegated totals shown in the tabular report at the top of the page. This is due to how ASG and VM scale set utilization is calculated.
+</Note>
+
+
+
+For each set of systems the average, maximum, minimum and total values are shown for each column.
+
+Table: Optimization Overview - Allocations and Utilization Tab Columns
+
+<table style={{ borderCollapse: "collapse" }}>
+<col />
+<col />
+<thead>
+<tr>
+<th style={{ textAlign: 'center', color: 'white', backgroundColor: '#003660' }}>Column(s)</th>
+<th style={{ textAlign: 'center', color: 'white', backgroundColor: '#003660' }}>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>Current vCPU </p>
+</td>
+<td rowspan="2">
+<p>These two columns indicate the current and recommended vCPU allocation.</p>
+<p>The average, maximum, minimum and total values are shown for the set of systems identified in the selected row.</p>
+<p>Systems with 'Terminate' recommendation, are excluded from the calculation in the 'Recommended' columns. If all of the systems in the group have a 'Terminate' recommendation, the values in Recommended columns will be indicated as a dash (-).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommended vCPU</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Current CPU Benchmark  </p>
+</td>
+<td rowspan="2">
+<p>These two columns indicate the current and recommended CPU benchmark values. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommended CPU Benchmark </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Current Memory Allocation  (GB)</p>
+</td>
+<td rowspan="2">
+<p>These two columns indicate the current and recommended memory allocation.</p>
+<p>The average,  maximum, minimum and total values are shown for the set of systems identified in the selected row.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommended Memory Allocation (GB)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Current Predicted CPU Utilization (%</p>
+</td>
+<td rowspan="2">
+<p>These two columns indicate the current CPU utilization and the CPU utilization on the recommended instance, based on the current uptime. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommended Predicted CPU Utilization (%)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Current Predicted Memory Utilization (%)</p>
+</td>
+<td rowspan="2">
+<p>These two columns indicate the current memory utilization and the memory  utilization on the recommended instance, based on the current uptime. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommended Predicted Memory Utilization (%)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk I/O (MB/s) </p>
+</td>
+<td>
+<p>The disk I/O for the current set of instances. </p>
+<p>If a system is missing disk or network data, it cannot be included in these totals.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk I/O Operations (IOPs) </p>
+</td>
+<td>
+<p>The disk I/O operations for the current set of instances. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Network I/O (MB/s) </p>
+</td>
+<td>
+<p>The network I/O for the current set of instances in MB/s. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Network I/O (packets/s) </p>
+</td>
+<td>
+<p>The network I/O for the current set of instances in packets/s. </p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+Please observe the following for this set of data:
+
+* The Average Utilization % value is calculated as the weighted average of the utilization % for all of the systems in the selected group. This is applicable to the current and recommended Utilization % for CU and memory.
+* Systems with missing data are excluded from the calculations;
+* If there is no data for a whole group of systems, then this is indicated as a dash (-);
+* Systems with a "Terminate" recommendation are excluded from the calculations in all of the "Recommended" columns. For example, if all systems in the group are 'Terminate', then all of the "Recommended" columns will be shown as a dash (-);

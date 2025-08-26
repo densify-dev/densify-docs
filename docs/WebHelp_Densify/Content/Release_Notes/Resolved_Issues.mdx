@@ -1,0 +1,1157 @@
+---
+title: "Resolved Issues"
+---
+
+The following tables provide a list of known issues as well as customer-reported issues, listed by release. All tables are sorted by Densify's Internal Reference number.
+
+## Known Issues
+
+<Accordion title="Known Issues in the Current Release">
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>									Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-47314</p>
+<p>CRB-47339</p>
+</td>
+<td></td>
+<td>
+<p>The workload charts in the <span class="mc-variable Document.Analysis_Console variable">Analysis Console</span> look different from the charts displayed in the <span class="mc-variable Document.Densify_Console variable">Densify Console</span></p>
+<p>The Workload Viewer in <span class="mc-variable Document.Analysis_Console variable">Analysis Console</span> displays the original bar charts and original functionality. The <span class="mc-variable Document.Densify_Console variable">Densify Console</span> displays the candlestick workload charts introduced in 12.1.2.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-47419</p>
+</td>
+<td></td>
+<td>
+<p>In large environments, using an API query that returns a very large number of objects (>5000) may result in degraded performance or web server errors.</p>
+<p>Work-around: Use the <code>page</code> and <code>page_size</code> parameters to manage the number of objects returned.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-48356</p>
+</td>
+<td></td>
+<td>
+<p>An issue has been encountered related to the date in the calendar component display layer for customers in EMEA (where time zones are GMT+). It occurs across all platforms: Cloud, Containers and VMware. </p>
+<p>The analysis is accessing the data up to and including yesterday.  The date display issue is very confusing as Densify appears to have lost a day’s worth of data. For example, environments are refreshed today (May 15) with the current date set  and you would expect to see the end of the interval set to May 14, but for GMT+1 time zones, May 13 is displayed. </p>
+<p>The same problem also likely exists in the Workload Viewer for date settings in GMT- time zones.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-50797</p>
+</td>
+<td>
+<p>56583</p>
+</td>
+<td>
+<p>When performing action automation, you may encounter the following, intermittent error: " java.io.FileNotFoundException ". Data collection may fail to retry or fail to load.</p>
+<p>Work-around: Change the <span class="mc-variable Document.VM5 variable">vCenter</span> names in the connector to all lowercase. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51535</p>
+</td>
+<td>
+<p>63060</p>
+</td>
+<td>
+<p>When using the standard API, <span class="mc-variable Document.Company variable">Densify</span> does not return an effortEstimate for systems that are ‘Not Analyzed’; however, when using the Subscription API <span class="mc-variable Document.Company variable">Densify</span>  returns an effortEstimate of Impossible for systems that are are ‘Not Analyzed’.</p>
+<p>Work-around: When enabling effortEstimate for the  Subscription API Results, you need to add logic to trap and handle the effortEstimate for systems that are ‘Not Analyzed’.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="CRB-51803"></a>CRB-51803</p>
+</td>
+<td>
+<p>65879</p>
+</td>
+<td>
+<p><a name="kanchor205"></a>When creating new datastore tiers, errors in the UI are caused by a tier with double spaces in its name. A small typo, such as double spaces causes the creation of storage tiers without a priority which in turn breaks the Storage Tiers user interface and affects routing by causing routing to fail across the environment.</p>
+<p>Work-around: When creating storage tiers, you must validate that the name does not contain double spaces. Leading and trailing spaces are not an issue as they are handled correctly.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-52408</p>
+</td>
+<td>
+<p> </p>
+</td>
+<td>
+<p><a name="kanchor206"></a>When using the Report Designer role and creating custom reports you cannot logout from the Jasper Server by clicking the Logout button. </p>
+<p>Work-around: You must click the Logout button 2 times (not double-click). Alternatively you can just close the browser window.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+
+## Resolved Issues - Densify
+
+Issues resolved in each release are listed below:
+
+<Accordion title="14.8.6 - February 12, 2025">
+No customer-reported issues were resolved in this release.
+</Accordion>
+
+<Accordion title="Densify 14.8.3">
+14.8.3 - January 25, 2024
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/> Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-54510</p>
+</td>
+<td>
+<p>90431</p>
+</td>
+<td>
+<p>Resolved an issue related to editing a large number of attributes.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+<Accordion title="Densify 14.8.2">
+Densify 14.8.2 - November 3, 2023
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/> Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-51225</p>
+</td>
+<td>
+<p>60616</p>
+</td>
+<td>
+<p>Resolved an issue related to editting a large number of attributes.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+<Accordion title="Densify 14.8.1">
+14.8.1 - October 18, 2023
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/> Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-53883</p>
+</td>
+<td>
+<p>
+</p>
+</td>
+<td>
+<p>Enabled the Hourly Workload option for the Workload Extract Report. The feature was previously deprecated.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+<Accordion title="Densify 14.8.0">
+14.8.0 - August 23, 2023
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/> Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-53389</p>
+</td>
+<td>
+<p>
+</p>
+</td>
+<td>
+<p>Resolved an issue with the <span>Impact Analysis and Recommendation Report</span> not being displayed properly when generated via an API request.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+<Accordion title="Densify 14.7.0">
+14.7.0 - December 14, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/> Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-52705</p>
+</td>
+<td>
+<p>69868</p>
+</td>
+<td>
+<p>Resolved an issue related to performing T2C analyses.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-52710</p>
+</td>
+<td>
+<p>71344</p>
+</td>
+<td>
+<p>Resolved an issue related to deletion of control environments with no clusters.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-52734</p>
+</td>
+<td>
+<p>73084</p>
+</td>
+<td>
+<p>Resolved an issue related to performance of loading and working with the Analysis Rulesets page.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+<Accordion title="Densify 14.6.0">
+14.6.0 - October 5, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-51904</p>
+</td>
+<td>
+<p> </p>
+</td>
+<td>
+<p>Resolved an issue related to inconsistencies in access to a locked user account.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-52603</p>
+</td>
+<td>
+<p>71996</p>
+</td>
+<td>
+<p>Resolved an issue related to user verification via reCAPTCHA.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-52611</p>
+</td>
+<td>
+<p>72183</p>
+</td>
+<td>
+<p>Resolved an issue that prevented  users from logging in via Open ID.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-52612 </p>
+</td>
+<td>
+<p>71995</p>
+</td>
+<td>
+<p>Resolved an issue that caused RDB loading to fail when an attribute value is an empty string.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-52629</p>
+</td>
+<td>
+<p>72561</p>
+</td>
+<td>
+<p>Resolved an issue related to the report, "History of Cluster Capacity in VM Units" failing to load.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+<Accordion title="Densify 14.5.x">
+14.5.0 - August 17, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-51165</p>
+</td>
+<td>
+<p>64765</p>
+</td>
+<td>
+<p>Completed the updates required to resolve the issue related to performance of the Optimization Overview dashboard and the EC2 tab in the Densify UI. The required updates were started in the previous release.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-52301</p>
+</td>
+<td>
+<p>70069</p>
+</td>
+<td>
+<p>Resolved an issue related to excluding hours from the <span class="mc-variable General.ProductName variable">Densify</span> analysis.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+<Accordion title="Densify 14.4.0">
+14.4.0 - July 27, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-51165</p>
+</td>
+<td>
+<p>64765</p>
+</td>
+<td>
+<p>Resolved an issue related to performance of the Optimization Overview dashboard and the EC2 tab in the Densify UI. Additional performance updates will be delivered in the next release.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-52166</p>
+</td>
+<td>
+<p>69439</p>
+</td>
+<td>
+<p>Resolved an issue related to data collection in very large environments when using the Java-based audit. Security tokens in the AWS client instance are now refreshed before they expire.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+<Accordion title="Densify 14.3.x">
+14.3.0 - June 1, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-50479</p>
+</td>
+<td>
+<p>53628</p>
+</td>
+<td>
+<p>Resolved an issue related to loading of a specific set of Azure audit data.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51641</p>
+</td>
+<td>
+<p>51195</p>
+</td>
+<td>
+<p>Resolved an issue related to a query running too long and blocking other jobs.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51914</p>
+</td>
+<td>
+<p>67424</p>
+</td>
+<td>
+<p>Resolved an issue related to the footnote not being visible after clicking on a savings opportunity value in the Public Cloud Optimization for AWS dashboard.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51974</p>
+</td>
+<td>
+<p>67782</p>
+</td>
+<td>
+<p>Resolved an issue related to VMs showing incorrect 'VM Memory HotAdd' status. The <span class="mc-variable Document.Densify_exe variable">Densify Connector</span> has also been updated to v2.2.4.6 to resolve this issue.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51983</p>
+</td>
+<td>
+<p>67601</p>
+</td>
+<td>
+<p>Resolved an issue with some GCP systems missing from the Densify reports.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-52026</p>
+</td>
+<td>
+<p>68013</p>
+</td>
+<td>
+<p>Resolved an issue related to sizing recommendations in the <span class="mc-variable Document.Control_Console variable">Control Console</span> that are not aligned with CPU utilization and cloud catalog options specified in the policy.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+<Accordion title="Densify 14.2.x">
+14.2.0 - February 16, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-51435</p>
+</td>
+<td>
+<p>62498</p>
+</td>
+<td>
+<p>Resolved an inconsistency in reporting of predictedUptime and totalHoursRunning.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51564</p>
+</td>
+<td>
+<p>63508</p>
+</td>
+<td>
+<p>Resolved an issue related to the collection of Azure subscriptions being capped at 1000.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51579</p>
+</td>
+<td>
+<p>62740</p>
+</td>
+<td>
+<p>Resolved an issue related to SLCO target host recommendations.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+<Accordion title="Densify 14.1.x">
+14.1.0 - December 8, 2021
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-50348</p>
+</td>
+<td>
+<p>53956</p>
+</td>
+<td>
+<p>Resolved an issue related to the Cloud System Sizing extension logic. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51076</p>
+</td>
+<td>
+<p>59008</p>
+</td>
+<td>
+<p>Resolved an issue related to using the Group By feature on the Containers > Data tab.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51136</p>
+</td>
+<td>
+<p>59996</p>
+</td>
+<td>
+<p>Resolved an issue related to how estimated effort is reported in the <span class="mc-variable General.ProductName variable">Densify</span> UI and the API.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51139</p>
+</td>
+<td>
+<p>58687</p>
+</td>
+<td>
+<p>Resolved an issue related to an upsizing container request and limit values.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51208</p>
+</td>
+<td>
+<p>60647</p>
+</td>
+<td>
+<p>Resolved an issue related to using the drill down to the Instance Details, when working with customized groupings to filter data on the Public Cloud Optimization Overview page.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51290</p>
+</td>
+<td>
+<p> </p>
+</td>
+<td>
+<p>Resolved an issue related to excluding the AWS Government platforms from the savings plan analysis.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51360</p>
+</td>
+<td>
+<p>61183</p>
+</td>
+<td>
+<p>Resolved an issue related to the following error message: Error updating database. Cause: java.sql.SQLException: Violation of PRIMARY KEY constraint.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+<Accordion title="Densify 14.0.x">
+14.0.0 - October 20, 2021
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-50085</p>
+</td>
+<td>
+<p>50933</p>
+</td>
+<td>
+<p>Resolved an issue related to Azure data collection failing due to ambiguous system matches. Storage accounts details are not used in any <span class="mc-variable General.ProductName variable">Densify</span> analysis and have been removed from both the discovery and details data collection modules.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-51076</p>
+</td>
+<td>
+<p>59008</p>
+</td>
+<td>
+<p>Resolved an issue related to using the Group By feature on the Containers > Data tab.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+
+## Resolved Issues - Densify Connector
+
+Issues resolved in each release are listed below:
+
+<Accordion title="Densify Connector">
+2.2.4.9 - December 21, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/> Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-52760</p>
+</td>
+<td>
+<p>72867</p>
+</td>
+<td>
+<p>Resolved an issue related to the set of cipher suites that are included in the JRE version. The installed JRE version has been updated to AdoptOpenJDK 11.0.10_9.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-53839</p>
+</td>
+<td>
+<p> </p>
+</td>
+<td>
+<p>Hotfix #1--Support shortname matching in <span class="mc-variable Document.VM2 variable">VMware</span> action automation.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CRB-54616</p>
+</td>
+<td>
+<p>90296<br/></p>
+</td>
+<td>
+<p>Hotfix #2--Resolved a <span class="mc-variable Document.VM10 variable">vROps</span> connection issue.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+2.2.4.8 - September 27, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/> Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-52683</p>
+</td>
+<td>
+<p> </p>
+</td>
+<td>
+<p>Resolved an issue related to incomplete execution of Action Automation.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+2.2.4.7 - August 30, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>DC-292</p>
+</td>
+<td>
+<p>71376</p>
+</td>
+<td>
+<p>Updated to include the Spring 5.3.19 jar files, as per <a href="https://nvd.nist.gov/vuln/detail/CVE-2022-22950">CVE-2022-22950</a>. </p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+2.2.4.6 - June 1, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>								Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-51974</p>
+</td>
+<td>
+<p>67782</p>
+</td>
+<td>
+<p>Updated to address an issue related to VMs showing incorrect 'VM Memory HotAdd' status. Densify has also been updated  to resolve this issue.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+2.2.4.5 - March 11, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>								Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-51669</p>
+</td>
+<td>
+<p> </p>
+</td>
+<td>
+<p>Updated to address an issue related to vROps data collection performance issues related to token-based authentication.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+2.2.4.4 - February 4, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>								Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-51237</p>
+</td>
+<td>
+<p> </p>
+</td>
+<td>
+<p>Updated to return a VMware data collection module used for custom integrations.</p>
+<p>You must re-install this version of the connector to get this update.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+2.2.4.3 - January 7, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>								Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-51544</p>
+</td>
+<td>
+<p> </p>
+</td>
+<td>
+<p>Updated to include the Apache 2.17.1 jar files, as per CVE-2021-45046 and CVE-2021-45105, after the issue was initially reported in CVE-2021-44228.</p>
+<p>You must re-install this version of the connector to get this update.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+2.2.4.1 and 2.2.4.2 - January 4, 2022
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>								Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-51544</p>
+</td>
+<td>
+<p> </p>
+</td>
+<td>
+<p>Updated to include the Apache 2.17.1 jar files, as per CVE-2021-45046 and CVE-2021-45105, after the issue was initially reported in CVE-2021-44228.</p>
+<p>To fix this security vulnerability, you must add the 4 files from the v2.17.1 jar to your connector installation. See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="../Densify_Com/Data_Collection_Connector_Installing#Apache_Log4j_Files">Installing the Densify Connector </a></madcap:conditionaltext>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+2.2.4.2 - December 16, 2021
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<td>
+<p>Internal<br/>								Reference</p>
+</td>
+<td>
+<p>Team Support Reference</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>CRB-51544</p>
+</td>
+<td>
+<p> </p>
+</td>
+<td>
+<p>Updated to include the Apache 2.15 jar files, as per CVE-2021-44228.</p>
+<p>You must re-install this version of the connector to get this update.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+

@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: Densify – Subscriptions Status API
+  version: "1.0.0"
+  description: |
+    Return the last on-demand/scheduled trigger and the last webhook post status
+    for a specific subscription. Includes a back-compat alias without platform
+    that behaves like the cloud endpoint. 
+servers:
+  - url: https://{host}
+    variables: { host: { default: api.example.com } }
+tags:
+  - name: Subscriptions
+paths:
+  /subscriptions/{platformType}/{subscriptionRef}/status:
+    get:
+      tags: [Subscriptions]
+      operationId: getSubscriptionStatus
+      summary: Get subscription status (results + webhook)
+      description: |
+        Returns `lastTriggered` (On-Demand/Scheduled Success/Failure with timestamp)
+        and `webHookStatus` (Success/Failure with timestamp) for the specified
+        subscription. 
+      parameters:
+        - name: platformType
+          in: path
+          required: true
+          description: Technology platform (`cloud` or `containers`). 
+          schema: { type: string, enum: [cloud, containers] }
+        - name: subscriptionRef
+          in: path
+          required: true
+          description: Unique subscription identifier. 
+          schema: { type: string }
+      responses:
+        '200':
+          description: Status payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionStatus'
+              examples:
+                sample:
+                  value:
+                    lastTriggered: "On-Demand Success. Thu Jan 02 16:41:52 EST 2020"
+                    webHookStatus: "Failure. … Connection refused … Thu Jan 02 16:41:53 EST 2020"
+        '204': { description: "Success, no content." }
+        '400': { description: Bad request (invalid parameters / logic). }
+        '401': { description: Authentication failed. }
+        '404': { description: Not found / no privileges. }
+        '415': { description: Unsupported media type. }
+        '500': { description: Internal server error. }
+
+  # Back-compat alias: behaves like /subscriptions/cloud/{subscriptionRef}/status.
+  /subscriptions/{subscriptionRef}/status:
+    get:
+      tags: [Subscriptions]
+      operationId: getSubscriptionStatusDefaultPlatform
+      summary: Get subscription status (alias of cloud)
+      parameters:
+        - name: subscriptionRef
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Status payload
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SubscriptionStatus' }
+
+components:
+  schemas:
+    SubscriptionStatus:
+      type: object
+      properties:
+        lastTriggered:
+          type: string
+          description: >
+            Status + timestamp of last request: On-Demand Success/Failure or
+            Scheduled Success/Failure. 
+        webHookStatus:
+          type: string
+          description: >
+            Status + timestamp of last webhook post: Success or Failure. 
+        message:
+          type: string
+          description: Message for the status response (on error). 
+        status:
+          type: integer
+          description: One of 200, 204, 400, 401, 404, 415, 500. 

@@ -1,0 +1,164 @@
+openapi: 3.1.0
+info:
+  title: Densify – Subscriptions Results API
+  version: "1.0.0"
+  description: |
+    On-demand retrieval of the latest personalized subscription results.
+    Alias without platform (`/subscriptions/{subscriptionRef}`) behaves like cloud. 
+servers:
+  - url: https://{host}
+    variables: { host: { default: api.example.com } }
+tags:
+  - name: Subscriptions
+paths:
+  /subscriptions/{platformType}/{subscriptionRef}:
+    get:
+      tags: [Subscriptions]
+      operationId: getSubscriptionResults
+      summary: Get subscription results (on-demand)
+      description: |
+        Returns the current results for the specified subscription.  
+        Notes for on-demand calls: `active`, `webhook`, and `schedule` are ignored (results are always returned).  
+        Optional `divider` controls whether a divider string is included between properties and tags.  
+        `limit` controls the maximum number of returned systems (default 3000; range 1–30000). 
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+        - $ref: '#/components/parameters/subscriptionRef'
+        - $ref: '#/components/parameters/divider'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: Subscription results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResults'
+              examples:
+                sample:
+                  value:
+                    subscription:
+                      name: "Sample Subscription"
+                      description: "A subscription for testing"
+                      created: "Mon Jan 19 13:52:31 EST 2020"
+                      createdBy: "saas"
+                      updated: "Mon Jan 20 14:32:38 EST 2020"
+                      updatedBy: "SaaSadmin"
+                      lastRefreshed: "Mon Jan 20 01:32:59 EST 2020"
+                      owner: "saas"
+                    count: 452
+                    results:
+                      - currentType: "standard_d2"
+                        name: "st01-prepro-edge-307"
+                        recommendationType: "Modernize - Optimal Family"
+                        savingsEstimate: "43.850475"
+                        serviceType: "Virtual Machine"
+                        divider: "------------------------"
+                        "Availability Zone": "eastus+group"
+        '204': { description: No content. }
+        '400':
+          description: Bad Request (e.g., result count exceeded default 3000 without raising `limit`). 
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/StatusMessage' }
+              examples:
+                tooMany:
+                  value:
+                    message: "On-Demand Failure. The return count of 3891 has exceeded object return limit of 3000. Update your call with a new limit value. Wed Jul 29 09:05:15 EDT 2020"
+                    status: 400
+        '401': { description: Authentication failed. }
+        '404': { description: Not found / no privileges. }
+        '415': { description: Unsupported media type. }
+        '500': { description: Server error. }
+
+  # Back-compat alias (acts like /subscriptions/cloud/{subscriptionRef}) 
+  /subscriptions/{subscriptionRef}:
+    get:
+      tags: [Subscriptions]
+      operationId: getSubscriptionResultsDefaultPlatform
+      summary: Get subscription results (alias of cloud)
+      parameters:
+        - $ref: '#/components/parameters/subscriptionRef'
+        - $ref: '#/components/parameters/divider'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: Subscription results (same shape as above)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SubscriptionResults' }
+
+components:
+  parameters:
+    platformType:
+      name: platformType
+      in: path
+      required: true
+      description: Technology platform for the subscription results.
+      schema: { type: string, enum: [cloud, containers] }
+    subscriptionRef:
+      name: subscriptionRef
+      in: path
+      required: true
+      description: Unique subscription identifier.
+      schema: { type: string }
+    divider:
+      name: divider
+      in: query
+      required: false
+      description: |
+        Display divider between properties and tags in each result:
+        `"true"` (default) shows `"divider": "------------------------"`, `"false"` hides it. 
+      schema: { type: string, enum: ["true","false"], default: "true" }
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: |
+        Maximum number of results to return. Default 3000; valid range 1–30000.
+        Only applies to on-demand queries (no limit for scheduled webhook pushes). 
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 30000
+        default: 3000
+
+  schemas:
+    SubscriptionHeader:
+      type: object
+      properties:
+        name: { type: string }
+        description: { type: string }
+        created: { type: string, description: "Datetime string." }
+        createdBy: { type: string }
+        updated: { type: string, description: "Datetime string." }
+        updatedBy: { type: string }
+        lastRefreshed: { type: string, description: "Datetime string; last recommendation analysis." }
+        owner: { type: string, description: "Empty = global subscription; otherwise username." }
+    SubscriptionResultItem:
+      type: object
+      description: |
+        One system recommendation as shaped by the subscription `returnStructure`.  
+        May include `properties`, optional `divider`, and optional `tags`. 
+      properties:
+        divider: { type: string }
+        tags:
+          type: array
+          items: { type: string }
+      additionalProperties: true
+    SubscriptionResults:
+      type: object
+      properties:
+        subscription: { $ref: '#/components/schemas/SubscriptionHeader' }
+        count: { type: integer, description: "Number of recommendations in `results`." }
+        results:
+          type: array
+          items: { $ref: '#/components/schemas/SubscriptionResultItem' }
+      required: [subscription, count, results]
+    StatusMessage:
+      type: object
+      properties:
+        message: { type: string }
+        status:
+          type: integer
+          description: "200, 204, 400, 401, 404, 415, 500."
+      required: [message, status]

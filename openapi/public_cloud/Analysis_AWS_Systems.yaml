@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: Densify API – AWS Systems
+  version: "1.0"
+servers:
+  - url: https://{host}/api/v2
+    variables:
+      host:
+        default: api.example.com
+
+paths:
+  /analysis/cloud/aws/{analysisId}/systems:
+    get:
+      operationId: listAwsAnalysisSystems
+      tags: [AWS Analysis]
+      summary: List all systems included in an AWS analysis
+      description: >
+        Returns all systems (EC2, RDS, ASG, SPOT) that were part of the specified
+        AWS optimization analysis. Some systems may not have recommendations; use
+        `/analysis/cloud/aws/{analysisId}/results` to fetch recommendation details.
+      parameters:
+        - in: path
+          name: analysisId
+          required: true
+          description: Unique reference ID of the AWS analysis.
+          schema: { type: string }
+      responses:
+        "200":
+          description: Array of system summaries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AwsSystemSummary'
+              examples:
+                sample:
+                  value:
+                    - serviceType: "EC2"
+                      resourceId: "i-bc1037760797bc103"
+                      powerState: "Running"
+                      currentType: "t2.medium"
+                      displayName: "ex-prod-ecds-216"
+                      entityId: "008a502d-0a1a-40d4-bb83-42413289fe1e"
+                      href: "/systems/008a502d-0a1a-40d4-bb83-42413289fe1e"
+                    - serviceType: "EC2"
+                      resourceId: "i-00bc71015587bc83"
+                      powerState: "Running"
+                      currentType: "m4.2xlarge"
+                      displayName: "ex-dev-abds-131"
+                      entityId: "0090c272-7e02-4dd5-b7f3-ad4bc225fbd2"
+                      href: "/systems/0090c272-7e02-4dd5-b7f3-ad4bc225fbd2"
+        "401":
+          description: Authentication failed.
+        "404":
+          description: Analysis not found.
+        "500":
+          description: Server error.
+
+components:
+  schemas:
+    AwsSystemSummary:
+      type: object
+      properties:
+        serviceType:
+          type: string
+          enum: [EC2, RDS, ASG, SPOT]
+          description: >
+            Cloud service type. Note: ASGs with maximum group size of 1 still appear
+            as `ASG` here; min/max group fields are not returned by this endpoint.
+        resourceId:
+          type: string
+          description: Cloud provider resource identifier.
+        powerState:
+          type: string
+          description: Power state of the instance/system.
+        currentType:
+          type: string
+          description: Current instance type.
+        displayName:
+          type: string
+          description: AWS-assigned system name.
+        entityId:
+          type: string
+          description: Densify entity ID for the system.
+        href:
+          type: string
+          description: API href to the system resource (see `/systems`).
+      required: [serviceType, resourceId, entityId, href]

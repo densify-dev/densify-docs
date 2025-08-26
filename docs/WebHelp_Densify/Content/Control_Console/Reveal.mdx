@@ -1,0 +1,49 @@
+---
+title: "Reveal"
+---
+
+The Reveal feature provides another way to filter the systems displayed in the Spectrum. Filtering is based on system attributes.
+
+## Viewing the Reveal Window
+
+1. Click the Reveal button located on the right side of console. The Reveal window is displayed.
+2. Drag the Reveal pane, to a suitable location on the screen, so that you can better view the spectrum.
+3. Drag the lower left corner of this pane to resize the pane, again to better view the spectrum.
+
+## Using Reveal
+
+When the Reveal Option is displayed, only attributes that have been enabled for Reveal and have values defined for the environment are displayed. If there are no attributes to display, then an appropriate message is displayed.
+
+Select one of the attribute values to see only the systems that have been tagged with the selected attribute value. The spectrum is updated to hide all systems that do not match the filtering criteria.
+
+<Accordion title="Figure: Reveal Feature">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/0300001A_618x272.png)</Frame>
+</Accordion>
+
+
+Reveal will only show systems that match all or any of the specified Reveal criteria. You will not see the Hosts-VM relationships. Infrastructure groups for the matched systems will always be displayed and all associated sensors for the matched systems will also be displayed. In addition, filtered results will respect Reveal criteria. Reveal will also respect filter settings.
+
+For example, if you filter for a host, you will see that host, any contained VMs and any sensors associated with that host. If you then use Reveal and specify some criteria, only systems within the filtered view that match the Reveal criteria are displayed.
+
+Additionally, the counters shown on the spectrum are updated to show how many systems are displayed out of the total number of systems within the selected environment. This is valuable information if you close the Reveal pane, as it indicates that not all systems are currently displayed. Additionally, the Reveal button indicates that the feature is ON.
+
+## Other Reveal Features
+
+You can configure Reveal to display systems that match any one of multiple criteria or only those that match all criteria. For example, if you select multiple attributes in the Reveal window, and enable All, then only systems that match all values will be displayed.
+
+<Accordion title="Figure: Reveal: All or Any Options">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000177_187x278.png)</Frame>
+</Accordion>
+
+
+You can use Reveal to locate systems that have been tagged with attributes, either automatically or manually.
+
+You can also filter by exclusion, by selecting Does Not Match. When this option is selected, then all systems that do not match any or all of the criteria will be displayed.
+
+Click Reset to clear all Reveal selections and display all systems in the Spectrum. Alternatively, press Ctrl+ F10 to also reset Reveal selections.
+
+Click the close icon, in the upper right corner, to close the Reveal window.
+
+## Reveal and the Timeline
+
+If you change the timeline slider, the same set of systems filtered through Reveal are maintained. For details on the timeline slider, see [Timeline Slider](./Timeline_Slider).

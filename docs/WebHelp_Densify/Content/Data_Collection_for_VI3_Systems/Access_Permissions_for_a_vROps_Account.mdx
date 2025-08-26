@@ -1,0 +1,101 @@
+---
+title: "Access Permissions for a vROps Account"
+---
+
+You require a local user or domain account with permission to log into vRealize Operations, if you are collecting historical workload data from vROps.
+
+Your VMware administrator needs to provide the proper access for your existing user account, that will allow you to view all required data centers.
+
+## User Account
+
+When using Active Directory, the user name for your vROps server may be in one of the following formats:
+
+* User Principal Name (UPN)--This format includes the name of the user in an email address format. When entering the domain user account, specify \<username>@\<domain>@\<authenticated source>. e.g. [Support@Densify.com](mailto:Support@Densify.com).
+
+The authenticated source (@densify in the above example) is defined during your initial set up of the vROps server.
+
+* sAMAccountName--This format was used with earlier versions of Windows and allows LDAP or Active Directory users to log in using the format \<username>@\<authenticated source>.
+
+A local account does not require the authenticated source. A local account is only required if your vROps server is not an authentication source. To be clear, local accounts are those that are stored individually on each user's computer. A domain user account is stored at a central location on your network. For a Windows network, this would be on the Active Directory Domain Controller.
+
+## User Account Permissions
+
+If you are using a domain account, configure the account so that it is associated with the role and group as defined below.
+
+The following instructions are provided as a guideline only. Refer to the documentation provided with your version of vROps for detailed instructions on creating user roles, groups, user accounts and modifying the vROps default administration policy.
+
+1. Create a read-only role:
+
+1. Clone an existing read-only role and name it accordingly, i.e. "Densify\_Role". Provide a description for ease of use and for maintenance.
+2. Edit the role permissions to add the following:
+```
+Administration > REST APIs > All other Read APIs
+```
+
+
+3. Depending on your vROps version and the vCenter versions from which data is collected, you may need additional permissions to collect the metrics required by Densify.
+<Note>
+Not all of the required metrics are collected by default. You may need to configure additional permissions to collect "Guest|Needed memory" or "Memory|Non Zero Active (KB)". Contact your vCenter administrator to make the required changes to your vROps configuration.
+</Note>
+
+
+
+Refer to the following VMware articles for information:
+
+* https://blogs.vmware.com/management/2019/01/enhancements-to-virtual-machine-memory-metrics-in-vrealize-operationsl
+* https://kb.vmware.com/s/article/53164
+* https://kb.vmware.com/s/article/55675
+
+2. Create a user group:
+
+1. Create a user group and name it accordingly, i.e. "Densify\_Group". Provide a description.
+2. Assign the new Densify role to the newly created Densify group.
+3. Give the group access to the following object hierarchies:
+
+```
+vSphere Hosts and Clusters
+```
+
+```
+vSphere Networking
+```
+
+
+
+```
+vSphere Storage
+```
+
+3. Create a user account:
+
+1. Create a user account and name it accordingly, i.e. "Densify\_User". Provide a password.
+2. Assign the new user to the Densify group.
+
+## Creating a New vROps Policy
+
+Optionally, your VMware administrator can create a new policy to collect workload types, that are not normally included in the data collection. This policy is applied at the administrative level, so once created and set as the default, the additional workload types will be collected from all vCenters.
+
+1. In the vCenter Server, navigate to Administration > Policies.
+2. Add a new policy, assigning a name and ensuring the Starts with field is set to the "Default Policy".
+3. Open the Collect Metrics and Properties section and enable the following workload types:
+
+* Network I/O | Packets per second (Host System object type)
+* Network I/O | Packets per second (Virtual Machine object type)
+* Storage Adapter | Highest Latency (Host System object type)
+
+4. Save the new policy and set it as the default.
+
+## Token Based Authentication for vROps
+
+Starting in vROps Manager v8.1, basic authentication when using the REST API is deprecated and disabled in new deployments, by default. vROps installations that have been upgraded will inherit the same properties that were in use and continue to run as before.
+
+Token-based authentication, for vRealize Operations Manager, is supported by the Densify Connector. You can enable the option when creating the connection.
+
+For ease of use, if basic authentication is enabled on the vROps server (via the API), then you can use either basic authentication or token-based when you create the Densify connection, by enabling the setting, "Enable vROps token-based authentication ".
+
+<Accordion title="Figure: Enable Token-Based authentication Setting">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000184_305x120.png)</Frame>
+</Accordion>
+
+
+If basic authentication is disabled on the vROps server (by default in vROps v8.1 or later), then you must use the token-based authentication when your create the Densify connection, by using the UI setting.

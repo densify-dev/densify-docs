@@ -1,0 +1,34 @@
+---
+title: "Analysis: Webhook"
+---
+
+The `/webhook/analysis` resource is used to manage the webhook definition for a Densify analysis. The webhook definition is the path and authentication to a third-party application, where recommendation results are sent when the analysis completes. The receiving application can process the resulting data for downstream consumption. For example, the receiving application can route recommendations to an orchestration engine or distribute reports to instance owners.
+
+You can define the webhook when you initiate data collection and analysis with the `/analysis/<platformType>/<platformSubType>/analyze` request. See the example, [Run AWS data collection and analysis](./Analysis_AWS_Analyze#_runAnalysis) for details of specifying webhook input parameters. Results are posted to the webhook location when the analysis is complete. You can edit or delete a webhook at any time.
+
+## Resource
+
+```
+/webhook/analysis
+```
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="Add Analysis Webhook" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/addAnalysisWebhook" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Delete Analysis Webhook" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/deleteAnalysisWebhook" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Get Analysis Webhook" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/getAnalysisWebhook" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="List Analysis Webhook By Plataform" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/listAnalysisWebhooksByPlatform" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Update Analysis Webhook" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/updateAnalysisWebhook" arrow/>
+</CardGroup>

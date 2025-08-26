@@ -1,0 +1,48 @@
+---
+title: "Reporting Based on Average or Standard VM"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+Cluster capacity can be calculated using either the average VM size of the cluster (which is the default) or a standard VM size that has been defined in the Densify configuration. Using the average VM size allows you to better analyze the capacity when considering the cluster itself. However, using the standard VM size gives you a consistent metric to compare capacity across clusters.
+
+Note that the Private Cloud > Optimization Overview > Densification Analysis, the Private Cloud > Virtual Environment > Opportunity > Clusters with Supply/Demand Mismatch, and the Private Cloud > Virtual Environment > Opportunity > Stacking Ratio Optimization reports are based on Average VM size only.
+
+For the reports that report on both average and standard VM sizes, a setting icon is used to specify your preference. Your preference is user-account specific and is saved between login sessions and across reports. This setting affects both high-level and zoomed detail reports, where both average and standard VM sizes are supported.
+
+<Note>
+A separate standard VM size is defined through the Route and Reserve Demand page. See [Changing the Capacity Unit](../Route_And_Reserve_Demand/Viewing_Available_Capacity#Changing).
+</Note>
+
+
+
+## Calculating Capacity using Average VM
+
+When the average VM size is used for capacity calculations, a report for a specific cluster uses a slot count based on the average VM size for that cluster. A report summarizing the totals across clusters uses the sum of the slot counts for those clusters involved.
+
+A footnote is used to show the weighted average VM size across clusters. This weighted average VM size is used for information purposes only, and not in any calculations.
+
+## Selecting your Capacity Unit
+
+To select between the standard VM and average VM unit:
+
+1. Navigate to the report you want to view for capacity.
+2. Click on the settings icon <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000030.png"/>, located in the toolbar. The Report Options dialog box is displayed.
+<Note>
+This icon is only displayed if the selected report, supports the option to change the VM capacity unit.
+</Note>
+
+
+<Accordion title="Figure: Report Options Dialog Box">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000022.png)</Frame>
+</Accordion>
+3. Select your capacity unit. The Average VM size is the default.
+4. Click Apply.
+5. Both high-level and zoomed detail reports showing capacity are updated, calculating capacity using the chosen capacity unit.
+
+With a zoomed <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> report, the capacity unit is displayed as a footer for reference. For the Private Cloud > Optimization Overview > Reclaimable and Available Capacity zoomed report only, if the Average VM is selected, the overall average VM size across all clusters in scope is included in the footer, but not used in any of the calculations.
+
+6. If displaying a zoomed <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> report and Average VM is selected, click on the link at the bottom to view further details of the average VM size, on a per cluster basis. The total for each metric is weighted based on the VM count for each cluster, for the environment total and for the overall total. "-" signifies that data for the metric is not available.
+<Accordion title="Figure: Click here to see Average VM details per cluster">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000027_590x162.png)</Frame>
+</Accordion>
+7. Navigate to other reports to see the capacity using the selected capacity unit.

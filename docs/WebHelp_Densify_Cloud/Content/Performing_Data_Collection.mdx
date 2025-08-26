@@ -1,0 +1,31 @@
+---
+title: "Overview"
+---
+
+Data collection must be performed to collect the necessary configuration and utilization data from each of your environments. Data collection can be configured for the both cloud and container environments.
+
+A number of resources are available to support planning for data collection activities. Contact [Support@Densify.com](mailto:Support@Densify.com) for additional information.
+
+## Containers
+
+Use the data forwarder to collect and send your container metrics from Prometheus to your Densify instance for analysis. You can configure the data forwarder for:
+
+* [Single Cluster](./Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview#Single)--In this configuration data is collected from a single Kubernetes cluster. The data forwarder is deployed inside the cluster.
+* [Multiple Clusters](./Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview#Multiple)--In this configuration data is collected from multiple Kubernetes clusters that are monitored by Prometheus or a supported observability platform. The data forwarder does not need to be within the cluster but must have access Prometheus or the observability platform
+
+See [Container Data Collection Prerequisites](./Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Prerequisites) before deploying the data forwarder.
+
+## Public Cloud
+
+Refer to the following prerequisites to configure a user account that can then be used for data collection:
+
+* [AWS Data Collection Using a CloudFormation Template](./Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template). Densify's CloudFormation template automates the process.
+* [AWS Data Collection Prerequisites for an IAM Role (CloudWatch only)](./Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_).
+* [Microsoft Azure Data Collection Prerequisites for a Service Principal](./Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal)
+* [Google Cloud Platform Data Collection Prerequisites](./Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites)
+
+Use the [Cloud Connections](./Densify_Com/Using_the_Public_Cloud_Connection_Wizard) wizard to create the connection directly to your cloud environments to collect workload and configuration data.
+
+## API
+
+Allows you to create cloud connections, collect and analyze workload data from supported public cloud providers. Refer to the [API documentation](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/APIHome_Cloud) for details.

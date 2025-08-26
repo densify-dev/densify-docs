@@ -1,0 +1,560 @@
+---
+title: "Node Group Analysis Tab"
+sidebarTitle: "Node Group Analysis Table"
+---
+
+The Node Group Analysis report provides a summary of your node group infrastructure. Visibility into your node groups helps identify resource allocation and configuration issues.
+
+
+<Frame caption="Figure: Locating the Node Group Analysis Tab">
+![](/images/docs-kubex/Content/Kubex/03000125_650x242.png)
+</Frame>
+
+
+The Node Group Analysis page displays key metrics that help you identify nodes that are CPU or memory saturated. Saturated resources can lead to CPU throttling or OOM kills for hosted containers. Imbalances in CPU or memory utilization across nodes may indicate future saturation and lead to performance and stability issues in containers.
+
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", gap:"20px"}}>
+  <div style={{ width: "300px", minWidth: "300px" }}>
+    <Frame caption="Figure: Last Day vs Last 7 Days">	
+      <img src="/images/docs-kubex/Content/Kubex/03000207_258x223.png" />
+    </Frame>
+  </div>  
+  <div>
+    <p>The Nodes groups discovered in the last day are displayed in the tree viewer.</p>
+
+    <p>The data for these nodes has been aggregated and analyzed based on the last 7 days of collected data to provide more realistic utilization reports and charts.</p>
+  </div>  
+</div>  
+
+Node group data is displayed in a detailed tabular report, as shown below. You can further drill down to the [Nodes](/docs-kubex/Content/Kubex/Nodes_Tab) page to see utilization details for each of the nodes in the group.
+
+You can create filters at the head of each column or using the flyout menu on the right side of the page. See [Using Filters](/docs-kubex/Content/Kubex/Using_Filters). This report includes all available columns and can be customized to create a tailored view.
+
+## Pre-Configured Views
+
+The following pre-configured tables are provided to quickly show various issues in your environment. Specific filters have been set and selected columns are displayed to highlight the specified risk or waste issue.
+
+The following system views provide commonly used reports:
+
+
+
+<Accordion title="Table: Pre-Configured Views">
+| System View | View | Description |
+| --- | --- | --- |
+| Default View | N/A | This is the most commonly used set of columns that provide a summary view of your node groups. CPU and memory utilization as a percentage of the total provide a visual indicator of the available capacity. |
+| Capacity | N/A | The columns have been selected to show you how effectively your node group resources are being used. |
+| Health | N/A | This view focuses the overall health of your nodes. The performance of your node groups affects the containers that are being hosted and can be wasteful if resources are under-allocated. |
+| Waste | N/A | The columns have been selected to quickly show wasted resources and money-saving recommendations. |
+</Accordion>
+
+
+
+
+## Node Details Table
+
+The following table describes all of the available columns. The pre-configured views, listed above and the default view contain a subset of these columns. You can enable or disable any one or more of the following columns to create your version of the report.
+
+
+
+<Accordion title="Table: Node Group Default Report">
+<table style={{ width: '100%' }}>
+    <thead>
+        <tr>
+            <th scope="col" style={{ width: '169px', verticalAlign: 'middle' }}>
+                Column Name
+            </th>
+            <th scope="col" style={{ width: '75%', verticalAlign: 'middle' }}>
+                Description
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Cluster</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The cluster name containing the node group.</p>
+                <p>By default this table is sorted Cluster then Node Groups, in alphabetic order.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Node Group</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The node group name.</p>
+                <p>For nodes that do not belong to a node group, their node group value will be \<<span>cluster-name</span>>-default”.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Primary Node Type</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The most common instance type. For example, if there are 20 r6i.large instances and 10 m6i.large instances, the primary node type is r6i.large.</p>
+                <p>In cases where the instance type cannot be determined (i.e. bare-metal, private cloud environments) the primary node type is indicated as: CPU x memory size, e.g. 8x16.</p>
+                <p>A dash (-) indicates that node instance details could not be determined.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Unique Nodes</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The total number of unique nodes that are part of this node group, during the past 7 days of history. The value of node ID is used to determine if a node is unique.</p>
+                <p>The number listed in this column is a hyperlink that takes you to the <span>Nodes</span> details tab. Only the systems, as indicated by the count in this table cell, are shown on the details page. See the <a href="./Nodes_Tab"><u>Nodes Tab</u></a></p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Average No. of Nodes</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The average number of nodes in the node group, during the past 7 days of history for in-service instances with non-zero workload.</p>
+                <p>For clusters (i.e. \<<span>cluster-name</span>>-default) that are composed of nodes that are not part of a node group, the average number of nodes is calculated as: Total Node Hours/Total Hours in time period (7 days).</p>
+                <p>For example, if there are 20 nodes, that are not part of any node group, and in total there are 200 node hours of utilization, then: 200 node hours/168 hours in 7 days = 1.19 Avg number of nodes.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Total Node Hours</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The cumulative number of hours that all nodes in the group have been up and running, with CPU or memory utilization.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>No. of Nodes with CPU Saturation</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The number of nodes with peak CPU utilization above the saturation threshold (default: 95%), during the past 7 days of history.</p>
+                <p>The saturation threshold value is configurable. Contact <span>Support@Densify.com</span> for details.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Nodes with CPU Saturation (%)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The percentage of nodes with peak CPU utilization above the configurable, saturation threshold (default: 0%) during the past 7 days of history. The value is expressed as a percentage of the total number of nodes. If the value exceeds the threshold the cell is shaded red.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>CPU - Node Balance Ratio</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The ratio of the busiest (top 10%) to least busy (bottom 10%) nodes within a node group. Use this value to assess the distribution of CPU resources across the nodes in a cluster.</p>
+                <p>A value of between 1 to 1.5 is ideal. If the ratio exceeds a value of 2 the cell is shaded to clearly indicate that resource allocation should be investigated. This threshold value is configurable. Contact <span>Support@Densify.com</span> for details.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>No. of Nodes with Memory Saturation</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The number of nodes with memory utilization above the saturation threshold, during the past 7 days of history.</p>
+                <p>The saturation threshold value is configurable. Contact <span>Support@Densify.com</span> for details.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Nodes with Memory Saturation (%)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The percentage of nodes with memory utilization above the configurable, saturation threshold (default: 0%) during the past 7 days of history. The value is expressed as a percentage of the total number of nodes. Calculated as: Node hours with saturated memory/total node hours.</p>
+                <p>If the value exceeds the threshold the cell is shaded red.</p>
+                <p>The saturation threshold value is configurable. Contact <span>Support@Densify.com</span> for details.</p>
+                <p>Node Group saturation calculations use working set memory, if available. If working set memory is not available, then (memory_bytes/capacity_memory) is used.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Memory - Node Balance Ratio</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The ratio of the busiest (top 10%) to least busy (bottom 10%) nodes within a node group. Use this value to assess the distribution of memory resources across the nodes in a cluster.</p>
+                <p>A value of between 1 to 1.5 is ideal. If the ratio exceeds a value of 4 the cell is shaded to clearly indicate the resource allocation should be investigated.</p>
+                <p>The threshold value is configurable. Contact <span>Support@Densify.com</span> for details.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>No. of Container Manifests</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The number of container manifests in the node group being analyzed during the last analysis run.</p>
+                <p>Only containers that were part of the selected node group AND not part of another node group, in the past 7 days, are counted.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Container Manifests with Restarts - Last Day</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The number of container manifests in this node group with containers that were restarted in the last day.</p>
+                <p>Only containers that were part of the selected node group AND not part of another node group, in the last day, are counted.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Container Manifests with Memory Limit Events - Last Day</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The number of container manifests in the node group which have exceeded the working set memory limit, in the last day.This value is a hyperlink that takes you to the <a href="./AI_Analysis_Details_Table"><span>AI Analysis Details</span> page</a>, filtered to show the container manifests, in the selected node group.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Primary Node Type CPU (Cores)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The total CPU allocation of the primary node/instance type.</p>
+                <p>If a primary node has not been identified use the value of capacity_cpu.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Primary Node Type Memory (GB)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The total memory allocation of the primary node/instance type.</p>
+                <p>If a primary node has not been identified use the value of capacity_mem, converted to GB.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>No. of Nodes at Max Pod Capacity</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The number of nodes in the node group where the peak number of pods that can be run is equal to the number of allocatable pods during the past 7 days of history</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Allocatable CPU Capacity (Cores)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>This is the average number of cores available for your container workloads.</p>
+                <p>This value is determined from the number of hours each node was running in the last 7 days and using that value to calculate how many cores are available, on average.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>CPU Request <br />(% Capacity)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The percentage of total allocatable CPU capacity that is already allocated to CPU requests.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Peak CPU Utilization (%)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The peak CPU utilization of the busiest node in the group.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Average CPU Utilization (%)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The average CPU utilization, during the past 7 days of history.</p>
+                <p>This value is weighted by the number of hours that each node in the group ran. The CPU utilization is multiplied by the number of running hours for the node before calculating the average.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Allocatable Memory Capacity (GB)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>This is the average amount of memory available for your container workloads.</p>
+                <p>This value is determined from the number of hours each node was running in the last 7 days and using that value to calculate how much memory is available on average.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Memory Request (% Capacity)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The percentage of allocatable memory capacity that is allocated to memory requests.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Peak Memory Utilization (%)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The peak memory utilization of the busiest node in the node group</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Average memory Utilization (%)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The average memory utilization during the past 7 days of history.</p>
+                <p>This value is weighted by the number of hours that each node in the group ran. The memory utilization is multiplied by the number of running hours for the node before calculating the average.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Primary Constraint</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Indicates the reason that more containers cannot be added to this node group. The following values are evaluated and whichever has the largest value is identified as the primary constraint:</p>
+                <ul>
+                    <li>CPU Request--Based on the value of CPU Request (Capacity %)</li>
+                    <li>CPU Utilization--Based on the value of Average CPU Utilization (%)</li>
+                    <li>Memory Request--Based on the value of Memory Request (Capacity %)</li>
+                    <li>Memory Utilization--Based on the value of Average Memory Utilization (%)</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Primary Node Type CPU (Cores)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>If a primary node type has been defined, then the number of cores is retrieved from the cloud model. Other nodes in node group may have different amounts of memory.</p>
+                <p>If a primary node type has not been defined, use capacity_cpu.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Primary Node Type Memory(GB)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>If a primary node type has been defined, then the number of CPU cores is retrieved from the cloud model. Other nodes in node group may have different numbers of CPUs.</p>
+                <p>If a primary node type is not been defined, use capacity_mem.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Fully Optimized Node Family</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Use this value to determine if your nodes are utilized as efficiently as possible. Both CPU and memory utilization are used to determine this ratio. Additionally, the following factors are taken into consideration when calculating the value.</p>
+                <ul>
+                    <li>Kubernetes Headroom-This is the CPU and memory allocation required by Kubernetes to manage the containers.</li>
+                    <li>Node Type-The node is categorized as one of “Compute Optimized", “General Purpose”, or “Memory Optimized”.</li>
+                </ul>
+                <p>If the node type is not one “Compute Optimized", “General Purpose”, or “Memory Optimized” then this value cannot be determined and is indicated as a dash (-).</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Surplus CPUs (Cores)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The number of surplus cores currently provisioned.</p>
+                <p>The surplus number of CPU cores for the node group, based on how many CPUs are utilized as compared to the total allocatable number of CPUs.</p>
+                <p>If the node type is not one “Compute Optimized", “General Purpose”, or “Memory Optimized” then this value cannot be determined and is indicated as a dash (-).</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Surplus Memory (GB)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The amount of surplus memory currently provisioned.</p>
+                <p>The surplus memory of the node group based on how much memory is utilized as compared to the total allocatable amount of memory.</p>
+                <p>If the node type is not one “Compute Optimized", “General Purpose”, or “Memory Optimized” then this value cannot be determined and is indicated as a dash (-).</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Estimated Waste ($/Month)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>This is the estimated wasted spend per month. If the value is negative your infrastructure may be under-provisioned.</p>
+                <p>Calculated as: Fully Optimized Estimated Cost - Current Estimated Cost</p>
+                <p>If the node type is not one “Compute Optimized", “General Purpose”, or “Memory Optimized” then this value cannot be determined and is indicated as a dash (-).</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>No. of Container Manifests</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The number of container manifests in the node group being analyzed during last analysis run.</p>
+                <p>Only containers that were part of the selected node group AND not part of another node group, in the past 7 days, are counted.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p><span>Total</span></p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The totals at the bottom of the table indicate the total for each column, for all pages, if you have a multi-page report.</p>
+                <p>Vertical scroll bars may be displayed to scroll through the entire list, so lower rows may be momentarily hidden behind the row of Totals.</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</Accordion>
+
+
+
+
+## GPU Details
+
+The report provides the following additional GPU details for a node group.
+
+
+
+<Accordion title="Table: Node Group Details Table">
+<table style={{ width: '100%' }}>
+    <thead>
+        <tr>
+            <th scope="col" style={{ width: '119px', verticalAlign: 'middle' }}>
+                <p>Column</p>
+            </th>
+            <th scope="col" style={{ width: '394px', verticalAlign: 'middle' }}>
+                <p>Description</p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>No. of Nodes with Underused GPU</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The number of nodes in the selected node group with underutilized GPU capacity, that could be allocated to other containers.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>No. of Nodes with Underused GPU (%)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The percentage of nodes in the selected node group with underutilized GPU capacity, relative to all nodes with allocatable GPU resources.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>GPU - Node Balance Ratio</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The ratio of the busiest (top 10%) to least busy (bottom 10%) GPUs within a node group. Use this value to assess the distribution of GPU resources across the nodes in a cluster.</p>
+                <p>A value of between 1 to 1.5 is ideal. If the ratio exceeds a value of 4 the cell is shaded to clearly indicate resource allocation should be investigated.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>No. of Nodes with Underused GPU Memory</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The number of nodes in the selected node group with underutilized GPU memory capacity, that could be allocated to other containers.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>No. of Nodes with Underused GPU (%)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The percentage of nodes in the selected node group with underutilized GPU memory capacity, relative to all nodes with allocatable GPU memory resources.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>GPU Memory - Node Balance Ratio</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The ratio of the busiest (top 10%) to least busy (bottom 10%) GPUs within a node group. Use this value to assess the distribution of GPU memory resources across the nodes in a cluster.</p>
+                <p>A value of between 1 to 1.5 is ideal. If the ratio exceeds a value of 4 the cell is shaded to clearly indicate resource allocation should be investigated.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Primary Node Type GPUs (GPUs)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The number of GPUs that is available on the primary node type.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Primary Node Type GPU Memory (GB)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The amount of GPU memory that is available on the primary node type.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Allocatable GPU (GPUs)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The node group's available GPU resources that can be allocated to containers.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Average GPU Utilization (%)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The node group's average GPU utilization. This is an aggregate of the node metrics</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Unallocated GPUs (GPUs)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Available GPU resources that have not been allocated.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Allocatable GPU Memory (MB)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>The available GPU memory that can be allocated to containers.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Peak GPU Memory Utilization (%)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>This is the peak GPU memory usage, as a percentage of the allocated GPU memory value.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>Average GPU Memory Utilization (%)</p>
+            </td>
+            <td style={{ verticalAlign: 'middle' }}>
+                <p>This is the average GPU memory usage, as a percentage of the allocated GPU memory value.</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</Accordion>
+
+
+Please observe the following for all node data:
+
+<ul>
+  <li>Missing data is indicated with a dash (-).</li>
+  <li>A footnote indicates that the data is derived from the past 7 days of history. Nodes appear in the tree viewer immediately after data collection (last day), but values in some columns are based on 7 days of aggregated data.</li>
+</ul>
+
+## Utilization Charts
+
+The last section provides utilization charts that show hourly min/max and sustained activity for the selected node group. You can also expand any chart to the modal view and select other metrics for review. See [AI Analysis Details Table](/docs-kubex/Content/Kubex/AI_Analysis_Details_Table) for details on using these charts to review workload data.
+
+
+<ul>
+  <li>CPU Utilization (%)</li>
+  <li>Memory Utilization (%)</li>
+  <li>Actual Memory Utilization (%)</li>
+  <li>Number of Nodes</li>
+</ul>
+

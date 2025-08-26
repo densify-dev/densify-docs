@@ -1,0 +1,109 @@
+openapi: 3.1.0
+info:
+  title: Densify – Container Analyses API
+  version: "1.0.0"
+  description: |
+    Lists all optimized **container-based** analysis entities in your Densify system.
+    Each entity typically corresponds to the container resources within a cluster that Densify collected.
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: api.example.com
+tags:
+  - name: Container Analysis
+paths:
+  /analysis/containers:
+    get:
+      tags: [Container Analysis]
+      operationId: listContainerAnalyses
+      summary: List all container analyses
+      description: >
+        Returns a collection of container analysis entities with links to the entity,
+        recommendations, and status resources. Supports filtering by exact or substring match
+        on `analysisName`.
+      parameters:
+        - name: analysisName
+          in: query
+          required: false
+          description: Exact match filter for the analysis name (often the cluster name).
+          schema:
+            type: string
+        - name: analysisName_like
+          in: query
+          required: false
+          description: Substring match filter for the analysis name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of container analysis entities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContainerAnalysis'
+              examples:
+                sample:
+                  summary: Example (abbrev.)
+                  value:
+                    - analysisId: "3d4ba999-cbd8-40b8-9998-574be6824a97"
+                      analysisName: "DEN-east-321-45b"
+                      analysisCompletedOn: 1510180908845
+                      href: "/analysis/containers/kubernetes/3d4ba999-cbd8-40b8-9998-574be6824a97"
+                      analysisResults: "/analysis/containers/kubernetes/3d4ba999-cbd8-40b8-9998-574be6824a97/results"
+                      analysisStatus: "/analysis/containers/kubernetes/3d4ba999-cbd8-40b8-9998-574be6824a97/status"
+                    - analysisId: "97cfcb18-37a4-4f49-885b-8974eb2ceb31"
+                      analysisName: "DEN-east-432-2"
+                      analysisCompletedOn: 1543346324266
+                      href: "/analysis/containers/kubernetes/97cfcb18-37a4-4f49-885b-8974eb2ceb31"
+                      analysisResults: "/analysis/containers/kubernetes/97cfcb18-37a4-4f49-885b-8974eb2ceb31/results"
+                      analysisStatus: "/analysis/containers/kubernetes/97cfcb18-37a4-4f49-885b-8974eb2ceb31/status"
+        '400':
+          description: Invalid parameters.
+        '401':
+          description: Authentication failed.
+        '404':
+          description: Resource not found.
+        '500':
+          description: Internal server error.
+
+components:
+  schemas:
+    ContainerAnalysis:
+      type: object
+      description: Container analysis entity (typically scoped to a cluster).
+      properties:
+        analysisId:
+          type: string
+          description: Unique identifier for the container analysis entity.
+        analysisName:
+          type: string
+          description: Name given to the container analysis (often the cluster name).
+        analysisCompletedOn:
+          type: integer
+          format: int64
+          description: Milliseconds timestamp when the last analysis completed; "0" if never.
+        href:
+          type: string
+          description: Link to the analysis entity resource.
+        analysisResults:
+          type: string
+          description: Link to the container recommendations for the analysis.
+        analysisStatus:
+          type: string
+          description: Link to the analysis status resource.
+        message:
+          type: string
+          description: Error message (only on error).
+        status:
+          type: integer
+          description: HTTP-like status code for errors (200, 400, 401, 404, 500).
+      required:
+        - analysisId
+        - analysisName
+        - analysisCompletedOn
+        - href
+        - analysisResults
+        - analysisStatus

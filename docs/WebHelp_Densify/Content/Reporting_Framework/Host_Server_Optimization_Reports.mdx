@@ -1,0 +1,40 @@
+---
+title: "Host Server Optimization Reports"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The Host Server Optimization reports show the number of hosts that are considered excess based on your current workload and policy settings.
+
+The determination of excess capacity is based on the number of host servers that are required to host the current workloads and the operational policy including HA requirements. The number of surplus servers is then calculated by taking the difference between what is required and the total available slots, based on allocated resources. A negative value represents a shortfall in the number of host servers.
+
+Surplus host servers in a cluster can be reduced by:
+
+* running more workloads,
+* opening clusters that have been closed early or unnecessarily and then running more workloads,
+* redeploying excess servers to other environments, or
+* decommissioning excess servers
+
+<Note>
+These reports provide details for the scope of systems defined by your global filter. See [Using the Global Filter](../Densify_Com/Using_the_Global_Filter) for details.
+</Note>
+
+
+
+## Understanding the Reports
+
+* Summary--Shows a breakdown of capacity expressed in VM units relative to the scope. The displayed value is the number of available hosts if your VM sizing and placement are optimized. Available CPUs and memory are also shown.
+
+Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the full version of the charts.
+
+The first chart shows the number of surplus host servers by cluster. The second chart shows the surplus as a percentage of the total, also by cluster. These values are shown on the tiles at the top of the viewer.
+
+The yellow bars indicate surplus infrastructure and the red bars, with negative values, indicate shortfall of available capacity. This report highlights the opportunity to make the environment more efficient or to reduce risk if there is a shortfall in the number of servers in some parts of the environment.
+
+* Top Clusters with Surplus Host Servers--Shows a tabular view of this report that provides a breakdown summary of how resources are allocated and the surplus capacity that could be made available if VMs are right-sized. The table is sorted by the number of surplus hosts, essentially reclaimable capacity, highlighted in yellow.
+* History of Surplus Host Servers--Shows historical view of the number surplus hosts. Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the full version of the charts.
+
+The first chart shows the current number of physical servers that have been identified as surplus and the second chart shows the same value, but as a percentage of the total available physical servers. If values go below 0, the axis of both the current and 90-day historical chart is updated, as required, to show the negative values.
+
+These charts show that, as VMs are created or right-sized, the available supply drops. These trends can be easily seen on the 90-day historical view.
+
+In a new environment, without 90 days of historical data, you will see whatever data has been collected, to date. In an environment with more than 90 days of historical data, only the last 90 days will be displayed.

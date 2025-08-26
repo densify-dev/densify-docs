@@ -1,0 +1,79 @@
+---
+title: "Data Collection for Containers"
+---
+
+## 
+
+## Data Collection for Containers
+
+Densify collects and analyzes your container configuration and utilization data and provides resizing recommendations to run your container-based applications on the correct infrastructure.
+
+The Densify data forwarder is a container that collects data from Kubernetes using a Prometheus server and then forwards that data to Densify. You can quickly deploy the data forwarder and all of the required prerequisite software using a Helm chart. See [Kubex Automation Stack Helm Chart](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack).
+
+The data forwarder can also be configured to use a commercially-available observability platform that collects data from multiple clusters and forwards that data to Densify. Refer to Densify's [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md) for configuration details.
+
+## Data Collection from an In-Cluster Prometheus Deployment
+
+When setting up data collection from in-cluster Prometheus deployments, the data forwarder needs to be deployed in every cluster that will be managed by Densify.
+
+Use one of the following options:
+
+<Accordion title="Standard Prometheus">
+<Accordion title="Figure: Container Data Collection From Within a Single Cluster">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000282_582x179.png)</Frame>
+</Accordion>
+
+Deploy the data forwarder using a Helm Chart. See [Kubex Automation Stack Helm Chart](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack).
+</Accordion>
+<Accordion title="Authenticated Prometheus">
+Deploy the data forwarder with Authenticated Prometheus (e.g., OpenShift). See [Example: bearer-openshift](https://github.com/densify-dev/container-data-collection/tree/main/single-cluster/examples/bearer-openshift)
+</Accordion>
+
+## Data Collection from an Observability Platform
+
+<Accordion title="Amazon Managed Prometheus">
+In this example the data forwarder is setup in an EKS cluster to connect to Amazon Managed Prometheus (AMP) and send container data to Densify on an hourly basis. Using an EKS cluster allows you to use EKS's ability to associate an IAM role with a Kubernetes service account and configure your pods to use the service account. This is the preferred way to connect to AMP.
+
+<Accordion title="Figure: Container Data Collection Using EKS-AMP">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000276_587x179.png)</Frame>
+</Accordion>
+
+* Supports EKS as well as other Amazon Kubernetes deployments
+* Deploy the data forwarder with AMP: https://github.com/densify-dev/container-data-collection/tree/main/multi-cluster/examples/amp
+</Accordion>
+<Accordion title="Azure Managed Prometheus">
+Azure Monitor managed service for Prometheus can be used when deploying AKS clusters.
+
+<Accordion title="Figure: Container Data Collection Using Azure Monitor with Managed Prometheus">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000277_588x182.png)</Frame>
+</Accordion>
+
+* Supports Azure Managed Service for Prometheus (AzMP) for container data collection
+* Deploy the data forwarder with AzMP: https://github.com/densify-dev/container-data-collection/tree/main/multi-cluster/examples/azmp
+</Accordion>
+<Accordion title="Other Observability platforms that support the Prometheus API with basic authentication">
+The data forwarder can be setup to connect to Prometheus or an observability platform that supports the Prometheus API with HTTP basic authentication and sends container data from multiple clusters to Densify on an hourly basis.
+
+<Accordion title="Figure: Container Data Collection from an Observability Platform">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000284_590x163.png)</Frame>
+</Accordion>
+
+* Supports Prometheus with Basic Authentication (e.g., Grafana Cloud)
+* Deploy the data forwarder with using an observability platform: https://github.com/densify-dev/container-data-collection/tree/main/multi-cluster/examples/basic
+</Accordion>
+
+## Image Pull Policy
+
+When deploying the data forwarder ensure that the same version of the forwarder is deployed to all clusters.
+
+The data forwarder has the following 2 settings:
+
+* image: densify/container-optimization-data-forwarder:4
+* imagePullPolicy: Always
+
+### Updating the Image
+
+1. Update the image tag to "4".
+2. Ensure the imagePullPolicy is set to "Always"
+
+Once the tag is set to the current version and with the imagePullPolicy set to "Always" the data forwarder instances will be updated automatically, if the image is updated.

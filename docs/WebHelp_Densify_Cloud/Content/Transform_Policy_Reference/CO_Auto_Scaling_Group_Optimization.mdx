@@ -1,0 +1,703 @@
+---
+title: "Auto Scaling Group Optimization [Cloud Optimization]"
+---
+
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The policy settings in this group are related to optimizing auto scaling groups.
+
+## Minimum Scale Group Size
+
+<Accordion title="Table: Minimum Scale Group Size">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor87"></a>This setting defines the minimum allowed number of EC2 instances to be recommended for an ASG.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>An integer indicating the minimum scale group size.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## - Maximum Increase  <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Policy_Reference_Guide/0300000C_25x28.png"/>
+
+<Accordion title="Table: - Maximum Increase">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor88"></a>This setting defines the maximum allowed increase percentage for the recommended minimum group size, based on the existing minimum group size.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Percentage of the existing minimum group size.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+</Accordion>
+
+## - Maximum Decrease  <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Policy_Reference_Guide/0300000C_25x28.png"/>
+
+<Accordion title="Table: - Maximum Decrease">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor89"></a>This setting defines the maximum allowed decrease percentage for the recommended minimum group size, based on the existing minimum group size.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Percentage of the existing minimum group size.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>This setting cannot result in the group falling below the "Minimum Scale Group Size".</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+</Accordion>
+
+## Maximum Scale Group Size
+
+<Accordion title="Table: Maximum Scale Group Size">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor90"></a>This setting defines the maximum allowed number of EC2 instances to recommend for an ASG.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>An integer indicating the maximum group size.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+</Accordion>
+
+## - Headroom for Maximum Group Size  <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Policy_Reference_Guide/0300000C_25x28.png"/>
+
+<Accordion title="Table: - Headroom for Maximum Group Size">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor91"></a>This setting defines the maximum group size increase percentage to recommend, on top of the existing maximum group size.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Percentage of the "Maximum Scale Group Size" value.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## - Maximum Increase  <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Policy_Reference_Guide/0300000C_25x28.png"/>
+
+<Accordion title="Table: - Maximum Increase">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor92"></a>This setting defines the maximum allowed increase percentage for the recommended maximum group size, based on the existing maximum group size.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Percentage of the existing maximum group size.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## - Maximum Decrease  <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Policy_Reference_Guide/0300000C_25x28.png"/>
+
+<Accordion title="Table: - Maximum Decrease">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor93"></a>This setting defines the maximum allowed decrease percentage for the recommended maximum group size, based on the existing maximum group size.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Percentage of the existing maximum group size.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## Sizing Strategy
+
+<Accordion title="Table: Sizing Strategy">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor94"></a>
+        This setting defines the strategy to use when sizing EC2 or VM&nbsp;instances, within an ASG or <span class="mc-variable Document.VMSS variable">VM Scale Set</span>.<br/>
+        For "CPU and Memory" and "CPU only" options, the settings, listed below, indicated as "Custom..." are pre-defined in the extension. You can select "Custom" and then use the settings below to change the predefined values.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Select "CPU&nbsp;and Memory", "CPU&nbsp;Only", or "Custom".</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        If "CPU and Memory" or "CPU Only" is selected, the corresponding limits are based on the "Sizing Limit" setting below and the corresponding scoring strategy is based on the "Sizing Strategy" below.<br/>
+        If "Custom" is selected, then the advanced settings below, are used.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## - Custom Sizing Input Workloads <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Policy_Reference_Guide/0300000C_25x28.png"/>
+
+You can overide some of these policy settings. Overrides are independent of the "Sizing Strategy" pick list; i.e. regardless of the value selected here the override, if provided will be applied when the analyses are run. See [Scale Group Overrides](../Densify_Com/Overriding_Cloud_Recommendations.htm#Scale_Group_Overrides) for details of options and for configuring overrides.
+
+<Accordion title="Table: - Custom Sizing Input Workloads">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor95"></a>
+        This setting defines the workload types to use for determining the optimal instance type for an ASG or <span class="mc-variable Document.VMSS variable">VM Scale Set</span>. This setting is used when "Custom" is selected for "Sizing Strategy".
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>A colon-separated list of workload types.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>CPU_CINT2006Rate_Utilization;Raw_Mem_Utilization</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## - Custom Sizing Output Workloads <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Policy_Reference_Guide/0300000C_25x28.png"/>
+
+<Accordion title="Table: - Custom Sizing Output Workloads">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor96"></a>
+        This setting defines the workload types to use for displaying recommendation workload charts. This setting is used when "Custom" is selected for "Sizing Strategy".
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>A colon-separated list of workload types.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>CPU_Util_Predicted_Day; Mem_Utilization_As_Pct</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## - Custom Sizing Backfill Workloads <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Policy_Reference_Guide/0300000C_25x28.png"/>
+
+[CRB-53279] When analyzing the list of ASG candidates, Densify uses the representative memory workload: ASG parent (ECS/EKS), busiest child, ASG, and workload days policy setting. If the ASG does not have memory data , the simulation does the following:
+
+* The ASG sizing extension uses memory constraints when running the simulation;
+* Fall back memory that is defined through this policy setting is used;
+* The simulation accounts for memory even if memory usage data is not available for ASG
+
+<Accordion title="Table: - Custom Sizing Backfill Workloads">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor97"></a>This setting defines the workload types to use for backfilling resource utilization metrics. This setting is used when "Custom" is selected for "Sizing Strategy".
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>A colon-separated list of workload types.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>The specified list of workloads must be the same as those defined for the <a href="#Cust_Input_Sizing">-Custom Sizing Input Workloads</a>.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        Use the Transform_CloudECS tag if available. It is published for ASGs that are children of ECS, otherwise use Mem_Cloud<br/>
+        Mem Utilization As Pct, !Mem Cloud
+      </td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## - Custom Sizing Backfill Parent Workloads <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Policy_Reference_Guide/0300000C_25x28.png"/>
+
+<Accordion title="Table: - Custom Sizing Backfill Parent Workloads">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor98"></a>This setting defines the workload types to use for backfilling parent resource utilization metrics. This setting is used when "Custom" is selected for "Sizing Strategy".
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>A colon-separated list of workload types.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>The specifed list of workloads must be the same as those defined for the <a href="#Cust_Input_Sizing">-Custom Sizing Input Workloads</a>.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Mem Utilization As Pct, !Transform_CloudECS</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## - Custom Sizing Scoring  <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Policy_Reference_Guide/0300000C_25x28.png"/>
+
+<Accordion title="Table: - Custom Sizing Scoring">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor99"></a>This setting defines the scoring strategy to use when sizing EC2 or VM instances, within an ASG or <span class="mc-variable Document.VMSS variable">VM Scale Set</span>. This setting is used when "Custom" is selected for "Sizing Strategy".
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>A colon-separated list of scoring strategies.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## - Custom Sizing Limits  <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Policy_Reference_Guide/0300000C_25x28.png"/>
+
+<Accordion title="Table: - Custom Sizing Limits">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor100"></a>This setting defines the scoring limit to use when sizing EC2 or VM instances, within an ASG or <span class="mc-variable Document.VMSS variable">VM Scale Set</span>. This setting is used when 'Custom' is selected for 'Sizing Strategy'.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>A colon-separated list of scoring limits.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>70;70</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## Sizing Limit - Scoring Strategy
+
+<Accordion title="Table: Sizing Limit - Scoring Strategy">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor101"></a>This setting defines the scoring strategy to use when sizing EC2 or VMs instances, within an ASG or <span class="mc-variable Document.VMSS variable">VM Scale Set</span>.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        Select one of the following scoring strategies:
+        <ul>
+          <li>Average</li>
+          <li>Peak</li>
+          <li>Sustained</li>
+        </ul>
+        See <u>Scoring Strategy Setting</u> on page 1 for details.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>This setting is used when either "CPU and Memory" or "CPU Only" is selected for "Sizing Strategy"</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Sustained</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## CPU Sizing Limit
+
+<Accordion title="Table: CPU Sizing Limit">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor102"></a>This setting defines the CPU utilization limit to use when sizing EC2 or VM instances, within an ASG or <span class="mc-variable Document.VMSS variable">VM Scale Set</span>.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>A numeric value representing a percentage from 0 to 100.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>This setting is used when either "CPU and Memory" or "CPU Only" is selected for "Sizing Strategy".</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## Memory Sizing Limit
+
+<Accordion title="Table: Memory Sizing Limit">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor103"></a>This setting defines the memory utilization limit to use when sizing EC2 or VM instances, within an ASG or <span class="mc-variable Document.VMSS variable">VM Scale Set</span>.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>A numeric value representing a percentage from 0 to 100.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>This setting is used when "CPU and Memory" is selected for "Sizing Strategy".</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## Worker Size Limit - Cores
+
+<Accordion title="Table: Worker Size Limit - Cores">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor104"></a>This setting allows you to limit the increase of vCPU cores for the current size relative to recommended sizing, for ASG worker nodes. The range is typically 25 to 100%, with the higher percentages allowing a smaller increase. i.e. if set to 25%, the recommended worker node can have 4 times more vCPUs than the current worker node. A value of 100% allows no increase in vCPU allocation.<br/><br/>
+        This setting is mapped as the low limit to Total CPUs and controls the maximum size of the recommended Instance type.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>For ASG recommendations it is important to be able to control the maximum instance size in order to avoid using bigger (and more expensive) instances, even though it may appear to be optimal, large instances may introduce issues, if the ASG needs to scale up, rapidly.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Size limit as a percentage. i.e. 25%</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+## Worker Size Limit - Memory
+
+<Accordion title="Table: Worker Size Limit - Memory">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "112pt" }} />
+    <col style={{ width: "356pt" }} />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Description</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        <a name="kanchor105"></a>This setting allows you to limit the increase the memory for the current size relative to recommended sizing, for ASG worker nodes. The range is typically 25 to 100%, with higher percentages allowing a smaller increase. i.e. if set to 25%, the recommended worker node can have 4 times more memory than the current worker node. A value of 100% allows no increase in memory allocation.<br/><br/>
+        This setting is mapped as the low limit to Total Memory and controls the maximum size of the recommended Instance type.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Use Case</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>For ASG recommendations it is important to be able to control the maximum instance size in order to avoid using bigger (and more expensive) instances, even though it may appear to be optimal, large instances may introduce issues, if the ASG needs to scale up, rapidly.</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Values/Units</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Size limit as a percentage. i.e. 25%</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Dependencies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left", color: "white", backgroundColor: "#003660" }}>Example</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>

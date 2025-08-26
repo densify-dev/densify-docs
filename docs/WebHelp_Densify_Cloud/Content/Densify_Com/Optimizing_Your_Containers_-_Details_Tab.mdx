@@ -1,0 +1,612 @@
+---
+title: "Optimizing Your Containers - Details Tab"
+---
+
+The Kubernetes Container Optimization Details report displays detailed information for the selected container (row) from the source page:
+
+1. On the Summary tab click the "Container Manifests" link > then click the Details tab
+2. From the Data tab click any of the count links > then click the Details tab.
+
+<Note>
+Containers that do not have adequate collected data for recommendation analysis are not included on the Details tab.
+</Note>
+
+### Page Navigation
+
+Use the breadcrumbs in the upper left corner or click the Back button, in the top-right corner of the page, to return to the parent dashboard. Do not use the browser's Back button for navigation within Densify. You will be logged out of your session. See [Navigating Densify](./Navigating_Densify) for other features of the Densify user interface.
+
+This dashboard consists of:
+
+* A [tabular report](#Tabular_Report)—The columns of the tabular report are listed in the [Table: Container Details Tabular Columns](#Container_Details_Component) below.
+* [Predicted Utilization Charts](#Lower_Section)—Based on the container selected in the top pane, the corresponding resource utilization charts are shown on the lower pane.
+
+<Accordion title="Figure: Kubernetes Container Optimization Details (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000250.png)</Frame>
+</Accordion>
+
+## Reviewing the Container Details Page
+
+### Summary Corner
+
+Summary totals are displayed in the upper right corner of the page. These totals are for the systems displayed on the current page and not all analyzed containers.
+
+The information icon, on the Surplus CPU Request/Surplus Memory Request and Net Savings values indicates that these values do not include containers with requests set to "Unspecified". See [Optimizing Your Containers](./Optimizing_Your_Containers#Running_Total_Summary).
+
+<Accordion title="Figure: Running Total Summary">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000208.png)</Frame>
+</Accordion>
+<Note>
+This summary bar will not be updated based on the criteria in the table filter. See [Using the Table Filter](./Using_Container_Filters#Table_Filter)  for details on using the filter table.
+</Note>
+
+
+<Note>
+When exported to .CSV the Total Savings value may not match the value in the exported .CSV file because the .CSV format does not support formulas and the total savings are a calculation per line, of the number of containers multiplied by savings.
+Contact [[email protected]](/cdn-cgi/l/email-protection) for details.
+</Note>
+
+
+
+### Data Controls
+
+The controls, in the upper right corner of the page, provide options for managing and viewing your data more effectively. See [Data Controls on Tabular Reports](./Navigating_Densify#Data_Controls) for more details.
+
+### Viewing the Tabular Report
+
+When the page is initially loaded, this table is sorted alphabetically, by Cluster name, Namespace, Controller/Pod and then Container Name.
+
+The content of the table as well as the totals at the bottom reflect the settings in both the Recommendation Filter and the Container Filter.
+
+When navigating to this page from the Node Group Health tab or the Node Group Capacity tab, you may see the following note on this page: "Additional recommendations are included for manifests that have qualified for analysis based on their policy settings." This will happen when the number of container manifests shown in the Container Details is greater than the number shown in either of the Node Group reports.
+
+<Accordion title="Table: Container Details Tabular Columns">
+<table class="table_1">
+<col/>
+<col/>
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Component/Column Name </p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Cluster</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The parent cluster containing the pods.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Node Group</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The name of any node groups contained in this cluster. If the cluster contains multiple node groups, all node groups are listed.</p>
+<p class="CiRBATableText">For nodes that do not belong to a node group, the node group value will be &lt;<span class="CiRBAcharAttributeValue">cluster-name</span>&gt;-default”.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Namespace</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The namespace associated with the container. This allows you to logically group your pods.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Controller Type</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The controller type that monitors and maintains the state of your cluster. This can be one of DaemonSet, Deployment, ReplicaSet, ReplicationController, StatefulSet, etc.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">No. of Containers</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the current number of containers running in the selected cluster/namespace/pod combination.</p>
+<p class="CiRBATableText">The <a href="#Totals">total</a> number of containers is listed at the bottom of the column.	This value is used to calculate totals for Requested and Limits for current and recommended CPU and memory values.	</p>
+<p class="CiRBATableText">This total is also listed in the running total at the top of the page.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Controller Pod </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the name of the controller or pod. You can have one or more containers per pod.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Container Name</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the name of the container.</p>
+<p class="CiRBATableText">The container name is a hyperlink that opens the <a href="./Using_the_Metrics_Viewer-Containers">metrics viewer</a></p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Policy</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the name of policy used to analyze this container's utilization data.</p>
+<p class="CiRBATableText">The policy is a hyperlink that opens the <a href="../Reporting_Framework/Viewing_Container_Policy_Settings">Optimization Policies tab</a></p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Request (mCores)</p>
+<p class="CiRBATableText">Memory Request (MB)</p>
+<p class="CiRBATableText">CPU Limit (mCores)</p>
+<p class="CiRBATableText">Memory Limit (MB)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The current request and limit CPU | memory values for the selected container are displayed in these 4 columns. </p>
+<p class="CiRBATableText">The <a href="#Totals">total</a>, listed at the bottom of the Request and Limit columns for both CPU and Memory, is calculated as (current value * No. of Containers). This formula is also used for CPU Limit and Memory Limit.</p>
+<p class="CiRBATableText">For containers where the current  CPU value is unspecified a dash (-) is displayed in the main table and '0' is displayed in the "Total" row.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Recom. CPU Request (mCores)</p>
+<p class="CiRBATableText">Recom. Memory Request (MB)</p>
+<p class="CiRBATableText">Recom. CPU Limit (mCores)</p>
+<p class="CiRBATableText">Recom. Memory Limit (MB)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The recommended request and limit CPU | memory values for this container are displayed in these columns. </p>
+<p class="CiRBATableText">The <a href="#Totals">total</a>, listed at the bottom of the Request and Limit columns for both CPU and Memory, is calculated as (Current CPU Request * Current Count). This formula is also used for CPU Limit and Memory Limit.</p>
+<p class="CiRBATableText">After a configuration change is detected, recommended request and limit values for both CPU and memory will be populated with the current CPU and memory request and limit values.</p>
+<p class="CiRBATableText">These columns are hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Surplus CPU Request (mCores)</p>
+<p class="CiRBATableText">Surplus Memory Request (MB)</p>
+<p class="CiRBATableText">Surplus CPU Limit (mCores)</p>
+<p class="CiRBATableText">Surplus Memory Limit (MB)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The surplus is the difference between the current and the recommended values. If the current value is unspecified, then the surplus value will be negative (i.e. 0 - recommended value).</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Total CPU Request (mCores)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the total CPU request value for the container and is calculated as (current value * No. of Containers).</p>
+<p class="CiRBATableText">For containers where the current CPU value is unspecified a dash (-) is displayed in the main table and '0' is displayed in this column.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Total Memory Request (MB)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the total memory request value for the container and is calculated as (current value * No. of Containers).</p>
+<p class="CiRBATableText">For containers where the current CPU value is unspecified a dash (-) is displayed in the main table and '0' is displayed in this column.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Uptime %</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Uptime % is the total time the container has been running as a percentage of the total hours since the container was deployed. (Running Hrs/Total Hrs)</p>
+<p class="CiRBATableText">When using pay-per-use pricing models, the amount of time each instance has been running, is required to accurately estimate future costs. </p>
+<p class="CiRBATableText">The predicted uptime (%) for a cloud instance or container, is based on the percentage of hours CPU utilization data is present in the historical interval, as specified in the policy settings for the entity. For <span class="mc-variable Document.ASG variable">Auto Scaling group</span>s and <span class="mc-variable Document.VMSS variable">VM Scale Set</span>s and Individual child instances are not taken into account.</p>
+<p class="CiRBATableText">Predicted uptime %, for new instances or containers, that started mid-way through the historical interval, is calculated from the time/date that the instance was started as opposed to the beginning of the interval, resulting in more accurate predictions for future usage.</p>
+<p class="CiRBATableText">For example, the uptime is the number of hours that have "CPU Utilization in mcores", and the range is the lesser of when the container was discovered, or the range defined in the policy. Looking at a specific container that was discovered on Jan 5th 2024, that has workload of 42 hours since that date, then the uptime % is 42 hrs/(13 days x 24 hrs/day) = 13.4%. This is the value shown in this column.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Total Hrs</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The total hours are determined by calculating the duration from the time the first container, as defined by the manifest, starts, until the point that <span class="mc-variable General.ProductName variable">Densify</span> analyzes the specified containers. Total hours continues to increment until the manifest is no longer discovered by <span class="mc-variable General.ProductName variable">Densify</span>.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Running Hrs</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Running hours is the number of hours of CPU utilization data from any running containers, as defined by the container manifest. The number of running containers is not used when determining the number of running hours. i.e. 3 containers are running from 2pm to 6pm, then “Running Hours” will be 4 hrs.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Restarts - Last Day</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The total number of restarts of all containers associated with the deployment, in the last day. </p>
+<p class="CiRBATableText">A dash (-) is displayed if no data has been collected.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory Limit Event - Last Day</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Indicates if the peak working set memory utilization was near or exceeded the memory limit, in the last day. If memory events have been encountered (value=Yes) then the table cell is shaded to clearly indicate this container is at risk.</p>
+<p class="CiRBATableText">A value of "No" indicates:</p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">There is data and no memory events have occurred;</li>
+<li class="CiRBATableBullet">The current memory limit is unspecified for the selected container.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Optimization Type</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Identifies the overall result of the optimization analysis. </p>
+<p class="CiRBATableText">Values are colour-coded and the possible colours are listed in <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="#ContainerOptimizationType"><u>Container Optimization Types</u></a>, below.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Savings per Container ($/month)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">If the recommendations are implemented, the total savings per container is indicated here.</p>
+<p class="CiRBATableText">This value is calculated as the total savings/number of containers. </p>
+<p class="CiRBATableText">When exported to .CSV the total of this column may not match the value in the exported file because the .CSV format does not support formulas.<madcap:conditionaltext data-mc-conditions="CiRBA.SaaSOnly">Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="762503060619040236321318051f100f5815191b" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for details. </madcap:conditionaltext></p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Total Savings ($/month) </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The total savings can be achieved if the recommendations are implemented.</p>
+<p class="CiRBATableText">This value is calculated as the current estimated cost minus the estimated cost of the recommended instances. </p>
+<p class="CiRBATableText">Calculated as: (Savings per Container ($/month) * No of Containers</p>
+<p class="CiRBATableText">When exported to .CSV the total of this column may not match the value in the exported file because the .CSV format does not support formulas. <madcap:conditionaltext data-mc-conditions="CiRBA.SaaSOnly">Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="287b5d5858475a5c686c4d465b414e51064b4745" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for details. </madcap:conditionaltext></p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"># of Nodes</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the number of nodes on which this container has run. </p>
+<p class="CiRBATableText">You can hover over the cell to see the list of all node name(s) on which the selected container(s) reside(s).</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><a name="Config_Updated"></a>Container Configuration Updated On</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">A value in this column indicates the instance request/limit values have been changed recently.</p>
+<p class="CiRBATableText">The workload for this instance, on which the recommendation is based, includes all historical data for this instance and is not included in the analysis.<a name="kanchor5"></a></p>
+<p class="CiRBATableText">A blank cell indicates the current instance type has not changed.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><a name="Totals"></a>Total</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The totals for each column are shown in bold, at the bottom of the table. This is the total of all the records in the filtered tabular report.</p>
+<p class="CiRBATableText">The total, listed at the bottom of the Request and Limit columns for both CPU and Memory, is calculated as (Current CPU Request * Current Count). This formula is also used for CPU Limit, Memory Request and Memory Limit.</p>
+<p class="CiRBATableText">The total, listed at the bottom of the Surplus columns for both CPU and Memory, is calculated as: (Current - Recommended).</p>
+<p class="CiRBATableText">If the value of any row is unspecified, then that value is treated as "0" when summing the values for the total.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+<Note>
+The following details are not included in this report: Disk Allocations (Current | Recommended), Individual Disk Partitions at Risk, Disk Usage and Parent.
+</Note>
+
+
+## Container Optimization Types
+
+Densify container recommendations are categorized into optimization types, which are based on recommended sizing for the CPU Request, CPU Limit, Memory Request, and Memory Limit settings. See the table below for a description of each container optimization type.
+
+<Accordion title="Table: Container Optimization Type Summary">
+<table class="table_1">
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p class="CiRBATableColumnText">Optimization Type</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Just Right</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This container manifest or task definition is optimally configured for the workload. There are no resizing  recommendations.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Upsize</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText"><span class="mc-variable Document.Densify variable">Densify</span> recommends increasing one or more of CPU Request, CPU Limit, Memory Request, or Memory Limit settings. An "Upsize" optimization type has no recommendations to decrease any container CPU or memory request or limit settings.</p>
+<p class="CiRBATableText">For example, <span class="mc-variable Document.Company variable">Densify</span> assigns an "Upsize" optimization type if a  container manifest or task definition has the following aggregate optimization recommendations:</p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">Increasing CPU Request setting;</li>
+<li class="CiRBATableBullet">Keeping CPU Limit and Memory Limit at the same setting;</li>
+<li class="CiRBATableBullet">Setting a Memory Request from an unspecified value.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Downsize</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText"><span class="mc-variable Document.Company variable">Densify</span> recommends decreasing one or more of CPU Request, CPU Limit, Memory Request, or Memory Limit settings. A "Downsize" optimization type does not have any size increase recommendations for any request or limit settings.</p>
+<p class="CiRBATableText">For example, <span class="mc-variable Document.Company variable">Densify</span> assigns a "Downsize" optimization types for the following aggregate recommendations:</p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">Decreasing CPU Request and/or CPU Limit settings;</li>
+<li class="CiRBATableBullet">Keeping  Memory Request and Memory Limit  at the same setting.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Resize</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText"><span class="mc-variable Document.Company variable">Densify</span> recommends resizing at least two of CPU Request, CPU Limit, Memory Request, or Memory Limit settings. For the "Resize" optimization type, there is at least one increase recommendation and at least one decrease recommendation.</p>
+<p class="CiRBATableText">For example, <span class="mc-variable Document.Company variable">Densify</span> assigns a "Resize" optimization type if a container has the following recommendations: </p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">Increasing CPU Request setting;</li>
+<li class="CiRBATableBullet">Keeping  CPU Limit  at the current setting;</li>
+<li class="CiRBATableBullet">Sizing Memory Request from an unspecified value;</li>
+<li class="CiRBATableBullet">Decreasing Memory Limit from it's current value.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Size from Unspecified</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Sizing recommendations  are made without current CPU Request, CPU Limit, Memory Request, and Memory Limit values. For "Size from Unspecified" optimization type, there is at least one sizing recommendation from an unspecified setting and no decreasing or increasing size  recommendations for any container request or limit settings.</p>
+<p class="CiRBATableText">For example, <span class="mc-variable Document.Company variable">Densify</span> assigns a "Size from Unspecified" optimization type if a container has the following recommendations: </p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">Sizing CPU Request and CPU Limit settings;</li>
+<li class="CiRBATableBullet">Keeping Memory Request and Memory Limit at the same settings.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">No Data</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">There is insufficient data to recommend changes to CPU Request, CPU Limit, Memory Request, or Memory Limit values.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+## Reviewing the Predicted Utilization Charts
+
+Clicking on any row in the tabular report, in the upper pane, shows predicted utilization details in the Predicted Utilization Metrics tab, in the lower pane.
+
+* Metrics Viewer—The link on the left side of the lower pane, opens the metrics viewer. You can use the metrics viewer to investigate details when deciding whether to action specific recommendations. See [Using the Metrics Viewer for Containers](./Using_the_Metrics_Viewer-Containers).
+* Workload Charts—Show hourly min/max and sustained activity for the selected system. The charts show the current and the recommended settings for selected workloads Use the left/right arrows to scroll though the workload charts. The following charts are available:
+
+<table>
+<col/>
+<col/>
+<tbody>
+<tr>
+<td>
+<ul class="ul_2">
+<li class="CiRBAListBullet">CPU Utilization in mCores - Busiest Container (Current and Recommended Settings)</li>
+<li class="CiRBAListBullet">CPU Utilization in mCores - Container Average (Current and Recommended Settings)</li>
+<li class="CiRBAListBullet">Memory (Total) Utilization -  Busiest Container (Current and Recommended Settings)</li>
+<li class="CiRBAListBullet">Memory (Total) Utilization -  Busiest Container - Container Average (Current and Recommended Settings)</li>
+<li>
+<p>No. of Restarts</p>
+</li>
+<li class="CiRBAListBullet">In Service Instances</li>
+</ul>
+</td>
+<td>
+<ul class="ul_2">
+<li class="CiRBAListBullet">Disk I/O Bytes </li>
+<li class="CiRBAListBullet">Memory (RSS) Utilization - Busiest Container (Current and Recommended Settings)</li>
+<li class="CiRBAListBullet">Memory (RSS) Utilization - Container Average (Current and Recommended Settings)</li>
+<li class="CiRBAListBullet">Memory (Working Set) Utilization (Current and Recommended Settings)</li>
+<li class="CiRBAListBullet">Memory (Working Set) Utilization - Container Average (Current and Recommended Settings) </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+<Note>
+If the required metrics are not available, the corresponding charts are not displayed.
+</Note>
+
+
+
+If the optimization type of the selected container is "Just Right", then only charts showing the current utilization are displayed. i.e. no recommended charts would be the same so are not displayed.
+
+### Understanding the Workload Charts
+
+Workload charts display current sustained activity in blue, while sustained activity on the recommended request settings chart is shown in green. The minimum and maximum utilization values are shown as vertical lines above and below the coloured block. The median is indicated as a black line within the coloured block. The average is indicated in brackets in the subtitle of the chart.
+
+The Y-axis is scaled dynamically to match the range of data. The yellow line indicating the request setting is shown and the setting of the Y-axis scale also accounts for the request setting. The pink line indicates the limit. If the request and the limit are the same, the dashed yellow/pink line indicates the value. The units of the workload are also shown on the Y-axis.
+
+<Accordion title="Figure: Workload Charts - Current and Recommended (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000155.png)</Frame>
+</Accordion>
+
+<Accordion title="Video: Using Container Resource Utilization Charts">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/688941220" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+</Accordion>
+
+### Using Policy Settings to Select Utilization Metrics
+
+The Kubernetes Optimization policy settings allow you to analyze requests and limits based on different utilization metrics, e.g. Memory request analyzed based on Actual Memory Utilization and Memory Limit analyzed based on Raw Memory Utilization. If these policy settings have been enabled the corresponding charts will indicate the selected metric settingsContact [[email protected]](/cdn-cgi/l/email-protection) for details on enabling these settings.
+
+### Relearning Workloads
+
+If a container instance has been optimized (i.e. limits or request values have been changed based on a recommendation), then the next day you will see the Optimization Type set to "Just Right" and since the required data (as defined by the policy) has not been accumulated, it will show the recommended request and limit values for both CPU and memory will be populated with the current CPU and memory request and limit values during the workload invalidation period, on the Resource Utilization Metrics tab.
+
+See the column, [Container Configuration Updated On](#Config_Updated), above for more details.
+
+### Understanding the Quartiles in the Resource Utilization Charts
+
+<Accordion title="">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/356956354" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+</Accordion>
+
+In charts, workload data for each system is shown in four different bars (two yellow and two red), called quartiles, to show minimum, average, sustained and peak values. When used in the analysis, quartiles provide a good representation of system activity because the weighted scoring for sustained and peak activity produces a more accurate assessment of workload utilization patterns and requirements.
+
+Quartiles are calculated in the following manner:
+
+* Workload activity is collected every five minutes, which totals 12 times per hour.
+* The 12 values are then re-ordered in descending order and separated into equal sample sizes (quartiles), with each quartile having three values. Each quartile represents 25% of operational time.
+* The bottom of the first quartile shows the minimum value, the next quartile shows average values, the top of the third quartile shows the sustained value and the top of the fourth quartile shows the peak value.
+
+<Accordion title="Figure: Workload Data in Quartiles (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Intelligence_Workbench_Guide/08000047.png)</Frame>
+</Accordion>
+
+### Understanding the Memory Metrics
+
+Densify collects 3 memory metric types from cAdvisor:
+
+#### container\_memory\_usage\_bytes
+
+* Provides the size of the overall memory used, regardless of whether it is used for mapping from disk or for memory allocation.
+* Includes both RSS (memory not used to map files from the disk) as well as the page cache (uses memory exclusively to map files from the disk), so in effect this metric counts memory access indiscriminately of its purpose.
+* Measures the current memory usage, including all memory regardless of when it was accessed.
+
+Table: container\_memory\_usage\_bytes
+
+<table class="table_1">
+<col/>
+<col/>
+<tr>
+<td class="td_2">
+<p class="CiRBATableColumnText">Usage</p>
+</td>
+<td class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><span class="mc-variable General.ProductName variable">Densify</span>Workload metric name:</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Memory Utilization</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><span class="mc-variable General.ProductName variable">Densify</span> uses this metric for:</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Default policy settings for Requests and Limits:</p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">Requests uses average container</li>
+<li class="CiRBATableBullet">Limits uses busiest container</li>
+</ul>
+</td>
+</tr>
+</table>
+
+
+#### container\_memory\_working\_set
+
+* When this metric hits the MEM limit an OOMkill occurs.
+* WSS = Working Set Size, also called, current working set.
+* Represents the minimum amount of memory a process needs to keep running during a period of time.
+* Includes the active files cache.
+* Unlike fixed metrics like "cache" or "buffer", which have specific values in our operating systems, the working set is a calculated value determined in various ways.
+* cAdvisor calculates the working set as follows: total memory usage - inactive files
+* It includes all anonymous (non-file-backed) memory since Kubernetes does not support swap.
+* The metric typically also includes some cached (file-backed) memory, because the host OS cannot always reclaim such pages.
+* container\_memory\_usage\_bytes is ≥ container\_memory\_working\_set.
+
+Table: container\_memory\_usage\_bytes
+
+<table class="table_1">
+<col/>
+<col/>
+<tr>
+<td class="td_2">
+<p class="CiRBATableColumnText">Usage</p>
+</td>
+<td class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><span class="mc-variable General.ProductName variable">Densify</span>Workload metric name:</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Memory Working Set</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><span class="mc-variable General.ProductName variable">Densify</span> uses this metric for:</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Not currently used. It will be used for detecting hidden process kills, in a future release.</p>
+</td>
+</tr>
+</table>
+
+
+#### container\_memory\_rss
+
+* Represents the amount of physical memory that a process has in the main memory that doesn’t correspond to anything on disk.
+* Typically includes stacks, heaps, and anonymous memory maps.
+* Size of memory not used for mapping files from the disk
+* Number of bytes of anonymous and swap cache memory (includes transparent hugepages).
+* Container\_memory\_rss container\_memory\_working\_set

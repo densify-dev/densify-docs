@@ -1,0 +1,194 @@
+---
+title: "Workload Viewer Options"
+---
+
+#### Workload Viewer Options
+
+These settings allow you to view and edit workload options for the range of systems or the analysis.
+
+To view and edit any workload viewer options, perform the following steps:
+
+1. In the Analysis Console, navigate to Analysis Workbench tray > Data Center Explorer.
+2. Navigate to the applicable systems by selecting the applicable view from the Views dropdown and by applying an optional filter from the Filters dropdown.
+3. Select the group of systems and then click Workload category > Viewer button. The Default Chart is displayed. Click Default category > Options button.
+
+<Accordion title="Figure: Workload Range Selection Dialog Box">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Intelligence_Workbench_Guide/08000009_587x658.png)</Frame>
+</Accordion>
+
+
+Table: Workload Viewer - Options
+
+<table>
+<thead>
+<tr>
+<td>
+<p>Field</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td colspan="2">
+<p>Date Range</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Last 14 days with available data </p>
+</td>
+<td>
+<p><span class="CiRBAcharStrong">This is the default setting.</span> <span class="mc-variable Document.Company variable">Densify</span> will select the worst average performance over 24 hours based on the last number of days specified. It only takes into account those days with available data. If you want to be able to view the Hourly <a name="kanchor224"></a>Chart, set this value to 7 or less days.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Last 14 calendar days</p>
+</td>
+<td>
+<p>This option is similar to the previous option, except that in this instance, you are taking into account all of the last 14 calendar days, regardless of available data for those days.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Between \<<code>#</code>> and \<<code>#</code>> \<<code>periodSize</code>> ago</p>
+</td>
+<td>
+<p>This option allows you to specify a period, regardless of available data, without setting exact dates. The period sizes are: days, weeks, months, (calendar) quarters, (calendar) years, fiscal quarters and fiscal years.</p>
+<p>An <span >and</span> number of <span class="CiRBAcharAttributeValue">0</span> means the current period.</p>
+<p>For example, if today is Saturday 4-Sep, and weeks start on Sunday:</p>
+<ul>
+<li><span class="CiRBAcharAttributeValue">between 4 and 2 weeks ago</span> includes data from Sunday 1-Aug to Saturday 21-Aug.	</li>
+<li><span class="CiRBAcharAttributeValue">between 1 and 0 weeks ago</span> includes data from Sunday 22-Aug to Saturday 4-Sep.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Between \<start date> and \<end date></p>
+</td>
+<td>
+<p><span class="mc-variable Document.Company variable">Densify</span> will select the worst average performance over 24 hours based on the date range specified. Date format must be entered in dd/mm/yyyy.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>All available workload data</p>
+</td>
+<td>
+<p data-mc-conditions="CiRBA.CCOExclude">[CRB-53883] This option is not available in Densify <span class="mc-variable Document.Densify_VO variable">Virtualization Optimizer</span>. If you select this option you will get an error message and the charts will not be updated.</p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p><span class="CiRBAcharStrong">Display Options</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Display Options</p>
+</td>
+<td>
+<p>Select the display option for the workload data.</p>
+<ul>
+<li>Show all selected days</li>
+<li>Show single day</li>
+<li>Show single common day</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Include Days or Data Samples between…</p>
+</td>
+<td>
+<p>Enter values in these fields to define what workload data to include/exclude. For example, if you input <span class="CiRBAcharAttributeValue">10</span> and <span class="CiRBAcharAttributeValue">75</span> in these fields, you are excluding workload data that falls below or above the specified percentile range.</p>
+<p>This functionality is especially useful for omitting anomalies that can occur, which can lead to inaccurate results. For example, a system runs at a constant rate, but suddenly experiences a brief but significant spike in activity. If this spike is included in the analysis, this spike in activity may skew the final results of the analysis. The average value could be severely affected. It is therefore prudent to eliminate it using the percentile values.</p>
+<p><span class="CiRBAcharStrong">Daily Average</span>--If you enable this radio button, the system will calculate the average, for example, CPU utilization for each day in the range, taking into account the percentile values input in the previous fields.</p>
+<p><span class="CiRBAcharStrong">Highest Hourly Average</span>--If you enable this radio button, the system will calculate the busiest average hour for each day in the range, taking into account the percentile values entered in the previous fields.</p>
+<p><span class="CiRBAcharStrong">Blended Average</span>--Uses a combination of daily Average and Busiest hour to provide enhanced precision when specifying day preferences for your analysis.  When the Blended option is selected, a 50/50 split between the busiest average hour of the day and the daily average data will be used in determining the representative day (e.g. Busiest, Typical or Least Busy).</p>
+<p><span class="CiRBAcharStrong">Daily Peak</span>--Use this option to exclude peak values e.g. when requiring data to the 95th percentile.</p>
+<p><span class="CiRB<rStrong">Hi\<t Hourly Sustained</span>--If you enable this radio button, the system will calculate the busiest sustained hour for each day in the range, taking into account the percentile values entered in the previous fields.</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>If <span >Exclude hours of day</span> is specified, the number of required hours is only applied to the remaining hours. For example, if you exclude hours between 0-5, and the number of required hours for analysis is 10, then only the workload data with 10 or more hours that fall into the included hours of 6-23 will be used for the analysis. </p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p>Representative Day Selection</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span >Representative Day Selection</span></p>
+</td>
+<td>
+<p>Used to select a specified workload profile type (e.g. busiest, typical, etc.).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p> </p>
+</td>
+<td>
+<p>Enable this radio button for the representative day selection. The results are based on the days that are returned based on the above filtering criteria.</p>
+<p><span >Busiest</span>--Select this option if you are being very conservative, as this option will take into account the worst case scenario. This may not be realistic, as a momentary spike in usage will be considered. This spike does not truly reflect workload usage for a system. Therefore, you can select other options that are less conservative and will reflect a more realistic outcome.</p>
+<p><span class="CiRBAcharStrong">Typical</span>--A real day workload that is closest to the average.</p>
+<p><span class="CiRBAcharStrong">Least Busy</span>--This is the day with least activity.</p>
+<p><span class="CiRBAcharStrong">Average</span>--This is the average of the days in the selected scope/range.</p>
+<p><span >Combined (days)</span>--Select this option when only a limited sample of workload data is available e.g. one sample per hour. This option will construct a workload day by combining the filtered data samples on an hourly basis to create a more accurate representative day.</p>
+<p>For example, if you have a single sample per hour over a many days (e.g. 30 days), <span class="mc-variable Document.Company variable">Densify</span> will calculate hourly samples based on multiple days to determine the hourly minimum, 1st quartile, median, 3rd quartile and maximum spanning the sampled days.</p>
+<p><span >Combined (samples)</span></p>
+<p><span >Combined (blended)</span></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p>Growth Modeling based on Projected Date</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Growth"></a><span >Growth Modeling based on Projected Date</span></p>
+</td>
+<td>
+<p>The growth rate is applied to the selected Representative Day. If the selected Representative Day is the actual day, the data for the projection will be used, otherwise use the middle date of the date range will be used. The annualized growth rate and the date of the data used, will be saved with the analysis.</p>
+<p><span class="CiRBAcharStrong">Predict workload based on defined per-system annual growth rates</span>--This option uses Average workload based on historical data. This is used in conjunction with the growth rate defined per workload. When selected, the analysis looks at the utilization for the selected date range and estimates growth based on trends in the number of days specified in the <span class="CiRBAcharStrong">Current Date Plus</span> field, below.</p>
+<p><span class="CiRBAcharStrong">Adjust workload based on historical trends</span>--This option uses Average workload based on historical data. When selected, the analysis looks at the utilization for the selected date range and estimates growth based on trends in the number of days specified in the <span class="CiRBAcharStrong">Current Date Plus</span> field, below. You can also specify a maximum limit for the growth.</p>
+<p>For example, if you enter <span class="CiRBAcharAttributeValue">60</span> days, this means that you want to predict workload usage 60 days in the future for all systems in the analysis. At the same time, you enter a maximum change value of <span class="CiRBAcharAttributeValue">50%</span>. This means that you want to limit the workload type value at 50% usage, for that date 60 days in the future.</p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p><span class="CiRBAcharStrong">Projected Date</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Current"></a><span >Current Date Plus</span></p>
+</td>
+<td>
+<p>If you have enabled the <span class="CiRBAcharStrong">Include Days Matching</span> option, you can input a number of days in this field, which is added to the current date. </p>
+<p>For example, assume that today’s date is May 22, 2008 (a Thursday) and you input <span class="CiRBAcharAttributeValue">1</span> in this field. This would give you a date of May 23, 2008 (a Friday). This means that you are telling the system to grab all of the Fridays in the range and all of the 23rd days of the month in that range.</p>
+<p>Now, the following day (Friday 23rd), you perform a refresh and run the analysis again. This means that the system grabs all of the Saturdays in the range and all the 24th days of the month in that range, etc.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Specific"></a><span >Specific Date</span></p>
+</td>
+<td>
+<p>If you have enabled the <span class="CiRBAcharStrong">Include Days Matching</span> option, you can input a specific date in this field. For the purposes of this example, the date specified is May 22, 2008. Now, assume this date falls on a Thursday. If this date is used, then you are telling the system to go through the entire range of data specified for the analysis and to pick out every Thursday of every month, and to also pick out the 22nd of every month</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span >Assume Zero Workload for all target-only systems</span></p>
+</td>
+<td>
+<p>Enable this option to assume a zero workload for all target-only systems.</p>
+</td>
+</tr>
+</table>
+

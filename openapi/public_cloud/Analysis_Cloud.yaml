@@ -1,0 +1,116 @@
+openapi: 3.1.0
+info:
+  title: Densify – Cloud Analyses API
+  version: "1.0.0"
+  description: |
+    Lists all cloud optimization analysis entities across providers (AWS, Azure, GCP).
+    Derived from “Analysis: Cloud”. The endpoint returns each analysis with links to its
+    entity, results, and status resources.
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: api.example.com
+tags:
+  - name: Cloud Analysis
+paths:
+  /analysis/cloud:
+    get:
+      tags: [Cloud Analysis]
+      operationId: listCloudAnalyses
+      summary: List all cloud analyses in Densify
+      description: >
+        Returns a collection of all cloud analysis entities discovered by Densify
+        (e.g., per account/subscription/project), with hyperlinks to their details,
+        recommendations, and status. Supports filtering by name and substring match.
+      parameters:
+        - name: analysisName
+          in: query
+          required: false
+          description: Exact match filter for the analysis name (e.g., subscription/account/project ID).
+          schema:
+            type: string
+        - name: analysisName_like
+          in: query
+          required: false
+          description: Substring match filter for `analysisName` (e.g., `?analysisName_like=bob`).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of cloud analysis entities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CloudAnalysis'
+              examples:
+                sample:
+                  summary: Example (abbreviated from docs)
+                  value:
+                    - analysisId: "9a5d2d55-6d85-4fde-8bab-fcd0cef8c5bf"
+                      analysisName: "624756828528"
+                      analysisCompletedOn: 1548083469463
+                      href: "/analysis/cloud/aws/9a5d2d55-6d85-4fde-8bab-fcd0cef8c5bf"
+                      analysisResults: "/analysis/cloud/aws/9a5d2d55-6d85-4fde-8bab-fcd0cef8c5bf/results"
+                      analysisStatus: "/analysis/cloud/aws/9a5d2d55-6d85-4fde-8bab-fcd0cef8c5bf/status"
+                    - analysisId: "0930c31d-13ac-4a3f-892e-2a35c8a3f842"
+                      analysisName: "DEN-prod-OPS-45"
+                      analysisCompletedOn: 1548083655897
+                      href: "/analysis/cloud/gcp/0930c31d-13ac-4a3f-892e-2a35c8a3f842"
+                      analysisResults: "/analysis/cloud/gcp/0930c31d-13ac-4a3f-892e-2a35c8a3f842/results"
+                      analysisStatus: "/analysis/cloud/gcp/0930c31d-13ac-4a3f-892e-2a35c8a3f842/status"
+                    - analysisId: "6b8ab8e1-a026-4db9-a4ae-2d684446731f"
+                      analysisName: "12d89cbc-bc00-4d00-bcf6-ce6ec08d45bd"
+                      analysisCompletedOn: 1548340596930
+                      href: "/analysis/cloud/azure/6b8ab8e1-a026-4db9-a4ae-2d684446731f"
+                      analysisResults: "/analysis/cloud/azure/6b8ab8e1-a026-4db9-a4ae-2d684446731f/results"
+                      analysisStatus: "/analysis/cloud/azure/6b8ab8e1-a026-4db9-a4ae-2d684446731f/status"
+        '400':
+          description: Invalid parameters.
+        '401':
+          description: Authentication failed.
+        '404':
+          description: Resource not found.
+        '500':
+          description: Internal server error.
+
+components:
+  schemas:
+    CloudAnalysis:
+      type: object
+      description: Cloud analysis entity. Includes hyperlinks to related resources.
+      properties:
+        analysisId:
+          type: string
+          description: Unique identifier of the cloud analysis.
+        analysisName:
+          type: string
+          description: Name of the analysis (often account/subscription/project ID).
+        analysisCompletedOn:
+          type: integer
+          format: int64
+          description: Milliseconds timestamp when the last analysis completed, or "0" if never.
+        href:
+          type: string
+          description: Link to the analysis entity resource.
+        analysisResults:
+          type: string
+          description: Link to the recommendations for the analysis.
+        analysisStatus:
+          type: string
+          description: Link to the analysis status resource.
+        message:
+          type: string
+          description: Error message (only on error).
+        status:
+          type: integer
+          description: HTTP-like status code (e.g., 200, 400, 401, 404, 500).
+      required:
+        - analysisId
+        - analysisName
+        - analysisCompletedOn
+        - href
+        - analysisResults
+        - analysisStatus

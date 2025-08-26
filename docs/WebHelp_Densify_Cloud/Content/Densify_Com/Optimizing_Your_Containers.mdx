@@ -1,0 +1,165 @@
+---
+title: "Optimizing Your Containers"
+---
+
+## Overview
+
+Densify's workload sizing and stacking capabilities enable it to learn the utilization patterns of your containers and their pods and determine the optimal request and limit values to ensure that pods get their required resources, while enabling the containers to run at higher utilization.
+
+When working with these reports:
+
+* A request is the amount of CPU or memory resources that the system will guarantee for the container. Kubernetes uses this value to decide on which node to place the pod.
+* A limit is the maximum amount of resources that Kubernetes will allow the container to use. If the node is not resource constrained, Kubernetes may allow the container to exceed the limit. These are OS configuration settings, and are not configurable through Densify.
+
+Use the Containers menu to review and optimize your container instances. This menu item is only displayed when you have collected and loaded container utilization data. Contact [[email protected]](/cdn-cgi/l/email-protection) for details.
+
+The data on this dashboard is displayed on 3 tabs:
+
+* [Summary](#Summary_tab)—Shows you an overview of your container environment.
+* [Data](./Optimizing_Your_Containers_-_Data_Tab)—Shows you a detailed tabular view of your data. You can dynamically group the data by various attributes, search and hide columns in the table.
+* [Policies](../Reporting_Framework/Viewing_Container_Policy_Settings)—Shows you available optimization policies, settings and values.
+
+You can reach the following pages using the links on the Summary tab or the Data tab:
+
+* [Analysis](./Optimizing_Your_Containers_-_Analysis_Tab)—Provides a set of histograms that allow you to visualize your analysis results.
+* [Details](./Optimizing_Your_Containers_-_Details_Tab)—Provides details of requests and limits for both CPU and memory and the proposed optimization recommendation. You can reach this page using the links on the Summary tab or the Data tab.
+
+Three sections provide a visual overview of your environments.
+
+<Accordion title="Figure: Kubernetes Dashboard (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000156.png)</Frame>
+</Accordion>
+<Note>
+Containers with "Optimization Type=No Data" are filtered out from all of the reports on all Container tabs.
+</Note>
+
+### Using the Container Filter
+
+You can apply various filters to customize the scope of containers you are reviewing. See [Using Container Filters](./Using_Container_Filters).
+
+When you export the content of a report with filters applied, the filtered set of systems is exported for the Data and Details tabs.
+
+### Collecting Container Utilization Data
+
+Refer to [Container Data Collection Prerequisites](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Prerequisites) for details on collecting utilization data.
+
+### Exporting Tabular Data
+
+You can export the content from the Data and Details tabs to .CSV or .XLSX format. See [Exporting Report Data](./Exporting_Report_Data) for details.
+
+## Reviewing the Summary Tab
+
+The summary overview provides a number of charts and tables to show you potential savings in your container environments.
+
+### Summary Bar
+
+Key metrics are displayed in a banner at the top of the report.
+
+<Accordion title="Figure: Summary Banner Key Metrics (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000162.png)</Frame>
+</Accordion>
+<Accordion title="Table: Summary Banner (hover over image to expand)">
+<table class="table_1">
+<col/>
+<col/>
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Column</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Efficiency Rating</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The Efficiency Rating provides an indication of the health of your aggregated environment. The value is indicated in red, when it is greater than 1.</p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">A value of 1 indicates that, at an aggregate level, the environment is efficient according to the defined policy settings. </li>
+<li class="CiRBATableBullet">A value less than 1 indicates potential savings opportunities due to over-allocated resources. </li>
+<li class="CiRBATableBullet">A value greater than 1 indicates potential risks due to under-allocated resources. The value is indicated in red, when it is greater than 1.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Monthly Savings</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the estimated monthly savings for the selected environment. If you have created and applied filters, the totals, displayed in this summary, reflect the defined filters.</p>
+<p class="CiRBATableText">The estimated cost savings are calculated by converting the CPU and memory reduction into hardware savings based on the cost of the surplus CPU cores and MB of memory.</p>
+<p class="CiRBATableText"><a name="kanchor171"></a>The cost per core and per GB of memory are configurableContact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="edbe989d9d829f99ada988839e848b94c38e8280" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for details. .</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Request Surplus (Cores) and Percentage</p>
+</td>
+<td class="td_3" rowspan="2">
+<p class="CiRBATableText">This is the aggregated total CPU | Memory Request Surplus in mCores or GB. The values are also shown as a percentage.</p>
+<p class="CiRBATableText">This is calculated as (Current CPU or Memory Request - Recommended CPU or Memory Request) * Current Count of the filtered list.</p>
+<p class="CiRBATableText">The percentage is calculated as (Surplus/Current value)\*100.</p>
+<p class="CiRBATableText">Containers with unspecified CPU | Memory Requests are excluded from these metrics. </p>
+<p class="CiRBATableText">Surplus and Surplus% can be a 0 or positive values.</p>
+<p class="CiRBATableText">The asterisk (*), on these values as well as on the <span class="CiRBAcharUIElement">% Impact Summary</span> bar chart, indicates that these values do not include containers with requests set to "Unspecified". Since these containers are sized based on availability of resources, it is not meaningful to compare them to containers with defined request and limit settings. The last column in the <span class="CiRBAcharUIElement">Resource Allocation Summary</span> table provides a summary of the containers with Unspecified Settings.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory Request Surplus (GB) and Percentage</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+The cost per core and per GB of memory is configurable. Contact [[email protected]](/cdn-cgi/l/email-protection) for details.
+
+### Total Number of Containers
+
+This table shows you the total number of containers within the analyzed environments. Inventory is then broken down by clusters, namespaces and pods.
+
+In the inventory section, the total count for clusters, namespaces and pods are listed. The count for Clusters and Namespaces are provided as links. Click the value to navigate to the Cluster Breakdown tab or the Namespace Breakdown tab.
+
+ReplicaSets are counted as a single item even if they are not running. The CPU Request | Limit and Memory Request | Limit values (0) are displayed on the Details tab, but are not included when rolled up to the Cluster Breakdown tab or the Namespace Breakdown tab nor any reports in the Summary tab.
+
+The Manifest summary lists the total number of manifests for containers that are managed by a replication controller and how many are not managed via the controller (i.e. standalone pods). Click the value to navigate to the Analysis tab.
+
+A footnote at the very bottom, shows you the number of containers that have been analyzed out of the total number of containers in your environment.
+
+### Optimization Summary
+
+This pie chart shows the breakdown of container manifest recommendations by Optimization Type: upsize, downsize, resize, size from unspecified. See [Container Optimization Types](./Optimizing_Your_Containers_-_Details_Tab#ContainerOptimizationType) for descriptions of the various recommendation types.
+
+### History of Just Right %
+
+The line chart at the bottom, of this section shows the number of container manifests that are sized correctly over time. The axis scales based on the amount of data up to the maximum of 6 months. If you hover over any data point in the graph a popup indicates the percentage of systems that are "Just Right" and the date. As you apply the recommendations, the number of right-sized container manifests should increase over time.
+
+<Accordion title="Figure: History of Just Right (%)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000161_355x199.png)</Frame>
+</Accordion>
+
+### % Impact Summary
+
+This bar chart shows the potential percentage improvement in container resource allocations when the Densify recommendations have been actioned.
+
+### Resource Allocation Summary
+
+The table at the bottom shows the current settings and the recommended settings for both CPU and memory. Values are aggregated to show the total increase or decrease of required resources. In this table, the values are converted automatically to the next larger or smaller unit, so that values are easy to read:
+
+* MB > GB > TB > PB (each step is divided by 1,024);
+* mCores > Cores > KCores > MCores (each step is divided 1,000).
+
+## Automating Densify's Recommendation
+
+Densify provides an automation strategy that allows container optimization to be initiated from the source files rather than from an external orchestration solution. Densify provides a set of APIs and integration modules to enable automation. Contact [[email protected]](/cdn-cgi/l/email-protection) for details.
+
+<Accordion title="Video: Automated Container Resource Optimization">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/720770166" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+</Accordion>

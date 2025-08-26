@@ -1,0 +1,35 @@
+---
+title: "Audit Not Received-Connectivity Issues"
+---
+
+### Event: Audit has not been received in 2 or more days
+
+This may be due to lack of connectivity with the vCenter or any of the following issues.
+
+<Accordion title="Cause: Connectivity to the vCenter Server">
+Solution: Complete the following steps to investigate your vCenter connection:
+
+1. Open the Densify Connector.
+2. Select the audit.
+3. Click Click to Verify vCenter Connection.
+
+* If the connection is OK, then click Save Connection and Collect Data Now to collect the workload data.
+* If an error is returned from the verification step, then investigate the issue on the vCenter. If you need further assistance, contact [Support@Densify.com](mailto:Support@Densify.com).
+</Accordion>
+
+<Accordion title="Cause: Problem with the vCenter , e.g. offline">
+Solution: Contact your vCenterr administrator.
+</Accordion>
+
+<Accordion title="Cause: Problem with your vCenter credentials">
+Solution: Ensure that your vCenter credentials are still valid.
+</Accordion>
+
+<Accordion title="Cause: The vCenter API subsystem is not responding">
+Solution: Contact your vCenter administrator.
+</Accordion>
+
+<Accordion title="Cause: Performance/location of the Densify Connector">
+Solution: Ensure the connector is in the same timezone as the vCenters and is physically close to the vCenter.
+</Accordion>
+

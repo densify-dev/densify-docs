@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: Densify API
+  version: 1.0.0
+paths:
+  /timeline-tags:
+    get:
+      summary: Retrieve Timeline Tags
+      description: |
+        This endpoint returns the timeline definition for predictive timeframes.
+        Useful for interpreting stats and metrics of Control Environment,
+        Infrastructure Group, and Sensor objects.
+      operationId: getTimelineTags
+      responses:
+        "200":
+          description: A list of predictive timeframe tags
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  "7D":
+                    type: object
+                    properties:
+                      short_name:
+                        type: string
+                        example: "1"
+                      long_name:
+                        type: string
+                        example: "1 Month"
+                      offset:
+                        type: integer
+                        example: 30
+                      order_index:
+                        type: integer
+                        example: 1
+                      date:
+                        type: integer
+                        example: 1391144400000
+                      rounding:
+                        type: string
+                        example: "RND_NM"
+                  "30D":
+                    type: object
+                    properties:
+                      short_name:
+                        type: string
+                        example: "3"
+                      long_name:
+                        type: string
+                        example: "3 Months"
+                      offset:
+                        type: integer
+                        example: 90
+                      order_index:
+                        type: integer
+                        example: 2
+                      date:
+                        type: integer
+                        example: 1396238400000
+                      rounding:
+                        type: string
+                        example: "RND_NM"
+                  "60D":
+                    type: object
+                    properties:
+                      short_name:
+                        type: string
+                        example: "12"
+                      long_name:
+                        type: string
+                        example: "12 Months"
+                      offset:
+                        type: integer
+                        example: 360
+                      order_index:
+                        type: integer
+                        example: 3
+                      date:
+                        type: integer
+                        example: 1420002000000
+                      rounding:
+                        type: string
+                        example: "RND_NM"
+                  "90D":
+                    type: object
+                    properties:
+                      short_name:
+                        type: string
+                        example: "24"
+                      long_name:
+                        type: string
+                        example: "24 Months"
+                      offset:
+                        type: integer
+                        example: 720
+                      order_index:
+                        type: integer
+                        example: 4
+                      date:
+                        type: integer
+                        example: 1451538000000
+                      rounding:
+                        type: string
+                        example: "RND_NM"
+components:
+  schemas:
+    TimelineTag:
+      type: object
+      properties:
+        short_name:
+          type: string
+        long_name:
+          type: string
+        offset:
+          type: integer
+        order_index:
+          type: integer
+        date:
+          type: integer
+        rounding:
+          type: string

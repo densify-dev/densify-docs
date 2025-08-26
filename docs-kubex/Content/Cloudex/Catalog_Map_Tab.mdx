@@ -1,0 +1,339 @@
+---
+title: "Using the Catalog Map"
+sidebarTitle: "Catalog Map Tab"
+---
+
+import { ImageCard } from "/snippets/ImageCard.mdx";
+
+## Overview
+
+The Densify catalog map allows you to view a range of recommended instance type options. The map view shows the AWS or Azure catalog scored for your selected workload using Densify's analytics.
+<Note>
+**Note:** The catalog map is **not** currently available for ASGs, VM Scale Sets or any GCP cloud instances.
+</Note>
+
+Filters allow you to limit the catalog based on items such as processor type, processor features and instance cost.
+
+### Page Navigation
+
+The catalog map is displayed only when a single AWS and Azure cloud instance is selected in the tree viewer.
+
+
+<Frame caption="Figure: Accessing theCatalog Map">
+![](/images/docs-kubex/Content/Cloudex/03000001_746x363.png)
+</Frame>
+
+
+
+
+<Frame caption="Figure:Catalog Map">
+![](/images/docs-kubex/Content/Cloudex/03000002_756x452.png)
+</Frame>
+
+
+
+### Catalog Map Controls
+
+The catalog map is populated with the analysis results for the single instance, selected in the tree viewer. Select any single AWS or Azure instance to see its map. The cloud provider's catalog options and the available instance sizes and their scores for the selected workload comprise the catalog map.
+
+Use the following options to configure this report:
+
+
+
+<Accordion title="Table: Catalog Map Controls">
+<table>
+  <thead>
+    <tr>
+      <th>Setting</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Show Instance Types that are:</td>
+      <td>Commonly used options, that are available in the selected region are shown as a comma-separated list</td>
+      <td>
+        Select one or more of the following options to filter the list of instance types to be displayed in the catalog map.
+        <ul>
+          <li>Commonly used--Instances that are used by less than 0.5% of Densify customers are considered to be NOT commonly used. These "exotic" instances are not included in the chart, unless the "Commonly Used" option is deselected.</li>
+          <li>Available in the current region--Instance types available in the same region as the selected service.</li>
+          <li>Meeting all policies--Instance types that comply with all policy settings that have been defined for the selected service.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Processor Supplier</td>
+      <td>All</td>
+      <td>
+        Select one or more of the following options to filter the list of instance types to be displayed in the catalog map.
+        <ul>
+          <li>Intel</li>
+          <li>AMD</li>
+          <li>ARM</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Spend Tolerance</td>
+      <td>5X more than optimal</td>
+      <td>
+        Specify a spend tolerance value that determines cost compatibility. For example, selecting a value of 20% means that instance types that cost up to 20% more than the optimal instance type are considered compatible. You can choose a spend tolerance ranging from the exact cost of the optimal instance (No more than optimal) to no cost limit (Unlimited).
+        Spend tolerance impacts the compatibility status of instance types that are technically compatible based on resource requirements. If an instance exceeds the specified spend tolerance, it will be shown in yellow to indicate it is technically compatible but not cost-efficient. As you increase the spend tolerance, more instance types will be within the acceptable range and change from yellow to green, indicating both technical and cost compatibility.
+      </td>
+    </tr>
+    <tr>
+      <td>Highlight Instance Features</td>
+      <td></td>
+      <td>
+        Select one or more instance features that may improve the performance of your workload. Values displayed in this dropdown are based on the selected region and cloud provider.
+        Selections are shown in the dropdown window as comma-separated values.
+        Instance types with the selected features are not highlighted for services with a terminate recommendation.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+
+
+
+
+The chart is refreshed immediately when you change any of the control options. Your settings are saved for the current user session and are returned to the default values if you log out or if another user opens the viewer.
+
+### Catalog Map Legend
+
+The score shown in each cell in the catalog map is based on the current utilization and Densify's analysis results. These calculations account for both compatibility of the workload with an instance type's features and its monthly cost.
+
+All instances that have been evaluated are displayed with their score displayed in colour-coded squares:
+
+
+
+<Accordion title="Table: Catalog Map Legend">
+<table style={{ borderCollapse: 'collapse', width: '100%' }}>
+  <colgroup>
+    <col style={{ width: '20%' }} />
+    <col style={{ width: '30%' }} />
+    <col style={{ width: '50%' }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Score Range</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{ backgroundColor: '#3D85D7' }}>Current Instance</td>
+      <td>N/A</td>
+      <td>This is the current instance. If "Commonly used" instances are selected, you may not see the current instance.</td>
+    </tr>
+    <tr>
+      <td style={{ backgroundColor: '#C4DA81' }}>Meets All Policies</td>
+      <td rowSpan="2">Score ≥ 50 and Cost ≤ the selected Spend Tolerance.</td>
+      <td rowSpan="2">
+        The best option, with the highest score is shown in green and other good options are shown in lighter shades of green.<br/>
+        Cost is the on-demand price * 
+      </td>
+    </tr>
+    <tr>
+      <td style={{ backgroundColor: '#8CCA7E' }}>Best Instance Type</td>
+    </tr>
+    <tr>
+      <td style={{ backgroundColor: '#FFFB80' }}>Outside Spend Tolerance</td>
+      <td>Score ≥ 50 and Cost > the selected Spend Tolerance.</td>
+      <td>
+        These instances meet the technology and resource requirements of your workload, but their Cost exceeds the defined spend tolerance.<br/>
+        Cost is the on-demand price *
+      </td>
+    </tr>
+    <tr>
+      <td style={{ backgroundColor: '#FCCA7C' }}>Technically Incompatible</td>
+      <td>Score > 0 and < 50</td>
+      <td>These instances do not meet the technology requirements of the selected workload.</td>
+    </tr>
+    <tr>
+      <td style={{ backgroundColor: '#F8696B' }}>Insufficient Resources</td>
+      <td>Score = 0</td>
+      <td>These instances do not meet the resource requirements of the selected workload.</td>
+    </tr>
+    <tr>
+      <td style={{ backgroundColor: '#CCCCCC' }}>Not Available in \<region></td>
+      <td>N/A</td>
+      <td>These instance types do not exist in the selected region. The score is not displayed for these instance types.</td>
+    </tr>
+    <tr>
+      <td>Instance Does Not Exist.</td>
+      <td>N/A</td>
+      <td>These instance types do not exist in the catalog. The score is not displayed for these instance types.</td>
+    </tr>
+    <tr>
+      <td style={{ borderStyle: 'solid', borderWidth: '5px', borderColor: '#b200ff' }}>Highlighted Instance Features</td>
+      <td>N/A</td>
+      <td>These instance types possess the specific feature selected from the "Highlight Instance Features" dropdown control.</td>
+    </tr>
+    <tr>
+      <th>Value</th>
+      <th>Image</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>Show | Hide All Score Results</td>
+      <td style={{ textAlign: 'center' }}>
+        <img src="/images/docs-kubex/Content/Cloudex/06000197.png" alt="Toggle Scores" />
+      </td>
+      <td>Use this control to show/hide the score values.</td>
+    </tr>
+  </tbody>
+</table>
+
+</Accordion>
+
+
+
+
+You can hover over any square in the chart to see the following information:
+
+<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", justifyContent: "space-between" }}>
+  <ul>
+    <li>Instance Type</li>
+    <li>Score</li>
+    <li>
+      On-Demand Cost *
+      <a class="MCXref xref" href="/docs-kubex/Content/Cloudex/AI_Analysis_Details_Table-Cloud#uptime25">
+      Uptime (%)
+      </a>
+    </li>
+    <li>Instance Availability</li>
+  </ul>
+
+  <Columns cols={2}>
+  <Frame>
+  <img src="/images/docs-kubex/Content/Cloudex/06000198_174x146.png" alt="Toggle Scores" />
+  </Frame>
+  <Frame>
+  <img src="/images/docs-kubex/Content/Cloudex/06000145_197x104.png" alt="Toggle Scores" />
+  </Frame>
+  </Columns>
+</div>
+
+### Summary Table
+
+A summary table showing details of the current and recommended (optimal) instance type is displayed below the catalog map.
+
+
+<Frame caption="Figure:Catalog Map- View Details">
+![](/images/docs-kubex/Content/Cloudex/03000003_757x137.png)
+</Frame>
+
+
+You can select a third instance in the map to view its details and compare it to the current and recommended instance types:
+
+Press Esc on your keyboard, or click the same tile again to cancel the selection.
+
+Click on another tile to compare another instance type.
+
+
+<Frame caption="Figure:Catalog Map- Select Second Instance">
+![](/images/docs-kubex/Content/Cloudex/03000024_756x168.png)
+</Frame>
+
+
+
+### More Details
+
+Click the chevrons (>) to see additional details for both instances.
+
+The following details are provided for current and recommended instances. The indented columns are only displayed with you expand the table by clicking on the chevron to see additional details.
+
+
+
+<Accordion title="Table: Catalog Map Summary Table Descriptions">
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <colgroup>
+    <col style={{ width: '25%' }} />
+    <col style={{ width: '75%' }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Section</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Instance Type</td>
+      <td>The instance type name of current and optimal, recommendation.</td>
+    </tr>
+    <tr>
+      <td>Overall Result</td>
+      <td>A high-level summary of how Densify determined the score.</td>
+    </tr>
+    <tr>
+      <td>Within Spend Tolerance</td>
+      <td>
+        Indicates whether or not the estimated cost for the instance type is within the specified spend tolerance.<br/>
+        The monthly on-demand instance cost is based on the catalog per instance cost and the predicted uptime. Potential savings are also based on per instance cost and the predicted uptime.<br/>
+        The monthly cost is calculated as On-Demand Cost * Uptime %<br/>
+        A warning message is displayed if the current instance type exceeds the spend tolerance.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ textAlign: 'right' }}>Analysis Details</td>
+      <td>
+        Specific details from the analysis results.<br/>
+        For non-terminate recommendations, possible descriptions include:
+        <ul>
+          <li>Save \<$xx.xx> when using the recommended instance type;</li>
+          <li>Cost of the selected instance type is greater than the specified Spend Tolerance. A warning indicator for the current and/or selected instance is displayed.</li>
+          <li>A dash (-) is displayed if there are no significant details.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Technically Compatible</td>
+      <td>Indicates whether or not the instance type meets the technical requirements of the workloads.</td>
+    </tr>
+    <tr>
+      <td style={{ textAlign: 'right' }}>Instance Features</td>
+      <td>Lists specific features that contributed to the score and match your workload's characteristics.</td>
+    </tr>
+    <tr>
+      <td>Sufficient Resources</td>
+      <td>Indicates whether or not the instance has sufficient resources to run the workloads.</td>
+    </tr>
+    <tr style={{ height: '14px' }}>
+      <td style={{ textAlign: 'right' }}>Analysis Details</td>
+      <td>Specific details from the analysis results.</td>
+    </tr>
+    <tr>
+      <td style={{ textAlign: 'right' }}>Processor</td>
+      <td>Specific details of the processor on which the instance type is based are listed.</td>
+    </tr>
+    <tr>
+      <td style={{ textAlign: 'right' }}>CPU</td>
+      <td>The number of available vCPU/CPUs.</td>
+    </tr>
+    <tr>
+      <td style={{ textAlign: 'right' }}>Memory</td>
+      <td>The amount of available memory in GB.</td>
+    </tr>
+  </tbody>
+</table>
+
+</Accordion>
+
+
+
+
+## Reviewing Instance Type Options
+
+See the following video for an overview of how the score is determined and how to use the catalog map and the API to automate optimization of your AWS and Azure environments.
+
+
+
+<Accordion title="Video: Selecting the Right Infrastructure">
+<iframe allowfullscreen="allowfullscreen" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/899595044" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+</Accordion>
+
+

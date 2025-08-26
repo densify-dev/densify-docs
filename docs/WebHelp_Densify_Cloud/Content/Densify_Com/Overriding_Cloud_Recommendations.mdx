@@ -1,0 +1,427 @@
+---
+title: "Overriding Cloud Recommendations"
+---
+
+### Instance Type Override Attribute
+
+Setting this attribute allows you to closely control how your cloud instances are re-sized.
+
+This feature is primarily intended for self-aware automation integration and ensures recommendations are consistent with your business practices.
+
+You can use the feature to control the recommendations that Densify makes for a specific instance. The feature is enabled by populating the "Instance Type Override" attribute in the "Recommendations Override " category.
+
+This attribute can be used in many ways:
+
+#### Locking Recommendations to a Specific Family or Generation
+
+Attribute: Instance Type Override
+
+Attribute Category:: Recommendations Override
+
+<Accordion title="Table: Values for Locking Recommendations to a Specific Family or Generation">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "185pt" }} />
+    <col style={{ width: "462pt" }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Attribute Value</th>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Family Lock</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        Use this value to override the current recommendation and force the instance to stay in the same family. The instance can be upsized or downsized, but must stay within the same family.
+        <br />
+        i.e. recommendation to resize an "m" type instance to m3 or to m5.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Family Gen Lock</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        Use this value to override the current recommendation and force the instance to stay in the same family and generation.
+        <br />
+        i.e. instances on an "m5" type instance can be resized up or down (m5.xlarge or m5.4xlarge) but must stay in the m5 family and generation.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Locked</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        Use this value to force the instance to stay on the same instance type.
+        <br />
+        If you set a group of instances to Locked, then Densify will not exclude those instances from being analyzed but rather force the recommendation to be "Just Right" for the tagged instances, potentially suppressing Upsize/Downsize recommendations. This may be apparent from the Detailed Utilization charts.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Unlocked</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        This attribute value is used to specify that a particular cloud instance will NOT be bound by policy setting(s) responsible for a recommendation to keep that particular cloud instance within the current instance family and/or instance generation.
+        <br />
+        For example, policy settings can be used to keep the majority of cloud instances within their current family and/or generation (rather that setting Family Lock or Family Gen Lock override on many instances) while allowing some instances with "Instance Type Override" set to Unlocked to be excluded and to be optimized across family and/or generations.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+<Note>
+These values are case-sensitive.
+</Note>
+
+
+
+#### Direct Recommendation Override
+
+You can use the "Instance Type Override" attribute to override the original recommendation for a selected instance and set it to the specified instance type. e.g. m4.medium.
+
+<Note>
+This might result in a score rating of "Impossible".
+</Note>
+
+
+
+Attribute: Instance Type Override
+
+Attribute Category:: Recommendations Override
+
+<Accordion title="Table: Values for Direct Recommendation Override">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "185pt" }} />
+    <col style={{ width: "462pt" }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Attribute Value</th>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>m4.medium</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        If you set Instance Type Override= m4.medium, then all instances tagged with this attribute/value will generate recommendations to move to m4.medium
+      </td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+<Note>
+These values are case-sensitive.
+</Note>
+
+
+
+#### Customizing Catalog Instances
+
+You can use the "Instance Type Override" attribute to tag catalog entries.
+
+These settings can be used to customize the catalog used for making Densify optimization recommendations. You can remove a particular instance type or a whole instance family from consideration.
+
+Choosing whether to use "Disabled" versus "Vacate" is based on whether the customer is prepared to move to a higher cost instance in order to avoid using a particular instance type. This means “vacate at any cost” or the customer just wants the instance type to be “Disabled for use as an optimization target.
+
+In some cases, customers want to use a smaller catalog due to special agreements with their cloud vendor so "Disabled" is used for the majority of the instance types to enforce their smaller catalog.
+
+<Note>
+Catalog tooling is an advanced feature and it is often easier to use a policy setting (eg. to restrict Intel to AMD recommendation or recommendations onto Basic or Burstable) rather than customizing the catalog. Custom effort rating rules that refer to a specific property of a given instance type are also an alternative to customizing the catalog.
+</Note>
+
+
+<Note>
+Any changes to the catalog might need to be re-done following the addition of new instance types by cloud vendors.
+</Note>
+
+
+
+Use the following settings for supply-side catalog instances:
+
+Attribute: Instance Type Override
+
+Attribute Category:: Recommendations Override
+
+<Accordion title="Table: Values for Customizing Catalog Instances">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "185pt" }} />
+    <col style={{ width: "462pt" }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Attribute Value</th>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Disabled</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        Use this value to suppress Densify from making a recommendation to the tagged catalog instance.
+        <br />
+        If a VM is already on this instance type, a "Just Right" recommendation can be made.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Vacate</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        Use this value to suppress Densify from making a recommendation to the tagged catalog instance, and if any instance is currently on this instance type, then move it to another instance.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+<Note>
+These values are not case-sensitive.
+</Note>
+
+
+
+#### Azure Generation 1/Generation 2 Overrides
+
+Microsoft Azure will stop supporting both Generation 1 and Generation 2 VMs on new hardware. Densify supports optimizing Gen1 VMs onto Gen2-only instance types. Densify compares/checks against the metadata to determine the optimal target instance type. The default behaviour is to not make recommendations to move between generation types.
+
+You can control the behaviour using the "Instance Type Override" attribute
+
+* After data collection, the VM's HyperV Generation (V1 or V2) is mapped to the "VM Virtualization Type" attribute.
+* The Azure rulesets include a check of the "VM Virtualization Type" attribute against the supported target instances.
+* The Densify set of metadata includes the supported VM virtualization type (Gen1 or Gen2) for Azure instances. Azure catalog model target instances then include the metadata of V1, V2 or V1;V2.
+* The default behaviour is to leave VMs on the same generation. i.e. Gen1 on Gen1 and Gen2 on Gen2.
+
+* Gen1 VMs cannot go to a V2-only instance type
+* Gen2 VMs cannot go to a V1-only instance type
+
+The following settings apply to Azure instance only.
+
+Attribute: Instance Type Override
+
+Attribute Category:: Recommendations Override
+
+<Accordion title="Table: Values for Instance Type Override for Azure Gen1/Gen2 Overrides">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "185pt" }} />
+    <col style={{ width: "462pt" }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Attribute Value</th>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Gen2 Allowed</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        Intended for Gen1 VMs and if set, recommendations can be made to move Gen 1 apps/workloads to Gen2-only instance types. Instances will not be forced onto Gen2-only instance types and the recommendation will only be made based on the analysis.
+        <br />
+        There will still be a hit on the effort rating to represent the work required to rebuild the instance on the new hypervisor.
+        <br />
+        There is no difference to the effort rating when the attribute is set to this value on a Gen2 VM, as instance upgrade is not required.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Gen1 Required</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        If set on Gen2 VMs it prevents it from moving to a Gen2-only instance type.
+        <br />
+        There is no difference to the effort rating when the attribute is set to this value on a Gen1 VM, as instance upgrade is not required.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Gen 2 Required</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        If set on Gen1 VMs it prevents them from moving to Gen1-only instance types.
+        <br />
+        There is no difference to the effort rating when the attribute is set to this value on a Gen2 VM, as instance upgrade is not required.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</Accordion>
+<Note>
+These values are not case-sensitive.
+</Note>
+
+
+
+<Accordion title="Video: Azure Gen1/Gen2 Recommendations">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/683022886" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+</Accordion>
+
+### Scale Group Overrides
+
+You can control how your scale groups scale vertically and horizontally using the attributes in the Scale Group Overrides category. Overrides are not regulated by the policy. The analysis/sizing extension will always use the override values, if they are provided.
+
+Also see, [Auto Scaling Group Optimization [Cloud Optimization]](/docs/WebHelp_Densify_Cloud/Content/Transform_Policy_Reference/CO_Auto_Scaling_Group_Optimization) in the Policy Reference guide for details of the associated policy settings.
+
+<Accordion title="Figure: Scale Group Overrides Used in Extension">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000244_619x349.png)</Frame>
+</Accordion>
+<Note>
+The number of input/output workloads and limits must match. If they do not, the extension will not run properly.
+</Note>
+
+
+
+Use the following attributes to configure overrides for an ASG or VM Scale Set:
+
+Attribute: Various. See the following table.
+
+Attribute Category: Scale Group Overrides
+
+<Accordion title="Table: Scale Group Override Attributes">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "25%" }} />
+    <col style={{ width: "40%" }} />
+    <col style={{ width: "35%" }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Attribute</th>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Description</th>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Group Max Size Override</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Specifies a custom maximum size for the scaling group. The analysis does not calculate the recommended value and the attribute value is used, instead.</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Integer &gt; 0</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Group Min Size Override</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Specifies a custom minimum size for the scaling group. The analysis does not calculate the recommended value and the attribute value is used instead.</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Integer &gt; 0</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Group Parent Workload Limits</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        If specified, the attribute values are used when analyzing the parent workload.
+        <br />
+        This attribute is not currently available for VM Scale Sets because they have not yet been linked to their AKS parent.
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Semicolon separated string, e.g. 80;80;80</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Group Workload Limits</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>If specified, the attribute values are used when analyzing the ASG or VMSS workload.</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Semicolon separated string, e.g. 70;70;70</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Group Parent Workload Types</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        Specifies the types of parent workloads to be used in the analysis.
+        <br />
+        This attribute is not currently available for VM Scale Sets because they have not yet been linked to their AKS parent.
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Semicolon separated string, e.g. CPU_Reservation_Pct;MEM_Reservation_Pct;Mem_Utilization_As_Pct</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Group Parent Workload Outputs</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        Specifies the workload types to be used to create representative workloads for the ASG workload charts.
+        <br />
+        This attribute is not currently available for VM Scale Sets because they have not yet been linked to their AKS parent.
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Semicolon separated string, e.g. 'CPU_infReservation_Pct;MEM_Reservation_Pct;Mem_Utilization_As_Pct'</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Group Workload Types</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Specifies the types of workloads to be used in the analysis.</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Semicolon separated string, e.g. CPU_CINT2006Rate_Utilization;Raw_Mem_Utilization</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Group Workload Outputs</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        Specifies the workload types to be used to create representative workloads for the ASG or VM Scale Set workload charts.
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Semicolon separated string, e.g. CPU_Util_Predicted_Day;Mem_Utilization_As_Pct</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Parent Workload Strategies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        Specifies the scoring strategies used in optimization analysis of the group's parent.
+        <br />
+        This attribute is not currently available for VM Scale Sets because they have not yet been linked to their AKS parent.
+      </td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Semicolon separated string, e.g. Sustained;Sustained</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Workload Strategies</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Specifies the scoring strategies used in optimization analysis of the group.</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Semicolon separated string, e.g. Sustained;Sustained</td>
+    </tr>
+  </tbody>
+</table>
+
+</Accordion>
+
+### Setting System Attributes
+
+Use the following procedure to tag you instances:
+
+1. Navigate to the Analysis Console > Analysis Workbench > Data Center Explorer.
+2. Use the default Cloud Environment view and select the instances to tag. You can configure one instance at a time using this method. You can also create custom views and filters to select multiple systems and then set the attribute. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+3. In the Info tab click Attributes.
+4. On the attribute page, click the Select Attribute Category dropdown menu and select the appropriate category.
+5. In the Select Attributes to Edit dropdown menu select the required attribute.
+<Accordion title="Table: Attribute Category">
+<table style={{ borderCollapse: "collapse" }}>
+  <colgroup>
+    <col style={{ width: "185pt" }} />
+    <col style={{ width: "462pt" }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Attribute Category</th>
+      <th style={{ textAlign: "center", color: "white", backgroundColor: "#003660" }}>Attribute Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Public Cloud</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Reserve Override</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Recommendations Override</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Instance Type Override</td>
+    </tr>
+    <tr>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>Scale Group Overrides</td>
+      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+        [10 attributes](#Scale_Group_Override), listed above
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</Accordion>
+
+6. Check the instances that you want to tag, and then click Edit.
+7. Enter the desired attribute value and then click OK to close the dialog box and set the attribute value.
+
+Once the instances are tagged, you need to refresh the environment containing the tagged instances.
+
+1. Navigate to Analysis Console > Cloud Environments.
+2. Select the environment that needs to be refreshed and right-click to open the context menu.
+3. Select Refresh to begin the analysis.
+
+When an analysis refresh is in progress, the Cloud Environment landing page shows the refresh progress for an environment in Last Refresh column. After the refresh is finished, the Refresh Duration column displays appropriate value and a status icon is displayed in the Name column.
+
+Lastly you also need to re-populate the RDB before the updated results are displayed in the Densify Console.
+
+1. At the command line, start the customer CLI pod and open the customer CLI shell.
+2. Navigate to `%CIRBA_HOME%\bin` and execute the following command:
+```
+cirba-rdb.bat Populate
+```
+
+
+
+<Accordion title="Figure: Setting Attributes (hover over image to expand)">
+[<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000126.png)</Frame>](../Resources/Images/Cirba_SaaS/03000126.png)
+</Accordion>

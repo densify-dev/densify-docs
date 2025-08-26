@@ -1,0 +1,1154 @@
+---
+title: "AI Analysis Details Table"
+---
+
+Use the AI Analysis Details report to review instance-specific details. The content of the report is defined by your selection in the tree viewer. You can further filter the table content using the options on the column headers and from a flyout menu. See [Using Filters](/docs-kubex/Content/Kubex/Using_Filters).
+
+## Pre-Configured Views
+
+The following pre-configured tables are provided to quickly show various issues in your environment. Specific filters have been set and selected columns are displayed to highlight the specified risk or waste issue.
+
+
+<Frame caption="Figure: Accessing the System Views on theAI Analysis DetailsTab">
+![](/images/docs-kubex/Content/Kubex/03000161_523x278.png)
+</Frame>
+
+
+The content of the table as well as the totals at the bottom reflect applied filter settings. Not all columns may be displayed in your view, but you can add them at any time. See [Using Table Column Features](/docs-kubex/Content/Kubex/Using_Table_Column_Features).
+
+<Accordion title="Table: Pre-Configured Views">
+<table>
+<thead>
+<tr>
+<th>
+System View
+</th>
+<th>
+View
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Default View 
+</td>
+<td>
+N/A
+</td>
+<td>
+This is the most commonly used set of columns that provide a summary view of your containers. Significant  wasted spend is highlighted. The "Total Waste" is pinned to the left side of the table and the table is sorted on this column in descending order.
+</td>
+</tr>
+<tr>
+<td>
+All Data 
+</td>
+<td>
+N/A
+</td>
+<td>
+All columns are displayed. All filters are cleared. Horizontal and vertical scroll bars are displayed so you can navigate the content of the table.
+</td>
+</tr>
+<tr>
+<td rowspan="5">
+CPU Risks
+</td>
+<td>
+CPU Request Shortfall
+</td>
+<td>
+This view highlights containers with a shortfall of CPU resources.
+</td>
+</tr>
+<tr>
+<td>
+CPU Request Shortfall <br/>(from Unspecified)
+</td>
+<td>
+This view highlights containers with unspecified with CPU request values.
+</td>
+</tr>
+<tr>
+<td>
+CPU Request Shortfall <br/>(Throttling Risk)
+</td>
+<td> This view highlights containers with a shortfall of CPU resources.</td>
+</tr>
+<tr>
+<td>
+Oversized CPU Limits
+</td>
+<td>
+This view highlights containers with surplus CPU resources.
+</td>
+</tr>
+<tr>
+<td>
+Undersized CPU Limits <br/>(Throttling Risk)
+</td>
+<td>
+This view highlights containers that are sized incorrectly and are under CPU pressure. You can identify containers at risk and adjust their CPU allocation to prevent performance issue.
+</td>
+</tr>
+<tr>
+<td rowspan="3">
+CPU Waste
+</td>
+<td>
+CPU Request Surplus
+</td>
+<td>
+This view highlights containers identified with surplus CPU request settings.
+</td>
+</tr>
+<tr>
+<td>
+Immediate CPU Savings
+</td>
+<td>
+This view highlights immediate savings that can be achieved by adjusting the CPU Request settings only for containers within Node Groups where the "CPU Request" is the primary constraint.
+</td>
+</tr>
+<tr>
+<td>
+Additional CPU Waste
+</td>
+<td>
+This table highlights possible, additional savings that can be achieved.
+</td>
+</tr>
+<tr>
+<td rowspan="7">
+Memory Risks
+</td>
+<td>
+Memory Request Shortfall
+</td>
+<td>
+This view highlights containers that are under-provisioned for memory
+</td>
+</tr>
+<tr>
+<td>
+Memory Request Shortfall <br/>(from Unspecified)
+</td>
+<td>
+This view highlights containers with unspecified with memory request values.
+</td>
+</tr>
+<tr>
+<td>
+Memory Request Shortfall<br/>(OOM Risk)
+</td>
+<td>
+This view highlights containers that are severely under-provisioned for memory possibly leading to out of memory errors and containers stopping.
+</td>
+</tr>
+<tr>
+<td>
+Oversized Memory Limits
+</td>
+<td> </td>
+</tr>
+<tr>
+<td>
+Undersized Memory Limits <br/>(OOM Risk)
+</td>
+<td>
+This view highlights containers that are sized incorrectly and are under memory pressure. You can identify containers at risk and adjust their memory allocation to prevent service failures.
+</td>
+</tr>
+<tr>
+<td>
+Memory Limit Events
+</td>
+<td>
+This view highlights containers that have already experienced out of memory events.
+</td>
+</tr>
+<tr>
+<td>
+Restarts
+</td>
+<td>
+This view highlights containers that have already experienced out of restarts, due to memory issues.
+</td>
+</tr>
+<tr>
+<td rowspan="3">
+Memory Waste
+</td>
+<td>
+Memory Request Surplus
+</td>
+<td>
+This view highlights containers identified with surplus memory request settings.
+</td>
+</tr>
+<tr>
+<td>
+Immediate Memory Savings
+</td>
+<td>
+This view highlights immediate savings that can be achieved by adjusting the Memory Request settings only for containers within Node Groups where the "Memory Request" is the primary constraint.
+</td>
+</tr>
+<tr>
+<td>
+Additional Memory Waste
+</td>
+<td>
+This view highlights possible, additional savings that can be achieved.
+</td>
+</tr>
+<tr>
+<td rowspan="43">
+GPU
+</td>
+<td>
+Inventory
+</td>
+<td>
+This view highlights containers with GPU request values.
+</td>
+</tr>
+<tr>
+<td>
+GPU Cost
+</td>
+<td>
+This view includes the columns with the added cost of the GPU.
+</td>
+</tr>
+<tr>
+<td>
+GPU - Low Utilization
+</td>
+<td>
+This table highlights containers that have under-utilized GPU resources.
+</td>
+</tr>
+<tr>
+<td>
+GPU Memory - Low Utilization
+</td>
+<td>
+This table highlights containers that have under-utilized GPU memory resources.
+</td>
+</tr>
+</tbody>
+</table>
+</Accordion>
+
+
+
+
+## Container Details
+
+
+
+<Accordion title="Table: Container Details Tabular Columns">
+<table>
+<thead>
+<tr>
+<th>
+Column Name 
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Cluster
+<br/>
+</td>
+<td>
+The parent cluster containing the pods.
+</td>
+</tr>
+<tr>
+<td>
+Entity ID
+<br/>
+</td>
+<td>
+A unique identifier, assigned by Densify.
+</td>
+</tr>
+<tr>
+<td>
+Node Group
+</td>
+<td>
+The name of any node groups contained in this cluster. If the cluster contains multiple node groups, all node groups are listed.
+<br/>
+For nodes that do not belong to a node group, the node group value will be \<cluster-name>-default”.
+</td>
+</tr>
+<tr>
+<td>
+Namespace
+<br/>
+</td>
+<td>
+The namespace associated with the container. This allows you to logically group your pods.
+</td>
+</tr>
+<tr>
+<td>
+Pod Owner Kind 
+</td>
+<td>
+The controller type that monitors and maintains the state of your cluster. This can be one of DaemonSet, Deployment, ReplicaSet, ReplicationController, StatefulSet, etc.
+</td>
+</tr>
+<tr>
+<td>
+<a name="Num_Containers"></a> Average No. of Containers
+</td>
+<td>
+This is the average number of containers specified by the selected manifest. 
+
+The number  is determined using an average number of containers, based on the metric, "In Service Instances".
+
+This value is used to calculate surplus resources and savings/waste.
+
+The <a href="#totals">total</a> number of containers, listed at the bottom of each column is based on your selection in the tree viewer and on any filters that have been applied.
+</td>
+</tr>
+<tr>
+<td>
+Pod Owner Name
+<br/>
+</td>
+<td>
+This is the name of the controller or pod. You can have one or more containers per pod.
+</td>
+</tr>
+<tr>
+<td>
+<a name="hyperlink"></a> Container Name
+<br/>
+</td>
+<td>
+This is the name of the container manifest.
+								
+The container name is a hyperlink that opens a modal view of the <a href="/docs-kubex/Content/Kubex/Overview_Tab">Overview</a> tab.
+
+When you export the content of this table, a URL is provided in the last column, "Container Details URL". When you open the exported .XLS file, the content initially appears as plain text and then when you click on the cell it becomes a  hyperlink that takes you to the <a href="/docs-kubex/Content/Kubex/Overview_Tab">Overview</a> tab for the selected container. See <a href="/docs-kubex/Content/Kubex/Visualizing_Your_Data#deep-links">Using Deep Links</a> for details.
+</td>
+</tr>
+<tr>
+<td>
+Policy
+<br/>
+</td>
+<td>
+This is the name of policy used to analyze this container's utilization data.
+
+Click the link to open a flyout summary of the policy settings.
+
+Contact <a href="mailto:Support@Densify.com">Support@Densify.com</a> for details on configuring policy settings.
+</td>
+</tr>
+<tr>
+<td>
+CPU Request (mCores)
+<br/>
+Memory Request (MB)
+<br/>
+CPU Limit (mCores)
+<br/>
+Memory Limit (MB)
+</td>
+<td>
+The current request and limit CPU | memory values for the selected container are displayed in these 4 columns. 
+
+The <a href="#totals">total</a>, listed at the bottom of the Request and Limit columns for both CPU and Memory, is calculated as (current value * No. of Containers). This formula is also used for CPU Limit and Memory Limit.
+For containers where the current  CPU value is unspecified a dash (-) is displayed in the main table and '0' is displayed in the "Total" row.
+</td>
+</tr>
+<tr>
+<td>
+Recom. CPU Request (mCores)
+<br/>
+Recom. Memory Request (MB)
+<br/>
+Recom. CPU Limit (mCores)
+<br/>
+Recom. Memory Limit (MB)
+<br/>
+</td>
+<td>
+The recommended request and limit CPU | memory values for this container are displayed in these columns. 
+
+The <a href="#totals">total</a>, listed at the bottom of the Request and Limit columns for both CPU and Memory, is calculated as (Current CPU Request * Current Count). This formula is also used for CPU Limit and Memory Limit.
+
+These columns are hidden by default. You can enable it for display, as required. See Data Controls, above.
+</td>
+</tr>
+<tr>
+<td>
+Surplus CPU Limit (mCores)
+<br/>
+Surplus Memory Limit (MB)
+<br/>
+</td>
+<td>
+The surplus is the difference between the current and the recommended values. If the current value is unspecified, then the surplus value will be negative (i.e. 0 - recommended value).
+</td>
+</tr>
+<tr>
+<td>
+CPU Peak (mCores)
+Memory Peak (MB)
+</td>
+<td>
+The highest peak value in mCores or MB, on the busiest container. Currently, this peak value is the 5-min average value and not the maximum within the 5-minute interval.
+
+These data points allow you to find containers where the CPU and memory requests are higher than peak utilization over a given period. You can use these raw peak numbers to compare with the CPU or memory surplus request values.
+
+For example, if CPU Request = 500 mCores; Peak CPU utilization in the last 95 days is only 45 mCores, then this indicates there is significant waste.
+</td>
+</tr>
+<tr>
+<td>
+CPU Sustained (mCores)
+<br/>
+Memory Sustained (MB)
+<br/>
+</td>
+<td>
+The sustained value in mCores or MB, on the average container.
+
+</td>
+</tr>
+<tr>
+<td>
+CPU Min (mCores)
+<br/>
+Memory Min (MB)
+</td>
+<td>
+The minimum value in mCores or MB, on the average container.
+</td>
+</tr>
+<tr>
+<td>
+% CPU Request vs Required
+</td>
+<td>
+This is the percentage of  requested CPU as a percentage to the number of CPUs that are required.
+</td>
+</tr>
+<tr>
+<td>
+% CPU Limit vs Required
+</td>
+<td>
+This is the percentage of  CPU resources allocated to limits as a percentage of the reuired CPU limit value.
+</td>
+</tr>
+<tr>
+<td>
+% Memory Request vs Required
+</td>
+<td>
+This is the percentage of  requested memory as a percentage to the amount of memory that is required.
+</td>
+</tr>
+<tr>
+<td>
+% Memory Limit vs Required
+</td>
+<td>
+This is the percentage of memory resources allocated to limits as a percentage to the memory limit value required.
+</td>
+</tr>
+<tr>
+<td>
+<a name="Total_CPU_Request_"></a> Total CPU Request (mCores)
+</td>
+<td>
+This is the total CPU request value for the container and is calculated as (current value * No. of Containers).
+</td>
+</tr>
+<tr>
+<td>
+Total CPU Request Surplus from Unspecified (mCores)
+</td>
+<td>
+The selected manifest does not specify a total CPU request value, so the displayed value is based on Densify's recommended setting. Unspecified requests are treated as 0 for this calculation, so a "surplus" appears as a negative value, indicating that the recommended CPU request is greater than zero. 
+
+This value is indicated as a shortfall on the Overview tab.
+
+See <a href="/docs-kubex/Content/Kubex/Summary_Tab#unspecified">1</a> for more details.
+</td>
+</tr>
+<tr>
+<td>
+<a name="Total_Surplus_CPU"></a> Total Surplus CPU Request (mCores)
+</td>
+<td>
+This is the total surplus CPU request value for the container and is calculated as: (Current CPU Request - Recommended CPU Request) * Uptime% * <a href="#num-containers">No. of Containers</a>.
+</td>
+</tr>
+<tr>
+<td>
+<a name="Total_Memory_Request"></a> Total Memory Request (MB)
+</td>
+<td>
+This is the total memory request value for the container.
+
+Calculated as: (current value * No. of Containers).
+
+For containers where the current CPU value is unspecified "0" is displayed in this column.
+</td>
+</tr>
+<tr>
+<td>
+Total Memory Request Surplus from Unspecified (MB)
+</td>
+<td>
+The selected manifest does not specify a total memory request value, so the displayed value is based on Densify's recommended setting. Unspecified requests are treated as 0, so a "surplus" appears as a negative value, indicating that the recommended memory request is greater than zero. 
+
+This value is indicated as a shortfall on the Overview tab.
+
+See <a href="/docs-kubex/Content/Kubex/Summary_Tab#unspecified">1</a> for more details.
+</td>
+</tr>
+<tr>
+<td>
+<a name="Total_Surplus_Memory"></a> Total Surplus Memory Request (MB)
+</td>
+<td>
+This is the total surplus memory request value for the container.
+<br/>
+Calculated as: (Current Memory Request - Recommended Memory Request) * Uptime% * <a href="#num-containers">No. of Containers</a>.
+<br/>
+For containers where the current CPU value is unspecified "0" is displayed in this column.
+</td>
+</tr>
+<tr>
+<td>
+Uptime %
+</td>
+<td>
+Uptime % is the total time the container has been running as a percentage of the total hours since the container was deployed. (Running Hrs/Total Hrs)
+When using pay-per-use pricing models, the amount of time each instance has been running, is required to accurately estimate future costs. 
+<br/><br/>
+The predicted uptime (%) for a cloud instance or container, is based on the percentage of hours CPU utilization data is present in the historical interval, as specified in the policy settings for the entity. For Auto Scaling groups and VM Scale Sets and Individual child instances are not taken into account.
+<br/><br/>
+Uptime for new instances or containers, that started mid-way through the historical interval, is calculated from the time/date that the instance was started rather than the beginning of the interval, resulting in more accurate predictions for future usage.
+<br/><br/>
+For example, the uptime is the number of hours that have "CPU Utilization in mcores", and the range is the lesser of when the container was discovered, or the range that is defined in the policy. Looking at a specific container that was discovered on July 5th 2025, that has workload for 42 hours since that date, then 13 days later, the uptime % is 42 hrs/(13 days x 24 hrs/day) = 13.4%. This is the value reported in this column.
+</td>
+</tr>
+<tr>
+<td>
+Total Hrs
+</td>
+<td>
+The total hours are determined by calculating the duration from the time the first container, as defined by the manifest, starts, until the point that Densify analyzes the specified containers. Total hours continues to increment until the manifest is no longer discovered by Densify.
+</td>
+</tr>
+<tr>
+<td>
+Running Hrs
+</td>
+<td>
+Running hours is the number of hours of CPU utilization data from any running containers, as defined by the container manifest. The number of running containers is not used when determining the number of running hours. i.e. 3 containers are running from 2pm to 6pm, then “Running Hours” will be 4 hrs.
+</td>
+</tr>
+<tr>
+<td>
+Restarts - Last Day
+</td>
+<td>
+The total number of restarts of all containers associated with the deployment, in the last day. 
+A dash (-) is displayed if no data has been collected.
+</td>
+</tr>
+<tr>
+<td>
+Memory Limit Event - Last Day              
+</td>
+<td>
+Indicates if the peak working set memory utilization was near or exceeded the memory limit, in the last day. If memory events have been encountered (value=Yes) then the table cell is shaded to clearly indicate this container is at risk.
+<br/><br/>
+A value of "No" indicates:
+<ul>
+  <li>There is data and no memory events have occurred;</li>
+  <li>The current memory limit is unspecified for the selected container.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+Optimization Type
+</td>
+<td>
+Identifies the overall result of the optimization analysis. 
+<br/><br/>
+Values are colour-coded and the possible colours are listed in <a href="#containeroptimizationtype">Container Optimization Types</a>, below.
+</td>
+</tr>
+<tr>
+<td>
+Cost per Container ($/month)
+</td>
+<td>
+This is the cost to run this container. The value is calculated as follows:
+<br/><br/>
+((Current CPU Request/1000) * CPU unit cost + (Current Memory Request/1024) * Memory unit cost)  * Uptime%
+</td>
+</tr>
+<tr>
+<td>
+Waste per Container ($/month)
+</td>
+<td>
+This is the amount of money that can be saved by running this container, in the recommended configuration. The value is calculated as follows:
+<br/><br/>
+(((Current CPU Request - Recommended CPU Request)/1000) * CPU unit cost + ((Current Memory Request - Recommended Memory Request)/1024) * Memory unit cost) * Uptime%
+</td>
+</tr>
+<tr>
+<td>
+Total Cost ($/month)
+</td>
+<td>
+The total cost for the containers in the selected scope.
+<br/><br/>
+Calculated as Cost per Container * <a href="#num-containers">No. of Containers</a>.
+</td>
+</tr>
+<tr>
+<td>
+Immediate CPU Savings ($/month)
+</td>
+<td>
+Immediate (Realizable) CPU savings can be achieved by optimizing specific CPU settings.
+<br/><br/>
+You can reduce costs, by adjusting the CPU Request settings, only for containers within NodeGroups where "CPU Request" is the primary constraint. 
+<br/><br/>
+A container qualifies for immediate savings if the "% of Nodes with CPU Saturation" is below a predefined threshold. For example, if the threshold is set at 50%, only containers where "% of Nodes with CPU Saturation" is less than 50% should be considered.
+<br/><br/>
+Realizable memory savings can be achieved by  adjusting the Memory Request settings only for containers within Node Groups where Memory Request" is the primary constraint.
+<br/><br/>
+Calculated as: (Sum (Total Surplus CPU Request (mCores))” /1000 mCores/Cores) * CPU unit cost.
+</td>
+</tr>
+<tr>
+<td>
+Additional CPU Waste ($/month)
+</td>
+<td>
+The total cost for the containers in the selected scope.
+<br/><br/>
+Calculated as: (Total Surplus CPU * CPU unit cost) - Immediate CPU Savings
+</td>
+</tr>
+<tr>
+<td>
+Immediate Memory Savings ($/month)
+</td>
+<td>
+Immediate (Realizable) memory savings can be achieved by optimizing specific memory settings.
+<br/><br/>
+Realizable memory savings can be achieved by adjusting the Memory Request settings, only for containers within Node Groups where Memory Request is the primary constraint. 
+<br/><br/>
+A container qualifies for immediate savings if the "% of Nodes with CPU Saturation" is below a predefined threshold. For example, if the threshold is set at 50%, only containers where "% of Nodes with CPU Saturation" is less than 50% should be considered.
+<br/><br/>
+Calculated as: (Sum (Total Surplus Memory Request (MB)) /1024 MB/GB) * memory unit cost.
+</td>
+</tr>
+<tr>
+<td>
+Additional Memory Waste ($/month)
+</td>
+<td>
+The total cost for the containers in the selected scope.
+<br/><br/>
+Calculated as: (Total Surplus Memory * Memory unit cost) - Immediate Memory Savings
+</td>
+</tr>
+<tr>
+<td>
+Total Realizable Savings ($/month)
+</td>
+<td>
+Realizable (Immediate) savings can be achieved by optimizing specific CPU and memory settings.
+<br/><br/>
+Calculated as: Sum of Immediate CPU Savings + Sum of Immediate Memory Savings
+</td>
+</tr>
+<tr>
+<td>
+Total Waste ($/month) 
+</td>
+<td>
+This value indicates the total savings that can be achieved if the recommendations are implemented.
+<br/><br/>
+Calculated as: (Waste per Container ($/month) * <a href="#num-containers">No of Containers</a>
+</td>
+</tr>
+<tr>
+<td>
+<p># of Nodes</p>                        
+</td>
+<td>
+This is the number of nodes on which this container has run. 
+<br/><br/>
+You can hover over the cell to see the list of all node name(s) on which the selected container(s) reside(s).
+</td>
+</tr>
+<tr>
+<td>
+<a name="Config_Updated"></a> Container Configuration Updated On
+</td>
+<td>
+A value in this column indicates the instance type (cloud) or instance request/limit values (container) has been change recently.
+<br/><br/>
+The workload for this instance, on which the recommendation is based, includes only the days of data from the indicated date to the current date. All historical data for this instance, collected prior to the indicated date is not included in the analysis. Previous data has been excluded because it was based on the previous instance type (cloud) or instance request/limit values (container). <a name="kanchor39"></a> A blank cell indicates the current instance type has not changed and all available workload data within the range, defined by the policy, has been used to generate the recommendation.
+Contact <a href="mailto:Support@Densify.com">Support@Densify.com</a> to enable this feature.
+</td>
+</tr>
+<tr>
+<td>
+Node Group CPU Saturation
+</td>
+<td>
+Indicates whether this container resides on a node with CPU utilization above the saturation threshold (default: 95%), during the past 7 days.
+<br/><br/>    
+The saturation threshold value is configurable. Contact <a href="mailto:Support@Densify.com">Support@Densify.com</a> for details.
+</td>
+</tr>
+<tr>
+<td>
+<a name="CPU_Sat"></a>% Nodes with CPU Saturation
+</td>
+<td>
+The percentage of nodes with peak CPU utilization above the configurable, saturation threshold (default: 0%)   during the past 7 days of history. The value is expressed as a percentage of the total number of nodes.
+<br/><br/>
+If the value exceeds the threshold it is shaded red.
+<br/><br/>
+The saturation threshold value is configurable. Contact <a href="mailto:Support@Densify.com">Support@Densify.com</a> for details.
+</td>
+</tr>
+<tr>
+<td>
+Node Group Memory Saturation
+</td>
+<td>
+Indicates whether this container resides on a node with memory utilization above the saturation threshold (default: 95%), during the past 7 days.
+<br/><br/>
+The saturation threshold value is configurable. Contact <a href="mailto:Support@Densify.com">Support@Densify.com</a> for details.
+</td>
+</tr>
+<tr>
+<td>
+% Nodes with Memory Saturation
+</td>
+<td>
+The percentage of nodes with memory utilization above the configurable, saturation threshold (default: 0%)   during the past 7 days of history. The value is expressed as a percentage of the total number of nodes. Calculated as: Node hours with saturated memory/total node hours.
+<br/><br/>
+If the value exceeds the threshold the cell is shaded red.
+<br/><br/>
+The saturation threshold value is configurable. Contact <a href="mailto:Support@Densify.com">Support@Densify.com</a> for details.
+</td>
+</tr>
+<tr>
+<td>
+Node Group Primary Constraint
+</td>
+<td>
+Indicates the reason that more containers cannot be added to this node group. The following values are evaluated and whichever has the largest value is identified as the primary constraint:
+<ul>
+  <li>CPU Request--Based on the value of CPU Request (Capacity %)</li>
+  <li>CPU Utilization--Based on the value of Average CPU Utilization (%)</li>
+  <li>Memory Request--Based on the value of Memory Request (Capacity %)</li>
+  <li>Memory Utilization--Based on the value of Average Memory Utilization (%)</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<a name="Totals"></a> Total
+</td>
+<td>
+The totals for each column are shown in bold, at the bottom of the table. This is the total of all the records in the filtered, tabular report.
+<br/><br/>
+The total, listed at the bottom of the Request and Limit columns for both CPU and Memory, is calculated as (Current CPU Request * Current Count). This formula is also used for CPU Limit, Memory Request and Memory Limit.
+<br/><br/>
+The total, listed at the bottom of the Surplus columns for both CPU and Memory, is calculated as: (Current - Recommended).
+<br/><br/>
+If the value of any row is unspecified, then that value is treated as "0" when summing the values for the total.
+</td>
+</tr>
+</tbody>
+</table>
+</Accordion>
+
+
+
+
+## GPU Details
+
+The following table outlines the columns populated with GPU data. The reported GPU data reflects raw utilization metrics. While analysis and recommendations are not currently provided, this data can be used to highlight wasted resources. 
+
+<Accordion title="Table: Container GPU Details">
+<table>
+<thead>
+<tr>
+<th>
+Column Name
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+GPU Model
+</td>
+<td>
+The GPU model configured on the parent node.
+</td>
+</tr>
+<tr>
+<td>
+GPU Request (GPUs)
+</td>
+<td>
+The GPU request per container as specified in the manifest.
+</td>
+</tr>
+<tr>
+<td>
+Total GPU Request 
+</td>
+<td>
+The total GPU request value, determined as the <a href="#num-containers">average number of containers</a> multiplied by the GPU request value.
+</td>
+</tr>
+<tr>
+<td>
+GPU Peak (GPUs)
+</td>
+<td>
+The highest GPU peak value, on the busiest container. Currently, this peak value is the 5-min average value and not the maximum within the 5-minute interval.
+</td>
+</tr>
+<tr>
+<td>
+%GPU Peak
+</td>
+<td>
+This is the peak GPU usage, as a percentage of the GPU request value.
+</td>
+</tr>
+<tr>
+<td>
+GPU Average (GPUs)
+</td>
+<td>
+The average GPU utilization for  the <a href="#num-containers">average number of containers</a>.
+</td>
+</tr>
+<tr>
+<td>
+% GPU Average
+</td>
+<td>
+This is the average GPU usage, as a percentage of the GPU request value.
+</td>
+</tr>
+<tr>
+<td>
+GPU Sustained (GPUs)
+</td>
+<td>
+The sustained GPU utilization for  the <a href="#num-containers">average number of containers</a>.
+</td>
+</tr>
+<tr>
+<td>
+GPU Min (GPUs)
+</td>
+<td>
+The minimum GPU utilization for  the <a href="#num-containers">average number of containers</a>. 
+</td>
+</tr>
+<tr>
+<td>
+GPU Memory Request (GB)
+</td>
+<td>
+The GPU memory request value specified in the manifest.
+</td>
+</tr>
+<tr>
+<td>
+Total GPU Memory Request
+</td>
+<td>
+The total GPU memory request value, determined as   the <a href="#num-containers">average number of containers</a> multiplied by the GPU memory request value.
+</td>
+</tr>
+<tr>
+<td>
+GPU Memory Peak (GB)
+</td>
+<td>
+The highest peak value in MB, on the busiest container. Currently, this peak value is the 5-min average value and not the maximum within the 5-minute interval.
+</td>
+</tr>
+<tr>
+<td>
+%GPU Memory Peak
+</td>
+<td>
+This is the peak GPU memory usage, as a percentage of the GPU memory request value.
+</td>
+</tr>
+<tr>
+<td>
+GPU Memory Average (GB)
+</td>
+<td>
+The average GPU memory utilization for  the <a href="#num-containers">average number of containers</a>.
+</td>
+</tr>
+<tr>
+<td>
+% GPU Memory Average
+</td>
+<td>
+This is the average GPU memory usage, as a percentage of the GPU memory request value.
+</td>
+</tr>
+<tr>
+<td>
+GPU Memory Sustained (GB)
+</td>
+<td>
+The sustained GPU memory utilization for the <a href="#num-containers">average number of containers</a>.
+</td>
+</tr>
+<tr>
+<td>
+GPU Memory Min (GB)
+</td>
+<td>
+The minimum GPU  memory utilization for the <a href="#num-containers">average number of containers</a>. 
+</td>
+</tr>
+<tr>
+<td>
+GPU Power Usage Peak (Watts)
+</td>
+<td>
+The highest peak value in watts, on the busiest container. Currently, this peak value is the 5-min average value and not the maximum within the 5-minute interval.
+</td>
+</tr>
+<tr>
+<td>
+GPU Power Usage Average (Watts)
+</td>
+<td>
+The average power usage for the <a href="#num-containers">average number of containers</a>.
+</td>
+</tr>
+<tr>
+<td>
+GPU Power Usage Sustained (Watts)
+</td>
+<td>
+The sustained power usage for the <a href="#num-containers">average number of containers</a>.
+</td>
+</tr>
+<tr>
+<td>
+GPU Power Usage Min (Watts)
+</td>
+<td>
+The minimum power usage for the <a href="#num-containers">average number of containers</a>.
+</td>
+</tr>
+<tr>
+<td>
+GPU Sharing Strategy
+</td>
+<td>
+The method used to allow multiple containers to share a single GPU. Possible values are None, MPS and Time-Slicing.
+</td>
+</tr>
+<tr>
+<td>
+Total GPU Cost ($/month)
+</td>
+<td>
+The total cost of the GPU for the selected manifest. If a container uses multiple GPU models,  the average hourly GPU cost is calculated as follows and used here.
+Container GPU cost = Total GPUs * Avg GPU hourly cost * Uptime
+</td>
+</tr>
+</tbody>
+</table>
+</Accordion>
+
+
+
+
+## Containers with Unspecified Settings
+
+Containers with unspecified request values can lead to misleading savings or shortfall results. In Kubex, costs for containers with unspecified CPU and memory request values, are calculated based on the recommended CPU and memory request values.
+
+The resulting values are then used when calculating the following values on the AI Analysis Details tab:
+
+
+<ul>
+  <li>Cost per container</li>
+  <li>Total Cost</li>
+  <li>Total Surplus CPU/Mem Request</li>
+</ul>
+
+
+Values for the actual CPU and Memory Request, as shown in the corresponding columns are still shown as '-' for these containers.
+
+These containers are still reported as unspecified in the [histogram](/docs-kubex/Content/Kubex/Histograms_Tab) charts, so that you are aware of the risk these containers add to your environment.
+
+## Container Optimization Types
+
+Container recommendations are categorized into optimization types, which are based on recommended sizing for the CPU Request, CPU Limit, Memory Request, and Memory Limit settings. See the table below for a description of each container optimization type.
+
+<Accordion title="Table: Container Optimization Type Summary">
+<table>
+<thead>
+<tr>
+<th>
+Optimization Type
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style={{backgroundColor:"#b4dfb4", color:"black", textAlign:"center", verticalAlign:"middle"}}>
+Just Right
+</td>
+<td>
+This container manifest or task definition is optimally configured for the workload. There are no resizing  recommendations.
+</td>
+</tr>
+<tr>
+<td style={{backgroundColor:"#F3A147", color:"black", textAlign:"center", verticalAlign:"middle"}}>
+Upsize
+</td>
+<td>
+Kubex recommends increasing one or more of CPU Request, CPU Limit, Memory Request, or Memory Limit settings. An "Upsize" optimization type has no recommendations to decrease any container CPU or memory request or limit settings.
+For example, Kubex assigns an "Upsize" optimization type if a  container manifest or task definition has the following aggregate optimization recommendations:
+<ul>
+  <li>Increasing CPU Request setting;</li>
+  <li>Keeping CPU Limit and Memory Limit at the same setting;</li>
+  <li>Setting a Memory Request from an unspecified value.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style={{backgroundColor:"#DCEEF4", color:"black", textAlign:"center", verticalAlign:"middle"}}>
+Downsize
+</td>
+<td>
+Kubex recommends decreasing one or more of CPU Request, CPU Limit, Memory Request, or Memory Limit settings. A "Downsize" optimization type does not have any size increase recommendations for any request or limit settings.
+For example, Kubex assigns a "Downsize" optimization types for the following aggregate recommendations:
+<ul>
+  <li>Decreasing CPU Request and/or CPU Limit settings;</li>
+  <li>Keeping Memory Request and Memory Limit at the same setting.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style={{backgroundColor:"#CDA1BA", color:"black", textAlign:"center", verticalAlign:"middle"}}>
+Resize
+</td>
+<td>
+Kubex recommends resizing at least two of CPU Request, CPU Limit, Memory Request, or Memory Limit settings. For the "Resize" optimization type, there is at least one increase recommendation and at least one decrease recommendation.
+For example, Kubex assigns a "Resize" optimization type if a container has the following recommendations:
+<ul>
+  <li>Increasing CPU Request setting;</li>
+  <li>Keeping  CPU Limit at the current setting;</li>
+  <li>Sizing Memory Request from an unspecified value;</li>
+  <li>Decreasing Memory Limit from it's current value.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style={{backgroundColor:"#CDBCDE", color:"black", textAlign:"center", verticalAlign:"middle"}}>
+Size from Unspecified
+</td>
+<td>
+Sizing recommendations are made without current CPU Request, CPU Limit, Memory Request, and Memory Limit values. For "Size from Unspecified" optimization type, there is at least one sizing recommendation from an unspecified setting and no decreasing or increasing size  recommendations for any container request or limit settings.
+
+For example, Kubex assigns a "Size from Unspecified" optimization type if a container has the following recommendations:
+
+<ul>
+  <li>Sizing CPU Request and CPU Limit settings;</li>
+  <li>Keeping Memory Request and Memory Limit at the same settings.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style={{textAlign:"center", verticalAlign:"middle"}}>
+No Data
+</td>
+<td>
+There is insufficient data to recommend changes to CPU Request, CPU Limit, Memory Request, or Memory Limit values.
+</td>
+</tr>
+</tbody>
+</table>
+</Accordion>
+
+
+
+
+## Utilization Charts
+
+The last section provides utilization charts that show hourly min/max and sustained activity for the selected node group. You can also expand any chart to the modal view and select other metrics for review. See [Using the Utilization Charts](/docs-kubex/Content/Kubex/AI_Analysis_Details_Charts#workload-charts-details) for details on using these charts to review workload data.
+
+#### Video Resources
+<AccordionGroup>
+<Accordion title="Searching for a System">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1044765242?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1044765242?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Searching for a System</a>
+</Accordion>
+
+<Accordion title="Setting Filters in Columns">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1039085173?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1039085173?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Setting Filters in Columns</a>
+</Accordion>
+
+<Accordion title="Using the Tree Viewer">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Using the Tree Viewer</a>
+</Accordion>
+
+<Accordion title="Using the Utilization Charts">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1042992591?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1042992591?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Using the Utilization Charts</a>
+</Accordion>
+
+</AccordionGroup>

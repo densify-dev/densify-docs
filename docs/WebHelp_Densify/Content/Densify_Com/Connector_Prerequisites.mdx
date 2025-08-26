@@ -1,0 +1,398 @@
+---
+title: "Connector Prerequisites"
+---
+
+The prerequisites to run the Densify Connector are provided in this topic.
+
+If you are planning to run action automation there are additional consideration and configuration. See [Action Automation Prerequisites](./Action_Automation_Prerequisites).
+
+Prior to installing or upgrading the Densify Connector, ensure that the Densify Connector version is compatible with your Densify application version. Refer to [Densify Connector Compatibility](./Action_Automation_Appendix) for details.
+
+<Accordion title="Software and Hardware Requirements">
+This section provides the prerequisites to install and run the Densify Connector.
+
+### Software Requirements
+
+Table: Minimum Operating System Requirements
+
+<table>
+<tr>
+<td>
+<p>Operating System</p>
+</td>
+<td>
+<p>The following Microsoft® Windows® Servers are supported:<a name="kanchor334"></a></p>
+<ul>
+<li>Server 2016</li>
+<li>Server 2019</li>
+</ul>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>Only US English-based locale settings are supported. </p>
+</td>
+</tr>
+</table>
+
+
+Table: Installed Java Version
+
+<table>
+<tr>
+<td>
+<p>Java</p>
+</td>
+<td>
+<p>AdoptOpenJDK JRE 11.0.11_9 (jdk11.0.11_9_minimal) is installed automatically with the <span class="mc-variable Document.Densify_exe variable">Densify Connector</span>.<a name="kanchor335"></a></p>
+</td>
+</tr>
+</table>
+
+
+Table: Transport Layer Security (TLS) Version
+
+<table>
+<tr>
+<td>
+<p>TLS</p>
+</td>
+<td>
+<p>
+</p>
+<p>This connector version uses TLS 1.2. This is the minimum supported version to secure the connection. If you are using TLS 1.1 or 1.0, this version of the connector will fail to authenticate. You must update your deployed TLS version. <a name="kanchor336"></a></p>.<a name="kanchor337"></a>
+</td>
+</tr>
+</table>
+
+
+### Hardware Requirements
+
+This section details the minimum hardware requirements assuming a dedicated machine.Contact [Support@Densify.com](mailto:Support@Densify.com) for the specific requirements for the Mid-range Connector.
+
+Table: Minimum Hardware Requirements
+
+<table>
+<thead>
+<tr>
+<td>
+<p>Component</p>
+</td>
+<td>
+<p>Required CPUs</p>
+</td>
+<td>
+<p>Required Memory (GB)</p>
+</td>
+<td>
+<p>Required Disk Space (GB)</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>
+<span class="mc-variable Document.Densify_exe variable">Densify Connector</span>
+</p>
+</td>
+<td>
+<p>2</p>
+</td>
+<td>
+<p>8</p>
+</td>
+<td>
+<p>10</p>
+</td>
+</tr>
+</table>
+
+
+The above-listed hardware requirements allow you to audit approximately 5000 targets, per connector instance. The number of connectors required is not strictly based on system resources and the number of systems you are auditing. You also need to consider the need to support geographically separated data centers, regions. The connector should be installed as close as possible, within the network to your largest vCenter.
+
+### Network Considerations
+
+The Densify Connector, once installed and configured on or near your vCenter Server, collects data from your vCenters. The connector bundles the collected data and then uploads it to your Densify instance, where it is analyzed.
+
+The connector uses port 80 to communicate with your configured vCenters and with your Densify instance. Alternatively, you can use port 443, if you are using HTTPS for security. This is the most common use case.
+
+You can install the connector on either side of your firewall. Again, the most common use case, to reduce latency between the connector and your vCenters is to install the connector within your internal network behind the firewall. Your network administrator can provide guidance. Port 80 or 443 must be open in both directions.
+
+Visit the Densify website, for additional security considerations:
+https://www.densify.com/service/security
+
+Table: Port Requirements
+
+<table>
+<tr>
+<td>
+<p>Source Component</p>
+</td>
+<td>
+<p>Destination Component</p>
+</td>
+<td>
+<p>Destination Port</p>
+</td>
+<td>
+<p>Protocol</p>
+</td>
+<td>
+<p>Additional Comments</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="mc-variable Document.Densify_exe variable">Densify Connector</span>
+</p>
+</td>
+<td>
+<p>
+<span class="mc-variable Document.Densify variable">Densify</span>
+</p>
+</td>
+<td>
+<p>80 or</p>
+<p>443</p>
+</td>
+<td>
+<p>HTTP</p>
+<p>HTTPS</p>
+</td>
+<td rowspan="1">
+<p>Default port for data collection and action automation.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="mc-variable Document.Densify_exe variable">Densify Connector</span>
+</p>
+</td>
+<td>
+<p>
+<span class="mc-variable Document.Densify variable">Densify</span>
+</p>
+</td>
+<td>
+<p>6789</p>
+</td>
+<td>
+<p>TCP</p>
+</td>
+<td rowspan="1">
+<p>Default port for the scheduler. Required for action automation.</p>
+</td>
+</tr>
+</table>
+
+
+The connector initiates the connection to a vCenter to start data collection through port 80 or 443 using TCP bi-directionally. Data collection usually starts, nightly, just past midnight after the vCenter has completed the daily data rollup.
+
+The connector then initiates a connection to your Densify instance to upload the collected data for analysis. Densify then detects the data has been sent and loads the data to its local database and begins the analysis automatically. Reports will be available in the Densify Console, within a few hours.
+
+### Internet Connectivity
+
+The Densify Connector must have 24 hour by 7 days/week connectivity to the internet.
+
+### vCenter Connectivity
+
+The Densify Connector must have continuous access to the vCenter Servers/vROps, for daily audits.
+
+### Time Zone Settings
+
+Your Densify Connector must be in the same time zone as your vCenter Server. If your vCenter Servers are in different time zones, then configure a Densify Connector for each vCenter. You do not have the ability to offset the hours in the data collection audit template to compensate for different time zones.
+
+### Licensing and Number of Systems
+
+Densify trials are limited to 2000 systems.Contact [Support@Densify.com](mailto:Support@Densify.com) to increase your limit if required.
+</Accordion>
+
+<Accordion title="Densify Credentials">
+[Support@Densify.com](mailto:Support@Densify.com) will provide your Densify credentials. These credentials are used to log into your Densify instance. You can download the connector,
+</Accordion>
+
+<Accordion title="VMware Configuration">
+The Densify Connector uses the VMware common API interface to audit each vCenter Server and ESX servers. The following prerequisites must be addressed before you can connect and collect the data required for analyses.
+
+### Certified VMware Platforms
+
+Table: VMware Requirements
+
+<table>
+<tr>
+<td>
+<p>VMware VCenter</p>
+</td>
+<td>
+<p><span class="mc-variable Document.VM1 variable">vCenter Server</span> 6.5, 6.7 and 7.0.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="mc-variable Document.VM10 variable">vROps</span>
+</p>
+</td>
+<td>
+<p>vRealize Operations Manager  7.5. 8.0.1, 8.1, 8.2, 8.4 (Standard, Enterprise)</p>
+</td>
+</tr>
+</table>
+
+
+#### Supported Versions of PowerCLI
+
+PowerCLI is required for Action automation only. If you are not deploying action automation, you do not require PowerCLI.
+
+Prior to installing or upgrading the PowerCLI version on your Densify Connector, please check [Densify Connector Compatibility](./Action_Automation_Appendix). Running a PowerCLI version that is incompatible with the Densify Connector may result in Action Automation failing to execute.
+
+In general you want the latest version of the Densify Connector that meets your requirements.
+
+See [vCenter and PowerCLI Version Compatibility](./Action_Automation_Appendix_B) for a matrix of which PowerCLI versions are supported with each version of vCenter and with the Densify Connector.
+
+### Configuring a vCenter Account
+
+#### Performing Data Collection and Analysis
+
+You require a non-expiring, read-only account with permission to log in to vCenter Server through the vCenter Server client. Through this account you must be able to view the data centers, clusters, hosts and VMs, to be audited.
+
+Verify that you can successfully log in to vCenter Server and navigate the inventory hierarchy tree. The data center to be audited, hosts and VMs, as well as their respective details, should be visible (read-only) to this user account.
+
+Contact [Support@Densify.com](mailto:Support@Densify.com) for details on creating or configuring a vCenter account and to limit the connector to specific clusters.
+
+#### Performing Action Automation
+
+If you are planning to run action automation there are additional considerations and configuration. See [Action Automation Prerequisites](./Action_Automation_Prerequisites).
+
+### Configuring Workload Statistics
+
+The workload statistical settings must be configured in vCenter Server to ensure that the required metrics are collected during an audit and that sufficient data coverage is maintained for Densify analyses.
+
+The workload statistical settings must be configured in vCenter Server and optionally vROps to ensure that memory workloads are collected and that sufficient data is collected for Densify analyses.
+
+You must configure these default settings correctly, otherwise:
+
+* Memory workload will not be collected;
+
+* You may not have a full 24 hours of data on which to base your analyses.
+
+The workload statistics should be set as follows:
+
+Table: Required Statistics Level Settings
+
+<table>
+<thead>
+<tr>
+<th>
+<p>Setting</p>
+</th>
+<th>
+<p>Value</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Statistic Level</p>
+</td>
+<td>
+\<<
+<p><a name="kanchor342"></a>Level 1 is required if you are collecting data from both <span class="mc-variable Document.VM5 variable">vCenter</span> and <span class="mc-variable Document.VM10 variable">vROps</span>.</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>">
+<span class="autonumber">
+<span><b>Note: </b></span>
+</span>
+Depending on your version of both <span class="mc-variable Document.VM10 variable">vROps</span> and <span class="mc-variable Document.VM5 variable">vCenter</span>, you may need additional permissions to collect the metrics required by <span class="mc-variable General.ProductName variable">Densify</span>. See <a class="MCXref xref" href="#Required_Workload_Metrics">Connector Prerequisites</a>.
+</p>
+<p>Level 2 is required if you are collecting data from <span class="mc-variable Document.VM5 variable">vCenter</span> only. This level is required to collect active memory and the disk and network I/O metrics required for <span class="mc-variable Document.Densify variable">Densify</span> analyses. The following metrics are collected:</p>
+<ul>
+<li>CPU Utilization</li>
+<li>CPU Ready Time</li>
+<li>Memory Utilization</li>
+<li>Active Memory<sup>1</sup></li>
+<li>Disk I/O Bytes</li>
+<li>Network I/O Bytes</li>
+</ul>
+<p>Level 3 is required for <span class="mc-variable Document.VM5 variable">vCenter</span> audits if you need to report on the following additional metrics.</p>
+<ul>
+<li>Disk I/O Operations</li>
+<li>Network Packets</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Interval Duration</p>
+</td>
+<td>
+<p>5 minutes is required.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Save For</p>
+</td>
+<td>
+<p>2 days is the recommended data retention period. This value provides greater flexibility in scheduling the data collection process, to allow for <span class="mc-variable Document.Company variable">Densify</span> to obtain the complete day’s worth of data.</p>
+<p>If saving statistical logs for 2 days is not possible, then the default data retention period remains at 1 day, and the audit must be scheduled correctly, in order to capture the last 24-hours of data.</p>
+</td>
+</tr>
+</table>
+
+
+1Active memory is the amount of memory that is never swapped. Starting in vROps 6.7 and 7.0, the "Active Memory" metric has been replaced by "Needed Memory" and the "Memory Ballooning" metric has been replaced by "Memory Contention". See [Connector Prerequisites](#Required_Workload_Metrics).
+
+By default, for vCenter and vROps the statistical level is set to the minimum (Level 1). If you are not using vROps and collecting data from only vCenter then Densify recommends updating the Statistics Level to 2, if you want to collect active memory and the disk and network I/O metrics required for Densify analyses. Collecting active memory is required for VM bump-up recommendations.
+
+The data retention period is a 24-hour moving window which in turn, requires careful scheduling to ensure that a full 24-hour day of data is captured. Setting "Save For" to 2 days is preferable and provides a more flexible time frame, in which to collect the 24-hours of data required.
+
+For more details on the differences between statistics levels for your version of vCenter Server, see http://www.vmware.com/support/developer/vc-sdk. Contact your vCenter administrator to obtain assistance in promoting certain metrics to Level 2 or to set your Statistics Level to 2.
+
+### Token-Based Authentication
+
+The Densify Connector supports token-based authentication when connecting your vCenter Server to the Densify server instance. Authentication is performed through the Densify API and does not need to be configured through the Connector.
+
+When creating connections to vROps, using token-based authentication you must enable the option in the connector. In later versions of vROps, token-based authentication is the default configuration and you must modify the vROps API service to perform basic authentication.
+
+### Configuring a vROps Account
+
+You require a local or a domain user account with permission to log into vRealize Operations, if you are collecting historical workload data from vROps. Refer to  [Access Permissions for a vROps Account](../Data_Collection_for_VI3_Systems/Access_Permissions_for_a_vROps_Account) for details.
+
+#### Authentication
+
+Starting in vROps Manager v8.1, basic authentication when using the REST API is deprecated and disabled in new deployments, by default. vROps installations that have been upgraded will inherit the same properties that were in use and continue to run as before.
+
+Token-based authentication, for vRealize Operations Manager, is supported by the Densify Connector. You can enable the option when creating the connection.
+
+For ease of use, if basic authentication is enabled on the vROps server (via the API), then you can use either basic authentication or token-based when you create the Densify connection, by enabling the setting, "Enable vROps token-based authentication ".
+
+<Accordion title="Figure: Enable Token-Based authentication Setting">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000184_305x120.png)</Frame>
+</Accordion>
+
+
+If basic authentication is disabled on the vROps server (by default in vROps v8.1 or later), then you must use the token-based authentication when your create the Densify connection, by using the UI setting.
+
+#### Required Workload Metrics
+
+Depending on your vROps version and the vCenter versions from which data is to be collected, you may need additional permissions to collect the metrics required by Densify.
+
+<Note>
+Not all of the required metrics are collected by default. You may need to configure additional permissions to collect "Guest|Needed memory" or "Memory|Non Zero Active (KB)". Contact your vCenter administrator to make the required changes to your vROps configuration.
+</Note>
+
+
+
+Refer to the following VMware articles for information:
+
+* https://blogs.vmware.com/management/2019/01/enhancements-to-virtual-machine-memory-metrics-in-vrealize-operationsl
+* https://kb.vmware.com/s/article/53164
+* https://kb.vmware.com/s/article/55675
+
+### VMware Tools
+
+When collecting data from vROps, VMware Tools must be installed on each VM within your managed environment to ensure memory metrics are collected to generate the most accurate recommendations.
+
+VMware Tools is an add-on utility, provided by VMware, that improves VM management. You must ensure a current version of VMware Tools is installed and running. Refer to the documentation provided with your vCenter Server for installation details.
+
+VMware tools is also required for action automation. See [VMware Tools](./Action_Automation_Prerequisites#VMwareTools).
+</Accordion>
+

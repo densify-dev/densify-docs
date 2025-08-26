@@ -1,0 +1,175 @@
+---
+title: "Working with Sensors"
+---
+
+Densify provides a framework that allows non-compute (non host-centric) metrics to be easily added to Densify Control and Reservation analytics. For example, the framework can be used to include the analysis of application data or network data. Each type of metric is considered to be a sensor, e.g. application data sensor.
+
+The Control Console supports the display and management of sensors, allowing you to visualize sensors in the Spectrum and react to sensor-specific recommendations. Sensors can be used for routing future workload reservation requests.
+
+This topic provides an overview of how to manage your sensors.
+
+## Sensor Types
+
+Densify is shipped with the support for datastore sensors, which are audited through the data collection for VMware systems.
+
+## Defining Sensor Placement Strategy
+
+You have two sensor placement options when routing workloads:
+
+* Balancing Strategy--Distributes incoming workloads across all suitable hosting venues with available sensor capacity. Using this option the resource with available sensor capacity that also matches the fit-for-purpose requirements of the incoming workload and has the most available capacity among all matching candidates is selected. Densify attempts to balance workloads across all available hosting venues. This is the default behaviour.
+* Fill and Spill Strategy--Fills suitable hosting venues with available sensor capacity with incoming workloads until the resource reaches its threshold. When routing, the workloads with matching fit-for-purpose requirements are placed on the resource with the least capacity, first.
+
+You can specify sensor placement strategy when submitting a routing request via the API or you can set the placement strategy globally using a configuration setting. Contact [Support@Densify.com](mailto:Support@Densify.com) for details of configuring the global setting.
+
+<Note>
+If a preferred datastore is set, then that setting will override the sensor placement strategy (i.e. balanced/fill and spill).
+</Note>
+
+
+
+Refer to the API documentation for details on creating a routing request that includes specifying a sensor placement strategy. See [Routing Requests](https://densify.com/docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests#Placement) in the Densify API documentation.
+
+## Displaying Sensors and Recommendations
+
+The Spectrum provides a Sensor Display button that toggles the display of the sensors included in your control environment. This button displays a health icon with the worst health value of all sensors in the environment. A health icon is also displayed on each tab indicating the worst health of the sensors shown through that tab.
+
+See [Control Console Spectrum Overview](./Control_Console_Spectrum_Overview) for more details on the sensor display in the Spectrum.
+
+<Accordion title="Figure: Sensor Area">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000176_622x265.png)</Frame>
+</Accordion>
+
+
+You can zoom in/out of any Spectrum area, whether it be a horizontal or vertical area. If you hover over a sensor, the name of the sensor is displayed in a tooltip with the number of hosts and VMs associated with the sensor in brackets (e.g. ds1 [3]).
+
+When you select one or more sensors in the Spectrum, the Spectrum Details is updated with the following two tabs:
+
+* Recommendations--displays recommendations for the selected sensors (see [Reviewing Recommendations](./Reviewing_Recommendations) for details)
+* sensor type--provides details for the selected sensors, including the metrics for those sensors (see [Spectrum Detail](./Spectrum_Detail) for details)
+
+<Accordion title="Figure: Sensors">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000103_556x348.png)</Frame>
+</Accordion>
+
+
+You can search and select sensors through filtering and Reveal of associated infrastructure groups, hosts and VMs. You can also select one or more sensors and see the hosts and VMs that use those sensors. Filtering directly by a sensor is not supported. For more details, see [Working with the Spectrum](./Working_with_the_Spectrum) and [Search and Filter](./Search_and_Filter).
+
+From the Control Console home page, you can see the sensor count, e.g. the number of datastores pertaining to a control environment with the hover over tool tip. See [Navigating the Control Console](./Navigating_the_Control_Console) for details.
+
+## Placement within the Spectrum
+
+The position of each sensor is based on how well it meets the high/low setting limits defined in the policy. For example, datastore sensors have Used Space, Provisioned Space and Required Space High/Low Limits.
+
+A sensor can be positioned at the far left of the Spectrum (at 100% full) or at the far right (at 0% full or 100% empty).
+
+Table: Sensor Placement
+
+<table>
+<thead>
+<tr>
+<th>
+<p>Spectrum</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>
+<span >Too Much Infrastructure</span>
+</p>
+</td>
+<td>
+<p>A sensor is positioned in the Too Much Infrastructure section when all metrics are below the corresponding policy setting low limits, or some metrics are below but others are within the corresponding policy setting low/high limits. For example, for sensors with two metrics:</p>
+<ul>
+<li>metric1 < metric1 Low Limit and <br/>metric2 < metric2 Low Limit, OR</li>
+<li>metric1 < metric1 Low Limit and <br/>metric2 Low Limit < metric2 < metric2 High Limit, OR</li>
+<li>metric2 < metric2 Low Limit and <br/>metric1 Low Limit < metric1 < metric1 High Limit.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span >Just Right</span>
+</p>
+</td>
+<td>
+<p>A sensor is positioned in the Just Right section when the metrics are within both corresponding policy setting limits. For example, for sensors with two metrics:</p>
+<ul>
+<li>metric1 Low Limit < metric1 < metric1 High Limit, AND</li>
+<li>metric2 Low Limit < metric2 < metric2 High Limit </li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span >Too Little Infrastructure</span>
+</p>
+</td>
+<td>
+<p>A sensor is positioned in the Too Little Infrastructure section when at least one metric is above its corresponding policy setting high limit. For example, for sensors with two metrics:</p>
+<ul>
+<li>metric1 > metric1 High Limit, OR</li>
+<li>metric2 > metric2 High Limit.</li>
+</ul>
+</td>
+</tr>
+</table>
+
+
+Historical data is not retained. When the timeline is set back in time, the sensor area is removed from the Spectrum (and the Sensor Display toggle is disabled).
+
+For VMware datastores, their placement also accounts for disk usage metrics collected from the VMware VMs. Densify analytics calculates the datastore available capacity and determines whether or not there is sufficient capacity for existing VMs, and whether or not more VMs can be safely added to the datastores. For predictive timeframes, the required disk space is calculated based on the historical growth trend, headroom and age of the VMs. As you move your timeline into the future, the datastore sensors move as the projected disk space usage for VMs change.
+
+## Bookings and Sensors
+
+When bookings are incorporated in the environment, the projected placement of the sensors is calculated with bookings in mind. Basically, the sensors' metrics for the timeline is defined to be that defined by the sensors for today, plus that defined by inbound bookings. Outbound bookings are not taken into account for a conservative approach. If there are no bookings defined, then the sensor placement does not change as you move the timeline except for datastores as described above.
+
+When defining VM bookings, the Guest's Resource Request category of the Guest Booking Request dialog (from the Route and Reserve Demand page) allows you to define your multi-disk allocation requirements. For host bookings, the host is assumed to be connected to all datastores for the environment so that VM bookings can be appropriately added.
+
+As inbound host and VM bookings are incorporated in the environment, as you move your timeline into the future, datastore sensors are updated with the bookings as follows:
+
+* each metric of the specified sensor is decremented by the corresponding metric specified in the booking
+* the sensors' host or VM count is incremented by 1.
+
+<Note>
+The inbound VM bookings created through transformation analyses are defined with one storage disk and may not include the provisioned space and used space. You must edit the bookings before you submit them to define multiple disk definitions, configure the storage tier definitions or update the space metrics.
+</Note>
+
+
+
+## Datastore Bookings
+
+Inbound datastore bookings can be defined to model datastores coming online in the future. These future datastores are available when defining host and VM bookings. They are also incorporated in the environment as sensors as you move your timeline into the future.
+
+## Recommendations
+
+Recommendations, that require further investigation, are generated when the sensor is in the Too Little Infrastructure section of the Spectrum.
+
+The recommendation types are as follows:
+
+* If the high limit threshold set in the policy is breached (e.g. provisioned, required or used space, or the number of VMs), the recommendation is "Investigate sensor entity exceeding limit"
+* If the capacity limit is breached (e.g. provisioned space), the recommendation is "Sensor entity is full"
+
+See [Reviewing Recommendations](./Reviewing_Recommendations) for more details including examples of the recommendations.
+
+## Additional Routing Considerations
+
+### Sensor Recalculation
+
+At the end of each control environment refresh, existing data used for routing bookings is purged and recalculated (sensor recalculation). This data includes:
+
+* Aggregate infrastructure group-level capacity data, including storage per-tier capacity, cluster\_sensor\_capacity;
+* Individual sensor-level capacity;
+
+During the period while this recalculation is performed, routing anomalies can occur. Specifically, while the sensor data is purged and then is temporarily unavailable for a given hosting venue. During routing of incoming workloads, any clusters that are in the state of sensor data recalculation are excluded from consideration as a hosting option.
+
+You can specify sensor lockout behaviour when submitting a routing request via the API or you can set the lockout during recalculation, globally using a configuration setting. Contact [Support@Densify.com](mailto:Support@Densify.com) for details of configuring the global setting.
+
+### Optional Metrics
+
+If a metric is optional and is not available during an audit, "N/A" is displayed in the reports and the metric is skipped in calculations and routing decisions.

@@ -1,0 +1,51 @@
+---
+title: "External User Authentication Example Configuration for Google OpenID"
+---
+
+You can use the following process to setup Google OpenID for Authentication Code Flow. Before Densify can use Google's OAuth 2.0 authentication system for user login, you must set up a project in the Google API Console to obtain OAuth 2.0 credentials and set redirect URIs. You need to register Densify as a web application in your Google API Console and then provide specific details to Densify to so that your Densify instance can use Google OpenID for authentication
+
+When using Google Open ID, only the Densify Console is supported. If you try to access the Analysis Console, the connection request will fail. If you need to access the Analysis Console, you must use Azure AD, Okta or Ping.
+
+### Register an Application
+
+You must have permission to manage applications in your Google Console.
+
+1. If you have access to multiple projects, select the project in the top menu in which you want to register the application.
+2. Navigate to API & Services > Credentials.
+<Accordion title="Figure: Locating the Credentials Page">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Administration_Guide/03200043_344x112.png)</Frame>
+</Accordion>
+3. Click CREATE CREDENTIALS and select OAuth client ID from the dropdown menu:
+<Accordion title="Figure: Creating a New Credential">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Administration_Guide/03200042_520x215.png)</Frame>
+</Accordion>
+4. Select "Web application" from the Application type dropdown menu. You can accept the default Name for the OAuth 2.0 client.
+5. Add the following redirect URIs:
+
+* https://\<Densify instance>:443/redirect--This is the login redirect forDensify.
+* https://\<Densify instance>:443/openIdError--This is an error message page. The session management filter will redirect the user to the specified OpenID page. For example, when the Google user does not exist in Densify.
+* https://\<Densify instance>:443/openIdLoggedOut--This is logout URI. Specify this page if the configuration property, "login.openId.useStaticLogout" is set in the Densifyconfiguration settings.
+
+<Note>
+These are examples only. Contact Densify for the actual URIs.
+</Note>
+
+
+<Accordion title="Figure: Creating a OAuth Client ID">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Administration_Guide/03200044_539x400.png)</Frame>
+</Accordion>
+6. Click CREATE to create the client.
+<Accordion title="Figure: Client Creation Confirmation">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Administration_Guide/03200046_236x194.png)</Frame>
+</Accordion>
+7. Copy the credentials and download the .JSON file.
+
+New app registrations are hidden to other users by default. Refer to [Google Identity](https://developers.google.com/identity/openid-connect/openid-connect) for details on enabling your app registration for other users, if required.
+
+### Logout Redirect Process
+
+Google does not follow the same logout process as the other supported openID providers.
+
+* Revokes the authentication token that was provided to user. If successful, then redirect to the specified Densify page.
+* This will not logout user from their Google account, but will only disable the selected connection made between the user and GCP account.
+* Redirection to Densify will now show the Google login screen, but will not request a password, as the user is not logged-out of their Google account

@@ -1,0 +1,26 @@
+---
+title: "GCP Cloud Connections"
+---
+
+### Event: Project does not exist or incorrect permissions
+
+The following are common issues when working with GCP cloud connections:
+
+<Accordion title="Cause: Project no longer exists">
+Solution: If the Project no longer exists, the connection can be deleted using the Public Cloud Connection Wizard. See [Deleting a Connection](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard.htm#Deleting).
+</Accordion>
+<Accordion title="Cause: Project exists, but has incorrect permissions">
+Solution: Ensure [Minimum Permissions for Data Collection](../Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites.htm#Min_Policy) are set correctly.
+</Accordion>
+<Accordion title="Cause: Project exists, but is configured incorrectly">
+Solution: If the minimum permissions are set correctly, see [Google Cloud Platform Data Collection Prerequisites](../Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites.htm) to verify the prerequisites are setup correctly.
+
+Once the account and credentials have been corrected, you can then verify the connection using the Public Cloud Connection Wizard. See [Reviewing a Connection](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard.htm#Review_Conn).
+</Accordion>
+<Accordion title="Cause: PERMISSION_DENIED: This API method requires billing to be enabled.">
+The billing method for the audited project(s) has expired or has not been configured correctly. For example, the credit card used to setup the project has expired.
+
+Solution: Refer to the GCP documentation for details of configuring a billing method for your projects: https://support.google.com/googleapi/answer/6158867
+</Accordion>
+
+If none of the above issues apply to your environment, contact Support@Densify.com to review your connectivity details and receive further guidance.

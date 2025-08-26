@@ -1,0 +1,27 @@
+---
+title: "Understanding the Concepts"
+---
+
+The following list provides descriptions of concepts specific to the Control Console.
+
+Actions--See [Recommendations](#Recommendations).
+
+Action Plans--Action plans provide a way to effectively manage recommendations. You can group recommendations into action plans and then schedule the action plan to be completed during network maintenance windows.
+
+Bookings--Inbound and outbound bookings can be defined to keep track of and account for future hosts, datastores and VMs being deployed (inbound bookings) and existing hosts and VMs being removed (outbound bookings) to/from the environment. You can create bookings from within the Route and Reserve Demand page, and the Plan and Manage Supply page. When the environment or infrastructure group is refreshed, bookings are taken into consideration allowing you to view the impact of these changes, including CEI, as you change your timeline into the future.
+
+Scheduling inbound and outbound bookings are critical to understanding how much capacity is required and where resources need to be placed in order to accommodate changes in the environment. Inbound and outbound bookings are also known as resource reservations.
+
+Compute Efficiency Index (CEI)--This value enables you to measure the efficiency of your environment with a single metric. CEI reflects the amount of infrastructure required, based on your policies, giving you a true representation of how well you are leveraging infrastructure, given business, technical and resource constraints in your environment. See [Compute Efficiency Index (CEI)](../Concepts/Compute_Efficiency_Index_CEI) for details on how this value is calculated.
+
+Control Console Environment--An environment is a grouping of systems, against which, a set of analyses are run in order to generate the Spectrum.
+
+The grouping of systems into infrastructure groups and the selection of the groups of systems to be included in the environment is important as it affects how the systems are managed in terms of policies, etc.
+
+Policy--Policies represent the unique requirements in your environment. You configure the amount of risk that corresponds to your business requirements. You also provide details on your organization’s unique business and operational policies so that requirements for SLAs, regulations, disaster recovery, high availability, etc., are reflected, measured and compliance displayed in the console. The positioning of systems within the Spectrum and recommend actions are based on these policies.
+
+Recommendations--Densify identifies deficiencies in your environment. Deficiencies occur when the current state of a host, VM or sensor-managed resource does not match the associated policy. Recommendations such as correctly sizing VMs, rebalancing workloads to reduce risk, or placing booked workloads that are coming online, are listed in the Spectrum Details pane. The recommendations can be automatically pushed to third party systems such as VMware® vCenter™ and VMware vCloud™ Director via integration with Densify. Contact [Support@Densify.com](mailto:Support@Densify.com) for action automation details.
+
+Sensors--Densify provides a framework that supports the analytics of non-compute metrics, e.g. datastores. Each type of such data is managed through a sensor.
+
+Spectrum--Densify’s Efficiency and Risk Spectrum provides a revolutionary visualization of virtual and cloud infrastructure. Organizations can see, in a single view, which resources are appropriately placed, provisioned, and configured and which are at risk.

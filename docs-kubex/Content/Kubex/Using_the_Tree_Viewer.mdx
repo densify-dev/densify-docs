@@ -1,0 +1,248 @@
+---
+title: "Overview"
+---
+import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
+import { InlineImage } from "/snippets/InlineImage.mdx"
+
+The tree viewer offers an intuitive and efficient way to navigate and explore your Kubernetes environment.
+
+
+<Frame caption="Figure: Locating the Container Tree Viewer">
+![](/images/docs-kubex/Content/Kubex/03000119_762x304.png)
+</Frame>
+
+<br/>
+
+
+<InlineImageWithText href="/docs-kubex/Content/Kubex/Using_the_Node_Tree_Viewer" src="/images/docs-kubex/Content/Kubex/03000092.png">
+Use the <a href="/docs-kubex/Content/Kubex/Using_the_Node_Tree_Viewer">node tree viewer</a> to navigate node groups.
+</InlineImageWithText>
+<br/><br/>
+<InlineImageWithText href="/docs-kubex/Content/Cloudex/Using_the_Cloud_Tree_Viewer" src="/images/docs-kubex/Content/Kubex/03000171.png">
+Use the <a href="/docs-kubex/Content/Cloudex/Using_the_Cloud_Tree_Viewer">cloud tree viewer</a> to navigate your public cloud environments.
+</InlineImageWithText>
+
+
+Use the tree viewer to select the scope of systems on which to report. As you navigate through the tree, the reports on the right update automatically to show your selected scope.
+
+### Hiding the Tree Viewer
+
+Once you have selected the scope of systems to review you can hide the tree viewer. If you are working on a smaller screen or laptop it will be easier to view tables and charts with the increased screen space.
+
+
+<InlineImageWithText width={250} src="/images/docs-kubex/Content/Kubex/03000185.png">
+By default, the tree view is pinned to the left side of the screen. 
+When the viewer is pinned, click the chevrons to open/close the tree viewer.
+</InlineImageWithText>
+<br/><br/> 
+<InlineImageWithText width={250} src="/images/docs-kubex/Content/Kubex/03000184.png">
+Click the pin to hide the tree viewer. <br/>
+Use the icon <img src="/images/docs-kubex/Content/Kubex/03000186.png" style={{width: '20px', height: '20px', display: 'inline', verticalAlign: 'middle'}} /> on the top right corner of the tree viewer to open it as required and the X to close it when not required.
+</InlineImageWithText>
+<br/><br/>
+
+
+### Views and Filters
+
+The default view is your container hierarchy i.e. Clusters > Namespaces > Pods > Containers. These views can be customized to better manage your data. See [Creating Custom Views](/docs-kubex/Content/Kubex/Creating_Custom_Views).
+You can also create customized filters to manage large sets of data. See [Creating Custom Filters](/docs-kubex/Content/Kubex/Creating_Custom_Filters).
+
+### Counts
+
+You can see a count of the number of manifests at each branch of the tree viewer.
+When you are viewing counts on the Summary or AI Analysis Details pages, these counts will be containers and will not match the manifest counts shown in the tree viewer.
+
+
+<Frame caption="Figure: Manifest Counts">
+![](/images/docs-kubex/Content/Kubex/03000153_253x220.png)
+</Frame>
+
+
+
+### Navigating the Tree Viewer
+
+The following icons are available, by default. You can create custom views based on other attributes that may not include any of the following items.
+
+
+
+<Accordion title="Table: Tree Viewer Icons">
+<table>
+<col/>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+Icon
+</th>
+<th>
+Entity
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style={{verticalAlign: 'middle'}}>
+<img src="/images/docs-kubex/Content/Kubex/03000004.png"/>
+</td>
+<td style={{verticalAlign: 'middle'}}>
+Kubernetes Environment
+</td>
+<td style={{verticalAlign: 'middle'}}>
+The top level entity that contains your infrastructure.
+</td>
+</tr>
+<tr>
+<td style={{verticalAlign: 'middle'}}>
+<img src="/images/docs-kubex/Content/Kubex/03000005.png"/>
+</td>
+<td style={{verticalAlign: 'middle'}}>
+Kubernetes Cluster
+</td>
+<td style={{verticalAlign: 'middle'}}>
+This represents a Kubernetes cluster that contains the node or group of nodes that manage, deploy, and scale your applications.
+</td>
+</tr>
+<tr>
+<td style={{verticalAlign: 'middle'}}>
+<img src="/images/docs-kubex/Content/Kubex/03000006.png"/>
+</td>
+<td style={{verticalAlign: 'middle'}}>
+Namespace
+</td>
+<td style={{verticalAlign: 'middle'}}>
+This represents the namespace that is a logical partition within a cluster that organizes and manages resources such as pods, services, and deployments.
+</td>
+</tr>
+<tr>
+<td style={{verticalAlign: 'middle'}}>
+<img src="/images/docs-kubex/Content/Kubex/03000007.png"/>
+</td>
+<td style={{verticalAlign: 'middle'}}>
+Pod
+</td>
+<td style={{verticalAlign: 'middle'}}>
+This represents a pod that is the smallest, deployable unit in Kubernetes. It represents a single instance of a running process in a cluster and contains one or more closely related containers that share the same resources and network.
+</td>
+</tr>
+<tr>
+<td style={{verticalAlign: 'middle'}}>
+<img src="/images/docs-kubex/Content/Kubex/03000008_54x56.png"/>
+</td>
+<td style={{verticalAlign: 'middle'}}>
+Container 
+</td>
+<td style={{verticalAlign: 'middle'}}>
+The bottom level is the container that is the runtime unit within a pod and encapsulates an application along with its dependencies.
+</td>
+</tr>
+<tr>
+<td style={{verticalAlign: 'middle'}}>
+<img src="/images/docs-kubex/Content/Kubex/03000085.png"/>
+</td>
+<td style={{verticalAlign: 'middle'}}>
+Business Unit
+</td>
+<td style={{verticalAlign: 'middle'}}>
+Business unit is commonly used to group systems. This is based on a container label and can be used to create custom views.
+</td>
+</tr>
+<tr>
+<td style={{verticalAlign: 'middle'}}>
+<img src="/images/docs-kubex/Content/Kubex/03000084.png"/>
+</td>
+<td style={{verticalAlign: 'middle'}}>
+Other Grouping
+</td>
+<td style={{verticalAlign: 'middle'}}>
+Represents other attributes or labels that have been used to group the data. 
+</td>
+</tr>
+</tbody>
+</table>
+</Accordion>
+
+
+
+
+## Using Tabs to View the Selected Systems
+
+Based on your selection in the tree viewer various tabs are displayed to view the selected data. When multiple systems are selected you see:
+
+
+<ul>
+  <li>
+    <a href="/docs-kubex/Content/Kubex/Summary_Tab">
+    Summary
+    </a>
+    --Shows you summary of how effectively your resources are being utilized.
+  </li>
+  <li>
+    <a href="/docs-kubex/Content/Kubex/Breakdown_Tab">
+    Breakdown
+    </a>
+    --Shows you a breakdown of the items, selected in the tree view, providing a high-level comparison.
+  </li>
+  <li>
+    <a href="/docs-kubex/Content/Kubex/Histograms_Tab">
+    Histograms
+    </a>
+    --Shows you the selected scope of your environment as  set of histograms.
+  </li>
+  <li>
+    <a href="/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab">
+    AI Analysis
+    </a>
+    --Shows analysis details of the selected scope of your environment in various tabular views with utilization charts for selected systems.
+  </li>
+  <li>
+    <a href="/docs-kubex/Content/Kubex/Policies_Tab">
+    Policies
+    </a>
+    --Shows you details of the policy that was used to generate your analysis results.
+  </li>
+</ul>
+
+
+When a single container is selected you see:
+
+
+<ul>
+  <li>
+    <a href="/docs-kubex/Content/Kubex/Overview_Tab">
+    Overview
+    </a>
+    --Shows you the utilization and recommendation details for the selected container.
+  </li>
+  <li>
+    <a href="/docs-kubex/Content/Kubex/GPU_Tab">
+    GPU
+    </a>
+    --Shows you the utilization  details for the selected GPU instance.
+  </li>
+  <li>
+    <a href="/docs-kubex/Content/Kubex/Metrics_Viewer_Tab">
+    Metrics Viewer
+    </a>
+    --Shows you collected and analyzed data for a specific container.
+  </li>
+</ul>
+
+
+
+#### Video Resources
+<AccordionGroup>
+<Accordion title="Searching for a System">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1044765242?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1044765242?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Searching for a System</a>
+</Accordion>
+
+<Accordion title="Using the Tree Viewer">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Using the Tree Viewer</a>
+</Accordion>
+
+</AccordionGroup>

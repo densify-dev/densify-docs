@@ -1,0 +1,56 @@
+---
+title: "Postman Collection"
+---
+
+## Postman Collection
+
+Densify provides a Postman collection of sample API requests for public cloud and containers.
+
+
+<Accordion title="Video: Using the Postman Collection">
+<iframe class="vidyard_iframe" src="https://player.vimeo.com/video/328411200" width="630" height="360" frameborder="0" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen"></iframe>
+</Accordion>
+
+
+<Card
+   horizontal
+   title="Download the Densify Public Cloud Postman Collection (v4.1)"
+   href="/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Collections/DensifyCCO_PostmanCollection.zip"
+   icon="download"
+/>
+
+Follow the steps below to use the downloaded Postman collection:
+
+1. Unzip the downloaded file and import both the **Densify API Collection** collection and **Densify Environment** variables into your Postman workspace.
+2. Modify the variables in the **Densify Environment** to match your Densify settings and credentials.
+
+   <Note>
+   If you already have a **Densify** environment in your Postman application, you can either delete the previous version or rename it. Otherwise, you will have duplicate Densify environments after the new collection is imported.
+   </Note>
+
+3. Review the **Documentation** section of the collection for an overview of the workflow and API requests.
+4. Use this sample collection to familiarize yourself with Densify API requests.
+
+### Troubleshooting the Postman Collection
+
+<AccordionGroup>
+<Accordion title="Token Requests">
+When using token-based authentication you need to request a token for each session. Subsequent API requests within the session are automatically authenticated with this token. Then in a future session you need to again request and acquire a token.
+
+Postman is only intended to provide the tools for learning and testing Densify's APIs.
+
+Once you are comfortable with how the Densify API works you can start to place the API calls within your code, used to interface with Densify. For example you could write a call to get all analysis IDs, then loop through each ID making another API call to get the associated recommendations, thus providing the full list of recommendations for the scope of systems.
+</Accordion>
+
+<Accordion title="&quot;Bad request, invalid accept header&quot; Error">
+If you use Postman v9.x or later you may encounter a "Bad request, invalid accept header" error. This is due to the fact that the Densify API does not currently support the **Accept** key value "\*/" for **Headers**.
+
+Set the **Accept** key value to "application/json".
+
+<Accordion title="Figure: Postman Header Configuration">
+![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000024_556x256.png)
+</Accordion>
+
+</Accordion>
+
+</AccordionGroup>

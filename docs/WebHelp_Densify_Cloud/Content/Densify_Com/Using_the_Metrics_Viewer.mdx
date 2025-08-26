@@ -1,0 +1,548 @@
+---
+title: "Using the Metrics Viewer"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The Densify metrics viewer allows you to view your collected and analyzed time series data to review specific instance details. You can use the metrics viewer to investigate details when deciding whether to action specific recommendations.
+
+The metrics viewer is not currently supported for VM Scale Sets. See [Table: Feature Support for VM Scale Set](./Working_with_VMSS#VMSS-feature-support) for details.
+
+If you want to view the metrics for your containers and node groups see [Using the Metrics Viewer for Containers](./Using_the_Metrics_Viewer-Containers).
+
+## Page Navigation
+
+Access the metrics viewer from the Instance Optimization Details page for both [cloud instances](./Understanding_the_Instance_Details_Report) and [AWS ASGs](./Working_with_ASGs#Lower_Pane).
+
+<Accordion title="Figure: Accessing the Metrics Viewer (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000128.png)</Frame>
+</Accordion>
+
+Use the breadcrumbs in the upper left corner or click the Back button, in the top-right corner of the page, to return to the parent dashboard. Do not use the browser's Back button for navigation within Densify. You will be logged out of your session. See [Navigating Densify](./Navigating_Densify) for other features of the Densify user interface.
+
+<Accordion title="Figure: Metrics Viewer - Breadcrumbs and Back Button (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000260.png)</Frame>
+</Accordion>
+
+Clicking the hyperlink opens the metrics viewer showing the selected instance. The page opens with either the default or saved filter settings, if you are within the same session.
+
+<Accordion title="Figure: Metrics Viewer (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000127.png)</Frame>
+</Accordion>
+
+## Metrics Viewer Controls
+
+When you open the metrics viewer, the instance that was selected in the Instance Optimization Details page is displayed. You can now configure the data you want to view for this instance using the options in the dropdown controls. You can also select another service.
+
+<Accordion title="Figure: Metrics Viewer Controls (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000125.png)</Frame>
+</Accordion>
+
+There are 3 options to configure this report:
+
+<Accordion title="Table: Metrics Viewer Controls">
+<table class="table_1">
+&lt;col/&gt;
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Setting </p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Default </p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Services</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Last selected instance from the <span class="mc-variable Document.Instance_Optimization_Details variable">Instance Optimization Details</span></p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This dropdown list is populated with the instances from the <span class="mc-variable Document.Instance_Optimization_Details variable">Instance Optimization Details</span> page from where the <span class="mc-variable Document.metrics_viewer variable">metrics viewer</span> was opened. i.e. all of the services displayed in the tabular report in the upper pane, are available here.</p>
+<p class="CiRBATableText">Services in this list are named using the convention &lt;service name&gt;&lt;system-id&gt;. The selected instance is at the top of the list and the rest are listed in alphabetical order.</p>
+<p class="CiRBATableText">You can select one service to review.</p>
+<p class="CiRBATableText">To search for a specific instance enter the name of the instance, as you type, matching strings are displayed in the list. You can also paste a string into this field and if a match exists, it is displayed. </p>
+<p class="CiRBATableText">Only the services from the parent  <span class="mc-variable Document.Instance_Optimization_Details variable">Instance Optimization Details</span> page are searched.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Period</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Last 30 Days</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Select the period on which you want to report. There are 4 pre-defined options as well as the option to customize a date range.</p>
+<p class="CiRBATableText">Select "Other" and enter your start and end dates in the calendar. Click <span class="CiRBAcharUIElement">Apply</span> to close the calendar and update the charts with the new period.</p>
+<p class="CiRBATableNote" data-mc-autonum="&lt;b&gt;Note: &lt;/b&gt;"><span class="autonumber"><span><b>Note: </b></span></span><span class="mc-variable General.ProductName variable">Densify</span> retains up to 3 months of historical data for the <span class="mc-variable Document.metrics_viewer variable">metrics viewer</span>. When creating a customized period, you cannot view data older than 90 days. <a name="kanchor18"></a></p>
+<p class="CiRBATableText">If a recommendation has been implemented that results in an instance type change during the selected period, you may observe data missing from the charts. See <a class="MCXref xref" href="./Relearning_Workload_Patterns">Relearning Workload Patterns</a>.<a name="kanchor19"></a></p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">View By</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Daily</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Select the unit of time to use for displaying the data. You can select hourly or daily.</p>
+<p class="CiRBATableText">The option to display hourly data is only available when the date range is less than 7-days. When reporting on more than 7-days, only the daily option is available.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">
+<Frame><img src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000133.png"/></Frame>
+</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">
+</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Click this button to reset all of the settings to their default values. You will be prompted and then the menu options are reset and the charts are refreshed accordingly using the default values.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+All of the charts, are refreshed immediately when you change any of the control options. Your settings are saved for the current user session and are returned to the default values if you log out or if another user opens the metrics viewer.
+
+### Relearning Workload
+
+If a recommendation has been implemented that results in an instance type change during the selected period, you may observe data missing from the charts. See [Relearning Workload Patterns](./Relearning_Workload_Patterns).
+
+### Status Bar
+
+Details of the selected instance are displayed in the upper right corner of the page.
+
+<Accordion title="Figure: Status Bar (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000124.png)</Frame>
+</Accordion>
+
+Clicking on the icon <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000059.png"/> on the Recommended Type displays the details of the recommended instance type.
+
+Additionally, Predicted Group Size is shown only for ASG services. The information icon on this field displays the details of the recommended instance type. The details for the Predicted Group Size are calculated as follows:
+
+* Current Avg CPUs or Memory = CPUs or Memory of the current instance type \* Current Avg Group Size
+* Recommended Avg CPUs or Memory = CPUs or Memory of the recommended instance type \* Predicted Group Size
+
+<Accordion title="Figure: Status Bar - ASG (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000132.png)</Frame>
+</Accordion>
+
+### Configuring the Individual Charts
+
+You can configure each of the 4 charts separately using the 2 dropdown controls above each chart. The options are slightly different for an ASG.
+
+<Accordion title="Table: Metrics Viewer Chart Controls">
+<table class="table_1">
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Setting </p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Default </p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Metrics</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">CPU Utilization %</li>
+<li class="CiRBATableBullet">Memory Utilization %</li>
+<li class="CiRBATableBullet">Disk I/O (KBytes/s) </li>
+<li class="CiRBATableBullet">Network I/O (KBytes/s)</li>
+</ul>
+</td>
+<td class="td_3" rowspan="2">
+<p class="CiRBATableText">This dropdown list is populated with <a href="#Metrics">metrics</a> that can be added to the selected chart. Select or remove any metrics to be added or removed from the chart and click <span class="CiRBAcharUIElement">Apply</span> to update the chart. See below for the list of available metrics.</p>
+<p class="CiRBATableText">Metrics that are not compatible with the selected items are disabled (greyed out). Only metrics with the same units can be viewed in a single chart.</p>
+<p class="CiRBATableText">Click <span class="CiRBAcharUIElement">Clear All</span> to clear the current selections and enable all metrics. You can now select other metrics with the same units. This also clears the <span class="CiRBAcharUIElement">Show selected items only</span> box.</p>
+<p class="CiRBATableText">Use the <a href="#Search">search feature</a> to find a specific metric. </p>
+<p class="CiRBATableText">Check the <span class="CiRBAcharUIElement">Show selected items only</span> box to hide the list of other metrics. If this option is enabled and you use the search feature, only items that are shown in this list are searched. Disable this box to search all metrics.</p>
+<p class="CiRBATableNote" data-mc-autonum="&lt;b&gt;Note: &lt;/b&gt;"><span class="autonumber"><span><b>Note: </b></span></span>Network I/O Packets is not collected for RDS services. Consequently, if you select Network I/O Packets for RDS, the resulting chart will always display "No data available".</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">ASG Metrics</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">CPU Utilization %</li>
+<li class="CiRBATableBullet">Memory Utilization %</li>
+<li class="CiRBATableBullet">No of In Service Instances </li>
+<li class="CiRBATableBullet">Network I/O (KBytes/s)</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Statistic</p>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBATableBullet">Peak</li>
+<li class="CiRBATableBullet">Sustained</li>
+<li class="CiRBATableBullet">Average</li>
+</ul>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Select the workload scoring strategies to be plotted on the chart. Peak, Sustained and Average are selected by default. Minimum is the other available option. </p>
+<p class="CiRBATableText">For ASGs, when "No of In Service Instance", is selected, then Peak, Average and Minimum are selected by default. See <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Understanding_the_Instance_Details_Report#Quartiles"><u>Quartiles in the Resource Utilization Charts</u></a> for details of how peak, sustained, etc are determined.</p>
+<p class="CiRBATableText">A legend below each chart shows the line colour that corresponds to the statistic.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+<Accordion title="Figure: Configuring the Charts (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000129.png)</Frame>
+</Accordion>
+
+The line chart shows the selected metric plotted by the hour or date.
+
+The X-axis scales based on the amount of data up to the maximum of 6 months. The X-axis will show both date and hour when the date range includes less than 7-days. Only the date is shown when there are more than 7-days of data on the chart.
+
+<Accordion title="Figure: Chart Details (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000136.png)</Frame>
+</Accordion>
+
+If you hover over any data point in the graph a popup indicates the values on the selected date. You can slide the mouse along the plotted lines to see data values at the specific dates or time.
+
+If metric data is not available, the message NA: \<Metric>\<Statistic> is shown in the legend of the impacted chart.
+
+A footnote at the bottom of the page lists the following details:
+
+<Accordion title="Table: Metrics Viewer Footnote">
+<table class="table_1">
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">ASGs</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">All Other Services</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBAListBullet">Account </li>
+<li class="CiRBAListBullet">System ID</li>
+<li class="CiRBAListBullet">Kubernetes Cluster (if it exists)</li>
+<li class="CiRBAListBullet">ECS/EKS Reference (if it exists)</li>
+</ul>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBAListBullet">Account/Subscription/Project </li>
+<li class="CiRBAListBullet">System ID</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+### Additional Considerations
+
+* Settings are saved/cached separately for each type of services (EC2, RDS, Azure, GCP, etc.)
+* When converting the Bytes to MBytes for Disk I/O and Network I/O, values will be divided by 1,000,000. When converting the MB to GB for Memory utilization, the value will be divided by 1,024.
+* If the selected instance has been recently optimized. (i.e. changed instance type), then any historical data that was collected before the instance type was changed is not displayed. A footnote indicating the change is displayed, under the legend: "Instance Type Updated On: MMM-DD-YYYY"
+* Possible data inconsistency issues may result from the following situations:
+
+* The value of "instance type updated on" information is from the system attributes table which is only refreshed by the weekly RDB populate, so there may be a discrepancy or data inconsistency if the instance type was changed 2 days ago and the RDB was refreshed 5 days ago.
+* In this release, Densify will show the last time that the instance type was changed. If the instance type has changed 3 times during the selected period, the footnote will show the date on which the instance type was last changed.
+
+### Viewable Metrics
+
+The following tables list the complete set of metrics that you can review in the metrics viewer.
+
+<Accordion title="Table: Public Cloud Metrics">
+<table class="table_1">
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Metrics</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Units</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">%</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Benchmark</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">MHz</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Max Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">%</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Disk I/O</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Kbytes/s</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Disk I/O</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Operations/s</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">%</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">GB</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Network I/O</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Kbytes/s</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Network I/O</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Packets/s</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+<Accordion title="Table: ASG Metrics">
+<table class="table_1">
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Metrics</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Units</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3" colspan="2">
+<p class="CiRBATableText">Auto Scaling - Max. Size (No. of Instance)</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Auto Scaling - Min. Size</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">No. of Instance</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Auto Scaling - Tot Instances</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">No. of Instance</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Allocation</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Benchmark</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Benchmark</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">%</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">MHz</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Disk I/O</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Kbytes/s</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Disk I/O</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Operations/s</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">%</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">GB</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Network I/O</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Kbytes/s</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Network I/O</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">Packets/s</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">No of In Service Instances</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">No. of Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+<Accordion title="Table: GPU Metrics">
+<table class="table_1">
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Metrics</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Units</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">GPU Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">%</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">GPU Memory Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">%</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">GPU Memory Utilization</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">MB</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>

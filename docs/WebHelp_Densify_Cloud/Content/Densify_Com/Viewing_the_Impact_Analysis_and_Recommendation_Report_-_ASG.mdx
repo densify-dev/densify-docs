@@ -1,0 +1,749 @@
+---
+title: "Viewing the ASG Impact Analysis and Recommendation Report"
+---
+
+import { InlineImage } from "/snippets/InlineImage.mdx"
+
+<Note>
+This report is not available for Azure VM Scale Sets.
+</Note>
+
+As the application owner, you want to see more details of your particular cloud service, before implementing Densify's recommendations.
+Specifically:
+
+* Optimization Reasoning—The data and the policy settings that resulted in the recommendation being made.
+* Verification—Ensure that the recommendation aligns with your financial and organizational goals.
+
+To learn more watch the video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/304378476" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+Recommendation are based on the latest cloud catalogs from the supported public cloud providers.
+
+To learn more watch the video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/708679005" webkitallowfullscreen="webkitallowfullscreen" width="640"></iframe>
+
+You can access this report by clicking the Analysis Report hyperlink in the lower pane of the Instance Optimization Details page to open the Impact Analysis and Recommendation Report for the selected group. See [Working with Auto Scaling Groups](./Working_with_ASGs).
+
+The Impact Analysis and Recommendation report provides the following details for a selected cloud service:
+
+* Scale Group Name and the date of the last data collection.
+* Report description;
+* [Summary](#Summary) —Provides an overview of the ASG;
+* [Scale Group Information](#ASGProperties)—Provides properties and configuration details for the selected cloud service;
+* [Recommendation Details](#RecommendationDetails)—A number of sections that show workload charts and the impact of making the recommended changes;
+* [Effort to Optimize Auto Scaling Group](#Effort)—Lists the factors that contribute to the effort required to investigate and implement the recommendation;
+* [Cost Impact](#Cost)—Provides the cost benefits of implementing the recommendation.
+
+You can scroll through the report or you can click on one of the Details tabs at the top of the page to jump to the relevant section within the report.
+
+## Creating a PDF Version of the Report
+
+You can create a PDF version of the report by clicking the Export to PDF <InlineImage src="/Images/Cirba_Reporting_Framework/03000053_14x14.png"/> button located at the top-right corner of the display.
+
+The export file is named "SystemAnalysis.pdf" and is saved to the download folder defined by your browser. You may want to modify the filename to match the selected instance, if you are planning to review and distribute reports for multiple instances.
+
+## Summary
+
+### Summary Table
+
+The summary table identifies the cloud service with any user defined tags, and provides an overview of any generated recommendations, predicted uptime, and policy used for the service.
+
+Table: Summary Report Descriptions
+
+<table class="table_1">
+<col/>
+<col/>
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Column</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Scale Group Name</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the system or scale group name.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">System ID</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">A unique key assigned by the public cloud vendors to identify this instance. </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">ECS Cluster</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the ECS cluster that contains the selected scale group, if applicable.</p>
+<p class="CiRBATableText">This row is not displayed if there is no associated ECS cluster for the service.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Public Cloud</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the public cloud provider (e.g. AWS).</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Account Name</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the cloud platform client account to which the service belongs. </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">System Type</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the type of cloud service (e.g. EC2 instance, <span class="mc-variable Document.ASG variable">Auto Scaling group</span>, Virtual Machine instance, etc.).</p>
+<p class="CiRBATableNote" data-mc-autonum="&lt;b&gt;Note: &lt;/b&gt;"><span class="autonumber"><span><b>Note: </b></span></span>For ASGs configured with maximum group size =1, the displayed service type is "Auto Scaling Group" and not EC2.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Instance Type</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the current,  instance type. For an <span class="mc-variable Document.ASG variable">Auto Scaling group</span>, this is the instance type specified in the launch configuration for the group.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Instance OS</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the OS deployed on the service instance.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">ASG Recommendations</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">For an <span class="mc-variable Document.ASG variable">Auto Scaling group</span> these are the potential recommendations:</p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">Instance type change for the group;</li>
+<li class="CiRBATableBullet">Minimum group size change for the group;</li>
+<li class="CiRBATableBullet">Maximum group size change for the group;</li>
+<li class="CiRBATableBullet">Optimization type—See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="RefToBookmark MCXref xref xrefRefToBookmark" href="./Understanding_the_Instance_Details_Report#Recommendation_Color-Coding"><u>Optimization Type Descriptions and Color-Coding</u></a></madcap:conditionaltext>;</li>
+</ul>
+<p class="CiRBATableText">Any change to the average number of in-service instances, after the recommendations have been implemented, is also displayed.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Uptime %</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">For an ASG, this is the percentage of time that it has been up and running since the instance was started. The actual values in days and hours is also shown. If you have 24 or more days of data then you will see something like 21 days (504 hours) over a period of 26 days (624 hours).</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Instance Type Override (User-defined)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the instance type override, and can have one of following values if the "Instance Type Override" attribute is set:</p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">Unlocked—Ignore the instance type constraint in the policy;</li>
+<li class="CiRBATableBullet">Locked—Keep current instance type;</li>
+<li class="CiRBATableBullet">Family Locked—Keep the current instance family;</li>
+<li class="CiRBATableBullet">FamilyGen Locked—Keep the current instance family and generation;</li>
+<li class="CiRBATableBullet">Any other value—Use instance type: &lt;<span class="CiRBAcharCrossreference">attribute value</span>&gt;;</li>
+<li class="CiRBATableBullet">N/A—No override, this row is hidden.</li>
+</ul>
+<p class="CiRBATableText">Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="edbe989d9d829f99ada988839e848b94c38e8280" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for override details.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Minimum Size Override (User-defined)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">For an <span class="mc-variable Document.ASG variable">Auto Scaling group</span> service, if the "Group Min Size Override" attribute is specified, then the override value is displayed.</p>
+<p class="CiRBATableText">
+<madcap:conditionaltext data-mc-conditions="CiRBA.SaaSOnly">Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="de8dabaeaeb1acaa9e9abbb0adb7b8a7f0bdb1b3" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for override details.</madcap:conditionaltext>
+</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Maximum Size Override (User-defined)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">For an <span class="mc-variable Document.ASG variable">Auto Scaling group</span> service, if the "Group Max Size Override" attribute is specified, then the override value is displayed.</p>
+<p class="CiRBATableText">
+<madcap:conditionaltext data-mc-conditions="CiRBA.SaaSOnly">Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="2f7c5a5f5f405d5b6f6b4a415c464956014c4042" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for override details.</madcap:conditionaltext>
+</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Policy</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the Densify policy that is applied to the <span class="mc-variable Document.ClEnv variable">cloud environment</span>.	The policy name and a description are provided. Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="e6b5939696899492a6a28388958f809fc885898b" href="/cdn-cgi/l/email-protection">[email protected]</a></span><madcap:conditionaltext data-mc-conditions="CiRBA.SaaSOnly"> for details of the policy settings.</madcap:conditionaltext> </p>
+</td>
+</tr>
+</table>
+
+
+### Optimization Benefits
+
+This section of the summary lists the benefits that can be gained from implementing the recommendation. A list of bullet points maps the values of Overall Status and Optimization Types to the actual benefits to you, as the application owner, in terms of both cost and performance.
+
+If the overall status for the selected instance is Optimal, then this section is not displayed.
+
+If the percentage cost saving is \<0.1%, then the Savings benefit is not displayed.
+
+<Accordion title="Figure: Optimization Benefits Section">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000213.png)</Frame>
+</Accordion>
+
+### Predicted Scaling Activity and Utilization
+
+This table provides a summary of impact to group size, instance type, CPU and memory utilization if you were to move your application to the recommended scale group configuration. The full version of this report is provided in the [Recommendation Details](#RecommendationDetails) section.
+
+The Change column at the right, highlights differences between your current and the recommended scale group's utilization and scaling activity. This column is shown only if there are recommendations for the scale group.
+
+<Accordion title="Figure: Predicted Scaling Activity and Utilization Section">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000214.png)</Frame>
+</Accordion>
+
+The workload charts in this section show in-service instances, CPU utilization, and memory utilization (%) for the current scale group and these same metrics as they would be on the recommended scale group configuration. Additionally, both CPU Reservation% and Memory Reservation% charts for current and recommended instances are shown if the data is available.
+
+Auto Scaling groups that have been identified as "Just Right" or "Terminate" will not have any recommendations and only the current utilization data and charts are shown.
+
+<Note>
+If the metrics are not available, then the corresponding chart is not displayed.
+</Note>
+
+
+
+When actual memory data is not collected and memory workloads are backfilled as defined in the policy, a footnote will be added to indicate that memory utilization is based on user-defined policy settings.
+
+## Scale Group Information
+
+For an Auto Scaling group report, the Scale Group Information table provides the following details of the selected scale group.
+
+Table: Scale Group Properties Report
+
+<table class="table_1">
+<col/>
+<col/>
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Column</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Scale Group Name</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the name  of the selected scale group.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">ECS Cluster</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the ECS cluster that contains the selected scale group, if applicable.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Launch Configuration | Launch Template</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the launch configuration or the launch template from which the scale group was created.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">System ID</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the  cloud provider's unique identifier for the selected scale group.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Service Type</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the cloud service type (e.g. AWS "Auto Scaling Group").</p>
+</td>
+</tr>
+<tr>
+<td class="td_3" rowspan="1">
+<p class="CiRBATableText">Account</p>
+</td>
+<td class="td_3" rowspan="2">
+<p class="CiRBATableText">These are the details of the account (AWS) to which this scale group belongs.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3" rowspan="1">
+<p class="CiRBATableText">Account Name</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Instance Type</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the instance type configured in the scale group's launch configuration.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Instance OS</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The deployed instance OS  for the scale group. This information may not be always available.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Department</p>
+</td>
+<td class="td_3" rowspan="9">
+<p class="CiRBATableText">These are user-specified attributes that are displayed if the scale group has been tagged accordingly. </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Owner</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Business Unit</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Application</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Operational Environment</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Inventory Code</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Project </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Cost Center</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Product Code</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Region</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the region containing the selected scale group.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Availability Zone</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the availability zone containing the selected scale group, if applicable. </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Creation Date</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the date on which the <span class="mc-variable Document.ASG variable">Auto Scaling group</span> was created.</p>
+</td>
+</tr>
+</table>
+
+## Recommendation Details
+
+<Note>
+Not all utilization metrics are available for all cloud services and providers. The metrics displayed in the following tables and charts will vary depending on the selected service type.
+</Note>
+
+
+### Predicted Scaling Activity and Utilization
+
+This table provides the impact to group size, instance type , CPU and memory utilization, as well as network IO throughput if you were to move your application to the recommended scale group configuration. The last column highlights differences between your current and the recommended scale group's utilization and scaling activity. This column is shown only if there are recommendations for the scale group.
+
+Auto Scaling group that have been identified as "Just Right" or "Terminate" will not have any recommendations and only the current utilization data and charts are shown.
+
+<table class="table_1">
+<col/>
+<col/>
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Scaling Activity / Metric</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Minimum Group Size</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the minimum number of instances for the scale group.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Maximum Group Size</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the maximum number of instances for the scale group.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Instance Type</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the instance type defined in the scale group's launch configuration.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Average no. of Instances</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The current average instance count based on metrics collected for the scale group. The recommended average number of instances is based on  current average instance count with the up or down-scaled recommendation taken into consideration.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">ASG CPU Utilization %</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the CPU utilization as percentage of the total available CPU cycles for the group.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">ASG Memory Utilization (%)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the memory utilization as percentage of the total available memory for the group.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">ASG Network I/O Throughput (Bytes/s)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the network throughput in Bytes/s for the scale group.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">ASG Network I/O Throughput (MB/s)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the network throughput in MB/s for the scale group.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">ASG Network I/O (pkts/s)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the network I/O in pkts/s for the scale group.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">ASG Disk I/O Operations</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the disk I/O in operations/s for the scale group.</p>
+</td>
+</tr>
+</table>
+
+
+### Resource Allocation (per Instance)
+
+This table allows you to compare the allocated resources on the instance type, configured currently in your scale group launch configuration, to those allocated to the recommended instance type.
+
+The column at the right end of the chart highlights differences between your current instance type and the recommended instance type allocations.
+
+If there is no recommended instance type, the Recommended and Change columns are not displayed.
+
+<table class="table_1">
+<col/>
+<col/>
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Metric</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Count</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the CPU utilization as percentage of the total available CPU cycles. </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">CPU Benchmark</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the CPU benchmark that indicates CPU performance.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Memory Allocation (GB)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the available memory, in GB.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Max Network I/O Throughput (MB/s)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the maximum network throughput in MB/s.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Max Network I/O (pks/s)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the maximum network IO in pks/s.</p>
+</td>
+</tr>
+<tr data-mc-conditions="">
+<td class="td_3">
+<p class="CiRBATableText">Local Storage Size (GB)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the disk space allocated to the instance, if applicable.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Max Local Disk I/O Throughput (MB/s)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the data transfer speed in megabytes per second. This information is only displayed if there is disk space allocated to the instance.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Max Local Disk I/O Operations (IOPS)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the rate of the I/O operations measured in 1/sec. It is a ratio of the number of operations executed by your storage device within a period of time to the duration of this period of time, in seconds. This information is only displayed if there is disk space allocated to the instance.</p>
+</td>
+</tr>
+</table>
+
+
+### Workload Charts
+
+The following workload charts are provided so you can compare utilization on the current service against that of the recommended service configuration or instance type. The charts for the current service are shown on the left side and the charts for the recommended service are shown on the right side.
+
+If utilization metrics are not available, the corresponding chart is not displayed.
+
+Cloud services that are identified as "Just Right" or "Terminate" only have current utilization charts shown.
+
+When actual memory data is not collected, and memory workloads are backfilled with the memory usage as defined by the policy, no recommended memory workload chart is displayed.
+
+Table: Scaling Activity and Predicted Resource Utilization Charts for Auto Scale Groups
+
+<table class="table_1">
+<col/>
+<col/>
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Current and Recommended Charts</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Current Charts</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td class="td_3" rowspan="1">
+<p class="CiRBATableText">Workload charts for both the current scale group and the recommended scale group are provided for the following metrics:</p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">Auto Scaling - In Service Instances</li>
+<li class="CiRBATableBullet">CPU Utilization - Predicted Day</li>
+<li class="CiRBATableBullet">CPU Utilization - Busiest Day</li>
+<li class="CiRBATableBullet">CPU Reservation %</li>
+<li class="CiRBATableBullet">Memory Utilization %</li>
+<li class="CiRBATableBullet">Memory Reservation %</li>
+</ul>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The following scale group workload charts only contain current metrics:</p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">Network I/O Bytes</li>
+<li class="CiRBATableBullet">Network I/O Packets</li>
+<li class="CiRBATableBullet">Disk I/O Bytes</li>
+<li class="CiRBATableBullet">Disk I/O Operations</li>
+</ul>
+</td>
+</tr>
+</table>
+
+
+## Effort to Optimize Auto Scaling Group
+
+The table in this section lists the factors that contribute to the effort required to investigate and implement the recommendations. Effort for the selected instance is calculated by rule-driven analytics based on various factors (such as instance family change, storage change, data quality checks, feature changes, group size changes etc.) that can be configured in the policy settings and through analysis rule sets.
+
+A description of each rule and its impact on the effort to move the current service to the recommended service type or configuration is provided.
+
+This is the same information that is reported on the Effort Details tab in the Instance Optimization Details dashboard. See [Understanding the Instance Optimization Details Report](./Understanding_the_Instance_Details_Report).
+
+Contact [[email protected]](/cdn-cgi/l/email-protection) for details on the policy settings and rule sets configured for your environment.
+
+This table is not displayed for the following conditions:
+
+* "Just Right" optimization type—no effort is required to remain at the current service;
+* "Downscale" or "Upscale" optimization type with "None" effort—for Auto Scaling groups with only sizing recommendations, no instance changing effort is required.
+
+<Accordion title="Figure: Effort to Optimize Auto Scaling Group Section">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000215.png)</Frame>
+</Accordion>
+
+## Cost Impact
+
+This section provides a cost summary that shows you the benefits of implementing the recommendation as well as a table that allows you to compare the cost of the current instance to the recommended instance type.
+
+<table class="table_1">
+<col/>
+<col/>
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Item</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Current Monthly Cost</p>
+</td>
+<td class="td_3" rowspan="2">
+<p class="CiRBATableText">This bar chart shows you the current and recommend instance costs and allows you compare the costs. </p>
+<p class="CiRBATableText">For <span class="mc-variable Document.ASG variable">Auto Scaling group</span>s, the cost is based on on-demand price and the current and predicted average number of instances running in the scale group.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Recommended Cost</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Monthly Savings</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This will be your monthly savings if the recommendation is implemented.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Savings %</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This will be your  monthly savings, as a percentage if the recommendation is implemented.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Instance Type</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the current,  instance type. For an <span class="mc-variable Document.ASG variable">Auto Scaling group</span>, this is the instance type specified in the launch configuration for the group.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">On-Demand ($/Instance/Month)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the on-demand price, per instance, for the group's current instance type and the recommended instance type. </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Average no. of Instances</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the average number of instances running in the scale group. The recommended column contains the predicted average number of instances running based on the recommended sizing and instance type.</p>
+</td>
+</tr>
+</table>
+
+<Note>
+If the Optimization Type is "Just Right" then no Recommended Cost value is displayed.
+</Note>
+
+
+<Accordion title="Figure: Cost Impact Section">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000216.png)</Frame>
+</Accordion>

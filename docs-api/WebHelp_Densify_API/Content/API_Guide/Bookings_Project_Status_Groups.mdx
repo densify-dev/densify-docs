@@ -1,0 +1,25 @@
+---
+title: "Overview"
+---
+
+## Description
+
+Bookings can be grouped by project or status so that they can be ordered in a specific priority. To obtain a collection of one of these groups, simply append the group name (i.e. `projects` or `status`) to your Booking collection request (e.g. to list Bookings by project, use `/bookings/projects/?details=true`). If the project element has not been defined, then "`__Unknown__`" can be used to query with no project name. The collection by group is returned in alphabetical order by name, with "`__Unknown__`" objects at the end.
+
+When performing a collection by group, the following options are supported:
+
+* [Collection Details](./Common_Operations#_Collection_Details)--to obtain the Booking details per group object.
+* [Paging](./Common_Operations#_Paging_2)--to page the group collection. Note that the Bookings are not part of the paging size.
+* [Filters](./Common_Operations#_Filters_1)--to filter the Bookings using the filtering elements of the Booking (except for the grouping elements themselves). If there are qualifying Bookings, the collection returns the group and their qualifying Bookings (if `&details=true`). Otherwise, if there are no qualifying Bookings for a given group, the group is not returned.
+
+## Resource
+
+```json
+/bookings/projects
+```
+
+
+
+```json
+/bookings/status
+```

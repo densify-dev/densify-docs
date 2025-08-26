@@ -1,0 +1,84 @@
+---
+title: "Analysis: GCP Analyze"
+---
+
+The `/analysis/gcp` resource is used to return a list of GCP optimization analyses currently in the Densify system.
+
+An analysis is generated for each GCP project associated with the provided GCP service account used during data collection.
+
+The `/analysis/gcp/analyze` resource is used to collect Google Cloud Platform infrastructure data and initiate optimization analysis with the data collected. Below are the series of processes that occur when the initial `/analysis/gcp/analyze` request is triggered:
+
+1. Set up and initiate data collection of the GCP projects based on the associated GCP service account and schedule it to run automatically on a nightly basis.
+2. Initiate analysis on the data collected using the default policy.
+
+* Subsequent analysis is scheduled to run on a nightly basis after data collection.
+* You can optionally configure the results to be sent to a webhook URI upon analysis completion. See [Add webhook to an analysis](./Analysis_Webhook#_AddWebhook) for details.
+
+3. While data collection or analysis is in progress, you can check for status (using `/analysis/gcp/<``projectId``>/status` resource) or wait for the results to be published to an optional webhook URI.
+4. The reporting database update is scheduled to run automatically on a nightly basis after the completion of the analysis. This process produces reports for each instance recommendation, which is useful for analysts or application owners. These reports are only created after the scheduled analysis is completed, and may therefore only be available on the following day for a new analysis. Exact timing depends on the size of your environment.
+
+### Ad-Hoc Tasks
+
+Generally you do not need to run once-off tasks as both data collection and analysis tasks are scheduled automatically. In cases where you need make an ad-hoc request in addition to the scheduled job, the functionality exists for this endpoint.
+
+#### Historical Data Collection
+
+When Densify initiates data collection, normally audits collect only the last 24 hours of data. You can optionally collect up to 30 days of historical data. The historical data provides a more representative set of data on which to base resizing and optimization recommendations. You can run an ad-hoc task to collect the historical data.
+
+<Note>
+Collection of historical data can take a significant amount of time, depending on the number of instances from which Densifyis collecting data. Contact [Support@Densify.com](mailto:Support@Densify.com) to enable historical data collection and details of the performance impact.
+</Note>
+
+The following settings define the range of historical data to be collected:
+
+* Start date offset--This is the number of days from the 30-day maximum, used to define the start of the range.
+* End date offset--This is number of days from yesterday, to end the range of data collected.
+
+These parameters allow you to reduce the number of days of historical data to be collected. If, for example, the daily audit has been running for a few days before the historical audit can be executed then you can set the end offset to exclude the number of days that have already been collected. Thirty days is the maximum number of days that you can go back and collect historical data for Azure and GCP environments.
+
+A connection to the specified cloud account must already exist before you can run an ad hoc audit. When you execute an ad hoc refresh an audit task will be configured but a new connection will not be created. If the cloud connection does not already exist and the API POST contains `triggerAdhocAudit=true`, then you will get an error message.
+
+If there is more than one account associated with the specified account ID (i.e. a payer account with many linked accounts), the Densify API handles it in the same way that analyses are currently rerun using the POST operation.
+
+Once the audit is complete you need to rerun the associated analyses as indicated below or you can wait for the next scheduled execution of the analyses and RDB populate.
+
+#### Analysis Update
+
+You can make an ad-hoc request to refresh an existing analysis, outside of the scheduled nightly run using `/analysis/cloud/<aws|azure|gcp>/analyze`. This manual, ad hoc analysis request does not perform data collection or reporting database updates. It only runs the analysis on the existing data collected with the following behavior:
+
+* The analysis uses the policy that is configured for the analysis. Contact [Support@Densify.com](mailto:Support@Densify.com) to change the configured policy.
+* If a new webhook is provided, the analysis will send results to the new webhook URI. If no webhook is provided, the analysis will send results to the existing webhook, if configured.
+* If the same analysis is already running, the request does not proceed and an appropriate message is returned.
+* If the specified analysis has data collection scheduled within 30 minutes, the request does not proceed and an appropriate message is returned. For example, if data collection is scheduled to run at 12:05 AM, and you initiate a manual, ad hoc analyze request at 11:45 PM, then the analysis will not proceed and an error message is returned.
+
+### Prerequisite Configuration
+
+Before you can collect GCP cloud infrastructure data in Densify, you need to create a GCP service account with services enabled and permissions configured. See [Google Cloud Platform Data Collection Prerequisites](https://densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites) for details.
+
+<Note>
+When using the Densify API only one project will be processed per API request. This is the case, even if more than one project is associated with the service account.
+</Note>
+
+## Resource
+
+```
+/analysis/gcp/analyze
+```
+
+```
+/analysis/gcp
+```
+
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="Analyze Gcp" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze/analyzeGcp" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Historical Audit Gcp" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze/historicalAuditGcp" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="List Gcp Analyses" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze/listGcpAnalyses" arrow/>
+</CardGroup>

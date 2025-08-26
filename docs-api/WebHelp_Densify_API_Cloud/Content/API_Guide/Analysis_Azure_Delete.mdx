@@ -1,0 +1,33 @@
+---
+title: "Analysis: Azure Delete"
+---
+
+The `/analysis/cloud/azure/<analysisId>` resource can be used to delete the audit and all associated scheduler entries of the cloud analysis specified by `<analysisId>`.
+
+* The single-day and 60-day historical audits are removed, if they exist.
+* The audit and all associated scheduler entries, are deleted, if they exist.
+
+When executing the delete operation in an environment observe the following:
+
+* When deleting an audit for an environment associated with a single account, the operation proceeds as outlined above.
+* When deleting an audit, if Densify determines that there is a many-to-one relationship for this connection, then the delete request fails. This type of multi-account connection can only be created through the Cloud Connection Wizard and must be deleted through the Cloud Connection Wizard.
+
+During a delete operation, any attempt to access other associated endpoints related to the specified `<analysisId>` (i.e. GET, PUT, POST) will trigger a "400 Bad Request" error response.
+
+While the delete operation is in progress, you can check the status (using the `/analysis/cloud/azure/<``analysisId``>/status` resource) or wait for the results to be published to an optional webhook URI.
+
+Collected data is saved for the defined retention period and the environment and associated analysis structure are saved in case you want to generate reports on the historical data or restart data collection. Since the environment and analyses are not deleted, a GET call for the specified `<analysisId>` will always succeed regardless of whether the associated connection has been deleted.
+
+If you use a GET call to list available environment and analyses, for which the audits have been deleted, they are still listed. You can reestablish the audit without have to re-create the analysis. You will still see the data in the Densify Console.
+
+## Resource
+
+```
+/analysis/cloud/azure/
+analysisId
+```
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="Delete Azure Analysis Audit" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Delete/deleteAzureAnalysisAudit" arrow/>
+</CardGroup>

@@ -1,0 +1,71 @@
+openapi: 3.1.0
+info:
+  title: Densify API - Configuration Parameters
+  version: "1.0.0"
+  description: |
+    Returns the API configuration settings defined in the Analysis Console (Administration > Densify Configuration, category API and Report Settings).
+servers:
+  - url: https://api.densify.com/v1
+    description: Densify API (replace with your environment)
+paths:
+  /configuration-parameters:
+    get:
+      tags:
+        - Configuration Parameters
+      summary: Get configuration parameters
+      description: Returns the configuration parameters applicable to the API.
+      operationId: getConfigurationParameters
+      responses:
+        "200":
+          description: An array of configuration parameter objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ConfigurationParameter"
+              example:
+                - key: "rest.api.catalogSpec.default"
+                  name: "API Default Catalog Specification"
+                  value: "win-medium-4gb"
+                - key: "rest.api.WithinHoursFromLastRefreshOfCluster"
+                  name: "API Last Hours of Cluster Refresh"
+                  value: "48"
+                - key: "rest.api.logging"
+                  name: "API Detailed Logging"
+                  value: "OFF"
+                - key: "rest.api.paging.pageSize"
+                  name: "API Page Size"
+                  value: "100.0"
+                - key: "rest.api.routingStrategy.default"
+                  name: "API Default Routing Strategy"
+                  value: "capacity_sensitive"
+                - key: "baseline.vm.for.spare.vm.capacity.reports"
+                  name: "Baseline VM Name"
+                  value: "win-medium-4gb"
+        "401":
+          description: Unauthorized
+        "500":
+          description: Internal server error
+components:
+  schemas:
+    ConfigurationParameter:
+      type: object
+      required:
+        - key
+        - name
+        - value
+      properties:
+        key:
+          type: string
+          description: The parameter key.
+          example: "rest.api.catalogSpec.default"
+        name:
+          type: string
+          description: The parameter name displayed in the Densify Configuration screen.
+          example: "API Default Catalog Specification"
+        value:
+          type: string
+          description: The parameter value.
+          example: "win-medium-4gb"
+security: []

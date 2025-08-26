@@ -1,0 +1,167 @@
+openapi: 3.1.0
+info:
+  title: Densify API
+  description: API for routing and managing workloads in Densify.
+  version: 1.0.0
+paths:
+  /routing-requests/constraint-resource-query:
+    post:
+      summary: Query constraints for un-routed or rejected workloads.
+      description: |
+        This endpoint helps understand why workloads cannot be routed by providing details on failed Fit-for-Purpose checks and slot metrics with 0 or negative capacity.
+      operationId: queryConstraintResource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                scopes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      control_environment:
+                        type: string
+                      infrastructure_groups:
+                        type: array
+                        items:
+                          type: string
+                expected_date:
+                  type: integer
+                  description: Expected date in milliseconds since epoch.
+                requester:
+                  type: string
+                  description: Name of the requester.
+                workloads:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+              required:
+                - workloads
+      parameters:
+        - name: subslots
+          in: query
+          description: |
+            If true, only the 0 or negative capacity slot metrics are returned.
+          required: false
+          schema:
+            type: boolean
+        - name: detailed_sensor_calc
+          in: query
+          description: |
+            If true, includes detailed sensor calculations.
+          required: false
+          schema:
+            type: boolean
+        - name: ffp_enabled
+          in: query
+          description: |
+            If true, only the failed Fit-for-Purpose checks are returned; if false, returns the same elements as described for the Available Capacity Query including an adjusted hosting_score.
+          required: false
+          schema:
+            type: boolean
+        - name: negative_slots
+          in: query
+          description: |
+            If true, includes negative slot metrics.
+          required: false
+          schema:
+            type: boolean
+        - name: detailed_host_calc
+          in: query
+          description: |
+            If true, only the hosts that have a subslots[] entry are included and in turn, only the subslots[] metric entries with 0 or negative capacity are included.
+          required: false
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: A list of constraint resource query results.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    infrastructure_groups:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            format: uuid
+                          name:
+                            type: string
+                          slots:
+                            type: integer
+                          cei:
+                            type: number
+                            format: float
+                          subslots:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                value:
+                                  type: number
+                                  format: float
+                          constraint:
+                            type: string
+                          constraint_name:
+                            type: string
+                          href:
+                            type: string
+                          control_type:
+                            type: string
+                          hosting_cost:
+                            type: number
+                            format: float
+                          fit_for_purpose:
+                            type: object
+                            properties:
+                              categories:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                    test:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          name:
+                                            type: string
+                                          result:
+                                            type: string
+        "400":
+          description: Bad request due to invalid workload status or other parameters.
+        "404":
+          description: Not found, if the specified Routing Request ID does not exist.
+components:
+  schemas:
+    Workload:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    Scope:
+      type: object
+      properties:
+        control_environment:
+          type: string
+        infrastructure_groups:
+          type: array
+          items:
+            type: string

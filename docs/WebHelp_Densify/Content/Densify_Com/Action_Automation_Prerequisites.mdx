@@ -1,0 +1,390 @@
+---
+title: "Action Automation Prerequisites"
+---
+
+Before enabling automation, you need to configure both your vCenter Server and your Densify Connector. The following prerequisites apply to both types of automation.
+
+Policy settings and the specific details of enabling the feature through the Densify user interface are covered in the individual topics. See [Using Proactive Automation](./Using_Proactive_Automation) and [Using Real-Time Automation](./Using_Real-Time_Automation).
+
+## Densify Connector Settings
+
+You must have the Densify Connector installed and have configured a connection for each vCenter Server. Additionally, you must perform the following:
+
+### Enable Real-Time Automation
+
+Enable the option "Enable real-time monitoring and automation" in the Data Transfer Settings > Advanced > Advanced Settings dialog box.
+
+<Accordion title="Figure: Densify Connector Advanced Settings">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000124_376x200.png)</Frame>
+</Accordion>
+
+<Note>
+If this checkbox is not checked then the Densify Connector cannot receive action plans from your Densify instance and automation will not succeed.
+</Note>
+
+
+
+### Additional Configuration for Disk Allocation Changes
+
+Disk allocation changes must be configured directly on a VM and are not done through the vCenter. In order to perform the disk allocation changes directly on a VM, the Densify Connector requires elevated privileges for the VM's OS.
+
+In order to execute disk recommendations on the VMs, you need to define an account that is part of the administrator's group of the target VMs. This is required to execute the vSphere PowerCLI Invoke-VMScript that is used to perform the disk bump up recommendations.
+
+Open the Window's Services management application and right-click on the Densify Connector. Select Properties and then click on the Log On tab. Enter the account username /password.
+
+<Accordion title="Figure: Densify Connector Properties">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000012_398x334.png)</Frame>
+</Accordion>
+
+
+### Additional Software Requirements
+
+If you are using proactive automation there are additional software requirements and configuration updates that need to be completed on the Densify Connector's host machine, in order to enable this feature.
+
+Microsoft® PowerShell, VMware PowerCLI, and .NET Framework must be installed and
+running on the same machine\instance that is running the Densify Connector. These utilities are required
+for Proactive Automation.
+
+Table: Proactive Automation Requirements on the Densify Connector's Host Machine
+
+<table>
+<tr>
+<td>
+<p>Microsoft</p>
+</td>
+<td>
+<p>Both Microsoft® PowerShell and .NET Framework must be installed and running. The following versions are supported:</p>
+<ul>
+<li>Microsoft® PowerShell 5.1</li>
+<li>.NET Framework   4.6.x, 4.7.x, 4.8</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span class="mc-variable Document.VM2 variable">VMware</span> Power CLI</p>
+</td>
+<td>
+<p>PowerCLI must also be installed. The following versions are supported:</p>
+<ul>
+<li>11.3.0, 11.4.0 (both use VMware.VimAutomation.core 11.3.0) and 11.5.0 (VMware.VimAutomation.core 11.5.0)</li>
+<li>12.0.0 (VMware.VimAutomation.core 12.0.0)</li>
+</ul>
+<p> If you are auditing <span class="mc-variable Document.VM1 variable">vCenter Server</span> 7.0, then the minimum supported version to use is PowerCLI v12.0.0. You must also use version 2.2.4 of the <span class="mc-variable Document.Densify_exe variable">Densify Connector</span>.</p>
+<p>Prior to installing or upgrading your PowerCLI version for your <span class="mc-variable Document.Densify_exe variable">Densify Connector</span>, ensure that you check the certified versions. Failing to do so may result in Action Automation failing to run. See <a class="MCXref xref" href="./Action_Automation_Appendix">Densify Connector Compatibility</a> for a matrix of which versions are supported with each version of <span class="mc-variable Document.VM5 variable">vCenter</span>.</p>
+<p>You can continue to use your existing PowerCLI version and connector version 2.2.3 if you are not auditing <span class="mc-variable Document.VM1 variable">vCenter Server</span> 7.0.</p>
+<p>Refer to <a class="RefToBookmark MCXref xref xrefRefToBookmark" href="./Data_Collection_Connector_Installing#Configur2"><u>Configuring Action Automation</u></a> for detailed instructions. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span class="mc-variable Document.VM2 variable">VMware</span> Tools</p>
+</td>
+<td>
+<p><span class="mc-variable Document.VM2 variable">VMware</span> tools must be installed on each VM. The following versions are supported:</p>
+<ul>
+<li>10.3.10</li>
+<li>11.0.x</li>
+<li>11.1.x </li>
+</ul>
+<p>Disk bump ups cannot be executed on VMs with <span class="mc-variable Document.VM2 variable">VMware</span> tools v10.3.10 and v11.0.x installed.  This issue is resolved with <span class="mc-variable Document.VM2 variable">VMware</span> tools v11.1.0. If you are performing disk bump ups, you must upgrade <span class="mc-variable Document.VM2 variable">VMware</span> tools to v11.1.x.</p>
+<p>See <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="#VMware_Cred_Config"><u>VMware Credentials and Configuration</u></a> below for additional <span class="mc-variable Document.VM2 variable">VMware</span> configuration details.</p>
+</td>
+</tr>
+</table>
+
+
+## Densify Configuration
+
+The following additional configuration and considerations must be addressed to enable action automation from within Densify:
+
+* Automation is enabled in the control environment-- Contact [Support@Densify.com](mailto:Support@Densify.com) for additional information.
+* Automation Settings--you should be aware that the control environment threshold settings for drift do not apply when using the Densify Connector. Contact [Support@Densify.com](mailto:Support@Densify.com) for additional information.
+* All warnings on the control environment need to be cleared--Contact [Support@Densify.com](mailto:Support@Densify.com) for additional information.
+* Proactive Automation must be enabled on a cluster in order for Real-Time Automation to send alarms via
+  the Densify Connector, to the impacted vCenter. See [Installing the Densify Connector](./Data_Collection_Connector_Installing#Enable_real-time_monitoring_and_automation) for details.
+
+## Software License Cost Optimization
+
+The Software License Cost Optimization is required to generate the VM moves to minimize the number of Windows or Oracle licenses you require.
+
+<Note>
+This feature is available through the Densify Enterprise Solution. Contact [Support@Densify.com](mailto:Support@Densify.com) for details on licensing and enabling this feature.
+</Note>
+
+
+
+## VMware Credentials and Configuration
+
+The Densify Connector uses the VMware common API interface to audit each vCenter Server and ESX servers. The following prerequisites must be addressed before
+
+### Configuring a vCenter Account for Action Automation
+
+Once you are ready to enable automation, you need to elevate the access permission on the Densify Connector. Create a new account or modify the existing user account with the following minimum privileges to run action automation.
+
+In order to run Action Automation you need to do the following:
+
+* Enable vMotion on all hosts on which VM changes will occur. This includes hosts of which VMs will be moved and the hosts onto which VMs will be placed.
+* Obtain a vCenter Server credential with administrator access. This account must provide the ability to:
+
+* Modify the vMotion settings;
+<Note>
+If the vMotion setting has been changed in order to execute an action plan, then it will be returned to its original value when execution is complete.
+</Note>
+
+* Modify the value of the `drs_threshold_priority` and vm\_move\_priority settings for your environment;
+* Make allocation changes to VMs within your datacenter clusters.
+
+#### User Account Options
+
+If you cannot obtain administrator privileges for your vCenter account, you can still allow action automation to make the required moves with specific options enabled on your vCenter user account.
+
+1. In your vSphere Web Client, browse to Administration > Role Manager.
+2. Select a vCenter Server from the drop-down menu.
+3. Select a role and click Edit role action.
+4. Select the following privileges for the role and click OK.
+
+Table: Required User Role Settings
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Specific Settings</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>Alarms &gt; Acknowledge alarm</p>
+</td>
+<td>
+<p>Allows suppression of all alarm actions on all triggered alarms.</p>
+<p>This setting is  required by <span class="mc-variable Document.Densify variable">Densify</span> to manage alarms for automation activities.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Alarms &gt; Create alarm</p>
+</td>
+<td>
+<p>Allows creation of a new alarm.</p>
+<p>This setting is  required by <span class="mc-variable Document.Densify variable">Densify</span> to create alarms for automation activities (e.g. power-off action). This setting specifically is required when you are using the "Delay Power off" feature. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Alarms &gt; Disable alarm action</p>
+</td>
+<td>
+<p>Allows stopping an alarm action from occurring after an alarm has been triggered. This does not disable the alarm.</p>
+<p>This setting is  required by <span class="mc-variable Document.Densify variable">Densify</span> to disable alarms for automation activities.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Alarms &gt; Modify alarm</p>
+</td>
+<td>
+<p>Allows changing the properties of an alarm.</p>
+<p>This setting is  required by <span class="mc-variable Document.Densify variable">Densify</span> to manage alarms for automation activities. This setting specifically is required when you are using the "Delay Power off" feature. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Alarms &gt; Remove alarm</p>
+</td>
+<td>
+<p>Allows deletion of an alarm.</p>
+<p>This setting is  required by <span class="mc-variable Document.Densify variable">Densify</span> to remove alarms for automation activities.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Alarms &gt; Set alarm status</p>
+</td>
+<td>
+<p>Allows changing the status of the configured event alarm. The status can change to Normal, Warning, or Alert.</p>
+<p>This setting is  required by <span class="mc-variable Document.Densify variable">Densify</span> to manage alarms for automation activities.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Datastore &gt; Allocate Space</p>
+</td>
+<td>
+<p>Allows allocating space on a datastore for a virtual machine, snapshot, clone, or virtual disk.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Host &gt; Inventory &gt; Modify cluster</p>
+</td>
+<td>
+<p>Allows addition of a host to an existing cluster.</p>
+<p>Prior to executing rebalance moves Densify requires that the DRS Migration Threshold be set to 1, to ensure that DRS does not activate DRS any load balancing moves during the period that automation is running.  Once Densify completes automation, the DRS Migration Threshold can be reset to the original, customer value. In order to change the DRS Migration Threshold, the Modify Cluster permission is required, as <span class="mc-variable Document.VM2 variable">VMware</span> does not provide a separate permission for changes to this value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Resource &gt; Assign virtual machine to resource pool </p>
+</td>
+<td>
+<p>Allows a VM that is being deployed directly to a host or cluster access to the parent host or cluster's resource pool. This must be enabled in order to perform cross-cluster rebalancing moves.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Resource &gt; Migrate powered off/on virtual machine </p>
+</td>
+<td>
+<p>Allows migration of a powered off virtual machine to a different resource pool or host. Allows migration with vMotion of a powered on virtual machine to a different resource pool or host.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Resource &gt; Query vMotion</p>
+</td>
+<td>
+<p>Allows <span class="mc-variable Document.Company variable">Densify</span> to query the general vMotion compatibility of a virtual machine with a set of hosts.</p>
+<p>This setting is not mandatory; however, when enabled, it allows <span class="mc-variable Document.Company variable">Densify</span> to validate vMotion compatibility of VMs to target hosts. If <span class="mc-variable Document.Company variable">Densify</span> is not able to determine compatibility, then it cannot pre-qualify compatibility and when attempting to use vMotion, will then fail if the VM is not compatible, during action automation instead of detecting the issue prior to attempting the move. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Virtual Machine &gt; Configuration &gt; Advanced</p>
+</td>
+<td>
+<p>Allows addition or modification of advanced parameters in the virtual machine's configuration file.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Virtual Machine &gt; Configuration &gt; Change CPU count</p>
+</td>
+<td>
+<p>Allows changing the number of virtual CPUs.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Virtual Machine &gt; Configuration &gt; Change resource</p>
+</td>
+<td>
+<p>Allows changing the resource configuration of a set of virtual machine nodes in a given resource pool.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Virtual Machine &gt; Configuration &gt; Memory</p>
+</td>
+<td>
+<p>Allows changing the amount of memory allocated to the virtual machine.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Virtual Machine &gt; Interaction &gt; Power Off</p>
+</td>
+<td>
+<p>Allows you to power off a powered-on guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Virtual Machine &gt; Interaction &gt; Power On</p>
+</td>
+<td>
+<p>Allows you to power on a powered-off guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Virtual Machine &gt;Inventory &gt; Move</p>
+</td>
+<td>
+<p>Allows relocating a virtual machine in the hierarchy. The privilege must be present at both the source and destination.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Virtual Machine &gt; Provisioning &gt; Customize</p>
+</td>
+<td>
+<p>Allows customization of a virtual machine’s guest operating system without moving the virtual machine.</p>
+<p>This setting is  required by the <span class="mc-variable Document.VM1 variable">vCenter Server</span> and automation will not run if is not set correctly. Refer to your <span class="mc-variable Document.VM2 variable">VMware</span> documentation for details.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Virtual Machine &gt; Provisioning &gt; Modify customization specification</p>
+</td>
+<td>
+<p>Allows creation, modification, or deletion of customization specifications.</p>
+<p>This setting is  required by the <span class="mc-variable Document.VM1 variable">vCenter Server</span> and automation will not run if is not set correctly. Refer to your <span class="mc-variable Document.VM2 variable">VMware</span> documentation for details.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Virtual Machine.&gt; Provisioning &gt; Read customization specifications</p>
+</td>
+<td>
+<p>Allows reading a customization specification.</p>
+<p>This setting is  required by the <span class="mc-variable Document.VM1 variable">vCenter Server</span> and automation will not run if is not set correctly. Refer to your <span class="mc-variable Document.VM2 variable">VMware</span> documentation for details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+Contact your VMware administrator to configure the account and provide the required credentials. A message is logged if the appropriate permissions do not exist for the specified account when executing Action Automation.
+
+#### Enabling DRS
+
+DRS must be enabled for the cluster/s that you are targeting for action automation. Automation will fail on cluster/s that do not have DRS enabled. There may also be an indication that the specified user credential does not have sufficient permission to modify DRS settings.
+
+<Note>
+Action Automation will not attempt any moves if Densify cannot change the value of DRS.
+</Note>
+
+
+
+#### Enabling vMotion
+
+When automating Densify rebalance recommendations, vMotion must be enabled on all the hosts in a cluster. This includes hosts, on which the VMs are currently running and the hosts to which the VMs may be moved.
+
+#### Enabling Hot Add
+
+When automating Densify re-sizing recommendations (bump ups), CPU and/or memory Hot Add may be enabled, but is not mandatory. If Hot Add is supported/enabled on a VM, then the you avoid the reboot required for the VM sizing allocation changes to take effect.
+
+## vCenter Server
+
+### VMware Tools
+
+VMware Tools must be installed on each VM within your managed environment in order for action automation to execute recommendations and set alarms.
+
+VMware Tools is an add-on utility, provided by VMware, that significantly improves VM management – i.e. proper shutdowns, restarts, availability of host names, hot add capabilities, etc.
+
+Disk bump ups cannot be executed on VMs with VMware tools v10.3.10 and v11.0.x installed. This issue is resolved with VMware tools v11.1.0. If you are performing disk bump ups, you must upgrade VMware tools to v11.1.x.
+
+Refer to the documentation provided with your vCenter Server for installation details.
+
+### VMware Migration Threshold Setting
+
+Setting the DRS Threshold to priority 2 implements DRS priority 1 and 2 recommendations and excludes all priority 3, 4 and 5 DRS recommendations. This is required to get the full benefit of Densify's action automation. The higher you set the DRS threshold, the higher the number of DRS moves and the lower the value of each move.
+
+The VMware default setting is Priority 3. This value needs to be changed to Priority 2 on all clusters for which you have enabled either Real Time or Proactive automation. Priority 2 is also required for rebalancing moves.
+
+<Note>
+Internally, the VI3 API is reversed, so when you are reviewing the log files, a value of 4 in the log file is equivalent to a value of 2 in the user interface and a value of 2 in the UI = 4 in the log files.
+</Note>
+
+
+
+In general, when you are using Densify's action automation features, you do not need to use VMware's DRS optimization recommendations. The number of DRS moves can be significant, resulting in VMs constantly moving around. Moves are expensive and may increase resource utilization in the environment due to excessive vMotion activity.

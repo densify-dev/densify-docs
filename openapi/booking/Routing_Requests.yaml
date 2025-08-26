@@ -1,0 +1,227 @@
+openapi: 3.1.0
+info:
+  title: Densify Routing Requests API
+  version: 1.0.0
+  description: |
+    API for routing new workload demand entities, such as VMs, to appropriate hosting venues.
+    Takes into account scalar and non-scalar workload requirements to ensure optimal placement.
+servers:
+  - url: https://api.densify.com/v1
+    description: Densify API Server
+paths:
+  /routing-requests:
+    post:
+      summary: Create a new routing request
+      operationId: createRoutingRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                workload:
+                  type: object
+                  description: Workload details for routing
+                force:
+                  type: boolean
+                  description: Force routing to a specific hosting venue
+                  default: false
+                mode:
+                  type: string
+                  enum: [capacity_sensitive, cost_sensitive, cost_and_capacity]
+                  description: Routing strategy mode
+                  default: capacity_sensitive
+      responses:
+        "201":
+          description: Routing request created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the routing request
+                  status:
+                    type: string
+                    description: Status of the routing request
+        "400":
+          description: Invalid input data
+        "500":
+          description: Internal server error
+  /routing-requests/{id}:
+    get:
+      summary: Retrieve a specific routing request by ID
+      operationId: getRoutingRequest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier for the routing request
+      responses:
+        "200":
+          description: Routing request details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                  workload:
+                    type: object
+                    description: Workload details
+        "404":
+          description: Routing request not found
+  /routing-requests/{id}/workloads:
+    get:
+      summary: Retrieve workloads associated with a specific routing request
+      operationId: getRoutingRequestWorkloads
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier for the routing request
+      responses:
+        "200":
+          description: List of workloads
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    workloadId:
+                      type: string
+                      description: Unique identifier for the workload
+                    status:
+                      type: string
+                      description: Status of the workload
+        "404":
+          description: Routing request not found
+  /routing-requests/{id}/workloads/{workloadId}:
+    get:
+      summary: Retrieve a specific workload by ID
+      operationId: getRoutingRequestWorkload
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier for the routing request
+        - name: workloadId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier for the workload
+      responses:
+        "200":
+          description: Workload details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  workloadId:
+                    type: string
+                  status:
+                    type: string
+                  placement:
+                    type: object
+                    properties:
+                      host:
+                        type: string
+                      datastore:
+                        type: string
+        "404":
+          description: Workload not found
+  /routing-requests/{id}/workloads/{workloadId}/recheck:
+    post:
+      summary: Recheck the placement of a specific workload
+      operationId: recheckWorkloadPlacement
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier for the routing request
+        - name: workloadId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier for the workload
+      responses:
+        "200":
+          description: Placement rechecked successfully
+        "404":
+          description: Workload not found
+        "500":
+          description: Internal server error
+  /routing-requests/{id}/unroute:
+    delete:
+      summary: Unroute a specific routing request
+      operationId: unrouteRoutingRequest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier for the routing request
+        - name: record_placement
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Whether to record the current placement before unrouting
+      responses:
+        "200":
+          description: Routing request unrouted successfully
+        "404":
+          description: Routing request not found
+        "500":
+          description: Internal server error
+components:
+  schemas:
+    Workload:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        cpu:
+          type: integer
+        memory:
+          type: integer
+        storage:
+          type: integer
+    HostingVenue:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        capacity:
+          type: integer
+        fitForPurpose:
+          type: boolean
+    Placement:
+      type: object
+      properties:
+        host:
+          type: string
+        datastore:
+          type: string

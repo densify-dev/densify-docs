@@ -1,0 +1,18 @@
+---
+title: "Analysis: Kubernetes Container Systems"
+---
+
+The `/analysis/containers/kubernetes/<analysisId>/systems` resource is used to return a collection of all container systems that were included in the Kubernetes optimization analysis.
+
+The number of analyzed systems (i.e. `/containers/kubernetes/<analysisId>/systems` entities) will always be greater than or equal to the number of system recommendations produced (i.e. `/containers/kubernetes/<analysisId>/results` entities), as some systems may not have any recommendations. See [Analysis: Kubernetes Container Recommendations](./Analysis_Kubernetes_Results) for details of the Kubernetes container recommendation resource.
+
+## Resource
+
+```
+/analysis/containers/kubernetes/<analysisId>/systems
+```
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="List Kubernetes Container Systems" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Systems/listKubernetesContainerSystems" arrow/>
+</CardGroup>

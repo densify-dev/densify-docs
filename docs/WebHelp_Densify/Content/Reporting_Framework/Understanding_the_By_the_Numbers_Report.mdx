@@ -1,0 +1,47 @@
+---
+title: "Understanding the By the Numbers Report"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The By the Numbers report gives you an overview of the size of your infrastructure, your guests, your spare capacity and projected growth. It is comprised of three separate reports: On-prem Infrastructure, On-prem Guests and Hybrid Guests. The By the Numbers tab is only displayed when virtual environment data is available.
+
+You can filter virtual guests at the cluster level or by their capabilities. See [Using the Global Filter](../Densify_Com/Using_the_Global_Filter).
+
+<Accordion title="Figure: By The Number Landing Page">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000078_618x318.png)</Frame>
+</Accordion>
+
+
+## On-Prem Infrastructure
+
+This section itemizes the infrastructure that you manage (i.e. environments containing full control hosting venues). This includes the number of hosts and datastores currently provisioned as well as the number of new hosts and datastores that are planned for these environments.
+
+Under Locations you can see the number of different locations defined by the capabilities defined for the full control hosting venues that are in scope, as defined by the global filter.
+
+Click zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> on Clusters to see the Overall Density and Risk details report for each cluster.
+
+<Accordion title="Figure: Zoom to Cluster Details">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000196_261x138.png)</Frame>
+</Accordion>
+
+
+In addition to operational details of each cluster (i.e. VM Instance Details and Spare Capacity), the Optimization Assessment columns provide the most recent assessment as follows:
+
+* Percentage of Hosts with no Risk--hosts that are within policy specifications, or that have excess resources i.e. hosts that are not in the red of the Control Console Spectrum for today's analysis.
+* Percentage of Guests with no Risk--guests that are within policy specifications, or that have excess resources, i.e. not in the red of the Control Console Spectrum for today's analysis.
+* Percentage of Right Sized Guests--guests that are within policy specifications and do not have excess resources allocated. i.e. guests in the green of the Control Console Spectrum for today's analysis.
+* Current Stacking ratio--the number of guests that are placed on each host.
+* Optimized Stacking ratio--the number of guests that could be placed on each host according the policy specifications for the selected cluster or environment.
+* Density Score--Current Stacking Ratio divided by Optimized stacking Ratio, displayed as a percentage.
+
+## On-prem Guests
+
+This section itemizes the guest resources that you manage (i.e. environments containing full control hosting venues). This includes the number of guests and their resources currently provisioned as well as the number of incoming guest bookings and their committed resources.
+
+Under Available Spare Capacity you can see the available capacity for today (available from hosting venues that are open for routing new bookings and that are not a performance risk) and the reclaimable capacity for today assuming the Densify recommendations are executed (available from closed hosting venues, hosting venues with performance risk and open hosting venues with no risk). The Available Spare Capacity is the same as that shown by the Available Infrastructure Summary report (obtained by navigating to the Virtual Insight page and zooming <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> from the Reclaimable and Available Capacity report).
+
+## Hybrid Guests
+
+These reports provide a summary of guests currently provisioned in your on-premise locations (i.e. environments with full control analytics) versus cloud environments (i.e. that are not managed by full control analytics). These reports also include the number of new guests booked (not expired) for both on-premise and off-prem environments.
+
+Under On vs Off-Prem you can see the total number of guests currently provisioned on each platform. A watermark, indicating "No Off-Prem Guests" is displayed when there are no cloud-based guests and the pie chart shows 100% On-Prem. Contact [Support@Densify.com](mailto:Support@Densify.com) to account for off-prem guests.

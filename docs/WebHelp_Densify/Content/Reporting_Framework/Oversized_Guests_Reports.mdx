@@ -1,0 +1,105 @@
+---
+title: "Oversized Guests Reports"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The Oversized Guests reports show the guests (as defined by your global filter) that are oversized (i.e. have excess infrastructure). Guests are considered oversized when they have been allocated too much CPU, memory or aggregate disk space according to the operational policy settings. If any one of these resources is in excess, the guest is considered oversized.
+
+Only on-premise guests are reported (i.e. those with control analytics).
+
+<Note>
+These reports provide details for the scope of systems defined by your global filter. See [Using the Global Filter](../Densify_Com/Using_the_Global_Filter) for details.
+</Note>
+
+
+
+## Understanding Oversized Guests Reports
+
+The Oversized Guests report is comprised of three separate reports, as explained by the figure below:
+
+* Summary--Summarizes the number of guests within the defined scope that are oversized and how many resources can be reclaimed. Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see this information as bar charts comparing clusters with oversized guests. The first charts shows the total number of oversized guests. The second chart shows these values as a percentage, displayed in descending order.
+* Top Clusters--Lists the top 5 clusters by percentage that have oversized guests. This list contains the number of oversized guests and the % of oversized guests. Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the full list of clusters (with or without oversized guests), plus links to oversized guest details (with oversized reasons and bump down recommendations in yellow) and links to the recommendations details and workload charts for each cluster.
+* History--Graphs the 90-day history of the total % of oversized guests for all guests in scope. Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the same graph, together with a graph showing the total number of oversized guests for all guests in scope. These graphs do not provide a breakdown by cluster.
+
+<Accordion title="Figure: Oversized Guests Report">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000044.png)</Frame>
+</Accordion>
+
+
+## Viewing and Addressing Oversized Guests
+
+To view and address the oversized guests at risk:
+
+1. Navigate to Private Cloud > Virtual Environments > Opportunity > Oversized Guests.
+2. View the clusters with oversized guests by zooming <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> from Top Clusters with Oversized Guests.
+
+Table: Clusters with Oversized Guests Report
+
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Column</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>Environment\Cluster</p>
+</td>
+<td>
+<p>This column shows the name of the environment and cluster containing the oversized guests. </p>
+<p>This table is sorted so that the highest percentage of oversized guests appear at the top.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Oversized Guests</p>
+</td>
+<td>
+<p><a name="kanchor127"></a>This column shows the number of oversized guests, displayed as links. Click the link, to display the Guest Details report that shows each guest's details as well as the reason, as to why each listed guest is  not sized efficiently.</p>
+<p> <a name="kanchor128"></a>When you select a system in the Details report, utilization metrics, if available, are displayed on the <span >Resource Utilization Metrics High/Low Limits</span> tabs. Use the left/right arrows to scroll though the various workload charts. If no data has been collected or is not available, the corresponding chart is not displayed.</p>
+<p>Workload charts display current sustained activity in blue, while sustained activity on the recommended instance type chart is shown in green. The minimum and maximum utilization values are shown as vertical lines above and below the coloured block. The median is indicated as a black line within the coloured block. The average is indicated in brackets, in the sub-title of the chart.</p>
+<p>The scale used on the Y-axis is scaled dynamically to match the range of data. The pink line indicating the high policy limit setting is shown, and the setting of the Y-axis scale also accounts for this value. The yellow line indicates the policy low limit. If the high and low are the same, the dashed yellow/pink line indicates the value.</p>
+<p>Click on the <span >System Details</span> tab to see allocated resources and the relevant attributes that have been set for this guest.</p>
+<p>For more information about the Guest Details report for each cluster, see <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="RefToBookmark MCXref xref xrefRefToBookmark" href="../Densify_Com/Guest_Sizing_Accuracy_Reports#System_Details"><u>System Details</u></a></madcap:conditionaltext>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Total Guests</p>
+</td>
+<td>
+<p> This column shows the total number of analyzed guests. </p>
+<p>Values marked with an asterisk (*) indicate some of these guests are considered both undersized and oversized. This is the case if a system does not have enough allocated CPUs and has excess memory, for example. A footnote indicates the number of systems that are in this category and are thus counted twice, as oversized and undersized. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>%</p>
+</td>
+<td>
+<p>This is the percentage of guests that are oversized within the specified cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Bump-Down Recommendations</p>
+</td>
+<td>
+<p>This column shows the total number of bump down recommendations. Any value greater than 0 is displayed as a link. </p>
+<p><a name="kanchor129"></a>Click the hyperlink to view the <span >Bump Down Recommendations</span> report. For bump down recommendations, only the aggregate disk recommendations are reported. Per disk recommendations are not reported. </p>
+<p>If you are executing these recommendations manually, apply your customer-specific scripted solution or third-party tool. </p>
+<p>You can execute these recommendations through Action Automation. Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="b3e0c6c3c3dcc1c7f3f7d6ddc0dad5ca9dd0dcde" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for details. </p>
+<p><a name="kanchor130"></a>You can export the content of the <span >Clusters with Oversized Guests</span> report or the <span >Bump Down Recommendations</span> report.</p>
+</td>
+</tr>
+</tbody>
+</table>
+3. View the History of Oversized Guests each day to see the impact of the bump-down recommendations. If you apply these recommendations regularly, you can use the History of Oversized Guests to monitor continued progress over time.

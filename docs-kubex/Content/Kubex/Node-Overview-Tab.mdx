@@ -1,0 +1,269 @@
+---
+title: "Node Overview Tab"
+---
+
+import { Carousel } from "/snippets/Carousel.mdx"
+
+
+The cards on this tab provide a visual overview of a single node. When navigating the tree viewer, you will see this tab when a single node is selected.
+
+You can also reach the modal view of this page, from the Node Details page by clicking the name, in the [Node](/docs-kubex/Content/Kubex/Nodes_Tab#node) column.
+
+
+<Frame caption="Figure: Locating the Node Overview">
+![](/images/docs-kubex/Content/Kubex/03000096_548x225.png)
+</Frame>
+
+
+
+## Summary Card
+
+Click any of the listed settings below to see a brief description. Complete descriptions of each setting are provided in the [Nodes Tab](/docs-kubex/Content/Kubex/Nodes_Tab).
+
+Resource configuration details are listed on this card.
+
+
+<Frame caption="Figure: Summary Card">
+![](/images/docs-kubex/Content/Kubex/03000227_761x163.png)
+</Frame>
+
+<div style={{ width: "70%", display:"flex", flexDirection:"row", alignItems:"center", justifyContent: "space-between" }}>
+<ul>
+  <li>
+    <Tooltip tip="The total number of CPUs on this instance type.">
+    CPU
+    </Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The number of CPUs that can be allocated to pods.">
+    Allocatable CPU
+    </Tooltip>
+  </li>
+</ul>
+
+<ul>
+  <li>
+    <Tooltip tip="The total amount of memory on this instance type.">
+    Memory
+    </Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The amount of memory that can be allocated to pods.">
+    Allocatable Memory
+    </Tooltip>
+  </li>
+</ul>
+</div>
+
+## Node Information
+
+Identifying details and key metrics are displayed in the card at the top of the page.
+
+
+<Frame caption="Figure: Node Information">
+![](/images/docs-kubex/Content/Kubex/03000097.png)
+</Frame> 
+<div style={{ width: "70%", display:"flex", flexDirection:"row", alignItems:"center", justifyContent: "space-between" }}>
+<ul>
+  <li>
+    <Tooltip tip='The name of the node group that contains the selected node. For nodes that do not belong to a node group, the node group value should be<cluster-name>-default”'>
+    Node Group
+    </Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The name of the cluster containing the selected node group/nodes.">
+    Cluster
+    </Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The node's instance type. In cases where the instance type cannot be determined (i.e. bare-metal, private cloud environments) the primary node type is indicated as: CPU x memory size, e.g. 8x16. A dash (-) indicates that the node instance details could not be determined.">
+    Instance Type
+    </Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The date, on which this instance was first discovered by Densify.">
+    First Seen Date
+    </Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The date, on which this instance last had CPU utilization data collected by First Seen DateThe date, on which this instance was first discovered by Densify..">
+    Last Seen Date
+    </Tooltip>
+  </li>
+</ul>
+
+<ul>
+  <li>
+    <Tooltip tip="The number of days since the node was first discovered by First Seen DateThe date, on which this instance was first discovered by Densify..">
+    Age (days)
+    </Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The maximum number of pods allowed on this node, based on their optimal configuration.">
+    Max Allowed Pods
+    </Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The average number of pods running on this node, during the past 7 days of history.">
+    No. of Pods - Average
+    </Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The maximum number of pods running on this node during the past 7 days of history.">
+    No. of Pods - Peak
+    </Tooltip>
+  </li>
+</ul>
+</div>
+
+Please observe the following for this set of data:
+
+
+<ul>
+  <li>Missing data is indicated with a dash (-).</li>
+  <li>The data is derived from the past 7 days of history.</li>
+</ul>
+
+
+
+## Utilization Summary
+
+The next 2 cards summarize potential resource risks for the node, and the containers running on the node.
+
+
+<Frame caption="Figure: Utilization  Details">
+![](/images/docs-kubex/Content/Kubex/03000098_762x202.png)
+</Frame>
+
+
+<div style={{ width: "70%", display:"flex", flexDirection:"row", alignItems:"center", justifyContent: "space-between" }}>
+<ul>
+  <li>
+    <Tooltip tip="The average CPU utilization for this node. The cell will be shaded red when the value exceeds 90%.">
+    CPU Average(%)
+    </Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The maximum CPU utilization for this node. The cell will be shaded red when the value exceeds 90%.">
+    CPU Peak (%)
+    </Tooltip>
+  </li>
+</ul>
+
+<ul>
+  <li>
+    <Tooltip tip="The average memory utilization for this node. The cell will be shaded red when the value exceeds 90%.">
+    Memory Average (%)
+    </Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The maximum memory utilization for this node. The cell will be shaded red when the value exceeds 90%.">
+    Memory Peak (%)
+    </Tooltip>
+  </li>
+</ul>
+</div>
+
+## GPU Summary
+
+This card summarizes the GPU allocation and for the selected node. This card is only displayed if GPU resources are availble on the selected instance type. A hyperlink at the bottom of the card takes you to the GPU page.
+
+
+<Frame caption="Figure: GPU Summary">
+![](/images/docs-kubex/Content/Kubex/03000229_501x163.png)
+</Frame>
+
+
+<div style={{ width: "70%", display:"flex", flexDirection:"row", alignItems:"center", justifyContent: "space-between" }}>
+<ul>
+  <li>
+    <Tooltip tip="The GPU model configured on this node.">
+    GPU Model
+    </Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The total GPUs available on this node.">
+    GPUs
+    </Tooltip>
+  </li>
+</ul>
+
+<ul>
+  <li>
+    <Tooltip tip="The number of GPUs that can be allocated to pods.">
+    Allocatable GPUs
+    </Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="The amount of GPU memory that can be allocated to pods.">
+    Allocatable GPU Memory
+    </Tooltip>
+  </li>
+</ul>
+</div>
+
+## Number of Pods and Utilization Charts
+
+This chart summarizes the number of pods that have been running on this node. You can open a modal view to see more details. See [AI Analysis Details Table](/docs-kubex/Content/Kubex/AI_Analysis_Details_Table) for details on using the options in the modal view.
+
+Slide Show: Number of Pods Chart (Click left/right arrows to see the other slides.)
+
+
+<Carousel 
+  images={[
+    {
+      src: "/images/docs-kubex/Content/Kubex/03000099_490x342.png",
+      caption: "Expand to Modal View",
+      alt: "Expand to Modal View"
+    },
+    {
+      src: "/images/docs-kubex/Content/Kubex/03000135_537x385.png",
+      caption: "Number of Pods - Modal View (Daily)",
+      alt: "Number of Pods - Modal View (Daily)"
+    },
+    {
+      src: "/images/docs-kubex/Content/Kubex/03000205_537x385.png",
+      caption: "Number of Pods - Modal View (Hourly)",
+      alt: "Number of Pods - Modal View (Hourly)"
+    },
+    {
+      src: "/images/docs-kubex/Content/Kubex/03000228_537x385.png",
+      caption: "Selecting Other Metrics",
+      alt: "Selecting Other Metrics"
+    }
+  ]}
+/>
+
+
+
+## Utilization Charts
+
+The last section provides utilization charts that show hourly min/max and sustained activity for the selected node. You can also expand any chart to the modal view and select other metrics for review. See [AI Analysis Details Table](/docs-kubex/Content/Kubex/AI_Analysis_Details_Table) for details on using these charts to review workload data.
+
+<div style={{ width: "80%", display:"flex", flexDirection:"row", alignItems:"center", justifyContent: "space-between" }}>
+<ul>
+  <li>CPU Utilization (%)</li>
+  <li>Memory Utilization (%)</li>
+  <li>Working Set Memory Utilization (%)</li>
+</ul>
+
+<ul>
+  <li>GPU Utilization (%)</li>
+  <li>GPU Memory Utilization (%)</li>
+  <li>No. of Pods</li>
+</ul>
+</div>
+
+#### Video Resources
+<AccordionGroup>
+<Accordion title="Using the Tree Viewer">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Using the Tree Viewer</a>
+</Accordion>
+
+<Accordion title="Using the Utilization Charts">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1042992591?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1042992591?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Using the Utilization Charts</a>
+</Accordion>
+
+</AccordionGroup>

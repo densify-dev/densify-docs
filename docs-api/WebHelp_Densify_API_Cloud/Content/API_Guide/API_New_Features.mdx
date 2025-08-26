@@ -1,0 +1,57 @@
+---
+title: "Densify API New Features"
+---
+
+The following new features and updates are specific to the Densify API.
+
+<AccordionGroup>
+<Accordion title="3.2.0 June 11, 2025">
+There are no new API features or updates in this release.
+</Accordion>
+
+<Accordion title="3.1.0 May 14, 2025">
+There are no new API features or updates in this release.
+</Accordion>
+
+<Accordion title="3.0 April 23, 2025">
+<AccordionGroup>
+<Accordion title="New Kubernetes API Endpoints">
+The following endpoints have been added to the Densify API:
+
+* `GET /api/v2/kubernetes/clusters`
+* `GET /api/v2/kubernetes/clusters/<clusterName>`
+* `GET /api/v2/kubernetes/clusters/<clusterName>/containers`
+* `GET /api/v2/kubernetes/clusters/<clusterName>/containers?details=true`
+* `GET /api/v2/kubernetes/clusters/<clusterName>/automation`
+
+Two new attributes have been added to support the automation features.
+
+* Kubex Automation--Set on each container manifest and indicates whether the container is eligible for automation within Kubex.
+* Kubex Policy--Indicates what policy to use when automation is enabled.
+
+See the following:
+
+* [Kubernetes Clusters](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters)
+* [Kubernetes Clusters Results](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results)
+* [Kubernetes Clusters Automation](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Automation)
+</Accordion>
+
+<Accordion title="Updated API Token Expiry Duration">
+The token expiry has been increased from 5 to 60 minutes. Re-authorize will no longer be required for longer-running operations that previously exceed the 5-minute limit. The JSON Web Token (JWT) secures the Densify API so users can only make authorized API requests. See [Authorize](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize) for details.
+</Accordion>
+
+<Accordion title="Changes to Scale Groups with Max Size =1">
+In this release, singleton scale groups, both ASGs and VM Scale Sets, will now be analyzed as scale groups rather than as EC2 or VM instances.
+
+There are no changes to how scale groups are managed through the Densify API. Scale groups have always had service type "ASG" or "VMSS". Scaling recommendation are already included correctly in the results. See [Analysis: AWS Recommendations](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results) or [Analysis: Azure Recommendations](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results).
+</Accordion>
+
+</AccordionGroup>
+
+</Accordion>
+
+</AccordionGroup>
+
+<Note>
+See the [Densify Online Help](/docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud) for other features and updates.
+</Note>

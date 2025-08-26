@@ -1,0 +1,55 @@
+---
+title: "Access Permissions for a VMware Read Only Account"
+---
+
+You require a non-expiring, read-only account with permission to log in to vCenter Server through the vCenter Server client. Through this account you must be able to view the data centers, clusters, hosts and VMs, to be audited.
+
+Verify that you can successfully log in to vCenter Server and navigate the inventory hierarchy tree. The data center to be audited, hosts and VMs, as well as their respective details, should be visible (read-only) to this user account.
+
+If data collection is performed from vRealize Operations Manager, see [Access Permissions for a vROps Account](./Access_Permissions_for_a_vROps_Account).
+
+If you are planning to execute action automation, this user account requires additional privileges. See [Configuring a vCenter Account for Action Automation](../Densify_Com/Action_Automation_Prerequisites#Configuring_vCenter_Account_for_Automation)
+
+## Creating a Read-Only User Account
+
+You require a local or a domain user account with permission to log into vRealize Operations, if you are collecting historical workload data from vROps. Your VMware administrator needs to either create an account or grant access to an existing domain account to view all required data centers.
+
+## Granting Read-Only Access to the vCenter
+
+To grant the Densify Connector read-only access to your vCenter Server:
+
+1. In the vSphere Client, right-click your vCenter and select Add Permission.
+<Accordion title="Figure: vSphere > Add Permission">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DC_for_VMware/02000008_376x230.png)</Frame>
+</Accordion>
+2. Click Add, double-click to select your new user and click OK to add this user with read-only permission. Then check Propagate to Child Objects and click OK.
+<Accordion title="Figure: vSphere > New User Added with Read-only">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DC_for_VMware/02000009_499x399.png)</Frame>
+</Accordion>
+
+
+## Granting Read-Only Access to Specific Data Centers
+
+To grant read-only access to a single data center and all its clusters:
+
+1. In the vSphere Client, right-click the data center that you want to analyze and select Add Permission.
+<Accordion title="Figure: Data Center > Add Permission">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DC_for_VMware/02000008_376x230.png)</Frame>
+</Accordion>
+2. Click Add, double-click to select your new user and click OK to add this user with read-only permission. Ensure the option, Propagate to Child Objects is checked and click OK.
+
+## Excluding Specific Clusters
+
+To exclude a specific cluster:
+
+1. In the vSphere Client, right-click the cluster and select Add Permission.
+2. Click Add, double-click select your new user and click OK to add this user. Then select No Access in the dropdown menu to exclude the cluster from being accessed. Keep the Propagate to Child Objects checked and click OK.
+
+## vCenter Servers in Linked Mode
+
+When vCenter Servers are in linked mode, you must configure a separate user account for each vCenter Server with access to only that vCenter Server. For example, if vCenter Server 1 and vCenter Server2 are linked, two accounts must be created:
+
+* one account must be created to exclusively see vCenter Server1;
+* a second account must be created to exclusively see vCenter Server2.
+
+You must then configure an audit for each account.

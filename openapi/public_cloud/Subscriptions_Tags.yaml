@@ -1,0 +1,315 @@
+openapi: 3.1.0
+info:
+  title: Densify – Subscriptions Tags API
+  version: "1.0.0"
+  description: |
+    Catalog of system attribute *tags* that subscriptions can reference via `tagReferences`.
+    Each platform has its own catalog (`cloud` or `containers`); only matching-platform
+    subscriptions can reference tags from that catalog. Comparisons on tags are **string /
+    lexicographic**, not numeric. The alias without `platformType` behaves like `cloud`. 
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: api.example.com
+tags:
+  - name: Subscriptions Tags
+paths:
+  /subscriptions/{platformType}/tags:
+    get:
+      tags: [Subscriptions Tags]
+      operationId: listSubscriptionTags
+      summary: List tags in the platform catalog
+      description: |
+        Returns global/private tags. Use `type` and (admin only) `owner` to filter. 
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+        - $ref: '#/components/parameters/type'
+        - $ref: '#/components/parameters/owner'
+      responses:
+        '200':
+          description: Tag list
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/SubscriptionTag' }
+        '400': { description: "Bad Request (e.g., non-admin querying another user with `type=owner`)." }
+        '401': { description: Authentication failed. }
+        '404': { description: Not found. }
+        '415': { description: Unsupported media type. }
+        '500': { description: Server error. }
+    post:
+      tags: [Subscriptions Tags]
+      operationId: addSubscriptionTags
+      summary: Add tags (bulk; all-or-nothing)
+      description: |
+        Adds one or more tags. Admins may create **global** (owner empty) or private tags;
+        non-admins can only create **private** (owner auto-set to their username).
+        Uniqueness: `attributeName` must be unique per catalog; `tagName` and `aliasName`
+        must be unique per ownership scope (global vs owner).
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items: { $ref: '#/components/schemas/SubscriptionTagCreate' }
+      responses:
+        '200':
+          description: Created entries (IDs and names)
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/CreateResult' }
+        '400': { description: Validation/logic error; entire batch rolled back. }
+        '401': { description: Authentication failed. }
+        '415': { description: Unsupported media type. }
+        '500': { description: Server error. }
+    put:
+      tags: [Subscriptions Tags]
+      operationId: replaceSubscriptionTags
+      summary: Replace tags (bulk PUT; all-or-nothing)
+      description: |
+        Replace parameters for existing tags. **Supply all parameters** for each tag;
+        PUT acts as delete+replace. Admins may promote private→global by setting `owner: ""`.
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items: { $ref: '#/components/schemas/SubscriptionTagUpdate' }
+      responses:
+        '200':
+          description: Updated entries (per-item message)
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/UpdateResult' }
+        '400': { description: Validation/logic error; entire batch rolled back. }
+        '401': { description: Authentication failed. }
+        '415': { description: Unsupported media type. }
+        '500': { description: Server error. }
+    delete:
+      tags: [Subscriptions Tags]
+      operationId: deleteSubscriptionTags
+      summary: Delete tags (bulk; independent per entry)
+      description: |
+        Deletes a collection of tags by `tagRef`. If **all** succeed, returns 204.
+        If any fail (e.g., tag is referenced by subscriptions), returns an array of
+        per-entry results with status/messages; other entries may still delete.
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+      responses:
+        '204': { description: No Content (all deletes succeeded). }
+        '200':
+          description: Per-entry delete results (partial/mixed outcomes)
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/DeleteResult' }
+        '401': { description: Authentication failed. }
+        '404': { description: Not found. }
+        '415': { description: Unsupported media type. }
+        '500': { description: Server error. }
+
+  /subscriptions/{platformType}/tags/{tagRef}:
+    get:
+      tags: [Subscriptions Tags]
+      operationId: getSubscriptionTag
+      summary: Get a tag by ID
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+        - $ref: '#/components/parameters/tagRef'
+      responses:
+        '200':
+          description: Tag
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SubscriptionTag' }
+        '401': { description: Authentication failed. }
+        '404': { description: Not found / not visible. }
+        '415': { description: Unsupported media type. }
+        '500': { description: Server error. }
+    put:
+      tags: [Subscriptions Tags]
+      operationId: replaceSubscriptionTag
+      summary: Replace a tag by ID (full PUT)
+      description: |
+        **All parameters must be supplied.** Admin may promote private→global by setting `owner: ""`.
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+        - $ref: '#/components/parameters/tagRef'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/SubscriptionTagPut' }
+      responses:
+        '200':
+          description: Updated entry (with message)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UpdateResult' }
+        '400': { description: Validation/logic error. }
+        '401': { description: Authentication failed. }
+        '404': { description: Not found / not visible. }
+        '415': { description: Unsupported media type. }
+        '500': { description: Server error. }
+    delete:
+      tags: [Subscriptions Tags]
+      operationId: deleteSubscriptionTag
+      summary: Delete a tag by ID
+      description: |
+        204 on success; 404 if not found. If referenced by subscriptions (or other
+        errors), returns an object with `tagRef`, `message`, `status`.
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+        - $ref: '#/components/parameters/tagRef'
+      responses:
+        '204': { description: No Content. }
+        '404': { description: Not found. }
+        '200':
+          description: In-use error payload
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DeleteResult' }
+        '401': { description: Authentication failed. }
+        '415': { description: Unsupported media type. }
+        '500': { description: Server error. }
+
+  # Back-compat alias (behaves like /subscriptions/cloud/tags)
+  /subscriptions/tags:
+    get:
+      tags: [Subscriptions Tags]
+      operationId: listSubscriptionTagsDefaultPlatform
+      summary: List tags (alias of cloud)
+      responses:
+        '200':
+          description: Tag list
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/SubscriptionTag' }
+
+components:
+  parameters:
+    platformType:
+      name: platformType
+      in: path
+      required: true
+      description: Platform catalog (`cloud` or `containers`).
+      schema: { type: string, enum: [cloud, containers] }
+    tagRef:
+      name: tagRef
+      in: path
+      required: true
+      description: Unique tag identifier.
+      schema: { type: string }
+    type:
+      name: type
+      in: query
+      required: false
+      description: |
+        Which tags to return:
+        - `all` (default) → global + your private (admins see all)
+        - `global` → all global
+        - `owner` → user-specific; combine with `owner=` (admins can query any user) 
+      schema: { type: string, enum: [all, global, owner] }
+    owner:
+      name: owner
+      in: query
+      required: false
+      description: Username to scope `type=owner` queries (admins only for others).
+      schema: { type: string }
+
+  schemas:
+    SubscriptionTag:
+      type: object
+      description: Subscriptions attribute tag entry.
+      properties:
+        tagRef:        { type: string, description: "Unique reference ID." }
+        tagName:       { type: string, description: "Tag name (unique per scope)." }
+        attributeName: { type: string, description: "Must be a Densify standard attribute or technology-specific ('Resource Tags' / 'Container Labels')." }
+        aliasName:     { type: string, description: "Display alias (scope-unique per rules)." }
+        technology:
+          type: string
+          description: Technology for resource attributes.
+          enum: [AWS, CONTAINER]
+        key:
+          type: string
+          description: Key used with technology-specific resource attributes.
+        owner:
+          type: string
+          description: 'Empty = global; otherwise username for private tag.' 
+        message:      { type: string, description: "Status message (on error)." }
+        status:
+          type: integer
+          description: "HTTP-like status code (200, 204, 400, 401, 404, 415, 500)."
+    SubscriptionTagCreate:
+      type: object
+      properties:
+        tagName:       { type: string }
+        attributeName: { type: string }
+        aliasName:     { type: string }
+        key:           { type: string, description: "Required with technology for resource attributes." }
+        technology:    { type: string, enum: [AWS, CONTAINER] }
+        owner:
+          type: string
+          description: 'Omit/empty for global (admin only); otherwise username for private.'
+      required: [tagName, attributeName]
+      description: |
+        For "Resource Tags"/"Container Labels", specify both `key` and `technology`.
+    SubscriptionTagUpdate:
+      type: object
+      properties:
+        tagRef:        { type: string }
+        tagName:       { type: string }
+        attributeName: { type: string }
+        aliasName:     { type: string }
+        key:           { type: string }
+        technology:    { type: string, enum: [AWS, CONTAINER] }
+        owner:         { type: string }
+      required: [tagRef, tagName, attributeName]
+      description: Supply **all** parameters; PUT is delete+replace.
+    SubscriptionTagPut:
+      type: object
+      properties:
+        tagName:       { type: string }
+        attributeName: { type: string }
+        aliasName:     { type: string }
+        key:           { type: string }
+        technology:    { type: string, enum: [AWS, CONTAINER] }
+        owner:         { type: string }
+      required: [tagName, attributeName]
+      description: Supply **all** parameters; PUT is delete+replace.
+    CreateResult:
+      type: object
+      properties:
+        tagRef:  { type: string }
+        tagName: { type: string }
+    UpdateResult:
+      type: object
+      properties:
+        tagRef:  { type: string }
+        tagName: { type: string }
+        message: { type: string }
+    DeleteResult:
+      type: object
+      properties:
+        tagRef:  { type: string }
+        message: { type: string }
+        status:
+          type: integer
+          description: 'HTTP-like code (e.g., 200, 204, 404).'

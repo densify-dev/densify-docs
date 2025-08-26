@@ -1,0 +1,409 @@
+openapi: 3.1.0
+info:
+  title: Densify Bookings API
+  version: "1.0.0"
+  description: |
+    OpenAPI definition for the **Bookings** resource in the Densify API,
+    derived from the public documentation page "Bookings".
+    Covers collection retrieval, individual booking retrieval, attribute
+    management, and completing VM bookings.
+servers:
+  - url: https://api.densify.example.com
+    description: Placeholder server URL. Replace with your Densify API base.
+paths:
+  /bookings:
+    get:
+      summary: Get Bookings collection
+      description: |
+        Retrieve a collection of bookings. Supports the *Filters* and *Collection Details*
+        options described in the documentation. Sorting and paging are **not** supported.
+      parameters:
+        - in: query
+          name: details
+          schema: { type: boolean }
+          description: When true, returns resource elements for each booking.
+        - in: query
+          name: attributes_flag
+          schema:
+            type: string
+            enum: [setonly]
+          description: |
+            Works **only** when used with `details=true`. Returns all resource elements,
+            including additional **set** attributes defined outside of the config file.
+        - in: query
+          name: setdisplay_category
+          schema: { type: string }
+          description: Optional category filter for *set* attributes; requires `details=true`.
+        - in: query
+          name: name
+          schema: { type: string }
+          description: Filter by exact booking name.
+        - in: query
+          name: name_like
+          schema: { type: string }
+          description: Case-insensitive substring filter for booking names. `%` matches 0+ chars.
+        - in: query
+          name: attribute_name_like
+          schema: { type: string }
+          description: Returns bookings having at least one attribute whose name contains the substring.
+        - in: query
+          name: attribute_id
+          schema:
+            type: array
+            items: { type: string }
+          style: form
+          explode: true
+          description: Returns bookings having any of the specified attribute IDs set.
+        - in: query
+          name: attribute_name
+          schema:
+            type: array
+            items: { type: string }
+          style: form
+          explode: true
+          description: Returns bookings having any of the specified attribute names set.
+        - in: query
+          name: attribute_id_value
+          schema:
+            type: array
+            items: { type: string }
+          style: form
+          explode: true
+          description: |
+            Each entry is an ID=value pair. Returns bookings matching all provided pairs.
+        - in: query
+          name: attribute_name_value
+          schema:
+            type: array
+            items: { type: string }
+          style: form
+          explode: true
+          description: |
+            Each entry is a name=value pair. Returns bookings matching all provided pairs.
+        - in: query
+          name: control_environment_id
+          schema: { type: string, format: uuid }
+          description: Filter by a single Control Environment UUID.
+        - in: query
+          name: control_environment_id_list
+          schema:
+            type: array
+            items: { type: string, format: uuid }
+          style: form
+          explode: true
+          description: Filter by multiple Control Environment UUIDs.
+        - in: query
+          name: infrastructure_group
+          schema: { type: string }
+          description: Filter by a single Infrastructure Group **name**.
+        - in: query
+          name: infrastructure_group_list
+          schema:
+            type: array
+            items: { type: string }
+          style: form
+          explode: true
+          description: Filter by multiple Infrastructure Group names.
+        - in: query
+          name: os
+          schema: { type: string }
+          description: Filter by operating system (top-level alias for system.os).
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum:
+              [DRAFT, PENDING, COMMITTED, COMPLETED, LATE, EXPIRED, CANCELLED]
+          description: Filter by booking status.
+        - in: query
+          name: type
+          schema:
+            type: string
+            enum:
+              [
+                INBOUND_GUEST,
+                INBOUND_DATASTORE,
+                INBOUND_HOST,
+                OUTBOUND_GUEST,
+                OUTBOUND_HOST,
+              ]
+          description: Filter by booking type.
+      responses:
+        "200":
+          description: A collection of bookings
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: "#/components/schemas/BookingListItem"
+                  - $ref: "#/components/schemas/BookingCollectionDetailed"
+              examples:
+                summaryList:
+                  summary: Minimal list form
+                  value:
+                    - id: b03bc809-5a3c-4061-a829-2fea4353af37
+                      name: infosys-java53
+                      href: /bookings/b03bc809-5a3c-4061-a829-2fea4353af37
+                    - id: 9e6826c8-79f9-4c26-bbe5-11eae2773f2e
+                      name: win-vm-2337
+                      href: /bookings/9e6826c8-79f9-4c26-bbe5-11eae2773f2e
+  /bookings/{id}:
+    get:
+      summary: Get a single booking
+      parameters:
+        - $ref: "#/components/parameters/BookingId"
+      responses:
+        "200":
+          description: Booking resource elements
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Booking"
+    put:
+      summary: Complete a VM booking
+      description: |
+        Updates the status of a **VM booking** from `COMMITTED`/`LATE` to `COMPLETED`.
+        Applies only to bookings routed to a **non-control** hosting venue.
+      parameters:
+        - $ref: "#/components/parameters/BookingId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [COMPLETED]
+              required: [status]
+            examples:
+              complete:
+                value: { status: COMPLETED }
+      responses:
+        "204":
+          description: Status updated (no content)
+  /bookings/{id}/attributes:
+    get:
+      summary: Get booking attributes
+      parameters:
+        - $ref: "#/components/parameters/BookingId"
+      responses:
+        "200":
+          description: Attribute elements for the booking
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Attribute" }
+    put:
+      summary: Modify booking attributes
+      description: |
+        Modifies values in the booking's `attributes` array. For **multi-value** attributes,
+        sending a new value appends it when the (name,value) pair does not already exist.
+        To overwrite, delete the existing value(s) first.
+      parameters:
+        - $ref: "#/components/parameters/BookingId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items: { $ref: "#/components/schemas/AttributeNameValue" }
+            examples:
+              setOwnerDept:
+                value:
+                  - name: Owner Department
+                    value: Core Apps
+      responses:
+        "204":
+          description: Attributes modified (no content)
+    delete:
+      summary: Delete booking attributes/values
+      description: |
+        Deletes attribute settings (when only `id` is provided) or specific attribute values
+        (when both `id` and `value` are provided). For **multi-value** attributes, a request
+        with only `id` deletes all values; with `id` and `value` deletes only that entry.
+        If any delete fails, none are deleted (all-or-nothing).
+      parameters:
+        - $ref: "#/components/parameters/BookingId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id: { type: string }
+                  value: { type: string }
+                required: [id]
+            examples:
+              deleteExamples:
+                value:
+                  - { id: attr_2, value: Capps }
+                  - { id: state_power }
+      responses:
+        "204":
+          description: Attributes deleted (no content)
+components:
+  parameters:
+    BookingId:
+      name: id
+      in: path
+      required: true
+      schema: { type: string }
+  schemas:
+    LinkRef:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        href: { type: string }
+        icon: { type: string, nullable: true }
+    SensorRef:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        type: { type: string, description: "e.g., datastore" }
+        href: { type: string }
+        hostname: { type: string }
+    Attribute:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        value: { type: string }
+    AttributeNameValue:
+      type: object
+      properties:
+        name: { type: string }
+        value: { type: string }
+      required: [name, value]
+    BookingListItem:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        href: { type: string }
+    BookingHostSystem:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        catalog_id: { type: string }
+        catalog_spec: { type: string }
+        cpu_allocation: { type: number }
+        disks:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              provisioned_space: { type: number, description: "MB" }
+              used_space: { type: number, description: "MB" }
+              attributes:
+                type: array
+                items: { $ref: "#/components/schemas/Attribute" }
+        model_name: { type: string }
+        os: { type: string }
+        sensor: { $ref: "#/components/schemas/SensorRef" }
+        total_cpu: { type: number }
+        total_memory: { type: number, description: "MB" }
+    BookingGuestSystem:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string, description: "Expected VM name" }
+        catalog_id: { type: string }
+        catalog_spec: { type: string }
+        cpu_entitlement: { type: number, description: "eCPU" }
+        disks:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              provisioned_space: { type: number, description: "MB" }
+              used_space: { type: number, description: "MB" }
+              pref_datastore: { type: string, nullable: true }
+              attributes:
+                type: array
+                items: { $ref: "#/components/schemas/Attribute" }
+        memory: { type: number, description: "MB" }
+        number_of_disks: { type: number }
+        os: { type: string }
+        provisioned_space: { type: number, description: "MB" }
+        sensor: { $ref: "#/components/schemas/SensorRef" }
+        used_space: { type: number, description: "MB" }
+        vcpu: { type: number }
+        workload_profile: { type: string }
+    Booking:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        href: { type: string }
+        attributes:
+          type: array
+          items: { $ref: "#/components/schemas/Attribute" }
+        control_environment: { $ref: "#/components/schemas/LinkRef" }
+        creation_time:
+          type: number
+          description: "UTC milliseconds from epoch when the booking was created"
+        description: { type: string }
+        expected_date:
+          type: number
+          description: "UTC milliseconds from epoch planned completion date"
+        host:
+          {
+            type: string,
+            description: "Recommended host (INBOUND_GUEST only; not DRAFT/PENDING)",
+          }
+        infrastructure_group: { $ref: "#/components/schemas/LinkRef" }
+        late_days:
+          {
+            type: number,
+            description: "Days to hold reservation after expected_date",
+          }
+        number_days_to_expiry:
+          {
+            type: number,
+            description: "Only returned when status is COMMITTED",
+          }
+        owner: { type: string }
+        owner_email: { type: string }
+        project: { type: string }
+        status:
+          type: string
+          enum: [DRAFT, PENDING, COMMITTED, COMPLETED, LATE, EXPIRED, CANCELLED]
+        system:
+          oneOf:
+            - $ref: "#/components/schemas/BookingHostSystem"
+            - $ref: "#/components/schemas/BookingGuestSystem"
+          description: "Properties for Host or Guest system; not present for datastore bookings."
+        transform_analysis_model: { type: string }
+        transform_scenario_name: { type: string }
+        type:
+          type: string
+          enum:
+            [
+              INBOUND_GUEST,
+              INBOUND_DATASTORE,
+              INBOUND_HOST,
+              OUTBOUND_GUEST,
+              OUTBOUND_HOST,
+            ]
+        update_date:
+          type: number
+          description: "UTC milliseconds from epoch when the booking was last updated"
+        workloadId:
+          type: string
+          description: "Only returned when type=INBOUND_GUEST"
+security:
+  - {}

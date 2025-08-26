@@ -1,0 +1,64 @@
+---
+title: "Breakdown Tab"
+---
+
+This page summarizes the content as a breakdown of the items, selected in the tree view. For example, if you have the entire environment selected, the breakdown for clusters, namespaces, pods and containers is listed.<br/> If you have namespace selected, then you will see the breakdown by pods.<br/>
+A [summary banner](/docs-kubex/Content/Kubex/Visualizing_Your_Data#summary-banner) is displayed at the top of page to highlight the status and scope of systems that are included in the breakdown chart.
+
+
+
+<Frame caption="Figure: Breakdown by <type>">
+![](/images/docs-kubex/Content/Kubex/03000037_716x282.png)
+</Frame>
+
+
+
+The following values are displayed for each item in the list:
+
+
+<ul>
+  <li>Container Count--The number of containers in the selected scope.</li>
+  <Note>
+  <b>Note </b><br/>
+  The value here is the number of containers and will not match the tree viewer that shows the number of manifests.
+  </Note>
+  <li>Containers at Risk--The number of containers in the selected scope, that are at risk due to resources being under-allocated. The colour of bar indicates the severity of the issue.</li>
+  <li>Estimated waste--The wasted resources, in the selected scope, converted to dollars. A negative value indicates  more resources are required to avoid performance issues.</li>
+  
+</ul>
+
+
+Environments can have both over- and under-allocated systems. The [Histogram](/docs-kubex/Content/Kubex/Histograms_Tab) tab helps you identify these situations and you can then use the [AI Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab to identify and correct individual containers.
+
+## Drill-Down Hyperlinks
+
+You can click the hyperlinks in the first column to drill down to its contained elements. As you drill down, the tree viewer, column header and breadcrumbs update to show your relative location.
+When you reach a single container, the detailed [Overview](/docs-kubex/Content/Kubex/Overview_Tab) and the [Metrics Viewer](/docs-kubex/Content/Kubex/Metrics_Viewer_Tab) tabs are displayed, providing the tools for more detailed investigation.
+
+## Reading the Bar Chart
+
+Each bar in this table is sized based on the highest value within its own column-- rather than the total of all selected items (i.e. clusters, or container, etc.). As an example, in the figure above:
+
+
+<ul>
+  <li>In the first column ("Containers"), the cluster k8seng has the most containers (719). So, it is shown as 100%, and all other clusters are displayed as a percentage of that number.</li>
+  <li>In the second column ("Containers at Risk"), k8sengexp has the highest count (9), making it 100% for this column. The other clusters are scaled accordingly.</li>
+  <li>In the third column ("Cost"), again, k8sengexp has the highest cost ($336.20), so it is shown as 100%, and the rest are shown as a percentage of that value.</li>
+</ul>
+
+
+This way, each column uses its own highest value as the baseline for comparison.
+
+#### Video Resources
+<AccordionGroup>
+<Accordion title="Using the Breakdown Tab">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1065616008?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1065616008?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Using the Breakdown Tab</a>
+</Accordion>
+
+<Accordion title="Using the Tree Viewer">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Using the Tree Viewer</a>
+</Accordion>
+
+</AccordionGroup>

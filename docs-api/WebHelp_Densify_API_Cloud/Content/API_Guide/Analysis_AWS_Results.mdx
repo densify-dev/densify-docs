@@ -1,0 +1,27 @@
+---
+title: "Analysis: AWS Recommendations"
+---
+
+## Description
+
+The `/analysis/cloud/aws/<analysisId>/results` resource is used to return a collection of AWS system (i.e. EC2 instance, Auto Scaling group, etc.) recommendations for an AWS account defined by a Densify Analysis entity (see [Analysis: Entity](./Analysis_Entity)).
+
+For each system recommendation, you can also download a PDF version of the Impact Analysis and Recommendation Report, which details system impact based on the recommendations. This report is useful to application owners and other system stakeholders who need to review recommended changes to their application resources. See the [rptHref](#_rptHref) resource element for details.
+
+To return a collection of all systems included in an AWS optimization analysis, see [Analysis: AWS Systems](./Analysis_AWS_Systems).
+
+To see the catalog map for a selected instance, see [Systems: Analysis Details](./Systems_Analysis_Details)
+
+## Resource
+
+```
+/analysis/cloud/aws/
+<analysisId>
+/results
+```
+
+## Endpoints
+
+<CardGroup cols={2}>
+    <Card title="Get Aws Recommendations" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results/getAwsRecommendations" arrow/>
+</CardGroup>

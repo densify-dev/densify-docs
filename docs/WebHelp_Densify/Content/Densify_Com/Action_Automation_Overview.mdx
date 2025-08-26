@@ -1,0 +1,55 @@
+---
+title: "Action Automation Overview"
+---
+
+Densify provides two types of automation that work together to maintain the efficiency of both your on-premise and/or your hybrid cloud environments.
+
+Proactive automation allows you to execute the recommendations resulting from your Densify analyses, thus maintaining your environments at optimal efficiency. The analysis refreshes are performed nightly and recommendations are generated and executed overnight based on policy settings, including software license optimization, if implemented. With Proactive Automation enabled, your environment should be optimized overnight and be ready to efficiently host workloads during the day.
+
+Real-Time automation allows you to configure alarms that trigger recommendations to allocate resources during daily operation to address performance issues during the day. This mode of automation also addresses situations where Proactive automation cannot execute the required recommendations.
+
+<Note>
+Both types of automation are only supported for managed services and environments for which the Densify Connector is used to collect data.
+</Note>
+
+
+
+After the initial setup is performed by [Support@Densify.com](mailto:Support@Densify.com), no manual intervention is required. Recommendations are grouped by type, collected by the Densify Connector and then executed on your vCenter.
+
+Densify takes a conservative approach when performing action automation, so that the stability of your environment is never at risk. Action Automation can be configured to maintain the power state of your VMs. CPU and/or memory allocation changes can be done on running VMs that support "hot add". Allocation changes can also be made on VMs that are shut down or changes can be queued and made on the VM once it has been shutdown for maintenance, etc. You can also configure both types of automation to gracefully shutdown a VM, make the required changes and then restart it.
+
+To learn more watch the video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/306234334" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+
+## Actioning Disk Allocation Recommendations
+
+Densify generates both Per Disk Allocation and aggregate Disk Allocation recommendations. Only the Per Disk Allocation bump up recommendations are actionable and are supported only through the Densify Connector using proactive automation.
+
+To enable the Per Disk Allocation bump up recommendations, you need to collect data from the VMware systems and their per disk metrics through the Densify Connector. From these recommendations, only certain disks can be resized, as described below. Recommendations for which disks cannot be resized are skipped and reported as such.
+
+Bump ups are performed through VMware Tools, to expand VM virtual disks and resize OS partitions.
+
+You can see the Per Disk Allocation recommendations through the Densify Console, through Automation > Proactive Automation > Proactive Allocation Changes. See [Using Proactive Automation](./Using_Proactive_Automation) for details.
+
+### VMware Tools
+
+Disk bump ups cannot be executed on VMs with VMware tools v10.3.10 and v11.0.x installed. This issue is resolved with VMware tools v11.1.0. If you are performing disk bump ups, you must upgrade VMware tools to v11.1.x.
+
+### Windows Versions that Support Disk Resize
+
+If you action disk allocation recommendations, only the later versions of Windows Server support the disk resize command. These include:
+
+* Window Server 2012
+* Window Server 2012 R2
+* Window Server 2016
+
+### Other Restrictions on Disk Bump Ups
+
+Densify can action bump ups for disks on the last partition only. This includes the following cases and combinations:
+
+* VMs with only one disk.
+* VMs with multiple disks all mapped to the same virtual disk, where the disk requiring the bump up is on the last partition. e.g. the two disks C: and D: belong to the same virtual disk, and D: requires the bump up.
+* VMs with multiple disks mapped to different virtual disks, where the disk requiring the bump up is on the last partition of that virtual disk. For this case, the disk to virtual disk mapping is done by unique capacity sizes, e.g. C: with 200 and D: with 100 can be appropriately mapped to their corresponding virtual disks.

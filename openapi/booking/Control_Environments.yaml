@@ -1,0 +1,254 @@
+openapi: 3.1.0
+info:
+  title: Densify API - Control Environments
+  description: |
+    Control Environments represent collections of Infrastructure Groups (hosting venues).
+    Endpoints to list and retrieve individual control environments, with stats per timeframe.
+  version: "1.0.0"
+servers:
+  - url: https://api.densify.com
+    description: Densify API (example)
+
+paths:
+  /control-environments:
+    get:
+      summary: Get collection of Control Environments
+      description: Returns collection of control environments (id, name, platform, platform_category, control_type, href, icon).
+      responses:
+        "200":
+          description: Array of Control Environment resources
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ControlEnvironmentSummary'
+              examples:
+                example:
+                  value:
+                    - id: "16579260-f236-44a1-94e5-55e9e6ef6773"
+                      name: "Chicago"
+                      platform: "VMWARE"
+                      platform_category: "Internal Virtual"
+                      control_type: "FULL"
+                      href: "/control-environments/16579260-f236-44a1-94e5-55e9e6ef6773"
+                      icon: "/control-environments/16579260-f236-44a1-94e5-55e9e6ef6773/icon"
+                    - id: "56fee3a1-f327-46e4-9ff1-9d365964b824"
+                      name: "Boston"
+                      platform: "VMWARE"
+                      platform_category: "Internal Virtual"
+                      control_type: "FULL"
+                      href: "/control-environments/56fee3a1-f327-46e4-9ff1-9d365964b824"
+                      icon: "/control-environments/56fee3a1-f327-46e4-9ff1-9d365964b824/icon"
+      parameters:
+        - name: sort_by
+          in: query
+          description: "Field to sort by (default: name)."
+          schema:
+            type: string
+        # additional filters supported by docs can be added as needed
+
+  /control-environments/{id}:
+    get:
+      summary: Get an individual Control Environment
+      description: Retrieve a single Control Environment with detailed fields including stats and infrastructure groups.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Control Environment ID (UUID)
+      responses:
+        "200":
+          description: Control Environment resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ControlEnvironment'
+              examples:
+                example:
+                  value:
+                    id: "56fee3a1-f327-46e4-9ff1-9d365964b824"
+                    name: "Boston"
+                    platform: "VMWARE"
+                    platform_category: "Internal Virtual"
+                    control_type: "FULL"
+                    availability_status: "AVAILABLE"
+                    creation_time: 1365777303697
+                    last_refreshed_time: 1371232491487
+                    href: "/control-environments/56fee3a1-f327-46e4-9ff1-9d365964b824"
+                    icon: "/control-environments/e6cf1672-77ff-4e7d-9dda-5387b0bc95cc/icon"
+                    infrastructure_groups:
+                      - id: "11673bee-6e02-436c-afc5-64692a517e08"
+                        name: "Bos-Eng&Dev"
+                        platform: "VMWARE"
+                        platform_category: "Internal Virtual"
+                        href: "/infrastructure-groups/11673bee-6e02-436c-afc5-64692a517e08"
+                        hardware_name: "PowerEdge"
+                        hardware_icon: "http://thedocs1:8086/CIRBA/images/serverModelIcon/Dell_small.png"
+                        control_type: "FULL"
+                        color_code_selected: "#AACBEC"
+                        color_code_unselected: "#DCE5F4"
+                    stats:
+                      TO:
+                        cei: 0.79
+                        timeline_name: "Today"
+                        date: 1365480000000
+                        total_guests: 273
+                        total_hosts: 28
+                        required_hosts: 17
+                        inbound_guest_bookings: 0
+                        outbound_guest_bookings: 0
+                        inbound_host_bookings: 0
+                        outbound_host_bookings: 0
+                      "90D":
+                        cei: 0.89
+                        timeline_name: "90 Days"
+                        date: 1373256000000
+                        total_guests: 294
+                        total_hosts: 28
+                        required_hosts: 0
+                        inbound_guest_bookings: 31
+                        outbound_guest_bookings: 10
+                        inbound_host_bookings: 0
+                        outbound_host_bookings: 0
+        "404":
+          description: Control Environment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    ControlEnvironmentSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID identifier
+        name:
+          type: string
+        platform:
+          type: string
+          description: e.g. "VMWARE", "IBM", "HYPERV"
+        platform_category:
+          type: string
+          description: e.g. "Internal Virtual", "External Cloud"
+        control_type:
+          type: string
+          description: "\"FULL\" | \"GUEST_LEVEL\" | \"NONE\""
+        href:
+          type: string
+        icon:
+          type: string
+      required:
+        - id
+        - name
+
+    ControlEnvironment:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        href:
+          type: string
+        availability_status:
+          type: string
+          description: "\"AVAILABLE\" or \"UNAVAILABLE\""
+        control_type:
+          type: string
+          description: "\"FULL\" | \"GUEST_LEVEL\" | \"NONE\""
+        platform:
+          type: string
+        platform_category:
+          type: string
+        creation_time:
+          type: integer
+          format: int64
+          description: UTC timestamp in milliseconds
+        last_refreshed_time:
+          type: integer
+          format: int64
+          description: UTC timestamp in milliseconds (0 = never refreshed)
+        icon:
+          type: string
+        infrastructure_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/InfrastructureGroup'
+        stats:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/StatsEntry'
+      required:
+        - id
+        - name
+
+    InfrastructureGroup:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        platform:
+          type: string
+        platform_category:
+          type: string
+        href:
+          type: string
+        hardware_name:
+          type: string
+        hardware_icon:
+          type: string
+        control_type:
+          type: string
+        color_code_selected:
+          type: string
+        color_code_unselected:
+          type: string
+
+    StatsEntry:
+      type: object
+      description: Statistics for a single timeframe (e.g. TO, 7D, 30D, 60D, 90D)
+      properties:
+        cei:
+          type: number
+          format: float
+          description: CEI metric (efficiency)
+        timeline_name:
+          type: string
+        date:
+          type: integer
+          format: int64
+          description: UTC timestamp in milliseconds for the timeframe
+        total_guests:
+          type: integer
+        total_hosts:
+          type: integer
+        required_hosts:
+          type: integer
+        inbound_guest_bookings:
+          type: integer
+        outbound_guest_bookings:
+          type: integer
+        inbound_host_bookings:
+          type: integer
+        outbound_host_bookings:
+          type: integer
+      additionalProperties: false
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+      required:
+        - code
+        - message

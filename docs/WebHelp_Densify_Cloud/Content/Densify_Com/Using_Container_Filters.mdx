@@ -1,0 +1,213 @@
+---
+title: "Using Container Filters"
+---
+
+import { InlineImage } from "/snippets/InlineImage.mdx"
+
+You can apply various filters to customize the scope of the container data you are reviewing.
+
+* Container Filters strip—Displayed at the top of the page allows you to filter on container attributes to create a subset of systems for preliminary review or detailed investigation.
+* A [Filter Table](#Table_Filter)—Allows you to create more complex filters. An icon located with the other data controls opens the table.
+
+## Container Filter Strip
+
+The available filter options are based on the content of the table to be filtered.
+
+<Accordion title="Figure: Container Filter (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000107.png)</Frame>
+</Accordion>
+<Note>
+The message "No data available" is displayed if you set the filters to exclude all systems.
+</Note>
+
+
+<Accordion title="Table: Filtering Options for Containers">
+<table class="table_1">
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Container Filters </p>
+</th>
+<th class="td_2" colspan="+2">
+<p class="CiRBATableColumnText">More Filters</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBAListBullet">Cluster</li>
+<li class="CiRBAListBullet">Namespace</li>
+<li class="CiRBAListBullet">Controller Type</li>
+<li class="CiRBAListBullet">Business Unit</li>
+</ul>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBAListBullet">Application</li>
+<li class="CiRBAListBullet">Owner</li>
+<li class="CiRBAListBullet">Operational Environment</li>
+<li class="CiRBAListBullet">Inventory Code</li>
+</ul>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBAListBullet">Department</li>
+<li class="CiRBAListBullet">Project</li>
+<li class="CiRBAListBullet">Cost Center</li>
+<li class="CiRBAListBullet">Product Code</li>
+<li class="CiRBAListBullet">Quotas</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+Different filtering options are available for nodes and node groups.
+
+<Accordion title="Table: Filtering Options for Node Groups">
+<table class="table_1">
+<thead>
+<tr>
+<th class="td_2" colspan="2">
+<p class="CiRBATableColumnText">Node Group Health Filters </p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBAListBullet">Cluster</li>
+</ul>
+</td>
+<td class="td_3">
+<ul class="ul_1">
+<li class="CiRBAListBullet">Node Group</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+### Persisting Filter Settings Across Pages
+
+The selected filter options are persistent across the other container optimization tabs.
+
+For example, on the Containers dashboard the selected filters that are applied to the Summary tab are also applied to the Data  page.
+
+The filtering options also persist across user login sessions. When you log out and log back into Densify, your container filter selections are retained.
+
+<Note>
+The container filters and public cloud filters are similar in appearance and use, but the attributes on which you can filter are different and the filters are not persistent between these two dashboards.
+</Note>
+
+
+
+### Exporting Data with Filters Applied
+
+When you export the content of a report with filters applied, the filtered set of systems is exported for the Data and Details tabs.
+
+### Clearing Applied Filters
+
+Click the Reset button on the right side of the filter strip to clear all of the filters that have been applied. You need to be on one of the pages that display the filter strip. You cannot clear or edit the applied filters from the Data or Details tabs.
+
+### Using the Filter's Search Feature
+
+Click the search icon in the filter selection drop downs to search for specific system attributes or tags.
+
+1. Click the drop down to open and uncheck Select All at the top of the drop down.
+2. Click the search icon <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000172.png"/> to display the search bar.
+3. Enter the search term and press Enter (keyboard). The list updates with all systems that contain the specified search criteria.
+4. Check the items you want to filter on and click OK. The selected items are added to the current settings.
+
+You can enter another set of criteria to add more items to your list. This allows you to filter on multiple items.
+
+5. Click Apply to update the page with the filter settings you have defined.
+
+<Accordion title="Video: Using the Filter&#x27;s Search Feature">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/806039334" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+</Accordion>
+
+#### Multi-Select Search Features
+
+If you have items already selected in the drop down and then search and select additional items, these items are added to the items already selected. For example:
+
+1. Expand Business Unit. In the figure below, 2 items are already selected.
+2. Search for "trading".
+3. You find 2 more items and select them.
+4. You are now filtering on 4 values.
+5. You can search again and add more items to the list.
+6. Click OK to select these 2 items and then open the drop down again to view the complete list of items you have selected.
+7. Click Apply to update the page with the filter settings you have defined.
+<Accordion title="Figure: Searching and Applying Guest Filters (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000146.png)</Frame>
+</Accordion>
+
+Use the notes at the top and bottom of the drop down to determine the number of items in your filter.
+
+#### Additional Search Features
+
+When using the filter's search features, note the following:
+
+* The search is not case-sensitive.
+* If no systems contain or match the search criteria, a message is displayed.
+* Click <InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000145_13x13.png"/> at any time to cancel the search or clear the search box.
+* A vertical scroll bar is displayed if the list is longer than the drop down window.
+* You may see a spinning icon when the search or load takes more than 1 second to display the results.
+
+## Using the Table Filter
+
+Typically when working with containers you will encounter many containers and it can be difficult to view and manage recommendations. The options in the filter table allow you to create more complex filters. The table filter is provided on the following pages:
+
+<table>
+<tbody>
+<tr>
+<td>
+<ul class="ul_1">
+<li class="CiRBAListBullet">ASG Details</li>
+<li class="CiRBAListBullet">Container Details</li>
+</ul>
+</td>
+<td>
+<ul class="ul_1">
+<li class="CiRBAListBullet">Node Group Health</li>
+<li class="CiRBAListBullet">Node Group Capacity</li>
+<li class="CiRBAListBullet">Nodes</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+<Accordion title="Figure: Opening the Table Filter">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000252.png)</Frame>
+</Accordion>
+
+The filter table uses values, from selected columns from the tabular report, to create a filter. Options in each section are based on your data.
+
+1. Define your filter by:
+
+* Selecting one or more items in one or more fields.
+* Specifying a range by entering minimum and maximum values.
+
+2. As you make selections the table is updated to show just the rows that match the selected criteria.
+3. Your filter selections are additive. i.e. a row must meet all of the of selected filtering criteria to be displayed.
+4. Selected filtering options are displayed at the top of the table.
+5. Click the Reset button, at the top of the table, to clear all of the filtering options.
+
+<Accordion title="Figure: Container Table Filter (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000259.png)</Frame>
+</Accordion>
+<Note>
+The summary bar, shown in the upper right corner of the page will not be updated based on the criteria in the new table filter. This indicates that filtering has been applied.
+</Note>
+
+

@@ -1,0 +1,411 @@
+---
+title: "Guest Sizing Accuracy Reports"
+---
+
+import { InlineImage } from "/snippets/InlineImage.mdx"
+
+The Guest Sizing Accuracy reports show how accurately guests are sized on their current host. The reports use CPU, memory and disk metrics to perform the analysis. These reports include guests running on virtual machines.
+
+To learn more watch the following video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/322877790" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+
+## Private Cloud > Optimization Overview
+
+You can access the detailed reports through the private cloud page as follows: Private Cloud > Optimization Overview  > Guest Sizing Accuracy report.
+
+The pie chart shows private cloud virtual guests (VMs) that are either at risk, oversized, both undersized and oversized (i.e. undersized for one resource and oversized for another) and sized correctly. Bookings are not included in the Guest Sizing Accuracy reports.
+
+Click zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the Guest Sizing Accuracy dashboard. You can update the filter settings at any time to adjust the scope of the reports. For example, if you want to review only guests for a specific location, click Set Filter and select the specific infrastructure location you are interested in. Four tabs provide additional details.
+
+### Summary
+
+This report shows guest sizing data by cluster, in a graphical format. Footnotes at the bottom of the charts provide significant information to help you understand the report content.
+
+The pie chart shows breakdown for all guests included in the scope of the report and the bar charts show the guests sizing accuracy breakdown by both total number and percentage of guests per cluster. Environment and the cluster are used to identify guest containment on the bar charts.
+
+You can hover over any of the bars in the chart to see details. The bars are color-coded to indicated guest that are undersized (red), oversized (yellow), both undersized and oversized (orange), and correctly sized (green). A footnote also indicates the number of guests that are considered both undersized and oversized, if applicable.
+
+### Allocation Breakdown
+
+This reports shows the guest resource allocation breakdown in a graphical format. Bar charts show the allocation surplus/shortfall by CPU, memory and aggregate disk, by cluster. You can hover over any of the bars in the chart to see details. The bars are color-coded to indicate the undersized (red) and oversized (yellow) amounts.
+
+Summary tiles provide overall CPU, memory and aggregate disk surplus/shortfall.
+
+### Cluster Details
+
+This report summarizes the number of undersized, just right and oversized guests, in tabular format, by cluster.
+
+Table: Cluster Details Report
+
+<table>
+<thead>
+<tr>
+<th>
+<p>Columnn</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>Total Guests</p>
+</td>
+<td>
+<p> This column shows the total number of analyzed guests.</p>
+<p>Values marked with an asterisk (*) indicate some of these guests are considered both undersized and oversized. This is the case if a system does not have enough allocated CPUs and has excess memory, for example. A footnote indicates the number of systems that are in this category and are thus counted twice, as oversized and undersized.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Undersized Guests</p>
+</td>
+<td rowspan="3">
+<p>These columns shows the number of undersized and oversized guests, displayed as links. Click the link to display the <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="#System_Details"><u>System Details</u></a> report, which shows each undersized guest's details as well as the reason, as to why each listed guest is not sized efficiently.</p>
+<p> <a name="kanchor174"></a>When you select a system in the Details report, utilization metrics, if available, are displayed on the <span >Resource Utilization Metrics High/Low Limits</span> tabs. Use the left/right arrows to scroll though the various workload charts. If no data has been collected or is not available, the corresponding chart is not displayed.</p>
+<p>Workload charts display current sustained activity in blue, while sustained activity on the recommended instance type chart is shown in green. The minimum and maximum utilization values are shown as vertical lines above and below the coloured block. The median is indicated as a black line within the coloured block. The average is indicated in brackets, in the sub-title of the chart.</p>
+<p>The scale used on the Y-axis is scaled dynamically to match the range of data. The pink line indicating the high policy limit setting is shown, and the setting of the Y-axis scale also accounts for this value. The yellow line indicates the policy low limit. If the high and low are the same, the dashed yellow/pink line indicates the value.</p>
+<p>Click on the <span >System Details</span> tab to see allocated resources and the relevant attributes that have been set for this guest.</p>
+<p>For more information about the Guest Details report for each cluster, see <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="RefToBookmark MCXref xref xrefRefToBookmark" href="#System_Details"><u>System Details</u></a></madcap:conditionaltext>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Just_Right_Guests"></a>Just Right Guests</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Oversized Guests</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CPU Allocation (vCPUs)</p>
+</td>
+<td rowspan="3">
+<p>These three columns show the number of resources that are required or that are in excess and can be reclaimed. Footnotes, at the bottom of the charts provide any significant information to help you understand the report content.</p>
+<p>The disk allocation numbers are based on the aggregate allocation of the disks for each VM, for the cluster. See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="./Reporting_on_Aggregate_versus_Per_Disk">Reporting on Aggregate versus Per Disk</a></madcap:conditionaltext> for details.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Memory Allocation (GB)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk Allocation (GB)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Recommendations</p>
+</td>
+<td>
+<p>This column shows the total number of recommendations. For private cloud-hosted guests, this total is the number of undersized systems plus the number of oversized systems. Recommendations for on-premise guests cannot be aggregated in the same way, as you may need to address multiple recommendations such as moving it and increasing resources in order to size it correctly.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### System Details
+
+Provides the CPU, memory and aggregate disk breakdown, by guest. The Overall Status accounts for per disk policy violations and may differ from that on the Control Console Spectrum which accounts for aggregate disk policy violations.
+
+Highlighted values recommend resource increases or decreases and are color-coded for easy review.
+
+Systems that are not analyzed are included in the "Just Right" counts across all Guest Sizing Accuracy reports. The reason that the system was not analyzed is shown in the "Recommendation Reason/Observations" column, if available.
+
+<Note>
+If one or more resource utilization metrics are not available, the missing value is indicated as a dash.
+</Note>
+
+
+
+You can also navigate to the guest System Details report from:
+
+* Private Cloud > Virtual Environments > Risk > Undersized Guests> Top Clusters with Undersized Guests report (click zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/>) > Clusters with Undersized Guests. Click on the links in the "Undersized Guests" column to see the system details.
+* Private Cloud > Virtual Environments > Opportunity > Oversized Guests > Top Clusters with Oversized Guests report (click zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/>) > Clusters with Oversized Guests. Click on the links in the "Oversized Guests" column to see system details.
+* Private Cloud > Optimization Overview > Cluster Details > Undersized|Oversized Guests column. Click on the number of guest link to see system details.
+* Automation > Proactive Automation > Proactive Allocation Changes tab > Undersized|Oversized Guests column. Click on the number of guest link to see system details.
+
+Table: System Details Report
+
+<table>
+<thead>
+<tr>
+<th>
+<p>Columnn</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>Environment								</p>
+</td>
+<td>
+<p>The environment  containing the system. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster	</p>
+</td>
+<td>
+<p>The  cluster containing the system. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>System</p>
+</td>
+<td>
+<p>The system name is a hyperlink that takes you to the <span class="mc-variable Document.VMAppOwnerReport variable">Virtual Guest Impact Analysis and Recommendation report</span>, where you can review guest-specific details. See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="./Viewing_the_Impact_Analysis_and_Recommendation_Report_-_Virtual_Guest_">Viewing the Virtual Guest Impact Analysis and Recommendation Report</a></madcap:conditionaltext>.</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>The hyperlink to the <span class="mc-variable Document.VMAppOwnerReport variable">Virtual Guest Impact Analysis and Recommendation report</span> is not available from the downloaded Excel spreadsheet.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>IP Address</p>
+</td>
+<td>
+<p>The system's IP address.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p> Recommendation Reason/Observations</p>
+<p> </p>
+</td>
+<td>
+<p>The undersized/oversized recommendation reasons, as well as reasons why systems are not analyzed (e.g."Unable to perform Sizing Analysis") or why disk metrics are not available for analysis (e.g. "<span class="mc-variable Document.VM2 variable">VMware</span> Tools not running"). In addition, resource observations are listed, comparing resource utilization to the limits specified in the policy.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Current/Recommended vCPUs</p>
+</td>
+<td>
+<p>This set of CPU columns show the currently and recommended allocated  resources. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Current/Recommended Memory Allocation (GB)</p>
+</td>
+<td>
+<p>These two columns show the currently and recommended memory  allocations. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Current/Recommended Disk Allocation (GB)</p>
+</td>
+<td>
+<p>These two columns show the currently and recommended disk allocations. </p>
+<p>The disk allocation numbers are based on the aggregate allocation of the disks for each VM, for the cluster. Values are displayed in GB. The column total, if over 1024 GB is shown in TB.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="IndvDiskPartitionRisk"></a>Individual Disk Partitions at Risk</p>
+</td>
+<td>
+<p> You can see per disk recommendation details when you click on the hyperlink in this column. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>% CPU Usage (High/Low)</p>
+</td>
+<td>
+<p>This is the upper and lower limit of CPU utilization as percentage of the total available CPU cycles. </p>
+<p>CPU utilization values in the tabular report and the daily average shown in the workload charts  (see <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="#ResourceUtilMetrics"><u>Resource Utilization Metrics: Low/High Limits</u></a>), in the lower part of the screen, are not expected to be the same. The utilization value is a "weighted"’ value calculated based on a scoring strategy that is specified in the analysis policy. The CPU (High) and CPU (Low) utilization values are generated from different analyses with different scoring strategies. For example, your <span class="mc-variable Document.VM2 variable">VMware</span> <span class="mc-variable Document.CtrllEnv variable">control environment</span> policy, CPU (Low) is based on "Gradual Peak scoring strategy and CPU (Low) is based on "Gradual Balanced" scoring strategy. As a results, in some cases it is possible for CPU (Low) to be higher than CPU (High).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Active Memory Usage (%)</p>
+</td>
+<td>
+<p>This is the active memory used  at any given period of time, as percentage of the total available memory.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Memory Usage (%)</p>
+</td>
+<td>
+<p>This is the memory consumed by the VM, as percentage of the total available memory, and does not include any overhead memory allocated outside of the guest OS.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk Usage (%)</p>
+</td>
+<td>
+<p>This is the disk space usage (in percent), if collected. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>OS</p>
+</td>
+<td>
+<p>This is the OS installed on the selected guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Parent</p>
+</td>
+<td>
+<p>This is parent host of the selected guest.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+#### Resource Utilization Metrics: Low/High Limits
+
+The Resource Utilization Metrics: Low Limits tab displays utilization charts with the lower limits of the policy, exposing over-allocated resources. Utilization charts for CPU, disk, and memory are shown for current and recommended resource allocations.
+
+The Resource Utilization Metrics: High Limits tab displays utilization charts with the higher limits of the policy, exposing under-allocated resources. Utilization charts for CPU, disk, and memory are shown for current and recommended resource allocations.
+
+Use the left/right arrows to scroll though the various workload charts. If no data has been collected or is not available, the corresponding chart is not displayed.
+
+Workload charts display current sustained activity in blue, while sustained activity on the recommended instance type chart is shown in green. The minimum and maximum utilization values are shown as vertical lines above and below the coloured block. The median is indicated as a black line within the coloured block. The average is indicated in brackets, in the sub-title of the chart. The scale used on the Y-axis is scaled dynamically to match the range of data. The pink line indicating the high policy limit setting is shown, and the setting of the Y-axis scale also accounts for this value. The yellow line indicates the policy low limit. If the high and low are the same, the dashed yellow/pink line indicates the value.
+
+#### System Details
+
+This tab displays system details for the selected virtual guest from the top table.
+
+<table>
+<thead>
+<tr>
+<th>
+<p>Column</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>System Name</p>
+</td>
+<td>
+<p>The virtual guest system name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment</p>
+</td>
+<td>
+<p>The environment to which the virtual guest belongs.</p>
+<p>An environment is a grouping of virtual guest systems, against which, a set of analyses (as defined by the analysis model) are run in order to generate recommendations.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster</p>
+</td>
+<td>
+<p>The cluster containing the virtual guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>vCenter</p>
+</td>
+<td>
+<p>The vCenter or PowerVM containing the virtual guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>OS</p>
+</td>
+<td>
+<p>The operating system deployed on the virtual guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CPU Allocation (vCPU)</p>
+</td>
+<td>
+<p>The current CPU allocation, if available.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Memory Allocation (GB)</p>
+</td>
+<td>
+<p>The current memory allocation, if available.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Disk Allocation (GB)</p>
+</td>
+<td>
+<p>The current disk allocation, if available.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>CPU Speed (MHz)</p>
+</td>
+<td>
+<p>The current CPU speed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>IP Address</p>
+</td>
+<td>
+<p>The IP address of the guest.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Application Name</p>
+</td>
+<td rowspan="4">
+<p>These are user-specified attributes that are displayed if the virtual guest has been tagged accordingly. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Application Tier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Business Unit</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Security Zone</p>
+</td>
+</tr>
+</table>
+

@@ -1,0 +1,176 @@
+openapi: 3.1.0
+info:
+  title: Densify – Kubernetes Container Recommendations API
+  version: "1.0.0"
+  description: |
+    GET `/analysis/containers/kubernetes/{analysisId}/results` returns container
+    recommendations after optimization analysis. Supports JSON and terraform-map
+    via `Accept` header, element filters, and `dataQuality`.
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: api.example.com
+tags:
+  - name: Kubernetes Analysis
+paths:
+  /analysis/containers/kubernetes/{analysisId}/results:
+    get:
+      tags: [Kubernetes Analysis]
+      operationId: listKubernetesContainerRecommendations
+      summary: List recommendations for a Kubernetes container analysis
+      description: |
+        **Content negotiation**
+        - `Accept: application/json` → JSON array of recommendation objects
+        - `Accept: application/terraform-map` → terraform-map objects
+
+        **Filtering**
+        - Element filters are regular query pairs (e.g., `recommendationType=Resize`).  
+        **Data quality**
+        - `dataQuality` takes a quoted, comma-separated list of workload names; unsupported names return **400**.
+      parameters:
+        - name: analysisId
+          in: path
+          required: true
+          description: Unique ID of the Kubernetes analysis.
+          schema: { type: string }
+        - name: dataQuality
+          in: query
+          required: false
+          description: Quoted, comma-separated workload names to include in `dataQuality`.
+          schema: { type: string }
+        # Common element filters (not exhaustive; docs mark F-filterable fields)
+        - name: container
+          in: query
+          required: false
+          schema: { type: string }
+        - name: cluster
+          in: query
+          required: false
+          schema: { type: string }
+        - name: displayName
+          in: query
+          required: false
+          schema: { type: string }
+        - name: recommendationType
+          in: query
+          required: false
+          schema: { type: string }
+        - name: namespace
+          in: query
+          required: false
+          schema: { type: string }
+        - name: podService
+          in: query
+          required: false
+          schema: { type: string }
+      responses:
+        '200':
+          description: Collection of recommendations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/K8sContainerRecommendation'
+            application/terraform-map:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TerraformMapK8sRecommendation'
+        '400':
+          description: Bad Request (e.g., unsupported workload name in `dataQuality`).
+        '401':
+          description: Authentication failed.
+        '404':
+          description: Analysis not found.
+        '500':
+          description: Server error.
+
+components:
+  schemas:
+    AuditInfo:
+      type: object
+      properties:
+        dataCollection:
+          type: object
+          properties:
+            dateFirstAudited: { type: integer, format: int64 }
+            dateLastAudited: { type: integer, format: int64 }
+            auditCount: { type: integer }
+        workloadDataLast30:
+          type: object
+          properties:
+            firstDate: { type: integer, format: int64 }
+            lastDate: { type: integer, format: int64 }
+            totalDays: { type: integer }
+            seenDays: { type: integer }
+    DataQualityItem:
+      type: object
+      properties:
+        workloadName: { type: string }
+        firstSeen: { type: integer, format: int64 }
+        lastSeen: { type: integer, format: int64 }
+        completeDays: { type: integer }
+        partialDays: { type: integer }
+
+    K8sContainerRecommendation:
+      type: object
+      description: JSON recommendation object for a Kubernetes container.
+      properties:
+        container: { type: string, description: "Container name." }
+        cluster: { type: string, description: "Cluster name." }
+        hostName: { type: string, description: "Densify internal unique host ref." }
+        predictedUptime: { type: number, description: "Predicted uptime (% as fraction)." }
+        displayName: { type: string, description: "Pod + container name combo." }
+        recommLastSeen: { type: integer, format: int64 }
+        podService: { type: string }
+        auditInfo: { $ref: '#/components/schemas/AuditInfo' }
+        recommendedCpuLimit: { type: number }
+        currentCount: { type: integer, description: "Controller replica count; defaults to 1 if unknown." }
+        recommSeenCount: { type: integer }
+        currentMemLimit: { type: number }
+        recommendedMemLimit: { type: number }
+        recommendationType:
+          type: string
+          description: 'One of: "Just Right", "Upsize", "Downsize", "Resize", "Resize from Unspecified", "Not Analyzed".'
+        recommendedCpuRequest: { type: number }
+        recommFirstSeen: { type: integer, format: int64 }
+        controllerType: { type: string, description: 'E.g., "ReplicaSet","ReplicationController","DaemonSet","StatefulSet","Deployment","Job".' }
+        currentMemRequest: { type: number }
+        entityId: { type: string }
+        currentCpuLimit: { type: number }
+        dataQuality:
+          type: array
+          items: { $ref: '#/components/schemas/DataQualityItem' }
+        recommendedMemRequest: { type: number }
+        currentCpuRequest: { type: number }
+        namespace: { type: string }
+      required:
+        - container
+        - cluster
+        - displayName
+        - entityId
+
+    TerraformMapK8sRecommendation:
+      type: object
+      description: Terraform-map representation; `displayName` is the map label.
+      properties:
+        container: { type: string }
+        cluster: { type: string }
+        hostName: { type: string }
+        predictedUptime: { type: string }
+        controllerType: { type: string }
+        displayName: { type: string }
+        currentMemRequest: { type: string }
+        currentCpuLimit: { type: string }
+        podService: { type: string }
+        recommendedCpuLimit: { type: string }
+        recommendedMemRequest: { type: string }
+        currentCpuRequest: { type: string }
+        currentCount: { type: string }
+        currentMemLimit: { type: string }
+        namespace: { type: string }
+        recommendedMemLimit: { type: string }
+        recommendationType: { type: string }
+        recommendedCpuRequest: { type: string }

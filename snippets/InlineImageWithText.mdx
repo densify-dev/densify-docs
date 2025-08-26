@@ -1,0 +1,20 @@
+export const InlineImageWithText = ({ src, href, children, width = 80, caption }) => {
+    return (
+        <span className="inline-flex items-center gap-3 align-middle">
+            <a href={href} className="inline-block border-b-0">
+                <Frame caption={caption}>
+                    <img
+                        src={src}
+                        alt=""
+                        className="object-contain align-middle "
+                        width={width}
+                        style={{ minWidth: width }}
+                    />
+                </Frame>
+            </a>
+            <span className="align-middle">{children}</span>
+        </span>
+    );
+};
+
+export default InlineImageWithText;

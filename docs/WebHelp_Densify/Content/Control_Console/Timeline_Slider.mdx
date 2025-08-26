@@ -1,0 +1,52 @@
+---
+title: "Timeline Slider"
+---
+
+The Timeline Slider allows you to select a date in the past or future to see historical or projected data for that environment. The historical timeframe allows you to view the actual state of the environment in the past, while predictive timeframes model trending, growth and include bookings (inbound and outbound) to generate a forecasted view of the environment.
+
+As you move the slider along the timeline, the environment, infrastructure groups, hosts, VMs, and sensors move within the Spectrum to show the environment for that date. Also, the corresponding Spectrum Detail changes to coincide with the Spectrum for that date.
+
+<Accordion title="Figure: Timeline and Slider">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000012_611x99.png)</Frame>
+</Accordion>
+
+
+Historical dates on the slider are limited by the number of days the environment was refreshed since the historical timeframe is enabled to a maximum of 30 days. Data in future timeframes is controlled by the growth modeling features within the policy and the availability of historical workload data. Not all future timeframes may be enabled for the environment.
+
+<Note>
+Historical timeframes are based on the specific days' workload and not the full collection of utilization data.
+</Note>
+
+
+
+The Densify default future timeframes offer projections of 7 days, 30 days, 60 days and 90 days, but timeframes can be configured to reflect your business processes. With the first future timeframe (default 7 days), workload trending is set to 0% (no trending) by default, but it can be set in the Workload History & Trending category of the assigned Control Console policy. If you keep this default value, the analysis for the first timeframe takes into consideration inbound and outbound bookings only. For more information, see [Bookings and the Timeline](#Bookings). With the second, third and fourth future timeframes (default 30 day, 60 day and 90-day projections), inbound and outbound bookings as well as workload trending analysis are taken into consideration.
+
+<Note>
+If the timeframe is defined using months or quarters as the time unit, the timeframe date will always be at the end of the month or quarter regardless of Today's date on the Timeline slider.
+</Note>
+
+
+
+When the slider is moved into the future, the resulting predictive view is calculated using a linear extrapolation of historical data based on policy settings. A policy-specified minimum amount of historical data is needed to calculate predictive views so they are indicative of your environment's growth.
+
+## Reveal/Filter and the Timeline
+
+Any settings that you have applied to filter the environment will be respected as you move between timeframes within an environment. This is also the case if Reveal is enabled. See [Search and Filter](./Search_and_Filter).
+
+## Bookings and the Timeline
+
+As you move your Timeline slider, the Inbound and Outbound panes and the Spectrum are updated to display your booking definitions for this new date range. At the top of the Inbound and Outbound panes, this new date range (i.e. Today's date to the date specified by the slider) is updated. The specific bookings that are displayed within the panes and the Spectrum depend on the booking state, as described below.
+
+Bookings in Draft or Pending Commit states are always shown in their respective tabs independent of the position of the Timeline slider and of the effective dates planned for them. These bookings have not yet been included in the environment and therefore do not affect the Spectrum.
+
+Bookings in the Pending Delete state are also always shown in their Pending Delete tab independent of the position of the Timeline slider and of the effective dates originally planned for them. Bookings in Pending Delete state (which have already been committed and included into the environment) are not removed from the environment until the environment or infrastructure group is refreshed. This means that the animation of the systems coming in and out of the Spectrum, as described for the Committed state below, are still shown as you move the Timeline slider into the future, until the refresh occurs.
+
+For bookings in the Committed state, the Committed tabs are updated to show only those bookings having effective dates within the date range shown on the top of the panes. Bookings in Committed state have been included in the analysis of the environment and therefore affect the Spectrum display. As you move the Timeline slider, inbound bookings having Planned Start Dates satisfying the new date range are added to the Spectrum. The graphics for inbound bookings move across the Spectrum to their new placements and are dropped into position. Also, as you move the Timeline slider, outbound bookings with Remove Dates satisfying the new date range are removed from the Spectrum. The graphics for outbound bookings move up, across and off the Spectrum.
+
+Bookings in Late state are shown in the Late tab independent of the position of the Timeline slider, until they expire. Bookings that are late, but have not expired, continue to be displayed in the Spectrum from Today to all timeframes in the future. The assumption is that the corresponding incoming workloads will be placed within their defined grace periods.
+
+## Sensors and the Timeline
+
+For VMware datastores, disk space usage is collected. For predictive timeframes, the required disk space is calculated based on the historical growth trend, headroom and age of the VMs. As you move your timeline into the future, the datastores move as the projected disk space usage for VMs change.
+
+Historic data for sensors is not retained. When the Timeline slider is set back in time, the sensor area is removed from the Spectrum (and the Sensor Display toggle is disabled).

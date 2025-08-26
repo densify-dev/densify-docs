@@ -1,0 +1,522 @@
+---
+title: "Optimizing Your Containers - Data Tab"
+---
+
+The Kubernetes Container Optimization report provides a summary of optimization opportunities and ways to mitigate risk for your container environments.
+
+<Accordion title="Video: Investigating Your Container Recommendations">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/653796049" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+</Accordion>
+
+Data is displayed as charts on the [Summary](./Optimizing_Your_Containers#Summary_tab) tab or as detailed tabular data on the Data tab, covered here. There are two additional tabs in the lower pane: [Cluster Breakdown](#Cluster_Breakdown_Tab) and [Allocation](#Allocation_Tab).
+
+<Accordion title="Figure: Kubernetes Container Optimization - Data Tab (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000074.png)</Frame>
+</Accordion>
+
+### Grouping and Filtering Your Container Data
+
+You can group and filter your data using the following options:
+
+* Group By—See [Using the Group By Feature](./Using_the_Group_By_Feature);
+* Container Filter—See [Using Container Filters](./Using_Container_Filters).
+
+Filter settings defined using any of the above options are persistent between user login sessions, for this page.
+
+When you export the content of a report with filters applied, the filtered set of systems is exported for the Data and Details tabs.
+
+### Summary Banner
+
+Key metrics are displayed in a banner at the top of the report.  If you have applied filters the totals displayed in this summary reflect the filtered results.  The values, in the Summary bar are not affected by the [Group By feature](./Using_the_Group_By_Feature). See [Reviewing the Summary Tab](./Optimizing_Your_Containers#Summary_tab) for details of the key metrics.
+
+### Data Controls
+
+The controls, in the upper right corner of the page, provide options for managing and viewing your data more effectively. See [Data Controls on Tabular Reports](./Navigating_Densify#Data_Controls) for more details.
+
+### Viewing the Tabular Data - Top Pane
+
+The breakdown of the data for your aggregated container environments is displayed on the top pane of this tab. You can control how the data is displayed in this table using the Group By feature. The Group By setting is used in the first column and data is retrieved and displayed accordingly.
+
+For example, if you wanted to group the data based on Business Unit, Densify displays the analyzed data sorted based on the value of the Business Unit resource tag. See [Using the Group By Feature](./Using_the_Group_By_Feature).
+
+The top table provides a breakdown as follows:
+
+<Accordion title="Table: Kubernetes Container Optimization - Data Tab Columns">
+<table class="table_1">
+<col/>
+<col/>
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Column(s)</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Group By selection: Application | &lt;br/&gt;Business Unit | etc. </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The first column is determined by your  Group By selection. You can control how the data is displayed in this table using the <span class="CiRBAcharUIElement">Group By</span> feature. Your <span class="CiRBAcharUIElement">Group By</span> selection is used in the first column and data is retrieved and displayed accordingly. See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="./Using_the_Group_By_Feature">Using the Group By Feature</a></madcap:conditionaltext> for details.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Efficiency Rating*</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The Efficiency Rating provides an indication of the health of your aggregated environment. The value is indicated in red, when it is greater than 1.</p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">A value of 1 indicates that, at an aggregate level, the environment is efficient according to the defined policy settings. </li>
+<li class="CiRBATableBullet">A value less than 1 indicates potential savings opportunities due to over-allocated resources. </li>
+<li class="CiRBATableBullet">A value greater than 1 indicates potential risks due to under-allocated resources. The value is indicated in red, when it is greater than 1.</li>
+</ul>
+<p class="CiRBATableText">By default, the table is sorted by the Efficiency Rating, in descending order. You can sort the content of the table by any column, by clicking on the column header.</p>
+<p class="CiRBATableText">The asterisk on this value indicates that containers with unspecified values are not included in this calculation.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Clusters</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The total number of clusters on which the Application | Business Unit | etc. is running. The grouping is defined in the first column. You can change the Grouping options using the <a href="./Using_the_Group_By_Feature">Group By</a> feature. </p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Namespaces</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The total number of namespaces on which the Application | Business Unit | etc. is running. The grouping is defined in the first column. </p>
+<p class="CiRBATableText">If the data is grouped by namespace, then the total number of namespaces with the same name are listed here. Namespaces must be unique within a cluster but you can reuse a name in a different cluster. i.e. you can have a "monitoring" namespace in each of your clusters.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Pods</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The total number of pods on which the Application | Business Unit | etc. is running. </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Containers</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the number of unique containers on which the Application | Business Unit | etc. is running. </p>
+<p class="CiRBATableText">If the data is grouped by namespace, then the total number of containers with the specified namespace are listed here. </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Container Manifest</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the number of manifests that reference the Application | Business Unit | etc.</p>
+<p class="CiRBATableText">The number of instances listed in this column is a hyperlink that takes you to the Kubernetes Container Optimization &gt; Analysis tab, for the selected  grouping. i.e. Only the specific systems, as indicated by the count in the originating table cell, are shown on the Kubernetes Container Optimization &gt; Analysis tab. See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="./Optimizing_Your_Containers_-_Analysis_Tab">Optimizing Your Containers - Analysis Tab</a></madcap:conditionaltext>.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Optimal | Identified Risk | Savings Opportunity  | Risk and Savings | Size from Unspecified</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">These 5 columns provide a breakdown by recommendation type. </p>
+<ul class="ul_1">
+<li class="CiRBATableBullet">Optimal—These containers are currently sized correctly and there are no cost savings for this group.</li>
+<li class="CiRBATableBullet">Identified Risk—This is the number of containers that are at risk. Containers are identified to be at risk if there is an upsize recommendation.</li>
+<li class="CiRBATableBullet">Savings opportunity—These containers are oversized. Containers are identified as a savings opportunity if there is a downsize recommendation. </li>
+<li class="CiRBATableBullet">Risk and Savings—These containers need to be resized up and down. i.e. upsize memory and downsize the number of CPU cores. </li>
+<li class="CiRBATableBullet">Size from Unspecified—These containers need to be resized based on their utilization. No CPU and/or memory requests or limits have been set. </li>
+</ul>
+<p class="CiRBATableText">The number of instances listed in this column is a hyperlink that takes you to the Kubernetes Container Optimization &gt; Analysis tab, for the selected  grouping. i.e. Only the specific systems, as indicated by the count in the originating table cell, are shown on the Kubernetes Container Optimization &gt; Analysis tab. See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="./Optimizing_Your_Containers_-_Analysis_Tab">Optimizing Your Containers - Analysis Tab</a></madcap:conditionaltext>.</p>
+<p class="CiRBATableText">Values are colour-coded for improved readability. Colour coding is listed in <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Optimizing_Your_Containers_-_Details_Tab#ContainerOptimizationType"><u>Container Optimization Types</u></a>.</p>
+<p class="CiRBATableText">Some of these column are hidden by default. You can enable then for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Percent Optimal (%)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the percentage of total containers that are sized correctly. (Optimal Count /Total Systems)</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Container Manifests with Restarts - Last Day</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The number of container manifests in the selected grouping with containers that were restarted in the last day. </p>
+<p class="CiRBATableText">Only containers that were part of the selected group AND not part of another group, in the last day, are counted.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Container Manifests with Memory Limit Events - Last Day</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The number of container manifests in the selected grouping which have exceeded the working set memory limit, in the last day.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Surplus CPU Request(Cores)*</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the number of surplus CPU cores for the selected Application | Business Unit | etc.</p>
+<p class="CiRBATableText">Calculated as (Current CPU Request - Recommended CPU Request)</p>
+<p class="CiRBATableText">The asterisk on this value indicates that containers with unspecified values are not included in this calculation.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Surplus CPU Request (%)*</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the number of surplus CPU cores for the selected Application | Business Unit | etc. expressed as percentage. Calculated as (Surplus CPU Request/Current CPU Request)*100</p>
+<p class="CiRBATableText">The asterisk on this value indicates that containers with unspecified values are not included in this calculation.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Surplus Memory Request (GB)*</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the amount of surplus memory for the selected Application | Business Unit | etc.</p>
+<p class="CiRBATableText">Calculated as (Current Memory Request - Recommended Memory Request)</p>
+<p class="CiRBATableText">The asterisk on this value indicates that containers with unspecified values are not included in this calculation.</p>
+<p class="CiRBATableText">This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Surplus Memory Request (%)*</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the amount of surplus memory for the selected Application | Business Unit | etc. expressed as a percentage. Calculated as (Surplus Memory Request/Current Memory Request)*100</p>
+<p class="CiRBATableText">The asterisk on this value indicates that containers with unspecified values are not included in this calculation. </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Current Cost ($/month)*</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The estimated cost is the aggregate cost of all of the services in the selected account, as indicated by <span class="CiRBAcharUIElement">Total Services</span> for each row. </p>
+<p class="CiRBATableText">The asterisk on this value indicates that containers with unspecified values are not included in this calculation.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Net Savings ($/month) *</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">If the recommendations are implemented, the net savings indicated here can be achieved.</p>
+<p class="CiRBATableText">This value is calculated as the current estimated cost minus the estimated cost of the recommended instances. </p>
+<p class="CiRBATableText">The asterisk on this value indicates that containers with unspecified values are not included in this calculation. </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"><span class="CiRBAcharUIElement">Total</span></p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The totals at the bottom of the table indicate the total for each column, for all pages, if you have a multi-page  report. </p>
+<p class="CiRBATableText">Vertical scroll bars may be displayed to scroll through the entire list, so lower rows may be momentarily hidden behind the row of Totals.</p>
+<p class="CiRBATableText">This count is a hyperlink that takes you to the K page for the selected  grouping. i.e. Only the specific systems, as indicated by the count in the originating table cell, are shown in the Kubernetes Container Optimization Details page. For more information, see <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="./Optimizing_Your_Containers_-_Details_Tab">Optimizing Your Containers - Details Tab</a></madcap:conditionaltext>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+### Cluster Breakdown Tab - Lower Pane
+
+The details, of the row selected in the top pane, are expanded and displayed on two tabs on the lower pane.
+
+The Cluster Breakdown tab provides a subset of the information from the top of the page, for only the selected row, expanded by Cluster and sorted by cluster name.
+
+<Accordion title="Figure: Cluster Breakdown and Allocation Tabs (hover over image to expand)">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000073.png)</Frame>
+</Accordion>
+<Accordion title="Table: Columns in the Cluster Breakdown Tab">
+<table class="table_1">
+<col/>
+<col/>
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Column</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Cluster</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the name of the cluster.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Namespaces</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the number of unique namespaces in the cluster that are within the grouped selection.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Pods</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the number of unique pods within the grouped selection. </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Containers</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the number of unique containers based on the grouped selection. </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Current CPU Request (mCore)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the aggregated total current CPU  request for the containers in the selected cluster.</p>
+<p class="CiRBATableText">Containers with unspecified CPU or memory requests and/or limit values are indicated with a dash (-). </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Recommended CPU Request (mCore)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the aggregated total  CPU Request recommended for the containers in the selected cluster.</p>
+<p class="CiRBATableText">Values are colour-coded for improved readability. Colour coding is listed in <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Optimizing_Your_Containers_-_Details_Tab#ContainerOptimizationType"><u>Container Optimization Types</u></a>.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Surplus CPU Request (mCore)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the aggregated total  CPU request surplus. This value can be negative (at risk) or a positive value.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Current CPU Limit (mCore)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the aggregated total current specified CPU limit for the containers in the selected cluster.</p>
+<p class="CiRBATableText">Containers with unspecified CPU or memory requests and/or limit values are indicated with a dash (-). </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Recommended CPU Limit (mCore)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the aggregated total CPU limit recommended for the containers in the selected cluster.</p>
+<p class="CiRBATableText">Values are colour-coded for improved readability. Colour coding is listed in <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Optimizing_Your_Containers_-_Details_Tab#ContainerOptimizationType"><u>Container Optimization Types</u></a>.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Surplus CPU Limit (mCore)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the aggregated total  CPU limit surplus for the selected cluster.</p>
+<p class="CiRBATableText">This value is calculated as (Current CPU  limit - Recommended CPU limit) * Current Count) of the filtered records.</p>
+<p class="CiRBATableText">Containers with unspecified CPU or memory requests and/or limit values are indicated with a dash (-). </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Current Memory Request (MB)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the aggregated total current memory request for the containers in the selected cluster.</p>
+<p class="CiRBATableText">Containers with unspecified CPU or memory requests and/or limit values are indicated with a dash (-). </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Recommended Memory Request (mCore)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the aggregated total memory request recommended for the containers in the selected cluster.</p>
+<p class="CiRBATableText">Values are colour-coded for improved readability. Colour coding is listed in <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Optimizing_Your_Containers_-_Details_Tab#ContainerOptimizationType"><u>Container Optimization Types</u></a>.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Surplus Memory Request (mCore)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the aggregated total memory request surplus.</p>
+<p class="CiRBATableText">This value is calculated as (Current Memory Request - Recommended CPU | Memory Request) * Current Count) of the filtered records.</p>
+<p class="CiRBATableText">Containers with unspecified CPU or memory requests and/or limit values are indicated with a dash (-). </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Current Memory Limit (MB)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the aggregated total current specified memory limit for the containers in the selected cluster.</p>
+<p class="CiRBATableText">Containers with unspecified CPU or memory requests and/or limit values are indicated with a dash (-). </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Recommended Memory Limit (MB)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the aggregated total memory limit recommended for the containers in the selected cluster.</p>
+<p class="CiRBATableText">Values are colour-coded for improved readability. Colour coding is listed in <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Optimizing_Your_Containers_-_Details_Tab#ContainerOptimizationType"><u>Container Optimization Types</u></a>.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Surplus Memory Limit (MB)</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the aggregated total surplus memory limit.</p>
+<p class="CiRBATableText">This value is calculated as (Current Memory limit - Recommended Memory limit) * Current Count) of the filtered records.</p>
+<p class="CiRBATableText">Containers with unspecified CPU or memory requests and/or limit values are indicated with a dash (-). </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Container Manifest</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">This is the number of manifests that reference the specified cluster etc.</p>
+<p class="CiRBATableText">The number of instances listed in this column is a hyperlink that takes you to the Kubernetes Container Optimization &gt; Analysis tab, for the selected  grouping. i.e. Only the specific systems, as indicated by the count in the originating table cell, are shown on the Kubernetes Container Optimization &gt; Analysis tab. See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="./Optimizing_Your_Containers_-_Analysis_Tab">Optimizing Your Containers - Analysis Tab</a></madcap:conditionaltext>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+### Allocation Tab - Lower Pane
+
+The allocation details of the row, selected in the top table is expanded and displayed on this tab in the lower part of the page. The Allocation tab provides more detailed allocation data for the selected row.
+
+Based on the row selected in the top table, the following values are calculated:
+
+* Average—for the selected row the average is calculated as (total / # of containers);
+* Maximum—The maximum value of all the items for the selected row;
+* Minimum—The minimum value of all the items for the selected row;
+* Total—The total values of all the items for the selected row.
+
+Calculations only include containers where a request or limit value has been specified.
+
+<Accordion title="Table: Columns in the Allocation Tab">
+<table class="table_1">
+<col/>
+<col/>
+<thead>
+<tr>
+<th class="td_2">
+<p class="CiRBATableColumnText">Column(s)</p>
+</th>
+<th class="td_2">
+<p class="CiRBATableColumnText">Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Current | Recommended CPU Request | Limit</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">These 4 columns indicate the current and recommended CPU requests and limits.</p>
+<p class="CiRBATableText">The average, maximum, minimum and total values are shown for the containers in the selected row.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Surplus CPU Request | Limit</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">These 2 columns indicate the surplus or deficit  CPU requests and limits. If this is an identified risk recommendation the value may be negative indicating that additional resources are required for this cluster.</p>
+<p class="CiRBATableText">This value is calculated as (Current vCPU request | limit - Recommended vCPU  request | limit) * Current Count) of the filtered records.</p>
+<p class="CiRBATableText">Systems with a 'Terminate' recommendation, are excluded from the calculation in the 'Recommended' columns. If all of the systems in the group have a 'Terminate' recommendation, the values in Recommended columns will be indicated as a dash (-).</p>
+<p class="CiRBATableText">Containers with unspecified CPU or memory requests and/or limit values are indicated with a dash (-). </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Current | Recommended Memory Request | Limit</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">These 4 columns indicate the current and recommended memory requests and limits.</p>
+<p class="CiRBATableText">The average, maximum, minimum and total values are shown for the containers in the selected row.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Surplus Memory Request | Limit</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">These 2 columns indicate the surplus or deficit memory requests and limits. If this is an identified risk recommendation the value will be negative indicating that additional resources are required for this cluster.</p>
+<p class="CiRBATableText">Containers with unspecified CPU or memory requests and/or limit values are indicated with a dash (-). </p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText">Predicted Uptime (%) </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The predicted uptime (%) for a container is based on the percentage of hours that CPU utilization data is present in the historical interval, that is specified in the policy settings.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"># of Containers </p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The number of containers on which the reported data is based.</p>
+</td>
+</tr>
+<tr>
+<td class="td_3">
+<p class="CiRBATableText"># of Nodes</p>
+</td>
+<td class="td_3">
+<p class="CiRBATableText">The number of nodes on which the containers are running.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</Accordion>
+
+Please observe the following for this set of data:
+
+* Systems with missing data are excluded from the calculations;
+* If there is no data or values are unspecified for a whole group of systems, this is indicated as a dash (-);

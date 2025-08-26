@@ -1,0 +1,307 @@
+---
+title: "Using the Recommendation Filter Menu"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The Recommendation Filter Menu allows you to further narrow your results displayed in the cloud optimization reports.
+
+<Accordion title="">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/309963430" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+</Accordion>
+
+
+## Overview
+
+The Recommendation Filter Menu is only available when a supported report is displayed. See [Reports Supporting the Recommendation Filter Menu](#ReportsWithFilterMenu) for a list of reports that contain this filter.
+
+Filters enabled in the Recommendation Filter Menu will persist for each cloud platform within a session and is indicated by the filter-on icon (<InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000117_23x20.png"/>). For example, the recommendation filters you apply on the AWS EC2 page are also applied to the other AWS tabs until you log out of the Densify Console. After applying filters to an AWS optimization report, if you navigate to a different cloud platform screen, such as GCP, the Recommendation Filter Menu will be set to the filters that have been enabled for GCP.
+
+When you are in the aggregated Optimization Overview dashboard, the filter options are only applicable to the displayed report content. When you open one of the cloud-specific dashboards or reports, there are additional filtering options applicable to the displayed content.
+
+When you log out, the filter settings are cleared.
+
+### Stale Data
+
+Stale recommendations occur when data is not collected on its regular schedule, resulting in the last available recommendation, which could be months old, being displayed in the Densify Console. Environments and systems with data older than 30 days are not included in dashboards or reports.
+
+The number of days, after which data is considered stale is configurable. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+
+When using the recommendation filter, if you filter on an account with stale data, you will see the message, No Data Available. This also applies to individual systems with stale data. These systems are not included in the totals on the overview and instance optimization details pages.
+
+## Opening and Closing the Recommendation Filter Menu
+
+1. Click on the filter icon (<InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000109_19x19.png"/>) in the global page title to open the Recommendation Filter Menu.
+
+* The Recommendation Filter Menu is displayed as a floating menu on top of the Densify Console.
+* Move the Recommendation Filter Menu window to a different area on the Densify Console by dragging the Narrow your results title bar to your desired location. The location where you moved the Recommendation Filter Menu window is saved for the report for the duration of the session, even if you close the window.
+
+2. Click on the close icon (x) in the top-right corner of the Recommendation Filter Menu window to close the window.
+
+Alternatively, click on the filter icon to close the Recommendation Filter Menu window. The filter icon acts as a toggle to display or hide the Recommendation Filter Menu window.
+
+3. Click Apply to apply your selections or click Reset to clear all selected options.
+
+<Accordion title="Figure: Using the Recommendation Filter Menu">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000019_555x355.png)</Frame>
+</Accordion>
+
+<Note>
+Closing the Recommendation Filter Menu does not reset the filters already applied to the report. The filters selected in the Recommendation Filter Menu are saved for that particular cloud platform for the duration of your session. You must reset the filters to view the complete set of results.
+</Note>
+
+
+
+## Applying Filters
+
+When the filter options in the Recommendation Filter Menu are disabled, all the instances with recommendation data are displayed (subject to any guest filters applied).
+
+Logically, the filter options within a section are OR'ed together. For example, if you select Optimization Type > Modernize and Downsize then the report will show recommendation for instance types with an Optimization Type of Modernize or Downsize.
+
+If you select options across sections, then logically, the options across sections are AND'ed together. For example, if you select Optimization Type > Upsize and Effort Required > Low, then the page will show results with Upsize optimization type and low effort required .
+
+To apply filters to your cloud optimization report, follow the steps below.
+
+1. Click on the filter icon (<InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000109_19x19.png"/>) in the global page title to open the Recommendation Filter Menu.
+2. Select the filter options in the Recommendation Filter Menu.
+
+* You can multi-select all of the desired filtering options.
+
+3. Click Apply. The current tabular report, graph or chart is refreshed with the filters applied and the filter-on icon (<InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000117_23x20.png"/>) is displayed.
+
+* If you navigate to another supported optimization report within the same cloud platform, the Recommendation Filter Menu closes, but the same filter settings will be applied to the newly displayed report on the same cloud platform.
+* If you navigate to another supported optimization report for a different cloud platform, the Recommendation Filter Menu closes, and the new cloud platform's filters are applied.
+<Note>
+For optimization reports that include all cloud platforms, such as Optimization Overview, the Recommendation Filter Menu instance is independent of the other cloud platform's Recommendation Filter Menu instance. Therefore, filters applied to any of the cloud platforms do not apply to the Optimization Overview dashboard.
+</Note>
+
+* On the Optimization Overview dashboard, settings that are defined on the Summary tab are retained and used on the Data tab.
+* The values, in the Summary bar, at the top of the overview dashboards, are based on the set of systems that are defined by your filter settings.
+
+If, after applying the filter, no records meet the specified criteria, then you will see the message "No Data Available".
+
+## Resetting the Recommendation Filter
+
+Since recommendation filters are saved for each cloud platform and each session, a reset option is available for you to quickly remove all filters for the current Recommendation Filter Menu instance.
+
+1. From the Recommendation Filter Menu, click Reset to remove all filters for the current report displayed on the Densify Console.
+
+* The filters are remove for the Recommendation Filter Menu instance of the current cloud platform. If you navigate to another supported optimization report in the same cloud platform, the filters are also removed.
+* The filter icon (<InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000109_19x19.png"/>) is reset.
+* The filters in another cloud platform's Recommendation Filter Menu instance remains untouched.
+
+2. Click on the close icon (x) in the top-right corner of the Recommendation Filter Menu window to close the window.
+
+Alternatively, click on the filter icon (<InlineImage src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000109_19x19.png"/>) to close the Recommendation Filter Menu window.
+
+## Filtered Sections and Options
+
+If the filter section is not applicable to the current displayed report, the section is hidden in the Recommendation Filter Menu. The summary table below describes all filter options and their availability.
+
+<Accordion title="">
+<table>
+<col/>
+<col/>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Description</p>
+</th>
+<th>
+<p>Filter Options</p>
+</th>
+<th>
+<p><a name="FiltersAvailableIn"></a>Available In</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td colspan="3">
+<p><a name="PublicCloud"></a>Public Cloud</p>
+</td>
+<td> </td>
+</tr>
+<tr>
+<td>
+<p>Filter the results to show only systems from a specific public cloud platform. This filter option only applies to the Optimization Overview report, which contains your aggregated cloud services across different cloud platforms.</p>
+<p> When selecting a single cloud platform and any other option in the <span class="mc-variable Document.FloatingFilterMenu variable">Recommendation Filter Menu</span>you will see full list of all supported service types, even if they have been filtered out. eg. if you filter on Scale Groups, you will still see both EC2 and RDS shown on the chart, but the values are set to 0.</p>
+<p>Settings that are defined on the <span >Summary</span> tab are retained and used on the <span >Data</span> tab. These settings are not retained when you drill down to a specific cloud optimization page.</p>
+</td>
+<td>
+<ul>
+<li>AWS</li>
+<li>Azure</li>
+<li>GCP</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Optimization Overview > Summary Tab | Data Tab</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p><a name="ServiceType"></a>Service Type</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Filter the results to show specific cloud service types, such as compute instances, database instances, or instance scale groups.</p>
+</td>
+<td>
+<ul>
+<li>Compute</li>
+<li>Databases</li>
+<li>Scale Groups</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Optimization Overview > Summary Tab | Data Tab</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p><a name="OverallStatus"></a>Overall Status</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Filter the results to show services with specific overall status.</p>
+<p>For a description of overall status, see <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="RefToBookmark MCXref xref xrefRefToBookmark" href="./Viewing_Cloud_Optimization_Reports#Reviewing_OverallStatus"><u>Viewing Cloud Optimization Reports</u></a></madcap:conditionaltext>.</p>
+</td>
+<td>
+<ul>
+<li>Savings Opportunity</li>
+<li>Optimal</li>
+<li>Identified Risk</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Optimization Overview > Summary Tab | Data Tab</li>
+<li>RDS</li>
+<li>Auto Scaling Groups</li>
+<li>Spot Instances</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p><a name="OptimizationType"></a>Optimization Type</p>
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<p>Filter the results based on the recommended right-size Optimization Type.</p>
+<p>For Optimization Type descriptions, see <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="RefToBookmark MCXref xref xrefRefToBookmark" href="./Understanding_the_Instance_Details_Report#Recommendation_Color-Coding"><u>Optimization Type Descriptions and Color-Coding</u></a></madcap:conditionaltext>.</p>
+</td>
+<td>
+<ul>
+<li>Terminate</li>
+<li>Modernize</li>
+<li>Modernize - Optimal Family</li>
+<li>Downsize</li>
+<li>Downsize - Optimal Family</li>
+<li>Just Right</li>
+<li>Upsize</li>
+<li>Upsize - Optimal Family</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>EC2</li>
+<li>RDS</li>
+<li>Auto Scaling Groups</li>
+<li>Spot Instances</li>
+<li>Virtual Machines</li>
+<li>Compute Engine</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<ul>
+<li>Downscale</li>
+<li>Upscale</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Optimization Overview</li>
+<li>Auto Scaling Groups</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p><a name="EffortRequired"></a>Effort Required </p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="kanchor142"></a>Filter the results to only show certain estimated effort (to implement the recommendations) based on cost analysis.</p>
+</td>
+<td>
+<ul>
+<li>None</li>
+<li>Very Low</li>
+<li>Low</li>
+<li>Moderate</li>
+<li>High</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>EC2</li>
+<li>RDS</li>
+<li>Auto Scaling Groups</li>
+<li>Spot Instances</li>
+<li>Virtual Machines</li>
+<li>Compute Engine</li>
+</ul>
+</td>
+</tr>
+</table>
+
+</Accordion>
+
+
+## Reports Supporting the Recommendation Filter Menu
+
+The Recommendation Filter Menu is available for the following public cloud reports:
+
+<table>
+<col/>
+<col/>
+<tbody>
+<tr>
+<td>
+<ul>
+<li>AWS > EC2</li>
+<li>AWS > RDS</li>
+<li>AWS > Auto Scaling Groups</li>
+<li>AWS > Spot Instances</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Azure > Virtual Machines</li>
+<li>Azure >  <span>VM Scale Set</span>s</li>
+<li>GCP > Compute Engines</li>
+<li><span class="mc-variable Document.CloudInsight variable">Optimization Overview</span></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+See the [Available In](#FiltersAvailableIn) column in the [Table: Recommendation Filter Option Summary](#FilterSummaryTable) for the optimization reports that support the various filters.
+
+Refer to [Viewing Cloud Optimization Reports](./Viewing_Cloud_Optimization_Reports) for details on the public cloud optimization reports listed above. Refer to [Viewing the Optimization Overview Report](./Viewing_the_Optimization_Overview_Report) for details on the Optimization Overview report from the Public Cloud menu.

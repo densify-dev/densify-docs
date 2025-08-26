@@ -1,0 +1,72 @@
+---
+title: "External User Authentication Example Configuration for Okta"
+---
+
+You can use the following process to setup Okta for Authorization Code Flow:
+
+### Authorization Server
+
+Densify requires the use of a custom authorization server. If you do not already have an authorization server configured, please contact Okta directly, for details.
+
+Okta's API Access Management product is a requirement to use a custom authorization server and is an optional add-on in production environments. See [Authorization Servers Concepts](https://developer.okta.com/docs/concepts/auth-servers/).
+
+You need to register Densify as a web application in your Okta Authorization Server. and then provide the following information to Densify:
+
+* Client ID
+* Client secret (password)
+* Issuer value
+
+### Create an Application
+
+1. In Okta, select Applications > Add Application.
+2. Choose application type "Web".
+3. Accept the defaults and click Done.
+
+We will come back and complete the configuration shortly.
+
+### Configure the Application for use with Densify
+
+1. Select Applications and choose your newly created application. For example “My Web App”
+2. Select General tab > Edit
+3. Complete the following configuration using the specified values:
+
+    * Application label--a name for the application (example Densify)
+    * Allowed grant types--select one of the following:
+
+        * Client acting on behalf of itself > Client Credentials
+        * Client acting on behalf of a user > Authorization Code
+
+    * Login redirect URIs--https://\<name>.densify.com:443/redirect
+    * Logout redirect URIs:
+
+        * https://\<name>.densify.com:443/ (for the Densify Console)
+        * https://\<name>.densify.com:443/admin/ (for the Analysis Console)
+        * https://\<name>.densify.com:443/openIdError
+
+    * Login initiated by--App Only
+    * Initiate login URI--https://\<name>.densify.com:443/redirect
+    * Client Credentials--Copy the Client ID and Client Secret for later use
+
+### Configure the Authorization Server
+
+1. Select API > Authorization Servers
+2. Select Add Authorization Server and specify the following values:
+
+    * Name--A name for the authorization server (example: Densify);
+    * Audience--The Client ID value you saved in the previous step;
+    * Description--A description for the Authorization Server (example: Densify).
+
+3. Click on the Settings tab and copy the Issuer value and save it for later.
+4. Click on the Claims tab > Add Claim. Enter the following values:
+
+    * Name--email;
+    * Value – (appuser != null) ? appuser.email : app.clientId
+
+5. Click on the Access Policies tab > Add New Access Policy. Enter the following values:
+
+    * Name--A name for the access policy (example: Densify Access Policy);
+    * Description--A description of the access Policy (example: Densify Access Policy);
+
+6. Under the newly created Access Policy click Add Rule. Enter a Name (Densify Access Rule) and accept all the default options.
+
+You now need to provide the Client ID, Client Secret and Issuer value, to complete the setup on the Densify server side. These settings are all configured for you by Densify. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.

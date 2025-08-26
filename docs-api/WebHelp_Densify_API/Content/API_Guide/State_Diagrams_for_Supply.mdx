@@ -1,0 +1,35 @@
+---
+title: "State Diagrams for Supply"
+---
+
+## State Diagrams for Supply
+
+### Inbound Host or Inbound Datastore
+
+Whether the supply is an Inbound Host or an Inbound Datastore, the state diagrams are the same. Only the Inbound Host is explained below.
+
+<Accordion title="Figure: State Diagram for Inbound Host">
+<Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000008.png)</Frame>
+</Accordion>
+
+
+When an Inbound Host is added to a specific Infrastructure Group, the shared datastores for that cluster are automatically linked. The available capacity is automatically adjusted without the need to perform an environment refresh. This capacity is immediately available for new planned workloads coming in after the inbound host is scheduled for provisioning.
+
+As soon as the environment is refreshed, the Inbound Host is displayed in the Control Console Spectrum for the timeframe matching the expected date.
+
+An Inbound Host can be modified in the `PENDING COMMIT` and the `COMMITTED` states. Only the expected system name (i.e. the `name` element) can be modified, so that it can be appropriately reconciled with the actual system coming online.
+
+An Inbound Host can be deleted in any state. When an Inbound Host is deleted, the available capacity is automatically removed without the need to perform an environment refresh. An environment refresh is required to remove the Inbound Host from the Control Console Spectrum, when the Inbound Host is in the `CANCELLED` state.
+
+### Outbound Host
+
+<Accordion title="Figure: State Diagram for Outbound Host">
+<Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000009.png)</Frame>
+
+When an Outbound Host is added to a specific Infrastructure Group, the available capacity is automatically adjusted without the need to perform an environment refresh.
+
+As soon as the environment is refreshed, the Outbound Host is removed from the Control Console Spectrum for the timeframe matching the expected date.
+
+An Outbound Host can be deleted in any state. When an Outbound Host is deleted, the available capacity is automatically increased without the need to perform an environment refresh. An environment refresh is required to add the Outbound Host back to the Control Console Spectrum, when the Outbound Host is in the `CANCELLED` state.
+</Accordion>
+

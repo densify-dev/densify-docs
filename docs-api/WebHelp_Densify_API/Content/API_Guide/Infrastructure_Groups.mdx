@@ -1,0 +1,58 @@
+---
+title: "Overview"
+---
+
+## Description
+
+The Infrastructure Group object represents a full control hosting venue (i.e. infrastructure group), a non-control hosting venue or a guest-level hosting venue. The term Infrastructure Group refers to any of the three, for the purpose of this guide.
+
+This API returns Infrastructure Group details so that Workloads can be routed appropriately. The API provides stats and amenities at each defined timeframe of the timeline. The API also provides the results of the Fit-for-Purpose checks for a specific hosting venue and workload placement.
+
+### Hosting Venues
+
+This API supports full control hosting venues (i.e. infrastructure groups), non-control hosting venues and guest-level hosting venues.
+
+With respect to this API, the difference between the hosting venues is as follows:
+
+* Options for Returned Details--for the amenities query, the empty arrays `"host_summary": []` and `"sensor_capacities": []` are returned as there are no hosts or sensors in non-control and guest-level hosting venues; all options are available for all three hosting venues
+* Supported Operations--all operations are supported for all three hosting venues except:
+
+* for non-control and guest-level hosting venues, you can only open/close but not auto-close them using `PUT /infrastructure-groups/<``id``>`
+
+* Resource Elements--only elements that are applicable to the hosting venue is returned in the response. Specifically:
+
+* for non-control and guest-level hosting venues, element value `allow_new_workloads: "DO_NOT_ALLOW_IF_RISK"`, stats elements (specifically `cei`, `total_guests`, `total_hosts`, `required_hosts`, `outbound_guest_bookings`, `inbound_host_bookings`, `outbound_host_bookings`) are not returned
+* for non-control hosting venues, element value `last_refreshed_time` is not returned
+
+### Options for Returned Details
+
+You can extend the amenities query:
+
+```json
+GET /infrastructure-groups/<
+id
+>/amenities/
+```
+
+
+
+
+with any or all of the following to return only the information required:
+
+* `host_summary=false`--does not return the `host_summary` array
+* `sensor_capacities=false`--does not return the `sensor_capacities` array
+* `capability_groups=false`--does not return the `capability_groups` array
+
+By default, these options are all true.
+
+## Resource
+
+```json
+/infrastructure-groups
+```
+
+
+
+```json
+/infrastructure-groups/amenities
+```

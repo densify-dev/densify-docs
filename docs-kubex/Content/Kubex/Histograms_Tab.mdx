@@ -1,0 +1,234 @@
+---
+title: "Histograms Tab"
+---
+import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
+import { Carousel } from "/snippets/Carousel.mdx"
+
+This tab displays the selected scope of data in an easy-to-understand visualization. It shows how well your CPU and memory limits have been set for your selected scope. It gives a high level overview of the current state of your environment.
+
+The <Tooltip tip="A histogram is a graphical representation that organizes a group of data points into defined ranges or buckets. Similar in appearance to a bar graph, the histogram condenses a large set of data into an easily interpreted visualization.">histogram</Tooltip> charts provide links to the AI Analysis Details tab to review the recommendation details.
+
+Use the [tree viewer](/docs-kubex/Content/Kubex/Using_the_Node_Tree_Viewer) to define the scope of systems to include.
+
+By default, 4 charts are displayed. Use the options at the top of the page to select the charts to display:
+
+<Accordion title="Table: Histogram Chart Selection Controls">
+<table>
+<thead>
+<tr>
+<td>
+Control
+</td>
+<td>
+Description
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<Frame>
+<img src="/images/docs-kubex/Content/Kubex/03000187.png"/>
+</Frame>
+</td>
+<td>
+Select whether you want to review CPU, memory or both CPU and memory.
+</td>
+</tr>
+<tr>
+<td>
+<Frame>
+<img src="/images/docs-kubex/Content/Kubex/03000192.png"/>
+</Frame>
+</td>
+<td>
+Select whether you want to review request values, limit values or both requests and limits.
+</td>
+</tr>
+<tr>
+<td>
+<Frame>
+<img src="/images/docs-kubex/Content/Kubex/03000189.png"/>
+</Frame>
+</td>
+<td>
+Unspecified--You can indicate whether or not to include containers with unspecified values.
+
+When enabled, the grey bar indicates the number of containers with unspecified values. If, for example,  both the CPU Request and Limit values are unspecified for a container manifest, this will contribute to the unspecified count in both the CPU Request and CPU Limit charts. If only the CPU Limit value is unspecified then only the unspecified count on the CPU Limit chart is incremented.
+</td>
+</tr>
+</table>
+</Accordion>
+
+
+
+
+
+
+<Frame caption="Figure: Memory Request Chart">
+![](/images/docs-kubex/Content/Kubex/03000071_492x247.png)
+</Frame>
+
+
+Badges on a histogram indicate a situation that needs attention. Click the title link to move to the AI Analysis Details tab. 
+
+## Histogram Charts
+
+These histogram charts show your select data grouped as a distribution. The scope of data, is defined by the tree viewer.
+
+Based on Densify's analysis of your container environments, sizing recommendations are generated and the container is determined to be at risk, just right or oversized. Each container manifest is then placed into a "bucket", based on how close its allocation is from the optimal configuration. The histogram shows you how many containers/pods (Y-axis) are in each of these buckets that are displayed along the X-axis. The current resource allocation, as a percentage of what is actually required, make up these buckets on the X-axis.
+
+The data is shown on the chart as follows:
+
+
+<ol>
+  <li>Containers identified with less than optimal resource allocation (shortfall) are identified as having between 0 and 99% of their optimal allocation (Current Resources as a percentage of required < 100%). These containers are shown on the left side of the chart.</li>
+  <li>Containers with all of the resources they need are indicated as 100%, or no sizing error.</li>
+  <li>Containers with surplus resources are identified as having over 100% of their optimal allocation (Current Resources as a percentage of required >100%). These containers are shown on the right side of the chart and highlight stranded resources that are committed to pods that are not using them.</li>
+  <li>If you have enabled Show > Unspecified, then the number of containers with an unspecified resource request and/or limit value are also shown at the far left of the chart.</li>
+</ol>
+
+
+<Frame caption="Figure: Histogram Chart">
+<img src="/images/docs-kubex/Content/Kubex/03000024.png"/>
+</Frame>
+
+## Additional Features
+
+Use the following additional features on these charts to see the recommendation details:
+
+
+<ul>
+  <li>
+    Drill down hyperlinks--The zone names are hyperlinks that take you to the <a href="/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab"> AI Analysis Details </a> tab, with the corresponding Table View selected, showing the relevant systems. For example, if you click "Throttled CPU Risk", Kubex switches to the AI Analysis Details tab with the "CPU Request Shortfall" view selected.
+    <a name="kanchor63"> </a>
+  </li>
+  <div>
+  <div>
+  <div>
+
+<Carousel
+  images={[
+    {
+      src: "/images/docs-kubex/Content/Kubex/03000026_516x294.png",
+      caption: "Throttled CPU Risk",
+      alt: "Throttled CPU Risk histogram"
+    },
+    {
+      src: "/images/docs-kubex/Content/Kubex/03000027_516x294.png",
+      caption: "Analysis Details Tab - CPU Request Shortfall View",
+      alt: "CPU Request Shortfall analysis details"
+    },
+    {
+      src: "/images/docs-kubex/Content/Kubex/03000029_516x294.png",
+      caption: "Memory Request Shortfall",
+      alt: "Memory Request Shortfall histogram"
+    },
+    {
+      src: "/images/docs-kubex/Content/Kubex/03000028_516x294.png",
+      caption: "Additional Analysis View",
+      alt: "Additional histogram analysis view"
+    }
+  ]}
+/>
+  
+  Analysis Details Tab - Memory Request Shortfall View
+  </div>
+  </div>
+  </div>
+  <li>Hover-over details--When reviewing the charts, you can hover over any of the bars to see how many containers are in the selected bucket.</li>
+  <Frame caption="Figure: Histogram Hover-Over">
+  <img src="/images/docs-kubex/Content/Kubex/03000030.png"/>
+  </Frame>
+  <li>Warning Indicators--A warning indicator is displayed on the chart if memory events have occurred in the selected scope of systems. Click the message to see the corresponding detailed view on the AI Analysis Details tab.</li>
+  <Frame caption="Figure: Visual Indicator">
+  <img src="/images/docs-kubex/Content/Kubex/03000031.png"/>
+  </Frame>
+  <li>
+    Savings Indicators--Another indicator is displayed on the chart if resource allocations can be adjusted to save money. Again, you can click the message to see the corresponding detailed view on the AI Analysis Details tab.
+    <a name="kanchor64"> </a>
+  </li>
+  <Frame caption="Figure: Visual Indicator">
+  <img src="/images/docs-kubex/Content/Kubex/03000083.png"/>
+  </Frame>
+</ul>
+
+
+
+## CPU Request
+
+
+
+<InlineImageWithText src="/images/docs-kubex/Content/Kubex/03000112.png">
+The CPU Request is the number of CPU millicores (mCores) that are guaranteed for the container. If a container CPU request is specified then Kubernetes will only schedule it on a node that can provide the requested CPU resources.
+</InlineImageWithText>
+
+
+Applications in containers on the left side of the histogram may experience CPU throttling and the resulting performance issues.
+Containers on the right side of the chart indicate containers with over-allocated CPU resources, resulting in stranded capacity. Since the request guarantees these resource to the container, they cannot be re-allocated until the pod shuts down.
+
+Click the zone name to review the specific details of the recommended resource allocations to improve container and/or application performance. Clicking "CPU Request Shortfall", switches to the [AI Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab and displays the "CPU Request Shortfall" view in ascending order (with the negative values shown at top of the list). From here you can review the details of the recommended allocation changes for each manifest.
+
+Clicking the "CPU Request Surplus", switches to the [AI Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab sorted on the "CPU Request Shortfall" view in descending order with the largest positive values shown at top of the list. Systems with unspecified values are indicated with a dash (-) and are shown first so you may need to scroll down to see the manifests with stranded CPU resources.
+
+## CPU Limit
+
+
+
+<InlineImageWithText src="/images/docs-kubex/Content/Kubex/03000111.png">
+The CPU limit is the maximum allocation that a pod or container can access. When you specify a resource limit, Kubernetes enforces the limit so that the running container cannot use more CPUs than the defined limit. 
+</InlineImageWithText>
+
+
+If the limit has not been set, it is possible for a container to use more resources than it requests, if the node has available CPUs. However, a container is not allowed to use more than its resource limit. In this case, applications in containers on the left side of the histogram will likely experience performance issues due to CPU throttling.
+
+Click the zone name to switch to the [AI Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab to see the details of the specific recommended resource allocations to improve container and/or application performance. The table will be sorted on the "CPU Request Surplus" column in ascending order (with the negative values shown at top of the list). From here you review the details of the recommended allocation changes.
+
+Containers on the right side of the chart indicate containers with over-allocated CPU resources, resulting in stranded capacity. If the limit is set too high and runaway processes exceed their request and hit the limit for sustained periods, the CPUs cannot be re-allocated until the runaway processes are terminated or the pod shuts down. This will again, result in stranded CPU capacity.
+
+## Memory Request
+
+
+
+<InlineImageWithText src="/images/docs-kubex/Content/Kubex/03000113.png">
+Like the CPU Request, a memory request is the amount of memory that is guaranteed for the container. If a container memory request is specified then Kubernetes will only schedule it on a node that can provide the allocated resources.
+</InlineImageWithText>
+
+
+Applications in containers on the left side of the histogram may run out of memory resulting in performance issues or the pod may be terminated due to insufficient available memory.
+Containers on the right side of the chart indicate containers with over-allocated memory resources, resulting in stranded capacity. Since the request guarantees these resource, they cannot be re-allocated until the pod or task shuts down.
+
+Click the zone name to switch to the [AI Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab to see the corresponding table view with details of the specific recommended resource allocations to improve container and/or application performance.
+
+## Memory Limit
+
+
+
+<InlineImageWithText src="/images/docs-kubex/Content/Kubex/03000114.png">
+The memory limit is the maximum allocation that a pod or container can access. When you specify a resource limit, Kubernetes enforces the limit so that the running container cannot use more memory than the defined limit. 
+</InlineImageWithText>
+
+
+If the limit has not been set, it is possible for a container to use more resources than its request if the node has available memory. However, a container is not allowed to use more than its resource limit. When a process in the container tries to consume more than the allowed amount of memory, the system terminates the process that attempted the allocation, with an out of memory (OOM) error.
+
+Containers on the right side of the chart indicate containers with over-allocated memory resources, resulting in stranded capacity. If the limit is set too high and runaway processes exceed their request value for sustained periods, the memory cannot be re-allocated until the runaway processes are terminated or the pod shuts down, thereby stranding memory resources.
+
+Click the zone name to open the [AI Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab to see the corresponding table view with details of the specific recommended resource allocations to improve container and/or application performance.
+
+#### Video Resources
+<AccordionGroup>
+<Accordion title="Searching for a System">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1044765242?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1044765242?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Searching for a System</a>
+</Accordion>
+
+<Accordion title="Using Histograms">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1039069463?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1039069463?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Using Histograms</a>
+</Accordion>
+
+<Accordion title="Using the Tree Viewer">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1038945637?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Using the Tree Viewer</a>
+</Accordion>
+
+</AccordionGroup>

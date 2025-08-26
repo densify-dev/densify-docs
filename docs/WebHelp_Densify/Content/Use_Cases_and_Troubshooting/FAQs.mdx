@@ -1,0 +1,182 @@
+---
+title: "FAQs"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+This topic provides the answers to frequently asked questions.
+
+<Accordion title="Identifying Densification Opportunities">
+<Accordion title="How do I identify densification opportunities?">
+Through Densify, you can click on the Densify page to help you identify densification opportunities. You can drive up density by reducing reclaimable capacity (e.g. decommissioning excess resources, balancing workloads) and adding more workloads. See[Densifying Your Environment](../Reporting_Framework/Densifying_Your_Environment) for details.
+
+Figure: Virtual Optimization > Opportunity >Cluster Capacity in VM Units > Clusters with Reclaimable Capacity
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Use_Cases/03000014.png)</Frame>
+
+To see how well your environment is performing, you can also use the Control Console. When everything is in the green (i.e. in the Just Right green section of the Spectrum), then the environment is said to be optimized with perfect density according to policy.
+
+Only when workloads have been properly balanced and resource allocations have been optimized, should you then drive up density by adding workloads. You can add workloads until the clusters and hosts are in the green, using existing capacity instead of buying new servers. See [How do I plan for new demand?](#HowDemand) to add workloads.
+
+See the following sections to learn other ways on how to drive up density.
+</Accordion>
+
+<Accordion title="Where are my reclaimable resources?">
+You can see an overview of the reclaimable resources by using the By the Numbers > Virtual Insight report. See the Reclaimable and Available Capacity details in [Viewing the Optimization Overview Report (Virtual)](../Reporting_Framework/Viewing_the_Optimization_Overview_Report__Virtual_).
+
+Figure: By the Numbers> Virtual Insight > Reclaimable Capacity Showing 30%
+
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Use_Cases/03000015.png)</Frame>
+
+By zooming <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/>, you can see the reclaimable and available capacity by cluster, along with the primary constraint being CPU, memory or disk.
+
+You can recover the reclaimable capacity by actioning the recommendations, and possibly re-opening hosting venues that have been manually closed. The Virtual Optimization > Opportunity > Cluster Capacity in VM Units > Clusters with Reclaimable Capacity report, as described in [Cluster Capacity in VM Units Reports](../Reporting_Framework/Cluster_Capacity_in_VM_Units_Reports), provides all the details you need.
+</Accordion>
+
+<Accordion title="How do I determine which VMs are oversized?">
+Guests that have too many allocated resources are considered to be oversized according to operational policy. By right-sizing these guests and reclaiming the resources, you can densify the hosts.
+
+The Virtual Optimization > Opportunity > Clusters with Oversized Guests report provides the list of oversized guests, plus the bump-down recommendations required to reclaim the resources. For more information, see [Oversized Guests Reports](../Reporting_Framework/Oversized_Guests_Reports).
+
+Figure: Virtual Optimization > Opportunity > Oversized Guests > Clusters with Oversized Guests
+
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Use_Cases/03000002.png)</Frame>
+</Accordion>
+
+<Accordion title="How do I determine if there are idle VMs consuming resources?">
+A recommendation "Investigate Potentially Idle VM" is generated when both the CPU Utilization and Actual Memory Utilization metrics are below their corresponding VM Level Utilization (Low Limits) policy settings. You can only view this type of recommendation through the Control Console.
+
+See [Types of Recommendations](../Control_Console/Reviewing_Recommendations#Types) for details.
+</Accordion>
+
+<Accordion title="How do I re-mediate under-utilized servers?">
+You can view which clusters are underutilized by viewing the available and reclaimable capacity, using the Virtual Optimization > Opportunity > Cluster Capacity in VM Units > Clusters with Reclaimable Capacity report. You can action the reported rebalancing and bump-down recommendations to reclaim the resources. See [Cluster Capacity in VM Units Reports](../Reporting_Framework/Cluster_Capacity_in_VM_Units_Reports).
+
+Figure: Virtual Optimization > Opportunity > Cluster Capacity in VM Units > Clusters with Reclaimable Capacity
+
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Use_Cases/03000013.png)</Frame>
+
+When you route new workloads, they are automatically routed to hosting venues having the required available space and the supported capabilities needed by the application (e.g. operating system, software licenses, departments and security requirements). This safely drives up density across hosting environments. Optional cost-based scoring combines this use of capacity with cost models to place workloads in environments where they have the least cost impact. For more information, see[Routing and Reserving Demand](../Route_And_Reserve_Demand/Routing_and_Reserving_Demand)
+</Accordion>
+
+<Accordion title="How can I have bump-down recommendations and zero reclaimable capacity?">
+Reclaimable capacity is defined using the standard/average VM unit, having a specific memory size, CPU size and storage size. If a cluster has a set of bump downs but shows 0 reclaimable capacity, then the bump downs either are not big enough or do not include the resources necessary to allow for a standard/average VM unit. For example, if a cluster has a primary constraint of CPU, bumping down the memory does not reclaim the CPU necessary to fit a standard/average VM.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Routing Workload and Adding Supply">
+<Accordion title="How do I plan for new demand?">
+Before you add more demand, you should make sure that your target environments are optimized and do not have significant risk. Imbalances and misallocations in resources can cause service-level problems. Adding more VMs to such environments can worsen the problems and can cause spare capacity to be reclaimed.
+
+Once your environments are in reasonable state, you can plan new demand through the Route and Reserve Demand page. Densify uses predictive analysis to determine which hosting venues have the capacity (as well as capabilities) to host the new demands. The Route and Reserve Demand page performs real-time checks on the capacity status to optimize placements based on latest operational conditions. It ensures the compute and storage capacity is held for that workload until it is ready to be deployed. See [Defining Demand](../Route_And_Reserve_Demand/Defining_Demand) to learn how to define booking requests and route them.
+</Accordion>
+
+<Accordion title="How do I model inbound demand?">
+Modeling inbound demand depends on where the demand originates. For enterprise application deployments, there is often data available from pre-production environments, such as Performance Acceptance Testing. This can be used to characterize the load placed on the production environment.
+
+* The utilization measurements from workloads being migrated from legacy environments can be leveraged by using benchmarks to normalize them against the new environment.
+* For cloud requests, the user may have no idea what the load is going to do, so it may be prudent to choose a workload example from a catalog (e.g. CPU intensive) or assume it will run at 100% for planning purposes, and auto-correct it later.
+
+See [Defining Demand](../Route_And_Reserve_Demand/Defining_Demand) to learn how to define booking requests and route them. See also [How do I estimate the amount of resources I need for a hardware upgrade?](#How2) if migrating from one environment to another.
+</Accordion>
+
+<Accordion title="Why did routing my booking requests fail?">
+Routing booking requests could fail for multiple reasons, such as: target hosting venue is not Fit for Purpose, no available capacity, the hosting venue is not accepting any new workloads, etc. Contact [Support@Densify.com](mailto:Support@Densify.com) for additional information.
+</Accordion>
+
+<Accordion title="How do I plan for new supply?">
+You can plan new supply through the Plan and Manage Supply page. Once you define your host requirements along with its hosting venue and planned date, the capacity becomes available for new workloads with later planned dates. See [Planning and Managing Supply](../Plan_And_Manage_Supply/Planning_and_Managing_Supply) to learn how to define new hosts and datastores. See the [How much available capacity do I have?](#How3) to see your real-time capacity updated.
+
+Through the Control Console, after an environment refresh (i.e. the next day), you can see the new supply coming online when you move the Timeline slider past the planned date defined.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="How to determine how many licenses I have remaining?">
+You can determine how many licenses are remaining by viewing the About dialog box. This can be done through the Analysis Console. See [License Compliance Report](../Densify_Com/License_Compliance_Report)
+
+Two values of particular interest are “Full License Systems” and “Analysis Targets Used”.
+
+* "Full License Systems" is equivalent to the number of targets that are audited regularly. “Full License Systems” include the “Analysis Targets Used” and also include systems that are no longer being audited. These systems are typically candidates for eventual unlicensing and deletion. However, “Full License Systems” is the value that Densify license keys are tracking. During a period of transition (i.e. from older vCenters to newer, there may be confusion regarding duplicate systems.
+* The value of “Analysis Targets Used” is the number of systems that are in a control console or transform analysis. It includes VMs or physical servers for which Densify is generating right-size recommendations and in the case of VMs, running analyses that optimize stacking and rebalancing recommendations. Generally, these are the systems that are being audited daily.
+</Accordion>
+
+<Accordion title="Monitoring, Reporting and Trending Available Capacity">
+<Accordion title="How much available capacity do I have?">
+You can view the available capacity by either looking at the Hosting Venue Pane in the Route and Reserve Demand page or by looking at the Forecast report. These two pages are updated as planned supply and demand are added, providing real-time capacity without the need of an analysis refresh. Available capacity is quantified using a standard VM size, across all environments.
+
+See [Viewing Available Capacity](../Route_And_Reserve_Demand/Viewing_Available_Capacity) to view capacity in the Route and Reserve Demand page.
+
+See [Forecasting](../Reporting_Framework/Forecasting) to view available capacity in the Forecast report.
+</Accordion>
+
+<Accordion title="When will I run out of capacity?">
+The Forecast report can be used to determine when the capacity will run out. For details, see [Forecasting](../Reporting_Framework/Forecasting).
+
+Figure: Forecast Report Shows Cluster 2 Running Out within 30 Days
+
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000037.png)</Frame>
+</Accordion>
+
+<Accordion title="How do I have insight to trends and forecasting?">
+The Forecast report shows predicted available capacity for each future timeframe (e.g. 30, 60, 90 days) based on trends, growth, and new planned demand and supply. With this report, you can have some insight as to where and when adjustments have to be made. For details, see [Forecasting](../Reporting_Framework/Forecasting).
+</Accordion>
+
+<Accordion title="How do I view the capacity for the next 60 days?">
+The Forecast report shows predicted available capacity for each future timeframe (e.g. 30, 60, 90 days) based on trends, growth, and new planned demand and supply. For details, see [Forecasting](../Reporting_Framework/Forecasting).
+</Accordion>
+
+<Accordion title="How can I report on cluster/host/guest levels?">
+The By the Numbers  page provides an overview of your environments, including densification opportunities, available space and insufficient capacity. It includes details at all levels, at the cluster, host and guest levels. For details, see [Understanding the By the Numbers Report](../Reporting_Framework/Understanding_the_By_the_Numbers_Report).
+</Accordion>
+
+<Accordion title="How is the standard VM defined?">
+All reports, except for the Clusters with Supply/Demand Mismatch report, use a defined standard VM to size the available capacity. This defined standard VM is displayed as a footnote at the bottom of the report page for reference. To change the standard VM size, please contact [Support@Densify.com](mailto:Support@Densify.com).
+
+Note that you can define a separate standard VM size when routing new workloads through the Route and Reserve Demand page. See [Changing the Capacity Unit](../Route_And_Reserve_Demand/Viewing_Available_Capacity#Changing).
+</Accordion>
+
+<Accordion title="How do I manage recommendations?">
+Recommendations are generated on a nightly basis by Control Console analytics, driven through policy. Recommendations help reduce risk and optimize your environments, bringing hosts and VMs "into the green". You can see the effect of actioning the recommendations by enabling the Display with recommendations applied through the Control Console. To view your recommendations, see [Working with Recommendations](../Control_Console/Working_with_Recommendations).
+
+Recommendations should be actioned on a regular basis. If using VMware, Action Automation can be used to manage and execute the recommendations for you. You can execute these recommendations through Action Automation. Contact [Support@Densify.com](mailto:Support@Densify.com) for details. If you are executing the recommendations manually, a customer-specific scripted solution or third-party tool must be used.
+
+You can see the same recommendations using two reports: the Virtual Optimization > Risk > Undersized Guests > Clusters with Undersized Guests report and the Virtual Optimization > Opportunity > Cluster Capacity in VM Units > Clusters with Reclaimable Capacity report. Use the historical reports to view progress. See [De-Risking Your Environment](../Reporting_Framework/De-Risking_Your_Environment) and [Densifying Your Environment](../Reporting_Framework/Densifying_Your_Environment)
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Forecasting Incremental Infrastructure">
+<Accordion title="If I am running out of capacity and am planning to increase workloads, how do I determine how many new hosts are needed?">
+If you are routing and reserving new demand, you can identify how many hosts are required to safely host new demand through the Control Console.
+
+First, you will need to reserve and route new demand to a suitable hosting venue. You can do this through the Route and Reserve Demand page accessible from the Main Menu. For more information on creating and routing new demand, see [Defining Booking Requests](../Route_And_Reserve_Demand/Defining_Booking_Requests) and [Routing Booking Requests](../Route_And_Reserve_Demand/Routing_Booking_Requests).
+
+Once you have added your new demand bookings and your environment has been refreshed, you can use the Control Console to view how many hosts are required to safely host new capacity. To view the number of hosts required:
+
+1. In the Environment Navigator, select the environment in which you routed your bookings.
+2. Drag the timeline slider to the future timeline in which your bookings are scheduled to be added in the environment (e.g. 60 days).
+3. In the spectrum, hover your cursor over the cluster in which you have routed your bookings. You will see a popup that includes the number of hosts the environment has versus the number of required hosts to safely host demand.
+
+Alternatively, you can add supply and then use the Forecast reports or Route and Reserve Demand page to verify the available space. See [How do I plan for new supply?](#HowSupply) for details.
+</Accordion>
+
+<Accordion title="How do I project how much bigger VMs should be if additional utilization is expected?">
+In some cases it may be necessary to increase the resource allocations for VMs if you know that increased utilization is expected in the near future. To determine this increase, contact [Support@Densify.com](mailto:Support@Densify.com).
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Performing What-If Scenarios">
+<Accordion title="How do I estimate the amount of resources I need for a hardware upgrade?">
+For any hardware upgrade, contact [Support@Densify.com](mailto:Support@Densify.com).
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Densify Connector">
+<Accordion title="How do I limit my data collection to selected VMware clusters?">
+Create a vCenter read-only account and limit the Densify Connector to specific clusters. See [Installing the Densify Connector](../Densify_Com/Data_Collection_Connector_Installing)
+</Accordion>
+
+</Accordion>
+

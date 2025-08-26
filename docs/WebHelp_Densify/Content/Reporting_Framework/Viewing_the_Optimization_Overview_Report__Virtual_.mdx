@@ -1,0 +1,68 @@
+---
+title: "Overview"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The Optimization Overview (formerly Virtual Insight) report gives you an analysis summary of the risk, densification and demand within your virtual on-premise environments. It is comprised of six separate reports.
+
+You can use the global filter to include or exclude your virtual systems. See [Using the Global Filter](../Densify_Com/Using_the_Global_Filter) for details on defining your scope of systems for the following reports.
+
+## Risk Analysis
+
+This report provides a summary of clusters with insufficient capacity, hosts at risk and undersized guests, for today according to operational policy. These numbers correspond to the Demand Based Forecast report, also on this dashboard. See [De-Risking Your Environment](./De-Risking_Your_Environment) for detailed reports.
+
+## Density Analysis
+
+Provides a summary of the improvement that can be obtained by following the recommendations to increase the density in the selected environment.
+
+Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the stacking ratio, which is the number of VMs in relation to the number of hosts, in the current environment and in an optimized environment, where the optimized environment is one with recommendations applied. See [Densifying Your Environment](./Densifying_Your_Environment).
+
+<Note>
+Values are reported based on the Average VM size, for the selected cluster, rather than on the standard VM size. Refer to the footer in the specific report, to view the Average VM Details report.
+</Note>
+
+
+
+## Demand-Based Forecast
+
+This report provides capacity trends showing availability as the number of Standard/Average VM units and risk as the number of clusters with insufficient capacity.
+
+* Available Space in Standard/Average VM Units--Graphs the total available capacity across clusters excluding clusters closed for accepting new bookings and clusters at risk, for each enabled time frame. The available capacity for today is the same as the Available Resources shown in the Reclaimable and Available Capacity report below.
+* Clusters with Insufficient Capacity--Graphs the number of clusters with insufficient capacity, for each enabled time frame. This graph includes all clusters (i.e. opened, closed and at risk).
+
+## Guest Sizing Accuracy
+
+Provides a pie chart to visualize private cloud virtual guests (VMs), that are at risk and oversized, compared to those that are sized correctly. Bookings are not included in the Guest Sizing Accuracy reports.
+
+Guests that fall into both categories, as undersized for one resource and over-sized for another resource, are indicated in all of the charts.
+
+Click zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the Guest Sizing Accuracy dashboard. You can update the filter settings at any time to adjust the scope of the reports. For example, if you want to review only guests in a specific cluster, click Set Filter and select only the clusters you are interested in. See [Guest Sizing Accuracy Reports](../Densify_Com/Guest_Sizing_Accuracy_Reports) for details.
+
+## Reclaimable and Available Capacity
+
+This report provides a pie chart to visualize the capacity that can be recovered if Densify's recommendations are applied, as compared to required capacity (assuming all the bump-down recommendations are performed).
+
+Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the breakdown of available infrastructure by cluster. The primary constraint indicates the resource that is affecting the addition of more VMs.
+
+In the expanded view, the Available, Required and Reclaimable resources for each cluster are expressed in VM capacity units based on the Average VM of the cluster. The overall average VM for all clusters is indicated in a footnote below the reports. This value may be different for each environment. You can click the link to see how the Average VM capacity unit is calculated.
+
+This report is the same as that provided by Private Cloud > Virtual Environments > Opportunity > Cluster Capacity in VM Units (click zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/>) > Reclaimable and Available Capacity. See [Cluster Capacity in VM Units Reports](./Cluster_Capacity_in_VM_Units_Reports) for details.
+
+## Guest Placement Accuracy
+
+Guest placement accuracy is quantified by determining the number of host servers that are running too few, too many or the right amount of guests according to operational policy.
+Bookings are excluded from the Guest Placement Accuracy Reports.
+
+As with the other reports in this dashboard, the displayed results are based on the scope of systems selected in the global filter.
+
+This report provides a pie chart to visualize the current placement of guests:
+
+* Hosts that are running too many guests and are at risk. These are indicated in the red.
+* Hosts that are oversized and can host additional guests. These are indicated in the yellow.
+* Hosts that are optimal and have the correct number of guests based on available resources. These are indicated in the green.
+
+Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the breakdown by cluster as both a pie chart and bar graphs.
+
+The pie chart is the same as the parent report. The bar graphs show the placement accuracy by cluster broken down by the actual number of systems and as a percentage of all systems in the cluster.
+
+A Next | Previous link, located below the bar graph, allows you to scroll through all of the clusters included in the report.

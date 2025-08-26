@@ -1,0 +1,313 @@
+openapi: 3.1.0
+info:
+  title: Densify – Subscriptions Suppressions API
+  version: "1.0.0"
+  description: |
+    Catalog of suppression entries (attribute tags or recommendation properties)
+    that can be referenced by subscriptions via `suppressionReferences`. Each
+    platform (`cloud` or `containers`) has its own catalog; the alias without
+    platform behaves like the cloud catalog. Bulk adds/updates are all-or-nothing,
+    while bulk deletes process entries independently.
+servers:
+  - url: https://{host}
+    variables: { host: { default: api.example.com } }
+tags:
+  - name: Subscriptions Suppressions
+paths:
+  /subscriptions/{platformType}/suppressions:
+    get:
+      tags: [Subscriptions Suppressions]
+      operationId: listSuppressions
+      summary: List suppressions for a platform
+      description: |
+        Returns global/private suppression entries; use `type` and (admin only)
+        `owner` to filter.
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+        - $ref: '#/components/parameters/type'
+        - $ref: '#/components/parameters/owner'
+      responses:
+        '200':
+          description: Suppression list
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Suppression' }
+    post:
+      tags: [Subscriptions Suppressions]
+      operationId: createSuppressions
+      summary: Add suppressions (bulk; all-or-nothing)
+      description: |
+        Adds one or more entries. A suppression is either an **attribute** suppression
+        (`attributeName`, optionally with `key` + `technology` for Resource Tags /
+        Container Labels) **or** a **property** suppression (`propertyName`). Uniqueness
+        and owner rules apply; non-admins can only add private entries.
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items: { $ref: '#/components/schemas/SuppressionCreate' }
+      responses:
+        '200':
+          description: Created entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Suppression' }
+        '400': { description: Validation/logic error; entire batch rolled back. }
+    put:
+      tags: [Subscriptions Suppressions]
+      operationId: replaceSuppressions
+      summary: Replace suppressions (bulk PUT; all-or-nothing)
+      description: |
+        Deletes and replaces parameters for existing entries. Supply **all**
+        parameters required by each entry. Admins can promote private→global by
+        setting `owner: ""`.
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items: { $ref: '#/components/schemas/SuppressionUpdate' }
+      responses:
+        '200':
+          description: Updated entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Suppression' }
+        '400': { description: Validation/logic error; entire batch rolled back.}
+    delete:
+      tags: [Subscriptions Suppressions]
+      operationId: deleteSuppressions
+      summary: Delete suppressions (bulk; independent per entry)
+      description: |
+        Deletes a collection of entries by `suppressionRef`. If **all** succeed,
+        returns 204. If any fail, returns an array with per-entry status/messages
+        for failures; successful deletes may omit a message. Suppressions referenced
+        by subscriptions cannot be deleted.
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                type: object
+                properties: { suppressionRef: { type: string } }
+                required: [suppressionRef]
+      responses:
+        '204': { description: No Content (all deletes succeeded).}
+        '200':
+          description: Per-entry delete results (partial failures and/or mixed outcomes)
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/DeleteResult' }
+        '404': { description: Not found (when deleting a single entry via /suppressionRef).}
+
+  /subscriptions/{platformType}/suppressions/{suppressionRef}:
+    get:
+      tags: [Subscriptions Suppressions]
+      operationId: getSuppression
+      summary: Get a suppression by ID
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+        - $ref: '#/components/parameters/suppressionRef'
+      responses:
+        '200':
+          description: Suppression
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Suppression' }
+        '404': { description: Not found / not visible. }
+    put:
+      tags: [Subscriptions Suppressions]
+      operationId: replaceSuppression
+      summary: Replace a suppression by ID (full PUT)
+      description: |
+        Supply **all** required parameters; previous values are replaced. Admin
+        can promote private→global by setting `owner: ""`.
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+        - $ref: '#/components/parameters/suppressionRef'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/SuppressionPut' }
+      responses:
+        '200':
+          description: Updated suppression
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Suppression' }
+        '400': { description: Validation/logic error. }
+        '404': { description: Not found / not visible. }
+    delete:
+      tags: [Subscriptions Suppressions]
+      operationId: deleteSuppression
+      summary: Delete a suppression by ID
+      description: |
+        Returns 204 on success; 404 if not found; if referenced by subscriptions
+        (or other errors), returns an object with `suppressionRef`/`suppressionName`
+        and `message`.
+      parameters:
+        - $ref: '#/components/parameters/platformType'
+        - $ref: '#/components/parameters/suppressionRef'
+      responses:
+        '204': { description: No Content. }
+        '404': { description: Not found. }
+        '200':
+          description: In-use error payload
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DeleteResult' }
+
+  # Back-compat alias (behaves like /subscriptions/cloud/suppressions)
+  /subscriptions/suppressions:
+    get:
+      tags: [Subscriptions Suppressions]
+      operationId: listSuppressionsDefaultPlatform
+      summary: List suppressions (alias of cloud)
+      responses:
+        '200':
+          description: Suppression list
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Suppression' }
+
+components:
+  parameters:
+    platformType:
+      name: platformType
+      in: path
+      required: true
+      description: Platform catalog to target (`cloud` or `containers`).
+      schema: { type: string, enum: [cloud, containers] }
+    suppressionRef:
+      name: suppressionRef
+      in: path
+      required: true
+      description: Unique suppression identifier.
+      schema: { type: string }
+    type:
+      name: type
+      in: query
+      required: false
+      description: |
+        Which suppressions to return: `all` (default), `global`, or `owner`. Non-admins
+        only see their own private entries with `owner`.
+      schema: { type: string, enum: [all, global, owner] }
+    owner:
+      name: owner
+      in: query
+      required: false
+      description: Username used with `type=owner` (admins can query any user; non-admins
+        only themselves; others → 400 “Current login user cannot query for owner”).
+      schema: { type: string }
+
+  schemas:
+    Suppression:
+      type: object
+      properties:
+        suppressionRef: { type: string, description: "Unique reference ID." }
+        suppressionName: { type: string, description: "Suppression name." }
+        aliasName: { type: string, description: "Alias for display." }
+        # Attribute suppression
+        attributeName:
+          type: string
+          description: >
+            Attribute name (e.g., “Business Applications”, “Resource Tags”,
+            “Container Labels”). For “Resource Tags”/“Container Labels”, supply
+            `key` and `technology`. Must exist in Densify’s standard attributes.
+        key:
+          type: string
+          description: "Resource tag/label key (with technology)."
+        technology:
+          type: string
+          description: "Technology for resource attribute (supported: AWS, CONTAINER)."
+          enum: [AWS, CONTAINER]
+        # Property suppression
+        propertyName:
+          type: string
+          description: >
+            Recommendation element name (must exist in Recommendations schema
+            for the platform).
+        owner:
+          type: string
+          description: >
+            Empty = global; otherwise username for private entry. Admins can
+            set empty (global); non-admins limited to self.
+        message: { type: string, description: "Error/status message (on error)." }
+        status:
+          type: integer
+          description: "HTTP-like status code (200, 204, 400, 401, 404, 415, 500)."
+
+    SuppressionCreate:
+      type: object
+      properties:
+        suppressionName: { type: string }
+        aliasName: { type: string }
+        # Exactly one of the following groups should be used:
+        attributeName: { type: string }
+        key: { type: string }
+        technology: { type: string, enum: [AWS, CONTAINER] }
+        propertyName: { type: string }
+        owner:
+          type: string
+          description: 'Omit or "" for global (admin only); otherwise username for private.'
+      required: [suppressionName]  # plus either attributeName(±key,technology) or propertyName
+
+    SuppressionUpdate:
+      type: object
+      properties:
+        suppressionRef: { type: string }
+        suppressionName: { type: string }
+        aliasName: { type: string }
+        attributeName: { type: string }
+        key: { type: string }
+        technology: { type: string, enum: [AWS, CONTAINER] }
+        propertyName: { type: string }
+        owner: { type: string }
+      required: [suppressionRef, suppressionName]
+
+    SuppressionPut:
+      type: object
+      properties:
+        suppressionName: { type: string }
+        aliasName: { type: string }
+        attributeName: { type: string }
+        key: { type: string }
+        technology: { type: string, enum: [AWS, CONTAINER] }
+        propertyName: { type: string }
+        owner: { type: string }
+      required: [suppressionName]
+
+    DeleteResult:
+      type: object
+      properties:
+        suppressionRef: { type: string }
+        suppressionName: { type: string }
+        message: { type: string }
+        status:
+          type: integer
+          description: 'HTTP-like code (e.g., 200, 204, 404).'

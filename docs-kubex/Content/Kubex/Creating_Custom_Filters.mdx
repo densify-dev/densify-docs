@@ -1,0 +1,82 @@
+---
+title: "Creating Custom Filters"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx"
+
+
+You can create your own filters allowing you to navigate your Kubernetes environment and report on specific systems. Create filters to locate and report on only those containers of interest. Save the filter to help you and others to quickly identify risk and waste for a subset of the environment.
+
+<Frame caption="Figure: Creating Custom Filters">
+![](/images/docs-kubex/Content/Kubex/03000052.png)
+</Frame>
+
+You can create a custom filter from the tree viewer or any table. 
+
+
+<ol start="1">
+  <li>From the tree viewer click <InlineImage customSize="5" src="/images/docs-kubex/Content/Kubex/03000050.png">to open the Manage Filters dialog box.</InlineImage></li>
+  <Frame caption="Manage Filters Dialog Box">
+    <img src="/images/docs-kubex/Content/Kubex/03000053_675x321.png" alt="Manage Filters Dialog Box" />
+  </Frame>
+  <li>In the **Manage Filters** dialog box, click **Copy** or **New** and enter a name for the new filter.</li> 
+  <li>Click the **+ Add Row**  and define your filter criteria (e.g. Business Unit).</li>
+  <li>Further filtering can be applied by defining a condition. From the **Condition** dropdown list, select the condition to be applied to the filter criteria (e.g. Starts with).</li>
+  <li>In the **Value** field, enter a value for the selected condition (e.g. Eng).</li>
+  <li>Continue building your filter beyond a single row, by clicking **+ Add Row**  and repeat from step 3.</li>
+  <li>
+    Select other options as applicable:
+    <ul>
+    <li>
+    **Set as my default filter**--This filter will be selected each time you open Kubex.
+    </li>
+    <li>
+    **Set as public filter**--All users can use this filter. If unchecked, then this view is set as private.
+    </li>
+    <li>
+    **Read-only for other users**--All users can use this filter, but cannot edit it.
+    </li>
+    </ul>
+  </li>
+  <li>Click **OK** to save the filter or **Apply** to save and apply the filter.</li>
+</ol>
+
+
+If you have created a filter that has no systems that match, the message, "No Data Available" is displayed and you need to change/adjust the filter.
+
+When you are creating filters with multiple entries, ensure that there are no other AND or OR statements at the end of the last line:
+
+
+<ul>
+  <li>If you place an ‘OR’ in the last line with an empty line following, then you will get the following error message: **Filter Field is required on line 2**.</li>
+  <li>If you place an ‘OR’ on the last line without any additional lines following, then you will get the following error message: **An error occurred during query validation**.</li>
+</ul>
+
+
+
+## Creating Complex Filters
+
+If you want to create complex filters, using the brackets and the AND/OR options, you should be familiar with building SQL queries.
+
+There are two types of condition value:
+
+<ul>
+  <li>
+    Integer fields (numeric) include extra filter conditions, such as:
+    <ul>
+    <li>
+    Greater Than
+    </li>
+    <li>
+    Less Than
+    </li>
+    <li>
+    Greater Than or Equal
+    </li>
+    <li>
+    Less Than or Equal
+    </li>
+    </ul>
+  </li>
+  <li>String fields define text strings to match.</li>
+</ul>
+

@@ -1,0 +1,15 @@
+.home_card_container {
+  padding-top: 2rem;
+  padding-bottom: 8rem;
+  background-color: #00172e;
+}
+
+.home_card_container .card {
+  background-color: transparent;
+  border: 2px solid #2e0c74;
+}
+
+.home_card_container .card strong,
+.home_card_container .card p {
+  color: #fff !important;
+}

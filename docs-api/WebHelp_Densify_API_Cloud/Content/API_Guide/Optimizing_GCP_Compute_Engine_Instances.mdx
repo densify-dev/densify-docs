@@ -1,0 +1,236 @@
+---
+title: "Optimizing GCP Compute Engine Instances"
+---
+
+
+This use case includes GCP cloud infrastructure data collection, analysis, and generation of right-sizing recommendations for Compute Engine instances using a combination of Densify Console and Densify API operations. The recommendations, which can be downloaded on demand via Densify API, provide extensive details that can be used to feed downstream automation engines in either JSON or terraform-map formats.
+
+A comprehensive PDF report can be downloaded for each instance to supply supporting evidence for a recommendation; this can be reviewed by a system owner before approvals are given for the suggested changes.
+
+The diagram below provides an overview of the three major processes in Densify:
+
+<Accordion title="Figure: Optimizing GCP Compute Engine Processes">
+<Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000012.png)</Frame>
+</Accordion>
+
+
+1. **Data Collection**--Collect GCP data into Densify.
+
+   Use the Densify API or the Densify Console to initiate this process.
+2. **Analysis**--Analyze collected data based on pre-defined policies to make recommendations.
+
+   The analysis process is initiated automatically after data collection completes. Results can be immediately pulled from the Densify API or pushed to a webhook URI once the analysis is complete.
+3. **Reporting Database Update**--Update reporting database tables with analysis results for reporting.
+
+   The reporting database update process is scheduled to run nightly after the analysis refresh is completed. The Densify Console GCP optimization opportunity report and the Impact Analysis and Recommendation reports are available after the reporting database update is complete.
+
+<Note>
+Before you can collect GCP cloud infrastructure data in Densify, you need to create a GCP service account with services enabled and permissions configured. See [Google Cloud Platform Data Collection Prerequisites](/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites) for details.
+</Note>
+
+The steps below outline a typical workflow to optimize GCP Compute Engine instances:
+
+1. From the Densify API: [Authenticate using JWT](#_Authorize)--Retrieve a token to authenticate each API call.
+2. Collect GCP data through the Densify API or the Densify Console. See [Configuring a Google Cloud Platform Connection](/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Using_the_Public_Cloud_Connection_Wizard#GCP_Connection) for details.
+
+   After data collection completes, an analysis is initiated for each project associated with the GCP account configured for data collection.
+3. API: [List All GCP Analyses](#_ListAnalysis)--Query for the analysis entity of each project for which data was collected (from step 1). You can use the returned analysis entity to check for status and recommendations.
+4. API: [Poll for Analysis Status](#_Poll)--Check for data collection and analysis status. The recommendations are available when analysis is complete.
+5. API: [Download Results to Apply Recommendations](#_Results)--Retrieve recommendations for actioning or forward to orchestration engine.
+
+   Alternatively, you can [Add a Webhook to an Existing GCP Analysis](#_AddWebhook) to push recommendations to an external URI once the next analysis process completes.
+6. API/Console (optional): [Download Impact Analysis and Recommendation Instance Report](#_Download) for system owners. This can achieved from the Densify API or from the Densify Console. See[Viewing the Impact Analysis and Recommendation Report](/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Viewing_the_Impact_Analysis_and_Recommendation_Report) for details on the content of the report.
+7. Console (optional alternative): Review GCP Virtual Machine optimization opportunity report from the Densify Console. See [GCP](/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Optimizing_Your_Public_Cloud#GCP) for details. The optimization opportunity report is available after the nightly reporting database update.
+8. Console (optional): Review GCP optimization policy settings used during analysis. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+
+### Postman Collection
+
+Densify provides a Postman collection of sample API requests for working with your public cloud environments. See the [Postman Collection](./Postman_Collection).
+
+### Authenticate using JWT
+
+Use the `/authorize` resource to retrieve an authenticated token to make subsequent API calls. See [Authorize](./Authorize) for details. By default, the token expires in 5 minutes, therefore you will need to ensure that you have an active token for each Densify API request.
+
+<Accordion title="Example: Retrieving an Authenticated Token">
+Request:
+
+
+
+```json POST /authorize
+
+{
+    "userName": "apiUser",
+    "pwd": "apiPassword"
+}
+```
+Response:
+
+
+```json
+{
+    "apiToken": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzNzI2Yzk0NC0wMmE4LTRlYzQtOGE2Ny04ODBmMDM2OTRhZDciLCJpYXQiOjE1NDI2NTI0MDUsInN1YiI6InZhbiIsImlzcyI6IkRlbnNpZnkuY29tIiwiZXhwIjoxNTQyNjUyNzA1fQ.cJd8qFJfRoPnMEU7GzcdYGBT8WwlgmviQ1OQp8P_w9VUcjQA3FJaB9QkqJJ6d7zbrY5yjc4w0rOWjY-PPdbmqw",
+    "expires" : 1542652705869,
+    "status" : 200
+}
+```
+
+
+Use the `apiToken` value in your Authorization request header for subsequent Densify API calls.
+</Accordion>
+
+
+### Initiating GCP Data Collection and Analysis
+
+The following example shows you how to initiate GCP data collection and analysis, and send the results to a WebHook. See [Analysis GCP Analyze](./Analysis_GCP_Analyze) for details.
+
+<Accordion title="Example: Initiating GCP Data Collection and Analysis">
+Request:
+
+```json POST /analysis/gcp/analyze
+{
+  "serviceAcctJSON": "gcpAcctEast-608378",
+  "policyInstanceId": "4a63f651-a583-4157-97ff-35651370ffbe",
+  "webHook": {
+       "uri": "http://mywebhookserver/webhook/results",
+       "authType": "basic",
+       "authValue": "tester:testerpassword"
+  }
+}
+```
+
+Response:
+
+```json
+{
+  "href": "Not available",
+  "message": "Analysis in progress",
+  "status": 200
+}
+```
+
+</Accordion>
+
+
+### List All GCP Analyses
+
+To see a list of all GCP analyses currently in Densify, use the `/analysis/cloud/gcp` resource. See [List all analyses for a particular platform and vendor](./Analysis_Entity#_getAllAnalyses) for details of the resource operation.
+
+<Accordion title="Example: List all Saved GCPAnalyses">
+Request:
+
+```
+GET /analysis/cloud/gcp
+```
+
+Response:
+
+```json
+{
+   "analysisId": "cf25d8c1-4fdf-42b1-b3a3-1a8d8a425d13",
+   "analysisName": "gcpAcctEast-608378",
+   "analysisCompletedOn": 0,
+   "href": "/analysis/cloud/gcp/cf25d8c1-4fdf-42b1-b3a3-1a8d8a425d13",
+   "analysisResults": "/analysis/cloud/gcp/cf25d8c1-4fdf-42b1-b3a3-1a8d8a425d13/results",
+   "analysisStatus": "/analysis/cloud/gcp/cf25d8c1-4fdf-42b1-b3a3-1a8d8a425d13/status"
+}
+```
+
+</Accordion>
+
+
+### Poll for Analysis Status
+
+Use the `"analysisStatus"` resource element from the [List All GCP Analyses](#_ListAnalysis) response to poll for status of the data collection and analysis. See [Check for analysis status](./Analysis_Status#_getStatus) for details of the resource operation. The analysis is complete and recommendations are available when `"analysisStage": "Completed"`.
+
+<Accordion title="Example: Checking GCP Analysis Status">
+Request:
+
+```
+GET /analysis/cloud/gcp/cf25d8c1-4fdf-42b1-b3a3-1a8d8a425d13/status
+```
+
+
+Response:
+
+```json
+{
+  "analysisStage": "Completed",
+  "webHookStatus": "",
+  "statusMessage": "Analysis gcpAcctEast-608378 was last completed on Wed Feb 27 12:06:10 EST 2019."
+}
+```
+</Accordion>
+
+
+### Add a Webhook to an Existing GCP Analysis
+
+You can add a webhook definition to an existing GCP analysis. The analysis will push the optimized results to the specified webhook URI. See [Add webhook to an analysis](./Analysis_Webhook#_AddWebhook) for details on adding a webhook.
+
+<Accordion title="Example: Adding a Webhook Definition to an Existing GCP Analysis">
+Request:
+
+```json POST /webhook/analysis/cloud/gcp/cf25d8c1-4fdf-42b1-b3a3-1a8d8a425d13
+{
+  "uri": "https://myInstanceConfigServer:443/api/densify/results",
+  "authType": "bearer",
+  "authValue": "eyJhbGciOiMsIUzUxMiJ9.eyJqdGkiOiJhYWU2MjIxOS1iOWQyLTQ3OGMtYWI3Mi00NGU2OTUzY2RjMDEiLCJpYXQiOjE1NDM2MDgxMTEsInN1YiI6ImFkbWluIiwiaXNzIjoiRGVuc2lmeS5jb20iLCJleHAiOjE1NDM2MDg0MTF9.h3bJrAP-Z2LeqzjN3FYpFDyoaADvYT1MdLw5SuguqkGE7sjB4c7YgQgv3saj15r2IsgTWH8PW7eNnoZwFP9eiQ"
+}
+```
+
+Response:
+
+
+```json
+{
+  "message": "ok",
+  "status": 200
+}
+```
+
+</Accordion>
+
+
+### Download Results to Apply Recommendations
+
+Use the `/analysis/cloud/gcp/<analysisId>/results` resource to retrieve recommendation results and forward to orchestration engine. See [Analysis: GCP Recommendations](./Analysis_GCP_Results) for details.
+
+<Accordion title="Example: Returning GCP Recommendations in Terraform-map">
+Request:
+
+
+```
+GET /analysis/cloud/gcp/cf25d8c1-4fdf-42b1-b3a3-1a8d8a425d13/results
+```
+
+Headers:
+
+
+```
+Accept: application/terraform-map<br/>Authorization: Bearer <apiToken>
+```
+
+</Accordion>
+
+
+### Download Impact Analysis and Recommendation Instance Report
+
+Use the `rptHref` resource element provided in the instance recommendation output to download a PDF Impact Analysis and Recommendation Report for each instance. This report is available after a reporting database update, which is scheduled to run nightly. See [rptHref](./Analysis_GCP_Results#_rptHref) and [Example: Downloading an Impact Analysis and Recommendation Report](./Analysis_GCP_Results#Example_DownloadAppOwner) for details.
+
+<Accordion title="Example: Downloading an Impact Analysis and Recommendation Report">
+Request:
+
+
+```
+GET /systems/b374d9d5-a529-4e19-9a14-077123f322b4/analysis-report
+```
+
+
+Headers:
+
+
+```
+Accept: application/octet-stream<br/>Authorization: Bearer <apiToken>
+```
+
+</Accordion>
+

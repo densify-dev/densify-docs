@@ -1,0 +1,270 @@
+---
+title: "Control Console Spectrum Overview"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+The Spectrum enables you to quickly assess where risks exist and where there is excess capacity, according to policy. VMs, hosts, infrastructure groups and sensors that are in the red ("Too Little Infrastructure" band) are under-provisioned and at risk. VMs, hosts, infrastructure groups and sensors that are in the yellow ("Too Much Infrastructure" band) have excess capacity that may be reclaimed. This visualization provides a means to understand where action needs to be taken to move all entities into the green ("Just Right" zone) to remove risk and improve efficiency. Once all entities are in the green, the environment is said to be optimized according to policy.
+
+<Note>
+When using the Control Console in browsers other than Internet Explorer some features may not be available. Refer to the following list for details:
+</Note>
+
+
+
+* Right-click context menus displayed for environments, clusters, hosts or VMs.
+* The following navigation buttons in the upper right corner of the Control Console screen are not available:
+
+* Booking Manager--Opens the Booking Manager. This button is only displayed on Control Console home page.
+* Action Plan Manager--Opens the Action Plan Manager. This button is only displayed on Control Console home page.
+* Control Policy tab--Opens the policy editor. This button is only displayed when an environment is selected.
+* Recommendations--Opens the Recommendation Manager. This button is only displayed when an environment is selected.
+* Reports--Opens all reports that were generated for the selected environment(s)
+* Inbound and Outbound slide out menus--The buttons used to create, manage and delete bookings.
+
+Also, see [Spectrum Detail](./Spectrum_Detail) and [DCE Workload Viewer](../Analysis_Workbench/DCE_Workload_Viewer).
+
+<Accordion title="Figure: Browser Compatibility">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000180.png)</Frame>
+</Accordion>
+
+
+## Vertical Regions
+
+The Spectrum for each environment is divided into 4 vertical regions:
+
+* Red--VMs, hosts, infrastructure groups and sensors that are in the red are under-provisioned and are at risk.
+* Green--VMs, hosts, infrastructure groups and sensors that have just the right amount of resources.
+* Yellow--VMs, hosts, infrastructure groups and sensors that are in the yellow have excess capacity that may be reclaimed.
+
+<Accordion title="Figure: Efficiency and Risk Spectrum">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000180.png)</Frame>
+</Accordion>
+
+
+## Horizontal Regions
+
+The Spectrum for an environment is divided into 5 horizontal areas:
+
+* Environment--top level summary efficiency index for the environment;
+* Clusters (<InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000004.png"/>)--efficiency index visualization for virtual clusters;
+* Hosts (<InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000005.png"/>)--host systems (e.g. ESX/ESXi servers) in the environment;
+* VMs (<InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000006.png"/>)--VMs in the environment;
+* Sensors (<InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000102_13x12.png"/>)--non-compute (non host-centric) metrics, such as datastores.
+
+Hosts and VMs are color-coded to match their parent infrastructure group. Sensors are dark gray.
+
+<Accordion title="Figure: Spectrum">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000174_624x278.png)</Frame>
+</Accordion>
+
+
+## Sensor Area
+
+The sensor area is displayed if there is sensor data available, such as datastores. See [Working with Sensors](./Working_with_Sensors) for more information on sensors.
+
+<Accordion title="Figure: Sensor Area">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000150_624x267.png)</Frame>
+</Accordion>
+
+
+When the sensor area is displayed, click on the appropriate tab named \<Sensor Type> to view the data of that type. Only a single row of icons is displayed, as sensors are shared in the environment.
+
+The green, yellow or red icon on the tab indicates the health of the sensors shown through that tab for the specified timeframe:
+
+* green--when all sensors are in the green (Just Right section),
+* red--when at least 1 sensor is in the red (Too Little Infrastructure section),
+* yellow--when at least 1 sensor is in the yellow (Too Much Infrastructure section) and no sensors are in the red (Too Little Infrastructure section).
+
+## Right-Click Features
+
+When you right-click on any entity (including any corresponding notification or system that has been exempt), you can see a number of available options. The displayed options depend on the type of entity selected and your access permissions, with the exception of a Missing Benchmark notifications as detailed below.
+
+<Accordion title="Figure: Right-Click Features on a Host System">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000173_328x264.png)</Frame>
+</Accordion>
+
+
+Table: Spectrum Right-click Behavior
+
+<table>
+<thead>
+<tr>
+<th>
+<p>Icon</p>
+</th>
+<th>
+<p>Option</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td colspan="3">
+<p>Infrastructure Groups (<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000004.png"/></Frame>)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p align="center">
+<br/>
+<Frame><img class="img_1" src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/0300000B_17x17.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Apply Filter</p>
+</td>
+<td>
+<p>Filters the Spectrum based on the one selected infrastructure group, host or VM. </p>
+<p>To do this, select the one system of interest and click <span >Apply Filter</span>. The <span >\<<span class="CiRBAcharEmphasis">GroupLabel</span>></span>, <span >Host</span> and <span >VM</span> filtering fields are updated with your selection.</p>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p>Hosts (<Frame><img class="img_1" src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000005.png" /></Frame>) and VMs (<Frame><img class="img_1" src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000006.png" /></Frame>)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p align="center">
+<br/>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/0300000C.png"/></Frame>
+</p>
+</td>
+<td>
+<p>System Dashboard</p>
+</td>
+<td>
+<p>Opens the System Dashboard for the selected system in another browser window. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p align="center">
+<br/>
+<Frame><img class="img_1" src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/0300000D_18x18.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Workload Viewer</p>
+</td>
+<td>
+<p>Opens the <span >Workload Viewer</span> for the selected system in another browser window. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p align="center">
+<br/>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/0300000B.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Apply Filter</p>
+</td>
+<td>
+<p>Same behavior as Apply Filter for infrastructure groups.</p>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p>Sensors (<Frame><img class="img_1" src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000102_13x12.png"/></Frame>)</p>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p align="center">There is no right-click behavior for sensors.</p>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p>Notifications</p>
+</td>
+</tr>
+<tr>
+<td>
+<p align="center">
+<br/>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/0300000B.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Apply Filter</p>
+</td>
+<td>
+<p>Same behavior as Apply Filter for infrastructure groups.</p>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p>Missing Benchmarks (<Frame><img class="img_1" src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000108_13x12.png"/></Frame>)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p align="center">
+<br/>
+<Frame><img src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Intelligence_Workbench_Guide/08000038_14x13.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Missing Benchmarks </p>
+</td>
+<td>
+<p>Displays the <span >Benchmark Editing</span> dialog box to resolve missing benchmarks. </p>
+</td>
+</tr>
+</table>
+
+
+## Multiple Entity Fanout
+
+Hosts, VMs and sensors with a white dot (<InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000007.png"/>) indicate there are multiple entities at the same location of the Spectrum. In these cases, an expanded view will pop up allowing you to select the desired entity.
+
+For example, clicking the VM icon below shows that there are actually four VM entities in that location.
+
+<Accordion title="Figure: Expanded View of Overlapping VM Systems">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000008_288x142.png)</Frame>
+</Accordion>
+
+
+You can click and drag the mouse to select a grouping of systems.
+
+To perform a right-click operation on such an entity, right-click the entity and select the operation. Either a Select System dialog box or a dialog box with a Systems tab opens, where you can select the system on which to perform the operation.
+
+<Accordion title="Figure: Select System Dialog Box">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000010_265x171.png)</Frame>
+</Accordion>
+
+
+## Zooming in on the Spectrum
+
+When you are viewing an environment with many systems you will need to zoom in on regions of your spectrum to find specific hosts, VMs or sensors.
+
+You can zoom in on any one of the three sections, Too Little Infrastructure, Just Right and Too Much Infrastructure, by clicking on the title bar. Click again to restore the default display.
+
+<Accordion title="Figure: Control Console Column Zoom In/Out">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000003_582x306.png)</Frame>
+</Accordion>
+
+
+You can also zoom in on any one of the four sections, Clusters, Hosts, VMs or \<Sensor Type> by clicking the title bar for that horizontal area within the section of interest. Click again in the title bar area to restore the default display.
+
+<Accordion title="Figure: Control Console Section Zoom In/Out">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000091_596x298.png)</Frame>
+</Accordion>
+
+
+## Environment and Cluster Host Summary
+
+If you hover over an environment or cluster in the Spectrum, a popup tooltip is displayed showing the number of Current Hosts, the number of Required Hosts, the number of Hosts for HA (if applicable), and whether or not Allow New VM Bookings is permitted (displayed only for clusters).
+
+<Accordion title="Figure: Spectrum">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000175_342x178.png)</Frame>
+</Accordion>
+
+
+## More Details
+
+You can drill down on any item, by clicking on it, to see more detailed information in the Spectrum Detail pane. For more details, see [Spectrum Detail](./Spectrum_Detail).

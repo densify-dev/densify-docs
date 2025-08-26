@@ -1,0 +1,135 @@
+---
+title: "Overview"
+---
+import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
+
+<InlineImageWithText src="/images/docs-kubex/Content/Kubex/03000138_112x114.png">
+Policies are settings that bring together and formalize the unique requirements and management criteria of an environment including constraints, regulations and operational goals. Densify uses these settings as a basis for recommendations and to measure and show efficiency and risk. 
+You can review your policy settings on the <a href="/docs-kubex/Content/Kubex/Policies_Tab">Policies Tab</a> tab. Descriptions of the policy settings are provided in the <a href="https://www.densify.com/docs-kubex/Content/Resources/PDFs/Kubex-Policy-Guide.pdf" target='_blank'>Policy Reference Guide</a>. 
+</InlineImageWithText>
+
+
+Policies are used with the analysis models to analyze your collected data to populate the tables and charts in the your Kubex interface. When data is collected an environment is created and the policy is selected based on your specific use case.
+
+Densify policies allow you to tailor the Densify analytics engine to accurately maximize efficiency and minimize risk. Policies represent the unique requirements, constraints and operational goals of your virtual environments. Once captured, policies can be customized and re-used for each of your various environments. 
+
+You can work with your account manager to customize the policy to better suit your requirements, if necessary. You need an understanding of not only your current infrastructure, but also of business and operational guidelines that are unique to your company or line of business before making any policy changes.
+
+Once selected and customized, your policy is used to provide details of your infrastructure efficiency. Policies cover both quantitative criteria such as maximum and minimum utilization levels, etc. and qualitative criteria such as business rules, technical affinities/anti-affinities, security requirements, process requirements, etc.
+
+Densify provides a number of policies that can be used immediately to generate results for review. After reviewing the initial results you can then decide if you need to use another policy or customize the policy settings.
+
+<li>Initial Assessment--This policy produces end-state recommendations rather than gradual changes. It is intended for short term assessments when the recommendations are validated and confirmed before being applied.  This policy is not recommended for on-going, automated implementation of the recommendations.</li>
+<li>Ongoing Management--This policy reflects best practices for generating actionable recommendations. The resource utilization of each system is modeled using a minimum of 7 days and up to 60 days of historical workload. When downsizing systems, the predicted CPU and memory usage levels must not exceed 70% and 90%, respectively. When the memory usage metrics are not available, the analysis effectively assumes the existing memory allocation of the instance is required.</li>
+
+## Policy Categories Overview
+
+Each policy is organized into categories. Each category groups policy settings based on how the settings define your environment.
+
+
+
+<Accordion title="Table: Policy Categories">
+<table>
+<thead>
+<tr>
+<td>
+Policy Category
+</td>
+<td>
+Description
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Representative Workload and Operational Windowing
+</td>
+<td>
+Policy settings related to representative day selection, and the settings that affect the selection and scope of historical utilization data to model system workloads.
+</td>
+</tr>
+<tr>
+<td>
+Container Sizing - CPU Upsize
+</td>
+<td>
+Policy settings used to determine whether container/instance CPU allocation is  under-provisioned, and used to recommend resource allocation increases.
+</td>
+</tr>
+<tr>
+<td>
+Container Sizing - CPU Downsize
+</td>
+<td>
+Policy settings used to determine whether container/instance CPU allocation is  over-provisioned, and used to recommend resource allocation decreases.
+</td>
+</tr>
+<tr>
+<td>
+Container Sizing - CPU Allocation Ranges
+</td>
+<td>
+Criteria that are used to determine recommended CPU allocation changes.
+</td>
+</tr>
+<tr>
+<td>
+Container Sizing - Memory Upsize
+</td>
+<td>
+Policy settings used to determine whether container/instance memory allocation is  under-provisioned, and used to recommend resource allocation increases.
+</td>
+</tr>
+<tr>
+<td>
+Container Sizing - Memory Downsize
+</td>
+<td>
+Policy settings used to determine whether container/instancememory allocation is  over-provisioned, and used to recommend resource allocation decreases.
+</td>
+</tr>
+<tr>
+<td>
+Container Sizing - Memory Allocation Ranges
+</td>
+<td>
+Criteria that are used to determine recommended memory allocation changes.
+</td>
+</tr>
+<tr>
+<td>
+Container Technology and Output Mapping
+</td>
+<td>
+Policy settings that affect .
+</td>
+</tr>
+</tbody>
+</table>
+</Accordion>
+
+
+
+
+## Commonly Tuned Policy Settings
+
+Before onboarding your environments you can optionally meet with an account manager to review the your requirements and then select tune the policy settings to align with your requirements.
+The following settings are commonly tuned for container environments:
+
+
+<ul>
+  <li>Workload history--The number of days of data needed for different types recommendations.</li>
+  <li>CPU and Memory Utilization Limits--These policy settings define the up/down sizing and idle detection limits.</li>
+</ul>
+
+
+Descriptions of the policy settings are provided in the <a href="https://www.densify.com/docs-kubex/Content/Resources/PDFs/Kubex-Policy-Guide.pdf" target='_blank'>Policy Reference Guide</a>. 
+#### Video Resources
+<AccordionGroup>
+<Accordion title="Policy Defined Management">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1057601036?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1057601036?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Policy Defined Management</a>
+</Accordion>
+
+</AccordionGroup>

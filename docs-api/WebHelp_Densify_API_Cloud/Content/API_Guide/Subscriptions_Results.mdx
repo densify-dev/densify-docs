@@ -1,0 +1,35 @@
+---
+title: "Subscriptions: Results"
+---
+
+The `/subscriptions/<platformType>/<subscriptionRef>` resource is used to dynamically retrieve your latest personalized Densify subscription recommendations. This resource allows you to review your platform-specific subscription results on-demand. The same information is delivered to a third-party application for targeted distribution if the third-party application is defined in the subscription's webhook.
+
+To see how subscriptions are defined, refer to [Subscriptions](./Subscriptions).
+
+## Resource
+
+```
+/subscriptions/cloud/<subscriptionRef>
+```
+
+```
+/subscriptions/containers/<subscriptionRef>
+```
+
+```
+/subscriptions/<subscriptionRef>
+```
+
+<Note>
+If you use this resource without the `<platformType>` specified (i.e. without `cloud` or `containers` specified), the behavior is exactly the same as specifying the `cloud`-specific resource. This behavior enables backward compatibility with scripts using the Densify API prior to release 12.1.6, where the platform-specific indicator was not available.
+</Note>
+
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="Get Subscriptions Results" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results/getSubscriptionResults" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Get Subscriptions Results Default Plat" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results/getSubscriptionResultsDefaultPlatform" arrow/>
+</CardGroup>

@@ -1,0 +1,340 @@
+---
+title: "Navigating Densify"
+---
+
+## Login into Your Densify Instance
+
+Once you obtain your Densify instance details and credentials you can log into the user interface.
+
+1. Click on the provided URL.
+<Accordion title="Figure: Login Page">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000204_383x209.png)</Frame>
+</Accordion>
+2. You will be prompted to change your password. Follow the instructions provided. See [Resetting Your Own Password](./Managing_Densify_User_Accounts#Reset_Password).
+
+## Densify Console Landing Page
+
+See [Browser Requirements](./Browser_Requirements) for detailed browser requirements.
+
+When you first log into your Densify instance, you will see the landing page with the option to add connections via the Public Cloud Connections wizard. Use the wizard to collect your infrastructure configuration, workload data and load it into Densify for analysis.
+
+It may take up to 24 hours from the time you create the connection to data being collected, loaded and analyzed. If after 24 hours, there is still no data, or if your subscription or trial has expired, contact Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+
+<Accordion title="Figure: Densify Pre-Data Landing Page">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000000.png)</Frame>
+</Accordion>
+
+
+The pre-data landing page appears immediately after you login into your Densify instance for the first time.
+
+The following options are available on this page:
+
+* If you are creating a cloud connection, click the corresponding **Play Now** button to learn more about specific prerequisites for each of the public cloud options.
+* If you want to analyze your container infrastructure, you need to download and configure the data forwarder. Details and the required files are provided in GitHub. See [Container Data Collection Prerequisites](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Prerequisites).
+
+If your Densify instance has pre-configured connections, you may see the following, no-data landing page. Contact [Support@Densify.com](mailto:Support@Densify.com) to review the collected data and to proceed to the Densify Console.
+
+## Densify Console
+
+The Densify Console is available to all Densify SaaS users after bypassing the initial Densify landing page. A menu at the top of the console provides you with access to features and reports applicable to your Densify user role. The main report content page, filters, settings, and available toolbar items are dependent on the menu feature you select.
+
+The first page displayed after you log into the Densify Console is dependent on the type of data collected in your Densify instance:
+
+* Optimization Overview--The Optimization Overview Report is displayed if you have public cloud data collected, such as AWS, Azure or GCP infrastructure and workload data. See [Viewing the Optimization Overview Report](./Viewing_the_Optimization_Overview_Report) for further details of this report.
+* Kubernetes Container Optimization --The Kubernetes Container Optimization Report is displayed if you are collecting and analyzing container data. See [Optimizing Your Containers](./Optimizing_Your_Containers) for further details of this report.
+
+Only the options for which you are collecting and analyzing data are displayed in your Densify Console.
+
+<Accordion title="Figure: Densify Console for Public Cloud">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000135.png)</Frame>
+</Accordion>
+
+
+### Page Navigation
+
+Use the breadcrumbs in the upper left corner or click the Back button, in the top-right corner of the page, to return to the parent dashboard. Do not use the browser's Back button for navigation within Densify. You will be logged out of your session. See [Navigating Densify](#) for other features of the Densify user interface.
+
+<Accordion title="Figure: Using the Breadcrumbs or Back Button">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000253.png)</Frame>
+</Accordion>
+
+
+### Common UI Features
+
+The common features are described below. They appear only when applicable.
+
+The public cloud reports contain some features that are not available on the Private Cloud dashboards and reports.
+
+<Accordion title="Table: Common UI Features">
+<table>
+<col/>
+<col/>
+<thead  style={{textAlign: 'center', color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
+Feature
+</th>
+<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "60%" }}>
+Description
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Logo</p>
+</td>
+<td>
+<p>The logo image in the upper left corner takes you back to the default landing page. Typically this is the Optimization Overview page for your public cloud environments, but it depends on the type of data you are collecting.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Menu"></a>Menu</p>
+</td>
+<td>
+<p>Allows you to navigate to the various features of the <span class="mc-variable Document.Densify_Console variable">Densify Console</span>. The features are grouped into the following menu sections:</p>
+<ul>
+<li>PUBLIC CLOUD--contains public cloud <span class="mc-variable Document.Optimization_Opportunity variable">optimization opportunity</span> dashboards and access to the public cloud connection wizard;</li>
+<li>CONTAINERS--contains Kubernetes Container <span class="mc-variable Document.Optimization_Opportunity variable">optimization opportunity</span> reports;</li>
+<li>MY REPORTS--contains <span class="mc-variable Document.Densify variable">Densify</span> business intelligence reporting and analytics through the JasperReport Server.</li>
+</ul>
+<p>In general, menu dropdown items and tabs are displayed only if there is applicable data. For example, with only public cloud data, menu items  related to private cloud, demand planning, and automation are not displayed.</p>
+</td>
+</tr>
+<tr data-mc-conditions="CiRBA.CCOOnly">
+<td>
+<p><a name="GuestFilter"></a>Guest Filter</p>
+</td>
+<td>
+<p>Allows you to filter guests for reports based on a set of configurable criteria. For details, see <a class="MCXref xref" href="./Using_Guest_Filters">Using the Guest Filter</a>. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Tabs"></a>Tabs</p>
+</td>
+<td>
+<p>Within a topic page, tabs allow you to navigate to the different views or reports available.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Page"></a>Pagination<br/><Frame><img src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000059.png"/></Frame></p>
+</td>
+<td>
+<p>Allows you to navigate to a specific page, to the first/last page, or to the next/prev page of a multi-page table or report. The current page is highlighted.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Pop Up Descriptions</p>
+<p>
+<Frame><img class="img_1" src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000258.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Some columns in tabular reports provide a pop up description of the values shown in the column. Hover over this icon to see the description.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Back--Nav"></a>Go Back</p>
+<p>
+<Frame><img class="img_1" src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000023.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Takes you back to the parent page/dashboard. <span class="mc-variable General.ProductName variable">Densify</span>recommends using the breadcrumbs feature. See below.</p>
+<Note>Do not use your browser's Back button for navigation within <span class="mc-variable Document.Densify variable">Densify</span> as that will close your session.</Note>
+</td>
+</tr>
+<tr data-mc-conditions="CiRBA.CCOOnly">
+<td>
+<p>Breadcrumbs</p>
+</td>
+<td>
+<p>Breadcrumbs show you the path that lead to the current topic. Each item is a link that takes you back to the previous page/report.<a name="kanchor51"></a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Exportin"></a>Export to Excel</p>
+<p>
+<Frame><img class="img_1" src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_Reporting_Framework/03000053.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Exports tabular reports to Microsoft® Excel. This icon is only displayed if the export option is available for the displayed dashboard.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="help"></a>Online Help</p>
+<p>
+<Frame><img class="img_1" src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000047.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Connects to the <span class="mc-variable Document.Densify variable">Densify</span>  online help pages. The online help is located on the <span class="mc-variable General.ProductName variable">Densify</span> website.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="Pswd"></a>Profile &amp; Settings</p>
+<p>
+<Frame><img class="img_1" src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000031.png"/></Frame>
+</p>
+</td>
+<td>
+<p>This dialog box provides the following:</p>
+<ul>
+<li>Shows you the name of the currently logged in user.</li>
+<li>Shows you the <span class="mc-variable General.ProductName variable">Densify</span> version.<a name="kanchor52"></a></li>
+<li>Provides access to the license compliance reports. See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="./License_Compliance_Report">License Compliance Report</a></madcap:conditionaltext>.</li>
+<li>Allows you to reset your user password and log out of <span class="mc-variable Document.Densify variable">Densify</span>.</li>
+<li>If you are a member of the SaaS_User_Admin group, you can access the user management window to add, edit or delete <span class="mc-variable General.ProductName variable">Densify</span> SaaS user accounts. See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="./Managing_Densify_User_Accounts">Managing Densify User Accounts</a></madcap:conditionaltext> for details on managing users through the <span class="mc-variable Document.Densify_Console variable">Densify Console</span>.</li>
+</ul>
+</td>
+</tr>
+<tr data-mc-conditions="CiRBA.CCOOnly">
+<td>
+<p><a name="CloudConnect"></a>Public Cloud Connections</p>
+<p>
+<Frame><img class="img_1" src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000017.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Displays the <span class="mc-variable Document.publicCloudConnections variable">Public Cloud Connections</span> dialog box, to define connection information in order to collect public cloud data. For details, see <a class="MCXref xref" href="./Using_the_Public_Cloud_Connection_Wizard">Using the Public Cloud Connections Wizard</a>.</p>
+</td>
+</tr>
+<tr data-mc-conditions="CiRBA.CCOOnly">
+<td>
+<p><a name="FilterMenu"></a>Recommendation Filter Menu   </p>
+<p>
+<Frame><img class="img_1" src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000109.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Opens the <span class="mc-variable Document.FloatingFilterMenu variable">Recommendation Filter Menu</span> to narrow the results of the current report displayed. For details, see <a class="MCXref xref" href="./Using_the_Recommendation_Filter_Menu">Using the Recommendation Filter Menu</a>.</p>
+</td>
+</tr>
+</table>
+
+</Accordion>
+
+
+### Data Controls on Tabular Reports
+
+The controls, in the upper right corner of the page, provide options for managing and viewing your data more effectively.
+
+<Accordion title="Video: Data Management Features">
+<Frame>
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/542858527" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+</Frame>
+
+
+</Accordion>
+
+
+<Accordion title="Table: Dashboard Data Controls">
+<table>
+<col/>
+<col/>
+<thead  style={{textAlign: 'center', color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
+Icon
+</th>
+<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "80%" }}>
+Description
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p align="center" vertical-align="middle">
+<Frame><img src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000165.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Click this icon to open the filter table to create advanced filters to locate specific container or pods. This advanced filter is not available on all tabular reports.</p>
+<p>See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="./Using_Container_Filters">Using Container Filters</a></madcap:conditionaltext></p>
+</td>
+</tr>
+<tr>
+<td>
+<p align="center" vertical-align="middle">
+<br/>
+<Frame><img src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000062.png"/></Frame>
+</p>
+</td>
+<td>
+<p><a name="kanchor54"></a>Allows you to search for any type of data in the displayed columns. i.e. for a pod or container name. Typically, you will search for items in the first column, but you can search for a value in the other columns.</p>
+<p>Click the icon and enter your search  string. All matching rows are displayed in the table. You must enter a string of alpha-numeric characters. Wildcard characters are not supported.</p>
+<p>If the data is on multiple pages (i.e. 1 of 5), all pages are searched for the matching string.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p align="center" vertical-align="middle">
+<Frame><img src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000063.png"/></Frame>
+</p>
+</td>
+<td>
+<p><a name="kanchor55"></a>Click this icon to export  the content of the currently displayed table to .CSV format.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p align="center" vertical-align="middle">
+<br/>
+<Frame><img src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000064.png"/></Frame>
+</p>
+</td>
+<td>
+<p>Click this icon to configure the table to display only the columns of interest. The default settings are re-applied when you navigate away from this page.</p>
+<p>Columns required to identify the container cannot be excluded. i.e. Cluster, namespace.</p>
+<p><a name="kanchor56"></a>
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p align="center" vertical-align="middle">
+<Frame><img src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000065.png"/></Frame>
+</p>
+</td>
+<td>
+<p>If there are more than 50 rows in this table, multiple pages will be indicated here. Click the right/left arrows to  move to the next/previous page of a multi-page report. </p>
+<p>You will see a vertical scroll bar since all 50 rows cannot be displayed. </p>
+</td>
+</tr>
+</table>
+
+</Accordion>
+
+
+#### Sorting Tabular Data
+
+By default the table is sorted by cluster name. You can sort the content of this table using any of the available columns, by clicking the column header.
+
+1. Click the column header to sort the table, in ascending order, using the content of the selected table as the sort key.
+2. Click the column header again, to sort the table, in descending order, again using the content of the selected column as the sort key.
+3. Click the column header a third time to clear the sort and return to the default, sorted by Cluster.
+
+An up/down arrow is displayed in the column header to indicate the column is being used to sort the content of the table.
+
+<Accordion title="Figure: Details Tab - Sorting">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000192.png)</Frame>
+</Accordion>
+
+
+Sorting is not persistent between pages, tabs or login sessions.
+
+### Documentation and Training
+
+The Densify help system provides the complete set of Densify documentation in an online, searchable format:
+
+* [Densify Online Help](https://www.densify.com/docs/Content/Welcome)
+* [Online Help for the Densify API](https://www.densify.com/docs-api/Content/APIHome).
+* [Densify Training](https://www.densify.com/training/Content/Welcome_Training)

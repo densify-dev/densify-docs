@@ -1,0 +1,629 @@
+---
+title: "Transforming to Cloud"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+Densify's cloud migration analytics solution provides a fast, safe and cost-effective path to the cloud via Densify's Transform to Cloud capability. You can access the Transform to Cloud page from the Demand Planning menu.
+
+<Accordion title="Figure: Transform to Cloud">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000040.png)</Frame>
+</Accordion>
+
+
+The Transform to Cloud menu item is only displayed when Transform to Cloud analytics data is available to identify suggested cloud targets. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+
+Densify's Transform to Cloud feature enables you to:
+
+* Choose the best, most cost effective hosting environment for each application.
+* Meet each application workload’s compliance, regulatory, security, utilization and other technical requirements while ensuring the lowest possible cost.
+* Keep critical application workloads together.
+* See the costs associated with the various hosting options.
+* Optimize resource allocation and instance sizing decisions to ensure performance and service levels are met.
+
+To learn more, watch the video
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/315702552" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+
+## Filtering Options
+
+The filtering options at the top of the page allow you to filter the data for your transform scenario.
+
+Table: Filtering Options
+
+<table>
+<thead>
+<tr>
+<th>
+<p>Filter</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Global Filter</p>
+</td>
+<td>
+<p>You can select a preset filter or filter via the <span >Infrastructure Navigator</span> located at the top of the <span >Transform to Cloud</span> page. For more information, see <a class="MCXref xref" href="./Using_the_Global_Filter">Using the Global Filter</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Guest Filters</p>
+</td>
+<td>
+<p><a name="kanchor235"></a>Guest filters located at the top of the <span >Transformation Candidates</span> page are based on the system attributes enabled such as Application, Application Tier, Operational Environment and Security Zone. If you have more than four filters available, the <span >Set More Filters</span> link will display where you can view and select additional filters.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Group By</p>
+</td>
+<td>
+<p>You can group <span >Transformation Candidates</span> by these selectors:</p>
+<ul>
+<li>Cluster (default selection)</li>
+<li>All Together</li>
+<li>System Attributes (e.g. Location, Application Tier, Security Zone, etc.)</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Move Groups</p>
+</td>
+<td>
+<p>On the <span >Move Groups</span> tab, you can filter <span >Move Groups</span> by these options:</p>
+<ul>
+<li>All</li>
+<li>Older Than 30 Days</li>
+<li>Planned Date in Past</li>
+</ul>
+</td>
+</tr>
+</table>
+
+
+### Applying Guest Filters
+
+You can apply guest filters on the Transformation Candidates page.
+
+To define guest filters, from the Guest Filters strip at the top of the page:
+
+1. Select your specific filter drop-down and select the options to include.
+2. Hover over each criteria to view the tool tip and confirm your settings. "All" is used to indicate no filtering defined
+3. Click the Set More Filters link to define other filter criteria.
+4. Click the Apply button to update the page with the filters you have defined.
+
+You can click the Apply button at any time to refresh the filter settings. This includes adding/removing any new pick list values in the selection lists, that may have changed after recent data collection. It also and includes any updates the listed systems based on changes made to dynamic attributes.
+
+5. Click Reset to return all of the filter settings to their default, of select all.
+
+Clicking the Reset button also adds/removes any new pick list values in the selection lists and updates the listed systems based on changes made to dynamic attributes.
+
+<Accordion title="Figure: Setting and Applying Guest Filters">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000044.png)</Frame>
+</Accordion>
+
+
+Check the footnote at the bottom of the page to see details about the filtered list.
+
+## Transform to Cloud Options
+
+To view data in the Transformation Candidates tab, you will need to select three hosting venues to compare via the Transform to Cloud Options functionality.
+
+The Transform to Cloud Options floating pane enables you to select and compare three hosting venues with preferences you can adjust to obtain a custom hosting venue comparison.
+
+Transform to Cloud Options are accessible by clicking on the setting icon (<InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000030_21x21.png"/>) in the toolbar when you are on the Transform to Cloud page.
+
+<Accordion title="Figure: Transform to Cloud Options">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000028_400x400.png)</Frame>
+</Accordion>
+
+
+You can modify the sizing strategy from the Size Instance Based On dropdown to perform resizing based on CPU benchmarks, utilization history or existing allocations.
+
+Table: Size Instance Based On Options
+
+<table>
+<thead>
+<tr>
+<th>
+<p>Filter</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Scale Based on CPU Benchmarks</p>
+</td>
+<td>
+<p>The target system is selected based on the CPU benchmark value of the source system. </p>
+<p>For example if the source system is 2 CPU x 4 MB with a benchmark value of 60, then a target system that matches the benchmark value of 60 will be used regardless of whether it has the same hardware configuration. A system with 1 CPU x 4 MB, but with a faster CPU that has a benchmark value of 60 would be a viable transfer option.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Optimally Densify based on Utilization</p>
+</td>
+<td>
+<p>The target system is based on optimal system size, based on the  current utilization.</p>
+<p>For example, if the current system is a 4 CPU x 12 MB, but the deployed application is only using a fraction of these allocated resources, then the <span class="mc-variable Document.Company variable">Densify</span> determines the optimal allocation and selects the appropriate target system.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Maintain Existing Allocation</p>
+</td>
+<td>
+<p>The selected target system is the same size as the source.</p>
+</td>
+</tr>
+</table>
+
+
+For each hosting venue being compared, you can update costing preferences relating to compute, network and storage by performing the following:
+
+1. In the Transform to Cloud Options dialog box, click Preferences for the hosting venue you want to update.
+2. Select a preference from the dropdown for each setting you want to change (compute, network and storage).
+3. Click OK.
+<Accordion title="Figure: Transform to Cloud Preferences">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000029_410x380.png)</Frame>
+</Accordion>
+4. When finished, click Apply.
+
+The last field--Disqualify Venues where greater than \_% of systems cannot be moved--can be modified as desired (the default is set to 25%). If transformation candidates cannot be moved into target hosting venue and exceed the threshold defined:
+
+* The Cost Comparison - Average Guest Cost ($/Month) chart will display as "N/A".
+* The % Guests That Cannot Move chart will display bars with the exceeded threshold percentage (e.g. >25%).
+
+<Accordion title="Figure: Disqualified Venues">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000046_600x140.png)</Frame>
+</Accordion>
+
+
+## Transformation Candidates
+
+The Transformation Candidates tab is the default homepage when selecting Transform to Cloud (under Supply & Demand Planning) from the main menu. This page provides a detailed analysis against different public cloud hosting venues and provides the most optimal hosting venue for a set of workloads (i.e. transformation candidates).
+
+<Accordion title="Figure: Transformation Candidates">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000036.png)</Frame>
+</Accordion>
+
+
+The Transformation Candidates chart displays:
+
+* Group by (filter)--Transformation candidates eligible for cloud transformation grouped by filter defined in the Group by dropdown (default is set to group by cluster).
+* Suggested Hosting Venue--From a cost perspective, this is the recommended and most suitable hosting venue for the transformation candidates.
+* Monthly Cost--Estimated monthly cost associated with moving guests into the suggested hosting venue based on the total of all guests that can move.
+* Guests that can Move--The number of guests that can move to the suggested hosting venue.
+* Total Guests--The total number of guests within each environment. Click the hyperlinked number to view the Instance Details report for the selected hosting venue.
+* At Risk Guests--The number of guests currently identified as having a resource utilization risk based on operational policy settings.
+* Total--As the last row, net selected totals are provided for columns containing a numerical value (Monthly Cost, Guests That Can Move, Total Guests and At Risk Guests) and update to reflect total of row(s) selected.
+
+## Hosting Venue Comparison
+
+A cost comparison for hosting venues is available at the bottom of the Transform to Cloud page and in the drill down report accessible from the Total Guests column in the Transformation Candidates chart.
+
+<Accordion title="Figure: Hosting Venue Cost Comparison Charts">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000037_600x160.png)</Frame>
+</Accordion>
+
+
+The Cost Comparison - Average Guest Cost ($/Month) bar chart displays the cost per month for each hosting venue available for comparison based on the selected transformation candidates.
+
+The % of Guests That Cannot Move bar chart displays the percentage of guests that cannot move due to being at risk for each hosting venue. If all guests are able to move, this message will display: "All guests are able to move to these Hosting Venues."
+
+<Note>
+Hosting venue comparison charts display the hosting venues in the same order they were defined from the Transform to Cloud Options dialog box.
+</Note>
+
+
+
+Click the percentage value on the bar to open the Details for Guests That Cannot Move drill down report. From the Transformation Candidates drill down report, you can select one system and view reasons why the system cannot move in the Details for Guests That Cannot Move report.
+
+### Details for Guests That Cannot Move
+
+You can view a detailed report of why guests cannot move to a suggested hosting venue in the % Guests That Cannot Move bar chart (accessible from the Transformation Candidates tab and the [Transformation Candidates](#trans_cand_drill_down) report).
+
+At the top of this report, you can filter to view guests that cannot move to a specific hosting venue.
+
+<Accordion title="Figure: Filtering by Hosting Venue">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000069_400x50.png)</Frame>
+</Accordion>
+
+
+Click the percentage value on the bar or the hyperlink below it (e.g. 1 of 20 Cannot Move) to open the Details for Guests That Cannot Move drill down report.
+
+<Accordion title="Figure: Accessing Guests That Cannot Move Drill Down Report">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000067_400x160.png)</Frame>
+</Accordion>
+
+
+The Details for Guests That Cannot Move drill down report is comprised of these sections:
+
+* Summary--Provides the number of guests out of the total number of guests that cannot move to the suggested hosting venue. The percentage of guests unable to move is reflected in the donut chart.
+* Breakdown of Reasons--Donut chart represents a breakdown of reasons for guests that cannot move.
+* Reasons That Guests Cannot Move Chart--Tabular chart provides the system name and the corresponding reason a guest cannot move. Where applicable, click the hyperlinked reason to receive additional details about why a guest cannot move to a suggested hosting venue.
+
+<Accordion title="Figure: Guests That Cannot Move Drill Down Report">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000068.png)</Frame>
+</Accordion>
+
+
+#### Reasons That Guests Cannot Move
+
+Systems that cannot move to a particular hosting venue is due to one of the following reasons:
+
+* Hosting Venue is Not Fit for Purpose--System does not match the fit-for-purpose requirements of suggested hosting venue. Click hyperlink to see fit-for-purpose details.
+* No Suitable Catalog Instance Found--Click hyperlink to view why no suitable catalog instance was found.
+* Not included in the analysis scope--Systems have not been analyzed.
+
+<Accordion title="Figure: Reasons Guests That Cannot Move Pop Ups">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000070_700x300.png)</Frame>
+</Accordion>
+
+
+## Transformation Candidates Drill Down Report
+
+Click the hyperlinked number in the Total Guests column from the Transformation Candidates tab, to open the detailed drill down report for transformation candidates. This report contains:
+
+* [Transformation Candidates Drill Down](#drill_down_tc)
+* [Hosting Venue Cost Comparison](#hosting_venue_comparison)
+* [Resource Utilization Metrics](#resource_utilization_metrics)
+* [System Information](#system_details)
+
+The Transformation Candidates drill down table provides the following information:
+
+Table: Transformation Candidates Drill Down Report
+
+<table>
+<thead>
+<tr>
+<th>
+<p>Column</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>System</p>
+</td>
+<td>
+<p>The name of the system.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>At Risk</p>
+</td>
+<td>
+<p>Identifies if the system is at risk or not. Hover cursor over "Yes" (for at-risk systems) to view the risk reason.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Venue Name</p>
+</td>
+<td>
+<p>The name of the suggested hosting venue for group and an individual system.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Catalog Instance</p>
+</td>
+<td>
+<p>Catalog instance for group and individual system.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Storage Type</p>
+</td>
+<td>
+<p>Type of storage for group and individual system.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Monthly Cost ($)</p>
+</td>
+<td>
+<p>Expected monthly cost for group and individual system.</p>
+</td>
+</tr>
+</table>
+
+<Note>
+The global filter is not available for the Transformation Candidates drill down report.
+</Note>
+
+
+
+You can also view the Hosting Venue Comparison bar chart (same chart available from the bottom pane of the Transformation Candidates summary page) which provides a hosting venue comparison for the selected system or set of systems.
+
+### Resource Utilization Metrics
+
+Resource utilization metrics are displayed for each system from the Transformation Candidates drill down report by selecting a system and clicking the Resource Utilization Metrics tab.
+
+<Accordion title="Figure: Resource Utilization Metrics">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000034_750x400.png)</Frame>
+</Accordion>
+
+
+Similar to the Resource Utilization Metrics tab available from the Control Console, this tab shows two sets of charts: those generated for both the high (red) and the low (yellow) limits.
+
+The resource utilization metrics are displayed for both too much infrastructure and for too little infrastructure..
+
+Use the right/left arrows to move forward and back through the displayed charts.
+
+<Note>
+If the metrics are not available, then the corresponding chart is not displayed.
+</Note>
+
+
+
+### System Information
+
+The System Information report can be accessed by selecting a system or multiple systems on the Transformation Candidates page, and selecting the System Information tab. The System Information report provides system-level information including:
+
+<table>
+<tbody>
+<tr>
+<td>
+<ul>
+<li>Environment</li>
+<li>Cluster</li>
+<li>OS</li>
+<li>CPU Allocation (vCPU)</li>
+<li>Memory Allocation (MB)</li>
+<li>Disk Allocation (MB)</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>CPU Speed (MHz)</li>
+<li>IP Address</li>
+<li>Application Name</li>
+<li>Application Tier</li>
+<li>Business Unit</li>
+<li>Security Zone</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+## Move Groups
+
+Move groups are used to group your transformation candidates and process them for routing into the recommended hosting venues as identified in the Transformation Candidates tab.
+
+The Move Groups summary chart displays:
+
+* Move Group--The group of transformation candidates created from the Transformation Candidates page to move into the selected hosting venue.
+* Selected Hosting Venue--Selected hosting venuein which transformation candidates are planned to move.
+* Planned Move Date--The date in which transformation candidates are planned to move into the selected hosting venue.
+* Days Since Created--Number of days that have passed since the move group was created.
+* Monthly Cost ($)--Estimated total cost per month for moving guests into the cloud.
+* Total Guests--The total number of guests within the move group. Clicking the hyperlinked number opens the Transformation Candidates drill down report.
+
+<Accordion title="Figure: Move Groups">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000038_750x400.png)</Frame>
+</Accordion>
+
+
+## Creating Move Groups
+
+You can create move groups in two places:
+
+* From the Transformation Candidates tab (accessible from the Transform to Cloud menu item);
+* From the Transformation Candidates drill down report (accessible from the Total Guests column in the Transformation Candidates page). With this option, you can select one or more systems you want to include or not include in your move group (e.g. selecting systems that are not at risk).
+
+To create a move group for a set of transformation candidates:
+
+1. Select the transformation candidates (from the Transformation Candidates tab or drill down report) for which you want to move into the suggested hosting venue.
+2. Click the Create Move Group button.
+3. In the New Move Group dialog box, complete the following fields:
+
+* Move Group Name--Enter an appropriate name for your move group.
+* Hosting Venue--By default, this field is populated to the suggested hosting venue with the best price added. You have the option of selecting another hosting venue if desired.
+* Created on Date--By default, this field is populated with the current date (non-editable).
+* Planned Move Date--Select the date you want the systems to be moved into the hosting venue.
+* Requestor's Name--Enter the name of the person requesting the move group.
+* Requestor's Email--Enter the email of the person requesting the move group.
+* Comments--Add relevant comments associated with this move group.
+
+4. When finished, click Save.
+
+<Note>
+Fields marked with an asterisk are mandatory fields that must be completed in order to successfully create a move group.
+</Note>
+
+
+
+## Editing Move Groups
+
+To edit a move group:
+
+1. Navigate to Transform To Cloud > Move Groups.
+2. Select the Move Group you want to edit and click the Edit button.
+3. In the Edit Move Group dialog box, you can edit the following fields:
+
+* Move Group Name
+* Planned Move Date
+* Requestor's Name
+* Requestor's Email
+* Comments
+
+4. When finished, click Save.
+
+## Ungrouping Move Groups
+
+You can ungroup systems from a move group in two places:
+
+* From the Move Groups tab (accessible from the Transform to Cloud menu item);
+* From the Instance Details drill down report (accessible from the Total Guests column in the Move Groups tab). This option allows you to select specific systems to remove from the move group.
+
+To ungroup systems from a move group:
+
+1. Select the move group or individual system(s) you want to remove (from the Move Groups tab or drill down report).
+2. Click the Ungroup button.
+3. In the Confirm dialog box, click OK. Move groups or systems that you have ungrouped will be visible in the Transformation Candidates tab.
+
+## Move Group Reports
+
+Reports for move groups are provided to show the effect of moving workloads from their current state to a cloud provider catalog. These reports are located on the Move Groups page in the bottom pane.
+
+* Cost Breakdown (Estimated $/Month)--Displays the estimated total and component-level costs of the aggregated instances post-transformation. You can filter this report by catalog instance, data transfer or storage.
+* Resource Impact Report--Displays the "Before" and "After" view for the following resources: vCPUs, Memory (GB) and Storage (TB). The percentage of change (e.g. % more, % fewer or no change) is calculated for each resource type. The report title is dynamic and displays the sizing strategy selected from the Transform to Cloud Options dialog box under the Size Instances Based On: dropdown.
+<Accordion title="Figure: Resource Impact Report - Dynamic Title">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000035_600x270.png)</Frame>
+</Accordion>
+
+<Note>
+If systems do not have storage metrics, a footnote will display stating, "'x' of 'y' systems do not have storage data."
+</Note>
+
+* Instance Variability Impact--The bar chart displays the "Before" and "After" of the total number of unique catalog instances. The percentage of change (e.g. % more, % less, or no change) is calculated for the "Before" and "After" number of unique instances types.
+
+### Move Group Detail Reports
+
+The Move Group Details report is accessible by selecting a move group and then clicking the expand icon in the top right corner of the lower pane containing the move group reports. See the figure below
+
+The Move Group Details report contains two tabs:
+
+* Instance Cost Roll-Up--Users responsible for budgeting and purchasing can find cost data for systems in move groups that are scheduled to move to the cloud in this report. A summary of the selected hosting venue and planned move date is provided. The following is a breakdown of the Instance Cost Roll-Up chart:
+
+Table: Instance Cost Roll-Up Chart
+
+<table>
+<thead>
+<tr>
+<th>
+<p>Column</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Catalog Name</p>
+</td>
+<td>
+<p>The name of the catalog (e.g. c3.large-windows).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Storage Type</p>
+</td>
+<td>
+<p>Type of storage (e.g. General Purpose).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Data Transfer Type</p>
+</td>
+<td>
+<p>Type of data transfer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Number of Instances Required</p>
+</td>
+<td>
+<p>The number of instances required is determined based on individual sizing results of all systems in the move group.</p>
+<p>A large number of instances required for a particular instance type may warrant purchase of reserved instances for this type.</p>
+<p>Clicking the hyperlinked number opens a drill down report on implementation details by catalog name. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Storage Allocation (GB)</p>
+</td>
+<td>
+<p>Current storage allocation in GB.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Estimated Network Data Transfer (GB/Month)</p>
+</td>
+<td>
+<p>Current data transfer in GB per month.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Catalog Instance</p>
+</td>
+<td>
+<p>Estimated catalog instance cost per month.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Storage</p>
+</td>
+<td>
+<p>Estimated storage cost per month.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Data Transfer</p>
+</td>
+<td>
+<p>Estimated data transfer cost per month is calculated as a percentage of total network I/O (the ratio is set in the Transform to Cloud policy.  These settings are all configured for you by <span class="mc-variable General.ProductName variable">Densify</span>. Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="63301613130c11172327060d100a051a4d000c0e" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for details.)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Total</p>
+</td>
+<td>
+<p>Aggregate sum of catalog instance, storage and data transfer costs.</p>
+</td>
+</tr>
+</table>
+* Implementation Details--This report provides post-transformation configuration of systems and can be provided to an implementation team for assigning the correct instance types to cloud-bound systems. This chart provides the following implementation details:
+
+* System--Name of system.
+* Current Allocation Details--Current allocation details for CPU (vCPU), memory (GB) and storage (GB).
+* Transform Instance Details--Transform instance details for CPU (vCPU), memory (GB), storage type and network data transfer tier.
+<Note>
+Transform instance details are determined based on the transform to cloud sizing option selected and the Transform to Cloud policy defined by Densify. These settings are all configured for you by Densify. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+</Note>
+
+
+
+You can view implementation details for systems grouped by catalog from the Instance Cost Roll-Up report by clicking the hyperlinked number in the Number of Instances Required column.
+
+Move group reports can be exported to Excel by clicking the Export to Excel icon.
+
+<Accordion title="Figure: Move Group Details and Exporting to Excel">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000041_616x374.png)</Frame>
+</Accordion>
+
+
+## Instance Details Report
+
+If you click the hyperlinked number in the Total Guests column from the Move Groups tab, the detailed report for transformation candidates is displayed.
+
+See [Reviewing Specific Instance Details](./Understanding_the_Instance_Details_Report#Lower_Section).

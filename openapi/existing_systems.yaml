@@ -1,0 +1,281 @@
+openapi: 3.0.3
+info:
+  title: Densify API – Existing Systems
+  version: 1.0.0
+  description: |
+    Endpoints to retrieve host and guest systems that belong to a control environment.
+    This mirrors the Analysis Console's Discovered Systems Explorer list of analyzed systems.
+servers:
+  - url: https://api.example.com
+tags:
+  - name: Existing Systems
+    description: Host and guest systems that are part of a control environment
+paths:
+  /existing-systems:
+    get:
+      tags: [Existing Systems]
+      operationId: getExistingSystems
+      summary: Get Existing Systems collection
+      description: |
+        Returns an array of systems (HOST or GUEST) that exist in a control environment.
+        General "Common Operations" (e.g., paging helpers) and "Sort By" are not supported.
+        However, query filters shown below are supported.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/es_name'
+        - $ref: '#/components/parameters/es_name_like'
+        - $ref: '#/components/parameters/es_type'
+        - $ref: '#/components/parameters/es_platform'
+        - $ref: '#/components/parameters/es_platform_category'
+        - $ref: '#/components/parameters/es_control_environment'
+        - $ref: '#/components/parameters/es_infrastructure_group'
+        - $ref: '#/components/parameters/es_details'
+      responses:
+        '200':
+          description: Array of Existing Systems
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExistingSystem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /existing-systems/{id}:
+    get:
+      tags: [Existing Systems]
+      operationId: getExistingSystem
+      summary: Get an individual Existing System
+      description: Retrieve a single system by ID.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/es_id'
+        - $ref: '#/components/parameters/es_details'
+      responses:
+        '200':
+          description: Existing System
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExistingSystem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: System not found
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    es_id:
+      name: id
+      in: path
+      required: true
+      description: Unique system ID.
+      schema:
+        type: string
+    es_name:
+      name: name
+      in: query
+      required: false
+      description: Exact system name to match.
+      schema:
+        type: string
+    es_name_like:
+      name: name_like
+      in: query
+      required: false
+      description: Case-insensitive substring match for system name; '%' matches zero or more chars.
+      schema:
+        type: string
+    es_type:
+      name: type
+      in: query
+      required: false
+      description: Filter by system type.
+      schema:
+        type: string
+        enum: [HOST, GUEST]
+    es_platform:
+      name: platform
+      in: query
+      required: false
+      description: >
+        Filter by platform (interpreted via control environment), e.g., 'vmware'.
+      schema:
+        type: string
+    es_platform_category:
+      name: platform_category
+      in: query
+      required: false
+      description: Filter by platform category.
+      schema:
+        type: string
+        enum: ["External Cloud", "Internal Virtual"]
+    es_control_environment:
+      name: control_environment
+      in: query
+      required: false
+      description: Filter by control environment name.
+      schema:
+        type: string
+    es_infrastructure_group:
+      name: infrastructure_group
+      in: query
+      required: false
+      description: Filter by infrastructure group (cluster) name.
+      schema:
+        type: string
+    es_details:
+      name: details
+      in: query
+      required: false
+      description: When true, include additional detail fields (e.g., manufacturer, os, benchmarks).
+      schema:
+        type: boolean
+        default: false
+  schemas:
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+    ExistingSystem:
+      type: object
+      required: [id, name, href, type]
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        href:
+          type: string
+        type:
+          type: string
+          description: System type
+          enum: [HOST, GUEST]
+        platform_model:
+          type: string
+          description: Host model or instance type (when available).
+        total_physical_cpus:
+          type: string
+        cores_per_cpu:
+          type: string
+        memory:
+          type: string
+          description: Normalized total memory (MB).
+        total_logical_cpus:
+          type: string
+        threads_per_core:
+          type: string
+        cpu_speed:
+          type: string
+          description: Normalized CPU speed (MHz).
+        cpu_model:
+          type: string
+        entity_type:
+          type: string
+        entity_role_name:
+          type: string
+        parent:
+          type: string
+          description: Parent host name for GUEST; "N/A" for HOST.
+        children:
+          type: string
+          description: Number of child VMs for HOST; "N/A" for GUEST.
+        os:
+          type: string
+        os_version:
+          type: string
+        os_patch_level:
+          type: string
+        ip_address:
+          type: string
+        mac_address:
+          type: string
+        serial_number:
+          type: string
+        hostId:
+          type: string
+        control_environment:
+          $ref: '#/components/schemas/ControlEnvironmentRef'
+        infrastructure_group:
+          $ref: '#/components/schemas/InfrastructureGroupRef'
+        cpu_benchmarks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Benchmark'
+        I/O_benchmarks:
+          type: array
+          items:
+            $ref: '#/components/schemas/IOBenchmark'
+        size:
+          type: string
+          description: Hidden element used internally for size sorting.
+
+    ControlEnvironmentRef:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        platform_category:
+          type: string
+          enum: ["External Cloud", "Internal Virtual"]
+        href: { type: string }
+        icon: { type: string }
+
+    InfrastructureGroupRef:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        href: { type: string }
+
+    Benchmark:
+      type: object
+      properties:
+        name:
+          type: string
+          description: One of "CINT2000", "CINT2000 Rate", "CINT2006 Rate", "RPE2".
+        score_type:
+          type: string
+          description: One of "cint2000", "cint2000rate", "cint2006rate", "rpe2".
+        value:
+          type: number
+
+    IOBenchmark:
+      type: object
+      properties:
+        name:
+          type: string
+          description: One of "Maximum Disk Throughput (bytes/s)", "Maximum Network Throughput (bytes/s)".
+        score_type:
+          type: string
+          description: One of "disk", "net".
+        value:
+          type: number
+          description: -1 indicates no value specified.
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

@@ -1,0 +1,101 @@
+---
+title: "Exemplo de Uso do Carousel"
+description: "Como usar o componente Carousel para exibir múltiplas imagens"
+---
+
+import { Carousel } from './Carousel.mdx';
+
+# Exemplo de Uso do Carousel
+
+O componente `Carousel` permite exibir múltiplas imagens em um carrossel interativo. Cada imagem pode ter um caption, link (href) e texto alternativo.
+
+## Uso Básico
+
+### Carrossel com múltiplas imagens
+
+<Carousel 
+  images={[
+    {
+      src: "/images/exemplo1.jpg",
+      caption: "Primeira imagem do carrossel",
+      alt: "Descrição da primeira imagem"
+    },
+    {
+      src: "/images/exemplo2.jpg",
+      caption: "Segunda imagem com link",
+      href: "https://exemplo.com",
+      alt: "Descrição da segunda imagem"
+    },
+    {
+      src: "/images/exemplo3.jpg",
+      caption: "Terceira imagem",
+      alt: "Descrição da terceira imagem"
+    }
+  ]}
+/>
+
+### Carrossel com uma única imagem
+
+<Carousel 
+  images={[
+    {
+      src: "/images/single-image.jpg",
+      caption: "Imagem única no carrossel",
+      alt: "Descrição da imagem única"
+    }
+  ]}
+/>
+
+## Propriedades
+
+### `images` (obrigatório)
+Array de objetos contendo as informações das imagens:
+
+- `src` (string, obrigatório): URL da imagem
+- `caption` (string, opcional): Texto que aparece no Frame abaixo da imagem
+- `href` (string, opcional): Link para onde a imagem deve redirecionar quando clicada
+- `alt` (string, opcional): Texto alternativo para acessibilidade
+
+## Funcionalidades
+
+- **Navegação por botões**: Setas para navegar entre as imagens
+- **Indicadores**: Pontos clicáveis para ir diretamente para uma imagem específica
+- **Contador**: Mostra a posição atual (ex: "2 de 5")
+- **Responsivo**: Se adapta a diferentes tamanhos de tela
+- **Acessibilidade**: Inclui labels ARIA e suporte a navegação por teclado
+- **Frame automático**: Cada imagem é automaticamente envolvida em um componente `<Frame>`
+
+## Exemplo Completo
+
+```mdx
+import { Carousel } from './snippets/Carousel.mdx';
+
+<Carousel 
+  images={[
+    {
+      src: "/images/dashboard-overview.png",
+      caption: "Visão geral do dashboard principal",
+      href: "/docs/dashboard",
+      alt: "Screenshot do dashboard mostrando métricas principais"
+    },
+    {
+      src: "/images/analytics-view.png",
+      caption: "Página de analytics detalhada",
+      href: "/docs/analytics",
+      alt: "Screenshot da página de analytics com gráficos"
+    },
+    {
+      src: "/images/settings-panel.png",
+      caption: "Painel de configurações do usuário",
+      alt: "Screenshot do painel de configurações"
+    }
+  ]}
+/>
+```
+
+## Notas Importantes
+
+- As imagens são automaticamente envolvidas em tags `<Frame>` com o caption fornecido
+- Se apenas uma imagem for fornecida, os controles de navegação não aparecerão
+- Links (href) tornam a imagem clicável
+- O componente é totalmente responsivo e se adapta ao container pai

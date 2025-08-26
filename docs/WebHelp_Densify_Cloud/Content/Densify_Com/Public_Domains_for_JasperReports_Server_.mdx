@@ -1,0 +1,1659 @@
+---
+title: "Public Domains for JasperServer Reports"
+---
+
+The following definition list contains Densify public domains available for report creation in Densify Business Intelligence.
+
+Table: Densify Public Domains
+
+<table>
+<col/>
+<col/>
+<col/>
+<col/>
+<thead style={{textAlign: 'center' , color: 'white', backgroundColor: '#003660'}}>
+<tr>
+<th>
+<p>Domain</p>
+</th>
+<th>
+<p>ID</p>
+</th>
+<th>
+<p>Label</p>
+</th>
+<th>
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>env_name</p>
+</td>
+<td>
+<p>Environment Name</p>
+</td>
+<td>
+<p>The environment name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>env_id</p>
+</td>
+<td>
+<p>Environment ID</p>
+</td>
+<td>
+<p>The environment ID.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_name</p>
+</td>
+<td>
+<p>Cluster Name</p>
+</td>
+<td>
+<p>The cluster name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_id</p>
+</td>
+<td>
+<p>Cluster ID</p>
+</td>
+<td>
+<p>The cluster ID.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_state_description</p>
+</td>
+<td>
+<p>Cluster State</p>
+</td>
+<td>
+<p>The booking state or reason if the cluster does not allow bookings.</p>
+<p>Sample Value: "New VM Bookings have been Blocked by Operations", "Open for Bookings"</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>hypervisor_type</p>
+</td>
+<td>
+<p>Hypervisor Type</p>
+</td>
+<td>
+<p>Hypervisor type of the environment.</p>
+<p>Sample Value: VMWARE, IBM</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_allow_bookings</p>
+</td>
+<td>
+<p>Bookings Allowed in Cluster</p>
+</td>
+<td>
+<p>Indicates whether or not the cluster allow bookings.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_vm_booking_count</p>
+</td>
+<td>
+<p>Number of VM Bookings</p>
+</td>
+<td>
+<p>The number of VM bookings in the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_host_booking_count</p>
+</td>
+<td>
+<p>Number of Host Bookings</p>
+</td>
+<td>
+<p>Number of host bookings in the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_cei</p>
+</td>
+<td>
+<p>Cluster CEI</p>
+</td>
+<td>
+<p>The Compute Efficiency Index (CEI) provides a measurement of the cluster density, indicating how well you are leveraging the infrastructure available in the cluster. For more details on CEI, refer to the advance topic <a href="../Concepts/Compute_Efficiency_Index_CEI">Compute Efficiency Index (CEI) </a>(Help Topic ID 290060).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_control_policy</p>
+</td>
+<td>
+<p>Cluster Policy</p>
+</td>
+<td>
+<p>The name of the control policy instance for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_host_count</p>
+</td>
+<td>
+<p>Host Count</p>
+</td>
+<td>
+<p>The number of hosts in the  cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_required_host_count</p>
+</td>
+<td>
+<p>Number of Hosts Required</p>
+</td>
+<td>
+<p>The number of hosts required for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_required_ha_host_count</p>
+</td>
+<td>
+<p>Number of Hosts Required for HA</p>
+</td>
+<td>
+<p>The number of hosts required for HA for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_hosts_at_risk</p>
+</td>
+<td>
+<p>Number of Hosts at Risk</p>
+</td>
+<td>
+<p>The number of hosts in the cluster with Too Little Infrastructure (Red).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_hosts_optimal</p>
+</td>
+<td>
+<p>Number of Optimal Hosts</p>
+</td>
+<td>
+<p>The number of hosts in the cluster with Just Right Infrastructure (Green).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_hosts_with_surplus</p>
+</td>
+<td>
+<p>Number of Hosts with Surplus Capacity</p>
+</td>
+<td>
+<p>The number of hosts in the cluster with Too Much Infrastructure (Yellow).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_cpu_bump_down_rec_count</p>
+</td>
+<td>
+<p>CPU Bump Down Recommendations Count</p>
+</td>
+<td>
+<p>The number of vCPU bump-down recommendations to action for the cluster. This is an integer value of the sum of recommendation records for the cluster that is of the vCPU downsizing type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_cpu_bump_up_rec_count</p>
+</td>
+<td>
+<p>CPU Bump Up Recommendations Count</p>
+</td>
+<td>
+<p>The number of vCPU bump-up recommendations to action for the cluster. This is an integer value of the sum of recommendation records for the cluster that is of the vCPU upsizing type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_cpu_decrease</p>
+</td>
+<td>
+<p>CPU Allocation Decrease</p>
+</td>
+<td>
+<p>The number of eCPUs to decrease for the cluster.  This decimal entitlement CPU value is applicable only to IBM PowerVM systems.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_cpu_increase</p>
+</td>
+<td>
+<p>CPU Allocation Increase</p>
+</td>
+<td>
+<p>The number of vCPUs to increase for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_cpu_overcommit_pct</p>
+</td>
+<td>
+<p>CPU Overcommit (%)</p>
+</td>
+<td>
+<p>The CPU overcommit percentage for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_cpu_util_pct</p>
+</td>
+<td>
+<p>CPU Utilization (%)</p>
+</td>
+<td>
+<p>The percent of CPU utilization for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_total_cpu_count</p>
+</td>
+<td>
+<p>Total CPU Count</p>
+</td>
+<td>
+<p>The total number of CPU cores for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_total_cpu_speed_ghz</p>
+</td>
+<td>
+<p>Total CPU (Ghz)</p>
+</td>
+<td>
+<p>The total amount of CPU (in GHz) for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_ecpu_bump_down_rec_count</p>
+</td>
+<td>
+<p>eCPU Bump Down Recommendations Count</p>
+</td>
+<td>
+<p>The number of eCPU bump-down recommendations for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_ecpu_bump_up_rec_count</p>
+</td>
+<td>
+<p>eCPU Bump Up Recommendations Count</p>
+</td>
+<td>
+<p>The number of eCPU bump-up recommendations for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_ecpu_decrease</p>
+</td>
+<td>
+<p>eCPU Allocation Decrease</p>
+</td>
+<td>
+<p>The amount of core entitlements (eCPUs) to decrease for the cluster.  The core entitlement value is applicable only to IBM PowerVM systems.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_ecpu_increase</p>
+</td>
+<td>
+<p>eCPU Allocation Increase</p>
+</td>
+<td>
+<p>The amount of core entitlements (eCPUs) to increase for the cluster.  The core entitlement value is applicable only to IBM PowerVM systems.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_mem_bump_down_rec_count</p>
+</td>
+<td>
+<p>Mem Bump Down Recommendations Count</p>
+</td>
+<td>
+<p>The number of memory bump-down recommendations to action for the cluster. This is the sum of recommendation records for the cluster that is of the memory downsizing type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_mem_bump_up_rec_count</p>
+</td>
+<td>
+<p>Mem Bump Up Recommendations Count</p>
+</td>
+<td>
+<p>The number of memory bump-up recommendations to action for the cluster. This is the sum of recommendation records for the cluster that is of the memory upsizing type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_mem_decrease_mb</p>
+</td>
+<td>
+<p>Mem Allocation Decrease (MB)</p>
+</td>
+<td>
+<p>The amount of memory to decrease for the cluster (MB).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_mem_increase_mb</p>
+</td>
+<td>
+<p>Mem Allocation Increase (MB)</p>
+</td>
+<td>
+<p>The amount of memory to increase for the cluster (MB).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_mem_overcommit_pct</p>
+</td>
+<td>
+<p>Mem Overcommit (%)</p>
+</td>
+<td>
+<p>The percent of memory overcommit for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_mem_util_pct</p>
+</td>
+<td>
+<p>Mem Utilization (%)</p>
+</td>
+<td>
+<p>The percent of memory utilization for the cluster (GB).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_total_mem_gb</p>
+</td>
+<td>
+<p>Total Mem (GB)</p>
+</td>
+<td>
+<p>The total memory for the cluster (GB).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_ds_total_capacity_gb</p>
+</td>
+<td>
+<p>Datastore Total Capacity (GB)</p>
+</td>
+<td>
+<p>The total capacity of the datastores in the cluster (GB).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_ds_total_used_gb</p>
+</td>
+<td>
+<p>Datastore Used Space (GB)</p>
+</td>
+<td>
+<p>The total used space for the datastores in the cluster (GB).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_ds_used_percentage</p>
+</td>
+<td>
+<p>Datastore Used Space (%)</p>
+</td>
+<td>
+<p>The total used space as a percentage of the total capacity for the datastores in the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_vm_count</p>
+</td>
+<td>
+<p>VM Count</p>
+</td>
+<td>
+<p>The number of guests (VMs) in the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_undersized_guests</p>
+</td>
+<td>
+<p>Undersized Guest Count</p>
+</td>
+<td>
+<p>The number of guests (VMs) in the cluster with Too Little Infrastructure (Red).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_oversized_guests</p>
+</td>
+<td>
+<p>Oversized Guest Count</p>
+</td>
+<td>
+<p>The number of guests (VMs) in the cluster with Too Much Infrastructure (Yellow).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_rightsized_guests</p>
+</td>
+<td>
+<p>Rightsized Guest Count</p>
+</td>
+<td>
+<p>The number of guests (VMs) in the cluster with Just Right Infrastructure (Green).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_rebalance_rec_count</p>
+</td>
+<td>
+<p>Rebalance Recommendations Count</p>
+</td>
+<td>
+<p>The number of rebalancing recommendations to action for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>sample_date</p>
+</td>
+<td>
+<p>Sample Date</p>
+</td>
+<td>
+<p>This is the date, on which the reporting database was populated.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>latest_console_date</p>
+</td>
+<td>
+<p>Last Console Refresh Date</p>
+</td>
+<td>
+<p>The date when the environment was last refreshed, which is the last date that Densify analysis ran on the latest collected data.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_error_count</p>
+</td>
+<td>
+<p>Error Count</p>
+</td>
+<td>
+<p>The number of errors reported in the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>ig_warning_count</p>
+</td>
+<td>
+<p>Warning Count</p>
+</td>
+<td>
+<p>The number of warnings reported in the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>is_ig_empty</p>
+</td>
+<td>
+<p>Is Cluster Empty</p>
+</td>
+<td>
+<p>This flag indicates whether or not the cluster is empty (i.e. no hosts and VMs).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>rdb_currently_populating</p>
+</td>
+<td>
+<p>Is Data Currently Populating</p>
+</td>
+<td>
+<p>This flag indicates whether or not RDB data population is currently running.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>rdb_out_of_date</p>
+</td>
+<td>
+<p>Is Data Out of Date</p>
+</td>
+<td>
+<p>This flag indicates whether or not RDB data is out-of-date.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster_Info</p>
+</td>
+<td>
+<p>included_in_last_rdb_refresh</p>
+</td>
+<td>
+<p>Is Data included in last data refresh</p>
+</td>
+<td>
+<p>A flag which indicates whether or not the current data was updated with the last RDB populate. For example, if the environment was deleted, then this flag would be 0.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_name</p>
+</td>
+<td>
+<p>Environment Name</p>
+</td>
+<td>
+<p>The environment name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_id</p>
+</td>
+<td>
+<p>Environment ID</p>
+</td>
+<td>
+<p>The environment ID.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_status</p>
+</td>
+<td>
+<p>Environment Status</p>
+</td>
+<td>
+<p>The status of the last environment refresh, which is the status of the last Densify analysis on the latest collected data.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_model_name</p>
+</td>
+<td>
+<p>Environment Model Name</p>
+</td>
+<td>
+<p>The name of the analysis model (e.g. "Cirba Control for VMware").</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_cei</p>
+</td>
+<td>
+<p>Environment CEI</p>
+</td>
+<td>
+<p>The Compute Efficiency Index (CEI) provides a measurement of the cluster density, indicating how well you are leveraging the infrastructure available in the cluster. For more details on CEI, refer to the advance topic <a href="../Concepts/Compute_Efficiency_Index_CEI">Compute Efficiency Index (CEI) </a>(Help Topic ID 290060).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>action_automation_enabled</p>
+</td>
+<td>
+<p>Action Automation Enabled</p>
+</td>
+<td>
+<p>A flag that indicates whether or not action automation is enabled for the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>ig_label</p>
+</td>
+<td>
+<p>Cluster Label</p>
+</td>
+<td>
+<p>The group label of the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>hypervisor_type</p>
+</td>
+<td>
+<p>Hypervisor Type</p>
+</td>
+<td>
+<p>The Hypervisor type of the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_vm_booking_count</p>
+</td>
+<td>
+<p>Number of VM Bookings</p>
+</td>
+<td>
+<p>The number of VM bookings in the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_host_booking_count</p>
+</td>
+<td>
+<p>Number of Host Bookings</p>
+</td>
+<td>
+<p>The number of host bookings in the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ig_count</p>
+</td>
+<td>
+<p>Cluster Count</p>
+</td>
+<td>
+<p>The number of clusters in the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_host_count</p>
+</td>
+<td>
+<p>Host Count</p>
+</td>
+<td>
+<p>The number of hosts in the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_num_required_hosts</p>
+</td>
+<td>
+<p>Number of Hosts Required</p>
+</td>
+<td>
+<p>The number of hosts required for the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_num_required_hosts_ha</p>
+</td>
+<td>
+<p>Number of Hosts Required for HA</p>
+</td>
+<td>
+<p>The number of hosts required for HA for the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_hosts_at_risk</p>
+</td>
+<td>
+<p>Number of Hosts at Risk</p>
+</td>
+<td>
+<p>The number of hosts in the environment with Too Little Infrastructure (Red).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_hosts_optimal</p>
+</td>
+<td>
+<p>Number of Optimal Hosts</p>
+</td>
+<td>
+<p>The number of guests in the environment with Just Right Infrastructure (Green).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_hosts_with_surplus</p>
+</td>
+<td>
+<p>Number of Hosts with Surplus Capacity</p>
+</td>
+<td>
+<p>The number of guests in the environment with Too Much Infrastructure (Yellow).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_cpu_bump_down_rec_count</p>
+</td>
+<td>
+<p>CPU Bump Down Recommendations Count</p>
+</td>
+<td>
+<p>The number of vCPU bump-down recommendations to action for the environment. This is the sum of recommendation records for the environment that is of the vCPU downsizing type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_cpu_bump_up_rec_count</p>
+</td>
+<td>
+<p>CPU Bump Up Recommendations Count</p>
+</td>
+<td>
+<p>The number of eCPU bump-up recommendations to action for the environment. This is the sum of recommendation records for the environment that is of the vCPU upsizing type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_cpu_decrease</p>
+</td>
+<td>
+<p>CPU Allocatin Decrease</p>
+</td>
+<td>
+<p>The number of vCPUs to decrease for the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_cpu_increase</p>
+</td>
+<td>
+<p>CPU Allocation Increase</p>
+</td>
+<td>
+<p>The number of eCPUs to increase for the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_total_cpu_count</p>
+</td>
+<td>
+<p>Total CPU Count</p>
+</td>
+<td>
+<p>The total number of CPU cores for the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_total_cpu_speed_ghz</p>
+</td>
+<td>
+<p>Total CPU (Ghz)</p>
+</td>
+<td>
+<p>The total amount of CPU in GHz for the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ecpu_bump_down_rec_count</p>
+</td>
+<td>
+<p>eCPU Bump Down Recommendations Count</p>
+</td>
+<td>
+<p>The number of eCPU bump-down recommendations to action for the environment. This is the sum of recommendation records for the environment that is of the eCPU downsizing type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ecpu_bump_up_rec_count</p>
+</td>
+<td>
+<p>eCPU Bump Up Recommendations Count</p>
+</td>
+<td>
+<p>The number of eCPU bump-up recommendations to action for the environment. This is the sum of recommendation records for the environment that is of the eCPU upsizing type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ecpu_decrease</p>
+</td>
+<td>
+<p>eCPU Allocation Decrease</p>
+</td>
+<td>
+<p>The number of eCPUs to decrease for the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ecpu_increase</p>
+</td>
+<td>
+<p>eCPU Allocation Increase</p>
+</td>
+<td>
+<p>The number of eCPUs to increase for the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_mem_bump_down_rec_count</p>
+</td>
+<td>
+<p>Mem Bump Down Recommendations Count</p>
+</td>
+<td>
+<p>The number of memory bump-down recommendations to action for the environment. This is the sum of recommendation records for the environment that is of the memory downsizing type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_mem_bump_up_rec_count</p>
+</td>
+<td>
+<p>Mem Bump Up Recommendations Count</p>
+</td>
+<td>
+<p>The number of memory bump-up recommendations to action for the environment. This is the sum of recommendation records for the environment that is of the memory upsizing type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_mem_decrease_mb</p>
+</td>
+<td>
+<p>Mem Allocation Decrease (MB)</p>
+</td>
+<td>
+<p>The amount of memory to decrease for the environment (MB).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_mem_increase_mb</p>
+</td>
+<td>
+<p>Mem Allocation Increase (MB)</p>
+</td>
+<td>
+<p>The amount of memory to increase for the environment (MB).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_total_mem_gb</p>
+</td>
+<td>
+<p>Total Mem (GB)</p>
+</td>
+<td>
+<p>The total memory for the environment (GB).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ig_avg_cpu_overcommit_pct</p>
+</td>
+<td>
+<p>Average CPU Overcommit (%)</p>
+</td>
+<td>
+<p>The average percentage of CPU overcommit for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ig_avg_cpu_util_pct</p>
+</td>
+<td>
+<p>Average CPU Utilization (%)</p>
+</td>
+<td>
+<p>The average percent of CPU utilization for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ig_avg_mem_overcommit_pct</p>
+</td>
+<td>
+<p>Average Memory Overcommit (%)</p>
+</td>
+<td>
+<p>The average percent of memory overcommit for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ig_avg_mem_util_pct</p>
+</td>
+<td>
+<p>Average Memory Utilization (%)</p>
+</td>
+<td>
+<p>The average percent of memory utilization for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ig_max_cpu_overcommit_pct</p>
+</td>
+<td>
+<p>Maximum CPU Overcommit (%)</p>
+</td>
+<td>
+<p>The maximum percent of CPU overcommit for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ig_max_cpu_util_pct</p>
+</td>
+<td>
+<p>Maximum CPU Utilization (%)</p>
+</td>
+<td>
+<p>The maximum percent of CPU utilization for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ig_max_mem_overcommit_pct</p>
+</td>
+<td>
+<p>Maximum Memory Overcommit (%)</p>
+</td>
+<td>
+<p>The maximum percent of memory overcommit for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ig_max_mem_util_pct</p>
+</td>
+<td>
+<p>Maximum Memory Utilization (%)</p>
+</td>
+<td>
+<p>The maximum percent of memory utilization for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ig_min_cpu_overcommit_pct</p>
+</td>
+<td>
+<p>Minimum CPU Overcommit (%)</p>
+</td>
+<td>
+<p>The minimum percent of CPU overcommit for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ig_min_cpu_util_pct</p>
+</td>
+<td>
+<p>Minimum CPU Utilization (%)</p>
+</td>
+<td>
+<p>The minimum percent of CPU utilization for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ig_min_mem_overcommit_pct</p>
+</td>
+<td>
+<p>Minimum Memory Overcommit (%)</p>
+</td>
+<td>
+<p>The minimum percent of memory overcommit for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ig_min_mem_util_pct</p>
+</td>
+<td>
+<p>Minimum Memory Utilization (%)</p>
+</td>
+<td>
+<p>The minimum percent of memory utilization for the cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_datastore_count</p>
+</td>
+<td>
+<p>Datastore Count</p>
+</td>
+<td>
+<p>The number of datastores in the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ds_total_capacity_gb</p>
+</td>
+<td>
+<p>Datastore Total Capacity (GB)</p>
+</td>
+<td>
+<p>The total capacity of the datastores in the environment (GB).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ds_total_used_gb</p>
+</td>
+<td>
+<p>Datastore Used Space (GB)</p>
+</td>
+<td>
+<p>The total space used for the datastores in the environment (GB).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_ds_used_percentage</p>
+</td>
+<td>
+<p>Datastore Used Space (%)</p>
+</td>
+<td>
+<p>The total used space as a percentage of the total capacity for the datastores in the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_vm_count</p>
+</td>
+<td>
+<p>VM Count</p>
+</td>
+<td>
+<p>The number of guests in the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_undersized_guests</p>
+</td>
+<td>
+<p>Undersized Guest Count</p>
+</td>
+<td>
+<p>The number of guests in the environment with Too Little Infrastructure (Red).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_oversized_guests</p>
+</td>
+<td>
+<p>Oversized Guest Count</p>
+</td>
+<td>
+<p>The number of guests in the environment with Too Much Infrastructure (Yellow).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_rightsized_guests</p>
+</td>
+<td>
+<p>Rightsized Guest Count</p>
+</td>
+<td>
+<p>The number of guests in the environment with Just Right Infrastructure (Green).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_rebalance_rec_count</p>
+</td>
+<td>
+<p>Rebalance Recommendations Count</p>
+</td>
+<td>
+<p>The number of rebalancing recommendations to action for the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>sample_date</p>
+</td>
+<td>
+<p>Sample Date</p>
+</td>
+<td>
+<p>The date when the reporting database was populated.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>latest_console_date</p>
+</td>
+<td>
+<p>Last Console Refresh Date</p>
+</td>
+<td>
+<p>The date when the environment was last refreshed, which is the last date that Densify analysis ran on the latest collected data.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_error_count</p>
+</td>
+<td>
+<p>Error Count</p>
+</td>
+<td>
+<p>The number of errors reported in the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_warning_count</p>
+</td>
+<td>
+<p>Warning Count</p>
+</td>
+<td>
+<p>The number of warnings reported in the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>rdb_currently_populating</p>
+</td>
+<td>
+<p>Is Data Currently Populating</p>
+</td>
+<td>
+<p>This flag indicates whether or not RDB data population is currently running.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>rdb_out_of_date</p>
+</td>
+<td>
+<p>Is Data Out of Date</p>
+</td>
+<td>
+<p>This flag indicates whether or not RDB data is out-of-date. "1" means that the data is out-of-date. "0" means the data is not out-of-date.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>included_in_last_rdb_refresh</p>
+</td>
+<td>
+<p>Is Data included in last data refresh</p>
+</td>
+<td>
+<p>A flag which indicates  whether or not data from the last environment refresh was included in RDB.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>timeline_tag</p>
+</td>
+<td>
+<p>Timeline Info</p>
+</td>
+<td>
+<p>The timeline tag of the environment (0=today, 7=timeline1,   30=timeline2, 60=timeline3, 90=timeline4).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>created_by</p>
+</td>
+<td>
+<p>Console Created By</p>
+</td>
+<td>
+<p>The name of the user that created the environment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>env_creation_date</p>
+</td>
+<td>
+<p>Console Creation Date</p>
+</td>
+<td>
+<p>The date that the environment was created.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment_Info</p>
+</td>
+<td>
+<p>enabled_timelines</p>
+</td>
+<td>
+<p>Enabled Timeframes</p>
+</td>
+<td>
+<p>The timelines enabled for the environment (e.g. "TO,90D,30D,60D,7D").</p>
+</td>
+</tr>
+</tbody>
+</table>
+

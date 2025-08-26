@@ -1,0 +1,35 @@
+export const ContentWrapper = ({ src, href, children }) => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+      <div className="md:col-span-1 flex justify-center">
+        <div className="overflow-hidden">
+          {href ? (
+            <a
+              href={href}
+              className="inline-block no-underline border-b-0"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={src}
+                alt=""
+                className="max-w-full h-auto"
+              />
+            </a>
+          ) : (
+            <img
+              src={src}
+              alt=""
+              className="max-w-full h-auto"
+            />
+          )}
+        </div>
+      </div>
+
+      <div className="md:col-span-2">
+        {children}
+      </div>
+    </div>
+  );
+};
+

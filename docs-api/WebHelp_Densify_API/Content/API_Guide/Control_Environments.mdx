@@ -1,0 +1,27 @@
+---
+title: "Overview"
+---
+
+## Description
+
+A Control Environment represents a collection of Infrastructure Groups, which are hosting venues to route workloads. The term Control Environment refers to all three environment types, for the purpose of this guide, of either full control hosting venues, non-control hosting venues or guest-level hosting venues.
+
+With this API, the details of Control Environments can be obtained so that Workloads can be routed appropriately. The API provides stats at each defined timeframe of the timeline.
+
+### Hosting Venues
+
+This API supports all environments, of either full control hosting venues, non-control hosting venues or guest-level hosting venues. For details on these types of venues, see Hosting Venues (Help Topic ID 290200).
+
+With respect to this API, the difference between these venues is as follows:
+
+* Supported Operations--all operations are supported for all three
+* Resource Elements--only elements that are applicable to the environment is returned in the response. Specifically:
+
+* for non-control and guest-level environments, elements `cei`, `total_guests`, `total_hosts`, `required_hosts`, `outbound_guest_bookings`, `inbound_host_bookings` and `outbound_host_bookings` are not returned
+* for non-control environments, element `last_refreshed_time` is not returned
+
+## Resource
+
+```json
+/control-environments
+```

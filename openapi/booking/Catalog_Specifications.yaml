@@ -1,0 +1,353 @@
+openapi: 3.1.0
+info:
+  title: Densify Catalog Specifications API
+  description: |
+    API endpoints for Catalog Specifications and Catalog Specification Groups.
+    Generated from Densify documentation: "Catalog Specifications".
+  version: "1.0.0"
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: api.densify.com
+        description: API host
+
+paths:
+  /catalog-specs:
+    get:
+      summary: Get Catalog Specification collection
+      description: Returns a collection of catalog specifications (id, name, href).
+      responses:
+        "200":
+          description: Catalog Specification Collection
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CatalogSpecSummary"
+              examples:
+                sample:
+                  value:
+                    - id: "53a234b0-90d2-44ee-ab54-bc06934b2c27"
+                      name: "lin-small-2gb"
+                      href: "/catalog-specs/53a234b0-90d2-44ee-ab54-bc06934b2c27"
+
+  /catalog-specs/{id}:
+    get:
+      summary: Get individual Catalog Specification
+      description: Retrieve a single catalog specification by id.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Catalog Specification
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CatalogSpec"
+              examples:
+                example:
+                  value:
+                    id: "53a234b0-90d2-44ee-ab54-bc06934b2c27"
+                    name: "lin-small-2gb"
+                    type: "GUEST"
+                    cpus: 1
+                    os: "Linux"
+                    manufacturer: "Bookings Catalog"
+                    disks:
+                      - name: "SYSTEM"
+                        attributes: []
+                        provisioned_space: 81920
+                        used_space: 20480
+                    attributes:
+                      - id: "attr_IPAddressesAssigned"
+                        values: ["1"]
+                    href: "/catalog-specs/53a234b0-90d2-44ee-ab54-bc06934b2c27"
+                    cpu_entitlement: 1
+                    memory: 2048
+                    provisioned_space: 81920
+                    used_space: 20480
+                    workload_profile: "Medium_Utilization"
+                    platform_model: "Small 2GB"
+                    cpu_model: "Intel Xeon E5-2670"
+                    cpu_speed: 2600
+                    total_physical_cpus: 1
+                    cores_per_cpu: 1
+                    threads_per_core: 1
+                    cpu_benchmarks:
+                      - name: "CINT2006 Rate"
+                        value: 39.5
+                        score_type: "cint2006rate"
+                    I/O_benchmarks:
+                      - name: "Maximum Disk Throughput (bytes/s)"
+                        value: -1
+                        score_type: "disk"
+                      - name: "Maximum Network Throughput (bytes/s)"
+                        value: -1
+                        score_type: "net"
+
+  /catalog-spec-groups:
+    get:
+      summary: Get Catalog Specification groups
+      description: Returns the list of catalog specification groups (e.g. os, manufacturer).
+      responses:
+        "200":
+          description: Group collection
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GroupSummary"
+              examples:
+                sample:
+                  value:
+                    - id: "os"
+                      name: "os"
+                      href: "/catalog-spec-groups/os"
+                    - id: "manufacturer"
+                      name: "manufacturer"
+                      href: "/catalog-spec-groups/manufacturer"
+
+  /catalog-spec-groups/{group}:
+    get:
+      summary: Get collection for a given group (os or manufacturer)
+      description: |
+        Returns the list of group values (for example all OS names or manufacturers).
+        Query parameter `type` may be used (e.g. ?type=GUEST or ?type=HOST) when supported.
+      parameters:
+        - name: group
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [os, manufacturer]
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [GUEST, HOST]
+      responses:
+        "200":
+          description: Group items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GroupItem"
+              examples:
+                osSample:
+                  value:
+                    - id: "AIX"
+                      name: "AIX"
+                      group: "os"
+                      type: "GUEST"
+                      href: "/catalog-spec-groups/os/AIX"
+                    - id: "Linux"
+                      name: "Linux"
+                      group: "os"
+                      type: "GUEST"
+                      href: "/catalog-spec-groups/os/Linux"
+
+  /catalog-spec-groups/{group}/{id}:
+    get:
+      summary: Get individual group item
+      description: Returns a group resource (id, name, group, href, systems[]).
+      parameters:
+        - name: group
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [os, manufacturer]
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Individual group resource
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupDetail"
+              examples:
+                manufacturerExample:
+                  value:
+                    id: "Dell"
+                    name: "Dell"
+                    group: "manufacturer"
+                    href: "/catalog-spec-groups/manufacturer/Dell"
+                    systems:
+                      - id: "6f08aff2-7561-42ea-9488-c5e32ddec005"
+                        name: "bkl-db-fin1"
+                        href: "/catalog-specs/6f08aff2-7561-42ea-9488-c5e32ddec005"
+
+components:
+  schemas:
+    CatalogSpecSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        href:
+          type: string
+      required: [id, name, href]
+
+    CatalogSpec:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum: ["GUEST", "HOST"]
+        cpus:
+          type: integer
+        os:
+          type: string
+        manufacturer:
+          type: string
+        disks:
+          type: array
+          items:
+            $ref: "#/components/schemas/Disk"
+        attributes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Attribute"
+        href:
+          type: string
+        cpu_entitlement:
+          type: number
+        memory:
+          type: integer
+        provisioned_space:
+          type: integer
+          description: Provisioned space in MB
+        used_space:
+          type: integer
+          description: Used space in MB
+        workload_profile:
+          type: string
+        platform_model:
+          type: string
+        cpu_model:
+          type: string
+        cpu_speed:
+          type: number
+        total_physical_cpus:
+          type: integer
+        cores_per_cpu:
+          type: integer
+        threads_per_core:
+          type: integer
+        cpu_benchmarks:
+          type: array
+          items:
+            $ref: "#/components/schemas/Benchmark"
+        I/O_benchmarks:
+          type: array
+          items:
+            $ref: "#/components/schemas/Benchmark"
+      required: [id, name, href]
+
+    Disk:
+      type: object
+      properties:
+        name:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Attribute"
+        provisioned_space:
+          type: integer
+          description: provisioned space in MB
+        used_space:
+          type: integer
+          description: used space in MB
+
+    Attribute:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        value:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+
+    Benchmark:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: number
+        score_type:
+          type: string
+          description: e.g. "cint2006rate", "disk", "net"
+
+    GroupSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        href:
+          type: string
+
+    GroupItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        group:
+          type: string
+        type:
+          type: string
+        href:
+          type: string
+
+    GroupDetail:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        group:
+          type: string
+        href:
+          type: string
+        systems:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              href:
+                type: string

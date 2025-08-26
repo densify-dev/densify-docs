@@ -1,0 +1,552 @@
+---
+title: "Using the Public Cloud Connections Wizard"
+---
+
+The Public Cloud Connections wizard guides you through the steps to create and schedule daily data collection from your public cloud instances. Collected configuration and workload data is then analyzed and used to recommend sizing and placement optimization opportunities.
+
+The Public Cloud Connections wizard is accessible from the Densify Console's landing page or from the Public Cloud > dropdown menu.
+
+<Accordion title="Figure: Accessing the Cloud Connections Wizard">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000236_282x182.png)</Frame>
+</Accordion>
+
+
+The following cloud platforms are supported through the Public Cloud Connections wizard:
+
+* [Amazon Web Services](#AWS_Connection)
+* [Azure Cloud](#Azure_Connection)
+* [Google Cloud Platform](#GCP_Connection)
+
+You can modify the connections once they have been created:
+
+* [Edit Connections](#Edit_Conn)
+* [Review Connections](#Review_Conn)
+* [Configure Public Cloud Connections to use a Proxy Server](#Configuring_a_Proxy_Server)
+* [Delete Connections](#Deleting)
+* [Change Credentials](#Changing_Credentials)
+
+Additionally, you can collect and analyze AWS data through the Densify API. Refer to the following use cases for an example of API data collection:
+
+* [Optimizing AWS EC2 Instances](https://densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_AWS_EC2_Instances)
+* [Optimizing Microsoft Azure Virtual Machine Instances](https://densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Microsoft_Azure_Virtual_Machine_Instances)
+* [Optimizing GCP Compute Engine Instances](https://densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_GCP_Compute_Engine_Instances)
+
+### Considerations when Working with Large Environments
+
+In large environments, Densify highly recommends batching your accounts into smaller groups for improved performance when creating the cloud connections. i.e. 10 accounts at a time. You can use a resource tag, such as organization or business unit to split the total number of accounts so that data is collected in manageable batches.
+
+## Configuring a Connection to AWS
+
+You can connect to your AWS account with the following method:
+
+* IAM User and Access keys--This process prompts you to enter your AWS credentials for either configuration/workload data. Your information is verified and can then be saved. Densify then creates the required audits and analyses and schedules them to run regularly.
+* IAM Role--An IAM cross-account role that establishes a trust relationship between AWS accounts. In order to create the connection you need the prerequisite information, including the external ID and Role ARN. See:
+
+* [AWS Data Collection Using a CloudFormation Template](../Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template) for details on collecting resource utilization data.
+
+### Using the Public Cloud Connections Wizard--IAM Role
+
+<Accordion title="">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/301290246" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+</Accordion>
+
+
+1. On the Densify landing page, click Connect to your AWS accounts.
+
+or
+
+from the Densify Console, navigate to Public Cloud > Add Cloud Connection.
+
+2. Click on the Amazon Web Services tab.
+3. Select Connect Using: "IAM Role".
+4. The Densify Account ID is predefined. This value must match the value you entered when you created the role in AWS.
+5. Enter the AWS-specific connection parameters, as listed in the table below. Refer to [AWS Data Collection Using a CloudFormation Template](../Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template) for details on creating the accounts and obtaining the credentials.
+<Accordion title="Table: AWS Connection Parameters - IAM Role">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>Field</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>External ID</p>
+</td>
+<td>
+<p>The external ID specified for <span class="mc-variable Document.Company variable">Densify</span>, when you created the IAM role in AWS.</p>
+<p> If you need to edit or review a saved connection, for security reasons, you will need to re-enter the external ID.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Role ARN</p>
+</td>
+<td>
+<p>The Amazon Resource Name (ARN) for IAM role that you created  in AWS. </p>
+</td>
+</tr>
+</table>
+
+</Accordion>
+
+<Note>
+The External ID and the Role ARN are encrypted and are not displayed as plain text in log files.
+</Note>
+
+6. Once your AWS connection parameters are entered, verify your connection using Click to Verify Account Connection.
+
+* If the credentials are valid, you will be connected and authenticated. Once the account is verified, Densify discovers the AWS account ID and displays the ID number. See Table: AWS Account ID and Connection Type Parameters below.
+<Note>
+The number of instances returned is a high level estimate obtained when Densify verifies the connectivity. It may not match the number of instances discovered during the more detailed, scheduled data collection.
+</Note>
+
+* If the credentials cannot be validated, then review the displayed error message and correct your credentials. It is possible that the user account does not have the required permissions. See [AWS Data Collection Using a CloudFormation Template](../Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template) for details.
+
+The Save Connection button is disabled until the connection is successfully verified for both create new and edit modes.
+
+<Accordion title="Figure: Creating AWS Cloud Connections with an IAM Role ">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000121.png)</Frame>
+</Accordion>
+7. After you have specified the connection name click Save Connection.
+8. The connection status, at the bottom of the page, will be updated. You will also see the connection listed in the Saved Connections section.
+
+For resource utilization data, the initial audit collects the last 60 days of data, if available, and each, subsequent daily audit collects the last 24 hours of data. Contact [Support@Densify.com](mailto:Support@Densify.com) for details
+
+9. If you want to add another connection, click Add New Connection and follow steps 3 to 7 again to configure the connection.
+10. Close the Public Cloud Connections page once you have completed creating all your AWS connections.
+
+Once the connection has been verified data collection starts. You will be contacted, within one business day, once your data collection and analysis are complete. Subsequent data collection, analyses, and database refreshes are scheduled to run on a nightly basis.
+
+### Using the Public Cloud Connections Wizard--IAM User and Access Keys
+
+1. On the Densify landing page, click Connect to your AWS accounts.
+   From the Densify Console, navigate to Public Cloud >Add Cloud Connections.
+2. Click on the Amazon Web Services tab.
+3. Select the connection type:
+
+* Resource Utilization Metrics-- This connection type is for collecting CloudWatch data.
+
+4. Enter the AWS-specific connection parameters, as listed in the table below.
+<Accordion title="Table: AWS Connection Parameters - Resource Utilization Metrics">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>Field</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Access Key Id</p>
+</td>
+<td rowspan="2">
+<p>The public cloud's IAM (Identity and Access Management), user access key ID and secret access key. </p>
+<p>This can be the same account credentials as for your Resource Utilization Metrics connection, depending on your AWS account configuration.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Secret Access Key</p>
+</td>
+</tr>
+</table>
+
+</Accordion>
+5. Once your AWS connection parameters are entered, verify your connection. Click Click to Verify Account Connection.
+
+* If the credentials are valid, you will be connected and authenticated. Once the account is verified, Densify discovers the AWS account ID and displays the ID number. See [Using the Public Cloud Connections Wizard](#AWS_Account_ID) below.
+* If the credentials cannot be validated, then review the displayed error message and correct your credentials. It is possible that the user account does not have the required permissions. See [AWS Data Collection Using a CloudFormation Template](../Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template) for details.
+
+6. After you have specified the connection name click Save Connection.
+7. The connection status, at the bottom of the page, will be updated. You will also see the connection listed in the Saved Connections section.
+
+For CloudWatch data, the initial data collection audit will pick up the last 60 days of data, if available, and each daily audit will collect the last 24 hours of data.
+
+8. If you want to add another connection, click Add New Connection and follow steps 3 - 7 again to configure the connection.
+9. Close the Public Cloud Connections page once you have completed creating all your AWS connections.
+
+Once the connection has been verified data collection starts. You will be contacted, within one business day, once your data collection and analysis are complete. Subsequent data collection, analyses, and database refreshes are scheduled to run on a nightly basis.
+
+## Configuring a Connection to Microsoft Azure
+
+<Accordion title="">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/309965546" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+</Accordion>
+
+
+There are two methods for creating Azure connections:
+
+* User Credentials-- supports Azure Cloud through the standalone Azure Active Directory. See Microsoft Azure Data Collection Prerequisites on page 1 for the prerequisites.
+* Service Principal--A Service Principal allows you to access one or more resources within your local active directory. See [Microsoft Azure Data Collection Prerequisites for a Service Principal](../Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal) for the prerequisites.
+
+Click the Microsoft Azure tab to create a connection to your Azure environments. You will enter your Connection Name and an account user name and password in order to collect configuration, workload data from your hosted infrastructure.
+
+Your information is verified and the connection can then be saved and is scheduled to run regularly. In order to create the connection you need the relevant account information. See Microsoft Azure Data Collection Prerequisites on page 1 for details on the obtaining the required credentials to enable data collection.
+
+### Using the Public Cloud Connections Wizard
+
+1. On the Densify landing page, click Connect to your AWS accounts.
+
+or
+
+from the Densify Console, navigate to Public Cloud > Add Cloud Connection.
+
+2. Click on the Microsoft Azure tab.
+3. Click the appropriate radio button to select the type of connection to create:
+
+* Resource Utilization Metrics--This connection type is for collecting utilization data.
+
+4. Enter the Azure-specific connection parameters. Refer to one of the following topics to obtain the required information:
+
+* Microsoft Azure Data Collection Prerequisites on page 1
+<Accordion title="Table: Required Account Information - User Credentials">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>Field</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>User Name</p>
+</td>
+<td class="td_4">
+<p>Enter the user name associated with your Azure account.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Password</p>
+</td>
+<td>
+<p>Enter the user's password.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Connection Name </p>
+</td>
+<td class="td_4">
+<p>Use the connection name to clearly identify the Azure subscription in <span class="mc-variable Document.Densify variable">Densify</span>. This name will appear in the <span >Saved Connections</span> list.</p>
+<p> The connection name must be unique within the Azure connection type section, so if the name is already in use, you are prompted to enter a new connection name.</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>The Connection Name is limited to 32-characters. The Connection Wizard prevents you from entering a string that is more than 32-characters. <br/></p>
+</td>
+</tr>
+</table>
+
+</Accordion>
+* [Microsoft Azure Data Collection Prerequisites for a Service Principal](../Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal)
+<Accordion title="Table: Required Account Information - Service Principal">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>Field</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Application ID </p>
+</td>
+<td>
+<p>Specify the Application ID/Service Principal. Both the ID and the corresponding key are provided when you create the application through your Azure portal. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Secret Key</p>
+</td>
+<td class="td_4">
+<p>Enter the key corresponding to your application/service principal. This is called the Client Secret in the Azure portal interface.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Tenant ID</p>
+</td>
+<td>
+<p>The tenant ID corresponds to the local Active Directory.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Connection Name</p>
+</td>
+<td>
+<p>Specify a name for the connection. This name will appear in the <span >Saved Connections</span> list. If a name is not specified, the Application ID is used. </p>
+<p>If the name is already in use or the connection exists, you are prompted to enter a new connection/account name.</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>The Connection Name is limited to 32 characters. The Connection Wizard prevents you from entering a string that is more than 32 characters. <br/></p>
+</td>
+</tr>
+</table>
+
+</Accordion>
+
+5. Once your information is entered for all fields, click Click to Verify Account Connection to validate the credentials.
+
+* If the credentials are valid, you will be connected and authenticated. Once the account is verified, all subscriptions that are associated with the account or Application ID are listed. Select the subscriptions that you want to include in the audit.
+* If the credentials cannot be validated, then review the displayed error message and correct your credentials. It is possible that the user account does not have the required permissions. The user account/Service Principal to be used for data collection only requires the "Reader" role privileges to collect utilization data. See Microsoft Azure Data Collection Prerequisites on page 1 for details.
+
+6. Once the connection has been verified, click Save Connection.
+7. The connection status, at the bottom of the page, will be updated. You will also see the connection listed in the Saved Connections section.
+
+For resource utilization data, the initial audit collects the last 60 days of data, if available, and each, subsequent daily audit collects the last 24 hours of data. Contact [Support@Densify.com](mailto:Support@Densify.com) for details
+
+8. Click Add New Connection, to add another connection.
+
+Once the connection has been verified data collection is scheduled.
+
+You will be contacted within one business day, once your data collection is complete.
+
+<Note>
+If you create another connection, you must ensure subscriptions are not included in more than one cloud connection.
+</Note>
+
+
+
+## Configuring a Connection to Google Cloud Platform
+
+<Accordion title="">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/301289175" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+</Accordion>
+
+
+Click the Google Cloud tab to configure a GCP connection. You will need to provide a Connection Name and a Service Account Key File to establish a connection and collect configuration and workload data from GCP. See [Google Cloud Platform Data Collection Prerequisites](../Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites) for details on obtaining the required credentials and configuring your GCP project to enable data collection. After your credentials are verified, you can save the connection and schedule data collection to run regularly.
+
+### Adding a GCP Connection
+
+1. On the Densify landing page, click Connect to your AWS accounts.
+
+or
+
+from the Densify Console, navigate to Public Cloud > Add Cloud Connection.
+
+2. Click the Google Cloud tab.
+3. Enter the GCP-specific account information. Refer to [Google Cloud Platform Data Collection Prerequisites](../Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites) for details on creating the accounts and obtaining the credentials.
+<Accordion title="Table: Account Information">
+<table>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>Field</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Service Account Key File (JSON)</p>
+</td>
+<td>
+<p>Specify the JSON file that contains the service accounts keys. This file is created using the Google Cloud Identity and Access Management (IAM) API or through the GCP console. See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="../Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites">Google Cloud Platform Data Collection Prerequisites</a></madcap:conditionaltext> for details.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Client Email</p>
+</td>
+<td class="td_4" rowspan="2">
+<p>This is the email address and ID associated with the service account. The information will be populated automatically from the Service Account Key File.  See <madcap:conditionaltext data-mc-conditions="CiRBA.ScreenOnly"><a class="MCXref xref" href="../Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites">Google Cloud Platform Data Collection Prerequisites</a></madcap:conditionaltext> for details.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Client ID</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Connection Name</p>
+</td>
+<td>
+<p>Specify a name for the connection. This name will appear in the <span >Saved Connections</span> list. If a name is not specified, the Client ID is used. </p>
+<p>If the name is already in use or the connection exists, you are prompted to enter a new connection/account name.</p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>The Connection Name is limited to 32 characters. The Connection Wizard prevents you from entering a string that is more than 32 characters. <br/></p>
+</td>
+</tr>
+</table>
+
+</Accordion>
+4. Once your values are entered for all fields, verify your connection using Click to Verify Account Connection and Discover Project(s).
+
+* If the credentials are valid, you will be connected and authenticated. A timestamp of the successful validation is displayed.
+* If the credentials cannot be validated, then review the displayed error message and correct your credentials. It is possible that the user account does not have the required permissions. See [Google Cloud Platform Data Collection Prerequisites](../Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites) for details on GCP account requirements.
+* All projects that are associated with the service account are listed In the Projects In Scope section.
+
+5. From the Projects In Scope section, select the projects to include in the audit. The newly discovered project has a New, Not Saved status.
+
+* If a project discovered with the service account has already been saved and scheduled for auditing within Densify(duplicate project realized), then the current status of the project will be displayed and the project is not selectable.
+
+6. Once the project(s) have been selected, click Save Connection.
+
+* An audit is scheduled for the project(s) associated with your saved connection, and the status for the project(s) is now Scheduled.
+* The tab is updated with the number of connections saved in brackets.
+* You will also see the saved connection listed in the Saved Connections section on the left side of the page.
+* The initial data collection audit will pick up the last 60 days of data, if available, and each daily audit will collect the last 24 hours of data.
+
+<Accordion title="Figure: Creating a Google Cloud Platform Connection ">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000103.png)</Frame>
+</Accordion>
+7. If you want to add another connection, click Add New Connection and follow steps 3 - 6 again to configure the connection.
+<Note>
+If you have many projects, select the projects to be included and then click Save Connection Densify creates the required structures within the Densify database and initiates a 60-day audit to collect historical data for each of the selected projects. This takes some time and you cannot create another connection while the audit is in progress
+</Note>
+
+8. When you are done adding the connection, close the Public Cloud Connections page.
+
+Once the connection has been verified data collection starts. You will be contacted, within one business day, once your data collection and analysis are complete. Subsequent data collection, analyses, and database refreshes are scheduled to run on a nightly basis.
+
+### Editing a GCP Connection
+
+From the Google Cloud tab in the Public Cloud Connections wizard, you can perform the following modifications:
+
+* Update the service account key (JSON) file--If your service account key file has changed, you can upload the new file and re-discover the projects associated with the service account.
+* Update the list of projects associated with the service account--If the projects associated with the service account have changed, you can re-discover the updated projects.
+* Projects in this list are from the service account, as of the latest data collection. You can deselect projects and these will be removed from data collection. If you deselect all projects associated with the GCP connection and save the connection, Densify will remove the connection.
+
+<Note>
+You cannot modify a connection (add/remove/modify projects) while data collectiom is running. Data collection runs when the connection is first created and then on a nightly basis.
+</Note>
+
+
+
+1. From the Public Cloud Connections wizard >  Google Cloud tab, select the connection you want to edit in the Saved Connection section on the left side of the page. The Accounts Information and Projects In Scope area is populated with the GCP connection details.
+2. If you need to update the service account JSON file, click Browse ... to select the updated JSON file and click Import to upload the new file. You will need to discover projects associated with this new service account key file, follow the next step to update the connection.
+3. If you want to re-discover and update projects associated with the current service account JSON file, click the Click to Refresh Account Connection and Discover Projects button.
+
+* If the credentials are valid, you will be connected and authenticated. A timestamp of the successful validation is displayed.
+* If the credentials cannot be validated, then review the displayed error message and correct your credentials. It is possible that the user account does not have the required permissions. See [Google Cloud Platform Data Collection Prerequisites](../Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites) for details on GCP account requirements.
+
+4. From the Projects In Scope section, if you want to select additional projects to be audited, select the desired projects and click Save Connection.
+
+The Projects In Scope list will not be up to date if projects in the service account are modified after the last Click to Refresh Account Connection and Discover Projects action.
+
+5. From the Project In Scope section, if you want to remove existing audited projects, de-select the desired projects and click Save Connection.
+
+If you de-select all projects associated with the GCP connection and try to save the connection, Densify displays a message indicating the connection will be deleted if you save an empty project connection.
+
+6. When you are done modifying the connection, close the Public Cloud Connections wizard.
+
+After the you modify the connection data collection, analysis, and database refresh are scheduled to run on a nightly basis.
+
+## Other Public Cloud Connections Features
+
+These are common Public Cloud Connections features:
+
+### Accessing the Wizard from the Densify Console
+
+Once you have collected data and are using the Densify Console you will not see the Densify landing page.
+
+You can still access the Cloud Connections wizard from the Public Cloud >  Add Cloud Connection menu.
+
+<Accordion title="Figure: Accessing the Public Cloud Connections Wizard">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000012_280x171.png)</Frame>
+</Accordion>
+
+
+### Editing a Connection
+
+You can edit a saved connection directly from the Public Cloud Connections wizard.
+
+You cannot edit the user name or credentials. If you want to change the credentials, you need to delete the existing connection and create a new one with the new credentials.
+
+* For AWS connections you can modify the External ID.
+* For Azure connections you can change the Subscriptions In Scope.
+* For Google Cloud connections you can provide a new Service Account Key File. See [Editing a GCP Connection](#Editing_GCP_Conn), above.
+
+1. Select a cloud provider. Only connections for the selected provider are displayed in the Saved Connections list.
+2. Select the connection to be modified from the Saved Connections list. The current connection settings are displayed. Displayed settings change depending on the selected cloud provider:
+3. Review the existing information and make your changes, as required.
+4. Click Click to Verify Account Connection.
+5. Once the connection has been verified, click Save Connection to update the connection.
+
+### Reviewing a Connection
+
+You can edit a saved connection directly from the Public Cloud Connections wizard. You can also view the status of the most recent connection.
+
+You cannot edit the user name or equivalent settings. If you need to change the credentials, you will need to delete the existing connection and create a new one.
+
+This feature can be useful to update passwords that expire regularly. You can also review the status of recent audits.
+
+1. Select a cloud provider. Only connection for the selected provider are displayed in the Saved Connections list.
+2. Select the connection to be modified from the Saved Connections list. The current connection settings are displayed. Displayed settings change depending on the selected cloud provider:
+3. The connection status for all accounts/subscriptions or projects contained in the selected connection are displayed,
+<Accordion title="Figure: Connection Status">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/03000100_565x128.png)</Frame>
+</Accordion>
+
+
+A scroll bar is displayed if there are too many accounts to display in the window.
+
+4. Review the existing information and update the password, if required.
+5. Click Click to Verify Account Connection to validate the new setting.
+6. Once the connection has been verified, click Save Connection to update the connection.
+
+### Deleting a Connection
+
+You can delete a configured connection directly from the Public Cloud Connections wizard.
+
+1. Select the required Cloud provider tab. Only the connections for the selected tab are displayed in the Saved Connections
+2. Select the connection to be deleted from the Saved Connections list and click Delete Connection.
+
+When you delete the connection the audit workspace folder and all of the contained audits are deleted. The account name is removed and is no longer displayed in the Saved Connections list.
+
+### Changing Credentials
+
+You need to delete and recreate the AWS and Azure connections to change credentials. You can edit a GCP account to reference a new Service Account Key File. See [Editing a GCP Connection](#Editing_GCP_Conn), above.
+
+When you delete a connection, the corresponding cloud environments are not deleted. They are no longer refreshed as there is no new data collection. Historical data for the account is maintained in the database. If you
+re-create a connection for the same account using the wizard, the new audits automatically link to the existing cloud environment and historical data.
+
+### Configuring Public Cloud Connections to use a Proxy Server
+
+You can configure your public cloud connection to use a proxy server, for additional security. You need to provide the following information to [Support@Densify.com](mailto:Support@Densify.com):
+
+* Proxy server name
+* Proxy server access port
+* User Name and encrypted password, if authentication is required
+
+### Next Steps
+
+Once the connection has been created, you will be contacted within one business day to confirm your data has been loaded and analyzed. You can then do the following:
+
+* View and address instance sizing recommendations. See the following reports:
+
+* Public Cloud > Optimization Overview--An aggregated report for all your cloud instances. The scope of systems is defined by various filters. See [Viewing the Optimization Overview Report](./Viewing_the_Optimization_Overview_Report).
+* Public Cloud > Cloud Provider--Reports that are specific to the selected cloud provider. See [Optimizing Your Public Cloud](./Optimizing_Your_Public_Cloud)

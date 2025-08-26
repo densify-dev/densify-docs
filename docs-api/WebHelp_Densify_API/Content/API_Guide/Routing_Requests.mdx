@@ -1,0 +1,170 @@
+---
+title: "Overview"
+---
+
+## Description
+
+A Routing Request represents a request to route a new workload demand entity, typically a VM, to an appropriate hosting venue.
+
+The Routing Request takes into account scalar and non-scalar workload requirements when determining qualified hosting venues, so that memory, CPU, IO and storage are not over committed across all future timeframes.
+
+### Hosting Venues
+
+This API supports routing to a mix of full control hosting venues (i.e. infrastructure groups), non-control hosting venues and guest-level hosting venues.
+
+With respect to this API, the difference between these hosting venues is as follows:
+
+* Assessing Hosting Venues--For non-control and guest-level hosting venues, only Fit-for-Purpose checks are performed. The hosting venues that pass the Fit-for-Purpose requirements result in a `hosting_score` of 100% (the mode is assumed `capacity_sensitive`).
+* Placement and Option for Placement--The `?recheckHost=true` is ignored for non-control and guest-level hosting venues.
+* Auto-Reconciliation--Only applies to full control hosting venues.
+
+### Assessing Hosting Venues and Hosts
+
+When assessing multiple hosting venues, the available capacity of each hosting venue is assessed according to cost, capacity and Fit-for-Purpose, using the same logic as described in [Routing Requests–Available Capacity Query](./Routing_Requests_Available_Capacity_Query). The best placement of the entity is determined by the hosting venue with the highest score (i.e. `hosting_score`). The same three modes (i.e. `?mode=capacity_sensitive`, `?mode=cost_sensitive` and `?mode=cost_and_capacity`) can be specified with the Routing Request, with default defined by configuration setting API Default Routing Strategy.
+
+For Routing Requests routed for today, once the best hosting venue is determined, the best host and the best datastores associated with the host are selected (determined by the most available capacity in number of slots and metrics).
+
+### Assessing Datastore
+
+If the datastore preference is specified in the Workload disk definition, Densify will try to respect the preferred placement according to the best candidate environment and hosting venue selected. If the preferred datastore is not available in the selected hosting venue, does not satisfy the tier condition, or does not have enough capacity, then the next suitable datastore available in the venue will be used. Regardless if the preferred datastore is used during routing, the Datastore Preference value is still preserved in the Workload disk definition after placement.
+
+### Forced Placement
+
+A particular hosting venue may not be a candidate for routing when it does not have the capacity, does not pass the Fit-for-Purpose validation or does not have the required storage tier requirements. With the `?force=true` option, a Routing Request can be forced to route to that hosting venue. Densify will then select the least full host and datastores (taking datastores with lower storage tier priorities if necessary), even if policy limits are violated or capacity is in the negative.
+
+The routing of disks with `?force=true` is performed in the following order:
+
+1. first routes to the best Fit-for-Purpose and capacity choice with available capacity
+2. then routes to the best capacity choice with available capacity, with a lower storage tier priority
+3. then routes to requested storage tier, regardless of available capacity
+4. then routes to the best capacity choice, regardless of requested storage tier
+
+### Placement and Option for Placement
+
+When a Routing Request is PLACED, its Workloads are PLACED (see [Placement and Option for Placement](./Workloads#Placemen) for Workloads and [State Diagram--Create Scenario](./State_Diagrams_for_Demand#State2)).
+
+Similar to the Workload object, the individual get requests `GET /routing-requests/<id>` and `GET /routing-requests/<id>/workloads` can be extended with the following option:
+
+* `?recheckHost=true`--to recheck the recommended host and sensor placement for a Workload in PLACED state. If the recommended host/sensor is currently not healthy (i.e. real-time placement is enabled and the monitored host/sensor shows unhealthy), a new placement is provided.
+
+### Record Placement
+
+During a re-route cycle, you may want to record the existing datastore that was used before the Workload is unrouted. You can achieve this by using the DELETE operation with the `?record_placement=true` option on the following resources:
+
+* `DELETE /routing-requests/<id>?record_placement=true`--Use this operation to unroute the Workloads associated with the specified Route Request and save the current datastore as the preferred datastore for the re-route cycle.
+* `DELETE /routing-requests/<id>/<workload_id>?record_placement=true`--Use this operation to unroute the specified Workload associated with the specified Route Request and save the current datastore as the preferred datastore for the re-route cycle.
+
+The default behavior for the DELETE operation without the `?record_placement` option or with the `?record_placement=false` option is that the preferred datastore (`pref_datastore`) attribute remains unchanged.
+
+When you use the DELETE operation with `?record_placement=true` option on the resources listed above, the following behavior occurs based on the number of disks in a Workload and the preferred datastore attribute for each disk:
+
+<table>
+<col/>
+<col/>
+<col/>
+<thead>
+<tr>
+<td>
+<p>record_placement</p>
+</td>
+<td>
+<p>Preferred Datastore Condition</p>
+</td>
+<td>
+<p>Preferred Datastore Attribute Result</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>true</p>
+</td>
+<td>
+<p>Preferred datastore attribute is not set for all disks in the Workload.</p>
+</td>
+<td>
+<p>Current datastore used is saved in the preferred datastore (<code>pref_datastore</code>) attribute for each disk.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>true</p>
+</td>
+<td>
+<p>Preferred datastore attribute is set for some disks and not for other disks in the Workload.</p>
+</td>
+<td>
+<p>Preferred datastore attribute remains unchanged for each disk.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>false</p>
+</td>
+<td>
+<p>Any condition</p>
+</td>
+<td>
+<p>Preferred datastore attribute remains unchanged for each disk.</p>
+</td>
+</tr>
+</table>
+<Note>
+If a preferred datastore is set, then that setting will override the sensor placement strategy (i.e. balanced/fill and spill).
+</Note>
+
+
+
+### Routing Request and Workloads Treated as One
+
+A Routing Request is treated as a single item. The expected date for placement is taken from the Routing Request and not from the Workloads, even if they differ. The Workloads are still placed according to their expected date.
+
+If any of the Workloads within a request cannot be placed and/or booked (because the capacity could not be reserved or the Fit-for-Purpose failed), then the entire request is rejected.
+
+### Sensor Placement Strategy
+
+You have two sensor placement options when routing workloads:
+
+* Balancing Strategy--Distributes incoming workloads across all suitable hosting venues with available sensor capacity. Using this option the resource with available sensor capacity that also matches the fit-for-purpose requirements of the incoming workload and has the most available capacity among all matching candidates is selected. Densify attempts to balance workloads across all available hosting venues. This is the default behaviour.
+* Fill and Spill Strategy--Fills suitable hosting venues with available sensor capacity with incoming workloads until the resource reaches its threshold. When routing, the workloads with matching fit-for-purpose requirements are placed on the resource with the least capacity, first.
+
+You can specify sensor placement strategy when submitting a routing request via the API or you can set the placement strategy globally using a configuration setting. Contact [Support@Densify.com](mailto:Support@Densify.com) for details of configuring the global setting.
+
+<Note>
+If a preferred datastore is set, then that setting will override the sensor placement strategy (i.e. balanced/fill and spill).
+</Note>
+
+
+
+The routing request applies the specified sensor placement strategy as follows:
+
+* Execute all fit for purpose checks and capacity level checks as usual.
+* When choosing the best routable device on which to place a booking:
+
+* If balance is requested, then sort candidate sensors from most to least available capacity (default implementation).
+* If fill is requested, then sort candidate sensors from least to most available capacity.
+
+### Sensor Lockout
+
+At the end of each control environment refresh, existing data used for routing bookings is purged and recalculated (sensor recalculation). This data includes:
+
+* Aggregate infrastructure group-level capacity data, including storage per-tier capacity, cluster\_sensor\_capacity;
+* Individual sensor-level capacity;
+
+During the period while this recalculation is performed, routing anomalies can occur. Specifically, while the sensor data is purged and then is temporarily unavailable for a given hosting venue. During routing of incoming workloads, any clusters that are in the state of sensor data recalculation are excluded from consideration as a hosting option.
+
+You can specify sensor lockout behaviour when submitting a routing request via the API or you can set the lockout during recalculation, globally using a configuration setting. Contact [Support@Densify.com](mailto:Support@Densify.com) for details of configuring the global setting.
+
+### Auto-Reconciliation
+
+When the actual VM comes online, it is auto-reconciled with the Workload object with the same name as the Workload `name`. The attributes and Workload Profile are inherited or copied from the Workload to the new VM, if not already specified in the VM. For more details on auto-reconciliation, see section Auto-Reconciliation of Systems of Booking Overview (Help Topic ID 230350).
+
+### Postman Collection
+
+Densify provides a Postman collection of sample API requests for working with the supply and demand features of the API. See [Postman Collection](./Postman_Collection)
+
+## Resource
+
+```json
+/routing-requests
+```

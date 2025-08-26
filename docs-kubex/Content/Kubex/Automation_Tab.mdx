@@ -1,0 +1,99 @@
+---
+title: "Automation Tab"
+---
+import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
+
+
+
+
+<InlineImageWithText src="/images/docs-kubex/Content/Kubex/03000199.png">
+The automation features allow you to optimize your Kubernetes pods based on Densify’s recommendations, ensuring resources are effectively allocated for improved performance and cost efficiency. See <a href="/docs-kubex/Content/Kubex/Automation_Overview">Automation Overview</a> for more information and [<a href="https://github.com/densify-dev/container-automation-deployment">Densify Container Automation</a>] in GitHub for deployment details.
+</InlineImageWithText>
+
+
+This page shows the status of the automation process. 
+
+
+
+<Frame caption="Figure: Automation Tab">
+![](/images/docs-kubex/Content/Kubex/03000200_746x372.png)
+</Frame>
+
+
+
+See [Using Table Column Features](/docs-kubex/Content/Kubex/Using_Table_Column_Features) for details on setting filters and customizing views of the table's content.
+
+### Reviewing Automation Status
+
+
+
+<Accordion title="Table: Automation Table">
+<table>
+<thead>
+<tr>
+<th>
+Column
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Cluster
+</td>
+<td>
+The name of cluster.
+</td>
+</tr>
+<tr>
+<td>
+Automation Deployed
+</td>
+<td>
+The red or green icons indicate whether or not the Mutating Admission Controller has been deployed. If a container within the cluster called "densify-webhook", then the status is Deployed (green icon), otherwise the status is Not deployed (red icon).
+</td>
+</tr>
+<tr>
+<td>
+Automation Status
+</td>
+<td>
+The status of the last automation attempt. The status will be one of the following:
+<ul>
+  <li>Healthy--The cluster has been enabled for automation and is actively optimizing containers..</li>
+  <li>Unknown--The Mutating Admission Controller has been deployed, but no mutations have occured in the last 24 hours</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+Last Optimization Time
+</td>
+<td>
+The date and time on which Kubex last attempted to optimize a manifest in the cluster.
+</td>
+</tr>
+<tr>
+<td>
+Optimizations (Last 24hrs)
+</td>
+<td>
+The number of times that Kubex has successfully optimized a manifest in the cluster, in the last 24 hours.
+</td>
+</tr>
+<tr>
+<td>
+Total Optimizations 
+</td>
+<td>
+The total number of times that Kubex has successfully optimized a manifest on this cluster since it was first deployed.
+</td>
+</tr>
+</tbody>
+</table>
+</Accordion>
+
+

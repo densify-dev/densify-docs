@@ -1,0 +1,20 @@
+---
+title: "Analysis: GCP Recommendations"
+---
+
+The `/analysis/cloud/gcp/<analysisId>/results` resource is used to return a collection of Compute Engine instance recommendations after optimization analysis has been performed on your collected GCP infrastructure data.
+
+For each instance recommendation, you can also download a PDF version of the Impact Analysis and Recommendation Report, which details system impact based on the recommendations. This report is useful to application owners who need to review recommended changes to their application resources. See the [rptHref](#_rptHref) resource element for details on how to download this report.
+
+To return a collection of all instances included in a GCP optimization analysis, see [Analysis: GCP Systems](./Analysis_GCP_Systems).
+
+## Resource
+
+```
+/analysis/cloud/gcp/<analysisId>/results
+```
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="List Gcp Recommendations" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results/listGcpRecommendations" arrow/>
+</CardGroup>

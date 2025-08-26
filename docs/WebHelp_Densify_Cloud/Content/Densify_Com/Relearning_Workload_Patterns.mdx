@@ -1,0 +1,49 @@
+---
+title: "Relearning Workload Patterns"
+---
+
+## Overview
+
+When working with recommendations for cloud and container instances a configuration change to a container object or instance type change for a cloud instance may result in inconsistent recommendations because they are based on workload history collected prior to the instance change.
+
+The following attributes are used to implement this feature:
+
+* ASG | VM Scale Set Instance Type Updated On—This attribute is populated with the current date (in the date format Jan 09, 2023, 3:31 PM) if the instance type changes. The date is used to determine the workload range so that only workloads relevant to the current cloud instance type are used in the analyses. This attribute is only used for ASGs and VM Scale Sets.
+* Config Last Changed On—This attribute provides the same behaviour as indicated above, for all other cloud instance types (RDS, EC2, Azure instances and GCP instances).
+* Config Last Changed On—This attribute stores the date of the change for Kubernetes containers, but does not trigger workload to be excluded.
+
+Invalidating the workload collected previous to the instance type change removes the data from consideration, when generating recommendations. The data is not deleted and is maintained for the defined retention period.
+
+A value in the column, Instance Type Updated On | Container Configuration Updated On, on the Details tab indicates that the instance type (cloud) or instance request/limit values (container) has been changed recently.
+
+Since loading of data always occurs after midnight, the attributes, "Config Last Changed On" and "ASG Instance Type Updated On" are set to the previous day's date (i.e. date - 1), corresponding to the actual instance change.
+
+For example, if the instance type is loaded on October 6 at 12:10am, after collecting the data up to 11:59pm on October 5, the attribute "Config Last Changed On" is set to October 5. Densify does the the following:
+
+* The attribute, "Config Last Changed On" will be set to October 5 (loading date - 1),
+* On October 6 and before the minimum number of days is reached, the instance's optimization type is set to "Just Right" and its workload is not displayed.
+* One exception is backfill memory. If the feature is enabled, the chart will be populated with the calculated data.
+
+#### Workload Charts
+
+If the attribute has been set, this also impacts the display of the workload charts in the lower pane. You will observe the following:
+
+* [PD-55745] If a container instance has been optimized, then on the next day in the Densify UI you will see the Optimization Type set to "Just Right" and since the required data has not been excluded, the charts will not change, See [Optimizing Your Containers - Details Tab](./Optimizing_Your_Containers_-_Details_Tab#Config_Updated)
+* If there is a cloud instance type change, then on the next day in the Densify UI you will see the Optimization Type set to "Just Right and since the required data has not been accumulated, only the Memory BackFill workload chart is displayed, if enabled. See [Understanding the Instance Optimization Details Report](./Understanding_the_Instance_Details_Report#Inst_Updated) or [Understanding the Instance Optimization Details for RDS](./Understanding_the_Instance_Details__RDS_#Inst_Updated)
+
+#### Metrics Viewer Charts
+
+When reviewing data in the metrics viewer, you will observe the following behaviour for workloads that have had their infrastructure changed recently.
+
+* If a new system ID has been assigned to the new instance type, then the historical data, collected before the instance change cannot be displayed;
+* If the system ID remains the same after the instance type change, then the historical data collected before the instance type change can be displayed. You may notice changes in the workload patterns on the new instance type.
+
+A footnote is located under the legend indicating when the instance type was changed.
+
+If the instance type changed at anytime during the selected period, you will only see data collected after the instance change. The footnote indicates that an instance type change occurred. In the following example, the instance type and system ID changed after the end date of the selected period (Sept 3 to Oct 3). The data from Sept 3 cannot be displayed so a blank chart is displayed.
+
+<Accordion title="Figure: Example - Instance Type Changed on Oct 3rd">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000234_616x271.png)</Frame>
+</Accordion>
+
+After a configuration change is detected, recommended request and limit values for both CPU and memory will be populated with the current CPU and memory request and limit values.

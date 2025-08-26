@@ -1,0 +1,35 @@
+---
+title: "Partial or No Workload Data-vCenter"
+---
+
+### Event: Partial or No Workload Data
+
+Common reasons for collection of only partial vCenter data:
+
+<Accordion title="Cause: When collecting workload with vROps , vCenter data is collected but vROps is not">
+Solution: This may be due to invalid vROps credentials. Confirm your username and password are valid.
+</Accordion>
+
+<Accordion title="Cause: Time at which the audit is running.">
+For example, if vCenter data retention is set to 1-day, the audit must run at 00:05 (12:05 am) to collect the last 24 hours.
+
+Solution: Verify the audit time has not been affected by a change due to Daylights Saving Time.
+
+Solution: Configure vCenter data retention to store 2 days of data.
+</Accordion>
+
+<Accordion title="Cause: Audit timeout occurred during collection from the vCenter Server .">
+Solution: Do the following steps to investigate the vCenter connection:
+
+1. Open the Densify Connector.
+2. Select the audit.
+3. Click the button Click to Verify vCenter Connection.
+
+* If the connection is OK, then click Save Connection and Collect Data Now to collect the data.
+* If an error is returned from the verification step, then investigate the issue on the vCenter.
+
+4. Alternatively, try connecting to the vCenter from the host running the Densify Connector to verify connectivity to the vCenter outside of your Densify instance.
+</Accordion>
+
+
+If none of the above issues apply to your environment, contact [Support@Densify.com](mailto:Support@Densify.com) to review your connectivity details and receive further guidance.

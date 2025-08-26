@@ -1,0 +1,494 @@
+---
+title: "Subscribing to Densify Recommendations"
+---
+
+This use case shows you how to subscribe to a set of Densify recommendation notifications using the Densify Subscription Service (DSS) API framework.
+
+The DSS is a flexible framework that offers you the ability to customize the content of your Densify recommendations for targeted distribution. DSS features include:
+
+* ability to filter recommendation systems based on recommendation fields (property filter);
+* ability to filter recommendation systems based on attribute tags (tag filter);
+* ability to suppress recommendation systems, for a period of time, based on recommendation fields and/or attribute tags via suppression filters;
+* ability to customize the notification output format;
+* ability to send the notification to an external webhook;
+* ability to schedule the notification;
+* ability to have private subscription definitions, as well as global subscription definitions for shared usage;
+* supports both cloud and containers system recommendations.
+
+To use these features, you need to create an instance of the Subscription resource.
+
+## Creating a Subscription
+
+The diagram below provides a high-level overview of creating an instance of the Subscription resource through the Densify API:
+
+<Accordion title="Figure: Subscription High Level Overview">
+<Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000017.png)</Frame>
+</Accordion>
+
+
+An instance of the [Subscriptions](./Subscriptions) resource is created using the `POST /subscriptions/<platformType>` request. You must identify the `<platformType>` of the subscription and use similar platform resources to define the subscription. For instance, you need to use container resources for a subscription to container recommendations. After identifying the subscription platform resources to use, define the parameter components below to customize your subscription.
+
+1. **Define the Subscription**--Specify the [subscriptionName](./Subscriptions#subscriptionName), [description](./Subscriptions#description), and [owner](./Subscriptions#owner).
+
+   The `subscriptionName` is used as a key identifier, so it needs to be unique for global subscriptions as well as unique within a private-scoped group of subscriptions. The `description` parameter is for documentation purposes, so its content should be as descriptive as possible to indicate the purpose of the subscription.
+
+   See [Example: Defining the Subscription](#_DefineSubscription).
+
+2. **Property Filter**--Specify [propertyReferences](./Subscriptions#propertyReferences) to filter the recommendation systems you are interested in receiving based on recommendation fields.
+
+   This feature is similar to the Recommendation Filter Menu in the Densify Console, where you can filter recommendation systems based on selected fields from the menu. In the `propertyReferences` filter condition, fields are selected by referencing property elements from the platform-specific Subscriptions Properties catalog.
+   The platform of properties you reference must correspond with the platform of your subscription. Refer to [Subscriptions Properties Catalogs](#PropertyCatalog) for details on referencing properties.
+
+   See [Example: Specifying Property Filters](#_SpecifyPropertyFilters) for an example of a property filter condition block in a `POST /subscriptions/<platformType>` request.
+
+3. **Tag Filter**--Specify [tagReferences](./Subscriptions#tagReferences) to filter the recommendation systems you are interested in receiving based on attribute fields.
+
+   This feature is similar to the Guest Filter from the Densify Console, but it also extends to filter platform-specific attribute tags. In the `tagReferences` filter condition, attributes are selected by referencing tag elements from the platform-specific Subscriptions Tags catalog. The platform of tags you reference must correspond with the platform of your subscription.
+   Refer to [Subscriptions Tags Catalogs](#TagCatalog) for details.
+
+   <Note>
+   You must ensure that the selected Densify attributes are marked as `searchable` for use with DSS. Contact Densify support ([Support@Densify.com](mailto:Support@Densify.com)) to confirm that the selected attributes are searchable in your Densify instance.
+   </Note>
+
+   See [Example: Specifying Tag Filters](#_SpecifyTagFilters) for an example of a tag filter condition block in a `POST /subscriptions/<platformType>` request.
+
+4. **Suppress Filter**--Specify the [suppressionReferences](./Subscriptions#suppressionReferences) condition to suppress recommendation systems you are not interested in receiving based on recommendation or attribute fields.
+
+   This feature allows you to suppress groups of recommendation systems for a period of time when the notification is actively scheduled. Suppression conditions are created by referencing suppression elements from the platform-specific Subscriptions Suppressions catalog.
+   The platform of suppression conditions you reference must correspond with the platform of your subscription. Refer to the [Subscriptions Suppressions Catalogs](#SuppressionCatalog) for an explanation of referencing the catalog.
+
+   See [Example: Specifying Suppression Conditions](#_SpecifySuppressionFilters) for an example of a suppression condition block in a `POST /subscriptions/<platformType>` request.
+5. **Return Structure**--Specify the [returnStructure](./Subscriptions#returnStructure) to personalize the output of the notification.
+
+   If you do not specify the `returnStructure` parameter in your subscription, all recommendation fields applicable to the platform-specific system are returned. To return specific fields, you can specify elements from the platform-specific [Subscriptions Properties Catalogs](#PropertyCatalog) and [Subscriptions Tags Catalogs](#TagCatalog) that are within your scope.
+
+   See [Example: Specifying the Return Structure](#_SpecifyReturnStructure) for an example of a `returnStructure` block in a `POST /subscriptions/<platformType>` request.
+6. **Schedule Notification to Webhook**--Specify when and where to send your notification by configuring the [schedule](./Subscriptions#schedule) parameter and the [webhook](./Subscriptions#webhook)  parameter.
+
+   If you do not specify the `schedule` parameter, the notification is triggered each night after data collection, analysis, and reporting database update processes. See [Example: Specifying the Notification Schedule](#_SpecifySchedule) for an example of specifying a `schedule` block in a `POST /subscriptions/<platformType>` request.
+
+   The `webhook` parameter is mandatory if you want notifications to be triggered. See [Example: Specifying the Webhook](#_SpecifyWebhook) for an example of specifying a `webhook` block in a `POST /subscriptions/<platformType>` request.
+
+   <Note>
+   You can test the subscription and request an on-demand results output by using the [Subscriptions: Results](./Subscriptions_Results) resource, even if the webhook is not defined.
+   </Note>
+
+See [Example: Creating a Subscription (Putting It All Together)](#_CreateAllTogether) for a complete example of the `POST /subscriptions/<platformType>` request with all the combined parameter components; then review the on-demand results of the subscription in [Example: Getting On-Demand Results](#_OnDemandReponse).
+
+Refer to [Subscriptions](./Subscriptions) for the complete subscription resource reference.
+
+## Subscriptions Properties Catalogs
+
+<Accordion title="Figure: Subscriptions Properties Catalogs Reference Overview">
+<Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000018.png)</Frame>
+</Accordion>
+
+
+The platform-specific Subscriptions Properties catalogs are resources that provides you with a list of recommendation fields to use for filtering and for personalizing the notification output. The platform of the Subscriptions Properties catalog you use for filtering must correspond with the platform of your subscription.
+
+By default, the platform-specific Subscriptions Properties catalogs already have a list of recommendation fields for you to use. You can also add additional recommendation fields to the catalogs. The list of possible recommendation fields to add corresponds to the response elements from the Densify supported cloud and container recommendations (see [Analysis: AWS Recommendations: Response](./Analysis_AWS_Results#_ResultElements), [Analysis: Azure Recommendations: Response](./Analysis_Azure_Results#_ResultElements), [Analysis: GCP Recommendations: Response](./Analysis_GCP_Results#_ResultElements), and [Analysis: Kubernetes Container Recommendations: Response](./Analysis_Kubernetes_Results#_ResultElements)).
+
+<Note>
+Some recommendation elements are not common to all technologies. For example, propertyName="minGroupRecommended" only applies to AWS Auto Scaling group recommendations.
+</Note>
+
+When you create property filter conditions for your subscription, you need to reference properties from the corresponding platform Subscriptions Properties catalog (see the [Subscriptions: propertyReferences](./Subscriptions#propertyReferences) parameter). Similarly, you need to reference properties from the corresponding platform Subscriptions Properties catalog to personalize the notification output (see the [Subscriptions: returnStructure](./Subscriptions#returnStructure) parameter).
+
+You can only reference properties that are accessible to the Densify username you use to authorize the API request. Property accessibility depends on the scope of the property: if the property is global, then the property is accessible to all API Densify users; if the property is private, then the property is accessible to the owner of the private property. If you are an <Tooltip tip="An administrative user is a Densify user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the property scope rule and access all properties from the catalog. See [Subscriptions: Properties: owner](./Subscriptions_Properties#owner) for more property scope details.
+
+Refer to [Subscriptions: Properties](./Subscriptions_Properties) for the full resource definition.
+
+## Subscriptions Tags Catalogs
+
+<Accordion title="Figure: Subscriptions Tags Catalogs Reference Overview">
+<Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000019.png)</Frame>
+</Accordion>
+
+
+The platform-specific Subscriptions Tags catalogs are resources that provides you with a list of system attribute fields to use for filtering and for personalizing the notification output. The platform of the Subscriptions Tags catalog you use for filtering must correspond with the platform of your subscription.
+
+By default, the platform-specific Subscriptions Tags catalogs already have a list of common attributes for you to use. You can also add additional attribute fields to the catalogs. The possible attribute fields you can add comes from the set of Densify standard attributes or technology-specific attributes.
+
+When you create tag filter conditions for your subscription, you need to reference tags from the corresponding platform Subscriptions Tags catalog (see the [Subscriptions: tagReferences](./Subscriptions#tagReferences) parameter). Similarly, you need to reference tags from the corresponding platform Subscriptions Tags catalog to personalize the notification output (see the [returnStructure](./Subscriptions#returnStructure) parameter).
+
+You can only reference tags that are accessible to the Densify username you use to authorize the API request. Access to a particular tag in the catalog depends on its scope: if the tag is global, then the tag is accessible to all API Densify users; if the tag is private, then the tag is accessible to the owner of the private tag. If you are an <Tooltip tip="An administrative user is a Densify user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the tag scope rule and access all tags from the catalog. See [Subscriptions: Tags: owner](./Subscriptions_Tags#_owner) for additional details of tag scope.
+
+Refer to [Subscriptions: Tags](./Subscriptions_Tags) for the full resource definition.
+
+## Subscriptions Suppressions Catalogs
+
+<Accordion title="Figure: Subscriptions Suppressions Catalogs Reference Overview">
+<Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000020.png)</Frame>
+</Accordion>
+
+
+The platform-specific Subscriptions Suppressions catalogs are resources that provides you with a list of recommendation and system attribute fields to use for creating suppression conditions in your subscription. The platform of the Subscriptions Suppressions catalog you use for suppressing recommendations must correspond with the platform of your subscription.
+
+By default, the platform-specific Subscriptions Suppressions catalog already has a list of recommendation and attribute field suppressions for you to use. You can also add additional suppression fields. The list of possible recommendation fields correspond to the response elements from the Densify supported cloud recommendations (see [Analysis: AWS Recommendations: Response](./Analysis_AWS_Results#_ResultElements), [Analysis: Azure Recommendations: Response](./Analysis_Azure_Results#_ResultElements), [Analysis: GCP Recommendations: Response](./Analysis_GCP_Results#_ResultElements), and [Analysis: Kubernetes Container Recommendations: Response](./Analysis_Kubernetes_Results#_ResultElements)). The possible attribute fields you can add to a Subscriptions Suppressions catalog comes from the set of Densify standard attributes or technology-specific attributes.
+
+When you create suppression conditions for your subscription, you need to reference suppressions from the corresponding platform Subscriptions Suppressions catalog (see the [Subscriptions: suppressionReferences](./Subscriptions#suppressionReferences) parameter).
+
+You can only reference suppressions that are accessible to the Densify username you use to authorize the API request. Access to a particular suppression in the catalog depends on its scope: if the suppression is global, then it is accessible to all API Densify users; if the suppression is private, then it is accessible to the owner of the private suppression. If you are an <Tooltip tip="An administrative user is a Densify user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the suppression scope rule and access all suppressions from the catalog. See [Subscriptions: Suppressions: owner](./Subscriptions_Suppressions#owner) for details of suppression scope.
+
+<Note>
+The Subscriptions Suppressions catalogs are not used for a Subscription's return output.
+</Note>
+
+Refer to [Subscriptions: Suppressions](./Subscriptions_Suppressions) for the full resource definition.
+
+## Example: Defining the Subscription
+
+Use the `POST /subscriptions/cloud` request to create a cloud subscription. The first set of parameters to specify are the [subscriptionName](./Subscriptions#subscriptionName) and [description](./Subscriptions#description), which are free-form strings. The [owner](./Subscriptions#owner) parameter is automatically set to your Densify username if you are not an <Tooltip tip="An administrative user is a Densify user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>. You can also set the [active](./Subscriptions#active) parameter to indicate if the subscription is dormant or active (the default is `active`). Remember to specify your active authorization key for each token-based authentication request (see [Authorize](./Authorize) for details).
+
+<Accordion title="Example: Specifying Subscription Name and Description">
+Headers:
+
+```
+Accept: application/json
+Authorization: Bearer <apiToken>
+```
+
+
+Request:
+
+```json POST /subscriptions/cloud
+{
+    "subscriptionName": "My Subscription",
+    "description": "A subscription for my Use Case",
+    "active": true,
+    ...
+```
+
+</Accordion>
+
+
+## Example: Specifying Property Filters
+
+To specify property filter conditions in the `POST /subscriptions/<platformType>` request, use the [propertyReferences](./Subscriptions#propertyReferences) parameter. In this example, the property condition filters all AWS EC2s with predicted uptime between 50 -100%. The cloud subscription `propertyReferences` condition references the `propertyID` of "`serviceType`" and "`predictedUptime`" from the Cloud Subscriptions Properties catalog.
+
+<Accordion title="Example: Subscription - Property Filter Condition">
+Request Parameter - Property Filter Condition Section:
+
+```json
+   ...
+    "propertyReferences": [
+       {
+           "values": ["EC2"],
+           "propertyID": "b4e7260f-1aae-4150-b75d-1b1234075500",
+           "operator": "="
+       },
+       {
+           "propertyID": "f2a38773-db60-478a-9982-1a2d1ba7d380",
+           "operator": "[]",
+           "values": [50,100]
+       }
+     ],
+    ...
+```
+
+</Accordion>
+
+
+## Example: Specifying Tag Filters
+
+To specify tag filter conditions in the `POST /subscriptions/<platformType>` request, use the [tagReferences](./Subscriptions#tagReferences) parameter. In this example, the tag condition filters all systems belonging to the "Sales" department. The cloud subscription `tagReferences` condition references the `tagID` of "`Department`" from the Cloud Subscriptions Tags catalog.
+
+<Accordion title="Example: Subscription - Tag Filter Condition">
+Request Parameter - Tag Filter Condition Section:
+
+```json
+    ...
+    "tagReferences": [
+       {
+           "values": ["Sales"],
+           "tagID": "9879308e-3162-499b-8fe5-7fd67e627079",
+           "operator": "="
+       }
+     ],
+    ...
+```
+
+</Accordion>
+
+
+## Example: Specifying Suppression Conditions
+
+To specify suppression conditions in the `POST /subscriptions/<platformType>` request, use the [suppressionReferences](./Subscriptions#suppressionReferences) parameter. In this example, the cloud suppression condition removes all terminate recommendations until April 20, 2020. After April 20, 2020 (the `revokeBy` date), the suppression condition is deprecated. The cloud subscription `suppressionReferences` condition references the `suppressionID` of "`recommendationType`" from the Cloud Subscriptions Suppressions catalog.
+
+<Accordion title="Example: Subscription - Suppression Filter Condition">
+Request Parameter - Suppression Filter Condition Section:
+
+```json
+    ...
+    "suppressionReferences": [
+       {
+           "values": ["Terminate"],
+           "suppressionID": "a6827ae4-fa2b-405e-a564-d70f2dad45c2",
+           "operator": "=",
+           "revokeBy": 1587415413000
+       }
+     ],
+    ...
+```
+
+</Accordion>
+
+
+## Example: Specifying the Return Structure
+
+To specify a customized return structure in the `POST /subscriptions/<platformType>` request, use the [returnStructure](./Subscriptions#returnStructure) parameter. In this example, the return output will contain the following cloud fields: `effortEstimate`, `entityId`, `name`, `recommendationType`, `savingsEstimate`, `serviceType`, `Department` (attribute), `Virtual Domain` ("account"). These fields reference the `propertyID` and "`tagID`" from the Cloud Subscriptions Properties catalog and the Cloud Subscriptions Tags catalog, respectively. Some of these property or tag fields have the `"useAlias"` flag set to true, which returns the alias names instead of the property or tag names.
+
+<Accordion title="Example: Subscription - Return Structure">
+Request Parameter - Return Structure Section:
+
+```json
+    ...
+    "returnStructure": {
+        "properties": [
+            {
+                "propertyID": "b4e7260f-1aae-4150-b75d-1b1234075500"
+            },
+            {
+                "useAlias": true,
+                "propertyID": "e2ae92c5-91c7-4ff5-a29f-99aa92d65178"
+            },
+            {
+                "propertyID": "08d84679-1816-4cd7-b766-e4ad441b9a6c"
+            },
+            {
+                "propertyID": "b20b2499-e901-4d79-873c-5e953ae8be33"
+            },
+            {
+                "useAlias": true,
+                "propertyID": "cebcd841-89d8-4007-a4c6-1f0b06723db4"
+            },
+            {
+                "propertyID": "88695e33-19c4-4813-819a-31e59322da6e"
+            }
+        ],
+        "tags": [
+            {
+                "useAlias": true,
+                "tagID": "be3cdc69-962e-4461-b8c3-07cec8e712be"
+            },
+            {
+                "tagID": "9879308e-3162-499b-8fe5-7fd67e627079"
+            }
+        ]
+    },
+    ...
+```
+
+</Accordion>
+
+
+## Example: Specifying the Webhook
+
+For the destination of the notification, specify the [webhook](./Subscriptions#webhook)  parameter in the `POST /subscriptions/<platformType>` request. If you do not specify a `webhook`, no subscription notifications are triggered; the subscription is considered dormant since there is no destination for the notification. You can test the subscription and request an on-demand results output by using the [Subscriptions: Results](./Subscriptions_Results) resource, even if the subscription is dormant or if the webhook is not defined.
+
+<Accordion title="Example: Subscription - Webhook">
+Request Parameter - Webhook Section:
+
+```json
+    ...
+    "webhook": {
+        "uri": "https://testsystem.com/webhook/receiver",
+        "authType": "basic",
+        "authValue": "test:test"
+    },
+    ...
+```
+
+</Accordion>
+
+
+## Example: Specifying the Notification Schedule
+
+To specify a notification schedule in the `POST /subscriptions/<platformType>` request, use the [schedule](./Subscriptions#schedule) parameter. In the example below, the cloud subscription is scheduled to be triggered on Mondays and Fridays of each week (`dayofWeek 1` = Monday). If you do not specify the `schedule` parameter, the subscription notifications are triggered nightly by default.
+
+<Accordion title="Example: Subscription - Schedule">
+Request Parameter - Schedule Section:
+
+```json
+    ...
+    "schedule": {
+        "dayofWeek": [
+            1,
+            5
+        ]
+    },
+    ...
+```
+
+</Accordion>
+
+
+## Example: Creating a Subscription (Putting It All Together)
+
+This example puts all the subscription components (from the previous examples) together to create a cloud subscription.
+
+<Accordion title="Example: Creating a Cloud Subscription">
+Request:
+
+```
+POST /subscriptions/cloud
+```
+
+
+Parameters:
+
+```json
+[
+       {
+        "subscriptionName": "My Subscription",
+        "description": "A subscription for my Use Case",
+        "active": true,
+        "webhook": {
+               "uri": "https://testsystem.com/webhook/receiver",
+            "authType": "basic",
+            "authValue": "test:test"
+        },
+        "propertyReferences": [
+            {
+                "values": ["EC2"],
+                "propertyID": "b4e7260f-1aae-4150-b75d-1b1234075500",
+                "operator": "="
+            },
+            {
+                "propertyID": "f2a38773-db60-478a-9982-1a2d1ba7d380",
+                "operator": "[]",
+                "values": [50,100]
+            }
+        ],
+        "tagReferences": [
+            {
+                "values": ["Sales"],
+                "tagID": "9879308e-3162-499b-8fe5-7fd67e627079",
+                "operator": "="
+            }
+        ],
+        "suppressionReferences": [
+            {
+                "values": ["Terminate"],
+                "suppressionID": "a6827ae4-fa2b-405e-a564-d70f2dad45c2",
+                "operator": "=",
+                "revokeBy": 1587415413000
+            }
+        ],
+        "returnStructure": {
+            "properties": [
+                {
+                    "propertyID": "b4e7260f-1aae-4150-b75d-1b1234075500"
+                },
+                {
+                    "useAlias": true,
+                    "propertyID": "e2ae92c5-91c7-4ff5-a29f-99aa92d65178"
+                },
+                {
+                    "propertyID": "08d84679-1816-4cd7-b766-e4ad441b9a6c"
+                },
+                {
+                    "propertyID": "b20b2499-e901-4d79-873c-5e953ae8be33"
+                },
+                {
+                    "useAlias": true,
+                    "propertyID": "cebcd841-89d8-4007-a4c6-1f0b06723db4"
+                },
+                {
+                    "propertyID": "88695e33-19c4-4813-819a-31e59322da6e"
+                }
+            ],
+            "tags": [
+                {
+                    "useAlias": true,
+                    "tagID": "be3cdc69-962e-4461-b8c3-07cec8e712be"
+                },
+                {
+                    "tagID": "9879308e-3162-499b-8fe5-7fd67e627079"
+                }
+            ]
+        },
+        "schedule": {
+            "dayofWeek": [
+                1,
+                5
+            ]
+        }
+    }
+]
+```
+
+
+Response:
+
+```json
+[
+    {
+        "subscriptionRef": "7f2b2f50-3988-4275-a1ac-34a9b45408b9",
+        "subscriptionName": "My Subscription"
+    }
+]
+```
+
+</Accordion>
+
+
+## Example: Getting On-Demand Results
+
+This example retrieves the cloud subscription (created from the previous example) results on-demand. This request returns the cloud subscription results regardless of what is configured in the `webhook`, `schedule`, or `active` parameters.
+
+<Accordion title="Example: Getting Cloud Subscription Results On-Demand">
+Request:
+
+```
+GET /subscriptions/cloud/7f2b2f50-3988-4275-a1ac-34a9b45408b9
+```
+Response:
+
+```json
+{
+       "subscription": {
+           "name": "My Subscription",
+        "description": "A subscription for my Use Case",
+        "created": "Mon Apr 13 13:50:15 EST 2020",
+        "createdBy": "saas",
+        "lastRefreshed": "Fri Apr 17 1:00:10 EST 2020",
+        "owner": "saas"
+    },
+    "count": 98,
+    "results": [
+           {
+               "effortEstimate": "Low",
+            "entityId": "c0ebf351-9b6c-4d57-b3d0-23c7861f9db4",
+            "name": "ex-pro-asop-896",
+            "recommendationType": "Downsize - Optimal Family",
+            "savingsEstimate": "49.39808",
+            "serviceType": "EC2",
+            "divider": "------------------------",
+            "Department": "Sales",
+            "awsAccount": "229132289155"
+        },
+        {
+               "effortEstimate": "Low",
+            "entityId": "234ca9b6-3def-4ace-87c5-466c2e41f1d1",
+            "name": "ex-pro-kotl-966",
+            "recommendationType": "Downsize - Optimal Family",
+            "savingsEstimate": "163.6333",
+            "serviceType": "EC2",
+            "divider": "------------------------",
+            "Department": "Sales",
+            "awsAccount": "229132289155"
+        },
+        {
+        // ... *SNIP* additional 96 system recommendations not displayed *SNIP* ...
+        }
+    ]
+}
+```
+
+</Accordion>
+
+
+## Postman Collection
+
+Densify provides a Postman collection of sample API requests for working with your public cloud environments. See [Postman Collection](./Postman_Collection)

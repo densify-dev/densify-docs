@@ -1,0 +1,249 @@
+---
+title: "Spectrum Detail"
+---
+
+When you select one or more systems in the Spectrum, you can see more information about them including the system details, recommendations and metrics using the option in the Spectrum Details pane.
+
+<Note>
+When using the simplified version of the Control Console in browsers other than Internet Explorer some features may not be available. See [Control Console Spectrum Overview](./Control_Console_Spectrum_Overview).
+</Note>
+
+
+
+The following features, specific to the Spectrum Detail pane are only available for advanced users when using a supported version of Internet Explorer:
+
+* The System Dashboard button opens the system summary dashboard. All dashboard tabs and buttons are available for advanced users only, as are the link to set benchmark overrides and the links to parent and child systems.
+* The Action Plan Manager button, located on the right side of the Spectrum Detail pane;
+* Resource Utilization Metrics tab--The workload charts displayed here utilize the new "candle stick" format. When you open the Workload Viewer using the Workload Viewer button, the chart uses the previous box-plot format.
+* Within the Spectrum Details pane, all hyperlinks to other systems, where available in the various tabs, are available for advanced users only.
+
+<Accordion title="Figure: Spectrum Detail Tabs">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000015_556x266.png)</Frame>
+</Accordion>
+
+
+When viewing the Spectrum Detail, if all the tabs do not fit in your browser window, an arrow at each end of the tab title bar allows you to slide the tabs left or right into view. Another arrow at the end of tab title bar displays a popup list from which you can pick a specific tab.
+
+## Selected Systems in the Spectrum
+
+The Spectrum Detail area is populated with details for the systems you select in the Spectrum:
+
+* If you select an infrastructure group then the details for all of the contained hosts and VMs are displayed.
+* If you select a host then the details for the host and all contained VMs are displayed.
+* If you select a sensor then the details just for the sensor are displayed.
+<Note>
+The sensors for datastores are unique to the Control Console package for VMware.
+</Note>
+
+* If you select a group of systems by dragging the selection box or by using Ctrl + click to select multiple systems, then the details for only the selected systems are displayed, and not their contained child-systems.
+* If you can navigate to another control environment, the selected tab does not change. This allows you to easily view the information for a specific tab across environments.
+
+## Spectrum Detail Tabs
+
+Depending on what systems are selected within the Spectrum, the Spectrum Detail shows the corresponding tabs that apply to that selection (i.e. whether an environment (E), infrastructure group (G), host (H), VM (V), or sensor (S)).
+
+Table: Spectrum Detail Tab Descriptions
+
+<table>
+<thead>
+<tr>
+<td rowspan="2">
+<p>Tab</p>
+</td>
+<th colspan="5">
+<p>Applies to</p>
+</th>
+<td rowspan="2">
+<p>Description</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>E</p>
+</td>
+<td>
+<p>G</p>
+</td>
+<td>
+<p>H</p>
+</td>
+<td>
+<p>V</p>
+</td>
+<td>
+<p>S</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>
+<span >Action Plans</span>
+</p>
+</td>
+<td>E</td>
+<td>G</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td>
+<p>If you have created any action plans for this infrastructure group, they will be listed on this tab. Details of the planned changes, as well as the status and effective date are shown on the tab.</p>
+<p>Only those Action Plans that have an Effective Date that is greater than or equal to yesterday (the day before the Today date of the selected environment), are displayed here.</p>
+<p>The displayed action plan count includes only those action plans with an effective date greater than or equal to yesterday, as based on the Today date of the environment.</p>
+<p>You can view the Action Plan Manager from the Spectrum Details by clicking the <span >Action Plan Manager</span> button, located in the header of the <span >Spectrum Detail</span> pane. The Action Plan Manager launches with the selected environment displayed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span >Recommendations for \<<span class="CiRBAcharEmphasis">selected day</span>></span>
+</p>
+</td>
+<td> </td>
+<td> </td>
+<td>H</td>
+<td>V</td>
+<td>S</td>
+<td>
+<p>The action/recommendation framework provides details of actions that can be made to move systems from <span >Too Little Infrastructure</span> or <span >Too Much Infrastructure</span> to <span >Just Right</span>. Only recommendations pertaining to the selected host or VM systems are displayed. </p>
+<p>You can preview your environment with the proposed recommendations completed, using the <span >Displayed with recommendations applied</span> option at the top-right of the <span class="mc-variable Document.Control_Console variable">Control Console</span>. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span >Resource Policy Violations</span>
+</p>
+</td>
+<td> </td>
+<td> </td>
+<td>H</td>
+<td>V</td>
+<td> </td>
+<td>
+<p>For the selected system, a chart is displayed for each resource utilization that is too high or low based on the policy settings. Each chart shows minimum/maximum values, sustained activity and the upper/lower limit as set by the corresponding policy. </p>
+<p>As you roll-over the chart, a larger view is displayed. Double-click the chart to launch the <span >Workload Viewer</span> for that system.</p>
+<p>This tab is only available when a single host or single VM is selected.</p>
+<p>Note that a resource utilization chart is not provided when the violation is caused by an aggressive reclaim (policy setting <span class="CiRBAcharStrong">CPU/Memory/Disk - Reclaim Mode</span> is set to "Aggressive").</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span >Resource Utilization Metrics </span>
+</p>
+</td>
+<td> </td>
+<td>G</td>
+<td>H</td>
+<td>V</td>
+<td> </td>
+<td>
+<p>Resource utilization charts are displayed for the selected system. The charts show the aggregate workload if a VM is selected. See <a class="RefToBookmark MCXref xref xrefRefToBookmark" href="#Resource"><u>Resource Utilization Metrics Tab</u></a> below for more details on the displayed workload charts.</p>
+<p>This tab is only available when a single infrastructure group, single host or single VM is selected. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span >System Detail </span>
+</p>
+</td>
+<td> </td>
+<td>G</td>
+<td>H</td>
+<td>V</td>
+<td> </td>
+<td>
+<p>This tab lists the available system details of the selected systems and any associated contained systems. i.e. if you selected an infrastructure group, you will see system details for each host contained in the infrastructure group as well as each VM on those hosts. If you selected a host, you will see system details for the host and each VM contained in that host. If you select a VM, then only the details of the selected VM are displayed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span >Business Attributes</span>
+</p>
+</td>
+<td> </td>
+<td>G</td>
+<td>H</td>
+<td>V</td>
+<td> </td>
+<td>
+<p>This tab lists the specific system attributes and their values for the selected systems and any associated contained systems. i.e. if you selected an infrastructure group, you will see system details for each host contained in the infrastructure group as well as each VM on those hosts. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span >Notifications</span>
+</p>
+</td>
+<td>E</td>
+<td>G</td>
+<td>H</td>
+<td>V</td>
+<td> </td>
+<td>
+<p>This tab shows the data validation details for all systems that have been excluded from the data collection due to missing benchmarks or if any systems are missing the amount of data required for an analysis. </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span >Exemptions</span>
+</p>
+</td>
+<td>E</td>
+<td>G</td>
+<td>H</td>
+<td>V</td>
+<td> </td>
+<td>
+<p>This tab lists any systems that have been granted an exemption, within the selected infrastructure group or host. <a name="kanchor153"></a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span >\<<span class="CiRBAcharEmphasis">sensor type</span>></span>
+</p>
+</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td>S</td>
+<td>
+<p>This tab lists all selected sensors and includes sensor metrics used to derive sensor scores (as well as the number of VMs and hosts associated to each sensor) depending on the sensor type:</p>
+<ul>
+<li>Datastores--Datastores, Capacity (GB/TB), Total Provisioned Space (GB/TB), Total Used Space (GB/TB), Total Required Space (GB/TB), Number of VMs, Number of Hosts</li>
+<li>Resource Pools--Resource Pools, CPU Reservation Configured (MHz), CPU Reservation Used (MHz), Memory Reservation Configured (GB/TB), Memory Reservation Used (GB/TB), Number of VMs, Total vCPUs</li>
+<li>Physical Storage--Physical Storage, Capacity (GB/TB), Total Provisioned Space (GB/TB), Total Used Space (GB/TB), Number of VMs, I/O Operations (IO/s), CPU Used (%), Latency (ms), Total Throughput (MB/s)</li>
+</ul>
+<p>Numbers are rounded to the 1 decimal point. </p>
+<p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>">
+<span class="autonumber">
+<span><b>Note: </b></span>
+</span>
+Sensors are displayed only when this data is available for the environment.
+</p>
+</td>
+</tr>
+</table>
+
+
+## Resource Utilization Metrics Tab
+
+This tab shows two sets of charts: those generated for both the high (red) and the low (yellow) limits.
+
+The resource utilization metrics are displayed for both conditions, too much infrastructure and for too little infrastructure. This allows you to view all metrics and analyses for potential resource violations from the results of both the over-provisioned and the under-provisioned analyses.
+
+A dividing line separates the over-provisioned and the under-provisioned charts. Use the right/left arrows to move forward and back through the displayed charts. As you roll-over the chart, a larger view is displayed. Double-click the chart to launch the Workload Viewer for that system.
+
+If the selected system is in the red, then the under-provisioned (red zone) charts are shown first and over-provisioned (yellow zone) are shown after the divider. For the case where you have a VM in the yellow the spectrum is displayed like the following with low limit charts first since they resulted in the VM being placed in the yellow.
+
+<Accordion title="Figure: Resource Utilization Metrics Tab">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000016_556x373.png)</Frame>
+</Accordion>
+

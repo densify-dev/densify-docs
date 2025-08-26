@@ -1,0 +1,23 @@
+---
+title: "Overview"
+---
+
+## Description
+
+The Inbound Host is a representation of a new host being planned for an infrastructure group.
+
+### Full Control Hosting Venues
+
+This API supports only full control hosting venues (i.e. infrastructure groups), as hosts are not managed in other hosting venues.
+
+### Available Capacity
+
+The available capacity is immediately increased when an Inbound Host is created, for all timeframes after the planned start date. An environment refresh is not required. This increased capacity allows for new planned workloads coming in after the inbound host is scheduled for provisioning.
+
+Similarly, the available capacity is immediately decreased if the Inbound Host is deleted. An environment refresh is not required.
+
+## Resource
+
+```json
+/inbound-hosts
+```

@@ -1,0 +1,173 @@
+---
+title: "Using Filters"
+---
+
+Each tabular reports provides a number of powerful features that enable you to review details on one or more systems to investigate issues highlighted by the Kubex analysis or to better understand how Kubex's recommendations can improve the health of your environment and save you money.
+
+You create filters in many ways within the Kubex interface. Creating filters using the options in each column is the easiest way to quickly see the results. You can use the flyout menu:
+
+
+<Frame caption="Figure: Accessing the Filtering Options">
+![](/images/docs-kubex/Content/Kubex/03000116_459x267.png)
+</Frame>
+
+
+You can also create filters using the features in the tree viewer. See [Creating Custom Filters](/docs-kubex/Content/Kubex/Creating_Custom_Filters).
+
+## Types of Filters
+
+You can filter by text strings and numeric values. You can also filter by date on the Connection Status page.
+
+
+
+<Accordion title="Table: Tabular Filter Options">
+<table>
+<thead>
+<tr>
+<th style={{width: '20%'}}>
+Type of Data
+</th>
+<th style={{width: '40%'}}>
+Details
+</th>
+<th style={{width: '40%'}}>
+Image
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style={{verticalAlign: 'top'}}>
+Date
+</td>
+<td style={{verticalAlign: 'top', width: '50%'}}>
+The context menu shows the various date comparison options. <br/><br/>
+The option "Equals" is enabled by default. Click the expand icon and then select the desired date.<br/><br/>
+Select another comparison option to extend your filter. <br/><br/>
+Specify AND/OR operators<br/><br/>
+As you define the filter, the table updates with the rows that match your criteria.<br/><br/>
+Date filters are only applicable on the Connections status page.
+</td>
+<td style={{verticalAlign: 'top', width: '50%'}}>
+<img src="/images/docs-kubex/Content/Kubex/03000117_312x365.png"/>
+</td>
+</tr>
+<tr>
+<td style={{verticalAlign: 'top'}}>
+Number
+</td>
+<td style={{verticalAlign: 'top', width: '50%'}}>
+The context menu shows the various comparison options. <br/><br/>
+The option "Equals" is enabled by default. Click the expand icon and then select the desired option.<br/><br/>
+Then enter the value to be used as the filter. If you select a range (e.g. Between) then enter the start and end values for the range.<br/><br/>
+Select another comparison option to extend your filter. <br/><br/>
+Specify AND/OR operators<br/><br/>
+As you define the filter, the table updates with the rows that match your criteria.<br/><br/>
+</td>
+<td style={{verticalAlign: 'top', width: '50%'}}>
+<img src="/images/docs-kubex/Content/Kubex/03000015_173x358.png"/>
+</td>
+</tr>
+<tr>
+<td style={{verticalAlign: 'top'}}>
+Text
+</td>
+<td style={{verticalAlign: 'top', width: '50%'}}>
+The context menu shows all of the text strings in the selected column. A vertical scroll bar is displayed if the list is longer than the drop down window.<br/><br/>
+The option "Select All" is enable by default. Deselect "Select All" and then select only the strings to be included in your filter.<br/><br/>
+You can search for a specific string by entering it in the Search bar. The search is not case-sensitive. Click X at any time to cancel the search or clear the search box.<br/><br/>
+As you select strings the table updates with the rows that match your criteria. <br/><br/>
+Check "Select All" to clear the filter.<br/><br/>
+</td>
+<td style={{verticalAlign: 'top', width: '50%'}}>
+<img src="/images/docs-kubex/Content/Kubex/03000014.png"/>
+</td>
+</tr>
+</tbody>
+</table>
+</Accordion>
+
+
+
+
+## Setting Filters at the Column Level
+
+Typically, when working with containers you will encounter many containers and it can be difficult to view and manage the data. Using the filter options at the head of most columns you can create customized filters:
+
+
+<table>
+<tbody>
+<tr><td><img src="/images/docs-kubex/Content/Kubex/03000104_50x50.png"/></td><td><img src="/images/docs-kubex/Content/Kubex/03000105_50x50.png"/></td><td><img src="/images/docs-kubex/Content/Kubex/03000106.png"/></td><td><img src="/images/docs-kubex/Content/Kubex/03000107_50x50.png"/></td></tr>
+<tr><td>
+Create filter
+</td><td>
+Filter has been set
+</td><td>
+Filter setting values
+</td><td>
+Clear settings
+</td></tr>
+</tbody>
+</table>
+
+
+
+
+<ol start="1">
+  <li>Click the filter icon to open the context menu and enter your filtering criteria. As you make selections the table is updated to show just the rows that match the selected criteria.</li>
+  <li>Your filter selections are additive. i.e. a row must meet all of the of selected filtering criteria to be displayed.</li>
+  <li>The filter is specific to the type of data.</li>
+  <li>Click outside the context menu to apply the filter.</li>
+  <li>The icon now indicates that a filter has been defined and one or more of the details are displayed.</li>
+  <li>Click on another column to build your filter. The selected items are added to the current settings. This allows you to filter on multiple items.</li>
+</ol>
+
+
+The window at the top of the column shows the number of items in your filter.
+
+## Setting Filters Using Flyout Menu
+
+You can access the same set of filters from a flyout menu on the right side of the table. Filters settings here, also affect the table immediately so you can see the resulting set of data.
+
+You can set filters on columns that are not displayed in the currently selected view. The table rows are still updated to respect the filter settings. You may want to display all columns that are used for filtering, to avoid confusion.
+
+## Using the Floating Filter Bar
+
+The floating filter bar shows you the filters that have been set on displayed columns. The values are also shown in a window in this bar.
+
+You can disable the floating filter located, below the column headers.
+
+
+<Frame caption="Figure: Showing/Hiding the Floating Filter Bar">
+![](/images/docs-kubex/Content/Kubex/03000058_420x200.png)
+</Frame>
+
+
+<Note>
+**Note:** <br/>
+The summary bar, shown in the upper right corner of the page is not updated based on the criteria set in table filters, but on your selection in the tree viewer.
+</Note>
+## Persisting Filter Settings Across Pages
+
+The selected filter options are persistent across user login sessions. When you log out and log back into Kubex, your container filter selections are retained.
+
+## Exporting Data with Filters Applied
+
+When you export the content of a report with filters applied, the filtered set of systems is exported to a .XLSX file. Adjust your filter settings accordingly to get the desired content. If you regularly export the same set of data, and then save the view.
+
+
+<Frame caption="Figure: Exporting Data">
+![](/images/docs-kubex/Content/Kubex/03000064_425x262.png)
+</Frame>
+
+
+
+## Clearing Applied Filters
+
+Click the Clear Filters button above the table to clear any filters that have been applied. 
+
+
+<Frame caption="Figure: Clearing Filters">
+![](/images/docs-kubex/Content/Kubex/03000088_481x104.png)
+</Frame>
+

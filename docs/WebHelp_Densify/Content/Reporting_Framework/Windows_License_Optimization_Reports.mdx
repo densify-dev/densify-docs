@@ -1,0 +1,44 @@
+---
+title: "Windows License Optimization Reports"
+---
+import { InlineImage } from "/snippets/InlineImage.mdx";
+
+To learn more watch the following video:
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/356907542" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+
+The Windows License Optimization reports show the possible cost savings when optimizing Microsoft® Windows licenses (as defined by your global filter). The license cost savings are calculated based on the reduction in license counts and the Windows Datacenter Server license price of $6,155. To change this license price, contact [Support@Densify.com](mailto:Support@Densify.com).
+
+<Note>
+These reports provide details for the scope of systems defined by your global filter. See [Using the Global Filter](../Densify_Com/Using_the_Global_Filter) for details.
+</Note>
+
+
+
+## Understanding Windows License Optimization Reports
+
+The Windows License Optimization report is comprised of three separate reports, as explained by the figure below:
+
+* Savings--From the example, 156 Windows licenses are required (currently in use based on existing guest placements) and 61 Windows licenses are optimal when the Densify rebalancing recommendations are taken into account (i.e. minimum number of hosts required to safely run all the Windows guests in each cluster). This equates to a savings of $584k or a 60.9% reduction in licenses ((156-61)\*license price). Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see this summary broken down by cluster. A footnote is included to state the cost of one Windows license.
+* Top Clusters--Lists the top 5 clusters by percentage of Windows license reduction. Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the full list of all clusters, showing required/optimal license counts and cost savings on a per cluster basis, plus links to host details per cluster (or across all clusters through the totals link) and move recommendations for each cluster. A footnote is included to state the cost of one Windows license.
+* History--Graphs the 90-day history of the total number of Windows licenses for all hosts in scope. Zoom <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> to see the same graph, together with a graph showing the potential cost savings. These graphs do not provide a breakdown by cluster. A footnote is included to state the cost of one Windows license.
+
+<Accordion title="Figure: Windows License Optimization Report">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000055.png)</Frame>
+</Accordion>
+
+
+## Viewing and Optimizing Windows Licenses
+
+To view and optimize Windows Licenses:
+
+1. Navigate to Virtual Optimization > Opportunity > Windows License Optimization.
+2. View the clusters with Windows licenses reduction by zooming <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_Reporting_Framework/03000040_20x19.png"/> from Top Clusters with Windows Licenses Reduction. The clusters are sorted so that the clusters with the greatest reduction appear at the top.
+3. For each of these clusters, click on the Rebalancing Recommendations to review the recommendations. If you are executing these recommendations manually, execute them in the specified order, by applying your customer-specific scripted solution or third-party tool. If you are executing these recommendations through Action Automation. Contact [Support@Densify.com](mailto:Support@Densify.com) for details on configuring automation.
+4. View the History of Windows Licenses the next day to see the impact of these rebalancing recommendations. If you apply these recommendations regularly, you can use the History of Windows Licenses to monitor continued progress.
+
+## Customizing License Pricing
+
+In many cases enterprise customers have negotiated discounted license pricing. You can customize your license pricing. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.

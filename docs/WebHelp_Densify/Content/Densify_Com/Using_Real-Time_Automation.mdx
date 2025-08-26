@@ -1,0 +1,233 @@
+---
+title: "Using Real-Time Automation"
+---
+
+## Real-Time Automation Workflow
+
+When real-time automation is enabled, Densify monitors alarms configured on the vCenter Server. If an alarm is encountered, a recommendation is executed based on the configured settings.
+
+Review the prerequisites before beginning Proactive Automation. See [Action Automation Overview](./Action_Automation_Overview).
+
+As with proactive automation, this feature is configured at the cluster level.
+
+When real-time automation is enabled, Densify executes the following stepsto generate recommendations and then executes these recommendations on your vCenter Server. Throughout this process the connector only pulls data from Densify. No data is ever pushed to your vCenter.
+
+<Accordion title="Figure: Real Time Automation Workflow">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000095.png)</Frame>
+</Accordion>
+
+
+1. The connector polls your Densify instance for alarm definitions, that are based on policy settings.
+2. Alarm definitions are configured on your vCenter Server as defined in the Real-Time Automation setup tab.
+3. When CPU or memory utilization exceeds an alarm threshold, an alarm is triggered and the Densify Connector, via a PowerShell script, connects to the vCenter Server and using standard vCenter API calls, applies the recommendations. The required vCenter credentials are encrypted and stored locally by the Densify Connector.
+4. Results, including details of each attempt to apply a recommendation, as well as detailed logging information that can be used for troubleshooting, are automatically generated after each run.
+5. Upon successful completion, the Densify Connector, sends results to the Densify instance via the RESTful Web Service API. The results are available for review in the Real-Time Automation dashboard.
+
+Once a real time allocation change has been performed the alarm is disabled. After the next audit and analysis refresh a new alarm is generated, if required and previous ones are deleted.
+
+After actions have been executed, the power state of a VM remains unchanged. i.e., if the VM was running before real-time automation, then the VM will be running afterward. If the VM was off, it will be left in that state. CPU or memory allocation changes can only be made to VMs that are hot-add-enabled.
+
+<Note>
+"Hot" allocation increases of vCPUs and memory are not supported on all OS/hardware combinations. Refer to the VMware documentation for detailed information.
+</Note>
+
+
+
+1. Click on Automation > Real-Time Automation to open the dashboard. The Deployed Monitoring Alarms tab is displayed.
+2. Use the global filter to select a subset of clusters to review.
+3. Click the Real-Time Allocation Changes tab to see which systems have triggered alarms. You can see the specific details of the bump ups for both CPU and memory allocations.
+4. Click on the Real-Time DRS Rules tab to review the automation status of each cluster and any results.
+
+## Reviewing Deployed Monitoring Alarms
+
+In the Densify Console, click on Automation > Real-Time Automation to open the dashboard. The Deployed Monitoring Alarms tab dashboard provides a summary of your environment.
+
+You may want to use the global filter to view this list more effectively. Initially you may want to focus on a few clusters to test the feature and review the volume of recommendations, the resulting actions and the performance improvements. See [Using the Global Filter](./Using_the_Global_Filter).
+
+This report provides following details in real time:
+
+Table: Deployed Monitoring Alarms Dashboard Columns
+
+<table>
+<thead>
+<tr>
+<td>
+<p>Setting</p>
+</td>
+<td>
+<p>Description</p>
+</td>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Alarm Name</p>
+</td>
+<td class="td_4">
+<p>This is the name of the generated alarm that has triggered a resource allocation change </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>vCenter</p>
+</td>
+<td rowspan="3">
+<p>This is the name of the containing <span class="mc-variable Document.VM1 variable">vCenter Server</span>, environment and cluster</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Environment </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cluster </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>System</p>
+</td>
+<td>
+<p>This is the name of the VM on which the alarm occurred.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Creation Date</p>
+</td>
+<td>
+<p>This is the time and date on which the alarm occurred.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Event</p>
+</td>
+<td>
+<p>This event that occurred to trigger the alarm. The details of the event are configured through the policy.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Description</p>
+</td>
+<td>
+<p>This is a description of the event.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Status</p>
+</td>
+<td>
+<p>This is the status of the event. An event can be in one of the following states: </p>
+<ul>
+<li>Created--The event has been created and is pending execution.</li>
+<li>Failed--The event could not be executed.</li>
+<li>Stopped--Event execution was stopped.</li>
+<li>Skipped--The event was skipped, due to validation errors.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p>Status Reason</p>
+</td>
+<td>
+<p>This is the reason the event status has been set.</p>
+</td>
+</tr>
+</table>
+
+
+You can sort the table by any one of these columns.
+
+Previously deployed alarms are deleted after the new set of actions is received by the Connector, once the analysis refresh is completed,.
+
+## Viewing Real-Time Allocation Changes
+
+You can view the allocation changes that have been made within the selected time period. Use the drop-down selector at the top of the page to select the time period that you want to review.
+
+The recommended allocation change and the status of the attempted action execution are listed here along with the details of the change and the status of the attempted action execution.
+
+<Note>
+Currently CPU/memory bump downs and disk allocation changes are not supported for real time automation.
+</Note>
+
+
+
+## Viewing Real-Time DRS Rules
+
+The Software License Cost Optimization (SLCO) feature tags VMs and hosts to minimize the number of software licenses required without impacting performance. DRS rules are created and DRS then makes the required moves to minimize the number of licenses required.
+
+The report on the Real-Time DRS Rules tab summarizes how the Software License Cost Optimization (SLCO) is deployed and the number of licensed hosts required and the workload placement in order to minimize the number of software licenses required.
+
+The Software License Cost Optimization system is optional and you must have this package in order to access this functionality. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+
+## Enabling Real Time Automation
+
+### Policy Settings
+
+There are specific policy settings that must be set in order to configure the behaviour. Contact [Support@Densify.com](mailto:Support@Densify.com) for details on modifying policy settings.
+
+In order to define the alarm triggers, you need to set CPU and memory usage limits and the duration, after which, a limit has been exceeded, that an alarm is triggered. These values are gathered by the connector and then set on the vCenter Server. Alarms are configured on each cluster that has been enabled for automation, on the Real Time Setup tab.
+
+Access the required policy settings through the Analysis Console. Contact [Support@Densify.com](mailto:Support@Densify.com) for details of the specific policy settings.
+
+The controls on the Proactive Automation Setup tab enable automation. If an alarm is triggered allocations changes are attempted, only if automation is enabled for that cluster.
+
+For each type of recommendation and for each cluster you need to determine whether or not you want to execute the recommendation. If you enable a recommendation, you also need to define how it should be executed.
+
+### Access Control
+
+You must be a member of the Administrators user group, exclusively, in order to enable and configure real-automation. The Real-Time Automation Setup tab is not visible to other user roles.
+
+You cannot be a member of admin AND SaaS\_User or SaaS\_User\_Admin. The user role can only belong to the Administrators user group to access the Real Time automation tab.
+
+### Setup Tab
+
+You need to do the following to enable this feature:
+
+1. Navigate to Automation > Real-Time Automation > Real-Time Automation Setup tab to open the configuration page.
+2. Use the global filter to select a subset of clusters, to configure. As a best practice, you will want enable the feature on a subset of clusters to test the alarm settings and then see the number of changes that will be generated.
+3. In the first column, check each box, to enable automation for each cluster you want to automate.
+4. Specify how to execute each type of recommendation:
+    * Enabled--This option executes the recommendations on your vCenter Server, via a script and the VMware PowerCLI.
+    * Disabled--These recommendations are not automated. You can use them for information only or you can generate a list and send it to your vSphere administrator.
+
+Even if you have enabled automation on a cluster, you must still enable each type of recommendation you want to automate on each cluster. This provides significant flexibility.
+
+Once configured action automation runs after each data collection audit/analysis refresh.
+
+<Note>
+When you are working with Densify Connector v2.2.3 and vSphere 7.0, you may see warnings in the action automation log file regarding the vSphere version; however automation will still run.
+</Note>
+
+
+
+### Real Time Automation and Software License Cost Optimization
+
+If you are using the optional Software License Cost Optimization system, real time automation combines with VMware's DRS feature to keep VMs on licensed hosts.
+
+Once the Software License Cost Optimization (SLCO) package has been installed, by Densify, license optimization containment rules are deployed to the vCenter Server.
+
+The DRS rules then maintain placement of managed VMs throughout the day.
+
+### Reviewing Real-Time Automation Results
+
+A set of reports accessed through the Automation > Automation Insight, provides a summary of Real Time Automation within your environments:
+
+* Real-Time Automation Coverage--This report provides details of the number of clusters for which automation is enabled, for each type of recommendation. Coverage is indicated as a percentage of VMs for which automation is enabled versus the recommendation type.
+* Real-Time Actions--This report shows the number of each recommendation type that has been completed, today after the most recent analysis refresh.
+* History of Real-Time Actions--This report shows the number of each recommendation type that have been completed over time.
+
+<Accordion title="Figure: Automation Insight">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000129.png)</Frame>
+</Accordion>
+
+
+## Disabling Real-Time Automation For a Set of Systems
+
+You can disable automated allocation changes for a given set of systems. This affects only those allocation changes for which action automation has not yet started. Contact [Support@Densify.com](mailto:Support@Densify.com) for additional information.

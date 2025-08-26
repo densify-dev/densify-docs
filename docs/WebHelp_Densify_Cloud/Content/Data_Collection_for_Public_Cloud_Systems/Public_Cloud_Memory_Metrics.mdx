@@ -1,0 +1,65 @@
+---
+title: "Public Cloud Memory Metrics"
+---
+
+## Public Cloud Memory Metrics
+
+In cases where memory utilization data is not collected you have 3 options:
+
+* Enable the collection of memory metrics.
+
+* AWS--Enable a CloudWatch agent to collect memory. There is an extra cost for each metric. Once enabled, Densify will collect the data automatically. See [AWS Data Collection Using a CloudFormation Template](./AWS_Data_Collection_Using_a_CloudFormation_Template#Enabling_Memory_Metrics).​
+* Azure provides memory data and the Azure data collection modules collect the available memory data.
+* GCP--Install the Ops agent on each instance to retrieve memory. See [Collecting GCP Memory Metrics](./Google_Cloud_Platform_Data_Collection_Prerequisites#GCP_Memory_Metrics).
+
+* Import collected memory data from a third-party tool, such as Prometheus, Splunk or SignalFX. The Densify services team can provide details of an integration for Datadog.
+* ​Backfill missing memory by enabling the corresponding policy settings. This is not the preferred option but is the easiest to implement if memory utilization metrics are not being collected.
+
+You can configure backfill through the policy settings. There are 3 options:
+
+* Optimal Usage--The cloud instance is not re-sized with respect to memory allocation
+* Custom Value--The cloud instance may be re-sized with respect to memory allocation if the memory usage changes, as defined by the policy setting, - Custom % Memory Usage Value.
+* CPU Utilization--Estimates memory utilization based on the available CPU utilization using the setting, Scaling Factor CPU to Memory.
+
+Densify uses "Optimal Usage", as the default setting. Contact [Support@Densify.com](mailto:Support@Densify.com) for details on configuring your policy settings.
+
+The following examples help to illustrate how the backfill settings affect generated recommendations.
+
+### Example 1: Actual Memory Data Values are Higher Than the Backfill Value
+
+<Accordion title="Figure: Actual Memory Data Value is Higher than the Backfill Value">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Use_Cases/03000033.png)</Frame>
+</Accordion>
+
+
+In this example, the original recommendation was generated without any actual memory data, using the default backfill policy settings. Densify identified $122.64 in monthly savings but did not recommend any changes to allocated memory.
+
+The second row shows a recommendation that was generated using actual, collected memory data. Densify identified almost $69 in monthly savings, but also recommends increasing the memory allocation, based on the actual data showing that more memory is needed for the workload. Even with the increased memory allocation, the memory utilization (%) increases to almost 90%.
+
+The recommended AWS X2iedn instance type is optimized for applications that need a high memory:vCPU ratio and delivers the highest memory capacity per vCPU among all virtualized EC2 instance types.
+
+### Example 2: Actual Memory Data Values are Lower Than the Backfill Value
+
+<Accordion title="Figure: Actual Memory Data Value is Lower than the Backfill Value">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Use_Cases/03000034.png)</Frame>
+</Accordion>
+
+
+In this example, the original recommendation was generated without any actual memory data, using the default backfill policy settings. Densify identified $100.74 in monthly savings by reducing the number of cores but did not recommend any changes to allocated memory.
+
+The second row shows a recommendation that was generated using actual, collected memory data. Densify identified $179 in monthly savings. The number of cores as well as the amount of required memory is decreased, based on the actual data showing that less memory is needed for the workload. Even with the decreased memory allocation, the memory utilization (%) decreases to almost 28%.
+
+The recommended AWS t3.large instance type is smaller and more cost-effective than the current instance.
+
+### Example 3: Actual Memory Data Values are Lower Than the Backfill Value
+
+<Accordion title="Figure: Actual Memory Data Value is Lower than the Backfill Value">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Use_Cases/03000035.png)</Frame>
+</Accordion>
+
+
+In this example, the original recommendation was generated without any actual memory data, using the default backfill policy settings. Densify identified $26.28 in monthly savings by switching within the r-family to a less powerful instance. Based on the default backfill setting there is no recommended change to the allocated memory.
+
+The second row shows a recommendation that was generated using actual, collected memory data. Densify identified $141.62 in monthly savings by reducing both the CPU and the memory by half where the actual memory data shows a trend of lower usage.
+
+The recommended z1d instance delivers high single thread performance and is a more cost-effective option than the r5 family.

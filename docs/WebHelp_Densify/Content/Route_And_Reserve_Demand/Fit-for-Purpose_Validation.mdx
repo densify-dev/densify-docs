@@ -1,0 +1,354 @@
+---
+title: "Fit-for-Purpose Validation"
+---
+
+Before booking requests can be routed to a hosting venue, a Fit-for-Purpose validation is performed to ensure that the requirements of the booking requests can be met with the supported capabilities of the hosting venue, including the operating system, software licenses, departments and security support.
+
+To learn more, watch the video
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/321327327" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+
+
+
+Capabilities are entered by Densify or by an administrator with access to the Hosting Venues page in the Analysis Console and requirements are defined when the booking request is created. When you select the booking requests to route and click the Evaluate Hosting Options or Auto Route Booking Requests button, a Fit-for-Purpose validation is performed.
+
+## Capabilities and Requirements
+
+Each hosting venue has capabilities defined that specify what is supported in that hosting venue, such as maximum VM size, license groups, operating systems, security zones, and departments. When new booking requests are created, the requirements in the booking requests need to match the capabilities in the hosting venue before the booking can be routed to the hosting venue. Requirements need to be matched in possibly four areas: Resource, Security, Business and Technical.
+
+When quick evaluation mode is enabled (option Show Details for Rejected Hosting Venues is not selected), Fit-for-Purpose results for a rejected hosting venue are not shown on the hosting venue tile. To view the Fit-for-Purpose details, click the Fit-for-Purpose section of the hosting venue tile. The recommendation is to enable quick evaluation mode, as it does provide significant performance gains especially for large environments. Also, those Fit for Purpose results for rejected hosting venues are not needed for the most part. The Fit-for-Purpose section appears as follows for rejected hosting venues:
+
+<Accordion title="Figure: Fit-for-Purpose Indicators with Quick Evaluation Enabled (default)">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030046.png)</Frame>
+</Accordion>
+
+
+When quick evaluation mode is disabled (option Show Details for Rejected Hosting Venues is selected), Fit-for-Purpose results are shown on the hosting venue tile, for all hosting venues. If a requirement does not match, an alert is shown in the applicable Fit-for-Purpose section in that hosting venue's tile. The Fit-for-Purpose validation returns one of two values for each category:
+
+* An alert is shown that a hosting venue is not fit for purpose when the capabilities of the hosting venue do not match the booking request’s requirement. An example would be if only specific departments have been designated to use this hosting venue. If you specify a supported department in the booking request that is not supported by the hosting venue, it will not be fit for purpose and the booking request is unable to be routed to this venue.
+* If a requirement is entered for a booking request and the hosting venue has a matching capability, it will be fit for purpose and the booking request passes the validation and the request can be routed to this venue. Note that if no requirement is specified for the booking request for a particular capability, hosting venues will be fit for purpose even if they do not have anything specified for this capability.
+
+<Accordion title="Figure: Fit-for-Purpose Indicators with Quick Evaluation Disabled">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030030_473x142.png)</Frame>
+</Accordion>
+
+
+If you hover over the Fit for Purpose section, a tooltip is displayed indicating whether or not the hosting venue is fit for purpose and to click for details. To view the Fit-for-Purpose details, click the Fit-for-Purpose section of the hosting venue tile.
+
+The capabilities depend on the hosting venue's platform. For example, the following shows the capabilities for VMware.
+
+Table: Capabilities and Requirements Comparison
+
+<table>
+<col/>
+<col/>
+<col/>
+<col/>
+<thead>
+<tr>
+<th>
+<p>Capability in Hosting Venue</p>
+</th>
+<th>
+<p>Requirement in Booking Request</p>
+</th>
+<th>
+<p>Section in Guest Booking Request Dialog Box </p>
+</th>
+<th>
+<p>Details</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="4">
+<p>Resource</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Operating Systems</p>
+</td>
+<td>
+<p>OS based on selected reference system</p>
+</td>
+<td>
+<p>Resource Request</p>
+</td>
+<td>
+<p>Requested OS must match an operating system supported by the hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Guest Sizes</p>
+</td>
+<td>
+<p>Requested CPUs and Memory (GB)</p>
+</td>
+<td>
+<p>Resource Request</p>
+</td>
+<td>
+<p>Requested CPUs and memory must be less than or equal to maximum supported by hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td colspan="4">
+<p>Security</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Compliance </p>
+</td>
+<td>
+<p>Compliance</p>
+</td>
+<td>
+<p>Security Requirements</p>
+</td>
+<td>
+<p>The booking’s compliance must match one supported by the hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Data Jurisdiction</p>
+</td>
+<td>
+<p>Data Jurisdiction</p>
+</td>
+<td>
+<p>Security Requirements</p>
+</td>
+<td>
+<p>The booking’s data jurisdiction must match one supported by the hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Encryption and Key Management</p>
+</td>
+<td>
+<p>Encryption and Key Management</p>
+</td>
+<td>
+<p>Security Requirements</p>
+</td>
+<td>
+<p>The booking’s encryption and key management must match one supported by the hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Identity and Access Management</p>
+</td>
+<td>
+<p>Identity and Access Management</p>
+</td>
+<td>
+<p>Security Requirements</p>
+</td>
+<td>
+<p>The booking’s identity and access management must match one supported by the hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Security Zone</p>
+</td>
+<td>
+<p>Security Zone</p>
+</td>
+<td>
+<p>Security Requirements</p>
+</td>
+<td>
+<p>The booking’s security zone must match one supported by the hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Network Isolation</p>
+</td>
+<td>
+<p>Network Isolation</p>
+</td>
+<td>
+<p>Security Requirements</p>
+</td>
+<td>
+<p>The booking’s network isolation must match one supported by the hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Intel TXT Support</p>
+</td>
+<td>
+<p>Intel TXT Support</p>
+</td>
+<td>
+<p>Security Requirements</p>
+</td>
+<td>
+<p>The booking’s Intel TXT support must match one supported by the hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td colspan="4">
+<p>Business </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Departments</p>
+</td>
+<td>
+<p>Department</p>
+</td>
+<td>
+<p>Business Requirements</p>
+</td>
+<td>
+<p>The booking’s department must match one supported by the hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Location</p>
+</td>
+<td>
+<p>Location</p>
+</td>
+<td>
+<p>Business Requirements</p>
+</td>
+<td>
+<p>The booking location must match the hosting venue’s location.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Service Level</p>
+</td>
+<td>
+<p>Service Level</p>
+</td>
+<td>
+<p>Business Requirements</p>
+</td>
+<td>
+<p>The booking’s required service level must match one supported by hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td colspan="4">
+<p>Technical </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Hypervisor Derived from Analysis Model </p>
+</td>
+<td>
+<p>Hypervisor Type</p>
+</td>
+<td>
+<p>Technical Requirements</p>
+</td>
+<td>
+<p>The booking’s required hypervisor must match the hosting venue’s hypervisor.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Hosting Platform </p>
+</td>
+<td>
+<p>Hosting Platform </p>
+</td>
+<td>
+<p>Technical Requirements</p>
+</td>
+<td>
+<p>The booking’s required hosting platform must match the hosting venue’s platform.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Maximum Guest I/O </p>
+</td>
+<td>
+<p>Context Switches, Disk IO (Bytes), Disk IO (Ops), Network IO (Bytes) and Network IO (Packets)</p>
+</td>
+<td>
+<p>Technical Requirements</p>
+</td>
+<td>
+<p>Requested context switches per second, Disk IO in bytes per second, Disk IO in operations per second, Network IO in bytes per second and Network IO in Packets per second must be less than or equal to maximum supported by the hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>License Group</p>
+</td>
+<td>
+<p>License Group</p>
+</td>
+<td>
+<p>Technical Requirements</p>
+</td>
+<td>
+<p>The booking’s license group must match one supported by the hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Operational Environments</p>
+</td>
+<td>
+<p>Operational Environment</p>
+</td>
+<td>
+<p>Technical Requirements</p>
+</td>
+<td>
+<p>The booking’s operational environment must match one supported by the hosting venue.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Software Licenses</p>
+</td>
+<td>
+<p>Software License </p>
+</td>
+<td>
+<p>Technical Requirements</p>
+</td>
+<td>
+<p>The booking’s software licenses must match one supported by the hosting venue.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+## Viewing Validation Results and Capabilities for a Hosting Venue
+
+After selecting one or more booking requests and clicking the Evaluate Hosting Options button, the Fit-for-Purpose validation is performed.
+
+The information displayed in the Hosting Venues pane is always specific to the booking requests you selected before clicking the Evaluate Hosting Options button. Note that the information is not updated when you subsequently select other booking requests. Also, in the interim, if a booking request that you evaluated is routed by another user and you try to display the Fit for Purpose Details from your evaluation, an appropriate message is displayed as the Evaluate Hosting Options is only valid for unrouted booking requests.
+
+1. Click the Fit-for-Purpose section in the hosting venue's tile to open the Fit-for-Purpose Details window to view the results of the validation.
+<Accordion title="Figure: Fit-for-Purpose Details">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030016_576x113.png)</Frame>
+</Accordion>
+2. In the Hosting Venue tile, click Amenities to see the capabilities for this hosting venue.
+<Accordion title="Figure: Amenities Window">
+<Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Reservation_Console_Guide/030017_576x308.png)</Frame>
+</Accordion>
+

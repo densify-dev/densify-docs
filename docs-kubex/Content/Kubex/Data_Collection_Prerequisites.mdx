@@ -1,0 +1,120 @@
+---
+title: "Data Collection Prerequisites"
+---
+
+## Data Collection from an In-Cluster Prometheus Deployment
+
+You can quickly deploy the data forwarder and all of the required prerequisite software using a Helm chart. See [Kubex Automation Stack Helm Chart](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack).
+
+## Data Collection from Other Configurations
+
+If you using another configuration, the following software is required for Kubex container data collection and optimization. 
+
+The data forwarder is only supported on Linux OS and x64 architecture.
+
+
+<ol start="1">
+  <li>
+    Densify account--Contact Densify for details of your subscription or sign up for a free trial.
+    <ul>
+    <li>
+    See <a alt="Click to begin your free trial." href="https://www.densify.com/product/trial" title="Click to begin your free trial."> www.densify.com/product/trial </a>
+    </li>
+    </ul>
+  </li>
+  <li>
+    Kubernetes or OpenShift must be deployed.
+    <ul>
+    <li>
+    Running cAdvisor as part of the kubelet provides the workload and configuration data required by Densify.
+    </li>
+    </ul>
+  </li>
+  <li>
+    kube-state-metrics--This service monitors the Kubernetes API server and generates metrics from the various objects inside the individual Kubernetes components. This service provides orchestration and cluster level metrics such as deployments, pod metrics, resource reservation, etc. The collected metrics allow Kubex to get a complete picture of how your containers are setup i.e. Replica Sets, Deployments, Pod and Container Labels.
+    <ul>
+    <li>
+    Requires v1.5.0 or later. See <a href="/docs-kubex/Content/Kubex/Data_Collection_Additional_Considerations" xrefformat="{u}{paratext}{/u}">  Additional Considerations </a> when using v2.x
+    </li>
+    <li>
+    <a href="https://github.com/kubernetes/kube-state-metrics"> https://github.com/kubernetes/kube-state-metrics </a>
+    </li>
+    </ul>
+  </li>
+  <li>
+    Prometheus or supported observability platform--Collects metrics from configured targets at given intervals. It provides the monitoring/data aggregation layer. It must be deployed and configured to collect kube-state-metrics and cAdvisor/kubelet metrics. See <a href="/docs-kubex/Content/Kubex/Data_Collection_Additional_Considerations#obsplat" xrefformat="{u}{paratext}{/u}">  Using an Observability Platform </a> when using an observability platform.
+    <ul>
+    <li>
+    <a href="https://prometheus.io/"> https://prometheus.io </a>
+    </li>
+    </ul>
+  </li>
+  <a href="https://github.com/densify-dev/container-data-collection/tree/main/docs">Prometheus-Data</a>
+  <li>
+    Node Exporter--This is an agent deployed on every node to collect data about the nodes, on which the containers are running. This provides host-related metrics such as CPU, memory, network, etc.
+    <ul>
+    <li>
+    <a href="https://github.com/prometheus/node_exporter"> https://github.com/prometheus/node_exporter </a>
+    </li>
+    </ul>
+  </li>
+</ol>
+
+
+The following item is not mandatory but provides additional environment information for Kubex's container optimization analysis.
+
+
+<ol start="6">
+  <li>
+    Openshift-state-metrics--Expands upon kube-state-metrics by adding metrics for OpenShift-specific resources and provides additional details such as Cluster Resource Quotas (CRQ).
+    <ul>
+    <li>
+    <a href="https://github.com/openshift/openshift-state-metrics"> https://github.com/openshift/openshift-state-metrics </a>
+    </li>
+    </ul>
+  </li>
+</ol>
+
+
+
+## Data Collection for GPU
+
+The following additional prerequisites are reuired to collect NVIDIA GPU data:
+
+
+<ul>
+  <li>NVIDIA-device-plugin--This plugin allows containers to access the NVIDIA GPUs. It must be installed on all your Kubernetes clusters to allocate NVIDIA GPU resources to workloads and to provide the GPU data.</li>
+  <li>dcgm-exporter--This Prometheus exporter  exposes GPU metrics from the Data Center GPU Manager (DCGM). It is required to collect  GPU data such as, utilization, memory usage, and power usage from NVIDIA GPUs, The dcgm-exporter can be deployed as a DaemonSet, where each node with an NVIDIA GPU runs a pod that exposes these metrics in a format that Prometheus can scrape and the Densifydata forwarder then collects.</li>
+</ul>
+
+
+The GPU data collection is currently support on the following platforms:
+
+
+<ul>
+  <li>AKS</li>
+  <li>EKS</li>
+  <li>GKE</li>
+</ul>
+
+
+
+### Additional Considerations
+
+If your cloud provider has not already deployed the NVIDIA plugin, you can deploy it yourself using the gpu-operator. Without this plugin, the Kubernetes cluster cannot support NVIDIA GPU data collection, meaning the Densifydata forwarder will have no GPU data to collect.
+
+Additionally, the dcgm-exporter must be deployed--either by your cloud provider, by you directly, or as part of the gpu-operator. Like the NVIDIA plugin, the dcgm-exporter is required for collecting GPU metrics.
+
+Densify’s All-in-One (AIO) Helm chart includes an option to deploy the dcgm-exporter as a subchart, controlled by a configuration value (which is disabled by default). The AIO Helm chart also provides the option to deploy the gpu-operator.
+If you are using the AIO Helm chart, the bundled Prometheus instance will automatically scrape GPU metrics from the dcgm-exporter. However, if you're using your own Prometheus deployment, you must ensure it is configured to scrape GPU data from the dcgm-exporter.
+
+Refer to Densify's [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/requirements.md#requirements) for configuration details.
+
+#### Video Resources
+<AccordionGroup>
+<Accordion title="Credentials For the Forwarder">
+<iframe frameborder="0" height="310" src="https://player.vimeo.com/video/1072244370?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="550"></iframe>
+<a href="https://player.vimeo.com/video/1072244370?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" target='_blank'>Credentials For the Forwarder</a>
+</Accordion>
+
+</AccordionGroup>

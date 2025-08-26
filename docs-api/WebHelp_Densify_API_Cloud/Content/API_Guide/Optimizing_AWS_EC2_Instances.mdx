@@ -1,0 +1,241 @@
+---
+title: "Optimizing AWS EC2 Instances"
+---
+
+This use case includes API-controlled data collection, analysis, and generation of right-sizing recommendations for EC2 instances within an AWS account. The recommendations, which can be downloaded on demand or posted to a webhook-specified receiver, provide extensive details that can be used to feed downstream automation engines in either JSON or terraform-map formats.
+
+After the reporting tables have been updated with the analysis results, you can view the recommendation reports from the Densify Console. In addition, a comprehensive PDF report can be downloaded for each instance to supply supporting evidence for a recommendation; this can be reviewed by a system owner before approvals are given for the suggested changes.
+
+Each `/analysis/cloud/aws/<analysisId>/results` API request returns recommendations for one AWS account, since each analysis entity is defined by the AWS account connection. If you have more than one AWS account, an API request against a single account represents a subset of the full set of EC2 recommendations that are displayed in the Densify Console, since the optimization opportunities dashboard in the Densify Console contains recommendations for all connected AWS accounts. See [Optimizing Your Public Cloud: EC2](/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Optimizing_Your_Public_Cloud#AWSEC2)
+
+<Accordion title="Video: Understanding the Densify API Workflow">
+<iframe class="vidyard_iframe" src="https://player.vimeo.com/video/313836625" width="630" height="360" frameborder="0" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen"></iframe>
+</Accordion>
+
+
+The diagram below provides an overview of the three major processes in Densify:
+
+<Accordion title="Figure: Optimizing AWS EC2 Processes">
+![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000011_563x357.png)
+</Accordion>
+
+
+1. **Data Collection**--Collect AWS data anbd load into Densify.
+
+   Use the Densify API or the Densify Console to initiate this process.
+2. **Analysis**--Analyze collected data based on pre-defined policies to make recommendations.
+
+   The analysis process is initiated automatically after data collection completes. Results can be immediately pulled from the Densify API or pushed to a webhook URI once the analysis is complete.
+3. **Reporting Database Update**--Update reporting database tables with analysis results for reporting.
+
+   The reporting database update process is scheduled to run nightly after the analysis process. The Densify Console optimization opportunity reports and the Impact Analysis and Recommendation reports are available after the reporting database update is complete.
+
+<Note>
+Before you can collect data via AWS CloudWatch API, you need to create and configure an IAM role for Densify to have a trust relationship with your AWS account. See [AWS Data Collection Prerequisites for an IAM Role](/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_) for details.
+</Note>
+
+
+
+The steps below outline a typical API workflow to optimize AWS EC2 instances:
+
+1. [Authenticate using JWT](#_Authorize)--Retrieve token to authenticate each subsequent API call.
+2. Optional: [Review Policy](#_Policy)--Review a list of available policies to be used for analysis.
+3. [Collect Data and Analyze](#_Analyze)--Start collecting data and initiate analysis (specify optional policy, optional webhook URI).
+4. [Check for Analysis Status](#_Poll)--Check for data collection and analysis status or wait for a webhook trigger to indicate that the analysis finished and downstream processing has initiated.
+5. [Download EC2 Recommendations for Action](#_Results)--Retrieve recommendations for actioning or forward to orchestration engine.
+6. Optional: [Download Impact Analysis and Recommendation Instance Report](#_Download) for system owners.
+
+## Postman Collection
+
+Densify provides a Postman collection of sample API requests for working with your public cloud environments. See the [Postman Collection](./Postman_Collection).
+
+## Authenticate using JWT
+
+Use the `/authorize` resource to retrieve an authenticated token to make subsequent API calls. See [Authorize](./Authorize) for details. By default, the token expires in 5 minutes, therefore you will need to ensure that you have an active token for each Densify API request.
+
+<Accordion title="Example: Retrieving an Authenticated Token">
+Request:
+
+```json POST /authorize
+{
+    "userName": "apiUser",
+    "pwd": "apiPassword"
+}
+```
+
+Response:
+
+```json
+{
+   "apiToken": "eyJhbGciOiJIUzUxMiJ9.yJqdGkiOiIzNzI2Yzk0NC0wMmE4LTRlYzQtOGE2Ny04ODBmMDM2OTRhZDciLCJpYXQiOjE1NDI2NTI0MDUsInN1YiI6InZhbiIsImlzcyI6IkRlbnNpZnkuY29tIiwiZXhwIjoxNTQyNjUyNzA1fQ.Jd8qFJfRoPnMEU7GzcdYGBT8WwlgmviQ1OQp8P_w9VUcjQA3FJaB9QkqJJ6d7zbrY5yjc4w0rOWjY-PPdbmqw",
+   "expires" : 1542652705869,
+   "status" : 200
+}
+```
+
+Use the `apiToken` value in your Authorization request header for subsequent Densify API calls.
+</Accordion>
+
+
+## Review Policy
+
+Use the `/analysis/cloud/aws/policy` resource to view a list of policies available in Densify. You can use one of these policies for optimization analysis. This is an optional step as the analysis runs with the default policy if no policy is specified. See List AWS policies available for analysis on page 1 for details.
+
+<Accordion title="Example: Listing AWS Cloud Policies with Description">
+Request:
+
+```
+GET /analysis/cloud/aws/policy?details=true
+```
+
+Response:
+
+```json
+{
+  "policyId": "4a63f651-a583-4157-97ff-35651370ffbe",
+  "policyInstanceId": "0c0ef18b-9367-4071-b733-396f63e51925",
+  "name": "DevOps-Automation",
+  "description": "This policy is intended for generating instance sizing and instance family optimization recommendations that require little or no review before being implemented. Densify utilizes rule-driven analytics to predict the effort of changing instance type from current to recommended, and this policy favors Low effort recommendations, producing higher automation at the expense of lower cost savings.\r\nThe resource utilization of each system is modeled using a minimum of 7 days and up to 90 days of historical workload.\r\nWhen optimizing instance sizes and families, the predicted CPU and memory usage must not exceed 65% and 85%, respectively.\r\nThis policy will not specify burstable (T-series) instance families for workloads unless they are already running in a burstable family and will not change CPU Architecture from Intel to AMD or vice versa.\r\nWhen memory usage metrics are not available, the analysis assumes the existing memory allocation is required and will not change the memory configuration."
+},
+{
+  "policyId": "4a63f651-a583-4157-97ff-35651370ffbe",
+  "policyInstanceId": "69fa4c99-1be2-4048-94a7-36fd83d07f37",
+  "name": "DevOps-Default",
+  "description": "This policy reflects best practices for generating instance sizing and instance family optimization recommendations.\r\nThe resource utilization of each system is modeled using a minimum of 7 days and up to  60 days of historical workload.\r\nWhen optimizing instance sizes and families, the predicted CPU and memory usage levels must not exceed 70% and 90%, respectively.\r\nWhen memory usage metrics are not available, the analysis  effectively assumes the existing memory allocation of the instance is required and will not change the memory configuration."
+}
+```
+</Accordion>
+
+
+## Collect Data and Analyze
+
+Initiate data collection and analysis for a given AWS account using the `/analysis/cloud/aws/analyze` resource. See [Analysis: AWS Analyze](./Analysis_AWS_Analyze) for details.
+
+You can specify an override policy to use for your analysis and/or specify a webhook to publish results when analysis is complete.
+
+<Accordion title="Example: Running AWS Data Collection and Analysis with Override Policy and Webhook">
+Request:
+
+
+```json POST /analysis/cloud/aws/analyze
+{
+  "accountId": "888665225420",
+  "roleArnName": "arn:aws:iam::888665225420:role/ReadOnlyAccess",
+  "roleExternalId": "mypassword",
+  "policyInstanceId": "f942b1a1-8f24-4032-b29a-0f628375d880",
+  "webHook": {
+          "uri": "http://mywebhookserver/webhook/results",
+       "authType": "basic",
+       "authValue": "webuser:wupassword"
+  }
+}
+```
+
+Response:
+
+
+```json
+{
+  "href": "Not available",
+  "message": "Analysis in progress",
+  "status": 200
+}
+```
+</Accordion>
+
+
+## Check for Analysis Status
+
+To find your AWS analysis entity, request for a list of existing AWS analyses available. Refer to [List all analyses for a particular platform and vendor](./Analysis_Entity#_getAllAnalyses) for details.
+
+<Accordion title="Example: Listing all AWS Analyses Available">
+Request:
+
+```
+GET /analysis/cloud/aws/
+```
+
+Response:
+
+```json
+{
+      "analysisId": "9a5d2d55-6d85-4fde-8bab-fcd0cef8c5bf",
+      "analysisName": "624756828528",
+      "analysisCompletedOn": 0,
+      "href": "/analysis/cloud/aws/9a5d2d55-6d85-4fde-8bab-fcd0cef8c5bf",
+      "analysisResults": "/analysis/cloud/aws/9a5d2d55-6d85-4fde-8bab-fcd0cef8c5bf/results",
+      "analysisStatus": "/analysis/cloud/aws/9a5d2d55-6d85-4fde-8bab-fcd0cef8c5bf/status"
+}
+```
+</Accordion>
+
+
+Use the `"analysisStatus"` resource element from the analysis entity to check for progress status. See [Analysis: Status](./Analysis_Status#_getStatus) for details on this resource.
+
+The analysis is complete and recommendations are available when `"analysisStage": "Completed"`.
+
+<Accordion title="Example: Checking AWS Analysis Status">
+Request:
+
+
+```
+GET /analysis/cloud/aws/9a5d2d55-6d85-4fde-8bab-fcd0cef8c5bf/status
+```
+
+Response:
+
+
+```json
+{
+  "analysisStage": "Completed",
+  "webHookStatus": "Success",
+  "message": "Analysis 624756828528 was last completed on Wed Feb 27 10:03:13 EST 2019."
+}
+```
+</Accordion>
+
+
+## Download EC2 Recommendations for Action
+
+Use the `/analysis/cloud/aws/<analysisId>/results` resource to retrieve EC2 recommendation results and forward them to a downstream orchestration engine for actioning. See [Analysis: AWS Recommendations](./Analysis_AWS_Results) for details.
+
+<Accordion title="Example: Returning Low-Effort EC2 Recommendations in Terraform-map">
+Request:
+
+```
+GET /analysis/cloud/aws/9a5d2d55-6d85-4fde-8bab-fcd0cef8c5bf/results?serviceType=EC2&effortEstimate=Low
+```
+
+Headers:
+
+```
+Accept: application/terraform-map<br/>Authorization: Bearer <apiToken>
+```
+
+<Note>
+This request returns low-effort EC2 recommendations only for the account defined in the specified analysis (analysisId=9a5d2d55-6d85-4fde-8bab-fcd0cef8c5bf). If you want all EC2 recommendations for your Densify collected AWS infrastructure, you must accumulate the EC2 request results for all AWS analysis entities available in Densify.
+</Note>
+
+
+</Accordion>
+
+
+## Download Impact Analysis and Recommendation Instance Report
+
+Use the `rptHref` resource element provided in the JSON recommendation output to download a PDF Impact Analysis and Recommendation Report for each instance. This report is available after a reporting database update, which is scheduled to run nightly. See [rptHref](./Analysis_AWS_Results#_rptHref) and [Example: Downloading an Impact Analysis and Recommendation Report](./Analysis_AWS_Results#Example_DownloadAppOwner) for details.
+
+<Accordion title="Example: Downloading an Impact Analysis and Recommendation Report">
+Request:
+
+```
+GET /systems/9834335a-1942-4115-a65d-a298be1d390c/analysis-report
+```
+
+Headers:
+
+```
+Accept: application/octet-stream<br/>Authorization: Bearer <apiToken>
+```
+</Accordion>
+
+

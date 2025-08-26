@@ -1,0 +1,78 @@
+---
+title: "Analysis: AWS Analyze"
+---
+
+The `/analysis/cloud/aws/analyze` resource is used to collect AWS CloudWatch data and initiate optimization analysis with the cloud infrastructure collected. Below are the series of processes that occur when the initial `/analysis/cloud/aws/analyze` request is triggered:
+
+1. Set up and initiate data collection of the specified AWS account and schedule it to run automatically on a nightly basis.
+2. Initiate analysis on the data collected using the default policy.
+
+* Subsequent analysis is scheduled to run on a nightly basis after the completion of data collection.
+* Optionally, you can configure the results to be sent to a webhook URI upon analysis completion. See [Add webhook to an analysis](./Analysis_Webhook#_AddWebhook) for details.
+
+3. While data collection or analysis is in progress, you can check the status (using `/analysis/AWS/<``subscriptionId``>/status` resource) or wait for the results to be published to an optional webhook URI.
+4. The reporting database update is scheduled to run automatically on a nightly basis after the completion of the analysis. This process produces reports for each instance recommendation, which is useful for analysts or application owners. These reports are only created after the scheduled analysis is completed, and may therefore only be available on the following day for a new analysis. Exact timing depends on the size of your environment.
+
+### Ad-Hoc Tasks
+
+Generally you do not need to run once-off tasks as both data collection and analysis tasks are scheduled automatically. In cases where you need make an ad-hoc request in addition to the scheduled job, the functionality exists for this endpoint.
+
+#### Historical Data Collection
+
+When Densify initiates data collection, normally audits collect only the last 24 hours of data. You can optionally collect up to 60 days of historical data. The historical data provides a more representative set of data on which to base resizing and optimization recommendations. You can run an ad-hoc task to collect the historical data.
+
+<Note>
+Collection of historical data can take a significant amount of time, depending on the number of instances from which Densifyis collecting data. Contact [Support@Densify.com](mailto:Support@Densify.com) to enable historical data collection and details of the performance impact.
+</Note>
+
+The following settings define the range of historical data to be collected:
+
+* Start date offset--This is number of days from the 60-day maximum, used to define the start of the range.
+
+These extra API parameters allow you to reduce the number of days of historical data to be collected. If, for example, the daily audit has been running for a few days before the historical audit can be executed then you can set the end offset to exclude the number of days that have already been collected. Sixty days is the maximum number of days that you can go back and collect historical data.
+
+* End date offset--This is number of days from yesterday, to end the range of data collected.
+
+<Accordion title="Figure: Adjusting Historical Range Using Start and End Dates">
+<Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000025_356x218.png)</Frame>
+</Accordion>
+
+
+A connection to the specified cloud account must already exist before you can run an ad hoc audit. When you execute an ad hoc refresh an audit task will be configured but a new connection will not be created. If the cloud connection does not already exist and the API POST contains `triggerAdhocAudit=true`, then you will get an error message.
+
+If there is more than one account associated with the specified account ID (i.e. a payer account with many linked accounts), the Densify API handles it in the same way that analyses are currently rerun using the POST operation.
+
+Once the audit is complete you need to rerun the associated analyses as indicated below or you can wait for the next scheduled execution of the analyses and RDB populate.
+
+#### Analysis Update
+
+You can make an ad-hoc request to refresh an existing analysis, outside of the scheduled nightly run using `/analysis/cloud/<aws|azure|gcp>/analyze`. This manual, ad hoc analysis request does not perform data collection or reporting database (RDB) updates. It only runs the analysis on the existing data collected with the following behavior:
+
+* The analysis uses the policy that is configured for the analysis. Contact [Support@Densify.com](mailto:Support@Densify.com) to change the configured policy.
+* If a new webhook is provided, the analysis will send results to the new webhook URI. If no webhook is provided, the analysis will send results to the existing webhook, if configured.
+* If the same analysis is already running, the request does not proceed and an appropriate message is returned.
+* If the specified analysis has data collection scheduled within 30 minutes, the request does not proceed and an appropriate message is returned. For example, if data collection is scheduled to run at 12:05 AM, and you initiate a manual, ad hoc analyze request at 11:45 PM, then the analysis will not proceed and an error message is returned.
+
+### Prerequisite Configuration
+
+Before you can collect AWS CloudWatch data, you need to create an IAM role for Densify to have a trust relationship with your AWS account that contains data. See [AWS Data Collection Prerequisites for an IAM Role](https://densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_) for details on how to set up the IAM role for data collection.
+
+## Resource
+
+```
+/analysis/cloud/aws/analyze
+```
+
+```
+/analysis/cloud/aws
+```
+
+## Endpoints
+
+<CardGroup cols={2}>
+    <Card title="Analyze Aws" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze/analyzeAws" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="List Aws Analyses" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze/listAwsAnalyses" arrow/>
+</CardGroup>

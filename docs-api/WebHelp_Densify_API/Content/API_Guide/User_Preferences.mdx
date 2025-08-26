@@ -1,0 +1,19 @@
+---
+title: "Overview"
+---
+
+## Description
+
+This resource object maintain the capacity unit settings and the Filter dropdown settings for users (as specified in the header of the API request), from login to login.
+
+When performing a `/routing-requests/available-capacity-query`, you can use the capacity unit settings specified here and explicitly override any values defined by the `catalog_spec`.
+
+With the Route and Reserve Demand page, this object allows you to define Capacity Unit settings once, found in the Options dropdown of the Hosting Venues pane. These settings are then automatically applied across all hosting venues when checking for available space.
+
+Note that the filter options do not impact other resource objects, e.g. setting the filter to limit the hosting venues does not impact the request to `GET /infrastructure-groups/`.
+
+## Resource
+
+```json
+/user-preferences
+```

@@ -1,0 +1,99 @@
+openapi: 3.1.0
+info:
+  title: Densify – GCP Systems API
+  version: "1.0.0"
+  description: |
+    Lists all systems (GCP Compute Engine instances) included in a given GCP optimization analysis.
+    Source: “Analysis: GCP Systems”.
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: api.example.com
+tags:
+  - name: GCP Analysis
+paths:
+  /analysis/cloud/gcp/{analysisId}/systems:
+    get:
+      tags: [GCP Analysis]
+      operationId: listGcpSystems
+      summary: List systems included in a GCP analysis
+      description: |
+        Returns the collection of GCP systems analyzed in the specified analysis.
+        The set of analyzed systems may be larger than the set of recommendations.
+      parameters:
+        - name: analysisId
+          in: path
+          required: true
+          description: Unique ID of the GCP analysis.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of systems in the analysis
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GcpSystem'
+              examples:
+                sample:
+                  summary: Example response (abbrev.)
+                  value:
+                    - serviceType: "Compute Engine"
+                      resourceId: "4390409739570762220"
+                      powerState: "Running"
+                      currentType: "n1-standard-8"
+                      displayName: "gl08.mln_gas-286"
+                      entityId: "00d60166-b9a5-4825-990e-a2efeb3caa32"
+                      href: "/systems/00d60166-b9a5-4825-990e-a2efeb3caa32"
+                    - serviceType: "Compute Engine"
+                      resourceId: "4090399486108714123"
+                      powerState: "Running"
+                      currentType: "n1-highmem-8"
+                      displayName: "gl08.hosa_far-348"
+                      entityId: "02cbfdb5-3a0d-4ecb-8732-c6f04cfcf7f9"
+                      href: "/systems/02cbfdb5-3a0d-4ecb-8732-c6f04cfcf7f9"
+        '401':
+          description: Authentication failed.
+        '404':
+          description: Analysis not found.
+        '500':
+          description: Server error.
+
+components:
+  schemas:
+    GcpSystem:
+      type: object
+      description: System (Compute Engine) included in the GCP analysis.
+      properties:
+        serviceType:
+          type: string
+          description: Cloud service type (i.e., "Compute Engine").
+        resourceId:
+          type: string
+          description: GCP unique identifier for the instance system.
+        powerState:
+          type: string
+          description: Current power state of the system.
+        currentType:
+          type: string
+          description: Current instance type of the system (e.g., n1-standard-8).
+        displayName:
+          type: string
+          description: GCP name assigned to the system.
+        entityId:
+          type: string
+          description: Densify entity ID of the system.
+        href:
+          type: string
+          description: Link to the `/systems/{entityId}` resource for this system.
+      required:
+        - serviceType
+        - resourceId
+        - powerState
+        - currentType
+        - displayName
+        - entityId
+        - href

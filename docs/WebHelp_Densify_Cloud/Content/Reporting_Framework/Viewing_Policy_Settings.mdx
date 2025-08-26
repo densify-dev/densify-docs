@@ -1,0 +1,81 @@
+---
+title: "Viewing Policy Settings"
+---
+
+import { Carousel } from "/snippets/Carousel.mdx";
+
+The Optimization Policies tab provides a summary of the policy settings applied to your cloud environments. You cannot edit policy settings from this tab. Contact [Support@Densify.com](mailto:Support@Densify.com) for more information on customizing your policy settings.
+
+## Cloud Optimization Policies
+
+Policy settings applied to your cloud environments are displayed on the specific Optimization Policies page. Navigate to the policy settings summary page from:
+
+Public Cloud menu > Cloud Provider > Optimization Policies tab.
+
+<Note>
+Advanced policy settings are not displayed in the Densify Console.
+</Note>
+
+
+<Accordion title="Figure: Optimization Policies Tab">
+<Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_Reporting_Framework/03000079.png)</Frame>
+</Accordion>
+
+
+You can review your policy settings through the Densify Console. Contact [Support@Densify.com](mailto:Support@Densify.com) to review and tune the settings to suit your business requirements.
+
+<Accordion title="Video: Cloud Policy Overview">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/371640427" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+</Accordion>
+
+
+### Filtering Policy Categories
+
+You can filter the settings to review, using the Select drop down menu at the top of the page. You can review a specific policy category or all categories, using the options in this menu. The policy settings displayed in the top pane as well as the Settings Descriptions tab, in the bottom pane, are defined by this filter.
+
+<Note>
+Advanced policy categories are not displayed in this filter.
+</Note>
+
+
+
+### Using the Lower Pane
+
+The top pane displays the active policies and their setting values. The lower pane displays policy settings for the policy or category selected in the top pane:
+
+* Description--The description of the cloud policy, selected in the top pane.
+* Accounts/Subscriptions/Projects--The accounts, subscriptions, or projects associated with the selected cloud policy. The Densify analytics use the policy to generate recommendation for the listed accounts, subscriptions, or projects.
+* Settings Descriptions--Descriptions of the standard policy settings, including the parent category and the default values.
+
+<Carousel 
+    images={[
+    {
+        src: "/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_Reporting_Framework/03000082_607x324.png",
+        caption: "Description Tab"
+    },
+    {
+        src: "/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_Reporting_Framework/03000081_607x324.png",
+        caption: "Accounts/Subscriptions/Projects Tab",
+    },
+    {
+        src: "/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_Reporting_Framework/03000080_607x324.png",
+        caption: "Settings Descriptions Tab",
+    },
+]}/>
+
+<Note>
+Policies, defined in Densify, but not referenced by any cloud environments are not displayed in the Optimization Policies page.
+</Note>
+
+
+
+### Exporting Cloud Optimization Policies
+
+You can export your cloud policy settings for external review. See [Exporting Report Data](../Densify_Com/Exporting_Report_Data) for details on using the Export to Excel feature.
+
+When you export the content from this page, the data exported is specific to the selected cloud platform and is organized into the following tabs:
+
+* Optimization Policies--Displays the cloud policies and their settings. This tab is similar to the top pane of the Optimization Policies page with "Show All" selected in the policy category filter.
+* Description--Displays the descriptions of each cloud policy.
+* Accounts/Subscriptions/Projects--This tab displays all of the accounts, subscriptions, or projects that are using one of the policies.
+* Settings Descriptions--Displays all policy settings, their parent category, setting description and default value.

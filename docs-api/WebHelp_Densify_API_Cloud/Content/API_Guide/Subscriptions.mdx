@@ -1,0 +1,68 @@
+---
+title: "Subscriptions"
+---
+
+The `/subscriptions/<platformType>` resource is used to create and manage subscription-based notifications for Densify cloud and container recommendations.
+
+To learn more watch the video,
+
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/659781714" webkitallowfullscreen="webkitallowfullscreen" width="640"></iframe>
+
+This resource allows you to set up and schedule the delivery of personalized Densify recommendations to a third-party application for targeted distribution.
+
+Personalization of the recommendation data set (returned subscription notification output) is facilitated by the following mechanisms:
+
+* Return only the systems you are interested in by specifying system attribute conditions with the [tagReferences](#tagReferences) parameter.
+* Return only specific recommendations you are interested in by specifying recommendation property conditions with the [propertyReferences](#propertyReferences) parameter.
+* Suppress certain systems or recommendations in the returned output, for a period of time, with the [suppressionReferences](#suppressionReferences) parameter.
+* Finally, the fields and attributes displayed in the returned output can be customized with the [returnStructure](#returnStructure) parameter. You can specify which recommendation field to display and whether to display the field name or the field alias as the element key.
+
+Subscription notifications are delivered to a third party application, such as Microsoft Teams™ or Slack™, using the [webhook](#webhook)  definition. If you do not specify a webhook in your Subscriptions definition, the notifications are not triggered because there is no delivery location. See [Subscriptions: Status](./Subscriptions_Status) for details on Subscriptions results and webhook status.
+
+You can dynamically retrieve the current personalized Subscriptions recommendations by providing a subscription ID in the GET subscription request. See [Subscriptions: Results](./Subscriptions_Results) for details on retrieving Subscriptions results on-demand.
+
+You can also schedule the frequency of the notification distribution using the [schedule](#schedule) definition parameter. Subscriptions without a schedule definition will typically have notifications triggered nightly after recommendation analysis and reporting database updates.
+
+## Resource
+
+```
+/subscriptions/cloud
+```
+
+```
+/subscriptions/containers
+```
+
+```
+/subscriptions
+```
+
+<Note>
+If you use this resource without the `<platformType>` specified (i.e. without `cloud` or `containers` specified), the behavior is exactly the same as specifying the `cloud`-specific resource. This behavior enables backward compatibility with scripts using the Densify API prior to release 12.1.6, where the platform-specific indicator was not available.
+</Note>
+
+## endpoints
+
+<CardGroup cols={2}>
+    <Card title="Create Subscriptions" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/createSubscriptions" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Delete Subscription" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/deleteSubscription" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Delete Subscriptions" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/deleteSubscriptions" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="List Subscriptions" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/listSubscriptions" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Lsit Subscriptions Default Platform" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/listSubscriptionsDefaultPlatform" arrow/>
+</CardGroup>
+
+<CardGroup cols={2}>
+    <Card title="Replace Subscriptions" href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/replaceSubscription" arrow/>
+</CardGroup>
