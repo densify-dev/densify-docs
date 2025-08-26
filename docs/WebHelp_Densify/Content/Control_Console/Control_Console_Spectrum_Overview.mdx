@@ -47,18 +47,10 @@ The Spectrum for each environment is divided into 4 vertical regions:
 The Spectrum for an environment is divided into 5 horizontal areas:
 
 - Environment--top level summary efficiency index for the environment;
-- Clusters (
-
-  )--efficiency index visualization for virtual clusters;
-- Hosts (
-
-  )--host systems (e.g. ESX/ESXi servers) in the environment;
-- VMs (
-
-  )--VMs in the environment;
-- Sensors (
-
-  )--non-compute (non host-centric) metrics, such as datastores.
+- Clusters ()--efficiency index visualization for virtual clusters;
+- Hosts ()--host systems (e.g. ESX/ESXi servers) in the environment;
+- VMs ()--VMs in the environment;
+- Sensors ()--non-compute (non host-centric) metrics, such as datastores.
 
 Hosts and VMs are color-coded to match their parent infrastructure group. Sensors are dark gray.
 
@@ -78,7 +70,7 @@ The sensor area is displayed if there is sensor data available, such as datastor
   </Frame>
 </Accordion>
 
-When the sensor area is displayed, click on the appropriate tab named \<Sensor Type\> to view the data of that type. Only a single row of icons is displayed, as sensors are shared in the environment.
+When the sensor area is displayed, click on the appropriate tab named \<Sensor Type\> to view the data of that type. Only a single row of icons is displayed, as sensors are shared in the environment.
 
 The green, yellow or red icon on the tab indicates the health of the sensors shown through that tab for the specified timeframe:
 
@@ -143,7 +135,7 @@ Infrastructure Groups (<Frame>
 
 <Frame>
   <img
-    class="img_1"
+    className="img_1"
     src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/0300000B_17x17.png"
   />
 </Frame>
@@ -168,7 +160,7 @@ To do this, select the one system of interest and click <span>
 Apply Filter</span>
 
 . The <span>
-\<<span class="CiRBAcharEmphasis">
+\<<span className="CiRBAcharEmphasis">
 GroupLabel</span>
 
 \></span>
@@ -190,14 +182,14 @@ VM</span>
 <p>
 Hosts (<Frame>
   <img
-    class="img_1"
+    className="img_1"
     src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000005.png"
   />
 </Frame>
 
 ) and VMs (<Frame>
   <img
-    class="img_1"
+    className="img_1"
     src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000006.png"
   />
 </Frame>
@@ -242,7 +234,7 @@ Opens the System Dashboard for the selected system in another browser window. </
 
 <Frame>
   <img
-    class="img_1"
+    className="img_1"
     src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/0300000D_18x18.png"
   />
 </Frame>
@@ -300,7 +292,7 @@ Same behavior as Apply Filter for infrastructure groups.</p>
 <p>
 Sensors (<Frame>
   <img
-    class="img_1"
+    className="img_1"
     src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000102_13x12.png"
   />
 </Frame>
@@ -361,7 +353,7 @@ Same behavior as Apply Filter for infrastructure groups.</p>
 <p>
 Missing Benchmarks (<Frame>
   <img
-    class="img_1"
+    className="img_1"
     src="images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_DCI-Control_Guide/03000108_13x12.png"
   />
 </Frame>
@@ -406,9 +398,7 @@ Benchmark Editing</span>
 
 ## Multiple Entity Fanout
 
-Hosts, VMs and sensors with a white dot (
-
-) indicate there are multiple entities at the same location of the Spectrum. In these cases, an expanded view will pop up allowing you to select the desired entity.
+Hosts, VMs and sensors with a white dot () indicate there are multiple entities at the same location of the Spectrum. In these cases, an expanded view will pop up allowing you to select the desired entity.
 
 For example, clicking the VM icon below shows that there are actually four VM entities in that location.
 
@@ -450,7 +440,7 @@ You can also zoom in on any one of the four sections, Clusters, Hosts, VMs or \<
 
 ## Environment and Cluster Host Summary
 
-If you hover over an environment or cluster in the Spectrum, a popup tooltip is displayed showing the number of Current Hosts, the number of Required Hosts, the number of Hosts for HA (if applicable), and whether or not Allow New VM Bookings is permitted (displayed only for clusters).
+If you hover over an environment or cluster in the Spectrum, a popup tooltip is displayed showing the number of Current Hosts, the number of Required Hosts, the number of Hosts for HA (if applicable), and whether or not Allow New VM Bookings is permitted (displayed only for clusters).
 
 <Accordion title="Figure: Spectrum">
   <Frame>
