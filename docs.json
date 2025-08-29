@@ -1227,16 +1227,6 @@
     ],
     "global": {
        "anchors": [
-        {
-          "anchor": "Blog",
-          "href": "https://www.densify.com/blog/",
-          "icon": "newspaper"
-        },
-        {
-          "anchor": "Contact Us",
-          "href": "https://www.densify.com/contact/",
-          "icon": "envelope"
-        }
       ]
     }
   },
