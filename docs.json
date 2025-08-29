@@ -1226,12 +1226,7 @@
       }
     ],
     "global": {
-      "anchors": [
-        {
-          "anchor": "About Us",
-          "href": "https://www.densify.com/ab",
-          "icon": "circle-info"
-        },
+       "anchors": [
         {
           "anchor": "Blog",
           "href": "https://www.densify.com/blog/",
