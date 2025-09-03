@@ -168,7 +168,6 @@
             },
             {
                 "tab": "API Reference",
-                  {
                       "groups": [
                           {
                               "group": "Getting Started",
@@ -496,7 +495,6 @@
                               ]
                           }
                       ]
-                  }
             },
             {
                 "tab": "Release Notes X",
