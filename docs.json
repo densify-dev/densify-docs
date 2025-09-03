@@ -50,12 +50,6 @@
                 "tab": "Kubex",
                 "groups": [
                     {
-                        "group": " ",
-                        "pages": [
-                            "docs-kubex/Content/Kubex/Getting_Started"
-                        ]
-                    },
-                    {
                         "group": "Getting Started",
                         "pages": [
                             "docs-kubex/Content/Kubex/Getting_Started_with_Kubex",
