@@ -53,7 +53,6 @@
                         "group": "Getting Started",
                         "pages": [
                             "docs-kubex/Content/Kubex/Getting_Started_with_Kubex",
-                            "docs-kubex/Content/General/New_Features",
                             "docs-kubex/Content/Kubex/Visualizing_Your_Data"
                         ]
                     },
