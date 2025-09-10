@@ -509,10 +509,10 @@
                 ]
             },
             {
-                "tab": "Release Notes1",
+                "tab": "Administration",
                 "groups": [
                     {
-                        "group": "Release Notes",
+                        "group": "Single-Sign-On (SSO)",
                         "pages": [
                                                         "docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud",
                             "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Resolved_Issues-Cloud",
