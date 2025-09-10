@@ -11,14 +11,14 @@ title: "Densify Online Help Documentation"
   <div
     className="text-5xl font-bold w-full mt-12 text-white leading-[1.2] tracking-tight"
   >
-   Densify Documentation & Training
+   Densify Documentation
   </div>
 
-    <p className="text-lg text-white" style={{  fontWeight: '500' , maxWidth: '40rem', margin: '0 auto', marginTop: '0.5rem'}}>
+    <p className="text-lg text-white max-w-screen-xl mx-auto mt-2 px-4" style={{ fontWeight: '500' }}>
       Feature Descriptions and Product Reference
     </p>
 
-    <div className="flex items-center justify-center" style={{ maxWidth: '800px', margin: '0 auto' }}>
+	<div className="w-full max-w-screen-xl mx-auto px-4 flex items-center justify-center">
       <button
         type="button"
         className="hidden w-full lg:flex items-center text-sm leading-6 py-4 pl-4 pr-4 text-gray-500 rounded-full"
@@ -60,44 +60,33 @@ title: "Densify Online Help Documentation"
     <Card href="/docs-kubex/Content/Kubex/Getting_Started_with_Kubex">
       <img src="https://www.densify.com/wp-content/uploads/kubex-logo-reverse.svg" alt="Densify Logo" style={{ width: '100px', height: '100px', display: 'block', margin: '0 auto' }} noZoom />
       <br/>
-      <h3 style={{ textAlign: 'center', fontSize: '1rem' }}> **Product Documentation**</h3>
+      <h3 style={{ textAlign: 'center', fontSize: '1rem' }}> **Optimizing Resources in Kubernetes Environments**</h3>
 
-      <p style={{ textAlign: 'center' }}>Access documentation to optimize your container environment.</p>
     </Card>
 
     <Card href="/docs-kubex/Content/Cloudex/Getting_Started_with_Cloudex">
-      <img src="https://www.densify.com/wp-content/uploads/cloudex-logo-reverse.png" alt="Densify Logo" style={{ width: '130px', height: '100px', display: 'block', margin: '0 auto' }} noZoom />
+      <img src="/images/docs-kubex/Content/Cloudex/cloudex-logo-reverse.png" alt="Densify Logo" style={{ width: '130px', height: '100px', display: 'block', margin: '0 auto' }} noZoom />
       <br/>
-      <h3 style={{ textAlign: 'center', fontSize: '1rem' }}> **Product Documentation**</h3>
+      <h3 style={{ textAlign: 'center', fontSize: '1rem' }}> **Optimizing Cloud Resources and Instances**</h3>
 
-      <p style={{ textAlign: 'center' }}>Access documentation to optimize your cloud environments.</p>
     </Card>
 
   </Columns>
 
-  <Columns cols={3}>
-    <Card href="/docs-api/WebHelp_Densify_API_Cloud/Content/APIHome_Cloud" iconType="solid">
-      <img src="https://www.densify.com/wp-content/uploads/densify-light-1.svg" alt="Densify Logo" style={{ width: '100px', height: '100px', display: 'block', margin: '0 auto' }} noZoom />
+  <Columns cols={2}>
+    <Card href="/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Introduction" iconType="solid">
+      <img src="/images/docs-api/api-documentation-icon.png" alt="Densify Logo" style={{ width: '100px', height: '100px', display: 'block', margin: '0 auto' }} noZoom />
       <br/>
       <h3 style={{ textAlign: 'center', fontSize: '1rem' }}> **API Documentation**</h3>
 
-      <p style={{ textAlign: 'center' }}>Access the API features to review and optimize your cloud and container environments.</p>
     </Card>
     <Card href="/docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud" iconType="solid">
-      <img src="https://www.densify.com/wp-content/uploads/densify-light-1.svg" alt="Densify Logo" style={{ width: '100px', height: '100px', display: 'block', margin: '0 auto' }} noZoom />
+      <img src="/images/docs/ReleaseNotes/release-documentation-icon-1.png" alt="Densify Logo" style={{ width: '100px', height: '100px', display: 'block', margin: '0 auto' }} noZoom />
       <br/>
-      <h3 style={{ textAlign: 'center', fontSize: '1rem' }}> **New Features**</h3>
+      <h3 style={{ textAlign: 'center', fontSize: '1rem' }}> **Product Release Notes**</h3>
 
-      <p style={{ textAlign: 'center' }}>See a summary of new features in the latest version.</p>
     </Card>
 
-    <Card href="/docs/WebHelp_Densify/Content/Densify_ADVANCED" iconType="solid">
-      <img src="https://www.densify.com/wp-content/uploads/densify-light-1.svg" alt="Densify Logo" style={{ width: '100px', height: '100px', display: 'block', margin: '0 auto' }} noZoom />
-      <br/>
-      <h3 style={{ textAlign: 'center', fontSize: '1rem' }}> **Other Documentation**</h3>
-
-      <p style={{ textAlign: 'center' }}>Access advanced topics and the Virtual Optimizer documentation.</p>
-    </Card>
   </Columns>
 
 </div>

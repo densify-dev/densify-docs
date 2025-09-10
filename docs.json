@@ -1,1276 +1,544 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Density Docs",
-  "colors": {
-    "primary": "#0075eb",
-    "light": "#0075eb",
-    "dark": "#0075eb"
-  },
-  "appearance": {
-    "default": "dark"
-  },
-  "background": {
-    "decoration": "gradient"
-  },
-  "fonts": {
-    "body": {
-      "family": "Geist"
+    "$schema": "https://mintlify.com/docs.json",
+    "theme": "mint",
+    "name": "Density Docs",
+    "colors": {
+        "primary": "#0075eb",
+        "light": "#0075eb",
+        "dark": "#0075eb"
     },
-    "heading": {
-      "family": "Geist"
-    }
-  },
-  "favicon": "/favicon.png",
-  "contextual": {
-    "options": [
-      "chatgpt",
-      "claude",
-      "copy",
-      "view"
-    ]
-  },
-  "api": {
-    "openapi": [
-      "/openapi/authorize.yaml"
-    ]
-  },
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Home",
-        "groups": [
-          {
-            "group": " ",
-            "pages": [
-              "index"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Kubex",
-        "groups": [
-          {
-            "group": " ",
-            "pages": [
-              "docs-kubex/Content/Kubex/Getting_Started"
-            ]
-          },
-          {
-            "group": "Getting Started",
-            "pages": [
-              "docs-kubex/Content/Kubex/Getting_Started_with_Kubex",
-              "docs-kubex/Content/General/New_Features",
-              "docs-kubex/Content/Kubex/Visualizing_Your_Data"
-            ]
-          },
-          {
-            "group": "Container Analysis",
-            "pages": [
-              "docs-kubex/Content/Kubex/Containers_Analysis",
-              {
-                "group": "Data Collection ",
-                "pages": [
-                  "docs-kubex/Content/Kubex/Data_Collection_Overview",
-                  {
-                    "group": "Alternate Data Collection Methods",
-                    "pages": [
-                      "docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods",
-                      "docs-kubex/Content/Kubex/Data_Collection_Prerequisites",
-                      "docs-kubex/Content/Kubex/Data_Collection_Additional_Considerations"
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Using the Tree Viewer",
-                "pages": [
-                  "docs-kubex/Content/Kubex/Using_the_Tree_Viewer",
-                  "docs-kubex/Content/Kubex/Creating_Custom_Views",
-                  "docs-kubex/Content/Kubex/Creating_Custom_Filters"
-                ]
-              },
-              "docs-kubex/Content/Kubex/Summary_Tab",
-              "docs-kubex/Content/Kubex/Breakdown_Tab",
-              "docs-kubex/Content/Kubex/Histograms_Tab",
-              "docs-kubex/Content/Kubex/Overview_Tab",
-              "docs-kubex/Content/Kubex/GPU_Tab",
-              "docs-kubex/Content/Kubex/Metrics_Viewer_Tab",
-              {
-                "group": "AI Analysis Details Tab",
-                "pages": [
-                  "docs-kubex/Content/Kubex/AI_Analysis_Details_Tab",
-                  "docs-kubex/Content/Kubex/AI_Analysis_Details_Table",
-                  "docs-kubex/Content/Kubex/Using_Table_Column_Features",
-                  "docs-kubex/Content/Kubex/Using_Filters",
-                  "docs-kubex/Content/Kubex/AI_Analysis_Details_Charts"
-                ]
-              },
-              {
-                "group": "Policy Overview",
-                "pages": [
-                  "docs-kubex/Content/Kubex/Policy_Overview",
-                  "docs-kubex/Content/Kubex/Policies_Tab"
-                ]
-              },
-              {
-                "group": "Automation Overview",
-                "pages": [
-                  "docs-kubex/Content/Kubex/Automation_Overview",
-                  "docs-kubex/Content/Kubex/Automation_Tab"
-                ]
-              }
-            ]
-          },
-          {
-            "group": "Node Group Analysis",
-            "pages": [
-              "docs-kubex/Content/Kubex/Node_Group_Analysis",
-              "docs-kubex/Content/Kubex/Using_the_Node_Tree_Viewer",
-              "docs-kubex/Content/Kubex/Node_Group_Analysis_Table",
-              "docs-kubex/Content/Kubex/Node-Group-Overview_Tab",
-              "docs-kubex/Content/Kubex/Nodes_Tab",
-              "docs-kubex/Content/Kubex/Node-Overview-Tab"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Cloudex",
-        "groups": [
-          {
-            "group": " ",
-            "pages": [
-              "docs-kubex/Content/Cloudex/Getting_Started_with_Cloudex"
-            ]
-          },
-          {
-            "group": "Cloud Analysis",
-            "pages": [
-              "docs-kubex/Content/Cloudex/Cloud_Analysis",
-              {
-                "group": "Data Collection Overview - Cloud",
-                "pages": [
-                  "docs-kubex/Content/Cloudex/Data_Collection_Overview-Cloud",
-                  "docs-kubex/Content/Cloudex/Cloud_Connections",
-                  "docs-kubex/Content/Cloudex/Data_Collection_AWS_Connections",
-                  "docs-kubex/Content/Cloudex/Data_Collection_Azure_Connections"
-                ]
-              },
-              "docs-kubex/Content/Cloudex/Using_the_Cloud_Tree_Viewer",
-              "docs-kubex/Content/Cloudex/Summary_Tab-Cloud",
-              {
-                "group": "AI Analysis Details Tab",
-                "pages": [
-                  "docs-kubex/Content/Cloudex/AI_Analysis_Details_Tab-Cloud",
-                  "docs-kubex/Content/Cloudex/AI_Analysis_Details_Table-Cloud",
-                  "docs-kubex/Content/Cloudex/AI_Analysis_Details_Modal-Cloud"
-                ]
-              },
-              "docs-kubex/Content/Cloudex/Overview_Tab-Cloud",
-              "docs-kubex/Content/Cloudex/Catalog_Map_Tab"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Densify",
-        "dropdowns": [
-          {
-            "dropdown": "Guides",
-            "icon": "book",
-            "pages": [
-              {
-                "group": "Getting Started",
-                "pages": [
-                  "docs/WebHelp_Densify/Content/Densify_GETTING",
-                  {
-                    "group": "Release Notes",
-                    "pages": [
-                      "docs/WebHelp_Densify/Content/Release_Notes/Release_Notes",
-                      "docs/WebHelp_Densify/Content/Release_Notes/New_Features",
-                      "docs/WebHelp_Densify/Content/Release_Notes/Resolved_Issues",
-                      "docs/WebHelp_Densify/Content/Release_Notes/Third_Party_Software_Updates"
-                    ]
-                  },
-                  {
-                    "group": "Overview",
-                    "pages": [
-                      "docs/WebHelp_Densify/Content/Densify_Com/Overview",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Navigating_Densify",
-                      "docs/WebHelp_Densify/Content/Using_Densify_Help",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Browser_Requirements",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Managing_Densify_User_Accounts",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Using_the_Global_Filter"
-                    ]
-                  },
-                  {
-                    "group": "Data Collection for Private Cloud",
-                    "pages": [
-                      "docs/WebHelp_Densify/Content/Densify_Com/Data_Collection_Connector_Overview",
-                      {
-                        "group": "Connector Prerequisites",
-                        "pages": [
-                          "docs/WebHelp_Densify/Content/Densify_Com/Connector_Prerequisites",
-                          "docs/WebHelp_Densify/Content/Data_Collection_for_VI3_Systems/Access_Permissions_for_a_VMware_Read_Only_Account",
-                          "docs/WebHelp_Densify/Content/Data_Collection_for_VI3_Systems/Access_Permissions_for_a_vROps_Account",
-                          "docs/WebHelp_Densify/Content/Densify_Com/Appendix-Supported_TLS_Versions"
-                        ]
-                      },
-                      "docs/WebHelp_Densify/Content/Densify_Com/Data_Collection_Connector_Installing",
-                      {
-                        "group": "Troubleshooting Data Collection",
-                        "pages": [
-                          "docs/WebHelp_Densify/Content/Data_Collection_Troubleshooting/Troubleshooting_Data_Collection",
-                          "docs/WebHelp_Densify/Content/Data_Collection_Troubleshooting/Partial_or_No_Workload_Data-vCenter",
-                          "docs/WebHelp_Densify/Content/Data_Collection_Troubleshooting/Audit_Not_Received-Connector_Issues",
-                          "docs/WebHelp_Densify/Content/Data_Collection_Troubleshooting/Audit_Not_Received-Connectivity_Issues"
-                        ]
-                      }
-                    ]
-                  },
-                  "docs/WebHelp_Densify/Content/Video_Library",
-                  "docs/WebHelp_Densify/Content/PDFs"
-                ]
-              },
-              {
-                "group": "Private Cloud",
-                "pages": [
-                  "docs/WebHelp_Densify/Content/Densify_PRIVATECLOUD",
-                  {
-                    "group": "Managing Your Virtual Environments",
-                    "pages": [
-                      "docs/WebHelp_Densify/Content/Densify_Com/Managing_Your_Virtual_Environments",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Reporting_Based_on_Average_or_Standard_VM"
-                    ]
-                  },
-                  "docs/WebHelp_Densify/Content/Reporting_Framework/Understanding_the_By_the_Numbers_Report",
-                  {
-                    "group": "Viewing the Optimization Overview Report (Virtual)",
-                    "pages": [
-                      "docs/WebHelp_Densify/Content/Reporting_Framework/Viewing_the_Optimization_Overview_Report__Virtual_",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Guest_Sizing_Accuracy_Reports",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Viewing_the_Impact_Analysis_and_Recommendation_Report_-_Virtual_Guest_"
-                    ]
-                  },
-                  {
-                    "group": "Virtual Environment Reports",
-                    "pages": [
-                      "docs/WebHelp_Densify/Content/Densify_Com/Virtual_Environment_Reports",
-                      {
-                        "group": "De-Risking Your Environment",
-                        "pages": [
-                          "docs/WebHelp_Densify/Content/Reporting_Framework/De-Risking_Your_Environment",
-                          "docs/WebHelp_Densify/Content/Reporting_Framework/Clusters_with_Insufficient_Capacity_Reports",
-                          "docs/WebHelp_Densify/Content/Reporting_Framework/Hosts_at_Risk_Reports",
-                          "docs/WebHelp_Densify/Content/Reporting_Framework/Undersized_Guests_Reports"
-                        ]
-                      },
-                      {
-                        "group": "Densifying Your Environment",
-                        "pages": [
-                          "docs/WebHelp_Densify/Content/Reporting_Framework/Densifying_Your_Environment",
-                          "docs/WebHelp_Densify/Content/Reporting_Framework/Cluster_Capacity_in_VM_Units_Reports",
-                          "docs/WebHelp_Densify/Content/Reporting_Framework/Stacking_Ratio_Optimization_Reports",
-                          "docs/WebHelp_Densify/Content/Reporting_Framework/Windows_License_Optimization_Reports",
-                          "docs/WebHelp_Densify/Content/Reporting_Framework/Clusters_with_Surplus_Capacity_Reports",
-                          "docs/WebHelp_Densify/Content/Reporting_Framework/Host_Server_Optimization_Reports",
-                          "docs/WebHelp_Densify/Content/Reporting_Framework/Oversized_Guests_Reports",
-                          "docs/WebHelp_Densify/Content/Reporting_Framework/Clusters_with_Supply-Demand_Mismatch_Reports"
-                        ]
-                      },
-                      "docs/WebHelp_Densify/Content/Reporting_Framework/Viewing_Policy_Settings"
-                    ]
-                  },
-                  {
-                    "group": "Working with the Control Console",
-                    "pages": [
-                      "docs/WebHelp_Densify/Content/Control_Console/Working_with_the_Control_Console",
-                      "docs/WebHelp_Densify/Content/Control_Console/Understanding_the_Concepts",
-                      "docs/WebHelp_Densify/Content/Control_Console/Viewing_Your_Environment",
-                      {
-                        "group": "Navigating the Control Console",
-                        "pages": [
-                          "docs/WebHelp_Densify/Content/Control_Console/Navigating_the_Control_Console",
-                          {
-                            "group": "Spectrum",
-                            "pages": [
-                              "docs/WebHelp_Densify/Content/Control_Console/Control_Console_Spectrum_Overview",
-                              "docs/WebHelp_Densify/Content/Control_Console/Working_with_the_Spectrum",
-                              "docs/WebHelp_Densify/Content/Control_Console/Interpreting_the_Spectrum"
-                            ]
-                          },
-                          "docs/WebHelp_Densify/Content/Concepts/Compute_Efficiency_Index_CEI",
-                          "docs/WebHelp_Densify/Content/Control_Console/Spectrum_Detail",
-                          "docs/WebHelp_Densify/Content/Control_Console/Timeline_Slider",
-                          "docs/WebHelp_Densify/Content/Control_Console/Reveal",
-                          "docs/WebHelp_Densify/Content/Control_Console/Search_and_Filter",
-                          "docs/WebHelp_Densify/Content/Control_Console/Shortcut_Keys"
-                        ]
-                      },
-                      "docs/WebHelp_Densify/Content/Control_Console/Managing_Notifications_and_Exemptions",
-                      "docs/WebHelp_Densify/Content/Control_Console/Working_with_Sensors",
-                      {
-                        "group": "Working with Recommendations",
-                        "pages": [
-                          "docs/WebHelp_Densify/Content/Control_Console/Working_with_Recommendations",
-                          "docs/WebHelp_Densify/Content/Control_Console/Reviewing_Recommendations"
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "group": "Demand Planning",
-                    "pages": [
-                      "docs/WebHelp_Densify/Content/Densify_DEMANDPLANNING",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Transforming_to_Cloud",
-                      {
-                        "group": "Routing and Reserving Demand",
-                        "pages": [
-                          "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Routing_and_Reserving_Demand",
-                          {
-                            "group": "Getting Started with Route and Reserve",
-                            "pages": [
-                              "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Getting_Started_with_Route_and_Reserve",
-                              "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Guest_Booking_Life_Cycle",
-                              "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Fit-for-Purpose_Validation"
-                            ]
-                          },
-                          {
-                            "group": "Navigating the Route and Reserve Demand Page",
-                            "pages": [
-                              "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Navigating_the_Route_and_Reserve_Demand_Page",
-                              "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Viewing_the_Bookings_Requests_To_Be_Routed_Pane",
-                              {
-                                "group": "Viewing the Hosting Venues Pane",
-                                "pages": [
-                                  "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Viewing_the_Hosting_Venues_Pane",
-                                  "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Filtering_and_Sorting_Hosting_Venues",
-                                  "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Viewing_the_Reservation_Details_Pane"
-                                ]
-                              }
-                            ]
-                          },
-                          "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Viewing_Available_Capacity",
-                          {
-                            "group": "Defining Demand",
-                            "pages": [
-                              "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Defining_Demand",
-                              "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Defining_Booking_Requests",
-                              "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Routing_Booking_Requests"
-                            ]
-                          },
-                          "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Provisioning_Workloads",
-                          "docs/WebHelp_Densify/Content/Route_And_Reserve_Demand/Unrouting_and_Editing_Bookings"
-                        ]
-                      },
-                      {
-                        "group": "Planning and Managing Supply",
-                        "pages": [
-                          "docs/WebHelp_Densify/Content/Plan_And_Manage_Supply/Planning_and_Managing_Supply",
-                          "docs/WebHelp_Densify/Content/Plan_And_Manage_Supply/Defining_New_Hosts",
-                          "docs/WebHelp_Densify/Content/Plan_And_Manage_Supply/Defining_New_Datastores"
-                        ]
-                      },
-                      "docs/WebHelp_Densify/Content/Reporting_Framework/Forecasting"
-                    ]
-                  },
-                  "docs/WebHelp_Densify/Content/Use_Cases_and_Troubshooting/FAQs"
-                ]
-              },
-              {
-                "group": "Advanced",
-                "pages": [
-                  "docs/WebHelp_Densify/Content/Densify_ADVANCED",
-                  {
-                    "group": "Configuring External User Authentication",
-                    "pages": [
-                      "docs/WebHelp_Densify/Content/Administration/Configuring_External_User_Authentication",
-                      "docs/WebHelp_Densify/Content/Administration/External_User_Authentication_Example_Configuration_for_Azure_Active_Directory",
-                      "docs/WebHelp_Densify/Content/Administration/External_User_Authentication_Example_Configuration_for_Google_OpenID",
-                      "docs/WebHelp_Densify/Content/Administration/External_User_Authentication_Example_Configuration_for_Okta"
-                    ]
-                  },
-                  {
-                    "group": "Creating Custom Reports",
-                    "pages": [
-                      "docs/WebHelp_Densify/Content/Densify_Com/Creating_Custom_Reports",
-                      "docs/WebHelp_Densify/Content/Densify_Com/License_Compliance_Report",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Public_Domains_for_JasperReports_Server_"
-                    ]
-                  },
-                  {
-                    "group": "Automation",
-                    "pages": [
-                      "docs/WebHelp_Densify/Content/Densify_AUTOMATION",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Action_Automation_Overview",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Action_Automation_Prerequisites",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Using_Real-Time_Automation",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Using_Proactive_Automation",
-                      "docs/WebHelp_Densify/Content/Densify_Com/Understanding_the_Automation_Insight_Report",
-                      {
-                        "group": "Densify Connector Versions",
-                        "pages": [
-                          "docs/WebHelp_Densify/Content/Densify_Com/Action_Automation_Appendix",
-                          "docs/WebHelp_Densify/Content/Densify_Com/Action_Automation_Appendix_B"
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "group": "Analysis Workbench",
-                    "pages": [
-                      "docs/WebHelp_Densify/Content/Analysis_Workbench/Analysis_Workbench",
-                      {
-                        "group": "Introduction to the Analysis Workbench",
-                        "pages": [
-                          "docs/WebHelp_Densify/Content/Analysis_Workbench/Introduction_to_the_Analysis_Workbench",
-                          "docs/WebHelp_Densify/Content/Analysis_Workbench/Prerequisites_for_the_Analysis_Workbench",
-                          "docs/WebHelp_Densify/Content/Analysis_Workbench/Analysis_Workbench_Functions"
-                        ]
-                      },
-                      {
-                        "group": "Overview of Data Center Explorer",
-                        "pages": [
-                          "docs/WebHelp_Densify/Content/Analysis_Workbench/Overview_of_Data_Center_Explorer",
-                          {
-                            "group": "DCE Systems Explorer Pane",
-                            "pages": [
-                              "docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_Systems_Explorer_Pane",
-                              "docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_Toolbar",
-                              "docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_Views",
-                              "docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_Filters"
-                            ]
-                          },
-                          {
-                            "group": "DCE Dashboards",
-                            "pages": [
-                              "docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_Dashboards",
-                              {
-                                "group": "DCE Info Tab",
-                                "pages": [
-                                  "docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_Info_Tab",
-                                  "docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_Workload_Viewer",
-                                  "docs/WebHelp_Densify/Content/Analysis_Workbench/Workload_Viewer_Options",
-                                  "docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_Workload_Charts",
-                                  "docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_Workload_Data"
-                                ]
-                              },
-                              "docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_System_Health_Tab",
-                              "docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_References_Tab",
-                              "docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_Settings_Tab",
-                              "docs/WebHelp_Densify/Content/Analysis_Workbench/DCE_Automation_Tab"
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "group": "Policy Overview",
-                    "pages": [
-                      "docs/WebHelp_Densify/Content/Control_Console/Policy_Overview",
-                      "docs/WebHelp_Densify/Content/POLICY_SPREADSHEETS"
-                    ]
-                  },
-                  "docs/WebHelp_Densify/Content/Use_Cases_and_Troubshooting/FAQs"
-                ]
-              }
-            ]
-          },
-          {
-            "dropdown": "API Reference",
-            "icon": "code",
-            "pages": [
-              {
-                "group": "Getting Started",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Introduction",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/API_New_Features",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Using_the_API",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Common_Elements",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Common_Operations",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Error_Responses",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/State_Diagrams_for_Demand",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/State_Diagrams_for_Supply",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Postman_Collection"
-                ]
-              },
-              {
-                "group": "Use Cases",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Use_Cases",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Workloads_for_Immediate_Placement",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Workloads_to_Reserve_Capacity_for_a_Future_Date",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Querying_Available_Capacity_for_Specified_Workloads",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Adding_Supply"
-                ]
-              },
-              {
-                "group": "Authorize",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Authorize",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Authorize/authorize-user"
-                ]
-              },
-              {
-                "group": "Ping",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Ping",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Ping/ping"
-                ]
-              },
-              {
-                "group": "Systems",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Systems",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Systems/listSystems",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Systems/getSystem",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Systems/getSystemAnalysisDetails",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Systems/downloadAnalysisReport",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Systems/modifySystemAttributes",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Systems/deleteSystemAttributes"
-                ]
-              },
-              {
-                "group": "Existing Systems",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Existing_Systems",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Existing_Systems/getExistingSystems",
-                  "docs-api/WebHelp_Densify_API/Content/API_Guide/Existing_Systems/getExistingSystem"
-                ]
-              },
-              {
-                "group": "Supply and Demand Resources",
-                "pages": [
-                  {
-                    "group": "Bookings",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Bookings",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Bookings/get_bookings_projects",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Bookings/get_bookings_projects_name",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Bookings/get_bookings_status",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Bookings/get_bookings_status_name"
-                    ]
-                  },
-                  {
-                    "group": "Bookings Project, Status Groups",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Bookings_Project_Status_Groups",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Bookings_Project_Status_Groups/delete_bookings_id_attributes",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Bookings_Project_Status_Groups/get_bookings",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Bookings_Project_Status_Groups/get_bookings_id",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Bookings_Project_Status_Groups/get_bookings_id_attributes",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Bookings_Project_Status_Groups/put_bookings_id",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Bookings_Project_Status_Groups/put_bookings_id_attributes"
-                    ]
-                  },
-                  {
-                    "group": "Catalog Specifications",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Catalog_Specifications",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Catalog_Specifications/get_catalog_spec_groups",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Catalog_Specifications/get_catalog_spec_groups_group",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Catalog_Specifications/get_catalog_spec_groups_group_id",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Catalog_Specifications/get_catalog_specs",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Catalog_Specifications/get_catalog_specs_id"
-                    ]
-                  },
-                  {
-                    "group": "Configuration Parameters",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Configuration_Parameters",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Configuration_Parameters/getConfigurationParameters"
-                    ]
-                  },
-                  {
-                    "group": "Control Environments",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Control_Environments",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Control_Environments/get_control_environments",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Control_Environments/get_control_environments_id"
-                    ]
-                  },
-                  {
-                    "group": "Helper Utilities",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Helper_Utilities",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Helper_Utilities/resolveCpuBenchmark"
-                    ]
-                  },
-                  {
-                    "group": "Inbound Datastores",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Inbound_Datastores",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Inbound_Datastores/createInboundDatastore",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Inbound_Datastores/deleteInboundDatastore",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Inbound_Datastores/getInboundDatastore",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Inbound_Datastores/getInboundDatastores",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Inbound_Datastores/modifyInboundDatastore"
-                    ]
-                  },
-                  {
-                    "group": "Inbound Hosts",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Inbound_Hosts",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Inbound_Hosts/createInboundHosts",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Inbound_Hosts/deleteInboundHost",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Inbound_Hosts/getInboundHostById",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Inbound_Hosts/getInboundHosts",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Inbound_Hosts/modifyInboundHost"
-                    ]
-                  },
-                  {
-                    "group": "Infrastructure Groups",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Infrastructure_Groups",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Infrastructure_Groups/getInfrastructureGroupAmenities",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Infrastructure_Groups/getInfrastructureGroupById",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Infrastructure_Groups/getInfrastructureGroups",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Infrastructure_Groups/modifyInfrastructureGroup",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Infrastructure_Groups/postInfrastructureGroupFfpCheck"
-                    ]
-                  },
-                  {
-                    "group": "Monitored Hosts",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Monitored_Hosts",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Monitored_Hosts/get_monitored_hosts",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Monitored_Hosts/get_monitored_hosts_id",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Monitored_Hosts/put_monitored_hosts_id"
-                    ]
-                  },
-                  {
-                    "group": "Outbound Hosts",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Outbound_Hosts",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Outbound_Hosts/createOutboundHost",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Outbound_Hosts/deleteOutboundHost",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Outbound_Hosts/getOutboundHostById",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Outbound_Hosts/getOutboundHosts"
-                    ]
-                  },
-                  {
-                    "group": "Routing Requests",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests/createRoutingRequest",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests/getRoutingRequest",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests/getRoutingRequestWorkload",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests/getRoutingRequestWorkloads",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests/recheckWorkloadPlacement",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests/unrouteRoutingRequest"
-                    ]
-                  },
-                  {
-                    "group": "Routing Requests--Available Capacity Query",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests_Available_Capacity_Query",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests_Available_Capacity_Query/queryAvailableCapacity"
-                    ]
-                  },
-                  {
-                    "group": "Routing Requests--Available Sensor Capacity Query",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests_Available_Sensor_Capacity_Query",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests_Available_Sensor_Capacity_Query/queryAvailableCapacity"
-                    ]
-                  },
-                  {
-                    "group": "Routing Requests--Candidate Infrastructure Groups",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests_Candidate_Infrastructure_Groups",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests_Candidate_Infrastructure_Groups/getCandidateInfrastructureGroups"
-                    ]
-                  },
-                  {
-                    "group": "Routing Requests--Constraint Resource Query",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests_Constraint_Resource_Query",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests_Constraint_Resource_Query/queryConstraintResource"
-                    ]
-                  },
-                  {
-                    "group": "Sensors including Datastores Physical",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Sensors_including_Datastores_Physical",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Sensors_including_Datastores_Physical/getSensorDetails",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Sensors_including_Datastores_Physical/getSensorTypes",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Sensors_including_Datastores_Physical/getSensorsByType"
-                    ]
-                  },
-                  {
-                    "group": "Timeline Tags",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Timeline_Tags",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Timeline_Tags/getTimelineTags"
-                    ]
-                  },
-                  {
-                    "group": "Today Value Date",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Today_Value_Date",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Today_Value_Date/getTodayValue"
-                    ]
-                  },
-                  {
-                    "group": "User Preferences",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/User_Preferences",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/User_Preferences/getUserPreferences",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/User_Preferences/updateUserPreferences"
-                    ]
-                  },
-                  {
-                    "group": "Workload Profiles",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workload_Profiles",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workload_Profiles/getHourlyUtilizationValues",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workload_Profiles/getUtilizationPatterns",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workload_Profiles/getWorkloadProfileTypes",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workload_Profiles/getWorkloadProfilesByType"
-                    ]
-                  },
-                  {
-                    "group": "Workloads",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads/createWorkload",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads/deleteWorkload",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads/getWorkload",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads/listWorkloads",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads/updateWorkload"
-                    ]
-                  },
-                  {
-                    "group": "Workloads Attribute Metadata Groups",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads_Attribute_Metadata_Groups",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads_Attribute_Metadata_Groups/getAllWorkloadAttributeMetadata",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads_Attribute_Metadata_Groups/getWorkloadAttributeMetadataByName"
-                    ]
-                  },
-                  {
-                    "group": "Workloads Project, Owner, Status Groups",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads_Project_Owner_Status_Groups",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads_Project_Owner_Status_Groups/getWorkloadOwnerByName",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads_Project_Owner_Status_Groups/getWorkloadOwners",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads_Project_Owner_Status_Groups/getWorkloadProjectByName",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads_Project_Owner_Status_Groups/getWorkloadProjects",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads_Project_Owner_Status_Groups/getWorkloadStatusByName",
-                      "docs-api/WebHelp_Densify_API/Content/API_Guide/Workloads_Project_Owner_Status_Groups/getWorkloadStatuses"
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Densify Cloud",
-        "dropdowns": [
-          {
-            "dropdown": "Guides ",
-            "icon": "book",
-            "pages": [
-              {
-                "group": "Getting Started",
-                "pages": [
-                  "docs/WebHelp_Densify_Cloud/Content/Densify_GETTING",
-                  {
-                    "group": "Release Notes",
-                    "pages": [
-                      "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Release_Notes",
-                      "docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud",
-                      "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Resolved_Issues-Cloud",
-                      "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Third_Party_Software_Updates-Cloud"
-                    ]
-                  },
-                  {
-                    "group": "Overview",
-                    "pages": [
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Overview",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Navigating_Densify",
-                      "docs/WebHelp_Densify_Cloud/Content/Using_Densify_Help",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Browser_Requirements",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Managing_Densify_User_Accounts",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Using_the_Group_By_Feature",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Using_Guest_Filters",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Using_the_Recommendation_Filter_Menu",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Exporting_Report_Data"
-                    ]
-                  },
-                  {
-                    "group": "Performing Data Collection",
-                    "pages": [
-                      "docs/WebHelp_Densify_Cloud/Content/Performing_Data_Collection",
-                      {
-                        "group": "Data Collection for Public Cloud Systems",
-                        "pages": [
-                          "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Data_Collection_for_Public_Cloud_Systems",
-                          "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template",
-                          "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_",
-                          "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal",
-                          "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites",
-                          "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Using_the_Public_Cloud_Connection_Wizard",
-                          "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/Troubleshooting_Cloud_Data_Collection"
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Containers",
-                "pages": [
-                  "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Container_Optimization_Overview"
-                ]
-              },
-              {
-                "group": "Public Cloud",
-                "pages": [
-                  "docs/WebHelp_Densify_Cloud/Content/Densify_PUBLICCLOUD",
-                  "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Personas_CloudEngineers",
-                  "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Managing_Your_Public_Cloud",
-                  "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Viewing_the_Optimization_Overview_Report",
-                  "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Optimization_Overview_Report_-_Data_Tab",
-                  {
-                    "group": "Optimizing Your Public Cloud",
-                    "pages": [
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Optimizing_Your_Public_Cloud",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Viewing_Cloud_Optimization_Reports",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Viewing_Cloud_Optimization_Reports_-_RDS",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Working_with_ASGs",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Working_with_VMSS",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Understanding_the_Instance_Details_Report",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Understanding_the_Instance_Details__RDS_",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Viewing_the_Impact_Analysis_and_Recommendation_Report",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Overriding_Cloud_Recommendations",
-                      "docs/WebHelp_Densify_Cloud/Content/Transform_Policy_Reference/CO_Auto_Scaling_Group_Optimization",
-                      "docs/WebHelp_Densify_Cloud/Content/Reporting_Framework/Viewing_Policy_Settings"
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Advanced",
-                "pages": [
-                  "docs/WebHelp_Densify_Cloud/Content/Densify_ADVANCED",
-                  {
-                    "group": "Configuring External User Authentication",
-                    "pages": [
-                      "docs/WebHelp_Densify_Cloud/Content/Administration/Configuring_External_User_Authentication",
-                      "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Azure_Active_Directory",
-                      "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Google_OpenID",
-                      "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Okta"
-                    ]
-                  },
-                  {
-                    "group": "Creating Custom Reports",
-                    "pages": [
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Creating_Custom_Reports",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/License_Compliance_Report",
-                      "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Public_Domains_for_JasperReports_Server_"
-                    ]
-                  },
-                  "docs/WebHelp_Densify_Cloud/Content/Densify_Com/Understanding_Software_Resource_Optimization",
-                  {
-                    "group": "Policy Overview",
-                    "pages": [
-                      "docs/WebHelp_Densify_Cloud/Content/Control_Console/Policy_Overview",
-                      "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Public_Cloud_Memory_Metrics",
-                      "docs/WebHelp_Densify_Cloud/Content/POLICY_SPREADSHEETS"
-                    ]
-                  },
-                  "docs/WebHelp_Densify_Cloud/Content/Use_Cases_and_Troubshooting/FAQs_Cloud"
-                ]
-              }
-            ]
-          },
-          {
-            "dropdown": "API Reference ",
-            "icon": "code",
-            "pages": [
-              "docs-api/WebHelp_Densify_API_Cloud/Content/Densify_API",
-              {
-                "group": "Getting Started",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Introduction",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Using_the_API",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Common_Elements",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Common_Operations",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Error_Responses",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Postman_Collection"
-                ]
-              },
-              {
-                "group": "Use Cases",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Use_Cases",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_AWS_EC2_Instances",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_GCP_Compute_Engine_Instances",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Microsoft_Azure_Virtual_Machine_Instances",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Kubernetes_Containers",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscribing_to_Recommendations"
-                ]
-              },
-              {
-                "group": "Authorize",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize/authorize-user"
-                ]
-              },
-              {
-                "group": "Ping",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Ping",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Ping/ping"
-                ]
-              },
-              {
-                "group": "Systems",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/listSystems",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/getSystem",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/getSystemAnalysisDetails",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/downloadAnalysisReport",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/modifySystemAttributes",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/deleteSystemAttributes"
-                ]
-              },
-              {
-                "group": "Systems: Analysis Details",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems_Analysis_Details",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems_Analysis_Details/getSystemAnalysisDetails"
-                ]
-              },
-              {
-                "group": "Existing Systems",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Existing_Systems",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Existing_Systems/getExistingSystems",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Existing_Systems/getExistingSystem"
-                ]
-              },
-              {
-                "group": "Public Cloud Resources",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_Reference_Public_Cloud",
-                  {
-                    "group": "Analysis: AWS Analyze",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze/analyzeAws",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze/listAwsAnalyses"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: AWS Delete",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Delete",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Delete/deleteAwsAnalysis"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: AWS Recommendations",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results/getAwsRecommendations"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: AWS Systems",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Systems",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Systems/listAwsAnalysisSystems"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: Azure Analyze",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze/analyzeAzure",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze/getAzureAnalysisStatus",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze/listAzureAnalyses"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: Azure Delete",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Delete",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Delete/deleteAzureAnalysisAudit"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: Azure Recommendations",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results/listAzureRecommendations"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: Azure Systems",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Systems",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Systems/listAzureSystems"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: Cloud ",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Cloud",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Cloud/listCloudAnalyses"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: Containers",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Container",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Container/listContainerAnalyses"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: Entity",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity/getAnalysisEntity",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity/listAnalysisEntities"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: GCP Analyze",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze/analyzeGcp",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze/historicalAuditGcp",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze/listGcpAnalyses"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: GCP Delete",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Delete",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Delete/deleteGcpAnalysisAudit"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: GCP Recommendations",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results/listGcpRecommendations"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: GCP Systems",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Systems",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Systems/listGcpSystems"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: Kubernetes Container Recommendations",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Results",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Results/listKubernetesContainerRecommendations"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: Kubernetes Container Systems",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Systems",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Systems/listKubernetesContainerSystems"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: Status",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Status",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Status/getAnalysisStatus"
-                    ]
-                  },
-                  {
-                    "group": "Analysis: Webhook",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/addAnalysisWebhook",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/deleteAnalysisWebhook",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/getAnalysisWebhook",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/listAnalysisWebhooksByPlatform",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/updateAnalysisWebhook"
-                    ]
-                  },
-                  {
-                    "group": "Receive Metrics Jobs",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/createMetricsJob",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/deleteJobInputFiles",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/deleteJobLogFiles",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/deleteMetricsJob",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/downloadJobFiles",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/downloadJobLogs",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/getJobAuditInfo",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/getMetricsJob",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/listJobInputFiles",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/listJobLogFiles",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/listMetricsJobs",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/updateJobParameters",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/uploadFileAndOptionallyExecute"
-                    ]
-                  },
-                  {
-                    "group": "Subscriptions",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/createSubscriptions",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/deleteSubscription",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/deleteSubscriptions",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/listSubscriptions",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/listSubscriptionsDefaultPlatform",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/replaceSubscription"
-                    ]
-                  },
-                  {
-                    "group": "Subscriptions: Results",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results/getSubscriptionResults",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results/getSubscriptionResultsDefaultPlatform"
-                    ]
-                  },
-                  {
-                    "group": "Subscriptions: Properties",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/addSubscriptionProperties",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/deleteSubscriptionProperties",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/deleteSubscriptionProperty",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/getSubscriptionProperty",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/listSubscriptionProperties",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/listSubscriptionPropertiesDefaultPlatform",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/replaceSubscriptionProperties",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/replaceSubscriptionProperty"
-                    ]
-                  },
-                  {
-                    "group": "Subscriptions: Status",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status/getSubscriptionStatus",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status/getSubscriptionStatusDefaultPlatform"
-                    ]
-                  },
-                  {
-                    "group": "Subscriptions: Supressions",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/createSuppressions",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/deleteSuppression",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/deleteSuppressions",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/getSuppression",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/listSuppressions",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/listSuppressionsDefaultPlatform",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/replaceSuppression",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/replaceSuppressions"
-                    ]
-                  },
-                  {
-                    "group": "Subscriptions: Tags",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/addSubscriptionTags",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/deleteSubscriptionTag",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/deleteSubscriptionTags",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/getSubscriptionTag",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/listSubscriptionTags",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/listSubscriptionTagsDefaultPlatform",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/replaceSubscriptionTag",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/replaceSubscriptionTags"
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Kubernetes Clusters",
-                "pages": [
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters/listKubernetesClusters",
-                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters/getKubernetesClusterDetails",
-                  {
-                    "group": "Kubernetes Clusters Results",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results/getKubernetesClusterContainers",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results/getKubernetesClusterContainersDetailed"
-                    ]
-                  },
-                  {
-                    "group": "Kubernetes Clusters Automation",
-                    "pages": [
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Automation",
-                      "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Automation/listClusterAutomationContainers"
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "About Us",
-          "href": "https://www.densify.com/ab",
-          "icon": "circle-info"
+    "appearance": {
+        "default": "dark"
+    },
+    "background": {
+        "decoration": "gradient"
+    },
+    "fonts": {
+        "body": {
+            "family": "Geist"
         },
-        {
-          "anchor": "Blog",
-          "href": "https://www.densify.com/blog/",
-          "icon": "newspaper"
-        },
-        {
-          "anchor": "Contact Us",
-          "href": "https://www.densify.com/contact/",
-          "icon": "envelope"
+        "heading": {
+            "family": "Geist"
         }
-      ]
+    },
+    "favicon": "/favicon.png",
+    "contextual": {
+        "options": [
+            "copy",
+            "view"
+        ]
+    },
+    "api": {
+        "openapi": [
+            "/openapi/authorize.yaml"
+        ]
+    },
+    "navigation": {
+        "tabs": [
+            {
+                "tab": "Home",
+                "groups": [
+                    {
+                        "group": " ",
+                        "pages": [
+                            "index"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Kubex",
+                "groups": [
+                    {
+                        "group": "Getting Started",
+                        "pages": [
+                            "docs-kubex/Content/Kubex/Getting_Started_with_Kubex",
+                            "docs-kubex/Content/Kubex/Visualizing_Your_Data"
+                        ]
+                    },
+                    {
+                        "group": "Container Analysis",
+                        "pages": [
+                            "docs-kubex/Content/Kubex/Containers_Analysis",
+                            {
+                                "group": "Data Collection ",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/Data_Collection_Overview",
+                                    {
+                                        "group": "Alternate Data Collection Methods",
+                                        "pages": [
+                                            "docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods",
+                                            "docs-kubex/Content/Kubex/Data_Collection_Prerequisites",
+                                            "docs-kubex/Content/Kubex/Data_Collection_Additional_Considerations"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "group": "Using the Tree Viewer",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/Using_the_Tree_Viewer",
+                                    "docs-kubex/Content/Kubex/Creating_Custom_Views",
+                                    "docs-kubex/Content/Kubex/Creating_Custom_Filters"
+                                ]
+                            },
+                            "docs-kubex/Content/Kubex/Summary_Tab",
+                            "docs-kubex/Content/Kubex/Breakdown_Tab",
+                            "docs-kubex/Content/Kubex/Histograms_Tab",
+                            "docs-kubex/Content/Kubex/Overview_Tab",
+                            "docs-kubex/Content/Kubex/GPU_Tab",
+                            "docs-kubex/Content/Kubex/Metrics_Viewer_Tab",
+                            {
+                                "group": "AI Analysis Details Tab",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/AI_Analysis_Details_Tab",
+                                    "docs-kubex/Content/Kubex/AI_Analysis_Details_Table",
+                                    "docs-kubex/Content/Kubex/Using_Table_Column_Features",
+                                    "docs-kubex/Content/Kubex/Using_Filters",
+                                    "docs-kubex/Content/Kubex/AI_Analysis_Details_Charts"
+                                ]
+                            },
+                            {
+                                "group": "Policy Overview",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/Policy_Overview",
+                                    "docs-kubex/Content/Kubex/Policies_Tab"
+                                ]
+                            },
+                            {
+                                "group": "Automation Overview",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/Automation_Overview",
+                                    "docs-kubex/Content/Kubex/Automation_Tab"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "group": "Node Group Analysis",
+                        "pages": [
+                            "docs-kubex/Content/Kubex/Node_Group_Analysis",
+                            "docs-kubex/Content/Kubex/Using_the_Node_Tree_Viewer",
+                            "docs-kubex/Content/Kubex/Node_Group_Analysis_Table",
+                            "docs-kubex/Content/Kubex/Node-Group-Overview_Tab",
+                            "docs-kubex/Content/Kubex/Nodes_Tab",
+                            "docs-kubex/Content/Kubex/Node-Overview-Tab"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Cloudex",
+                "groups": [
+                    {
+                        "group": " ",
+                        "pages": [
+                            "docs-kubex/Content/Cloudex/Getting_Started_with_Cloudex"
+                        ]
+                    },
+                    {
+                        "group": "Cloud Analysis",
+                        "pages": [
+                            "docs-kubex/Content/Cloudex/Cloud_Analysis",
+                            {
+                                "group": "Data Collection Overview - Cloud",
+                                "pages": [
+                                    "docs-kubex/Content/Cloudex/Data_Collection_Overview-Cloud",
+                                    "docs-kubex/Content/Cloudex/Cloud_Connections",
+                                    "docs-kubex/Content/Cloudex/Data_Collection_AWS_Connections",
+                                    "docs-kubex/Content/Cloudex/Data_Collection_Azure_Connections"
+                                ]
+                            },
+                            "docs-kubex/Content/Cloudex/Using_the_Cloud_Tree_Viewer",
+                            "docs-kubex/Content/Cloudex/Summary_Tab-Cloud",
+                            {
+                                "group": "AI Analysis Details Tab",
+                                "pages": [
+                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Tab-Cloud",
+                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Table-Cloud",
+                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Modal-Cloud"
+                                ]
+                            },
+                            "docs-kubex/Content/Cloudex/Overview_Tab-Cloud",
+                            "docs-kubex/Content/Cloudex/Catalog_Map_Tab"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "API Reference",
+                      "groups": [
+                          {
+                              "group": "Getting Started",
+                              "pages": [
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Introduction",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Using_the_API",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Common_Elements",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Common_Operations",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Error_Responses",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Postman_Collection"
+                              ]
+                          },
+                          {
+                              "group": "Use Cases",
+                              "pages": [
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Use_Cases",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_AWS_EC2_Instances",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_GCP_Compute_Engine_Instances",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Microsoft_Azure_Virtual_Machine_Instances",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Kubernetes_Containers",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscribing_to_Recommendations"
+                              ]
+                          },
+                          {
+                              "group": "Authorize",
+                              "pages": [
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize/authorize-user"
+                              ]
+                          },
+                          {
+                              "group": "Ping",
+                              "pages": [
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Ping",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Ping/ping"
+                              ]
+                          },
+                          {
+                              "group": "Systems",
+                              "pages": [
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/listSystems",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/getSystem",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/getSystemAnalysisDetails",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/downloadAnalysisReport",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/modifySystemAttributes",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/deleteSystemAttributes"
+                              ]
+                          },
+                          {
+                              "group": "Systems: Analysis Details",
+                              "pages": [
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems_Analysis_Details",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems_Analysis_Details/getSystemAnalysisDetails"
+                              ]
+                          },
+                          {
+                              "group": "Existing Systems",
+                              "pages": [
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Existing_Systems",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Existing_Systems/getExistingSystems",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Existing_Systems/getExistingSystem"
+                              ]
+                          },
+                          {
+                              "group": "Public Cloud Resources",
+                              "pages": [
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_Reference_Public_Cloud",
+                                  {
+                                      "group": "Analysis: AWS Analyze",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze/analyzeAws",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze/listAwsAnalyses"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: AWS Delete",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Delete",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Delete/deleteAwsAnalysis"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: AWS Recommendations",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results/getAwsRecommendations"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: AWS Systems",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Systems",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Systems/listAwsAnalysisSystems"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: Azure Analyze",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze/analyzeAzure",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze/getAzureAnalysisStatus",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze/listAzureAnalyses"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: Azure Delete",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Delete",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Delete/deleteAzureAnalysisAudit"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: Azure Recommendations",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results/listAzureRecommendations"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: Azure Systems",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Systems",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Systems/listAzureSystems"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: Cloud ",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Cloud",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Cloud/listCloudAnalyses"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: Containers",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Container",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Container/listContainerAnalyses"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: Entity",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity/getAnalysisEntity",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity/listAnalysisEntities"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: GCP Analyze",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze/analyzeGcp",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze/historicalAuditGcp",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze/listGcpAnalyses"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: GCP Delete",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Delete",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Delete/deleteGcpAnalysisAudit"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: GCP Recommendations",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results/listGcpRecommendations"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: GCP Systems",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Systems",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Systems/listGcpSystems"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: Kubernetes Container Recommendations",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Results",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Results/listKubernetesContainerRecommendations"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: Kubernetes Container Systems",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Systems",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Systems/listKubernetesContainerSystems"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: Status",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Status",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Status/getAnalysisStatus"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Analysis: Webhook",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/addAnalysisWebhook",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/deleteAnalysisWebhook",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/getAnalysisWebhook",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/listAnalysisWebhooksByPlatform",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/updateAnalysisWebhook"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Receive Metrics Jobs",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/createMetricsJob",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/deleteJobInputFiles",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/deleteJobLogFiles",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/deleteMetricsJob",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/downloadJobFiles",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/downloadJobLogs",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/getJobAuditInfo",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/getMetricsJob",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/listJobInputFiles",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/listJobLogFiles",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/listMetricsJobs",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/updateJobParameters",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Receive_Metrics_Jobs/uploadFileAndOptionallyExecute"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Subscriptions",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/createSubscriptions",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/deleteSubscription",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/deleteSubscriptions",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/listSubscriptions",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/listSubscriptionsDefaultPlatform",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/replaceSubscription"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Subscriptions: Results",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results/getSubscriptionResults",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results/getSubscriptionResultsDefaultPlatform"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Subscriptions: Properties",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/addSubscriptionProperties",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/deleteSubscriptionProperties",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/deleteSubscriptionProperty",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/getSubscriptionProperty",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/listSubscriptionProperties",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/listSubscriptionPropertiesDefaultPlatform",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/replaceSubscriptionProperties",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/replaceSubscriptionProperty"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Subscriptions: Status",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status/getSubscriptionStatus",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status/getSubscriptionStatusDefaultPlatform"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Subscriptions: Supressions",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/createSuppressions",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/deleteSuppression",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/deleteSuppressions",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/getSuppression",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/listSuppressions",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/listSuppressionsDefaultPlatform",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/replaceSuppression",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/replaceSuppressions"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Subscriptions: Tags",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/addSubscriptionTags",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/deleteSubscriptionTag",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/deleteSubscriptionTags",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/getSubscriptionTag",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/listSubscriptionTags",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/listSubscriptionTagsDefaultPlatform",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/replaceSubscriptionTag",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/replaceSubscriptionTags"
+                                      ]
+                                  }
+                              ]
+                          },
+                          {
+                              "group": "Kubernetes Clusters",
+                              "pages": [
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters/listKubernetesClusters",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters/getKubernetesClusterDetails",
+                                  {
+                                      "group": "Kubernetes Clusters Results",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results/getKubernetesClusterContainers",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results/getKubernetesClusterContainersDetailed"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Kubernetes Clusters Automation",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Automation",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Automation/listClusterAutomationContainers"
+                                      ]
+                                  }
+                              ]
+                          }
+                      ]
+            },
+            {
+                "tab": "Release Notes",
+                "groups": [
+                    {
+                        "group": "Release Notes",
+                        "pages": [
+                                                        "docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud",
+                            "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Resolved_Issues-Cloud",
+                            "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Third_Party_Software_Updates-Cloud"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "global": {
+            "anchors": []
+        }
+    },
+    "logo": {
+        "light": "/logo/light.svg",
+        "dark": "/logo/dark.svg",
+        "href": "https://www.densify.com"
+    },
+    "navbar": {
+        "links": [
+            {
+                "label": "Book a Demo",
+                "href": "https://www.densify.com/product/demo/"
+            }
+        ],
+        "primary": {
+            "type": "button",
+            "label": "Free Trial",
+            "href": "https://www.densify.com/product/trial/"
+        }
+    },
+    "footer": {
+        "socials": {
+            "x": "https://twitter.com/densify",
+            "github": "https://github.com/densify-dev",
+            "linkedin": "https://www.linkedin.com/company/densify",
+            "facebook": "https://www.facebook.com/densifycloud/",
+            "youtube": "https://www.youtube.com/c/densify",
+            "instagram": "https://www.instagram.com/densifycloud/"
+        }
     }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg",
-    "href": "https://www.densify.com"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Book a Demo",
-        "href": "https://www.densify.com/product/demo/"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Free Trial",
-      "href": "https://www.densify.com/product/trial/"
-    }
-  },
-  "footer": {
-    "socials": {
-      "x": "https://twitter.com/densify",
-      "github": "https://github.com/densify-dev",
-      "linkedin": "https://www.linkedin.com/company/densify",
-      "facebook": "https://www.facebook.com/densifycloud/",
-      "youtube": "https://www.youtube.com/c/densify",
-      "instagram": "https://www.instagram.com/densifycloud/"
-    }
-  }
 }
