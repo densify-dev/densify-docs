@@ -507,6 +507,19 @@
                         ]
                     }
                 ]
+            },
+            {
+                "tab": "Release Notes1",
+                "groups": [
+                    {
+                        "group": "Release Notes",
+                        "pages": [
+                                                        "docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud",
+                            "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Resolved_Issues-Cloud",
+                            "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Third_Party_Software_Updates-Cloud"
+                        ]
+                    }
+                ]
             }
         ],
         "global": {
