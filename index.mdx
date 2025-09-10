@@ -14,11 +14,11 @@ title: "Densify Online Help Documentation"
    Densify Documentation
   </div>
 
-    <p className="text-lg text-white max-w-screen-xl mx-auto mt-2 px-4" style={{ fontWeight: '500' }}>
+    <p className="text-lg text-white" style={{  fontWeight: '500' , maxWidth: '40rem', margin: '0 auto', marginTop: '0.5rem'}}>
       Feature Descriptions and Product Reference
     </p>
 
-	<div className="w-full max-w-screen-xl mx-auto px-4 flex items-center justify-center">
+    <div className="flex items-center justify-center" style={{ maxWidth: '800px', margin: '0 auto' }}>
       <button
         type="button"
         className="hidden w-full lg:flex items-center text-sm leading-6 py-4 pl-4 pr-4 text-gray-500 rounded-full"
@@ -50,7 +50,11 @@ title: "Densify Online Help Documentation"
 </div>
 
 <div className="home_card_container">
-<div className="max-w-screen-2xl mx-auto px-5">
+<div
+  style={{maxWidth: '70rem', marginLeft: 'auto',
+  marginRight: 'auto', paddingLeft: '1.25rem',
+  paddingRight: '1.25rem' }}
+>
 
   <Columns cols={2}>
     <Card href="/docs-kubex/Content/Kubex/Getting_Started_with_Kubex">
