@@ -151,7 +151,7 @@
                     {
                         "group": "Data Collection",
                         "pages": [
-                            "docs-kubex/Content/Cloudex/Data_Collection_Overview-Cloud"
+                            "docs-kubex/Content/Cloudex/Data_Collection_Overview-Cloud",
                             {
                                 "group": "AWS",
                                 "pages": [
