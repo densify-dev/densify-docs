@@ -158,7 +158,8 @@
                                     "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_",
                                     "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template",
                                     "docs-kubex/Content/Cloudex/Data_Collection_AWS_Connections",
-                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/AWS_Cloud_Connections.mdx"
+                                    "docs-kubex/Content/Cloudex/Cloud_Connections",
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/AWS_Cloud_Connections"
                                 ]
                             }
 
