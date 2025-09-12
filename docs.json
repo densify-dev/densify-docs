@@ -131,24 +131,9 @@
                 "tab": "Cloudex",
                 "groups": [
                     {
-                        "group": " ",
-                        "pages": [
-                            "docs-kubex/Content/Cloudex/Getting_Started_with_Cloudex"
-                        ]
-                    },
-                    {
-                        "group": "Cloud Analysis",
+                        "group": "Public Cloud Analysis",
                         "pages": [
                             "docs-kubex/Content/Cloudex/Cloud_Analysis",
-                            {
-                                "group": "Data Collection Overview - Cloud",
-                                "pages": [
-                                    "docs-kubex/Content/Cloudex/Data_Collection_Overview-Cloud",
-                                    "docs-kubex/Content/Cloudex/Cloud_Connections",
-                                    "docs-kubex/Content/Cloudex/Data_Collection_AWS_Connections",
-                                    "docs-kubex/Content/Cloudex/Data_Collection_Azure_Connections"
-                                ]
-                            },
                             "docs-kubex/Content/Cloudex/Using_the_Cloud_Tree_Viewer",
                             "docs-kubex/Content/Cloudex/Summary_Tab-Cloud",
                             {
@@ -161,6 +146,37 @@
                             },
                             "docs-kubex/Content/Cloudex/Overview_Tab-Cloud",
                             "docs-kubex/Content/Cloudex/Catalog_Map_Tab"
+                        ]
+                    },
+                    {
+                        "group": "Data Collection",
+                        "pages": [
+                            "docs-kubex/Content/Cloudex/Data_Collection_Overview-Cloud",
+                            {
+                                "group": "AWS Data Collection",
+                                "pages": [
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_",
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template",
+                                    "docs-kubex/Content/Cloudex/Data_Collection_AWS_Connections",
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/AWS_Cloud_Connections"
+                                ]
+                            },
+                            {
+                                "group": "Azure Data Collection",
+                                "pages": [
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal",
+                                    "docs-kubex/Content/Cloudex/Data_Collection_Azure_Connections",
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/Azure_Cloud_Connections"
+                                ]
+                            },
+                            {
+                                "group": "GCP Data Collection",
+                                "pages": [
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites",
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/GCP_Cloud_Connections"
+                                ]
+                            },
+                            "docs-kubex/Content/Cloudex/Cloud_Connections"
                         ]
                     }
                 ]
