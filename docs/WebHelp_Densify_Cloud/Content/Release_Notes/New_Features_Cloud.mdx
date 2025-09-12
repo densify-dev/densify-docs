@@ -4,521 +4,792 @@ title: "New Features"
 
 The following sections provide details of new features and updates introduced in each release.
 
-* Densify--Features in the latest release.
-* [Container Data Forwarder](#Forwarder)--Updates to Densify's Container Data Forwarder.
-* [A PI](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features)--Updated API features in the latest release are listed in *API New Features* (Help Topic ID 340760) in the online help.
+- Densify--Features in the latest release.
+- [Container Data Forwarder](#Forwarder)--Updates to Densify's Container Data Forwarder.
 
 ## Densify
 
 This topic summarizes both new and updated features introduced in Densify
 
-<Note>
-<strong>Note:</strong> After any Densify upgrade you must clear your browser cache before logging into the Densify Console. This is required regardless of the type or version of browser you are using.
-</Note>
+<Accordion title="3.5.0 August 13, 2025">
+  <Accordion title="Kubex Updates">
+    The following changes have been made to Kubex in this release:
 
+     - **Updated Container Summary Tab**--The container summary page has been updated with a new look and feel to better highlight current spend, waste, and risk.
+  <Frame caption="Figure: COntainer Summary Tab">
+    <img src="/images/docs/ReleaseNotes/v3.5/container_summary_tab.png" width="100%" />
+  </Frame>
+    - **Container Out of Memory Kills**--Container out of memory kill data is now visible in OOM Kills (Last Day) column on AI Analysis Details page:
+      - Badges will display on summary and histogram page to indicate if there are 
+OOM Kills in the environment
+      - ML Model and historical data available in the Utilization Charts carousel and Metrics Viewer
+    - **CPU Throttling (%)**--CPU Throttling data is now visible in CPU Throttling (%) column on AI Analysis Details page:
+      - ML Model and historical data available in Utilization Charts carousel and 
+Metrics Viewer  
+    - **Automation Tab**--Automation tab has been added to highlight request and limit changes made by the Kubex Automation Stack. An overview of optimized manifests 
+is also available on the summary page
+    - **Business & Operational Attributes**--Various business and operations related 
+attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and AI Analysis Details 
+columns
+    - **GPU Optimization for Container Resource Requests**--– Containers with GPUs 
+allocated now receive recommendations for downsize opportunities. The GPU Overview page has been updated to highlight this information:
+      - Added system views to AI Analysis Details (Immediate GPU Savings & Addtional GPU Waste)
+  </Accordion>
+  <Accordion title="Cloudex Updates">
+    The following changes have been made to Cloudex in this release:
+
+     - **Effort Popup**--The EƯort column on AI Analysis Details page is now clickable, showing a popup with additional details on the eƯort required to change to the recommended instance type.
+      - Overall eƯort is the highest eƯort of the individual rule items. Possible values are None, Low, Medium, and High
+     - **Business & Operational Attributes**--Various business and operations related attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and AI Analysis Details 
+columns
+  </Accordion>
+</Accordion>  
 
 <Accordion title="3.4.0 July 9, 2025">
-<Accordion title="Kubex Updates">
-The following changes have been made to Kubex in this release:
+  <Accordion title="Kubex Updates">
+    The following changes have been made to Kubex in this release:
 
-* **Updated Container Summary Tab**--The container summary page has been updated to better highlight both your current spend and the details of possible savings.
-* **Updated Node Metrics**--The Node Metrics Viewer has been updated to show the following GPU metrics:
+    - **Updated Container Summary Tab**--The container summary page has been updated to better highlight both your current spend and the details of possible savings.
+    - **Updated Node Metrics**--The Node Metrics Viewer has been updated to show the following GPU metrics:
+      - GPU Utilization %
+      - GPU Memory Utilization (%)
+      - GPU Power Usage (Watts)
+    - **Updated Utilization Chart**--The node chart showing the number of pods running on a node has been updated to show the limit for the selected node.
+    - **Customizable Data Aggregation**--You now have the ability to edit how grouped data in a table is aggregated (i.e. sum, average, max, etc.) and save your customization in a table view. This feature is available for containers, node groups, nodes and cloud instances.
 
-  * GPU Utilization %
-  * GPU Memory Utilization (%)
-  * GPU Power Usage (Watts)
+    Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
+  </Accordion>
+  <Accordion title="Cloudex Updates">
+    The following changes have been made to Cloudex in this release:
 
-* **Updated Utilization Chart**--The node chart showing the number of pods running on a node has been updated to show the limit for the selected node.
-* **Customizable Data Aggregation**--You now have the ability to edit how grouped data in a table is aggregated (i.e. sum, average, max, etc.) and save your customization in a table view. This feature is available for containers, node groups, nodes and cloud instances.
+    - **Cloud Connections**--In this release you can now can create and edit the connections to AWS and Azure. You can also view data collection status for each of the connections. Cloudex uses these connections to collect data from each account, daily.
+    - **Accessing the Catalog Map**--You can now access the catalog map directly from the AI Analysis Details tab. The catalog map with a modal view has been added to the utilization charts. You now do not need to leave the AI Analysis Details tab to use the catalog map.
+    - **Summary Tab**--The Cloud Summary tab has been updated to improve useability.
 
-Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
-</Accordion>
+    Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
+  </Accordion>
+  <Accordion title="Enhanced Cost Modeling">
+    The following changes have been made to improve how Densify determines the cost of public cloud instances, using customer-specific discounts:
 
-<Accordion title="Cloudex Updates">
-The following changes have been made to Cloudex in this release:
+    - **Azure Hybrid Benefit Status**--As part of enhancing the cost data model, Densify needs to distinguish between systems that are BYOL (also called Azure Hybrid Benefit or AHB) to accurately represent the cost of the system. The license model is available in the existing data collection configuration so no changes are required to the minimum permissions for BYOL VMs.
+    - **Azure Instance OS Name**--Densify now determines the type of Linux OS. In this release RHEL and SUSE are supported. The OS name is used to accurately determine instance costs.
+    - **Updated Cost Model**--The cloud cost data model has been updated to apply discounts based on the following details:
+      - OS Type--The type of Linux OS installed on a cloud instance. This is not an attribute and is stored in a table but cannot be edited or cleared like an attribute.
+      - License Model (Attr_key is aws:licensemodel)--The licensing model that has been configured for a cloud instance )
+      - Life Cycle (Attr_key is aws:lifecycle)--This attribute is not currently used but is collected for future development. It is used to store whether or not the instance is a spot instance. Possible values are "spot" or "normal"
 
-* **Cloud Connections**--In this release you can now can create and edit the connections to AWS and Azure. You can also view data collection status for each of the connections. Cloudex uses these connections to collect data from each account, daily.
-* **Accessing the Catalog Map**--You can now access the catalog map directly from the AI Analysis Details tab. The catalog map with a modal view has been added to the utilization charts. You now do not need to leave the AI Analysis Details tab to use the catalog map.
-* **Summary Tab**--The Cloud Summary tab has been updated to improve useability.
-
-Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
-</Accordion>
-
-<Accordion title="Enhanced Cost Modeling">
-The following changes have been made to improve how Densify determines the cost of public cloud instances, using customer-specific discounts:
-
-* **Azure Hybrid Benefit Status**--As part of enhancing the cost data model, Densify needs to distinguish between systems that are BYOL (also called Azure Hybrid Benefit or AHB) to accurately represent the cost of the system. The license model is available in the existing data collection configuration so no changes are required to the minimum permissions for BYOL VMs.
-* **Azure Instance OS Name**--Densify now determines the type of Linux OS. In this release RHEL and SUSE are supported. The OS name is used to accurately determine instance costs.
-* **Updated Cost Model**--The cloud cost data model has been updated to apply discounts based on the following details:
-
-  * OS Type--The type of Linux OS installed on a cloud instance. This is not an attribute and is stored in a table but cannot be edited or cleared like an attribute.
-  * License Model (Attr\_key is aws:licensemodel)--The licensing model that has been configured for a cloud instance )
-  * Life Cycle (Attr\_key is aws:lifecycle)--This attribute is not currently used but is collected for future development. It is used to store whether or not the instance is a spot instance. Possible values are "spot" or "normal"
-
-Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
-</Accordion>
-
-<Accordion title="Resolved Issues">
-See [Resolved and Known Issues](./Resolved_Issues-Cloud#3.3.0) for the list of resolved defects.
-</Accordion>
-
+    Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
+  </Accordion>
+  <Accordion title="Resolved Issues">
+    See [Resolved and Known Issues](./Resolved_Issues-Cloud#3.3.0) for the list of resolved defects.
+  </Accordion>
 </Accordion>
 
 <Accordion title="3.3.0 June 25, 2025">
-<Accordion title="Kubex Updates">
-The following changes have been made to Kubex in this release:
+  <Accordion title="Kubex Updates">
+    The following changes have been made to Kubex in this release:
 
-* **Node Modal**--A new modal opens when you click a node name on the Node Details page.
-* **Performance Improvements**-- The Kubex/Cloudex UI no longer retrieves data from the Densify Reporting Database (RDB). All Kubex and Cloudex UI component queries are directed exclusively to Kubex-specific tables in MS SQL.
+    - **Node Modal**--A new modal opens when you click a node name on the Node Details page.
+    - **Performance Improvements**-- The Kubex/Cloudex UI no longer retrieves data from the Densify Reporting Database (RDB). All Kubex and Cloudex UI component queries are directed exclusively to Kubex-specific tables in MS SQL.
 
-Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
-</Accordion>
-
-<Accordion title="Resolved Issues">
-See [Resolved and Known Issues](./Resolved_Issues-Cloud#3.3.0) for the list of resolved defects.
-</Accordion>
-
+    Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
+  </Accordion>
+  <Accordion title="Resolved Issues">
+    See [Resolved and Known Issues](./Resolved_Issues-Cloud#3.3.0) for the list of resolved defects.
+  </Accordion>
 </Accordion>
 
 <Accordion title="3.2.0 June 11, 2025">
-<Accordion title="Kubex Updates">
-The following changes have been made to Kubex in this release:
+  <Accordion title="Kubex Updates">
+    The following changes have been made to Kubex in this release:
 
-* **GPU Metrics for Containers**--In this release Densify introduces reporting of GPU configuration and utilization data for containers, node groups and nodes. This data enables you to identify GPU-enabled containers and nodes in your environment and see how effectively you are utilizing your GPU resources.<br /><br />
+    - **GPU Metrics for Containers**--In this release Densify introduces reporting of GPU configuration and utilization data for containers, node groups and nodes. This data enables you to identify GPU-enabled containers and nodes in your environment and see how effectively you are utilizing your GPU resources.
 
-  You must have [data forwarder v4.2.1](#Forwarder) deployed to collect the GPU data from your environments.<br /><br />
+      You must have [data forwarder v4.2.1](#Forwarder) deployed to collect the GPU data from your environments.
 
-  There are updates on many pages to highlight GPU resource configuration and utilization:
+      There are updates on many pages to highlight GPU resource configuration and utilization:
+      - **Updated AI Analysis Details**--A number of data points allow you to identify containers with GPU requests and to determine where the GPU and GPU memory request values are higher than peak utilization over a given period.
+        The analysis populates these attribute values based on the date range and data selection options that are defined in your container optimization policy. The AI Analysis Details page has been updated to display the following GPU data.
 
-  * **Updated AI Analysis Details**--A number of data points allow you to identify containers with GPU requests and to determine where the GPU and GPU memory request values are higher than peak utilization over a given period.
-    The analysis populates these attribute values based on the date range and data selection options that are defined in your container optimization policy. The AI Analysis Details page has been updated to display the following GPU data.
-    <table>
-    <col/>
-    <col/>
-    <tbody>
-    <tr>
-    <td>
-    <ul class="ul_3">
-    <li>GPU Model </li>
-    <li>GPU Request</li>
-    <li>Total GPU Request </li>
-    <li>GPU Average</li>
-    <li>%GPU Average</li>
-    <li>GPU Sustained</li>
-    <li>GPU Min</li>
-    <li>GPU Memory Request</li>
-    <li>Total GPU Memory Request</li>
-    </ul>
-    </td>
-    <td>
-    <ul class="ul_3">
-    <li>GPU Memory Average</li>
-    <li>% GPU Memory Average</li>
-    <li>GPU Memory Sustained</li>
-    <li>GPU Memory Min</li>
-    <li>GPU Power Usage Peak</li>
-    <li>GPU Power Usage Average</li>
-    </ul>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+        <table>
+        <col />
 
-  * **New Views**--Four new views have been added to the AI Analysis Details page. These views allow you to focus on your GPU data:
-    <table>
-    <col/>
-    <col/>
-    <tbody>
-    <tr>
-    <td>
-    <ul class="ul_3">
-    <li>GPU Inventory</li>
-    <li>GPU Cost</li>
-    </ul>
-    </td>
-    <td>
-    <ul class="ul_3">
-    <li>GPU Low Utilization</li>
-    <li>GPU Memory Low Utilization</li>
-    </ul>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+        <col />
 
-    The default view has been updated to include GPU data.
+        <tbody>
+        <tr>
+        <td>
+        <ul class="ul_3">
+        <li>
+        GPU Model 
+        </li>
 
-  * **Updated Summary**--New GPU-specific cards have been added to the containers Summary page. A note includes a link that opens a modal containing GPU pricing details.
+        
+        <li>
+        GPU Request
+        </li>
 
-    The top two cards on the Summary page have also been updated to better highlight both your current spend and the details of possible savings.
+        
+        <li>
+        Total GPU Request 
+        </li>
 
-  * **New GPU Tab**--A new GPU tab has been added when reviewing a single container. This new page provides details of the GPU utilization on the selected container.
-  * **Updated Metrics Viewer**--The following GPU metrics are available in the metrics viewer:
+        
+        <li>
+        GPU Average
+        </li>
 
-    * GPU Utilization in GPUs - Average Container
-    * GPU Memory Utilization (MB) - Average Container
-    * GPU Memory Utilization (%) - Average Container
-    * GPU Power Usage (Watts) - Average Container
+        
+        <li>
+        %GPU Average
+        </li>
 
-* **GPU Metrics for Node Groups**--GPU metrics have also been added for Node Groups and individual nodes.
-    <table>
-    <tbody>
-    <tr>
-    <td>
-    <ul>
-    <li>Allocatable GPU Memory (GB)</li>
-    <li>Allocatable GPUs</li>
-    <li>Allocatable Memory (GB)</li>
-    <li>Average CPU Utilization (%)</li>
-    <li>Average GPU Memory Utilization (%)</li>
-    <li>Average GPU Utilization (%)</li>
-    <li>Average Memory Utilization (%)</li>
-    <li>GPU - Node Balance Ratio</li>
-    <li>GPU Capacity</li>
-    <li>GPU Memory - Node Balance Ratio</li>
-    <li>GPU Memory Capacity (GB)</li>
-    </ul>
-    </td>
-    <td>
-    <ul>
-    <li>GPU Request (% of Allocatable)</li>
-    <li>No. of Nodes with Underused GPU</li>
-    <li>No. of Nodes with Underused GPU Memory</li>
-    <li>Nodes with Underused GPU Memory(%)</li>
-    <li>Nodes with Underused GPU(%)</li>
-    <li>Peak GPU Memory Utilization (%)</li>
-    <li>Peak GPU Utilization (%)</li>
-    <li>Primary Node GPU Model</li>
-    <li>Primary Node Type GPU (GPUs)</li>
-    <li>Primary Node Type GPU Memory (GB)</li>
-    <li>Unallocated GPUs</li>
-    </ul>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+        
+        <li>
+        GPU Sustained
+        </li>
 
-* **Updated Node Overview Tab**--This tab has been updated add GPU details and to improve usability.
-* **New Data in AI Analysis Details**--Six new data points allow you to find containers where the CPU and memory request values are higher than peak utilization over a given period.<br /><br />
+        
+        <li>
+        GPU Min
+        </li>
 
-  The analysis populates these values based on the date range and data selection options that are defined in your container optimization policy.
+        
+        <li>
+        GPU Memory Request
+        </li>
 
-  * CPU Peak--Highest peak value in mCores, on the busiest container.
-  * CPU Sustained--Highest sustained value in mCores, on the average container.
-  * CPU Min--Lowest value in mCores, on the average container.
-  * Memory Peak--Highest peak value in MB, on the busiest container.
-  * Memory Sustained--Highest sustained value in MB, on the average container.
-  * Memory Min--Lowest value in mCores, on the average container.
+        
+        <li>
+        Total GPU Memory Request
+        </li>
 
-* **Timezone**--The utilization charts for containers, node groups and nodes have been updated to standardize the timeline on UTC. The X-axis label has been updated to indicate the timezone designation for all charts to ‘UTC ’.
-* **Updated Node Overview**--The node overview page has been updated to improve useability and add details of GPU utilization.
+        </ul>
 
-Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
-</Accordion>
+        </td>
 
-<Accordion title="Cloudex Updates">
-The following changes have been made to Cloudex in this release:
+        <td>
+        <ul class="ul_3">
+        <li>
+        GPU Memory Average
+        </li>
 
-* **Timezone**--The X-axis label has been updated to indicate the timezone designation for all historical utilization charts to ‘UTC ’ This change to does not currently apply to the ML charts. The ML charts on the Cloudex AI Analysis Details page use Densify server's time. So this will be either “Eastern Time” or “Central Europe Time”.
+        
+        <li>
+        % GPU Memory Average
+        </li>
 
-Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
-</Accordion>
+        
+        <li>
+        GPU Memory Sustained
+        </li>
 
-<Accordion title="Resolved Issues">
-See [3.2.0 June 11, 2025](./Resolved_Issues-Cloud#3.2.0) for the list of resolved defects.
-</Accordion>
+        
+        <li>
+        GPU Memory Min
+        </li>
 
+        
+        <li>
+        GPU Power Usage Peak
+        </li>
+
+        
+        <li>
+        GPU Power Usage Average
+        </li>
+
+        </ul>
+
+        </td>
+
+        </tr>
+
+        </tbody>
+
+        </table>
+      - **New Views**--Four new views have been added to the AI Analysis Details page. These views allow you to focus on your GPU data:
+
+        <table>
+        <col />
+
+        <col />
+
+        <tbody>
+        <tr>
+        <td>
+        <ul class="ul_3">
+        <li>
+        GPU Inventory
+        </li>
+
+        
+        <li>
+        GPU Cost
+        </li>
+
+        </ul>
+
+        </td>
+
+        <td>
+        <ul class="ul_3">
+        <li>
+        GPU Low Utilization
+        </li>
+
+        
+        <li>
+        GPU Memory Low Utilization
+        </li>
+
+        </ul>
+
+        </td>
+
+        </tr>
+
+        </tbody>
+
+        </table>
+
+        The default view has been updated to include GPU data.
+      - **Updated Summary**--New GPU-specific cards have been added to the containers Summary page. A note includes a link that opens a modal containing GPU pricing details.
+
+        The top two cards on the Summary page have also been updated to better highlight both your current spend and the details of possible savings.
+      - **New GPU Tab**--A new GPU tab has been added when reviewing a single container. This new page provides details of the GPU utilization on the selected container.
+      - **Updated Metrics Viewer**--The following GPU metrics are available in the metrics viewer:
+        - GPU Utilization in GPUs - Average Container
+        - GPU Memory Utilization (MB) - Average Container
+        - GPU Memory Utilization (%) - Average Container
+        - GPU Power Usage (Watts) - Average Container
+    - **GPU Metrics for Node Groups**--GPU metrics have also been added for Node Groups and individual nodes.
+
+      <table>
+      <tbody>
+      <tr>
+      <td>
+      <ul>
+      <li>
+      Allocatable GPU Memory (GB)
+      </li>
+
+      
+      <li>
+      Allocatable GPUs
+      </li>
+
+      
+      <li>
+      Allocatable Memory (GB)
+      </li>
+
+      
+      <li>
+      Average CPU Utilization (%)
+      </li>
+
+      
+      <li>
+      Average GPU Memory Utilization (%)
+      </li>
+
+      
+      <li>
+      Average GPU Utilization (%)
+      </li>
+
+      
+      <li>
+      Average Memory Utilization (%)
+      </li>
+
+      
+      <li>
+      GPU - Node Balance Ratio
+      </li>
+
+      
+      <li>
+      GPU Capacity
+      </li>
+
+      
+      <li>
+      GPU Memory - Node Balance Ratio
+      </li>
+
+      
+      <li>
+      GPU Memory Capacity (GB)
+      </li>
+
+      </ul>
+
+      </td>
+
+      <td>
+      <ul>
+      <li>
+      GPU Request (% of Allocatable)
+      </li>
+
+      
+      <li>
+      No. of Nodes with Underused GPU
+      </li>
+
+      
+      <li>
+      No. of Nodes with Underused GPU Memory
+      </li>
+
+      
+      <li>
+      Nodes with Underused GPU Memory(%)
+      </li>
+
+      
+      <li>
+      Nodes with Underused GPU(%)
+      </li>
+
+      
+      <li>
+      Peak GPU Memory Utilization (%)
+      </li>
+
+      
+      <li>
+      Peak GPU Utilization (%)
+      </li>
+
+      
+      <li>
+      Primary Node GPU Model
+      </li>
+
+      
+      <li>
+      Primary Node Type GPU (GPUs)
+      </li>
+
+      
+      <li>
+      Primary Node Type GPU Memory (GB)
+      </li>
+
+      
+      <li>
+      Unallocated GPUs
+      </li>
+
+      </ul>
+
+      </td>
+
+      </tr>
+
+      </tbody>
+
+      </table>
+    - **Updated Node Overview Tab**--This tab has been updated add GPU details and to improve usability.
+    - **New Data in AI Analysis Details**--Six new data points allow you to find containers where the CPU and memory request values are higher than peak utilization over a given period.
+
+      The analysis populates these values based on the date range and data selection options that are defined in your container optimization policy.
+      - CPU Peak--Highest peak value in mCores, on the busiest container.
+      - CPU Sustained--Highest sustained value in mCores, on the average container.
+      - CPU Min--Lowest value in mCores, on the average container.
+      - Memory Peak--Highest peak value in MB, on the busiest container.
+      - Memory Sustained--Highest sustained value in MB, on the average container.
+      - Memory Min--Lowest value in mCores, on the average container.
+    - **Timezone**--The utilization charts for containers, node groups and nodes have been updated to standardize the timeline on UTC. The X-axis label has been updated to indicate the timezone designation for all charts to ‘UTC ’.
+    - **Updated Node Overview**--The node overview page has been updated to improve useability and add details of GPU utilization.
+
+    Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
+  </Accordion>
+  <Accordion title="Cloudex Updates">
+    The following changes have been made to Cloudex in this release:
+
+    - **Timezone**--The X-axis label has been updated to indicate the timezone designation for all historical utilization charts to ‘UTC ’ This change to does not currently apply to the ML charts. The ML charts on the Cloudex AI Analysis Details page use Densify server's time. So this will be either “Eastern Time” or “Central Europe Time”.
+
+    Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
+  </Accordion>
+  <Accordion title="Resolved Issues">
+    See [3.2.0 June 11, 2025](./Resolved_Issues-Cloud#3.2.0) for the list of resolved defects.
+  </Accordion>
 </Accordion>
 
 <Accordion title="3.1.0 May 14, 2025">
-<Accordion title="Kubex Updates">
-The following changes have been made to Kubex in this release:
+  <Accordion title="Kubex Updates">
+    The following changes have been made to Kubex in this release:
 
-* Users no longer need to clear their browser cache after an upgrade. This changes applies to Kubex and Cloudex only.<br />
+    - Users no longer need to clear their browser cache after an upgrade. This changes applies to Kubex and Cloudex only.
 
-  When using the Densify Console users must clear their browser cache after an upgrade,
+      When using the Densify Console users must clear their browser cache after an upgrade,
+    - **AI Analysis Details Export** --When the content of the AI Analysis Details is exported, the Container Name is provided as a hyperlink that takes you to the Overview page for the selected container.
 
-* **AI Analysis Details Export** --When the content of the AI Analysis Details is exported, the Container Name is provided as a hyperlink that takes you to the Overview page for the selected container.<br />
+      When you open the exported .XLS file, the content initially appears as plain text, and when you click on the cell it becomes a hyperlink.
+    - **Node Group Overview**--The cards on the Node Group Overview page have been updated to better report on the status of a single node group. Additionally, utilization charts have been added to this page so you can review detailed metrics for a selected node group.
+    - **New Filter**--A new public filter, "With automation enabled", has been added to the container tree viewer. When selected this filter displays all containers with automation enabled. i.e. Automation Enabled = true.
+    - **Improved Performance\>**--By focusing on nodes that were running in the last day rather than the past 7 days you will notice improved performance when working with nodes and node groups.
+    - **Access to the Online Help**--A new help icon provides direct access to the online help.
+    - **Renamed Value**--The value, "No. of Containers" has been renamed to, "Avg No. of Containers". The new name more appropriately describes the value. The following pages have been updated: Summary, Overview, Histogram and AI Analysis Details.
 
-  When you open the exported .XLS file, the content initially appears as plain text, and when you click on the cell it becomes a hyperlink.
-
-* **Node Group Overview**--The cards on the Node Group Overview page have been updated to better report on the status of a single node group. Additionally, utilization charts have been added to this page so you can review detailed metrics for a selected node group.
-* **New Filter**--A new public filter, "With automation enabled", has been added to the container tree viewer. When selected this filter displays all containers with automation enabled. i.e. Automation Enabled = true.
-* **Improved Performance>**--By focusing on nodes that were running in the last day rather than the past 7 days you will notice improved performance when working with nodes and node groups.
-* **Access to the Online Help**--A new help icon provides direct access to the online help.
-* **Renamed Value**--The value, "No. of Containers" has been renamed to, "Avg No. of Containers". The new name more appropriately describes the value. The following pages have been updated: Summary, Overview, Histogram and AI Analysis Details.
-
-Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
-</Accordion>
-
-<Accordion title="Resolved Issues">
-See [Resolved and Known Issues](./Resolved_Issues-Cloud#3.1.0) for the list of resolved defects.
-</Accordion>
-
+    Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
+  </Accordion>
+  <Accordion title="Resolved Issues">
+    See [Resolved and Known Issues](./Resolved_Issues-Cloud#3.1.0) for the list of resolved defects.
+  </Accordion>
 </Accordion>
 
 <Accordion title="3.0.0 April 23, 2025">
-<Accordion title="New Public Cloud Management Console">
+  <Accordion title="New Public Cloud Management Console">
+    <div style={{ width:"100%",display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"space-between",gap:"6px" }}>
+    <div style={{ width:"30%" }}>
+    ![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/03000000.svg)
 
-<div style={{ width: "100%", display:"flex", flexDirection:"row", alignItems:"center", justifyContent: "space-between", gap: "6px" }}>
-  <div  style={{ width: "30%"}}>
-    <img src="/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/03000000.svg"/>
-  </div>
-  <div style={{ width: "70%"}}>
+    </div>
+
+    <div style={{ width:"70%" }}>
     <p>
     In this release Densify introduces Cloudex. In this new console, Densify’s patented analytics determine optimal resource settings for your public cloud environments and display the results in a new user interface.
+
     </p>
+
     <p>
-    Use the new Cloudex console to review resource utilization across your AWS, Azure and Google Cloud environments. 
+    Use the new Cloudex console to review resource utilization across your AWS, Azure and Google Cloud environments.
+
     </p>
-  </div>
-</div>
 
+    </div>
 
+    </div>
 
-You can access the new console from your existing instance using:
+    You can access the new console from your existing instance using:
 
-```
-https://<customer name>.densify.com/kubex
-```
+    ```
+    https://<customer name>.densify.com/kubex
+    ```
 
-See the new [Cloudex](https://www.densify.com/product/cloud-resource-optimizer/) website to start a free trial.
+    See the new [Cloudex](https://www.densify.com/product/cloud-resource-optimizer/) website to start a free trial.
 
-Use your existing Densify credentials to access the Cloudex console. You can either close the browser window or navigate back to the Densify Console to log out.
+    Use your existing Densify credentials to access the Cloudex console. You can either close the browser window or navigate back to the Densify Console to log out.
 
-The new console uses the latest MSSQL and Postgres databases.
+    The new console uses the latest MSSQL and Postgres databases.
+  </Accordion>
+  <Accordion title="Kubex Updates">
+    The following changes have been made to Kubex in this release:
+
+    - **Automation Tab**--A new automation tab has been added to report on the status of the Densify Container Automation solution.
+    - **Updated Connections Table** --The following changes have been made to this table:
+      - Three new columns have been added: Cluster Version, Kubex Automation Stack Version and Prometheus Version
+      - A link that provides secure Densify credentials has been added. The credentials are provided in a code snippet than can be copied directly into your `values.edit.yaml` file.
+
+        This new method makes it easier for you to set up container data collection, reducing the previous manual dependency of requesting these credentials from Densify.
+    - **Updated Optimization Breakdown**--Hovering over any bar in this chart, displays a description of the recommended optimization. Badges have also been added to indicate significant information, such a s memory events or unspecified resource settings.
+    - **Summary Page**--The Summary page has been updated for improved readability.
+    - **Cost Modeling**--Kubex now has improved algorithms that use existing utilization data to estimate the cost for containers with unspecified CPU/memory request values. The Summary, AI Analysis Details, and Overview pages have all been updated to show the cost estimates for these containers. The following updates have been made to show these values:
+      - Two columns have been added to the AI Analysis Details tab:
+        - "Total Surplus CPU Request from Unspecified (mCores)";
+        - "Total Surplus Memory Request from Unspecified (MB)"
+      - Two system views have been added to the AI Analysis Details tab:
+        - "CPU Request Shortfall (from Unspecified)"
+        - "Memory Request Shortfall (from Unspecified)"
+      - The Overview tab and single instance modal page have been updated to add details of unspecified CPU and memory request settings. These additional cards are only displayed if the selected container does not have specified CPU and/or memory request settings.
+
+    Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
+  </Accordion>
+  <Accordion title="Mutating Admission Controller">
+    This release provides enhancements to the Kubernetes automation framework including an updated version of the Mutating Admission Controller (MAC) that sends configuration and modification event status information to your Kubex instance
+
+    A new Automation status page has been added to Kubex that reports on the status of containers that have been enabled for automation, You can enable/disable containers for automation using a right-click context menu from the Kubex container tree viewer. Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
+
+    Refer to [Mutating Admission Controller](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) for details on deploying and using the Densify Container Automation solution.
+  </Accordion>
+  <Accordion title="New Kubernetes API Endpoints">
+    The following endpoints have been added to the Densify API:
+
+    - `GET /kubernetes/clusters`
+    - `GET /kubernetes/clusters/<clusterName>`
+    - `GET /kubernetes/clusters/<clusterName>/containers`
+    - `GET /kubernetes/clusters/<clusterName>/containers?details=true`
+    - `GET /kubernetes/clusters/<clusterName>/automation`
+
+    Two new attributes have been added to support the automation features.
+
+    - Kubex Automation--Indicates whether the container is eligible for automation within Kubex.The attribute is set one-time, is static, and is not inherited from cluster, node group, or any higher level.
+    - Kubex Policy--Indicates what policy to use when automation is enabled.
+
+    See [Densify API New Features](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features)
+  </Accordion>
+  <Accordion title="Updated API Token Expiry Duration">
+    The token expiry has been increased from 5 to 60 minutes. Re-authorize will no longer be required for longer-running pipeline operations that previously exceed the 5-minute limit. The JSON Web Token (JWT) secures the Densify API so users can only make authorized API requests.
+
+    See [Authorize](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize)
+  </Accordion>
+  <Accordion title="Changes to Scale Groups with Max Size =1">
+    In this release, singleton scale groups, both ASGs and VM Scale Sets, will now be analyzed as scale groups rather than as EC2 or VM instances. You will observe the following changes:
+
+    - Densify Console:
+      - Singleton ASGs/VM Scale Sets will now only appear in the corresponding ASG or VM Scale Set tabs.
+      - If you have large number of these singleton scale groups, you may notice a decrease in the number of EC2 and Azure VMs reported, while the ASG and VM Scale Set counts will increase accordingly.
+      - The Catalog Map will no longer report on ASGs and VM Scale Sets with Max Size =1.
+      - No change to the Impact Analysis and Recommendation Report for ASGs, as this report recognized singleton ASG instances and reported on them accordingly.
+    - Scaling Recommendations:
+      - Singleton scale groups will now have scaling recommendations, as required. Previously, there were no scaling recommendations, only instance type change recommendations.
+      - If you need to control the group size and prevent scaling, use the "Group Max Size Override" and "Group Min Size Override" attributes. See [Overriding Cloud Recommendations](../Densify_Com/Overriding_Cloud_Recommendations#Scale_Group_Overrides). Contact <a href="mailto:Support@Densify.com">
+        Support@Densify.com</a>
+
+         for detail of configuring these attributes.
+    - API Results:
+      - There are no changes to how scale groups are managed through the Densify API. Scale groups have service type "ASG" or "VMSS".
+      - Scaling recommendation are already included in the results. See [Analysis: AWS Recommendations](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results). or [Analysis: Azure Recommendations](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results)..
+    - Licensing:
+      - Currently, singleton scale groups are licensed as individual EC2/VMs.
+      - With this update, ASG licensing can be based on 1 ASG = 4 licenses OR 1 license per instance, based on the average number of instances in the scale group.
+
+        VM Scale Sets are licensed using 1 license per instance, based on the average number of instances in the group.
+
+        See
+        [License Compliance Report](../Densify_Com/License_Compliance_Report).
+      - The current container licensing model is based on the last known number of containers, on which the scale groups are running. With this change, container licensing will be calculated based on the average number of containers used, over the data range, as defined in the policy.
+  </Accordion>
+  <Accordion title="Updated Public Cloud Catalog">
+    The public cloud metadata catalogs have been updated to ensure Densify recommendations are based on the latest vendor pricing:
+
+    - AWS Metadata Updates:
+      - The pricing has been updated and is correct as of April 7, 2025.
+      - The following new instance type has been added:
+
+        <table>
+        <col />
+
+        <col />
+
+        <col />
+
+        <tbody>
+        <tr>
+        <td>
+        <ul class="ul_3">
+        <li>
+        i8g.48xlarge
+        </li>
+
+        </ul>
+
+        </td>
+
+        <td>
+        <p>
+        </p>
+
+        </td>
+
+        <td />
+
+        </tr>
+
+        </tbody>
+
+        </table>
+    - Azure Metadata Updates:
+      - The pricing has been updated and is correct as of April 7, 2025.
+      - The following new instance families have been added:
+
+        <table>
+        <col />
+
+        <col />
+
+        <col />
+
+        <tbody>
+        <tr>
+        <td>
+        <ul class="ul_3">
+        <li>
+        Dsv6
+        </li>
+
+        
+        <li>
+        Ddsv6
+        </li>
+
+        
+        <li>
+        Dasv6
+        </li>
+
+        
+        <li>
+        Dadsv6
+        </li>
+
+        
+        <li>
+        Dlsv6
+        </li>
+
+        
+        <li>
+        Dldsv6
+        </li>
+
+        
+        <li>
+        Dalsv6
+        </li>
+
+        
+        <li>
+        Daldsv6
+        </li>
+
+        </ul>
+
+        </td>
+
+        <td>
+        <ul class="ul_3">
+        <li>
+        Esv6
+        </li>
+
+        
+        <li>
+        Edsv6
+        </li>
+
+        
+        <li>
+        Easv6
+        </li>
+
+        
+        <li>
+        Eadsv6
+        </li>
+
+        </ul>
+
+        </td>
+
+        <td>
+        <ul class="ul_3">
+        <li>
+        Fasv6
+        </li>
+
+        
+        <li>
+        Falsv6
+        </li>
+
+        
+        <li>
+        Famsv6
+        </li>
+
+        </ul>
+
+        </td>
+
+        </tr>
+
+        </tbody>
+
+        </table>
+      - Retired the following instances:
+
+        <table>
+        <col />
+
+        <col />
+
+        <col />
+
+        <tbody>
+        <tr>
+        <td>
+        <ul class="ul_3">
+        <li>
+        NC
+        </li>
+
+        
+        <li>
+        NC-Promo instances
+        </li>
+
+        </ul>
+
+        </td>
+
+        <td>
+        <ul class="ul_3">
+        <li>
+        NCv2 instances
+        </li>
+
+        </ul>
+
+        </td>
+
+        <td />
+
+        </tr>
+
+        </tbody>
+
+        </table>
+    - GCP Metadata Updates:
+      - The pricing has been updated and is correct as of April 14, 2025.
+      - The following new instance families have been added:
+
+        <table>
+        <col />
+
+        <col />
+
+        <col />
+
+        <tbody>
+        <tr>
+        <td>
+        <ul class="ul_3">
+        <li>
+        c4a-standard-lssd
+        </li>
+
+        </ul>
+
+        </td>
+
+        <td>
+        <ul class="ul_3">
+        <li>
+        c4a-highmem-lssd
+        </li>
+
+        </ul>
+
+        </td>
+
+        <td />
+
+        </tr>
+
+        </tbody>
+
+        </table>
+  </Accordion>
+  <Accordion title="Resolved Issues">
+    See [3.0 April 23, 2025](./Resolved_Issues-Cloud#3.0) for the list of resolved defects.
+  </Accordion>
 </Accordion>
-
-<Accordion title="Kubex Updates">
-The following changes have been made to Kubex in this release:
-
-* **Automation Tab**--A new automation tab has been added to report on the status of the Densify Container Automation solution.
-* **Updated Connections Table** --The following changes have been made to this table:
-
-  * Three new columns have been added: Cluster Version, Kubex Automation Stack Version and Prometheus Version
-  * A link that provides secure Densify credentials has been added. The credentials are provided in a code snippet than can be copied directly into your `values.edit.yaml` file.<br />
-
-    This new method makes it easier for you to set up container data collection, reducing the previous manual dependency of requesting these credentials from Densify.
-
-
-* **Updated Optimization Breakdown**--Hovering over any bar in this chart, displays a description of the recommended optimization. Badges have also been added to indicate significant information, such a s memory events or unspecified resource settings.
-* **Summary Page**--The Summary page has been updated for improved readability.
-* **Cost Modeling**--Kubex now has improved algorithms that use existing utilization data to estimate the cost for containers with unspecified CPU/memory request values. The Summary, AI Analysis Details, and Overview pages have all been updated to show the cost estimates for these containers. The following updates have been made to show these values:
-
-  * Two columns have been added to the AI Analysis Details tab:
-
-    * "Total Surplus CPU Request from Unspecified (mCores)";
-    * "Total Surplus Memory Request from Unspecified (MB)"
-
-  * Two system views have been added to the AI Analysis Details tab:
-
-    * "CPU Request Shortfall (from Unspecified)"
-    * "Memory Request Shortfall (from Unspecified)"
-
-  * The Overview tab and single instance modal page have been updated to add details of unspecified CPU and memory request settings. These additional cards are only displayed if the selected container does not have specified CPU and/or memory request settings.
-
-Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
-</Accordion>
-
-<Accordion title="Mutating Admission Controller">
-This release provides enhancements to the Kubernetes automation framework including an updated version of the Mutating Admission Controller (MAC) that sends configuration and modification event status information to your Kubex instance
-
-A new Automation status page has been added to Kubex that reports on the status of containers that have been enabled for automation, You can enable/disable containers for automation using a right-click context menu from the Kubex container tree viewer. Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
-
-Refer to [Mutating Admission Controller](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) for details on deploying and using the Densify Container Automation solution.
-</Accordion>
-
-<Accordion title="New Kubernetes API Endpoints">
-The following endpoints have been added to the Densify API:
-
-* `GET /kubernetes/clusters`
-* `GET /kubernetes/clusters/<clusterName>`
-* `GET /kubernetes/clusters/<clusterName>/containers`
-* `GET /kubernetes/clusters/<clusterName>/containers?details=true`
-* `GET /kubernetes/clusters/<clusterName>/automation`
-
-Two new attributes have been added to support the automation features.
-
-* Kubex Automation--Indicates whether the container is eligible for automation within Kubex.The attribute is set one-time, is static, and is not inherited from cluster, node group, or any higher level.
-* Kubex Policy--Indicates what policy to use when automation is enabled.
-
-See [Densify API New Features](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features)
-</Accordion>
-
-<Accordion title="Updated API Token Expiry Duration">
-The token expiry has been increased from 5 to 60 minutes. Re-authorize will no longer be required for longer-running pipeline operations that previously exceed the 5-minute limit. The JSON Web Token (JWT) secures the Densify API so users can only make authorized API requests.
-
-See [Authorize](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize)
-</Accordion>
-
-<Accordion title="Changes to Scale Groups with Max Size =1">
-In this release, singleton scale groups, both ASGs and VM Scale Sets, will now be analyzed as scale groups rather than as EC2 or VM instances. You will observe the following changes:
-
-* Densify Console:
-
-  * Singleton ASGs/VM Scale Sets will now only appear in the corresponding ASG or VM Scale Set tabs.
-  * If you have large number of these singleton scale groups, you may notice a decrease in the number of EC2 and Azure VMs reported, while the ASG and VM Scale Set counts will increase accordingly.
-  * The Catalog Map will no longer report on ASGs and VM Scale Sets with Max Size =1.
-  * No change to the Impact Analysis and Recommendation Report for ASGs, as this report recognized singleton ASG instances and reported on them accordingly.
-
-* Scaling Recommendations:
-
-  * Singleton scale groups will now have scaling recommendations, as required. Previously, there were no scaling recommendations, only instance type change recommendations.
-  * If you need to control the group size and prevent scaling, use the "Group Max Size Override" and "Group Min Size Override" attributes. See [Overriding Cloud Recommendations](../Densify_Com/Overriding_Cloud_Recommendations#Scale_Group_Overrides). Contact <a href="mailto:Support@Densify.com">Support@Densify.com</a> for detail of configuring these attributes.
-
-* API Results:
-
-  * There are no changes to how scale groups are managed through the Densify API. Scale groups have service type "ASG" or "VMSS".
-  * Scaling recommendation are already included in the results. See [Analysis: AWS Recommendations](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results). or [Analysis: Azure Recommendations](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results)..
-
-* Licensing:
-
-  * Currently, singleton scale groups are licensed as individual EC2/VMs.
-  * With this update, ASG licensing can be based on 1 ASG = 4 licenses OR 1 license per instance, based on the average number of instances in the scale group.<br />
-
-    VM Scale Sets are licensed using 1 license per instance, based on the average number of instances in the group.<br />
-
-    See
-    [License Compliance Report](../Densify_Com/License_Compliance_Report).
-
-  * The current container licensing model is based on the last known number of containers, on which the scale groups are running. With this change, container licensing will be calculated based on the average number of containers used, over the data range, as defined in the policy.
-</Accordion>
-
-<Accordion title="Updated Public Cloud Catalog">
-The public cloud metadata catalogs have been updated to ensure Densify recommendations are based on the latest vendor pricing:
-
-* AWS Metadata Updates:
-
-  * The pricing has been updated and is correct as of April 7, 2025.
-  * The following new instance type has been added:
-
-    <table>
-    <col/>
-    <col/>
-    <col/>
-    <tbody>
-    <tr>
-    <td>
-    <ul class="ul_3">
-    <li>i8g.48xlarge</li>
-    </ul>
-    </td>
-    <td>
-    <p> </p>
-    </td>
-    <td>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
-
-* Azure Metadata Updates:
-
-  * The pricing has been updated and is correct as of April 7, 2025.
-  * The following new instance families have been added:
-
-    <table>
-    <col/>
-    <col/>
-    <col/>
-    <tbody>
-    <tr>
-    <td>
-    <ul class="ul_3">
-    <li>Dsv6</li>
-    <li>Ddsv6</li>
-    <li>Dasv6</li>
-    <li>Dadsv6</li>
-    <li>Dlsv6</li>
-    <li>Dldsv6</li>
-    <li>Dalsv6</li>
-    <li>Daldsv6</li>
-    </ul>
-    </td>
-    <td>
-    <ul class="ul_3">
-    <li>Esv6</li>
-    <li>Edsv6</li>
-    <li>Easv6</li>
-    <li>Eadsv6</li>
-    </ul>
-    </td>
-    <td>
-    <ul class="ul_3">
-    <li>Fasv6</li>
-    <li>Falsv6</li>
-    <li>Famsv6</li>
-    </ul>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-  * Retired the following instances:
-
-    <table>
-    <col/>
-    <col/>
-    <col/>
-    <tbody>
-    <tr>
-    <td>
-    <ul class="ul_3">
-    <li>NC</li>
-    <li>NC-Promo instances</li>
-    </ul>
-    </td>
-    <td>
-    <ul class="ul_3">
-    <li>NCv2 instances</li>
-    </ul>
-    </td>
-    <td>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
-
-* GCP Metadata Updates:
-
-  * The pricing has been updated and is correct as of April 14, 2025.
-  * The following new instance families have been added:
-
-    <table>
-    <col/>
-    <col/>
-    <col/>
-    <tbody>
-    <tr>
-    <td>
-    <ul class="ul_3">
-    <li>c4a-standard-lssd</li>
-    </ul>
-    </td>
-    <td>
-    <ul class="ul_3">
-    <li>c4a-highmem-lssd</li>
-    </ul>
-    </td>
-    <td>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
-</Accordion>
-
-<Accordion title="Resolved Issues">
-See [3.0 April 23, 2025](./Resolved_Issues-Cloud#3.0) for the list of resolved defects.
-</Accordion>
-
-</Accordion>
-
 
 ## Container Data Forwarder
 
@@ -531,369 +802,452 @@ Refer to [Github repository](https://github.com/densify-dev/container-data-colle
 When deploying the Container Data Forwarder ensure that the same version is deployed for all of your clusters. See [Data Collection for Containers](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview)
 
 <Accordion title="4.2.2 - June 16, 2025">
-<Accordion title="Added GPU Metrics">
-This update collects additional GPU metrics.
+  <Accordion title="Added GPU Metrics">
+    This update collects additional GPU metrics.
 
-* The following GPU metrics are now collected for Containers:
+    - The following GPU metrics are now collected for Containers:
 
-  <table>
-  <col/>
-  <col/>
-  <tbody>
-  <tr>
-  <td>
-  <ul>
-  <li>GPU Utilization in GPUs - Average Container*</li>
-  <li>GPU Utilization in Percent - Average Container*</li>
-  <li>GPU Memory Utilization in MB - Average Container*</li>
-  <li>GPU Memory Utilization (%) - Average Container*</li>
-  <li>GPU Power Usage (W) - Average Container*</li>
-  </ul>
-  </td>
-  <td>
-  <ul>
-  <li>GPU Utilization in GPUs - Busiest Container</li>
-  <li>GPU Utilization in Percent - Busiest Container</li>
-  <li>GPU Memory Utilization in MB - Busiest Container</li>
-  <li>GPU Memory Utilization (%) - Busiest Container</li>
-  <li>GPU Power Usage (W) - Busiest Container</li>
-  </ul>
-  </td>
-  </tr>
-  </tbody>
-  </table>
+      <table>
+      <col />
 
-* The following GPU metrics are now collected for nodes:
+      <col />
 
-  <table>
-  <col/>
-  <col/>
-  <tbody>
-  <tr>
-  <td>
-  <ul>
-  <li>GPU Utilization( GPUs)</li>
-  <li>GPU Utilization(%)\*</li>
-  <li>GPU Memory Utilization (MB)</li>
-  <li>GPU Memory Utilization (%)\*</li>
-  <li>GPU Power Usage (W)*</li>
-  </ul>
-  </td>
-  <td>
-  <ul>
-  <li>GPU Requests (GPU)</li>
-  <li>GPU Limit (GPU)</li>
-  </ul>
-  </td>
-  </tr>
-  </tbody>
-  </table>
+      <tbody>
+      <tr>
+      <td>
+      <ul>
+      <li>
+      GPU Utilization in GPUs - Average Container\*
+      </li>
 
-  Only those metrics indicated with an asterisk(\*) are displayed in the current Kubex user interface. The remaining metrics will be covered in a future release.
-</Accordion>
+      
+      <li>
+      GPU Utilization in Percent - Average Container\*
+      </li>
 
-<Accordion title="Updated Helm Charts">
-The Helm charts have been updated as follows:
+      
+      <li>
+      GPU Memory Utilization in MB - Average Container\*
+      </li>
 
-* All-In-One Kubex-automation-stack has been updated to version 0.9.8;
-* The chart containing only the data forwarder has been updated to version 4.0.6.
+      
+      <li>
+      GPU Memory Utilization (%) - Average Container\*
+      </li>
 
-These updates address the following issues:
+      
+      <li>
+      GPU Power Usage (W) - Average Container\*
+      </li>
 
-* The metrics that are retained in Prometheus are now limited to only the metrics that Densify requested. This change reduces the resources consumed by Prometheus, in large clusters.
-* Both the pod security context and container security context are now set for all of the AIO chart components, including the Densify data forwarder, Prometheus, Node exporter etc. This includes using the runtime default seccomp profile, running as a non-root user, no privileges for escalation, mounting the root file system as read-only, etc.
-* A sizing option for Prometheus resources, has been added. The size is based on the cluster size.
-* The Prometheus subchart has been updated to the latest version.
-* The Prometheus scrape configuration has been updated to use the k8s endpointslice. The endpoints that the data forwarder was using were deprecated in the K8s v1.33 API and will be removed in a future release. Endpointslice has been available since K8s v1.21.
-* Installation instructions for offline (or air-gapped) mode are now provided.
+      </ul>
 
-See [Kubex Automation Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) for details. Ensure that your helm chart has been upgraded to the latest version, using the helm `upgrade` command.
-</Accordion>
+      </td>
 
+      <td>
+      <ul>
+      <li>
+      GPU Utilization in GPUs - Busiest Container
+      </li>
+
+      
+      <li>
+      GPU Utilization in Percent - Busiest Container
+      </li>
+
+      
+      <li>
+      GPU Memory Utilization in MB - Busiest Container
+      </li>
+
+      
+      <li>
+      GPU Memory Utilization (%) - Busiest Container
+      </li>
+
+      
+      <li>
+      GPU Power Usage (W) - Busiest Container
+      </li>
+
+      </ul>
+
+      </td>
+
+      </tr>
+
+      </tbody>
+
+      </table>
+    - The following GPU metrics are now collected for nodes:
+
+      <table>
+      <col />
+
+      <col />
+
+      <tbody>
+      <tr>
+      <td>
+      <ul>
+      <li>
+      GPU Utilization( GPUs)
+      </li>
+
+      
+      <li>
+      GPU Utilization(%)\*
+      </li>
+
+      
+      <li>
+      GPU Memory Utilization (MB)
+      </li>
+
+      
+      <li>
+      GPU Memory Utilization (%)\*
+      </li>
+
+      
+      <li>
+      GPU Power Usage (W)\*
+      </li>
+
+      </ul>
+
+      </td>
+
+      <td>
+      <ul>
+      <li>
+      GPU Requests (GPU)
+      </li>
+
+      
+      <li>
+      GPU Limit (GPU)
+      </li>
+
+      </ul>
+
+      </td>
+
+      </tr>
+
+      </tbody>
+
+      </table>
+
+      Only those metrics indicated with an asterisk(\*) are displayed in the current Kubex user interface. The remaining metrics will be covered in a future release.
+  </Accordion>
+  <Accordion title="Updated Helm Charts">
+    The Helm charts have been updated as follows:
+
+    - All-In-One Kubex-automation-stack has been updated to version 0.9.8;
+    - The chart containing only the data forwarder has been updated to version 4.0.6.
+
+    These updates address the following issues:
+
+    - The metrics that are retained in Prometheus are now limited to only the metrics that Densify requested. This change reduces the resources consumed by Prometheus, in large clusters.
+    - Both the pod security context and container security context are now set for all of the AIO chart components, including the Densify data forwarder, Prometheus, Node exporter etc. This includes using the runtime default seccomp profile, running as a non-root user, no privileges for escalation, mounting the root file system as read-only, etc.
+    - A sizing option for Prometheus resources, has been added. The size is based on the cluster size.
+    - The Prometheus subchart has been updated to the latest version.
+    - The Prometheus scrape configuration has been updated to use the k8s endpointslice. The endpoints that the data forwarder was using were deprecated in the K8s v1.33 API and will be removed in a future release. Endpointslice has been available since K8s v1.21.
+    - Installation instructions for offline (or air-gapped) mode are now provided.
+
+    See [Kubex Automation Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) for details. Ensure that your helm chart has been upgraded to the latest version, using the helm `upgrade` command.
+  </Accordion>
 </Accordion>
 
 <Accordion title="4.2.1 - May 29, 2025">
-This update contains an upgrade for Go to 1.24 for all package dependencies. This upgrade eliminates security scan warnings preventing some customers from upgrading their data forwarder to the latest version.
+  This update contains an upgrade for Go to 1.24 for all package dependencies. This upgrade eliminates security scan warnings preventing some customers from upgrading their data forwarder to the latest version.
 </Accordion>
 
 <Accordion title="4.2.0 - May 15, 2025">
-This update adds support for **NVIDIA GPU metrics** and HPA:
+  This update adds support for **NVIDIA GPU metrics** and HPA:
 
-<Accordion title="Collection of NVIDIA GPU Metrics">
-NVIDIA GPU Metrics--With this update, the Densify data forwarder now collects GPU data from your Kubernetes clusters.
+  <Accordion title="Collection of NVIDIA GPU Metrics">
+    NVIDIA GPU Metrics--With this update, the Densify data forwarder now collects GPU data from your Kubernetes clusters.
 
-The analysis and display of the collected metrics will be provided in a future release of Kubex.
+    The analysis and display of the collected metrics will be provided in a future release of Kubex.
 
-Note the following additional prerequisites to collect the GPU data:
+    Note the following additional prerequisites to collect the GPU data:
 
-* NVIDIA-device-plugin--This plugin allows containers to access the NVIDIA GPUs. It must be installed on all your Kubernetes clusters to allocate NVIDIA GPU resources to workloads and to provide the GPU data.
-* dcgm-exporter--This Prometheus exporter exposes GPU metrics from the Data Center GPU Manager (DCGM). It is required to collect GPU data such as, utilization, memory usage, and power usage from NVIDIA GPUs, The dcgm-exporter can be deployed as a DaemonSet, where each node with an NVIDIA GPU runs a pod that exposes these metrics in a format that Prometheus can scrape and the Densify data forwarder then collects.
+    - NVIDIA-device-plugin--This plugin allows containers to access the NVIDIA GPUs. It must be installed on all your Kubernetes clusters to allocate NVIDIA GPU resources to workloads and to provide the GPU data.
+    - dcgm-exporter--This Prometheus exporter exposes GPU metrics from the Data Center GPU Manager (DCGM). It is required to collect GPU data such as, utilization, memory usage, and power usage from NVIDIA GPUs, The dcgm-exporter can be deployed as a DaemonSet, where each node with an NVIDIA GPU runs a pod that exposes these metrics in a format that Prometheus can scrape and the Densify data forwarder then collects.
 
-The GPU data collection is currently supported on the following platforms:
+    The GPU data collection is currently supported on the following platforms:
 
-* AKS
-* EKS
-* GKE
-</Accordion>
+    - AKS
+    - EKS
+    - GKE
+  </Accordion>
+  <Accordion title="HPA Updates">
+    **HPA Scales Based on Multiple Metrics**--With this update Densify recommendations are not implemented for any containers enabled for HPA that scale based on single or multiple metrics, that are also enabled for automation using the Densify Mutating Automation Controller (MAC).
 
-<Accordion title="HPA Updates">
-**HPA Scales Based on Multiple Metrics**--With this update Densify recommendations are not implemented for any containers enabled for HPA that scale based on single or multiple metrics, that are also enabled for automation using the Densify Mutating Automation Controller (MAC).
+    Previously Densify did not support HPA-based on multiple metrics.
+  </Accordion>
+  <Accordion title="Updated Kubex Automation Stack">
+    The [Kubex Automation Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) has been updated to collect data from the NVIDIA DCGM exporter. You must ensure that your helm chart has been upgraded to the latest version (0.9.6) to get GPU data. You will get the updates automatically if you have the following settings, in the data forwarder cronJob specification:
 
-Previously Densify did not support HPA-based on multiple metrics.
-</Accordion>
+    - image: densify/container-optimization-data-forwarder:4
+    - imagePullPolicy: Always
 
-<Accordion title="Updated Kubex Automation Stack">
-The [Kubex Automation Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) has been updated to collect data from the NVIDIA DCGM exporter. You must ensure that your helm chart has been upgraded to the latest version (0.9.6) to get GPU data. You will get the updates automatically if you have the following settings, in the data forwarder cronJob specification:
-
-* image: densify/container-optimization-data-forwarder:4
-* imagePullPolicy: Always
-
-If the settings are not configured as above, then you need to update the image, manually.
-</Accordion>
-
+    If the settings are not configured as above, then you need to update the image, manually.
+  </Accordion>
 </Accordion>
 
 <Accordion title="4.1.3 - April 1, 2025">
-This update resolves an issue with reporting a container's parent node and node groups.
+  This update resolves an issue with reporting a container's parent node and node groups.
 </Accordion>
 
 <Accordion title="4.1.2 - March 17, 2025">
-This update collects new container and node-level metrics to provide more accurate recommendations.
+  This update collects new container and node-level metrics to provide more accurate recommendations.
 
-Upgrade data forwarder v4.1.2 after upgrading to Densify v2.10.0. New database columns have been added in v2.10.0 that are required by this version of the data forwarder for the new metrics and attributes.
+  Upgrade data forwarder v4.1.2 after upgrading to Densify v2.10.0. New database columns have been added in v2.10.0 that are required by this version of the data forwarder for the new metrics and attributes.
 
-When updating the data forwarder, you need to ensure that the same version is deployed for all of your clusters.
+  When updating the data forwarder, you need to ensure that the same version is deployed for all of your clusters.
 
-<Accordion title="Collection of New Metrics">
-The data forwarder has been updated to collect the following:
+  <Accordion title="Collection of New Metrics">
+    The data forwarder has been updated to collect the following:
 
-* Horizontal Pod Autoscaler (HPA) target metrics--Three new attributes have been added.
+    - Horizontal Pod Autoscaler (HPA) target metrics--Three new attributes have been added.
+      - hpa_target_metric_name
+      - hpa_target_metric_type
+      - hpa_target_metric_value
+    - Node taints--The configuration attribute and new metrics will be collected:
+      - Added the multi-value attribute, “Node Taints” (attr_NodeTaints)
+    - QoS class--The configuration attribute and new metrics will be collected.
+      - Added the attribute, Quality of Service Class” (attr_QOSClass)
+    - Node Working Set Memory Metrics--Working set memory is a process (or container) metric, rather than a node metric. It has been added to align with what is already shown in the AKS console. Densify provides the following additional node memory metrics:
+      - working set memory (in bytes)
+      - working set memory utilization (percent)
+      - memory utilization (percent) (based on memory_bytes metric)
+      - memory actual utilization (percent) (based on memory_actual_workload metric)
+      - total node memory (in bytes) (configuration attribute)
 
-  * hpa\_target\_metric\_name
-  * hpa\_target\_metric\_type
-  * hpa\_target\_metric\_value
+    Densify's container analyses will be updated in future releases to utilize this HPA data when generating recommendations.
+  </Accordion>
+  <Accordion title="Updated Node Identification">
+    To improve the identification of a container's parent node, the `provider_id` has been introduced as a third identification component. Currently, nodes are identified using `cluster_name` and `node_name`.
 
-* Node taints--The configuration attribute and new metrics will be collected:
+    The `provider_id` is optional and will be used only if required. In Kubernetes clusters without a`provider_id`, node identification will continue to rely on `cluster_name` and `node_name`, ensuring that node IDs remain unchanged.
 
-  * Added the multi-value attribute, “Node Taints” (attr\_NodeTaints)
-
-* QoS class--The configuration attribute and new metrics will be collected.
-
-  * Added the attribute, Quality of Service Class” (attr\_QOSClass)
-
-* Node Working Set Memory Metrics--Working set memory is a process (or container) metric, rather than a node metric. It has been added to align with what is already shown in the AKS console. Densify provides the following additional node memory metrics:
-
-  * working set memory (in bytes)
-  * working set memory utilization (percent)
-  * memory utilization (percent) (based on memory\_bytes metric)
-  * memory actual utilization (percent) (based on memory\_actual\_workload metric)
-  * total node memory (in bytes) (configuration attribute)
-
-Densify's container analyses will be updated in future releases to utilize this HPA data when generating recommendations.
-</Accordion>
-
-<Accordion title="Updated Node Identification">
-To improve the identification of a container's parent node, the `provider_id` has been introduced as a third identification component. Currently, nodes are identified using `cluster_name` and `node_name`.
-
-The `provider_id` is optional and will be used only if required. In Kubernetes clusters without a`provider_id`, node identification will continue to rely on `cluster_name` and `node_name`, ensuring that node IDs remain unchanged.
-
-Specifically, for EKS and OKE clusters, existing node IDs will change and as a result, node history will be lost since these nodes will receive new IDs.
-</Accordion>
-
-<Accordion title="Updated Configuration Setting">
-The data forwarder's configmap.yaml file has been updated. The setting, `node_group_list` has been updated to add `label_karpenter_sh_nodepool`. When enabled, Karpenter NodeGroups are discovered and created in Densify.
-</Accordion>
-
-<Accordion title="Resolved Issues">
-See [4.2.0 - May 15, 2024](./Resolved_Issues-Cloud#4.2.0)  for the list of resolved defects.
-</Accordion>
-
+    Specifically, for EKS and OKE clusters, existing node IDs will change and as a result, node history will be lost since these nodes will receive new IDs.
+  </Accordion>
+  <Accordion title="Updated Configuration Setting">
+    The data forwarder's configmap.yaml file has been updated. The setting, `node_group_list` has been updated to add `label_karpenter_sh_nodepool`. When enabled, Karpenter NodeGroups are discovered and created in Densify.
+  </Accordion>
+  <Accordion title="Resolved Issues">
+    See [4.2.0 - May 15, 2024](./Resolved_Issues-Cloud#4.2.0)  for the list of resolved defects.
+  </Accordion>
 </Accordion>
 
 <Accordion title="4.1.1 - November 27, 2024">
-This update resolves an issue with reporting CPU and memory reservation percent for nodes, node groups and clusters.
+  This update resolves an issue with reporting CPU and memory reservation percent for nodes, node groups and clusters.
 
-See [Resolved Issues: Resolved and Known Issues](./Resolved_Issues-Cloud#3.0.2) for the resolved defect.
+  See [Resolved Issues: Resolved and Known Issues](./Resolved_Issues-Cloud#3.0.2) for the resolved defect.
 </Accordion>
 
 <Accordion title="4.1.0 - September 19, 2024 ">
-Version 4.1.0 collects new container and node-level metrics to provide more accurate container sizing recommendations.
+  Version 4.1.0 collects new container and node-level metrics to provide more accurate container sizing recommendations.
 
-<Note>
-Node level metrics and some new container metrics are collected, but will not be available in the Densify Console until the release of Densify v2.6.
-</Note>
+  <Note>
+    Node level metrics and some new container metrics are collected, but will not be available in the Densify Console until the release of Densify v2.6.
+  </Note>
+  <Accordion title="New Container Metrics">
+    The following container metrics are now collected:
 
+    - max_cpu_throttling_percent--The Linux kernel allocates "CPU periods" (default = 100 milliseconds) to both processes and containers. The percentage is the number of throttled periods out of the total number of 100-ms periods. This value is a percentage of periods that were throttled vs those that were requested. This provides a more accurate indication of resource limitations.
 
-<Accordion title="New Container Metrics">
-The following container metrics are now collected:
+      For example if the pod was throttled for 8 seconds out of the 5 minutes, this would be 2.7%, but if the CPU was not actually requested for the full 5 minutes, then the 2.7% is not an accurate representation of the state of the container. If the pod was throttled for 8 seconds, and it's request was less that than the 300 seconds the throttled percentage is higher.
+    - avg_cpu_throttling_percent--Indicates the average percentage of the number of 100-ms periods that a container is throttled in terms of CPU usage.
 
-* max\_cpu\_throttling\_percent--The Linux kernel allocates "CPU periods" (default = 100 milliseconds) to both processes and containers. The percentage is the number of throttled periods out of the total number of 100-ms periods. This value is a percentage of periods that were throttled vs those that were requested. This provides a more accurate indication of resource limitations.<br />
+      The average and maximum values are collected since the container is likely aggregated. Metrics are aggregated at the highest level of the pod owner. For a deployment of one pod in one container the average and maximum will be the same. If it is a deployment of 10 pods then the average and maximum will not be the same.
+    - sum_cpu_throttling_seconds--Aggregates the total time during which throttling has been applied.
+    - Container Events--These are not metrics that are collected at 5-minute intervals, but are individual events and the time that the event occurred or was detected. In this version of the data forwarder "process exit" is now collected. The exit code and whether or not this is the main process (i.e. PID #1 using a true/false flag) of the container is collected and stored. In this version process exit will be false only when PID #1 exits with code 137 which corresponds to an OOM kill. In all other cases, process exit will be true.
 
-  For example if the pod was throttled for 8 seconds out of the 5 minutes, this would be 2.7%, but if the CPU was not actually requested for the full 5 minutes, then the 2.7% is not an accurate representation of the state of the container. If the pod was throttled for 8 seconds, and it's request was less that than the 300 seconds the throttled percentage is higher.
+    CPU and memory request and limit values at the top of the hour are already collected and stored as attributes, once per day. In this release the data forwarder collects the following metrics at 5-minute intervals:
 
-* avg\_cpu\_throttling\_percent--Indicates the average percentage of the number of 100-ms periods that a container is throttled in terms of CPU usage.<br />
+    - CPU Limit--The defined CPU allocation limit for the container.
+    - Memory Limit--The defined memory allocation limit for the container.
+    - CPU Request--The defined CPU allocation requested for the container.
+    - Memory Request--The defined memory allocation requested for the container.
 
-  The average and maximum values are collected since the container is likely aggregated. Metrics are aggregated at the highest level of the pod owner. For a deployment of one pod in one container the average and maximum will be the same. If it is a deployment of 10 pods then the average and maximum will not be the same.
+    You must have Densify v2.5, to see these new metrics in the Container Details report and metrics viewer. See [Optimizing Your Containers - Details Tab](../Densify_Com/Optimizing_Your_Containers_-_Details_Tab#Tabular_Report) and [Using the Metrics Viewer for Containers](../Densify_Com/Using_the_Metrics_Viewer-Containers).
+  </Accordion>
+  <Accordion title="Node-Level Metrics">
+    Densify currently sets configuration attributes with both the node-level and container-level CPU, memory request and limit values from the top of the hour. This provides a point in time data point that allows you to see how a node’s request and limit values move during the day.
 
-* sum\_cpu\_throttling\_seconds--Aggregates the total time during which throttling has been applied.
-* Container Events--These are not metrics that are collected at 5-minute intervals, but are individual events and the time that the event occurred or was detected. In this version of the data forwarder "process exit" is now collected. The exit code and whether or not this is the main process (i.e. PID #1 using a true/false flag) of the container is collected and stored. In this version process exit will be false only when PID #1 exits with code 137 which corresponds to an OOM kill. In all other cases, process exit will be true.
+    In this release the data forwarder collects the following metrics at 5-minute intervals:
 
-CPU and memory request and limit values at the top of the hour are already collected and stored as attributes, once per day. In this release the data forwarder collects the following metrics at 5-minute intervals:
+    - CPU Limit--The defined CPU allocation limit for the node.
+    - Memory Limit--The defined memory allocation limit for the node.
+    - CPU Request--The defined CPU allocation requested for the node.
+    - Memory Request--The defined memory allocation requested for the node.
+    - Pod Count--The number of pods running on the selected node.
 
-* CPU Limit--The defined CPU allocation limit for the container.
-* Memory Limit--The defined memory allocation limit for the container.
-* CPU Request--The defined CPU allocation requested for the container.
-* Memory Request--The defined memory allocation requested for the container.
+    If values have not been specified this will be indicated.
 
-You must have Densify v2.5, to see these new metrics in the Container Details report and metrics viewer. See [Optimizing Your Containers - Details Tab](../Densify_Com/Optimizing_Your_Containers_-_Details_Tab#Tabular_Report) and [Using the Metrics Viewer for Containers](../Densify_Com/Using_the_Metrics_Viewer-Containers).
-</Accordion>
+    The following node events are collected at 5-minute intervals:
 
-<Accordion title="Node-Level Metrics">
-Densify currently sets configuration attributes with both the node-level and container-level CPU, memory request and limit values from the top of the hour. This provides a point in time data point that allows you to see how a node’s request and limit values move during the day.
+    - oom_kill_events--The number of kill events that happened on the node in a 5-minute interval;
+    - cpu_throttling_events--The number of CPU throttling events that happened on the node in a 5-minute interval;
 
-In this release the data forwarder collects the following metrics at 5-minute intervals:
+    The following metrics are calculated from the raw data:
 
-* CPU Limit--The defined CPU allocation limit for the node.
-* Memory Limit--The defined memory allocation limit for the node.
-* CPU Request--The defined CPU allocation requested for the node.
-* Memory Request--The defined memory allocation requested for the node.
-* Pod Count--The number of pods running on the selected node.
+    - cpu_reservation_percent--The percentage of the node's total CPU resources that are reserved or guaranteed for workloads, containers, or virtual machines.
+    - memory_reservation_percent--The percentage of the node's total memory resources that are reserved or guaranteed for workloads, containers, or virtual machines.
 
-If values have not been specified this will be indicated.
+    The following configuration details are now collected and stored in attributes:
 
-The following node events are collected at 5-minute intervals:
+    - provider_ID--The provider_id is available as a Prometheus label of kube_node_info metric which is extracted to its own column in the k8s_node_v0 postgres table. The relevant node data is then used to facilitate link the Kubernetes node to a cloud instance. This linking will be done in postgres, as will the determination of the relationship between cloud instance and ASGs or VM Scale Sets.
+    - k8s_version--The Kubernetes version of the node is collected and stored in the attribute, k8s_node.
 
-* oom\_kill\_events--The number of kill events that happened on the node in a 5-minute interval;
-* cpu\_throttling\_events--The number of CPU throttling events that happened on the node in a 5-minute interval;
+      This value is collected for each node and for the cluster. This is currently informational only and is not used not used in the analysis.
 
-The following metrics are calculated from the raw data:
+    The features allowing you to view node details will be provided in Densify v2.6.
+  </Accordion>
+  <Accordion title="Cluster-Level Metrics">
+    The Kubernetes version of the cluster is collected and stored in the attribute, k8s_cluster. This is the version of the control plane/API server. It can be higher than those of the nodes in cases where the control plane was upgraded and the nodes have not yet been updated. This is used when determining OOM kills for Kubernetes versions older than 1.28.
+  </Accordion>
+  <Accordion title="Linking Containers to Node Groups">
+    Containers will now be linked to their node group using a provider ID that is populated by each public cloud provider's Kubernetes offerings (i.e. EKS, AKS and GKE). The provider_id attribute is passed to the kubelet.
 
-* cpu\_reservation\_percent--The percentage of the node's total CPU resources that are reserved or guaranteed for workloads, containers, or virtual machines.
-* memory\_reservation\_percent--The percentage of the node's total memory resources that are reserved or guaranteed for workloads, containers, or virtual machines.
-
-The following configuration details are now collected and stored in attributes:
-
-* provider\_ID--The provider\_id is available as a Prometheus label of kube\_node\_info metric which is extracted to its own column in the k8s\_node\_v0 postgres table. The relevant node data is then used to facilitate link the Kubernetes node to a cloud instance. This linking will be done in postgres, as will the determination of the relationship between cloud instance and ASGs or VM Scale Sets.
-* k8s\_version--The Kubernetes version of the node is collected and stored in the attribute, k8s\_node.<br />
-
-  This value is collected for each node and for the cluster. This is currently informational only and is not used not used in the analysis.
-
-The features allowing you to view node details will be provided in Densify v2.6.
-</Accordion>
-
-<Accordion title="Cluster-Level Metrics">
-The Kubernetes version of the cluster is collected and stored in the attribute, k8s\_cluster. This is the version of the control plane/API server. It can be higher than those of the nodes in cases where the control plane was upgraded and the nodes have not yet been updated. This is used when determining OOM kills for Kubernetes versions older than 1.28.
-</Accordion>
-
-<Accordion title="Linking Containers to Node Groups">
-Containers will now be linked to their node group using a provider ID that is populated by each public cloud provider's Kubernetes offerings (i.e. EKS, AKS and GKE). The provider\_id attribute is passed to the kubelet.
-
-The provider\_id is available as a Prometheus label of kube\_node\_info metric which is extracted to its own column in the k8s\_node\_v0 postgres table. The relevant node data is then used to facilitate linking the Kubernetes node to a cloud instance. This will be done in postgres, as will the relationship between cloud instance and ASGs or VM Scale Sets.
-</Accordion>
-
-<Accordion title="Resolved Issues">
-See [4.1.0 - September 19, 2024](./Resolved_Issues-Cloud#4.1.0)  for the list of resolved defects.
-</Accordion>
-
+    The provider_id is available as a Prometheus label of kube_node_info metric which is extracted to its own column in the k8s_node_v0 postgres table. The relevant node data is then used to facilitate linking the Kubernetes node to a cloud instance. This will be done in postgres, as will the relationship between cloud instance and ASGs or VM Scale Sets.
+  </Accordion>
+  <Accordion title="Resolved Issues">
+    See [4.1.0 - September 19, 2024](./Resolved_Issues-Cloud#4.1.0)  for the list of resolved defects.
+  </Accordion>
 </Accordion>
 
 <Accordion title="4.0.0 - May 28, 2024 ">
-Version 4 introduces significant updates to Densify's container data collection solution. This version resides in a new [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md).
+  Version 4 introduces significant updates to Densify's container data collection solution. This version resides in a new [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md).
 
-While the core PromQL queries remain the same, with the exception of some improvements and bug fixes, the data forwarder has been re-architected to support multi-cluster data collection.
+  While the core PromQL queries remain the same, with the exception of some improvements and bug fixes, the data forwarder has been re-architected to support multi-cluster data collection.
 
-You can upgrade from version 2.x or 3.x to version 4.0. You need to update the image tag to "4":
+  You can upgrade from version 2.x or 3.x to version 4.0. You need to update the image tag to "4":
 
-* image: densify/container-optimization-data-forwarder:4
-* imagePullPolicy: Always
+  - image: densify/container-optimization-data-forwarder:4
+  - imagePullPolicy: Always
 
-When updating the data forwarder, you need to ensure that the same version is deployed for all of your clusters.
+  When updating the data forwarder, you need to ensure that the same version is deployed for all of your clusters.
 
-See [Data Collection for Containers](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview) for details of configuring the connection.
+  See [Data Collection for Containers](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview) for details of configuring the connection.
 
-<Accordion title="Supported Third Party Observability Platforms">
-In addition to Prometheus, third party observability platforms are supported. Commercially-available observability platforms do not need to reside within a cluster and can be used to monitor multi-cluster environments. The observability platform must support the Prometheus API and one of the following authentication mechanisms:
+  <Accordion title="Supported Third Party Observability Platforms">
+    In addition to Prometheus, third party observability platforms are supported. Commercially-available observability platforms do not need to reside within a cluster and can be used to monitor multi-cluster environments. The observability platform must support the Prometheus API and one of the following authentication mechanisms:
 
-* HTTP basic authentication--Supported by Prometheus and is required by some commercial observability platforms, i.e. [Grafana Cloud](https://grafana.com/docs/grafana-cloud/cost-management-and-billing/analyze-costs/metrics-costs/prometheus-metrics-costs/usage-analysis-api/);
-* Bearer token--Required by [OpenShift Monitoring](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.14/html/monitoring/accessing-third-party-monitoring-apis) and some commercial observability platforms, i.e. [Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-api-promql);
-* AWS SigV4--Required by [Amazon Managed Service for Prometheus](https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-secure-queryingl).
+    - HTTP basic authentication--Supported by Prometheus and is required by some commercial observability platforms, i.e. [Grafana Cloud](https://grafana.com/docs/grafana-cloud/cost-management-and-billing/analyze-costs/metrics-costs/prometheus-metrics-costs/usage-analysis-api/);
+    - Bearer token--Required by [OpenShift Monitoring](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.14/html/monitoring/accessing-third-party-monitoring-apis) and some commercial observability platforms, i.e. [Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-api-promql);
+    - AWS SigV4--Required by [Amazon Managed Service for Prometheus](https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-secure-queryingl).
 
-If you are using Amazon Managed Service for Prometheus (AMP), an AWS role is required to associate the Kubernetes service account with Densify for the purpose of container data collection. The additional required annotations can be added to your Helm charts.
+    If you are using Amazon Managed Service for Prometheus (AMP), an AWS role is required to associate the Kubernetes service account with Densify for the purpose of container data collection. The additional required annotations can be added to your Helm charts.
 
-The following Prometheus dependencies are applicable:
+    The following Prometheus dependencies are applicable:
 
-* AWS Managed Prometheus data ingestion requires Prometheus v2.26.0 or higher.
-* Starting with version 16.0, the Prometheus chart requires Helm 3.7 or higher, to install successfully.
+    - AWS Managed Prometheus data ingestion requires Prometheus v2.26.0 or higher.
+    - Starting with version 16.0, the Prometheus chart requires Helm 3.7 or higher, to install successfully.
 
-The following commercial observability platforms are supported:
+    The following commercial observability platforms are supported:
 
-* Amazon Managed Service for Prometheus (AMP)--Refer to the [AWS website](https://docs.aws.amazon.com/prometheus/latest/userguide/indexl) for details on AMP. Densify requires a specially configured role. See [Container Data Collection Using Amazon Managed Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_EKS_and_AMP) for configuration examples.
-* Azure Monitor Managed Service for Prometheus (AzMP)--Refer to the [Azure website](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-overview) for details.Densify automates the process of acquiring and get and refreshing security tokens. See [Container Data Collection Using Azure Managed Service for Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_AzMP) for a configuration example.
-* [Grafana Cloud](https://grafana.com/products/cloud/)--See [Container Data Collection using Basic Authentication](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Forwarder_Basic_Auth) for a configuration example.
+    - Amazon Managed Service for Prometheus (AMP)--Refer to the [AWS website](https://docs.aws.amazon.com/prometheus/latest/userguide/indexl) for details on AMP. Densify requires a specially configured role. See [Container Data Collection Using Amazon Managed Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_EKS_and_AMP) for configuration examples.
+    - Azure Monitor Managed Service for Prometheus (AzMP)--Refer to the [Azure website](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-overview) for details.Densify automates the process of acquiring and get and refreshing security tokens. See [Container Data Collection Using Azure Managed Service for Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_AzMP) for a configuration example.
+    - [Grafana Cloud](https://grafana.com/products/cloud/)--See [Container Data Collection using Basic Authentication](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Forwarder_Basic_Auth) for a configuration example.
 
-The following self-hosted OSS solutions are supported:
+    The following self-hosted OSS solutions are supported:
 
+    <table>
+    <col />
 
-<table>
-<col/>
-<col/>
-<tbody>
-<tr>
-<td>
-<ul>
-<li><a href="https://thanos.io/">Thanos</a></li>
-<li><a href="https://cortexmetrics.io/">Cortex</a></li>
-</ul>
-</td>
-<td>
-<ul>
-<li><a href="https://grafana.com/oss/mimir/">Grafana Mimir</a></li>
-<li><a href="https://prometheus.io/docs/prometheus/latest/federation/">Prometheus Federation</a></li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+    <col />
 
+    <tbody>
+    <tr>
+    <td>
+    <ul>
+    <li>
+    <a href="https://thanos.io/">
+    Thanos
+    </a>
 
+    </li>
+
+    
+    <li>
+    <a href="https://cortexmetrics.io/">
+    Cortex
+    </a>
+
+    </li>
+
+    </ul>
+
+    </td>
+
+    <td>
+    <ul>
+    <li>
+    <a href="https://grafana.com/oss/mimir/">
+    Grafana Mimir
+    </a>
+
+    </li>
+
+    
+    <li>
+    <a href="https://prometheus.io/docs/prometheus/latest/federation/">
+    Prometheus Federation
+    </a>
+
+    </li>
+
+    </ul>
+
+    </td>
+
+    </tr>
+
+    </tbody>
+
+    </table>
+  </Accordion>
+  <Accordion title="External Cluster Support">
+    Version 4 collects data from external Prometheus servers. In this use case Prometheus runs outside the Kubernetes cluster, in which the data collection runs.
+  </Accordion>
+  <Accordion title="Multiple Kubernetes Clusters Support">
+    Since Prometheus can now be run externally, you can now run a single job to collect data for multiple Kubernetes clusters from a single Prometheus server/observability platform. Using Prometheus labels, the job determines which data belongs to which cluster.
+  </Accordion>
+  <Accordion title="Added Memory Options for Container Data Collection">
+    You now have the option to select "container_memory_working_set_bytes" in addition to "container_memory_usage_bytes" or "container_memory_rss" for container data collection. This new metric allows you to determine how aggressively you want to optimize your container memory allocations, when analyzing your Kubernetes environments.
+
+    Using the metrics, "container_memory_rss" and "container_memory_working_set_bytes" provides more aggressive recommendations that allow you to reclaim more memory. Using "container_memory_usage_bytes" and "container_memory_rss" provide recommendations that will not result in downsizing recommendations that may lead to out-of-memory (OOM) issues.
+
+    The corresponding workload charts were added to the Containers - Details Tab in v2.2.0. See [Optimizing Your Containers - Details Tab](../Densify_Com/Optimizing_Your_Containers_-_Details_Tab#Lower_Section)
+
+    Contact <a href="mailto:Support@Densify.com">
+    Support@Densify.com</a>
+
+     for details on selecting memory utilization for your container data collection.
+  </Accordion>
+  <Accordion title="Other Features">
+    The following updates and bug fixes were made in this release:
+
+    - HTTP retries have been added to the calls to the Prometheus API. This handles observability platform rate limiting.
+    - The data forwarder now handles the relabel configs of Node Exporter.
+    - Outdated Node Exporter metrics have been addressed.
+    - Utilizes improved Horizontal Pod Autoscaler metrics (autoscaling v2).
+    - The data forwarder has been upgraded to Go 1.22,
+    - Updated examples for both single and multiple cluster configurations are provided in the new [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md).
+  </Accordion>
+  <Accordion title="Resolved Issues">
+    See [4.0.0 - May 28, 2024](./Resolved_Issues-Cloud#4.0)  for the list of resolved defects.
+  </Accordion>
+  <Accordion title="End of Support Notice - Container Data Forwarder 3.x.x">
+    Densify will discontinue support of Container Data Forwarder versions 3.x.x on June 30, 2024. Contact <a href="mailto:Support@Densify.com">
+    Support@Densify.com</a>
+
+     for details on migrating to Densify's current version of the Container Data Forwarder.
+  </Accordion>
 </Accordion>
-
-<Accordion title="External Cluster Support">
-Version 4 collects data from external Prometheus servers. In this use case Prometheus runs outside the Kubernetes cluster, in which the data collection runs.
-</Accordion>
-
-<Accordion title="Multiple Kubernetes Clusters Support">
-Since Prometheus can now be run externally, you can now run a single job to collect data for multiple Kubernetes clusters from a single Prometheus server/observability platform. Using Prometheus labels, the job determines which data belongs to which cluster.
-</Accordion>
-
-<Accordion title="Added Memory Options for Container Data Collection">
-You now have the option to select "container\_memory\_working\_set\_bytes" in addition to "container\_memory\_usage\_bytes" or "container\_memory\_rss" for container data collection. This new metric allows you to determine how aggressively you want to optimize your container memory allocations, when analyzing your Kubernetes environments.
-
-Using the metrics, "container\_memory\_rss" and "container\_memory\_working\_set\_bytes" provides more aggressive recommendations that allow you to reclaim more memory. Using "container\_memory\_usage\_bytes" and "container\_memory\_rss" provide recommendations that will not result in downsizing recommendations that may lead to out-of-memory (OOM) issues.
-
-The corresponding workload charts were added to the Containers - Details Tab in v2.2.0. See [Optimizing Your Containers - Details Tab](../Densify_Com/Optimizing_Your_Containers_-_Details_Tab#Lower_Section)
-
-Contact <a href="mailto:Support@Densify.com">Support@Densify.com</a> for details on selecting memory utilization for your container data collection.
-</Accordion>
-
-<Accordion title="Other Features">
-The following updates and bug fixes were made in this release:
-
-* HTTP retries have been added to the calls to the Prometheus API. This handles observability platform rate limiting.
-* The data forwarder now handles the relabel configs of Node Exporter.
-* Outdated Node Exporter metrics have been addressed.
-* Utilizes improved Horizontal Pod Autoscaler metrics (autoscaling v2).
-* The data forwarder has been upgraded to Go 1.22,
-* Updated examples for both single and multiple cluster configurations are provided in the new [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md).
-</Accordion>
-
-<Accordion title="Resolved Issues">
-See [4.0.0 - May 28, 2024](./Resolved_Issues-Cloud#4.0)  for the list of resolved defects.
-</Accordion>
-
-<Accordion title="End of Support Notice - Container Data Forwarder 3.x.x">
-Densify will discontinue support of Container Data Forwarder versions 3.x.x on June 30, 2024. Contact <a href="mailto:Support@Densify.com">Support@Densify.com</a> for details on migrating to Densify's current version of the Container Data Forwarder.
-</Accordion>
-
-</Accordion>
-
