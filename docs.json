@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Density Docs",
+  "name": "Densify Docs",
   "colors": {
     "primary": "#0075eb",
     "light": "#0075eb",
