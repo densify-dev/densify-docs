@@ -131,7 +131,7 @@
                 "tab": "Cloudex",
                 "groups": [
                     {
-                        "group": "Cloud Analysis",
+                        "group": "Public Cloud Analysis",
                         "pages": [
                             "docs-kubex/Content/Cloudex/Cloud_Analysis",
                             "docs-kubex/Content/Cloudex/Using_the_Cloud_Tree_Viewer",
@@ -165,8 +165,8 @@
                                 "group": "Azure Data Collection",
                                 "pages": [
                                     "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal",
-                                    "docs-kubex/Content/Cloudex/Data_Collection_AWS_Connections",
-                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/Azure_Cloud_Connections.mdx"
+                                    "docs-kubex/Content/Cloudex/Data_Collection_Azure_Connections",
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/Azure_Cloud_Connections"
                                 ]
                             },
                             {
