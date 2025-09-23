@@ -69,7 +69,7 @@ When enabled, the grey bar indicates the number of containers with unspecified v
 </Frame>
 
 
-Badges on a histogram indicate a situation that needs attention. Click the title link to move to the AI Analysis Details tab. 
+Badges on a histogram indicate a situation that needs attention. Click the title link to move to the Analysis Details tab. 
 
 ## Histogram Charts
 
@@ -99,7 +99,7 @@ Use the following additional features on these charts to see the recommendation 
 
 <ul>
   <li>
-    Drill down hyperlinks--The zone names are hyperlinks that take you to the <a href="/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab"> Analysis Details </a> tab, with the corresponding Table View selected, showing the relevant systems. For example, if you click "Throttled CPU Risk", Kubex switches to the AI Analysis Details tab with the "CPU Request Shortfall" view selected.
+    Drill down hyperlinks--The zone names are hyperlinks that take you to the <a href="/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab"> Analysis Details </a> tab, with the corresponding Table View selected, showing the relevant systems. For example, if you click "Throttled CPU Risk", Kubex switches to the Analysis Details tab with the "CPU Request Shortfall" view selected.
     <a name="kanchor63"> </a>
   </li>
   <div>
@@ -139,12 +139,12 @@ Use the following additional features on these charts to see the recommendation 
   <Frame caption="Figure: Histogram Hover-Over">
   <img src="/images/docs-kubex/Content/Kubex/03000030.png"/>
   </Frame>
-  <li>Warning Indicators--A warning indicator is displayed on the chart if memory events have occurred in the selected scope of systems. Click the message to see the corresponding detailed view on the AI Analysis Details tab.</li>
+  <li>Warning Indicators--A warning indicator is displayed on the chart if memory events have occurred in the selected scope of systems. Click the message to see the corresponding detailed view on the Analysis Details tab.</li>
   <Frame caption="Figure: Visual Indicator">
   <img src="/images/docs-kubex/Content/Kubex/03000031.png"/>
   </Frame>
   <li>
-    Savings Indicators--Another indicator is displayed on the chart if resource allocations can be adjusted to save money. Again, you can click the message to see the corresponding detailed view on the AI Analysis Details tab.
+    Savings Indicators--Another indicator is displayed on the chart if resource allocations can be adjusted to save money. Again, you can click the message to see the corresponding detailed view on the Analysis Details tab.
     <a name="kanchor64"> </a>
   </li>
   <Frame caption="Figure: Visual Indicator">
@@ -166,9 +166,9 @@ The CPU Request is the number of CPU millicores (mCores) that are guaranteed fo
 Applications in containers on the left side of the histogram may experience CPU throttling and the resulting performance issues.
 Containers on the right side of the chart indicate containers with over-allocated CPU resources, resulting in stranded capacity. Since the request guarantees these resource to the container, they cannot be re-allocated until the pod shuts down.
 
-Click the zone name to review the specific details of the recommended resource allocations to improve container and/or application performance. Clicking "CPU Request Shortfall", switches to the [AI Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab and displays the "CPU Request Shortfall" view in ascending order (with the negative values shown at top of the list). From here you can review the details of the recommended allocation changes for each manifest.
+Click the zone name to review the specific details of the recommended resource allocations to improve container and/or application performance. Clicking "CPU Request Shortfall", switches to the [Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab and displays the "CPU Request Shortfall" view in ascending order (with the negative values shown at top of the list). From here you can review the details of the recommended allocation changes for each manifest.
 
-Clicking the "CPU Request Surplus", switches to the [AI Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab sorted on the "CPU Request Shortfall" view in descending order with the largest positive values shown at top of the list. Systems with unspecified values are indicated with a dash (-) and are shown first so you may need to scroll down to see the manifests with stranded CPU resources.
+Clicking the "CPU Request Surplus", switches to the [Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab sorted on the "CPU Request Shortfall" view in descending order with the largest positive values shown at top of the list. Systems with unspecified values are indicated with a dash (-) and are shown first so you may need to scroll down to see the manifests with stranded CPU resources.
 
 ## CPU Limit
 
@@ -181,7 +181,7 @@ The CPU limit is the maximum allocation that a pod or container can access. When
 
 If the limit has not been set, it is possible for a container to use more resources than it requests, if the node has available CPUs. However, a container is not allowed to use more than its resource limit. In this case, applications in containers on the left side of the histogram will likely experience performance issues due to CPU throttling.
 
-Click the zone name to switch to the [AI Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab to see the details of the specific recommended resource allocations to improve container and/or application performance. The table will be sorted on the "CPU Request Surplus" column in ascending order (with the negative values shown at top of the list). From here you review the details of the recommended allocation changes.
+Click the zone name to switch to the [Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab to see the details of the specific recommended resource allocations to improve container and/or application performance. The table will be sorted on the "CPU Request Surplus" column in ascending order (with the negative values shown at top of the list). From here you review the details of the recommended allocation changes.
 
 Containers on the right side of the chart indicate containers with over-allocated CPU resources, resulting in stranded capacity. If the limit is set too high and runaway processes exceed their request and hit the limit for sustained periods, the CPUs cannot be re-allocated until the runaway processes are terminated or the pod shuts down. This will again, result in stranded CPU capacity.
 
@@ -197,7 +197,7 @@ Like the CPU Request, a memory request is the amount of memory that is guarantee
 Applications in containers on the left side of the histogram may run out of memory resulting in performance issues or the pod may be terminated due to insufficient available memory.
 Containers on the right side of the chart indicate containers with over-allocated memory resources, resulting in stranded capacity. Since the request guarantees these resource, they cannot be re-allocated until the pod or task shuts down.
 
-Click the zone name to switch to the [AI Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab to see the corresponding table view with details of the specific recommended resource allocations to improve container and/or application performance.
+Click the zone name to switch to the [Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab to see the corresponding table view with details of the specific recommended resource allocations to improve container and/or application performance.
 
 ## Memory Limit
 
@@ -212,7 +212,7 @@ If the limit has not been set, it is possible for a container to use more resour
 
 Containers on the right side of the chart indicate containers with over-allocated memory resources, resulting in stranded capacity. If the limit is set too high and runaway processes exceed their request value for sustained periods, the memory cannot be re-allocated until the runaway processes are terminated or the pod shuts down, thereby stranding memory resources.
 
-Click the zone name to open the [AI Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab to see the corresponding table view with details of the specific recommended resource allocations to improve container and/or application performance.
+Click the zone name to open the [Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Tab) tab to see the corresponding table view with details of the specific recommended resource allocations to improve container and/or application performance.
 
 #### Video Resources
 <AccordionGroup>

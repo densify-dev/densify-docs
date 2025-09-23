@@ -394,7 +394,7 @@ columns
 
       </table>
     - **Updated Node Overview Tab**--This tab has been updated add GPU details and to improve usability.
-    - **New Data in AI Analysis Details**--Six new data points allow you to find containers where the CPU and memory request values are higher than peak utilization over a given period.
+    - **New Data in Analysis Details**--Six new data points allow you to find containers where the CPU and memory request values are higher than peak utilization over a given period.
 
       The analysis populates these values based on the date range and data selection options that are defined in your container optimization policy.
       - CPU Peak--Highest peak value in mCores, on the busiest container.
@@ -427,14 +427,14 @@ columns
     - Users no longer need to clear their browser cache after an upgrade. This changes applies to Kubex and Cloudex only.
 
       When using the Densify Console users must clear their browser cache after an upgrade,
-    - **AI Analysis Details Export** --When the content of the AI Analysis Details is exported, the Container Name is provided as a hyperlink that takes you to the Overview page for the selected container.
+    - **Analysis Details Export** --When the content of the Analysis Details is exported, the Container Name is provided as a hyperlink that takes you to the Overview page for the selected container.
 
       When you open the exported .XLS file, the content initially appears as plain text, and when you click on the cell it becomes a hyperlink.
     - **Node Group Overview**--The cards on the Node Group Overview page have been updated to better report on the status of a single node group. Additionally, utilization charts have been added to this page so you can review detailed metrics for a selected node group.
     - **New Filter**--A new public filter, "With automation enabled", has been added to the container tree viewer. When selected this filter displays all containers with automation enabled. i.e. Automation Enabled = true.
     - **Improved Performance\>**--By focusing on nodes that were running in the last day rather than the past 7 days you will notice improved performance when working with nodes and node groups.
     - **Access to the Online Help**--A new help icon provides direct access to the online help.
-    - **Renamed Value**--The value, "No. of Containers" has been renamed to, "Avg No. of Containers". The new name more appropriately describes the value. The following pages have been updated: Summary, Overview, Histogram and AI Analysis Details.
+    - **Renamed Value**--The value, "No. of Containers" has been renamed to, "Avg No. of Containers". The new name more appropriately describes the value. The following pages have been updated: Summary, Overview, Histogram and Analysis Details.
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
@@ -490,10 +490,10 @@ columns
     - **Updated Optimization Breakdown**--Hovering over any bar in this chart, displays a description of the recommended optimization. Badges have also been added to indicate significant information, such a s memory events or unspecified resource settings.
     - **Summary Page**--The Summary page has been updated for improved readability.
     - **Cost Modeling**--Kubex now has improved algorithms that use existing utilization data to estimate the cost for containers with unspecified CPU/memory request values. The Summary, Analysis Details, and Overview pages have all been updated to show the cost estimates for these containers. The following updates have been made to show these values:
-      - Two columns have been added to the AI Analysis Details tab:
+      - Two columns have been added to the Analysis Details tab:
         - "Total Surplus CPU Request from Unspecified (mCores)";
         - "Total Surplus Memory Request from Unspecified (MB)"
-      - Two system views have been added to the AI Analysis Details tab:
+      - Two system views have been added to the Analysis Details tab:
         - "CPU Request Shortfall (from Unspecified)"
         - "Memory Request Shortfall (from Unspecified)"
       - The Overview tab and single instance modal page have been updated to add details of unspecified CPU and memory request settings. These additional cards are only displayed if the selected container does not have specified CPU and/or memory request settings.
