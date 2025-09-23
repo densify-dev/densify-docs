@@ -19,28 +19,28 @@ This topic summarizes both new and updated features introduced in Densify
   <Frame caption="Figure: COntainer Summary Tab">
     <img src="/images/docs/ReleaseNotes/v3.5/container_summary_tab.png" width="100%" />
   </Frame>
-    - **Container Out of Memory Kills**--Container out of memory kill data is now visible in OOM Kills (Last Day) column on AI Analysis Details page:
+    - **Container Out of Memory Kills**--Container out of memory kill data is now visible in OOM Kills (Last Day) column on the Analysis Details page:
       - Badges will display on summary and histogram page to indicate if there are 
 OOM Kills in the environment
       - ML Model and historical data available in the Utilization Charts carousel and Metrics Viewer
-    - **CPU Throttling (%)**--CPU Throttling data is now visible in CPU Throttling (%) column on AI Analysis Details page:
+    - **CPU Throttling (%)**--CPU Throttling data is now visible in CPU Throttling (%) column on the Analysis Details page:
       - ML Model and historical data available in Utilization Charts carousel and 
 Metrics Viewer  
     - **Automation Tab**--Automation tab has been added to highlight request and limit changes made by the Kubex Automation Stack. An overview of optimized manifests 
 is also available on the summary page
     - **Business & Operational Attributes**--Various business and operations related 
-attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and AI Analysis Details 
+attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and Analysis Details 
 columns
     - **GPU Optimization for Container Resource Requests**--– Containers with GPUs 
 allocated now receive recommendations for downsize opportunities. The GPU Overview page has been updated to highlight this information:
-      - Added system views to AI Analysis Details (Immediate GPU Savings & Addtional GPU Waste)
+      - Added system views to Analysis Details (Immediate GPU Savings & Addtional GPU Waste)
   </Accordion>
   <Accordion title="Cloudex Updates">
     The following changes have been made to Cloudex in this release:
 
-     - **Effort Popup**--The Effort column on AI Analysis Details page is now clickable, showing a popup with additional details on the effort required to change to the recommended instance type.
+     - **Effort Popup**--The Effort column on the Analysis Details page is now clickable, showing a popup with additional details on the effort required to change to the recommended instance type.
       - Overall effort is the highest effort of the individual rule items. Possible values are None, Low, Medium, and High
-     - **Business & Operational Attributes**--Various business and operations related attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and AI Analysis Details 
+     - **Business & Operational Attributes**--Various business and operations related attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and the Analysis Details page.
 columns
   </Accordion>
 </Accordion>  
@@ -63,7 +63,7 @@ columns
     The following changes have been made to Cloudex in this release:
 
     - **Cloud Connections**--In this release you can now can create and edit the connections to AWS and Azure. You can also view data collection status for each of the connections. Cloudex uses these connections to collect data from each account, daily.
-    - **Accessing the Catalog Map**--You can now access the catalog map directly from the AI Analysis Details tab. The catalog map with a modal view has been added to the utilization charts. You now do not need to leave the AI Analysis Details tab to use the catalog map.
+    - **Accessing the Catalog Map**--You can now access the catalog map directly from the Analysis Details tab. The catalog map with a modal view has been added to the utilization charts. You now do not need to leave the Analysis Details tab to use the catalog map.
     - **Summary Tab**--The Cloud Summary tab has been updated to improve useability.
 
     Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
@@ -108,8 +108,8 @@ columns
       You must have [data forwarder v4.2.1](#Forwarder) deployed to collect the GPU data from your environments.
 
       There are updates on many pages to highlight GPU resource configuration and utilization:
-      - **Updated AI Analysis Details**--A number of data points allow you to identify containers with GPU requests and to determine where the GPU and GPU memory request values are higher than peak utilization over a given period.
-        The analysis populates these attribute values based on the date range and data selection options that are defined in your container optimization policy. The AI Analysis Details page has been updated to display the following GPU data.
+      - **Updated Analysis Details**--A number of data points allow you to identify containers with GPU requests and to determine where the GPU and GPU memory request values are higher than peak utilization over a given period.
+        The analysis populates these attribute values based on the date range and data selection options that are defined in your container optimization policy. The Analysis Details page has been updated to display the following GPU data.
 
         <table>
         <col />
@@ -208,7 +208,7 @@ columns
         </tbody>
 
         </table>
-      - **New Views**--Four new views have been added to the AI Analysis Details page. These views allow you to focus on your GPU data:
+      - **New Views**--Four new views have been added to the Analysis Details page. These views allow you to focus on your GPU data:
 
         <table>
         <col />
@@ -411,7 +411,7 @@ columns
   <Accordion title="Cloudex Updates">
     The following changes have been made to Cloudex in this release:
 
-    - **Timezone**--The X-axis label has been updated to indicate the timezone designation for all historical utilization charts to ‘UTC ’ This change to does not currently apply to the ML charts. The ML charts on the Cloudex AI Analysis Details page use Densify server's time. So this will be either “Eastern Time” or “Central Europe Time”.
+    - **Timezone**--The X-axis label has been updated to indicate the timezone designation for all historical utilization charts to ‘UTC ’ This change to does not currently apply to the ML charts. The ML charts on the Cloudex Analysis Details page use Densify server's time. So this will be either “Eastern Time” or “Central Europe Time”.
 
     Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
@@ -489,7 +489,7 @@ columns
         This new method makes it easier for you to set up container data collection, reducing the previous manual dependency of requesting these credentials from Densify.
     - **Updated Optimization Breakdown**--Hovering over any bar in this chart, displays a description of the recommended optimization. Badges have also been added to indicate significant information, such a s memory events or unspecified resource settings.
     - **Summary Page**--The Summary page has been updated for improved readability.
-    - **Cost Modeling**--Kubex now has improved algorithms that use existing utilization data to estimate the cost for containers with unspecified CPU/memory request values. The Summary, AI Analysis Details, and Overview pages have all been updated to show the cost estimates for these containers. The following updates have been made to show these values:
+    - **Cost Modeling**--Kubex now has improved algorithms that use existing utilization data to estimate the cost for containers with unspecified CPU/memory request values. The Summary, Analysis Details, and Overview pages have all been updated to show the cost estimates for these containers. The following updates have been made to show these values:
       - Two columns have been added to the AI Analysis Details tab:
         - "Total Surplus CPU Request from Unspecified (mCores)";
         - "Total Surplus Memory Request from Unspecified (MB)"

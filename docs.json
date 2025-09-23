@@ -89,7 +89,7 @@
                             "docs-kubex/Content/Kubex/GPU_Tab",
                             "docs-kubex/Content/Kubex/Metrics_Viewer_Tab",
                             {
-                                "group": "AI Analysis Details Tab",
+                                "group": "Analysis Details Tab",
                                 "pages": [
                                     "docs-kubex/Content/Kubex/AI_Analysis_Details_Tab",
                                     "docs-kubex/Content/Kubex/AI_Analysis_Details_Table",
@@ -137,7 +137,7 @@
                             "docs-kubex/Content/Cloudex/Using_the_Cloud_Tree_Viewer",
                             "docs-kubex/Content/Cloudex/Summary_Tab-Cloud",
                             {
-                                "group": "AI Analysis Details Tab",
+                                "group": "Analysis Details Tab",
                                 "pages": [
                                     "docs-kubex/Content/Cloudex/AI_Analysis_Details_Tab-Cloud",
                                     "docs-kubex/Content/Cloudex/AI_Analysis_Details_Table-Cloud",
