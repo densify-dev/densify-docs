@@ -528,7 +528,7 @@
                 "tab": "Administration",
                 "groups": [
                     {
-                        "group": "Single Sign On (SSO) and External Authentication",
+                        "group": "Single Sign On (SSO)",
                         "pages": [
                             "docs/WebHelp_Densify_Cloud/Content/Administration/Configuring_External_User_Authentication",
                             "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Azure_Active_Directory",
