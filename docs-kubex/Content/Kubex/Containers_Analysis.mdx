@@ -10,13 +10,12 @@ Kubex provides a simple yet powerful interface to optimize your container enviro
 <br/><br/>
 
 <Frame caption="Figure: Container Analysis">
-![](/images/docs-kubex/Content/Kubex/03000119_630x300.png)
+![](/images/docs-kubex/k8s_overview.png)
 </Frame>
 
 
 
-Various reporting tabs provide all the required features:
-
+The following tabs are available at the folder level in the tree viewer:
 
 <ul>
   <li>
@@ -36,15 +35,35 @@ Various reporting tabs provide all the required features:
     --Shows analysis details of the selected scope of your environment in various tabular views with utilization charts for selected systems.
   </li>
   <li>
-    <a href="/docs-kubex/Content/Kubex/Overview_Tab"> Overview </a> and <a href="/docs-kubex/Content/Kubex/Metrics_Viewer_Tab"> Metrics Viewer </a>
-    --These tabs are only available when a single container is selected.
+    <a> Policy </a>
+    --Shows all the analysis policies used by the selected scope of containers.
+  </li>
+
+</ul>
+
+The following tabs are available at an individual manifest level in the tree viewer:
+
+  <li>
+    <a href="/docs-kubex/Content/Kubex/Overview_Tab"> Overview </a>
+    --Shows you an overview of the selected manifest.
+  </li>
+  <li>
+    <a href="/docs-kubex/Content/Kubex/Metrics_Viewer_Tab"> Metrics Viewer </a>
+    --Provides detailed metrics for the selected container manifest.
   </li>
   <li>
     <a href="/docs-kubex/Content/Kubex/GPU_Tab"> GPU </a>
-    --This tab is  available when a single container, with allocated GPU resources, is selected.
+    --This tab appears when a single container manifest with GPU resources is selected.
+  </li>
+  <li>
+    <a> Policy </a>
+    --Shows the analysis policy used by the selected container manifest.
+  </li>
+  <li>
+    <a> Automation </a>
+    --Shows the automation state for the selected container manifest.
   </li>
 </ul>
-
 
 You can also review your node group infrastructure using the [Node Group](/docs-kubex/Content/Kubex/Node_Group_Analysis) features.
 
