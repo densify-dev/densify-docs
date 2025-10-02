@@ -15,33 +15,62 @@ This topic summarizes both new and updated features introduced in Densify
   <Accordion title="Kubex Updates">
     The following changes have been made to Kubex in this release:
 
-     - **Updated Container Summary Tab**--The container summary page has been updated with a new look and feel to better highlight current spend, waste, and risk.
-  <Frame caption="Figure: Container Summary Tab">
-    <img src="/images/docs/ReleaseNotes/v3.5/container_summary_tab.png" width="100%" />
-  </Frame>
-    - **Container Out of Memory Kills**--Container out of memory kill data is now visible in OOM Kills (Last Day) column on the Analysis Details page:
-      - Badges will display on summary and histogram page to indicate if there are 
-OOM Kills in the environment
-      - ML Model and historical data available in the Utilization Charts carousel and Metrics Viewer
-    - **CPU Throttling (%)**--CPU Throttling data is now visible in CPU Throttling (%) column on the Analysis Details page:
-      - ML Model and historical data available in Utilization Charts carousel and 
-Metrics Viewer  
-    - **Automation Tab**--Automation tab has been added to highlight request and limit changes made by the Kubex Automation Stack. An overview of optimized manifests 
-is also available on the summary page
-    - **Business & Operational Attributes**--Various business and operations related 
-attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and Analysis Details 
-columns
-    - **GPU Optimization for Container Resource Requests**--– Containers with GPUs 
-allocated now receive recommendations for downsize opportunities. The GPU Overview page has been updated to highlight this information:
-      - Added system views to Analysis Details (Immediate GPU Savings & Addtional GPU Waste)
+    - **GPU MIG Recommendation**--Supports NVIDIA MIG (Multi-Instance GPU) technology, recommending whether workloads should use a full GPU or a fraction (MIG slice). 
+      - The Analysis Details table will highlight the suggested MIG profile (and the GPU fraction it represents).
+      <Frame caption="Figure: Analysis Details Table - Recommended MIG Device">
+        <img src="/images/docs/ReleaseNotes/v3.6/kubex_analysis_details_mig_device.png" width="100%" />
+      </Frame>
+      - MIG recommendation info is also available in the GPU tab for an individual container manifest
+      <Frame caption="Figure: GPU Tab - Optimization Summary with MIG Recommendation">
+        <img src="/images/docs/ReleaseNotes/v3.6/kubex_gpu_optimization_summary.png" width="100%" />
+      </Frame>
+    - **Updated Container Summary Tab**
+      - "Waste" links now take you directly to the Analysis Details tab with the appropriate filter preselected
+      - "Info" tooltip has been added to the Spend Breakdown modal. This highlights the total unspecified CPU/Memory request. With this info, the numbers here and in the Analysis Details table will match up.
+    - **Memory Limit Events (Last Day) added to Analysis Details table**--This is a hidden column by default.
+    - **Node/Node Group Analysis**--Improved quality of recommendations by switching to "Working Set Memory" when available. Working set memory is a better metric to analyze the memory requirements for Nodes.
+    - **Other Improvements & Updates**
+      - GPU and GPU Memory metrics viewer chart: added “Current Request” line
+      - Added a new view on the Analysis Details table: “GPU Request Surplus”. This highlights the container manifests that have surplus GPU and can be optimized to reduce waste.
+      - Container API now include a “analyzedOn” date which allows the automation to only consider fresh recommendations.
+      - Removed the word “AI” from “AI Analysis Details”
   </Accordion>
   <Accordion title="Cloudex Updates">
-    The following changes have been made to Cloudex in this release:
-
-     - **Effort Popup**--The Effort column on the Analysis Details page is now clickable, showing a popup with additional details on the effort required to change to the recommended instance type.
-      - Overall effort is the highest effort of the individual rule items. Possible values are None, Low, Medium, and High
-     - **Business & Operational Attributes**--Various business and operations related attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and the Analysis Details page.
-columns
+    - **Policies**--View policies for Cloud environments in a new modal, accessible from the Policies tab and Analysis Details table.
+      <Frame caption="Figure: Policy Modal">
+        <img src="/images/docs/ReleaseNotes/v3.6/cloudex_policy_modal.png" width="100%" />
+      </Frame>
+      - Policies Tab
+      <Frame caption="Figure: Policies Tab">
+        <img src="/images/docs/ReleaseNotes/v3.6/cloudex_policies_tab.png" width="100%" />
+      </Frame>
+      - Analysis Details Table
+      <Frame caption="Figure: Analysis Details Table - Policy">
+        <img src="/images/docs/ReleaseNotes/v3.6/cloudex_analysis_details_policy.png" width="100%" />
+      </Frame>
+    - **Updated Azure Catalog Map**--Azure Catalog Map has been updated to show all supported VM types and sizes. These are displayed on the map when "Commonly Used" is unselected.
+      <Frame caption="Figure: Updated Azure Catalog Map">
+        <img src="/images/docs/ReleaseNotes/v3.6/cloudex_azure_catalog_map.png" width="100%" />
+      </Frame>
+    - **Added columns to Analysis Details table**
+      - Comment
+      - Recommendation Reason
+      - RDS Cluster ID
+      - Resource Tags
+  </Accordion>
+  <Accordion title="Resolved Issues">
+    - **Kubex**
+      - "Rename View" not working on Analysis Details table
+      - Policy not displayed on the policy tab for an individual container
+      - Incorrect units for CPU & Memory in Spend Breakdown modal
+      - Business attributes not showing in Analysis Details table
+      - "Policy Comparison" view showing no data
+    - **Cloudex**
+      - Incorrect "Discovery Date" for Azure systems
+  </Accordion>
+  <Accordion title="Administration">
+    - **SSO with Okta**--Removed requirement for Okta’s CAS (Central Authentication Service).
+    - **Password Reset**--Password reset emails now link to Kubex instead of Densify Console.
   </Accordion>
 </Accordion>  
 
@@ -72,9 +101,9 @@ allocated now receive recommendations for downsize opportunities. The GPU Overvi
   <Accordion title="Cloudex Updates">
     The following changes have been made to Cloudex in this release:
 
-     - **Effort Popup**--The Effort column on the Analysis Details page is now clickable, showing a popup with additional details on the effort required to change to the recommended instance type.
+    - **Effort Popup**--The Effort column on the Analysis Details page is now clickable, showing a popup with additional details on the effort required to change to the recommended instance type.
       - Overall effort is the highest effort of the individual rule items. Possible values are None, Low, Medium, and High
-     - **Business & Operational Attributes**--Various business and operations related attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and the Analysis Details page.
+    - **Business & Operational Attributes**--Various business and operations related attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and the Analysis Details page.
 columns
   </Accordion>
 </Accordion>  
