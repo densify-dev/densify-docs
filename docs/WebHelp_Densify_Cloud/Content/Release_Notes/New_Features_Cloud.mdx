@@ -143,9 +143,6 @@ columns
 
     Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
-  <Accordion title="Resolved Issues">
-    See [Resolved and Known Issues](./Resolved_Issues-Cloud#3.3.0) for the list of resolved defects.
-  </Accordion>
 </Accordion>
 
 <Accordion title="3.3.0 June 25, 2025">
@@ -156,9 +153,6 @@ columns
     - **Performance Improvements**-- The Kubex/Cloudex UI no longer retrieves data from the Densify Reporting Database (RDB). All Kubex and Cloudex UI component queries are directed exclusively to Kubex-specific tables in MS SQL.
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
-  </Accordion>
-  <Accordion title="Resolved Issues">
-    See [Resolved and Known Issues](./Resolved_Issues-Cloud#3.3.0) for the list of resolved defects.
   </Accordion>
 </Accordion>
 
@@ -478,9 +472,6 @@ columns
 
     Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
-  <Accordion title="Resolved Issues">
-    See [3.2.0 June 11, 2025](./Resolved_Issues-Cloud#3.2.0) for the list of resolved defects.
-  </Accordion>
 </Accordion>
 
 <Accordion title="3.1.0 May 14, 2025">
@@ -500,9 +491,6 @@ columns
     - **Renamed Value**--The value, "No. of Containers" has been renamed to, "Avg No. of Containers". The new name more appropriately describes the value. The following pages have been updated: Summary, Overview, Histogram and Analysis Details.
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
-  </Accordion>
-  <Accordion title="Resolved Issues">
-    See [Resolved and Known Issues](./Resolved_Issues-Cloud#3.1.0) for the list of resolved defects.
   </Accordion>
 </Accordion>
 
@@ -849,9 +837,6 @@ columns
 
         </table>
   </Accordion>
-  <Accordion title="Resolved Issues">
-    See [3.0 April 23, 2025](./Resolved_Issues-Cloud#3.0) for the list of resolved defects.
-  </Accordion>
 </Accordion>
 
 ## Container Data Forwarder
@@ -1102,9 +1087,6 @@ When deploying the Container Data Forwarder ensure that the same version is depl
   <Accordion title="Updated Configuration Setting">
     The data forwarder's configmap.yaml file has been updated. The setting, `node_group_list` has been updated to add `label_karpenter_sh_nodepool`. When enabled, Karpenter NodeGroups are discovered and created in Densify.
   </Accordion>
-  <Accordion title="Resolved Issues">
-    See [4.2.0 - May 15, 2024](./Resolved_Issues-Cloud#4.2.0)  for the list of resolved defects.
-  </Accordion>
 </Accordion>
 
 <Accordion title="4.1.1 - November 27, 2024">
@@ -1179,9 +1161,6 @@ When deploying the Container Data Forwarder ensure that the same version is depl
     Containers will now be linked to their node group using a provider ID that is populated by each public cloud provider's Kubernetes offerings (i.e. EKS, AKS and GKE). The provider_id attribute is passed to the kubelet.
 
     The provider_id is available as a Prometheus label of kube_node_info metric which is extracted to its own column in the k8s_node_v0 postgres table. The relevant node data is then used to facilitate linking the Kubernetes node to a cloud instance. This will be done in postgres, as will the relationship between cloud instance and ASGs or VM Scale Sets.
-  </Accordion>
-  <Accordion title="Resolved Issues">
-    See [4.1.0 - September 19, 2024](./Resolved_Issues-Cloud#4.1.0)  for the list of resolved defects.
   </Accordion>
 </Accordion>
 
@@ -1303,9 +1282,6 @@ When deploying the Container Data Forwarder ensure that the same version is depl
     - Utilizes improved Horizontal Pod Autoscaler metrics (autoscaling v2).
     - The data forwarder has been upgraded to Go 1.22,
     - Updated examples for both single and multiple cluster configurations are provided in the new [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md).
-  </Accordion>
-  <Accordion title="Resolved Issues">
-    See [4.0.0 - May 28, 2024](./Resolved_Issues-Cloud#4.0)  for the list of resolved defects.
   </Accordion>
   <Accordion title="End of Support Notice - Container Data Forwarder 3.x.x">
     Densify will discontinue support of Container Data Forwarder versions 3.x.x on June 30, 2024. Contact <a href="mailto:Support@Densify.com">

@@ -1,52 +1,9 @@
 ---
-title: "Resolved and Known Issues"
+title: "Resolved Issues"
 sidebarTitle: "Resolved Issues"
 ---
 
-The following tables provide details of customer-reported issues, listed by release. All tables are sorted by Densify's internal reference number.
-
-## Known Issues
-
-<Accordion title="Known Issues in the Current Release">
-<table>
-<col/>
-<col/>
-<col/>
-<col/>
-<thead  style={{textAlign: 'center', color: 'white', backgroundColor: '#003660'}}>
-<tr>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Internal<br />Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "25%" }}>
-Team Support<br />Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Densify Version
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "35%" }}>
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<p>CRB-53733</p>
-</td>
-<td>
-</td>
-<td>
-<p>v1.1.0</p>
-</td>
-<td>
-<p>The drill down instance count is not correct for GCP accounts, when using the Group By > "Account", option</p>
-<p>Navigate to <strong><span >Optimization Overview</span> > <span >Data</span></strong> tab and then set <strong><span >Group By</span></strong> to "Account" and then click the hyperlink from the GCP counts and when you drill down to the <strong><span >Details</span></strong> page, you will observe that the count at the top of the report does not match the count shown on the main page. This only occurs for GCP when you set <strong><span >Group By</span></strong> to "Account". </p>
-<p>As a workaround, navigate to the <strong><span >Public Cloud</span> > <span >Google Cloud</span></strong> summary page where the drill down counts are correct.</p>
-</td>
-</tr>
-</tbody>
-</table>
+The following page provides details of resolved issues, listed by release.
 
 </Accordion>
 
@@ -54,411 +11,60 @@ Description
 
 Issues resolved in each release are listed below:
 
-<Accordion title="3.4.0 July 9, 2025">
-<table>
-<col/>
-<col/>
-<col/>
-<thead  style={{textAlign: 'center', color: 'white', backgroundColor: '#003660'}}>
-<tr>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Internal<br />Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Team Support Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "60%" }}>
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<p>PD-57783</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved an issue related to how data is aggregated and saving new views with customized data aggegation.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p>PD-58076</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved the discrepancy between recommended ASG/VMSS values in the UI and through the API.</p>
-</td>
-</tr>
-</tbody>
-</table>
+<Accordion title="3.6.0 October 1, 2025">
+    - **Kubex**
+      - "Rename View" not working on Analysis Details table
+      - Policy not displayed on the policy tab for an individual container
+      - Incorrect units for CPU & Memory in Spend Breakdown modal
+      - Business attributes not showing in Analysis Details table
+      - "Policy Comparison" view showing no data
+    - **Cloudex**
+      - Incorrect "Discovery Date" for Azure systems
+  </Accordion>
 
+<Accordion title="3.4.0 July 9, 2025">
+    - **Kubex**
+      - Incorrect values in custom views with data aggregation.
+      - Discrepancy between recommended ASG/VMSS values in the UI and API.
 </Accordion>
 
 <Accordion title="3.2.0 June 11, 2025">
-<table>
-<col/>
-<col/>
-<col/>
-<thead  style={{textAlign: 'center', color: 'white', backgroundColor: '#003660'}}>
-<tr>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Internal<br />Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Team Support Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "60%" }}>
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<p>PD-56983</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved an issue where the  link between the node group and its containers was missing.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
+    - **Kubex**
+      - Missing link between the node group and its containers.
 </Accordion>
 
 <Accordion title="3.0 April 23, 2025">
-<table>
-<col/>
-<col/>
-<col/>
-<thead  style={{textAlign: 'center', color: 'white', backgroundColor: '#003660'}}>
-<tr>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Internal<br />Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Team Support Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "60%" }}>
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<p>PD-56932</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved an issue related to viewing Kubex on various screen sizes.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p>PD-57398</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved an issue related inconsistencies in Kubex view/filter tree viewer counts.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p>PD-57507</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved an issue related to the values in the license_weight_factor table.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p>PD-57546</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved an issue related to incorrect memory conversion when using the API.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
+    - **Kubex**
+      - Viewing Kubex on various screen sizes.
+      - Inconsistencies in Kubex view/filter tree viewer counts.
+      - Incorrect memory conversion when using the API.
 </Accordion>
 
 ## Data Forwarder Resolved Issues
 
 <Accordion title="4.2.0 - May 15, 2024 ">
-<table>
-<col/>
-<col/>
-<col/>
-<thead  style={{textAlign: 'center', color: 'white', backgroundColor: '#003660'}}>
-<tr>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Internal<br />Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Team Support Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "60%" }}>
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<p>PD-57371</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>The data forwarder fails on HPA configured to scale on more than one metric.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
+    - Data forwarder fails on HPA configured to scale on more than one metric.
 </Accordion>
 
 <Accordion title="4.1.3 - April 1, 2024">
-<table>
-<col/>
-<col/>
-<col/>
-<thead  style={{textAlign: 'center', color: 'white', backgroundColor: '#003660'}}>
-<tr>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Internal<br />Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Team Support Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "60%" }}>
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<p>PD-56983</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved an issue related to nodes not being identified correctly and not being linked to their containers.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
+    - Nodes not being identified correctly and not being linked to their containers.
 </Accordion>
 
 <Accordion title="4.1.2 - March 17, 2024 ">
-<table>
-<col/>
-<col/>
-<col/>
-<thead  style={{textAlign: 'center', color: 'white', backgroundColor: '#003660'}}>
-<tr>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Internal<br />Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Team Support Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "60%" }}>
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<p>PD-56238</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved an issue related to node utilization exceeding 100%.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
+    - Node utilization exceeding 100%.
 </Accordion>
 
 <Accordion title="4.1.1 - November 27, 2024 ">
-<table>
-<col/>
-<col/>
-<col/>
-<thead  style={{textAlign: 'center', color: 'white', backgroundColor: '#003660'}}>
-<tr>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Internal<br />Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Team Support Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "60%" }}>
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<p>PD-55817</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved an issue related to CPU/Memory reservation percent value exceeding 100%. This value is calculated for nodes, node groups and clusters.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
+    - CPU/Memory reservation percent value exceeding 100%. This value is calculated for nodes, node groups and clusters.
 </Accordion>
 
 <Accordion title="4.1.0 - September 19, 2024 ">
-<table>
-<col/>
-<col/>
-<col/>
-<thead  style={{textAlign: 'center', color: 'white', backgroundColor: '#003660'}}>
-<tr>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Internal<br />Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Team Support Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "60%" }}>
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<p>PD-55482</p>
-</td>
-<td>
-<p>94875</p>
-</td>
-<td>
-<p>Resolved an issue related to namespaces missing containers.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
+    - Namespaces missing containers.
 </Accordion>
 
 <Accordion title="4.0.0 - May 28, 2024 ">
-<table>
-<col/>
-<col/>
-<col/>
-<thead  style={{textAlign: 'center', color: 'white', backgroundColor: '#003660'}}>
-<tr>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Internal<br />Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "20%" }}>
-Team Support Reference
-</th>
-<th style={{color: "white", verticalAlign: "top", padding: "8px", fontWeight: "bold", textAlign: "center", fontSize: "14px", width: "60%" }}>
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<p>CRB-54280</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved an issue related to handling version changes and additions to kube-state-metrics.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p>CRB-54188</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved an issue with Kubernetes Resource Quota metrics collection.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p>PD-52756</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved an issue in which a panic condition was encountered during collection of NodeGroups data.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p>PD-54038</p>
-</td>
-<td>
-<p>
-</p>
-</td>
-<td>
-<p>Resolved an issue related to linking of readme.md files on Docker hub.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
+    - Issue related to handling version changes and additions to kube-state-metrics.
+    - Issue with Kubernetes Resource Quota metrics collection.
+    - Issue in which a panic condition was encountered during collection of NodeGroups data.
+    - Issue related to linking of readme.md files on Docker hub.
 </Accordion>
