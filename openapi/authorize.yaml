@@ -8,7 +8,7 @@ info:
     email: Support@Densify.com
 
 servers:
-  - url: https://api.example.com
+  - url: https://{host}
     variables:
       host:
         default: api.example.com
