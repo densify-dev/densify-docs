@@ -188,23 +188,20 @@
                               "group": "Getting Started",
                               "pages": [
                                   "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Introduction",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Using_the_API",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Common_Elements",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Common_Operations",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Error_Responses",
                                   "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Postman_Collection"
                               ]
                           },
                           {
-                              "group": "Use Cases",
+                                "group": "Model Context Protocol (MCP)",
+                                "pages": [
+                                    "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/MCP"
+                                ]
+                          },
+                          {
+                              "group": "Ping",
                               "pages": [
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Use_Cases",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_AWS_EC2_Instances",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_GCP_Compute_Engine_Instances",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Microsoft_Azure_Virtual_Machine_Instances",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Kubernetes_Containers",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscribing_to_Recommendations"
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Ping",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Ping/ping"
                               ]
                           },
                           {
@@ -214,11 +211,27 @@
                                   "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize/authorize-user"
                               ]
                           },
-                          {
-                              "group": "Ping",
+                                                    {
+                              "group": "Kubernetes Clusters",
                               "pages": [
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Ping",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Ping/ping"
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters/listKubernetesClusters",
+                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters/getKubernetesClusterDetails",
+                                  {
+                                      "group": "Kubernetes Clusters Results",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results/getKubernetesClusterContainers",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results/getKubernetesClusterContainersDetailed"
+                                      ]
+                                  },
+                                  {
+                                      "group": "Kubernetes Clusters Automation",
+                                      "pages": [
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Automation",
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Automation/listClusterAutomationContainers"
+                                      ]
+                                  }
                               ]
                           },
                           {
@@ -482,29 +495,6 @@
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/listSubscriptionTagsDefaultPlatform",
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/replaceSubscriptionTag",
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/replaceSubscriptionTags"
-                                      ]
-                                  }
-                              ]
-                          },
-                          {
-                              "group": "Kubernetes Clusters",
-                              "pages": [
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters/listKubernetesClusters",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters/getKubernetesClusterDetails",
-                                  {
-                                      "group": "Kubernetes Clusters Results",
-                                      "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results/getKubernetesClusterContainers",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results/getKubernetesClusterContainersDetailed"
-                                      ]
-                                  },
-                                  {
-                                      "group": "Kubernetes Clusters Automation",
-                                      "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Automation",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Automation/listClusterAutomationContainers"
                                       ]
                                   }
                               ]
