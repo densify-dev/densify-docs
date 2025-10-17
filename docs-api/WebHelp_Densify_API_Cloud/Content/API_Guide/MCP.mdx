@@ -1,15 +1,13 @@
 ---
-title: "Model Context Protocol (MCP)"
+title: "Setting up Kubex MCP"
 ---
-
-## Model Context Protocol (MCP) 
 
 The Model Context Protocol, or MCP, is a standard that allows Large Language Models (LLMs) to securely access external systems, 
 tools, and data sources. By connecting through MCP, an LLM can retrieve real-time information and take structured actions, 
 extending its usefulness beyond static chat interactions. In practice, this means that an LLM can integrate live data 
 from trusted systems into its reasoning process, enabling more informed and actionable responses. 
 
-##Kubex MCP 
+## Kubex MCP 
 
 Kubex MCP extends this capability to your cloud and container environments. It gives LLMs access to detailed operational 
 information about containers, nodes, and cloud instances, including Densify’s optimization recommendations. 
@@ -18,9 +16,9 @@ steps interactively. You can also use an LLM-based coding tool to apply Kubex re
 infrastructure-as-code definitions.  
 
 
-##Getting Started 
+## Getting Started 
 
-###LLM Clients 
+### LLM Clients 
 
 To get started with Kubex MCP, you must use an LLM client that supports the Model Context Protocol. 
 You can choose an existing LLM client application or build your own. Kubex MCP should work with any LLM 
@@ -34,7 +32,7 @@ development expertise and should only be attempted if you are comfortable buildi
 software. Frameworks such as Microsoft Copilot Studio and Pydantic AI provide a useful starting point for
 developers who want to build their own MCP-enabled systems. 
 
-###Configuring Your Client 
+### Configuring Your Client 
 
 Each company has a unique Kubex MCP server endpoint. The MCP server URL follows a consistent pattern based on your 
 company’s Kubex dashboard address. For example, if your Kubex dashboard is located at https://corp.densify.com/kubex/, 
@@ -45,7 +43,7 @@ referred to as adding a “connector.” This step typically requires administra
 so only a workspace owner or administrator can perform the initial setup. Once the MCP server has been added, 
 authorized users within your organization can connect to it using their Densify credentials. 
 
-####Example (Anthropic Claude): 
+#### Example (Anthropic Claude): 
 
 A user with “Owner” or “Primary Owner” privileges must do the initial setup by going to “Admin settings”: 
 
@@ -68,13 +66,13 @@ This usually involves running a command in a command-line interface or editing a
 After adding the MCP server information, you will be prompted to authorize the tool using your Densify credentials.
 Once authorization is complete, your coding tool will be able to access Kubex data through MCP in accordance with your permissions. 
 
-##Authorization 
+## Authorization 
 
 Access to Kubex data through MCP is tightly controlled. Only users who have been properly authenticated and who have explicitly authorized their LLM client application are allowed to retrieve or act on data. Authorization is temporary and must be refreshed daily for security reasons. 
 
 Some client applications handle expired authorizations gracefully, automatically prompting for reauthorization when required. Others may not, which can lead to connection errors or incomplete responses. If you encounter these issues, the solution is usually to manually reconnect and reauthorize your client with the Kubex MCP server.  
 
-##Security 
+## Security 
 
 Because MCP allows direct integration between an LLM and your operational environment, it is essential to treat security as a first priority. You should only connect to MCP servers that you trust. A malicious MCP server could attempt to manipulate an LLM into revealing sensitive information or performing unwanted actions. 
 
