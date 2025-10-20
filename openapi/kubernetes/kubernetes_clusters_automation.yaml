@@ -18,6 +18,8 @@ paths:
         limited to containers that have been enabled for automation via the UI.
         If a property or value is not set or not available, it is omitted
         from the response.
+      security:
+        - bearerAuth: []
       parameters:
         - $ref: "#/components/parameters/ClusterName"
       responses:
