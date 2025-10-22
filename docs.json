@@ -266,12 +266,17 @@
                               "pages": [
                                   "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_Reference_Public_Cloud",
                                   {
-                                      "group": "AWS: Onboard Accounts",
+                                      "group": "AWS",
                                       "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze/analyzeAws",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze/listAwsAnalyses"
-                                      ]
+                                        {
+                                            "group": "AWS: Onboard Accounts",
+                                            "pages": [
+                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze",
+                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze/analyzeAws",
+                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze/listAwsAnalyses"
+                                            ]
+                                        }
+                                        ]
                                   },
                                   {
                                       "group": "AWS: Offboard Accounts",
@@ -315,7 +320,6 @@
                                       "pages": [
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze",
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze/analyzeGcp",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze/historicalAuditGcp",
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze/listGcpAnalyses"
                                       ]
                                   },
