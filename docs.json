@@ -275,22 +275,22 @@
                                                 "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze/analyzeAws",
                                                 "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze/listAwsAnalyses"
                                             ]
+                                        },
+                                        {
+                                            "group": "AWS: Offboard Accounts",
+                                            "pages": [
+                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Delete",
+                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Delete/deleteAwsAnalysis"
+                                            ]
+                                        },
+                                        {
+                                            "group": "AWS: Recommendations",
+                                            "pages": [
+                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results",
+                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results/getAwsRecommendations"
+                                            ]
                                         }
                                         ]
-                                  },
-                                  {
-                                      "group": "AWS: Offboard Accounts",
-                                      "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Delete",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Delete/deleteAwsAnalysis"
-                                      ]
-                                  },
-                                  {
-                                      "group": "AWS: Recommendations",
-                                      "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results/getAwsRecommendations"
-                                      ]
                                   },
                                   {
                                       "group": "Azure: Onboard Subscriptions",
