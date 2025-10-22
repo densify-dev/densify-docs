@@ -321,101 +321,100 @@
                                             ]
                                         }
                                     ]
-                                  },
-                                  {
-                                    "group": "Systems",
+                                  }
+                                ]
+                            },
+                            {
+                            "group": "Systems",
+                            "pages": [
+                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems",
+                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/getSystem",
+                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/downloadAnalysisReport",
+                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/modifySystemAttributes"
+                            ]
+                            },
+                            {
+                                "group": "Analysis: Webhook",
+                                "pages": [
+                                    "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook",
+                                    "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/addAnalysisWebhook",
+                                    "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/deleteAnalysisWebhook",
+                                    "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/getAnalysisWebhook",
+                                    "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/listAnalysisWebhooksByPlatform",
+                                    "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/updateAnalysisWebhook"
+                                ]
+                            },
+                            {
+                                "group": "Subscriptions",
+                                "pages": [
+                                {
+                                    "group": "Subscriptions",
                                     "pages": [
-                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems",
-                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/getSystem",
-                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/downloadAnalysisReport",
-                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/modifySystemAttributes",
-
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/createSubscriptions",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/deleteSubscription",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/deleteSubscriptions",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/listSubscriptions",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/listSubscriptionsDefaultPlatform",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/replaceSubscription"
                                     ]
-                                  },
-                                  {
-                                      "group": "Analysis: Webhook",
-                                      "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/addAnalysisWebhook",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/deleteAnalysisWebhook",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/getAnalysisWebhook",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/listAnalysisWebhooksByPlatform",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook/updateAnalysisWebhook"
-                                      ]
-                                  },
-                                  {
-                                      "group": "Subscriptions",
-                                      "pages": [
-                                       {
-                                            "group": "Subscriptions",
-                                            "pages": [
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/createSubscriptions",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/deleteSubscription",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/deleteSubscriptions",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/listSubscriptions",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/listSubscriptionsDefaultPlatform",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions/replaceSubscription"
-                                            ]
-                                        },
-                                        {
-                                            "group": "Subscriptions: Results",
-                                            "pages": [
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results/getSubscriptionResults",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results/getSubscriptionResultsDefaultPlatform"
-                                            ]
-                                        },
-                                        {
-                                            "group": "Subscriptions: Properties",
-                                            "pages": [
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/addSubscriptionProperties",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/deleteSubscriptionProperties",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/deleteSubscriptionProperty",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/getSubscriptionProperty",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/listSubscriptionProperties",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/listSubscriptionPropertiesDefaultPlatform",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/replaceSubscriptionProperties",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/replaceSubscriptionProperty"
-                                            ]
-                                        },
-                                        {
-                                            "group": "Subscriptions: Status",
-                                            "pages": [
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status/getSubscriptionStatus",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status/getSubscriptionStatusDefaultPlatform"
-                                            ]
-                                        },
-                                        {
-                                            "group": "Subscriptions: Supressions",
-                                            "pages": [
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/createSuppressions",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/deleteSuppression",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/deleteSuppressions",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/getSuppression",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/listSuppressions",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/listSuppressionsDefaultPlatform",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/replaceSuppression",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/replaceSuppressions"
-                                            ]
-                                        },
-                                        {
-                                            "group": "Subscriptions: Tags",
-                                            "pages": [
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/addSubscriptionTags",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/deleteSubscriptionTag",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/deleteSubscriptionTags",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/getSubscriptionTag",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/listSubscriptionTags",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/listSubscriptionTagsDefaultPlatform",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/replaceSubscriptionTag",
-                                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/replaceSubscriptionTags"
-                                            ]
-                                        } 
+                                },
+                                {
+                                    "group": "Subscriptions: Results",
+                                    "pages": [
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results/getSubscriptionResults",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results/getSubscriptionResultsDefaultPlatform"
+                                    ]
+                                },
+                                {
+                                    "group": "Subscriptions: Properties",
+                                    "pages": [
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/addSubscriptionProperties",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/deleteSubscriptionProperties",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/deleteSubscriptionProperty",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/getSubscriptionProperty",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/listSubscriptionProperties",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/listSubscriptionPropertiesDefaultPlatform",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/replaceSubscriptionProperties",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties/replaceSubscriptionProperty"
+                                    ]
+                                },
+                                {
+                                    "group": "Subscriptions: Status",
+                                    "pages": [
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status/getSubscriptionStatus",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status/getSubscriptionStatusDefaultPlatform"
+                                    ]
+                                },
+                                {
+                                    "group": "Subscriptions: Supressions",
+                                    "pages": [
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/createSuppressions",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/deleteSuppression",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/deleteSuppressions",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/getSuppression",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/listSuppressions",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/listSuppressionsDefaultPlatform",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/replaceSuppression",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions/replaceSuppressions"
+                                    ]
+                                },
+                                {
+                                    "group": "Subscriptions: Tags",
+                                    "pages": [
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/addSubscriptionTags",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/deleteSubscriptionTag",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/deleteSubscriptionTags",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/getSubscriptionTag",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/listSubscriptionTags",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/listSubscriptionTagsDefaultPlatform",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/replaceSubscriptionTag",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/replaceSubscriptionTags"
                                     ]
                                 }
                             ]
