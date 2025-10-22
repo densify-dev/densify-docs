@@ -235,33 +235,6 @@
                               ]
                           },
                           {
-                              "group": "Systems",
-                              "pages": [
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/listSystems",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/getSystem",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/getSystemAnalysisDetails",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/downloadAnalysisReport",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/modifySystemAttributes",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/deleteSystemAttributes"
-                              ]
-                          },
-                          {
-                              "group": "Systems: Analysis Details",
-                              "pages": [
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems_Analysis_Details",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems_Analysis_Details/getSystemAnalysisDetails"
-                              ]
-                          },
-                          {
-                              "group": "Existing Systems",
-                              "pages": [
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Existing_Systems",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Existing_Systems/getExistingSystems",
-                                  "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Existing_Systems/getExistingSystem"
-                              ]
-                          },
-                          {
                               "group": "Public Cloud",
                               "pages": [
                                   "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_Reference_Public_Cloud",
@@ -347,6 +320,16 @@
                                                 "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results/listGcpRecommendations"
                                             ]
                                         }
+                                    ]
+                                  },
+                                  {
+                                    "group": "Systems",
+                                    "pages": [
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/getSystem",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/downloadAnalysisReport",
+                                        "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/modifySystemAttributes",
+
                                     ]
                                   },
                                   {
