@@ -13,7 +13,7 @@ paths:
     get:
       operationId: getAwsRecommendations
       tags: [AWS Analysis]
-      summary: List AWS recommendations for an analysis
+      summary: AWS recommendations using analysisId
       description: >
         Returns optimization recommendations for systems (EC2, RDS, ASG, SPOT) in the
         specified analysis. Use the `Accept` header to choose the representation:

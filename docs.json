@@ -281,7 +281,7 @@
                                       ]
                                   },
                                   {
-                                      "group": "Analysis: AWS Recommendations",
+                                      "group": "AWS: Recommendations",
                                       "pages": [
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results",
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results/getAwsRecommendations"
