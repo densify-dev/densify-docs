@@ -432,10 +432,12 @@
                                                 "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/replaceSubscriptionTag",
                                                 "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags/replaceSubscriptionTags"
                                             ]
-                                        }   
-                              ]
-                          }
-                      ]
+                                        } 
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
             },
             {
                 "tab": "Release Notes",
