@@ -288,14 +288,7 @@
                                       ]
                                   },
                                   {
-                                      "group": "Analysis: AWS Systems",
-                                      "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Systems",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Systems/listAwsAnalysisSystems"
-                                      ]
-                                  },
-                                  {
-                                      "group": "Analysis: Azure Analyze",
+                                      "group": "Azure: Onboard Subscriptions",
                                       "pages": [
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze",
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze/analyzeAzure",
@@ -304,50 +297,21 @@
                                       ]
                                   },
                                   {
-                                      "group": "Analysis: Azure Delete",
+                                      "group": "Azure: Offboard Subscriptions",
                                       "pages": [
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Delete",
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Delete/deleteAzureAnalysisAudit"
                                       ]
                                   },
                                   {
-                                      "group": "Analysis: Azure Recommendations",
+                                      "group": "Azure: Recommendations",
                                       "pages": [
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results",
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results/listAzureRecommendations"
                                       ]
                                   },
                                   {
-                                      "group": "Analysis: Azure Systems",
-                                      "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Systems",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Systems/listAzureSystems"
-                                      ]
-                                  },
-                                  {
-                                      "group": "Analysis: Cloud ",
-                                      "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Cloud",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Cloud/listCloudAnalyses"
-                                      ]
-                                  },
-                                  {
-                                      "group": "Analysis: Containers",
-                                      "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Container",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Container/listContainerAnalyses"
-                                      ]
-                                  },
-                                  {
-                                      "group": "Analysis: Entity",
-                                      "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity/getAnalysisEntity",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity/listAnalysisEntities"
-                                      ]
-                                  },
-                                  {
-                                      "group": "Analysis: GCP Analyze",
+                                      "group": "GCP: Onboard GCP Projects",
                                       "pages": [
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze",
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze/analyzeGcp",
@@ -356,38 +320,17 @@
                                       ]
                                   },
                                   {
-                                      "group": "Analysis: GCP Delete",
+                                      "group": "GCP: Offboard GCP Projects",
                                       "pages": [
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Delete",
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Delete/deleteGcpAnalysisAudit"
                                       ]
                                   },
                                   {
-                                      "group": "Analysis: GCP Recommendations",
+                                      "group": "GCP: Recommendations",
                                       "pages": [
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results",
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results/listGcpRecommendations"
-                                      ]
-                                  },
-                                  {
-                                      "group": "Analysis: GCP Systems",
-                                      "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Systems",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Systems/listGcpSystems"
-                                      ]
-                                  },
-                                  {
-                                      "group": "Analysis: Kubernetes Container Recommendations",
-                                      "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Results",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Results/listKubernetesContainerRecommendations"
-                                      ]
-                                  },
-                                  {
-                                      "group": "Analysis: Kubernetes Container Systems",
-                                      "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Systems",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Systems/listKubernetesContainerSystems"
                                       ]
                                   },
                                   {
