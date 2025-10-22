@@ -212,7 +212,7 @@
                               ]
                           },
                                                     {
-                              "group": "Kubernetes Clusters",
+                              "group": "Kubernetes",
                               "pages": [
                                   "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters",
                                   "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters/listKubernetesClusters",
@@ -266,7 +266,7 @@
                               "pages": [
                                   "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_Reference_Public_Cloud",
                                   {
-                                      "group": "Analysis: AWS Analyze",
+                                      "group": "AWS: Onboard Accounts",
                                       "pages": [
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze",
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze/analyzeAws",
@@ -274,7 +274,7 @@
                                       ]
                                   },
                                   {
-                                      "group": "Analysis: AWS Delete",
+                                      "group": "AWS: Offboard Accounts",
                                       "pages": [
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Delete",
                                           "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Delete/deleteAwsAnalysis"
