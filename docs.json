@@ -321,6 +321,12 @@
                                             ]
                                         }
                                     ]
+                                  },
+                                  {
+                                      "group": "Catalog Map",
+                                      "pages": [
+                                             "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/CatalogMap"
+                                      ]
                                   }
                                 ]
                             },
