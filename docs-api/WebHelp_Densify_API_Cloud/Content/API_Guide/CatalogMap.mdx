@@ -1,0 +1,30 @@
+---
+title: "Catalog Map Compatible Instances"
+---
+
+Returns the list of all instance types that the given instance (input parameter=entity_id) is compatible with.
+
+## Resource
+
+```
+https://<densify_instance_name>/api/v2/systems/{{entityId}}/analysis-details?target=compatible_instances/&spendTolerance=1.5&effort_tolerance=low
+```
+
+Optional parameters:
+1. spend tolerance: specified in terms of a multiplier. E.g., 1.3 means all compatible instance types that are less that 1.3 times
+the optimal instance type cost.
+
+## Resource
+
+```
+https://<densify_instance_name>/api/v2/systems/{{entityId}}/analysis-details?target=compatible_instances/&spendTolerance=1.3
+```
+
+
+2. effort tolerance: only return compatible instance types that are at the provided effort level or lower. Possible values are 'none','low','medium','high' 
+
+## Resource
+
+```
+https://<densify_instance_name>/api/v2/systems/{{entityId}}/analysis-details?target=compatible_instances/&spendTolerance=1.3&effort_tolerance=low
+```
