@@ -13,7 +13,7 @@ paths:
     delete:
       operationId: deleteAwsAnalysis
       tags: [AWS Analysis]
-      summary: Delete AWS audit and scheduler entries for an analysis
+      summary: Delete AWS audit
       description: >
         Deletes the single-day and 60-day audits and all associated scheduler entries
         for the specified analysis. Collected data and the analysis entity are retained

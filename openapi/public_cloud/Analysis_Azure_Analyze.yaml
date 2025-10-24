@@ -23,7 +23,7 @@ paths:
     post:
       tags: [Azure Analysis]
       operationId: analyzeAzure
-      summary: Run Azure data collection/analysis, re-run analysis, or trigger historical audit
+      summary: Onboard Azure Subscription
       description: |
         - **Initial run**: provide subscription and credentials; schedules nightly collection and analysis.  
         - **Re-run analysis**: provide subscription and (optionally) a new webhook; does **not** collect data.  
@@ -93,7 +93,7 @@ paths:
     get:
       tags: [Azure Analysis]
       operationId: listAzureAnalyses
-      summary: List all generated Azure analyses
+      summary: List Azure subscriptions being analyzed
       description: Returns analyses created for Azure subscriptions; obtain `analysisId` for other operations.
       responses:
         "200":

@@ -1,5 +1,5 @@
 ---
-title: "Analysis: AWS Analyze"
+title: "Onboard AWS Accounts"
 ---
 
 The `/analysis/cloud/aws/analyze` resource is used to collect AWS CloudWatch data and initiate optimization analysis with the cloud infrastructure collected. Below are the series of processes that occur when the initial `/analysis/cloud/aws/analyze` request is triggered:
@@ -17,7 +17,7 @@ The `/analysis/cloud/aws/analyze` resource is used to collect AWS CloudWatch da
 
 Generally you do not need to run once-off tasks as both data collection and analysis tasks are scheduled automatically. In cases where you need make an ad-hoc request in addition to the scheduled job, the functionality exists for this endpoint.
 
-#### Historical Data Collection
+#### Historical Data Collection 
 
 When Densify initiates data collection, normally audits collect only the last 24 hours of data. You can optionally collect up to 60 days of historical data. The historical data provides a more representative set of data on which to base resizing and optimization recommendations. You can run an ad-hoc task to collect the historical data.
 

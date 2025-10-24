@@ -11,7 +11,7 @@ servers:
 paths:
   /analysis/cloud/aws/analyze:
     post:
-      summary: Run or re-run AWS analysis, optionally with 60-day historical audit
+      summary: Onboard AWS account
       operationId: analyzeAws
       description: >
         Initiates AWS CloudWatch data collection and runs optimization analysis.
@@ -46,7 +46,7 @@ paths:
   /analysis/cloud/aws:
     get:
       operationId: listAwsAnalyses
-      summary: List all generated AWS analyses
+      summary: List AWS accounts being analyzed
       description: Returns the set of analyses that have been created, with details needed to reference them elsewhere.
       tags: [AWS Analyze]
       responses:
