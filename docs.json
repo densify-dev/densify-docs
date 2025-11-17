@@ -131,6 +131,12 @@
                 "tab": "Cloudex",
                 "groups": [
                     {
+                        "group": "Getting Started",
+                        "pages": [
+                            "docs-kubex/Content/Cloudex/Getting_Started_with_Cloudex"
+                        ]
+                    },
+                    {
                         "group": "Public Cloud Analysis",
                         "pages": [
                             "docs-kubex/Content/Cloudex/Cloud_Analysis",
