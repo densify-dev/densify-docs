@@ -11,18 +11,6 @@ Densify's CloudFormation template creates a <Tooltip tip="A collection of AWS re
 
 If your accounts are setup using an AWS organization/management account structure, in which many accounts are linked to one management account, you can use the CloudFormation template to create, update and delete StackSets across multiple accounts and also create the cloud connection within Densify for each of the linked accounts.
 
-<table>
-<col/>
-<tbody>
-<tr>
-<td>
-<p class="CiRBABodyText">Pick up the template from here:</p>
-§§CODEBLOCKPRESERVE1f9fdfd469704826a55d5de99d59d671§§
-</td>
-</tr>
-</tbody>
-</table>
-
 
 If you are not using an organizational account structure you can provide a list of accounts to be updated when you are configuring the stack.
 
@@ -33,7 +21,7 @@ If you are not using an organizational account structure you can provide a list
 
 This template creates the IAM role and access policy and assigns the policy to the role using native CloudFormation capabilities. The template then uses a Lambda function to make an API call to Densify to create the cloud connections required to collect resource utilization data.
 
-If you need to update the IAM role or policy after they have been created, see [Editing the Stackset](#Update_Stack) . This may be necessary if the IAM access policy needs additional permissions.
+If you need to update the IAM role or policy after they have been created, see [Editing the Stackset](#editing-the-stackset) . This may be necessary if the IAM access policy needs additional permissions.
 
 ## Supported Regions
 
@@ -119,7 +107,7 @@ In large environments, Densify highly recommends batching your accounts into sma
 <Accordion title="Figure: Accessing Stack Options ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000082.png)</Frame>
 </Accordion>
-2. At the top of the StackSets page, select a supported region. See the list of [Supported Regions](#Supported_Reg).
+2. At the top of the StackSets page, select a supported region. See the list of [Supported Regions](#supported-regions).
 3. Click Create StackSet to begin.
 <Accordion title="Figure: Create StackSet Options ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000068.png)</Frame>
@@ -136,19 +124,8 @@ Your selection, here depends on the nature of your organizational structure and 
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000069.png)</Frame>
 </Accordion>
 6. In the next section, Prerequisite - Prepare template, select Template is ready
-7. In the next section, Specify template copy and then paste the following URL into the Amazon S3 URL field:
+7. In the next section, Specify template copy and then paste the following URL into the Amazon S3 URL field: https://densify-cf-template.s3.us-east-2.amazonaws.com/Densify_CloudFormation.yml
 
-<table>
-<col/>
-<tbody>
-<tr>
-<td>
-<p class="CiRBABodyText">Pick up the template from here:</p>
-§§CODEBLOCKPRESERVEdef2df6705bc4ff08a1a80d27444dae0§§
-</td>
-</tr>
-</tbody>
-</table>
 8. Click Next to proceed with creating the stack.
 <Accordion title="Figure: Specify CloudFormation Template ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000070.png)</Frame>
