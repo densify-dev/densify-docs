@@ -6,7 +6,7 @@ info:
     Health-check endpoint for the Densify API subsystem.
     No credentials required.
 servers:
-  - url: https://{host}/CIRBA/api
+  - url: https://{host}/api
     variables:
       host:
         default: api.example.com

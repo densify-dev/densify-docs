@@ -12,7 +12,7 @@ The content on this tab is based on your selection in the tree viewer.
 
 
 <Frame caption="Figure: Locating the Summary Tab">
-![](/images/docs-kubex/Content/Kubex/03000128_671x248.png)
+![](/images/docs-kubex/k8s_summary.png)
 </Frame>
 
 
@@ -20,18 +20,18 @@ When a single container is selected you will see the [Overview](/docs-kubex/Cont
 
 ## Current Monthly Spend
 
-This first chart summarizes your current spend and breaks down CPU and memory spending. A hyperlinked value in the upper corner takes you to the [AI Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Table) tab with same scope of systems selected.
+This first chart summarizes your current spend and breaks down CPU, Memory & GPU spend. A hyperlinked value of "manifests"takes you to the [Analysis Details](/docs-kubex/Content/Kubex/AI_Analysis_Details_Table) tab with same scope of systems selected.
 
 
 <Frame caption="Figure: Overall Monthly Spend">
-![](/images/docs-kubex/Content/Kubex/03000032_475x172.png)
+![](/images/docs-kubex/k8s_monthlyspend.png)
 </Frame>
 
 
 
 ### Unit Costs
 
-The default unit cost of CPU core and memory GB is shown here. These values are used for all cost calculations. The values are configurable.
+The default unit monthly cost of a vCPU, a GB of Memory, and GPUs are shown here. These values are used for all cost calculations. The values are configurable.
 
 ## Monthly Waste
 
@@ -39,24 +39,9 @@ This block shows you wasted resources as a dollar amount broken down by CPU and 
 
 
 <Frame caption="Figure: Monthly Waste">
-![](/images/docs-kubex/Content/Kubex/03000154_574x150.png)
+![](/images/docs-kubex/k8s_monthlywaste.png)
 </Frame>
 
-
-
-### Efficiency Rating
-
-The Efficiency Rating provides an indication of the health of your aggregated environment.
-
-
-<ul>
-  <li>A value of 1 indicates that, at an aggregate level, the environment is efficient according to the defined policy settings.</li>
-  <li>A value less than 1 indicates potential savings opportunities due to over-allocated resources.</li>
-  <li>A value greater than 1 indicates potential risks due to under-allocated resources. The value is indicated in red, when it is greater than 1.</li>
-</ul>
-
-
-Containers with unspecified values are not included in this calculation.
 
 ## GPU Summary
 
@@ -64,70 +49,17 @@ Your GPU spend and allocation are summarized on this card.
 
 
 <Frame caption="Figure: GPU Summary">
-![](/images/docs-kubex/Content/Kubex/03000218_584x73.png)
+![](/images/docs-kubex/k8s_summarypage_gpu.png)
 </Frame>
 
 
 
 
-
-<Accordion title="Table: GPU Summary">
-<table>
-<thead>
-<tr>
-<th>
-Column
-</th>
-<th>
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-GPU Monthly Spend
-</td>
-<td>
-The dollar amount spent on GPUs for the scope of systems selected in the tree viewer.
-</td>
-</tr>
-<tr>
-<td>
-Containers
-</td>
-<td>
-The number of containers with specified GPU request values. Click the hyperlink to open the AI Analysis Details page with the utilization details.
-</td>
-</tr>
-<tr>
-<td>
-Total GPU Request
-</td>
-<td>
-The total number of GPUs requested for the scope of systems selected in the tree viewer.
-</td>
-</tr>
-<tr>
-<td>
-Total GPU Memory
-</td>
-<td>
-The total available GPU memory available.
-</td>
-</tr>
-</tbody>
-</table>
-</Accordion>
-
-
-
-
-Click the hyperlink, in the note, to view GPU pricing details. This table provides visibility into how the cost is calculated. The cost per GPU might change greatly depending on the model, so this table provides the model details.
+Click the "view details" hyperlink in the note shown at the bottom of the image to view GPU pricing details. This table provides visibility into how the cost is calculated. The cost per GPU might change greatly depending on the model, so this table provides the model details.
 
 
 <Frame caption="Figure: GPU Unit Pricing">
-![](/images/docs-kubex/Content/Kubex/03000219_612x362.png)
+![](/images/docs-kubex/k8s_gpu_lookup_table.png)
 </Frame>
 
 
@@ -212,141 +144,6 @@ Calculated as ($Total Cost - $Total Estimated Waste).
 </table>
 </Accordion>
 
-
-
-
-## CPU Request and Memory Requests
-
-This card lists the aggregated CPU and memory request for the selected scope of systems, broken down by the same optimization opportunities listed above. The values are colour-coded to easily identify savings and wasted resources.
-
-
-<Frame caption="Figure: CPU  Memory Request Details">
-![](/images/docs-kubex/Content/Kubex/03000156_418x383.png)
-</Frame>
-
-
-The blocks to the right of the bar chart show the corresponding, aggregated CPU and memory values for the systems that fall into each category. Click the arrow to open the AI Analysis Details page, with the [relevant view](/docs-kubex/Content/Kubex/AI_Analysis_Details_Table#pre-cfg-views) selected. The hyperlink is only displayed for non-zero values.
-
-
-
-<Accordion title="Table: Optimization Breakdown Table">
-<table>
-<thead>
-<tr>
-<th>
-Column
-</th>
-<th>
-CPU Value
-</th>
-<th>
-Memory Value
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-Current Spend
-</td>
-<td>
-Total CPU Request (mCores)
-</td>
-<td>
-Total Memory Request (GB)
-</td>
-</tr>
-<tr>
-<td>
-Immediate Savings
-</td>
-<td>
-Total Surplus CPU Request (mCores)
-
-</td>
-<td>
-Total Surplus Memory Request (GB)
-							
-</td>
-</tr>
-<tr>
-<td>
-Risk Removal
-</td>
-<td>
-Total Surplus CPU Request (mCores)
-							
-</td>
-<td>
-Total Surplus Memory Request (GB)
-							
-</td>
-</tr>
-<tr>
-<td>
-Optimal Cost
-</td>
-<td>
-Total Recommended CPU Request (mCores)
-							
-</td>
-<td>
-Total Recommended Memory Request (GB)
-							
-</td>
-</tr>
-<tr>
-<td>
-Additional Waste
-</td>
-<td>
-Total Surplus CPU Request (mCores)
-							
-</td>
-<td>
-Total Surplus Memory Request (GB)
-							
-</td>
-</tr>
-</tbody>
-</table>
-
-CPU Requests are calculated as: 
-(Sum (Total Surplus CPU Request (mCores))/1000 mCores/Cores)<br/>
-Memory Requests are calculated as: 
-(Sum (Total Surplus Memory Request (MB))/1024 MB/GB)<br/>
-The cost is obtained by multiplying the above value by the CPU or memory <a href="#unit-costs">Summary Tab</a>.
-
-<h3><a name="Unspecified"></a> Containers with Unspecified Settings</h3>
-
-Costs for containers with unspecified CPU and memory request values, are calculated based on the recommended CPU and memory request values. The recommended setting is obtained from the Kubex analysis that is performed when adequate data has been collected.<br/>
-When reporting on containers/manifests with unspecified request values, the recommended request setting is also used when determining total CPU and memory surplus or shortfalls. In cases where surplus values are reported, since an unspecified request is treated as 0, then the "surplus" appears as a negative value, indicating that the recommended CPU or memory request is greater than zero i.e. a shortfall.<br/>
-
-
-<Frame caption="Figure: Working with Unspecified Requests">
-![](/images/docs-kubex/Content/Kubex/03000197_600x104.png)
-</Frame>
-
-Containers with unspecified CPU and memory request values that are contributing to total spend, and are indicated, when you click on the badge.
-</Accordion>
-
-
-
-
-### Badges
-
-Badges provide specific information related to the resource details. Click the badge to see the details.
-
-<InlineImageWithText src="/images/docs-kubex/Content/Kubex/03000183_261x285.png" alt="CPU Requests and Memory Requests" width="300" caption="Figure: CPU Requests and Memory Requests">
-
-- **Informational messages**--These messages provide significant information. In this example, manifests with unspecified resources.
-- **Warning messages**--These messages indicate possible performance issues.
-- When you click these links the resulting AI Analysis Details page is filtered to the corresponding view:
-  - CPU Request Shortfall (from Unspecified)
-  - Memory Request Shortfall (from Unspecified)
-  - Memory Limit Events.
-
-</InlineImageWithText>
 
 
 #### Video Resources

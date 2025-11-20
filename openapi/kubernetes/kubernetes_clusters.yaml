@@ -8,7 +8,11 @@ info:
     is applied. Unlike the /systems and /results endpoints, these do not
     require an analysis ID.
 servers:
-  - url: https://api.example.com
+  - url: https://{host}/api/v2
+    variables:
+      host:
+        default: api.example.com
+        description: Replace with your Densify API host
 tags:
   - name: Kubernetes Clusters
     description: Clusters discovered via the data forwarder
