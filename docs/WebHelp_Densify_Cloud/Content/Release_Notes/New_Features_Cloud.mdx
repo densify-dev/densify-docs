@@ -150,7 +150,7 @@ OOM Kills in the environment
     - **CPU Throttling (%)**--CPU Throttling data is now visible in CPU Throttling (%) column on the Analysis Details page:
       - ML Model and historical data available in Utilization Charts carousel and 
 Metrics Viewer  
-    - **Automation Tab**--Automation tab has been added to highlight request and limit changes made by the Kubex Automation Stack. An overview of optimized manifests 
+    - **Automation Tab**--Automation tab has been added to highlight request and limit changes made by the Kubex Automation Controller. An overview of optimized manifests 
 is also available on the summary page
     - **Business & Operational Attributes**--Various business and operations related 
 attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and Analysis Details 
@@ -595,7 +595,7 @@ columns
 
     - **Automation Tab**--A new automation tab has been added to report on the status of the Densify Container Automation solution.
     - **Updated Connections Table** --The following changes have been made to this table:
-      - Three new columns have been added: Cluster Version, Kubex Automation Stack Version and Prometheus Version
+      - Three new columns have been added: Cluster Version, Kubex Collection Stack Version and Prometheus Version
       - A link that provides secure Densify credentials has been added. The credentials are provided in a code snippet than can be copied directly into your `values.edit.yaml` file.
 
         This new method makes it easier for you to set up container data collection, reducing the previous manual dependency of requesting these credentials from Densify.
@@ -904,7 +904,7 @@ columns
 
 This section lists new features and updates to the Container Data Forwarder.
 
-A Helm chart bundles all of the components required for container data collection and automates the process. See [Kubex Automation Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) for details for a single-cluster configuration.
+A Helm chart bundles all of the components required for container data collection and automates the process. See [Kubex Collection Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) for details for a single-cluster configuration.
 
 Refer to [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md) for samples and configuration files for multi-cluster configurations.
 
@@ -1053,7 +1053,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
   <Accordion title="Updated Helm Charts">
     The Helm charts have been updated as follows:
 
-    - All-In-One Kubex-automation-stack has been updated to version 0.9.8;
+    - All-In-One Kubex Collection Stack has been updated to version 0.9.8;
     - The chart containing only the data forwarder has been updated to version 4.0.6.
 
     These updates address the following issues:
@@ -1065,7 +1065,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
     - The Prometheus scrape configuration has been updated to use the k8s endpointslice. The endpoints that the data forwarder was using were deprecated in the K8s v1.33 API and will be removed in a future release. Endpointslice has been available since K8s v1.21.
     - Installation instructions for offline (or air-gapped) mode are now provided.
 
-    See [Kubex Automation Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) for details. Ensure that your helm chart has been upgraded to the latest version, using the helm `upgrade` command.
+    See [Kubex Collection Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) for details. Ensure that your helm chart has been upgraded to the latest version, using the helm `upgrade` command.
   </Accordion>
 </Accordion>
 
@@ -1097,8 +1097,8 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 
     Previously Densify did not support HPA-based on multiple metrics.
   </Accordion>
-  <Accordion title="Updated Kubex Automation Stack">
-    The [Kubex Automation Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) has been updated to collect data from the NVIDIA DCGM exporter. You must ensure that your helm chart has been upgraded to the latest version (0.9.6) to get GPU data. You will get the updates automatically if you have the following settings, in the data forwarder cronJob specification:
+  <Accordion title="Updated Kubex Collection Stack">
+    The [Kubex Collection Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) has been updated to collect data from the NVIDIA DCGM exporter. You must ensure that your helm chart has been upgraded to the latest version (0.9.6) to get GPU data. You will get the updates automatically if you have the following settings, in the data forwarder cronJob specification:
 
     - image: densify/container-optimization-data-forwarder:4
     - imagePullPolicy: Always
