@@ -24,7 +24,7 @@ See [Using Table Column Features](/docs-kubex/Content/Kubex/Using_Table_Column_F
 ## Standard Data Collection Method
 
 Kubex collects your container configuration and utilization data and then analyzes the data to provide resizing recommendations to run your container-based applications on the correct infrastructure.
-You need to deploy the Densify data forwarder to collect data from your various clusters.Densify recommends using the [Kubex Automation Stack Helm Chart](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack). This Helm chart bundles all of the components required for the data forwarder and is the preferred method of enabling data collection.
+You need to deploy the Densify data forwarder to collect data from your various clusters.Densify recommends using the [Kubex Collection Stack Helm Chart](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack). This Helm chart bundles all of the components required for the data forwarder and is the preferred method of enabling data collection.
 
 ### Obtaining Secure Connection Parameters
 
@@ -54,7 +54,7 @@ You can use the same credentials for each connection that you create. i.e. you c
 
 ### Reviewing Data Collection Status
 
-Once the Kubex Automation Stack is installed and configured, data will be collected and stored for detailed analysis. As data is collected the Connections table is populated/updated with the incoming, clusters' status details.
+Once the Kubex Collection Stack is installed and configured, data will be collected and stored for detailed analysis. As data is collected the Connections table is populated/updated with the incoming, clusters' status details.
 Densify analyzes the collected and aggregated data once daily. Once data collection has been initiated, the status details will appear in this table within 15 minutes, approximately. Your cluster will not appear in the tree viewer until it has been analyzed, within the next 24-hrs. This is also the case for all reports/tabs that report the analyzed data.
 
 
@@ -130,7 +130,7 @@ The version number, as obtained from each public cloud provider.
 </tr>
 <tr>
 <td>
-Kubex Automation Stack Version
+Kubex Collection Stack Version
 </td>
 <td>
 The version number of the currently deployed data forwarder.
