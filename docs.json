@@ -466,21 +466,21 @@
         }
     },
     "logo": {
-        "light": "/logo/light.svg",
-        "dark": "/logo/dark.svg",
-        "href": "https://www.densify.com"
+        "light": "/images/docs-kubex/Content/Cloudex/03000174.png",
+        "dark": "/images/docs-kubex/Content/Cloudex/03000174.png",
+        "href": "https://www.kubex.ai"
     },
     "navbar": {
         "links": [
             {
                 "label": "Book a Demo",
-                "href": "https://www.densify.com/product/demo/"
+                "href": "https://www.kubex.ai/#demo-up"
             }
         ],
         "primary": {
             "type": "button",
             "label": "Free Trial",
-            "href": "https://www.densify.com/product/trial/"
+            "href": "https://www.kubex.ai/product/trial/"
         }
     },
     "footer": {
