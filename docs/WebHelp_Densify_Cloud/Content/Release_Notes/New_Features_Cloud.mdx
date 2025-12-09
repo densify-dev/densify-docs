@@ -131,7 +131,7 @@ This topic summarizes both new and updated features introduced in Kubex
   
   <Accordion title="Administration">
     - **SSO with Okta**--Removed requirement for Okta’s CAS (Central Authentication Service).
-    - **Password Reset**--Password reset emails now link to Kubex instead of Densify Console.
+    - **Password Reset**--Password reset emails now link to Kubex instead of Kubex Console.
   </Accordion>
 </Accordion>  
 
@@ -193,9 +193,9 @@ columns
     Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
   <Accordion title="Enhanced Cost Modeling">
-    The following changes have been made to improve how Densify determines the cost of public cloud instances, using customer-specific discounts:
+    The following changes have been made to improve how Kubex determines the cost of public cloud instances, using customer-specific discounts:
 
-    - **Azure Hybrid Benefit Status**--As part of enhancing the cost data model, Densify needs to distinguish between systems that are BYOL (also called Azure Hybrid Benefit or AHB) to accurately represent the cost of the system. The license model is available in the existing data collection configuration so no changes are required to the minimum permissions for BYOL VMs.
+    - **Azure Hybrid Benefit Status**--As part of enhancing the cost data model, Kubex needs to distinguish between systems that are BYOL (also called Azure Hybrid Benefit or AHB) to accurately represent the cost of the system. The license model is available in the existing data collection configuration so no changes are required to the minimum permissions for BYOL VMs.
     - **Azure Instance OS Name**--Densify now determines the type of Linux OS. In this release RHEL and SUSE are supported. The OS name is used to accurately determine instance costs.
     - **Updated Cost Model**--The cloud cost data model has been updated to apply discounts based on the following details:
       - OS Type--The type of Linux OS installed on a cloud instance. This is not an attribute and is stored in a table but cannot be edited or cleared like an attribute.
@@ -211,7 +211,7 @@ columns
     The following changes have been made to Kubex in this release:
 
     - **Node Modal**--A new modal opens when you click a node name on the Node Details page.
-    - **Performance Improvements**-- The Kubex/Cloudex UI no longer retrieves data from the Densify Reporting Database (RDB). All Kubex and Cloudex UI component queries are directed exclusively to Kubex-specific tables in MS SQL.
+    - **Performance Improvements**-- The Kubex/Cloudex UI no longer retrieves data from the Kubex Reporting Database (RDB). All Kubex and Cloudex UI component queries are directed exclusively to Kubex-specific tables in MS SQL.
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
@@ -221,7 +221,7 @@ columns
   <Accordion title="Kubex Updates">
     The following changes have been made to Kubex in this release:
 
-    - **GPU Metrics for Containers**--In this release Densify introduces reporting of GPU configuration and utilization data for containers, node groups and nodes. This data enables you to identify GPU-enabled containers and nodes in your environment and see how effectively you are utilizing your GPU resources.
+    - **GPU Metrics for Containers**--In this release Kubex introduces reporting of GPU configuration and utilization data for containers, node groups and nodes. This data enables you to identify GPU-enabled containers and nodes in your environment and see how effectively you are utilizing your GPU resources.
 
       You must have [data forwarder v4.2.1](#Forwarder) deployed to collect the GPU data from your environments.
 
@@ -529,7 +529,7 @@ columns
   <Accordion title="Cloudex Updates">
     The following changes have been made to Cloudex in this release:
 
-    - **Timezone**--The X-axis label has been updated to indicate the timezone designation for all historical utilization charts to ‘UTC ’ This change to does not currently apply to the ML charts. The ML charts on the Cloudex Analysis Details page use Densify server's time. So this will be either “Eastern Time” or “Central Europe Time”.
+    - **Timezone**--The X-axis label has been updated to indicate the timezone designation for all historical utilization charts to ‘UTC ’ This change to does not currently apply to the ML charts. The ML charts on the Cloudex Analysis Details page use Kubex server's time. So this will be either “Eastern Time” or “Central Europe Time”.
 
     Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
@@ -541,7 +541,7 @@ columns
 
     - Users no longer need to clear their browser cache after an upgrade. This changes applies to Kubex and Cloudex only.
 
-      When using the Densify Console users must clear their browser cache after an upgrade,
+      When using the Kubex Console users must clear their browser cache after an upgrade,
     - **Analysis Details Export** --When the content of the Analysis Details is exported, the Container Name is provided as a hyperlink that takes you to the Overview page for the selected container.
 
       When you open the exported .XLS file, the content initially appears as plain text, and when you click on the cell it becomes a hyperlink.
@@ -565,7 +565,7 @@ columns
 
     <div style={{ width:"70%" }}>
     <p>
-    In this release Densify introduces Cloudex. In this new console, Densify’s patented analytics determine optimal resource settings for your public cloud environments and display the results in a new user interface.
+    In this release Kubex introduces Cloudex. In this new console, Densify’s patented analytics determine optimal resource settings for your public cloud environments and display the results in a new user interface.
 
     </p>
 
@@ -586,17 +586,17 @@ columns
 
     See the new [Cloudex](https://www.densify.com/product/cloud-resource-optimizer/) website to start a free trial.
 
-    Use your existing Densify credentials to access the Cloudex console. You can either close the browser window or navigate back to the Densify Console to log out.
+    Use your existing Kubex credentials to access the Cloudex console. You can either close the browser window or navigate back to the Kubex Console to log out.
 
     The new console uses the latest MSSQL and Postgres databases.
   </Accordion>
   <Accordion title="Kubex Updates">
     The following changes have been made to Kubex in this release:
 
-    - **Automation Tab**--A new automation tab has been added to report on the status of the Densify Container Automation solution.
+    - **Automation Tab**--A new automation tab has been added to report on the status of the Kubex Container Automation solution.
     - **Updated Connections Table** --The following changes have been made to this table:
       - Three new columns have been added: Cluster Version, Kubex Collection Stack Version and Prometheus Version
-      - A link that provides secure Densify credentials has been added. The credentials are provided in a code snippet than can be copied directly into your `values.edit.yaml` file.
+      - A link that provides secure Kubex credentials has been added. The credentials are provided in a code snippet than can be copied directly into your `values.edit.yaml` file.
 
         This new method makes it easier for you to set up container data collection, reducing the previous manual dependency of requesting these credentials from Densify.
     - **Updated Optimization Breakdown**--Hovering over any bar in this chart, displays a description of the recommended optimization. Badges have also been added to indicate significant information, such a s memory events or unspecified resource settings.
@@ -617,10 +617,10 @@ columns
 
     A new Automation status page has been added to Kubex that reports on the status of containers that have been enabled for automation, You can enable/disable containers for automation using a right-click context menu from the Kubex container tree viewer. Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
 
-    Refer to [Mutating Admission Controller](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) for details on deploying and using the Densify Container Automation solution.
+    Refer to [Mutating Admission Controller](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) for details on deploying and using the Kubex Container Automation solution.
   </Accordion>
   <Accordion title="New Kubernetes API Endpoints">
-    The following endpoints have been added to the Densify API:
+    The following endpoints have been added to the Kubex API:
 
     - `GET /kubernetes/clusters`
     - `GET /kubernetes/clusters/<clusterName>`
@@ -636,26 +636,26 @@ columns
     See [Densify API New Features](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features)
   </Accordion>
   <Accordion title="Updated API Token Expiry Duration">
-    The token expiry has been increased from 5 to 60 minutes. Re-authorize will no longer be required for longer-running pipeline operations that previously exceed the 5-minute limit. The JSON Web Token (JWT) secures the Densify API so users can only make authorized API requests.
+    The token expiry has been increased from 5 to 60 minutes. Re-authorize will no longer be required for longer-running pipeline operations that previously exceed the 5-minute limit. The JSON Web Token (JWT) secures the Kubex API so users can only make authorized API requests.
 
     See [Authorize](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize)
   </Accordion>
   <Accordion title="Changes to Scale Groups with Max Size =1">
     In this release, singleton scale groups, both ASGs and VM Scale Sets, will now be analyzed as scale groups rather than as EC2 or VM instances. You will observe the following changes:
 
-    - Densify Console:
+    - Kubex Console:
       - Singleton ASGs/VM Scale Sets will now only appear in the corresponding ASG or VM Scale Set tabs.
       - If you have large number of these singleton scale groups, you may notice a decrease in the number of EC2 and Azure VMs reported, while the ASG and VM Scale Set counts will increase accordingly.
       - The Catalog Map will no longer report on ASGs and VM Scale Sets with Max Size =1.
       - No change to the Impact Analysis and Recommendation Report for ASGs, as this report recognized singleton ASG instances and reported on them accordingly.
     - Scaling Recommendations:
       - Singleton scale groups will now have scaling recommendations, as required. Previously, there were no scaling recommendations, only instance type change recommendations.
-      - If you need to control the group size and prevent scaling, use the "Group Max Size Override" and "Group Min Size Override" attributes. See [Overriding Cloud Recommendations](../Densify_Com/Overriding_Cloud_Recommendations#Scale_Group_Overrides). Contact <a href="mailto:Support@Densify.com">
-        Support@Densify.com</a>
+      - If you need to control the group size and prevent scaling, use the "Group Max Size Override" and "Group Min Size Override" attributes. See [Overriding Cloud Recommendations](../Densify_Com/Overriding_Cloud_Recommendations#Scale_Group_Overrides). Contact <a href="mailto:support@kubex.ai">
+        support@kubex.ai</a>
 
          for detail of configuring these attributes.
     - API Results:
-      - There are no changes to how scale groups are managed through the Densify API. Scale groups have service type "ASG" or "VMSS".
+      - There are no changes to how scale groups are managed through the Kubex API. Scale groups have service type "ASG" or "VMSS".
       - Scaling recommendation are already included in the results. See [Analysis: AWS Recommendations](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results). or [Analysis: Azure Recommendations](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results)..
     - Licensing:
       - Currently, singleton scale groups are licensed as individual EC2/VMs.
@@ -668,7 +668,7 @@ columns
       - The current container licensing model is based on the last known number of containers, on which the scale groups are running. With this change, container licensing will be calculated based on the average number of containers used, over the data range, as defined in the policy.
   </Accordion>
   <Accordion title="Updated Public Cloud Catalog">
-    The public cloud metadata catalogs have been updated to ensure Densify recommendations are based on the latest vendor pricing:
+    The public cloud metadata catalogs have been updated to ensure Kubex recommendations are based on the latest vendor pricing:
 
     - AWS Metadata Updates:
       - The pricing has been updated and is correct as of April 7, 2025.
@@ -1058,8 +1058,8 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 
     These updates address the following issues:
 
-    - The metrics that are retained in Prometheus are now limited to only the metrics that Densify requested. This change reduces the resources consumed by Prometheus, in large clusters.
-    - Both the pod security context and container security context are now set for all of the AIO chart components, including the Densify data forwarder, Prometheus, Node exporter etc. This includes using the runtime default seccomp profile, running as a non-root user, no privileges for escalation, mounting the root file system as read-only, etc.
+    - The metrics that are retained in Prometheus are now limited to only the metrics that Kubex requested. This change reduces the resources consumed by Prometheus, in large clusters.
+    - Both the pod security context and container security context are now set for all of the AIO chart components, including the Kubex data forwarder, Prometheus, Node exporter etc. This includes using the runtime default seccomp profile, running as a non-root user, no privileges for escalation, mounting the root file system as read-only, etc.
     - A sizing option for Prometheus resources, has been added. The size is based on the cluster size.
     - The Prometheus subchart has been updated to the latest version.
     - The Prometheus scrape configuration has been updated to use the k8s endpointslice. The endpoints that the data forwarder was using were deprecated in the K8s v1.33 API and will be removed in a future release. Endpointslice has been available since K8s v1.21.
@@ -1077,14 +1077,14 @@ When deploying the Container Data Forwarder ensure that the same version is depl
   This update adds support for **NVIDIA GPU metrics** and HPA:
 
   <Accordion title="Collection of NVIDIA GPU Metrics">
-    NVIDIA GPU Metrics--With this update, the Densify data forwarder now collects GPU data from your Kubernetes clusters.
+    NVIDIA GPU Metrics--With this update, the Kubex data forwarder now collects GPU data from your Kubernetes clusters.
 
     The analysis and display of the collected metrics will be provided in a future release of Kubex.
 
     Note the following additional prerequisites to collect the GPU data:
 
     - NVIDIA-device-plugin--This plugin allows containers to access the NVIDIA GPUs. It must be installed on all your Kubernetes clusters to allocate NVIDIA GPU resources to workloads and to provide the GPU data.
-    - dcgm-exporter--This Prometheus exporter exposes GPU metrics from the Data Center GPU Manager (DCGM). It is required to collect GPU data such as, utilization, memory usage, and power usage from NVIDIA GPUs, The dcgm-exporter can be deployed as a DaemonSet, where each node with an NVIDIA GPU runs a pod that exposes these metrics in a format that Prometheus can scrape and the Densify data forwarder then collects.
+    - dcgm-exporter--This Prometheus exporter exposes GPU metrics from the Data Center GPU Manager (DCGM). It is required to collect GPU data such as, utilization, memory usage, and power usage from NVIDIA GPUs, The dcgm-exporter can be deployed as a DaemonSet, where each node with an NVIDIA GPU runs a pod that exposes these metrics in a format that Prometheus can scrape and the Kubex data forwarder then collects.
 
     The GPU data collection is currently supported on the following platforms:
 
@@ -1093,9 +1093,9 @@ When deploying the Container Data Forwarder ensure that the same version is depl
     - GKE
   </Accordion>
   <Accordion title="HPA Updates">
-    **HPA Scales Based on Multiple Metrics**--With this update Densify recommendations are not implemented for any containers enabled for HPA that scale based on single or multiple metrics, that are also enabled for automation using the Densify Mutating Automation Controller (MAC).
+    **HPA Scales Based on Multiple Metrics**--With this update Kubex recommendations are not implemented for any containers enabled for HPA that scale based on single or multiple metrics, that are also enabled for automation using the Kubex Mutating Automation Controller (MAC).
 
-    Previously Densify did not support HPA-based on multiple metrics.
+    Previously Kubex did not support HPA-based on multiple metrics.
   </Accordion>
   <Accordion title="Updated Kubex Collection Stack">
     The [Kubex Collection Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) has been updated to collect data from the NVIDIA DCGM exporter. You must ensure that your helm chart has been upgraded to the latest version (0.9.6) to get GPU data. You will get the updates automatically if you have the following settings, in the data forwarder cronJob specification:
@@ -1114,7 +1114,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 <Accordion title="4.1.2 - March 17, 2025">
   This update collects new container and node-level metrics to provide more accurate recommendations.
 
-  Upgrade data forwarder v4.1.2 after upgrading to Densify v2.10.0. New database columns have been added in v2.10.0 that are required by this version of the data forwarder for the new metrics and attributes.
+  Upgrade data forwarder v4.1.2 after upgrading to Kubex v2.10.0. New database columns have been added in v2.10.0 that are required by this version of the data forwarder for the new metrics and attributes.
 
   When updating the data forwarder, you need to ensure that the same version is deployed for all of your clusters.
 
@@ -1129,7 +1129,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
       - Added the multi-value attribute, “Node Taints” (attr_NodeTaints)
     - QoS class--The configuration attribute and new metrics will be collected.
       - Added the attribute, Quality of Service Class” (attr_QOSClass)
-    - Node Working Set Memory Metrics--Working set memory is a process (or container) metric, rather than a node metric. It has been added to align with what is already shown in the AKS console. Densify provides the following additional node memory metrics:
+    - Node Working Set Memory Metrics--Working set memory is a process (or container) metric, rather than a node metric. It has been added to align with what is already shown in the AKS console. Kubex provides the following additional node memory metrics:
       - working set memory (in bytes)
       - working set memory utilization (percent)
       - memory utilization (percent) (based on memory_bytes metric)
@@ -1158,7 +1158,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
   Version 4.1.0 collects new container and node-level metrics to provide more accurate container sizing recommendations.
 
   <Note>
-    Node level metrics and some new container metrics are collected, but will not be available in the Densify Console until the release of Densify v2.6.
+    Node level metrics and some new container metrics are collected, but will not be available in the Kubex Console until the release of Kubex v2.6.
   </Note>
   <Accordion title="New Container Metrics">
     The following container metrics are now collected:
@@ -1179,10 +1179,10 @@ When deploying the Container Data Forwarder ensure that the same version is depl
     - CPU Request--The defined CPU allocation requested for the container.
     - Memory Request--The defined memory allocation requested for the container.
 
-    You must have Densify v2.5, to see these new metrics in the Container Details report and metrics viewer. See [Optimizing Your Containers - Details Tab](../Densify_Com/Optimizing_Your_Containers_-_Details_Tab#Tabular_Report) and [Using the Metrics Viewer for Containers](../Densify_Com/Using_the_Metrics_Viewer-Containers).
+    You must have Kubex v2.5, to see these new metrics in the Container Details report and metrics viewer. See [Optimizing Your Containers - Details Tab](../Densify_Com/Optimizing_Your_Containers_-_Details_Tab#Tabular_Report) and [Using the Metrics Viewer for Containers](../Densify_Com/Using_the_Metrics_Viewer-Containers).
   </Accordion>
   <Accordion title="Node-Level Metrics">
-    Densify currently sets configuration attributes with both the node-level and container-level CPU, memory request and limit values from the top of the hour. This provides a point in time data point that allows you to see how a node’s request and limit values move during the day.
+    Kubex currently sets configuration attributes with both the node-level and container-level CPU, memory request and limit values from the top of the hour. This provides a point in time data point that allows you to see how a node’s request and limit values move during the day.
 
     In this release the data forwarder collects the following metrics at 5-minute intervals:
 
@@ -1211,7 +1211,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 
       This value is collected for each node and for the cluster. This is currently informational only and is not used not used in the analysis.
 
-    The features allowing you to view node details will be provided in Densify v2.6.
+    The features allowing you to view node details will be provided in Kubex v2.6.
   </Accordion>
   <Accordion title="Cluster-Level Metrics">
     The Kubernetes version of the cluster is collected and stored in the attribute, k8s_cluster. This is the version of the control plane/API server. It can be higher than those of the nodes in cases where the control plane was upgraded and the nodes have not yet been updated. This is used when determining OOM kills for Kubernetes versions older than 1.28.
@@ -1244,7 +1244,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
     - Bearer token--Required by [OpenShift Monitoring](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.14/html/monitoring/accessing-third-party-monitoring-apis) and some commercial observability platforms, i.e. [Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-api-promql);
     - AWS SigV4--Required by [Amazon Managed Service for Prometheus](https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-secure-queryingl).
 
-    If you are using Amazon Managed Service for Prometheus (AMP), an AWS role is required to associate the Kubernetes service account with Densify for the purpose of container data collection. The additional required annotations can be added to your Helm charts.
+    If you are using Amazon Managed Service for Prometheus (AMP), an AWS role is required to associate the Kubernetes service account with Kubex for the purpose of container data collection. The additional required annotations can be added to your Helm charts.
 
     The following Prometheus dependencies are applicable:
 
@@ -1253,7 +1253,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 
     The following commercial observability platforms are supported:
 
-    - Amazon Managed Service for Prometheus (AMP)--Refer to the [AWS website](https://docs.aws.amazon.com/prometheus/latest/userguide/indexl) for details on AMP. Densify requires a specially configured role. See [Container Data Collection Using Amazon Managed Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_EKS_and_AMP) for configuration examples.
+    - Amazon Managed Service for Prometheus (AMP)--Refer to the [AWS website](https://docs.aws.amazon.com/prometheus/latest/userguide/indexl) for details on AMP. Kubex requires a specially configured role. See [Container Data Collection Using Amazon Managed Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_EKS_and_AMP) for configuration examples.
     - Azure Monitor Managed Service for Prometheus (AzMP)--Refer to the [Azure website](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-overview) for details.Densify automates the process of acquiring and get and refreshing security tokens. See [Container Data Collection Using Azure Managed Service for Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_AzMP) for a configuration example.
     - [Grafana Cloud](https://grafana.com/products/cloud/)--See [Container Data Collection using Basic Authentication](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Forwarder_Basic_Auth) for a configuration example.
 
@@ -1327,8 +1327,8 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 
     The corresponding workload charts were added to the Containers - Details Tab in v2.2.0. See [Optimizing Your Containers - Details Tab](../Densify_Com/Optimizing_Your_Containers_-_Details_Tab#Lower_Section)
 
-    Contact <a href="mailto:Support@Densify.com">
-    Support@Densify.com</a>
+    Contact <a href="mailto:support@kubex.ai">
+    support@kubex.ai</a>
 
      for details on selecting memory utilization for your container data collection.
   </Accordion>
@@ -1343,8 +1343,8 @@ When deploying the Container Data Forwarder ensure that the same version is depl
     - Updated examples for both single and multiple cluster configurations are provided in the new [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md).
   </Accordion>
   <Accordion title="End of Support Notice - Container Data Forwarder 3.x.x">
-    Densify will discontinue support of Container Data Forwarder versions 3.x.x on June 30, 2024. Contact <a href="mailto:Support@Densify.com">
-    Support@Densify.com</a>
+    Kubex will discontinue support of Container Data Forwarder versions 3.x.x on June 30, 2024. Contact <a href="mailto:support@kubex.ai">
+    support@kubex.ai</a>
 
      for details on migrating to Densify's current version of the Container Data Forwarder.
   </Accordion>

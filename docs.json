@@ -1,7 +1,7 @@
 {
     "$schema": "https://mintlify.com/docs.json",
     "theme": "mint",
-    "name": "Densify Docs",
+    "name": "Kubex Docs",
     "colors": {
         "primary": "#0075eb",
         "light": "#0075eb",
@@ -47,7 +47,7 @@
                 ]
             },
             {
-                "tab": "Kubex",
+                "tab": "Containers",
                 "groups": [
                     {
                         "group": "Getting Started",
@@ -128,7 +128,7 @@
                 ]
             },
             {
-                "tab": "Cloudex",
+                "tab": "Public Cloud",
                 "groups": [
                     {
                         "group": "Getting Started",
@@ -466,8 +466,8 @@
         }
     },
     "logo": {
-        "light": "/images/docs-kubex/Content/Cloudex/03000174.png",
-        "dark": "/images/docs-kubex/Content/Cloudex/03000174.png",
+        "light": "https://kubex.ai/wp-content/uploads/kubex-logo-reverse.svg",
+        "dark": "https://kubex.ai/wp-content/uploads/kubex-logo-reverse.svg",
         "href": "https://www.kubex.ai"
     },
     "navbar": {

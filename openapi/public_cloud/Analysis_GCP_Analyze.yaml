@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – GCP Analysis API
+  title: Kubex – GCP Analysis API
   version: "1.0.0"
   description: |
     POST `/analysis/gcp/analyze`:

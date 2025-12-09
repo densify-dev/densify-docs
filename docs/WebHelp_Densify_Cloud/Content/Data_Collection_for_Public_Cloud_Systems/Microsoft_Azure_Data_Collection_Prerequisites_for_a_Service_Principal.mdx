@@ -7,7 +7,7 @@ sidebarTitle: "Azure Prerequisites"
 
 ## Overview
 
-A Service Principal is an identity created within your on-premises Active Directory (AD) and that is allowed to access one or more resources within your AD. You can delegate the minimum required permissions to the service principal so that it can be used to create a connection to Densify to collect data.
+A Service Principal is an identity created within your on-premises Active Directory (AD) and that is allowed to access one or more resources within your AD. You can delegate the minimum required permissions to the service principal so that it can be used to create a connection to Kubex to collect data.
 
 <Accordion title="Video: Data Collection Prerequisites for Azure Using a Service Principal">
 <iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/301289654" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
@@ -28,7 +28,7 @@ The Service Principal possesses the following characteristics:
 * A service principal is then created for that application;
 * The service principal is granted access to your Azure subscription.
 
-The following procedure allows you to use a federated Microsoft Entra ID account to create a cloud connection to Densify. In this case a Service Principal is required to connect Densify to your Azure subscriptions.
+The following procedure allows you to use a federated Microsoft Entra ID account to create a cloud connection to Densify. In this case a Service Principal is required to connect Kubex to your Azure subscriptions.
 
 <Note>
 In this case "federated" indicates that your on-premise Active Directory is linked with your Azure Cloud's Entra ID so you can use your existing on-premise AD credentials to access your Azure portal.
@@ -38,12 +38,12 @@ In this case "federated" indicates that your on-premise Active Directory is link
 
 ## Requirements to Create a Cloud Connection
 
-To connect Densify to your Azure subscriptions, you need the following items to setup data collection:
+To connect Kubex to your Azure subscriptions, you need the following items to setup data collection:
 
 * [Tenant ID/Directory ID](#Tentant_ID)
 * [Service Principal/Application ID](#Secret_Key)
 * [Secret Key](#Secret_Key)
-* [Subscription ID](#SubscriptionID)--Only required when using the Densify API.
+* [Subscription ID](#SubscriptionID)--Only required when using the Kubex API.
 
 Additionally, the application must be assigned the role of "Reader" for each of the subscriptions from which data will be collected. The Reader role is sufficient for resource utilization data.
 
@@ -68,7 +68,7 @@ The tenant ID corresponds to the Microsoft Entra ID.
 
 ### Obtaining the Application ID and Client Secret
 
-You now need to create a new application registration. This will be the service principal for Densi. You will need the Application ID and corresponding client secret (key), to complete the Densify connection.
+You now need to create a new application registration. This will be the service principal for Densi. You will need the Application ID and corresponding client secret (key), to complete the Kubex connection.
 
 1. Click App Registration.
 2. In the App Registration pane, click New registration.
@@ -83,12 +83,12 @@ You now need to create a new application registration. This will be the service 
 
 The Register button becomes available once you enter valid data.
 
-4. Click Register to create and register the application. This is the service principal that Densify will use to collect data.
+4. Click Register to create and register the application. This is the service principal that Kubex will use to collect data.
 <Accordion title="Figure: Configure the Registration ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000032.png)</Frame>
 </Accordion>
 5. Copy the Application ID (e.g. 7d16fbf8-1fc3-4e08-b48a-626).
-   You need to copy this ID and save it to a location from which you can easily retrieve it. You will need the Application ID to create the Densify connection.
+   You need to copy this ID and save it to a location from which you can easily retrieve it. You will need the Application ID to create the Kubex connection.
 <Accordion title="Figure: Obtain the Application ID ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000033.png)</Frame>
 </Accordion>
@@ -96,7 +96,7 @@ The Register button becomes available once you enter valid data.
 7. Click on New client secret to create a new key.
 8. In the Add a new client secret pane, enter a Description (e.g. DensifyKey) and an expiration period (e.g. 1 year, 2 years or never expires).
 9. Click Add to create the key.
-10. Copy the secret key Value to a location from which you can easily retrieve it. You will need this key to create the Densify connection.
+10. Copy the secret key Value to a location from which you can easily retrieve it. You will need this key to create the Kubex connection.
 <Accordion title="Figure: Generate the Secret Key ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000034.png)</Frame>
 </Accordion>
@@ -106,13 +106,13 @@ The Register button becomes available once you enter valid data.
 
 If you are using the API, data collection and analysis are created and then refreshed daily on a per subscription basis (1-to-1). You can associate many subscriptions with a service principle, but when using the API to initiate data collection, you must specify a subscription ID and the audit and analysis are created for each subscription, separately.
 
-When using the Connection Wizard in the Densify UI, you do not need the subscription ID, as all subscriptions that are associated with the service principle are collected and listed once the connection has been verified. You can then select one or more of the subscriptions that you want to analyze (1-to-Many). When using the Connection Wizard, data collection and analysis are created and then refreshed daily for all of the subscriptions that you selected when you created the connection.
+When using the Connection Wizard in the Kubex UI, you do not need the subscription ID, as all subscriptions that are associated with the service principle are collected and listed once the connection has been verified. You can then select one or more of the subscriptions that you want to analyze (1-to-Many). When using the Connection Wizard, data collection and analysis are created and then refreshed daily for all of the subscriptions that you selected when you created the connection.
 
 Use the following instructions to get the Subscription ID.
 
 1. Navigate to Subscriptions in the main menu. You may need to click on More services to see Subscriptions.
 2. Click on a subscription to open the configuration page.
-3. Copy the Subscription ID. You need to copy this ID and save it to a location from which you can easily retrieve it. You will need the Subscription ID to initiate data collection, when using the Densify API.
+3. Copy the Subscription ID. You need to copy this ID and save it to a location from which you can easily retrieve it. You will need the Subscription ID to initiate data collection, when using the Kubex API.
 
 ### Assigning Access to Subscriptions
 
@@ -145,7 +145,7 @@ The application registered above, now needs access to each of your subscriptions
 <Accordion title="Figure: Complete Role Assigment ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000088.png)</Frame>
 </Accordion>
-13. Repeat this process for each subscription to be included in Densify data collection.
+13. Repeat this process for each subscription to be included in Kubex data collection.
 
 <Accordion title="Figure: Allow Application to access a Subscription ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000036.png)</Frame>
@@ -163,14 +163,14 @@ The following sections contain detailed instructions for more advanced configura
 
 ### Configuring a Role with Minimum Permissions for Data Collection
 
-To simplify setup and maintenance of the role used for performing data collection, Densify recommends using the "Reader" role. This role provides read-only access to your Azure services and resources and supports the requirements for resource utilization data collection.
-As the Densify continues to evolve and expand, you do not need to update permission policy to include newly added services and features, when using the "Reader" role.
+To simplify setup and maintenance of the role used for performing data collection, Kubex recommends using the "Reader" role. This role provides read-only access to your Azure services and resources and supports the requirements for resource utilization data collection.
+As the Kubex continues to evolve and expand, you do not need to update permission policy to include newly added services and features, when using the "Reader" role.
 
-Alternatively, if you must restrict the role with the minimum permissions you can create a custom role with only the required permissions. These custom roles provide an alternative method for granting permissions that are more restrictive than the built-in “Reader” role. These custom roles (JSON) define the minimum permissions required by Densify to collect resource utilization metrics data, respectively.
+Alternatively, if you must restrict the role with the minimum permissions you can create a custom role with only the required permissions. These custom roles provide an alternative method for granting permissions that are more restrictive than the built-in “Reader” role. These custom roles (JSON) define the minimum permissions required by Kubex to collect resource utilization metrics data, respectively.
 
 The “Densify Resource Utilization Metrics Reader” custom role grants read-only permissions for collecting data related to VMs, SQL servers and reservations in the subscriptions specified in the assigned scope.
 
-Custom Role: Densify Resource Utilization Metrics Reader
+Custom Role: Kubex Resource Utilization Metrics Reader
 
 ```
 1
@@ -249,7 +249,7 @@ Custom Role: Densify Resource Utilization Metrics Reader
 
 38
 
-{<br/>    "properties": {<br/>        "roleName": "DensifyResourceUtilizationMetricsReaderCustomRole",<br/>        "description": "This custom role defines the minimum read-only permissions required by Densify for collecting data related to VMs, SQL servers and reservations associated in the subscriptions specified in the assigned scope",<br/>        "assignableScopes": [<br/>        ],<br/>        "permissions": [<br/>            {<br/>                "actions": [<br/>                    <br/>                    "Microsoft.Capacity/appliedreservations/read",<br/>                    "Microsoft.ClassicCompute/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachines/instanceView/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines/instanceView/read",<br/>                    "Microsoft.Insights/AutoscaleSettings/Read",<br/>                    "Microsoft.Insights/eventtypes/values/read",<br/>                    "Microsoft.Insights/Metrics/read",<br/>                    "Microsoft.Insights/MetricDefinitions/read",<br/>                    "Microsoft.Network/networkInterfaces/read",<br/>                    "Microsoft.Network/networkSecurityGroups/read",<br/>                    "Microsoft.Network/virtualNetworks/read",<br/>                    "Microsoft.Resources/subscriptions/read",<br/>                    "Microsoft.Resources/subscriptions/resourceGroups/read",            <br/>                    "Microsoft.Sql/servers/databases/read",<br/>                    "Microsoft.Sql/servers/elasticPools/read",<br/>                    "Microsoft.Sql/servers/read"                <br/>                    <br/>                ],<br/>                "notActions": [],<br/>                "dataActions": [],<br/>                "notDataActions": []<br/>            }<br/>        ]<br/>    }<br/>}
+{<br/>    "properties": {<br/>        "roleName": "DensifyResourceUtilizationMetricsReaderCustomRole",<br/>        "description": "This custom role defines the minimum read-only permissions required by Kubex for collecting data related to VMs, SQL servers and reservations associated in the subscriptions specified in the assigned scope",<br/>        "assignableScopes": [<br/>        ],<br/>        "permissions": [<br/>            {<br/>                "actions": [<br/>                    <br/>                    "Microsoft.Capacity/appliedreservations/read",<br/>                    "Microsoft.ClassicCompute/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachines/instanceView/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines/instanceView/read",<br/>                    "Microsoft.Insights/AutoscaleSettings/Read",<br/>                    "Microsoft.Insights/eventtypes/values/read",<br/>                    "Microsoft.Insights/Metrics/read",<br/>                    "Microsoft.Insights/MetricDefinitions/read",<br/>                    "Microsoft.Network/networkInterfaces/read",<br/>                    "Microsoft.Network/networkSecurityGroups/read",<br/>                    "Microsoft.Network/virtualNetworks/read",<br/>                    "Microsoft.Resources/subscriptions/read",<br/>                    "Microsoft.Resources/subscriptions/resourceGroups/read",            <br/>                    "Microsoft.Sql/servers/databases/read",<br/>                    "Microsoft.Sql/servers/elasticPools/read",<br/>                    "Microsoft.Sql/servers/read"                <br/>                    <br/>                ],<br/>                "notActions": [],<br/>                "dataActions": [],<br/>                "notDataActions": []<br/>            }<br/>        ]<br/>    }<br/>}
 ```
 
 
@@ -264,11 +264,11 @@ Use the following instructions to create the custom roles:
 7. Click Next and review the list of permissions.
 8. Click the Assignable scope tab and select subscription as the Type. Select the subscriptions to which the custom role will be assigned.
 9. Click the JSON tab to review your settings and then create the custom role and click Save.
-10. Assign the custom role to the Densify service principal. See [Assigning Access to Subscriptions](#Access_to_Subscriptions).
+10. Assign the custom role to the Kubex service principal. See [Assigning Access to Subscriptions](#Access_to_Subscriptions).
 
 ### Create the Service Principal Through the Azure CLI
 
-If you are comfortable working with the command line, you can create the service principle through the Azure CLI. You can then use the resulting .JSON file when working with the Densify API. Refer to the Azure website for details: [Create an Azure service principal with the Azure CLI](https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli).
+If you are comfortable working with the command line, you can create the service principle through the Azure CLI. You can then use the resulting .JSON file when working with the Kubex API. Refer to the Azure website for details: [Create an Azure service principal with the Azure CLI](https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli).
 
 ## Creating the Cloud Connection in Densify
 
@@ -276,6 +276,6 @@ Once all of the prerequisites are complete, you can create the cloud connection 
 
 ### Modifying Your Azure Cloud Connection
 
-When you create the Azure cloud connection for the first time, Densify discovers all of the subscriptions, associated with the user or service principal. Upon saving the connection it will schedule data collection from each of the discovered and selected subscriptions.
+When you create the Azure cloud connection for the first time, Kubex discovers all of the subscriptions, associated with the user or service principal. Upon saving the connection it will schedule data collection from each of the discovered and selected subscriptions.
 
 If subsequently, subscriptions are added, they will not be included in data collection. Additionally, subscriptions that are removed will continue to be included, resulting in wasted time and resources. To add new subscriptions or remove old ones, edit the cloud connection. See [Editing a Connection](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard#Edit_Conn).

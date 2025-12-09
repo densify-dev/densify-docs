@@ -2,13 +2,13 @@
 title: "Working with Virtual Machine Scale Sets"
 ---
 
-Azure VM Scale Set (VM Scale Set) let you create and manage a group of load balanced VMs. The number of VM instances can be automatically increased or decreased in response to demand or on a defined schedule. Densify analyzes your VM Scale Sets and provides optimization recommendations.
+Azure VM Scale Set (VM Scale Set) let you create and manage a group of load balanced VMs. The number of VM instances can be automatically increased or decreased in response to demand or on a defined schedule. Kubex analyzes your VM Scale Sets and provides optimization recommendations.
 
 When working with VM Scale Sets note the following:
 
 * Virtual machine instances that belong to a scale set are logically considered to be part of the VM Scale Set service entity and recommendations are made for the group and not for the individual instances.
 * VM Scale Sets configured with maximum group size = 1, are treated as VMs and are only included in the Virtual Machine tab, while VM Scale Sets configured with maximum group size > 1, are shown on the VM Scale Set tab.
-* Densify cannot analyze VM Scale Sets configured with their orchestration mode = Flexible. However, a flexible scale configured to run on one instance type can be analyzed. See [Working with Virtual Machine Scale Sets](#Mixed).
+* Kubex cannot analyze VM Scale Sets configured with their orchestration mode = Flexible. However, a flexible scale configured to run on one instance type can be analyzed. See [Working with Virtual Machine Scale Sets](#Mixed).
 * Azure provides memory metrics during data collection. If for some reason, memory data is not available, the backfill memory settings will be used for the analysis. See [VM Scale Set Backfilling Memory](#Backfill_Mem).
 * The Impact Analysis and Recommendation Report report is not currently available for VM Scale Sets with maximum size >1. Also note the following feature support:
 
@@ -262,11 +262,11 @@ The guest filter is not supported for VM Scale Sets.
 
 ### Mixed Mode Services
 
-Densify cannot analyze VM Scale Set with a set of mixed instance types i.e. VM Scale Set configured with Orchestration Mode = Flexible. However, a scale set with Orchestration Mode = Flexible, can still be configured to run on one instance type and Densify can analyze these services.
+Densify cannot analyze VM Scale Set with a set of mixed instance types i.e. VM Scale Set configured with Orchestration Mode = Flexible. However, a scale set with Orchestration Mode = Flexible, can still be configured to run on one instance type and Kubex can analyze these services.
 
 Densify checks the VM Scale Set to determine if it is actually configured to run a mix of instance types or to run on a single instance type. Mixed groups are tagged by setting the attribute, "Mixed Instance Policy Set" to True and these scale sets are filtered from the analysis using the Cloud Environment filter.
 
-Additionally, Densify detects mixed instance configurations that result from changes to the launch configuration/scale set model. When the configuration of a VM Scale Set changes then in the event of scale out, new instances are created based on the new configuration, while the existing child instances continue to run with the previous configuration.
+Additionally, Kubex detects mixed instance configurations that result from changes to the launch configuration/scale set model. When the configuration of a VM Scale Set changes then in the event of scale out, new instances are created based on the new configuration, while the existing child instances continue to run with the previous configuration.
 
 In the event of a scale in, VM Scale Sets are typically set to favour terminating instances created via the old launch template. This behaviour may also result in a mix of instance types.
 
@@ -365,7 +365,7 @@ Recommended group sizing associated with downscaling or upscaling the VM Scale S
 <p><a name="EKSCluster"></a>K8s Node Group</p>
 </td>
 <td>
-<p>This column indicates the name of the Kubernetes node group associated with this <span>VM Scale Set</span>. When populated, Densify has the data required for enhanced Scale Group analysis.  </p>
+<p>This column indicates the name of the Kubernetes node group associated with this <span>VM Scale Set</span>. When populated, Kubex has the data required for enhanced Scale Group analysis.  </p>
 <p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>This column is available only if the <span>VM Scale Set</span> is hosting a Kubernetes cluster.</p>
 <p></p><p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
 </td>
@@ -593,7 +593,7 @@ Recommended group sizing associated with downscaling or upscaling the VM Scale S
 </td>
 <td>
 <p>[ High | Medium | Low | None ]</p>
-<p>This column describes the effort required to investigate and implement the Densify recommendations. The displayed group effort is an average of all the calculated efforts for each instance (or service) in the group. Effort for each instance is calculated by rule-driven analytics based on factors  (such as family change, storage change, data quality checks, feature changes, etc.) that can be configured in the policy settings and rule set which captures best practices.</p>
+<p>This column describes the effort required to investigate and implement the Kubex recommendations. The displayed group effort is an average of all the calculated efforts for each instance (or service) in the group. Effort for each instance is calculated by rule-driven analytics based on factors  (such as family change, storage change, data quality checks, feature changes, etc.) that can be configured in the policy settings and rule set which captures best practices.</p>
 <p>See the <a alt="Effort Details" href="#effort_tab" title="Effort Details">Effort Details tab</a> in the lower pane for additional effort details for the selected <span>VM Scale Set</span>. </p>
 <p>There will be an impact to the effort value for <span>VM Scale Set</span>s, hosting a Kubernetes cluster that not linked with a AKS reference (i.e. has no parent identified). </p>
 </td>
@@ -692,7 +692,7 @@ The bottom pane of the VM Scale Set report provides the following information fo
 
 * In Service Instances--Shows workload charts for current and recommended predicted scaling activities for the selected VM Scale Set. For VM Scale Sets identified with optimization type="Just Right" or "Terminate", only the current in-service scaling activity chart is displayed.
 * VM Scale Set Utilization --Shows charts for current and recommended CPU Utilization and Memory Utilization for the selected VM Scale Set. Network I/O, Disk I/O workload charts are also included, showing utilization at the VM Scale Set level. You can view workload charts for each group member from the [Working with Virtual Machine Scale Sets](#ASGInServiceInstanceDetails) page.
-* Effort Details Tab--This table lists the factors that contribute to the effort required to investigate and implement the Densify recommendations. Effort for each group is calculated by rule-driven analytics based on factors (such as instance family change, data quality checks, feature changes, etc.) that can be configured in the policy settings and through analysis rule sets. A description of each rule is provided.
+* Effort Details Tab--This table lists the factors that contribute to the effort required to investigate and implement the Kubex recommendations. Effort for each group is calculated by rule-driven analytics based on factors (such as instance family change, data quality checks, feature changes, etc.) that can be configured in the policy settings and through analysis rule sets. A description of each rule is provided.
 
 ### VM Scale Set Optimization Report Details
 
@@ -711,7 +711,7 @@ The VM Scale Set Summary report contains the tabular list of VM Scale Sets from 
 
 #### AKS-aware VM Scale Set Recommendations
 
-VM Scale Sets and their virtual machine group members are loaded from Azure cloud data collection audits and Kubernetes entities are collected via the Densify data forwarder from Prometheus data. Linking these entities is extremely complex.
+VM Scale Sets and their virtual machine group members are loaded from Azure cloud data collection audits and Kubernetes entities are collected via the Kubex data forwarder from Prometheus data. Linking these entities is extremely complex.
 
 A single Kubernetes cluster can run on one or more VM Scale Set with each VM Scale Set running in a node group within the cluster; however it is possible to skip node groups, and in this case the VM Scale Set must be linked directly to the cluster entity.
 
@@ -719,4 +719,4 @@ Densify uses the parent resource group and its tags to match the entities and VM
 
 #### VM Scale Set Backfilling Memory
 
-Memory metrics are available for Azure instances when using the standard Densify audit. If, for some reason, you are not collecting memory metrics, Densify provides a method to simulate memory utilization using backfill memory policy settings. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+Memory metrics are available for Azure instances when using the standard Kubex audit. If, for some reason, you are not collecting memory metrics, Kubex provides a method to simulate memory utilization using backfill memory policy settings. Contact [support@kubex.ai](mailto:support@kubex.ai) for details.

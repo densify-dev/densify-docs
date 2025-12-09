@@ -2,7 +2,7 @@
 title: "Container Data Collection using Basic Authentication"
 ---
 
-This topic shows you how to configure the data forwarder to connect to Prometheus or another observability platform that supports the Prometheus API with HTTP basic authentication (e,g, Grafana Cloud) and sends container data from multiple clusters to Densify on an hourly basis.
+This topic shows you how to configure the data forwarder to connect to Prometheus or another observability platform that supports the Prometheus API with HTTP basic authentication (e,g, Grafana Cloud) and sends container data from multiple clusters to Kubex on an hourly basis.
 
 Before you begin, ensure you meet all the prerequisite software and configuration requirements. See [Container Data Collection Prerequisites](./Container_Data_Collection_Prerequisites).
 
@@ -83,7 +83,7 @@ Table: Data Forwarder Settings in config.yaml
 <td class="td_3">
 <p class="CiRBATableText">Specify the <span class="mc-variable Document.Densify variable">Densify</span> user account that the <span class="mc-variable Document.forwarder variable">data forwarder</span> will use. This user must already exist in your <span class="mc-variable Document.Company variable">Densify</span> instance and have API access privileges. </p>
 <p class="CiRBATableText">Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="3f6c4a4f4f504d4b7f7b5a514c565946115c5052" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for the <span class="mc-variable Document.Densify variable">Densify</span> user and epassword required to connect to your <span class="mc-variable Document.Densify variable">Densify</span> instance. </p>
-<p class="CiRBATableText">This user will be authenticated by the Densify server. </p>
+<p class="CiRBATableText">This user will be authenticated by the Kubex server. </p>
 </td>
 <td class="td_3">
 <p class="CiRBATableText">&lt;username&gt;</p>
@@ -168,7 +168,7 @@ Table: Data Forwarder Settings in config.yaml
 <p class="CiRBATableText">scheme</p>
 </td>
 <td class="td_3">
-<p class="CiRBATableText">Specify the protocol to be used to connect to the Densify REST API interface. Select http or https.</p>
+<p class="CiRBATableText">Specify the protocol to be used to connect to the Kubex REST API interface. Select http or https.</p>
 </td>
 <td class="td_3">
 <p class="CiRBATableText">http</p>

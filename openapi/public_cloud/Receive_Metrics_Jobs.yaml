@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Densify – Receive Metrics Jobs API
+  title: Kubex – Receive Metrics Jobs API
   version: "1.0.0"
   description: |
     Create, list, view, upload to, execute/schedule, download from, and delete Receive Metrics jobs

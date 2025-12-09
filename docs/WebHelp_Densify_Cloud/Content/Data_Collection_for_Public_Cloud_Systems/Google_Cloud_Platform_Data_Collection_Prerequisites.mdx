@@ -53,7 +53,7 @@ Verify these APIs are enabled before creating the service account. When you crea
 
 ## Creating a GCP Service Account
 
-To connect Densify to your GCP project, you will need a GCP service account and corresponding credentials in JSON format. You need to repeat this process for each of your GCP projects and save the credential JSON files in an encrypted .ZIP file. You will then import this file to create a connection to collect data from your GCP projects.
+To connect Kubex to your GCP project, you will need a GCP service account and corresponding credentials in JSON format. You need to repeat this process for each of your GCP projects and save the credential JSON files in an encrypted .ZIP file. You will then import this file to create a connection to collect data from your GCP projects.
 
 Use the following instructions to create and configure the GCP service account:
 
@@ -80,13 +80,13 @@ Use the following instructions to create and configure the GCP service account:
 
 ## Creating Credentials for the Service Account
 
-You now need to create the key for the service account. Densify uses this key to verify its identity
+You now need to create the key for the service account. Kubex uses this key to verify its identity
 
 1. In the GCP console, from the main menu, select IAM & Admin > Service accounts.
 2. You should see the account that you just created. In the Key ID column you can see that no keys have been created.
 3. Click the options in the Actions column. Select Manage keys from the dropdown menu.
 4. Select Add Key and then Create new key.
-5. The key is generated and downloaded to your computer. Retain the generated keys for creating the Densify cloud connection.
+5. The key is generated and downloaded to your computer. Retain the generated keys for creating the Kubex cloud connection.
 
 <Note>
 Do not check these service account keys into your source code or leave them in the download directory.
@@ -96,10 +96,10 @@ Do not check these service account keys into your source code or leave them in t
 
 ### Creating a Role with Minimum Permissions for Data Collection
 
-Densify recommends using the viewer role, as indicated above, to simplify setup and maintenance of data collection. The viewer role provides read-only access to your GCP services and resources and supports the requirements of Densify data collection and analysis.
-As the Densify data collection continues to evolve and expand, you do not need to update this permission policy to include newly added services and features.
+Densify recommends using the viewer role, as indicated above, to simplify setup and maintenance of data collection. The viewer role provides read-only access to your GCP services and resources and supports the requirements of Kubex data collection and analysis.
+As the Kubex data collection continues to evolve and expand, you do not need to update this permission policy to include newly added services and features.
 
-Alternatively, you create a custom role and grant the minimum required permissions to the service account to be used Densify for data collection.
+Alternatively, you create a custom role and grant the minimum required permissions to the service account to be used Kubex for data collection.
 
 You must have the `iam.roles.create permission`, to create the custom role. The custom role must be created at the Organization level.
 
@@ -175,7 +175,7 @@ Refer to [Creating a GCP Service Account](#Creating), above for details.
 
 In order to simplify data collection you can grant a single GCP service account access to other projects. This can be done by adding the service account ID from one project to another, through the account's IAM & admin dashboard.
 
-You would then use this master service account to create your Densify cloud connection.
+You would then use this master service account to create your Kubex cloud connection.
 
 1. Login to the GCP console and select the project that contains the service account that will become the master account.
 2. From the GCP console main menu, select IAM & admin > Service accounts.
@@ -206,6 +206,6 @@ Once all of the prerequisites are complete, you can create the cloud connection 
 
 ### Modifying Your Google Cloud Connection
 
-When you create the GCP cloud connection for the first time, Densify discovers all of the projects, associated with the role or service account. Upon saving the connection Densify will schedule data collection from each of the discovered and selected projects.
+When you create the GCP cloud connection for the first time, Kubex discovers all of the projects, associated with the role or service account. Upon saving the connection Kubex will schedule data collection from each of the discovered and selected projects.
 
 If subsequently, projects are added, they will not be included in data collection. Additionally, projects that are removed will continue to be included, resulting in wasted time and resources. To add new projects or remove old ones, edit the cloud connection. See [Editing a Connection](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard#Edit_Conn).

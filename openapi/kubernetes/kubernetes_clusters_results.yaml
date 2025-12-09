@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Densify API – Kubernetes Clusters Results
+  title: Kubex API – Kubernetes Clusters Results
   version: 1.0.0
   description: |
     Container right-sizing recommendations at the cluster level.
@@ -11,7 +11,7 @@ servers:
     variables:
       host:
         default: api.example.com
-        description: Replace with your Densify API host
+        description: Replace with your Kubex API host
 
 tags:
   - name: Kubernetes Cluster Results

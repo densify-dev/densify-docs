@@ -9,7 +9,7 @@ sidebarTitle: "AWS Prerequisites"
 
 Densify collects resource utilization metrics (CloudWatch data) for your AWS services (e.g. EC2, RDS, ECS, etc.), analyzes the AWS data and then makes recommendations to save costs and reduce risks in your AWS environments.
 
-Collecting data via a cross-account IAM Role simplifies the process of connecting to multiple AWS accounts from Densify since the same role and external ID can be used across your multiple AWS accounts. As accounts are added or removed, you do not need to update the Densify cloud connection.
+Collecting data via a cross-account IAM Role simplifies the process of connecting to multiple AWS accounts from Kubex since the same role and external ID can be used across your multiple AWS accounts. As accounts are added or removed, you do not need to update the Kubex cloud connection.
 
 <Accordion title="Video: Prerequisites for Collection AWS CloudWatch Data Using an IAM Role">
 <iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/309956904" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
@@ -21,14 +21,14 @@ Densify also supports connecting to AWS using;
 * An IAM Role and CloudFormation template--See [AWS Data Collection Using a CloudFormation Template](./AWS_Data_Collection_Using_a_CloudFormation_Template).
 
 <Note>
-Though the cloud connection wizard provides the option to use an IAM user and an access key, Densify recommends using the IAM Role.
+Though the cloud connection wizard provides the option to use an IAM user and an access key, Kubex recommends using the IAM Role.
 </Note>
 
 
 
 ## Using an IAM Role
 
-When you create a role for cross-account access, you establish trust from the customer's account that owns the role and the resources (trusting account) to the Densify account containing the user that will collect data (trusted account). You specify the trusted account number as the Principal in the role's trust policy when you create the role. This allows the Densify user in the trusted account to assume the role and collect utilization data.
+When you create a role for cross-account access, you establish trust from the customer's account that owns the role and the resources (trusting account) to the Kubex account containing the user that will collect data (trusted account). You specify the trusted account number as the Principal in the role's trust policy when you create the role. This allows the Kubex user in the trusted account to assume the role and collect utilization data.
 
 In addition to creating connections from your linked accounts, you also need to create a connection for your payer accounts. The payer account connection provides the name of each linked accounts.
 
@@ -41,8 +41,8 @@ This role allows you to collect resource utilization data for the selected accou
 1. Log into the AWS Management Console and navigate to Identity and Access Management (IAM). In the navigation tree on the left, click Roles.
 2. Click Create Role in the Roles dashboard.
 3. Select AWS account as the of trusted entity type .
-4. Enter an Account ID. This is the Densify account that will assume the role. Enter the following Densify account ID: 036437403198.
-5. Select Require external ID and enter your external ID. This value is similar to a password and should be unique and difficult to guess. Densify recommends using a password generator to create a random, alphanumeric string (e.g. ae73mcf4ldjpet96) for the external ID.
+4. Enter an Account ID. This is the Kubex account that will assume the role. Enter the following Kubex account ID: 036437403198.
+5. Select Require external ID and enter your external ID. This value is similar to a password and should be unique and difficult to guess. Kubex recommends using a password generator to create a random, alphanumeric string (e.g. ae73mcf4ldjpet96) for the external ID.
 
 You will need this external ID later, when creating the cloud connection in Densify.
 
@@ -67,9 +67,9 @@ The ReadOnlyAccess policy is provided here as an easy option for non-sensitive a
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000046.png)</Frame>
 </Accordion>
 12. Copy and save the Role ARN as you will need to paste this string into the Densify Cloud Connection wizard to create the connection.
-13. You can now create an AWS connection through the Densify Public Cloud Connection wizard. See [Using the Public Cloud Connections Wizard](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard).
+13. You can now create an AWS connection through the Kubex Public Cloud Connection wizard. See [Using the Public Cloud Connections Wizard](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard).
 
-You can also use the Densify API.See [Analysis: AWS](https://densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze).
+You can also use the Kubex API.See [Analysis: AWS](https://densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze).
 
 ## Optional Configuration
 
@@ -82,8 +82,8 @@ The following sections contain detailed instructions for optional configuration.
 
 ### Creating an IAM Policy with Minimum Permissions for the CloudWatch Data Collection
 
-To simplify setup and maintenance of either an IAM user account or an IAM role for performing the CloudWatch audit, Densify recommends attaching the AWS-managed “ReadOnlyAccess” policy to the user or role. This policy provides read-only access to your AWS services and resources and supports the requirements of the Densify CloudWatch audit.
-As the Densify CloudWatch audit continues to evolve and expand, you do not need to update permission policy to include newly added services and features.
+To simplify setup and maintenance of either an IAM user account or an IAM role for performing the CloudWatch audit, Kubex recommends attaching the AWS-managed “ReadOnlyAccess” policy to the user or role. This policy provides read-only access to your AWS services and resources and supports the requirements of the Kubex CloudWatch audit.
+As the Kubex CloudWatch audit continues to evolve and expand, you do not need to update permission policy to include newly added services and features.
 
 Alternatively, if you must restrict the IAM user or role with the minimum permissions to perform the CloudWatch audit, you can create a custom policy with only the required permissions, as shown below.
 
@@ -154,7 +154,7 @@ Example: AWS Minimum User Permission Policy
 
 
 <Note>
-The permissions related to CloudFormation are used for linking ASGs with ECS clusters. If these permissions are not included and the data is not available, linking the ASGs to ECS clusters may be done based on existing container instances. If the permissions are missing, Densify may not link some ASGs to their ECS clusters,
+The permissions related to CloudFormation are used for linking ASGs with ECS clusters. If these permissions are not included and the data is not available, linking the ASGs to ECS clusters may be done based on existing container instances. If the permissions are missing, Kubex may not link some ASGs to their ECS clusters,
 </Note>
 
 
@@ -162,11 +162,11 @@ The permissions related to CloudFormation are used for linking ASGs with ECS clu
 1. Log into the AWS management console and navigate to Services > IAM.
 2. Select Policies and click Create policy.
 3. Click the JSON tab and enter the policy from the example above.
-4. Review the policy and enter a policy name (e.g. DensifyMinimumReadAccess) and a description (e.g. Minimum permissions required for Densify standard audit).
+4. Review the policy and enter a policy name (e.g. DensifyMinimumReadAccess) and a description (e.g. Minimum permissions required for Kubex standard audit).
 
 ### Enabling Collection of AWS Memory Usage Metrics
 
-Memory metrics are not collected by default and they are not required to complete the Densify analyses; however, you can manually enable collection of specific memory metrics to improve the quality of your recommendations.
+Memory metrics are not collected by default and they are not required to complete the Kubex analyses; however, you can manually enable collection of specific memory metrics to improve the quality of your recommendations.
 
 <Note>
 Additional metrics collected by the CloudWatch agent incur charges. See [Amazon CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/) for details.
@@ -250,7 +250,7 @@ The CloudWatch agent must be installed and configured on each instance for which
 
 
 
-Once the CloudWatch agent is installed and configured, Densify requires that you use the default "CWAgent" namespace for the collected metrics collected.
+Once the CloudWatch agent is installed and configured, Kubex requires that you use the default "CWAgent" namespace for the collected metrics collected.
 
 #### Memory Metrics for ASGs
 
@@ -260,7 +260,7 @@ Additionally, when working with ASGs, the ASG's EC2 members provide memory utili
 
 For Linux instances, the memory metric, “mem\_used\_percent” is collected by default, as specified in the config.json file. However, the metrics “mem\_active” and “mem\_used” need to be added for Densify's analysis.
 
-Use the following example to customize the default CloudWatch agent's configuration, to collect the required parameters and metrics that Densify requires for memory analyses. The CloudWatch agent configuration file is located in the CWAgent namespace,
+Use the following example to customize the default CloudWatch agent's configuration, to collect the required parameters and metrics that Kubex requires for memory analyses. The CloudWatch agent configuration file is located in the CWAgent namespace,
 
 Example:  CloudWatch Agent Configuration For Linux Instances
 
@@ -302,9 +302,9 @@ For Windows instances, the default CloudWatch agent config.json file are the sam
 
 The memory metric, "% Committed Bytes in Use" is collected by default, as specified in the config.json file. However, the metric “Available MBytes” needs be added to the CloudWatch agent's settings, for Densify's analysis.
 
-Use the following example to customize the default CloudWatch agent's configuration, to collect the required parameters and metrics that Densify requires for memory analyses. The CloudWatch agent configuration file is located in the CWAgent namespace,
+Use the following example to customize the default CloudWatch agent's configuration, to collect the required parameters and metrics that Kubex requires for memory analyses. The CloudWatch agent configuration file is located in the CWAgent namespace,
 
-Use the following example to customize the default CloudWatch agent configuration to collect the required parameters and metrics that Densify requires for memory analyses.
+Use the following example to customize the default CloudWatch agent configuration to collect the required parameters and metrics that Kubex requires for memory analyses.
 
 Example:  CloudWatch Agent Configuration For Windows Instances
 

@@ -2,9 +2,9 @@
 title: "External User Authentication Example Configuration for Google OpenID"
 ---
 
-You can use the following process to setup Google OpenID for Authentication Code Flow. Before Densify can use Google's OAuth 2.0 authentication system for user login, you must set up a project in the Google API Console to obtain OAuth 2.0 credentials and set redirect URIs. You need to register Densify as a web application in your Google API Console and then provide specific details to Densify to so that your Densify instance can use Google OpenID for authentication
+You can use the following process to setup Google OpenID for Authentication Code Flow. Before Kubex can use Google's OAuth 2.0 authentication system for user login, you must set up a project in the Google API Console to obtain OAuth 2.0 credentials and set redirect URIs. You need to register Kubex as a web application in your Google API Console and then provide specific details to Kubex to so that your Kubex instance can use Google OpenID for authentication
 
-When using Google Open ID, only the Densify Console is supported. If you try to access the Analysis Console, the connection request will fail. If you need to access the Analysis Console, you must use Azure AD, Okta or Ping.
+When using Google Open ID, only the Kubex Console is supported. If you try to access the Analysis Console, the connection request will fail. If you need to access the Analysis Console, you must use Azure AD, Okta or Ping.
 
 ### Register an Application
 
@@ -29,7 +29,7 @@ You must have permission to manage applications in your Google Console.
 * https://\<Densify instance>:443/openIdLoggedOut--This is logout URI. Specify this page if the configuration property, "login.openId.useStaticLogout" is set in the Densifyconfiguration settings.
 
 <Note>
-These are examples only. Contact Densify for the actual URIs.
+These are examples only. Contact Kubex for the actual URIs.
 </Note>
 
 
@@ -50,6 +50,6 @@ New app registrations are hidden to other users by default. Refer to [Google Ide
 
 Google does not follow the same logout process as the other supported openID providers.
 
-* Revokes the authentication token that was provided to user. If successful, then redirect to the specified Densify page.
+* Revokes the authentication token that was provided to user. If successful, then redirect to the specified Kubex page.
 * This will not logout user from their Google account, but will only disable the selected connection made between the user and GCP account.
-* Redirection to Densify will now show the Google login screen, but will not request a password, as the user is not logged-out of their Google account
+* Redirection to Kubex will now show the Google login screen, but will not request a password, as the user is not logged-out of their Google account

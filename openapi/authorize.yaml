@@ -1,10 +1,10 @@
 openapi: 3.0.3
 info:
-  title: Densify Authorize API
+  title: Kubex Authorize API
   version: "1.0.0"
   description: ""
   contact:
-    name: Densify Support
+    name: Kubex Support
     email: Support@Densify.com
 
 servers:
@@ -12,7 +12,7 @@ servers:
     variables:
       host:
         default: api.example.com
-        description: Replace with your Densify API host
+        description: Replace with your Kubex API host
 paths:
   /authorize:
     post:
@@ -21,7 +21,7 @@ paths:
       operationId: authorize-user
       summary: Obtain a JWT API token
       description: |
-        Returns a JWT token for any **active** Densify user when valid credentials are provided.
+        Returns a JWT token for any **active** Kubex user when valid credentials are provided.
         Only tokens for **API-enabled** users can be used to make authorized API calls.
       requestBody:
         required: true
@@ -106,7 +106,7 @@ components:
       properties:
         userName:
           type: string
-          description: Username of an **active** Densify user account
+          description: Username of an **active** Kubex user account
         pwd:
           type: string
           format: password

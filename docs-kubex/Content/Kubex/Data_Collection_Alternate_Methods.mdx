@@ -1,7 +1,7 @@
 ---
 title: "Overview"
 ---
-Densify recommends using the [Kubex Collection Stack Helm Chart](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack). This Helm chart bundles all of the components required for Kubex and is the preferred method of data collection.
+Kubex recommends using the [Kubex Collection Stack Helm Chart](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack). This Helm chart bundles all of the components required for Kubex and is the preferred method of data collection.
 The following configuration options support multi-cluster configurations and observability platforms. See [Container Data Collection Prerequisites](/docs-kubex/Content/Kubex/Data_Collection_Prerequisites) for required prerequisite software.
 
 
@@ -22,7 +22,7 @@ See <a href="/docs-kubex/Content/Kubex/Data_Collection_Prerequisites">Container 
 
 
 <Accordion title="Amazon Managed Prometheus">
-In this example the data forwarder is setup in an EKS cluster to connect to Amazon Managed Prometheus (AMP) and send container data to <span>Densify</span> on an hourly basis. Using an EKS cluster allows you to use EKS's ability to associate an IAM role with a Kubernetes service account and configure your pods to use the service account. This is the preferred way to connect to AMP. 
+In this example the data forwarder is setup in an EKS cluster to connect to Amazon Managed Prometheus (AMP) and send container data to <span>Kubex</span> on an hourly basis. Using an EKS cluster allows you to use EKS's ability to associate an IAM role with a Kubernetes service account and configure your pods to use the service account. This is the preferred way to connect to AMP. 
 Figure: Container Data Collection Using EKS-AMP
 
 <frame/>
@@ -57,7 +57,7 @@ Figure: Container Data Collection Using Azure Monitor with Managed Prometheus
 
 
 <Accordion title="Other Observability platforms that support the Prometheus API with basic authentication">
-The data forwarder can be setup to connect to Prometheus or an observability platform that supports the Prometheus API with HTTP basic authentication and sends container data from multiple clusters to Densify on an hourly basis.
+The data forwarder can be setup to connect to Prometheus or an observability platform that supports the Prometheus API with HTTP basic authentication and sends container data from multiple clusters to Kubex on an hourly basis.
 Figure: Container Data Collection from an Observability Platform
 
 <frame/>

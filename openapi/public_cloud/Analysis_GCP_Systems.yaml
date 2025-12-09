@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – GCP Systems API
+  title: Kubex – GCP Systems API
   version: "1.0.0"
   description: |
     Lists all systems (GCP Compute Engine instances) included in a given GCP optimization analysis.
@@ -85,7 +85,7 @@ components:
           description: GCP name assigned to the system.
         entityId:
           type: string
-          description: Densify entity ID of the system.
+          description: Kubex entity ID of the system.
         href:
           type: string
           description: Link to the `/systems/{entityId}` resource for this system.

@@ -43,7 +43,7 @@ your MCP server will be available at https://corp-mcp.densify.com.
 When using a chat interface, you must add your MCP server to your workspace, which is sometimes 
 referred to as adding a “connector.” This step typically requires administrative privileges, 
 so only a workspace owner or administrator can perform the initial setup. Once the MCP server has been added, 
-authorized users within your organization can connect to it using their Densify credentials. 
+authorized users within your organization can connect to it using their Kubex credentials. 
 
 #### Example (Anthropic Claude)
 
@@ -58,14 +58,14 @@ Click ”Add custom connector”, give the connection a name and fill in your MC
 Now that the workspace has been connected to Kubex MCP, each user in the workspace can then connect to it in their user settings:
 <Frame>![](/images/docs-api/mcp_claude_setting_connect.png)</Frame>
 
-Clicking ”Connect” will redirect to your authentication portal (whether through Densify or a third-party OIDC provider), and then prompt you to authorize Claude to access your Kubex data: 
+Clicking ”Connect” will redirect to your authentication portal (whether through Kubex or a third-party OIDC provider), and then prompt you to authorize Claude to access your Kubex data: 
 <Frame>![](/images/docs-api/mcp_claude_authorize.png)</Frame>
 
 Clicking “Authorize” here will complete the connection. Claude will now be able to access your Kubex data whenever it needs it. 
 
 If you are using a coding tool, you will need to configure your MCP server URL using the tool’s specific configuration method. 
 This usually involves running a command in a command-line interface or editing a configuration file. 
-After adding the MCP server information, you will be prompted to authorize the tool using your Densify credentials.
+After adding the MCP server information, you will be prompted to authorize the tool using your Kubex credentials.
 Once authorization is complete, your coding tool will be able to access Kubex data through MCP in accordance with your permissions. 
 
 ## Authorization 
@@ -78,5 +78,5 @@ Some client applications handle expired authorizations gracefully, automatically
 
 Because MCP allows direct integration between an LLM and your operational environment, it is essential to treat security as a first priority. You should only connect to MCP servers that you trust. A malicious MCP server could attempt to manipulate an LLM into revealing sensitive information or performing unwanted actions. 
 
-Densify guarantees that the Kubex MCP server is secure and trustworthy. It is designed to provide authorized users with access to relevant data and recommendations without compromising system integrity or user privacy. However, Densify cannot make any guarantees about the behavior of third-party MCP servers. If you choose to use additional MCP connections, you do so at your own risk and should apply standard best practices for verifying the legitimacy and security of external systems. 
+Densify guarantees that the Kubex MCP server is secure and trustworthy. It is designed to provide authorized users with access to relevant data and recommendations without compromising system integrity or user privacy. However, Kubex cannot make any guarantees about the behavior of third-party MCP servers. If you choose to use additional MCP connections, you do so at your own risk and should apply standard best practices for verifying the legitimacy and security of external systems. 
 

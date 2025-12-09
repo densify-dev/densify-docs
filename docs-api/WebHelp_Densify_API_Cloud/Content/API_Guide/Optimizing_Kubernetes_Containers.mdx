@@ -2,9 +2,9 @@
 title: "Optimizing Kubernetes Containers"
 ---
 
-This use case provides an overview of how to collect Kubernetes container data into Densify and how to obtain Densify container recommendations.
+This use case provides an overview of how to collect Kubernetes container data into Kubex and how to obtain Kubex container recommendations.
 
-The diagram below shows the major processes in Densify to optimize Kubernetes containers:
+The diagram below shows the major processes in Kubex to optimize Kubernetes containers:
 
 <Accordion title="Figure: Optimizing Kubernetes Containers Processes">
 <Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000014_519x379.png)</Frame>
@@ -17,7 +17,7 @@ You need to have an existing monitoring and metrics collection service, such as 
 
 Densify provides a collection and transfer tool called the Data Forwarder, which you can download from Docker Hub, configure, and launch into a container to transfer node information and resource metrics from Prometheus to Densify.
 
-Your Densify instance needs to be enabled with Data Forwarder support to accept and ingest incoming data for optimization. Contact Densify support ([Support@Densify.com](mailto:Support@Densify.com)) to enable Data Forwarder support.
+Your Kubex instance needs to be enabled with Data Forwarder support to accept and ingest incoming data for optimization. Contact Kubex support ([support@kubex.ai](mailto:support@kubex.ai)) to enable Data Forwarder support.
 
 <Note>
 You will need a Data Forwarder container for each Prometheus server you want to collect data from.
@@ -25,16 +25,16 @@ You will need a Data Forwarder container for each Prometheus server you want to 
 
 2. **Analysis**--Analyze collected data based on pre-defined policies to make recommendations.
 
-The analysis process is initiated after data is ingested into a Densify data model. Results can be pulled from the Densify API or pushed to a webhook URI once the analysis is complete.
+The analysis process is initiated after data is ingested into a Kubex data model. Results can be pulled from the Kubex API or pushed to a webhook URI once the analysis is complete.
 
 The steps below outline a typical workflow to access Kubernetes container recommendations:
 
-1. From the Densify API: [Authenticate using JWT](#_Authorize)--Retrieve token to authenticate each subsequent API call.
+1. From the Kubex API: [Authenticate using JWT](#_Authorize)--Retrieve token to authenticate each subsequent API call.
 2. API: [List All Kubernetes Container Analyses](#_ListAnalysis)--Query for the analysis entity of each cluster for which Kubernetes container data was collected.
 3. API: [Download Results for Action](#_Results)--Retrieve recommendations for actioning or forward to orchestration engine.
 
    Alternatively, you can [Add a Webhook to an Existing Kubernetes Container Analysis](#_AddWebhook) to push recommendations to an external URI once the next analysis process completes.
-4. Console (optional alternative): Review the Kubernetes Container Optimization report from the Densify Console. See [Optimizing Your Containers](/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Optimizing_Your_Containers) for details.
+4. Console (optional alternative): Review the Kubernetes Container Optimization report from the Kubex Console. See [Optimizing Your Containers](/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Optimizing_Your_Containers) for details.
 
 ## Postman Collection
 
@@ -42,7 +42,7 @@ Densify provides a Postman collection of sample API requests for working with y
 
 ## Authenticate using JWT
 
-Use the `/authorize` resource to retrieve an authenticated token to make subsequent API calls. See [Authorize](./Authorize) for details. By default, the token expires in 5 minutes, therefore you will need to ensure that you have an active token for each Densify API request.
+Use the `/authorize` resource to retrieve an authenticated token to make subsequent API calls. See [Authorize](./Authorize) for details. By default, the token expires in 5 minutes, therefore you will need to ensure that you have an active token for each Kubex API request.
 
 <Accordion title="Example: Retrieving an Authenticated Token">
 Request:
@@ -66,7 +66,7 @@ Response:
 }
 ```
 
-Use the `apiToken` value in your Authorization request header for subsequent Densify API calls.
+Use the `apiToken` value in your Authorization request header for subsequent Kubex API calls.
 </Accordion>
 
 

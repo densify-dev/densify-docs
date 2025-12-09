@@ -2,7 +2,7 @@
 title: "Densify API New Features"
 ---
 
-The following new features and updates are specific to the Densify API.
+The following new features and updates are specific to the Kubex API.
 
 <AccordionGroup>
 <Accordion title="3.2.0 June 11, 2025">
@@ -16,7 +16,7 @@ There are no new API features or updates in this release.
 <Accordion title="3.0 April 23, 2025">
 <AccordionGroup>
 <Accordion title="New Kubernetes API Endpoints">
-The following endpoints have been added to the Densify API:
+The following endpoints have been added to the Kubex API:
 
 * `GET /api/v2/kubernetes/clusters`
 * `GET /api/v2/kubernetes/clusters/<clusterName>`
@@ -37,13 +37,13 @@ See the following:
 </Accordion>
 
 <Accordion title="Updated API Token Expiry Duration">
-The token expiry has been increased from 5 to 60 minutes. Re-authorize will no longer be required for longer-running operations that previously exceed the 5-minute limit. The JSON Web Token (JWT) secures the Densify API so users can only make authorized API requests. See [Authorize](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize) for details.
+The token expiry has been increased from 5 to 60 minutes. Re-authorize will no longer be required for longer-running operations that previously exceed the 5-minute limit. The JSON Web Token (JWT) secures the Kubex API so users can only make authorized API requests. See [Authorize](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize) for details.
 </Accordion>
 
 <Accordion title="Changes to Scale Groups with Max Size =1">
 In this release, singleton scale groups, both ASGs and VM Scale Sets, will now be analyzed as scale groups rather than as EC2 or VM instances.
 
-There are no changes to how scale groups are managed through the Densify API. Scale groups have always had service type "ASG" or "VMSS". Scaling recommendation are already included correctly in the results. See [Analysis: AWS Recommendations](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results) or [Analysis: Azure Recommendations](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results).
+There are no changes to how scale groups are managed through the Kubex API. Scale groups have always had service type "ASG" or "VMSS". Scaling recommendation are already included correctly in the results. See [Analysis: AWS Recommendations](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results) or [Analysis: Azure Recommendations](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results).
 </Accordion>
 
 </AccordionGroup>

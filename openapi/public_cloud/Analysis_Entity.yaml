@@ -1,9 +1,9 @@
 openapi: 3.1.0
 info:
-  title: Densify – Analysis Entity API
+  title: Kubex – Analysis Entity API
   version: "1.0.0"
   description: |
-    Access Densify analysis entities for various platforms (cloud and container).
+    Access Kubex analysis entities for various platforms (cloud and container).
     Use GET to list analyses or fetch details for a specific analysis.  
     Supports platformType (`cloud`, `containers`) and platformSubType (`aws`, `gcp`, `azure`, `kubernetes`).  
     See "Analysis: Entity" documentation for details.  
@@ -22,7 +22,7 @@ paths:
       summary: List analysis entities for a given platform/subtype
       description: |
         Returns a collection of analysis entities for the specified platform and vendor.
-        Each entity represents infrastructure analyzed by Densify within a scope (account, subscription, cluster, etc.).  
+        Each entity represents infrastructure analyzed by Kubex within a scope (account, subscription, cluster, etc.).  
       parameters:
         - name: platformType
           in: path
@@ -115,7 +115,7 @@ components:
     AnalysisEntity:
       type: object
       description: |
-        Represents an analysis within Densify defined for a given platform and vendor.
+        Represents an analysis within Kubex defined for a given platform and vendor.
         Contains metadata and links to follow-on resources.  
       properties:
         accountId:

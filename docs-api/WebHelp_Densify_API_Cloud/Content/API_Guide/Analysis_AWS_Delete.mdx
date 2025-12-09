@@ -10,7 +10,7 @@ The `/analysis/cloud/aws/<analysisId>` resource can be used to delete the audit 
 When executing the delete operation in an environment observe the following:
 
 * When deleting an audit for an environment associated with a single account, the operation proceeds as outlined above.
-* When deleting an audit for a payer account with multiple linked accounts, If Densify determines that there is a many-to-one relationship for this account, then the delete request fails. This type of multi-account connection can only be created through the Cloud Connection Wizard and must be deleted through the Cloud Connection Wizard.
+* When deleting an audit for a payer account with multiple linked accounts, If Kubex determines that there is a many-to-one relationship for this account, then the delete request fails. This type of multi-account connection can only be created through the Cloud Connection Wizard and must be deleted through the Cloud Connection Wizard.
 
 During a delete operation, any attempt to access other associated endpoints related to the specified `<analysisId>` (i.e. GET, PUT, POST) will trigger a "400 Bad Request" error response.
 
@@ -18,7 +18,7 @@ While the delete operation is in progress, you can check the status (using the `
 
 Collected data is saved for the defined retention period and the environment and associated analysis structure are saved in case you want to generate reports on the historical data or restart data collection. Since the environment and analyses are not deleted, a GET call for the specified `<analysisId>` will always succeed regardless of whether the associated connection has been deleted.
 
-If you use a GET call to list available environment and analyses, for which the audits have been deleted, they are still listed. You can reestablish the audit without have to re-create the analysis. You will still see the data in the Densify Console.
+If you use a GET call to list available environment and analyses, for which the audits have been deleted, they are still listed. You can reestablish the audit without have to re-create the analysis. You will still see the data in the Kubex Console.
 
 ## Resource
 

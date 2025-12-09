@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – Azure Recommendations API
+  title: Kubex – Azure Recommendations API
   version: "1.0.0"
   description: |
     GET `/analysis/cloud/azure/{analysisId}/results` returns a collection of Azure VM/VMSS
@@ -8,7 +8,7 @@ info:
     or `Accept: application/terraform-map` for the Terraform-map variant.
 servers:
   - url: https://{host}
-    description: Your Densify API host
+    description: Your Kubex API host
     variables:
       host:
         default: api.example.com
@@ -89,7 +89,7 @@ paths:
         - name: entityId
           in: query
           required: false
-          description: Filter by Densify entity ID.
+          description: Filter by Kubex entity ID.
           schema:
             type: string
         - name: accountIdRef

@@ -2,50 +2,50 @@
 title: "Action Automation Prerequisites"
 ---
 
-Before enabling automation, you need to configure both your vCenter Server and your Densify Connector. The following prerequisites apply to both types of automation.
+Before enabling automation, you need to configure both your vCenter Server and your Kubex Connector. The following prerequisites apply to both types of automation.
 
-Policy settings and the specific details of enabling the feature through the Densify user interface are covered in the individual topics. See [Using Proactive Automation](./Using_Proactive_Automation) and [Using Real-Time Automation](./Using_Real-Time_Automation).
+Policy settings and the specific details of enabling the feature through the Kubex user interface are covered in the individual topics. See [Using Proactive Automation](./Using_Proactive_Automation) and [Using Real-Time Automation](./Using_Real-Time_Automation).
 
-## Densify Connector Settings
+## Kubex Connector Settings
 
-You must have the Densify Connector installed and have configured a connection for each vCenter Server. Additionally, you must perform the following:
+You must have the Kubex Connector installed and have configured a connection for each vCenter Server. Additionally, you must perform the following:
 
 ### Enable Real-Time Automation
 
 Enable the option "Enable real-time monitoring and automation" in the Data Transfer Settings > Advanced > Advanced Settings dialog box.
 
-<Accordion title="Figure: Densify Connector Advanced Settings">
+<Accordion title="Figure: Kubex Connector Advanced Settings">
 <Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000124_376x200.png)</Frame>
 </Accordion>
 
 <Note>
-If this checkbox is not checked then the Densify Connector cannot receive action plans from your Densify instance and automation will not succeed.
+If this checkbox is not checked then the Kubex Connector cannot receive action plans from your Kubex instance and automation will not succeed.
 </Note>
 
 
 
 ### Additional Configuration for Disk Allocation Changes
 
-Disk allocation changes must be configured directly on a VM and are not done through the vCenter. In order to perform the disk allocation changes directly on a VM, the Densify Connector requires elevated privileges for the VM's OS.
+Disk allocation changes must be configured directly on a VM and are not done through the vCenter. In order to perform the disk allocation changes directly on a VM, the Kubex Connector requires elevated privileges for the VM's OS.
 
 In order to execute disk recommendations on the VMs, you need to define an account that is part of the administrator's group of the target VMs. This is required to execute the vSphere PowerCLI Invoke-VMScript that is used to perform the disk bump up recommendations.
 
-Open the Window's Services management application and right-click on the Densify Connector. Select Properties and then click on the Log On tab. Enter the account username /password.
+Open the Window's Services management application and right-click on the Kubex Connector. Select Properties and then click on the Log On tab. Enter the account username /password.
 
-<Accordion title="Figure: Densify Connector Properties">
+<Accordion title="Figure: Kubex Connector Properties">
 <Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000012_398x334.png)</Frame>
 </Accordion>
 
 
 ### Additional Software Requirements
 
-If you are using proactive automation there are additional software requirements and configuration updates that need to be completed on the Densify Connector's host machine, in order to enable this feature.
+If you are using proactive automation there are additional software requirements and configuration updates that need to be completed on the Kubex Connector's host machine, in order to enable this feature.
 
 Microsoft® PowerShell, VMware PowerCLI, and .NET Framework must be installed and
-running on the same machine\instance that is running the Densify Connector. These utilities are required
+running on the same machine\instance that is running the Kubex Connector. These utilities are required
 for Proactive Automation.
 
-Table: Proactive Automation Requirements on the Densify Connector's Host Machine
+Table: Proactive Automation Requirements on the Kubex Connector's Host Machine
 
 <table>
 <tr>
@@ -94,33 +94,33 @@ Table: Proactive Automation Requirements on the Densify Connector's Host Machine
 </table>
 
 
-## Densify Configuration
+## Kubex Configuration
 
 The following additional configuration and considerations must be addressed to enable action automation from within Densify:
 
-* Automation is enabled in the control environment-- Contact [Support@Densify.com](mailto:Support@Densify.com) for additional information.
-* Automation Settings--you should be aware that the control environment threshold settings for drift do not apply when using the Densify Connector. Contact [Support@Densify.com](mailto:Support@Densify.com) for additional information.
-* All warnings on the control environment need to be cleared--Contact [Support@Densify.com](mailto:Support@Densify.com) for additional information.
+* Automation is enabled in the control environment-- Contact [support@kubex.ai](mailto:support@kubex.ai) for additional information.
+* Automation Settings--you should be aware that the control environment threshold settings for drift do not apply when using the Kubex Connector. Contact [support@kubex.ai](mailto:support@kubex.ai) for additional information.
+* All warnings on the control environment need to be cleared--Contact [support@kubex.ai](mailto:support@kubex.ai) for additional information.
 * Proactive Automation must be enabled on a cluster in order for Real-Time Automation to send alarms via
-  the Densify Connector, to the impacted vCenter. See [Installing the Densify Connector](./Data_Collection_Connector_Installing#Enable_real-time_monitoring_and_automation) for details.
+  the Kubex Connector, to the impacted vCenter. See [Installing the Kubex Connector](./Data_Collection_Connector_Installing#Enable_real-time_monitoring_and_automation) for details.
 
 ## Software License Cost Optimization
 
 The Software License Cost Optimization is required to generate the VM moves to minimize the number of Windows or Oracle licenses you require.
 
 <Note>
-This feature is available through the Densify Enterprise Solution. Contact [Support@Densify.com](mailto:Support@Densify.com) for details on licensing and enabling this feature.
+This feature is available through the Kubex Enterprise Solution. Contact [support@kubex.ai](mailto:support@kubex.ai) for details on licensing and enabling this feature.
 </Note>
 
 
 
 ## VMware Credentials and Configuration
 
-The Densify Connector uses the VMware common API interface to audit each vCenter Server and ESX servers. The following prerequisites must be addressed before
+The Kubex Connector uses the VMware common API interface to audit each vCenter Server and ESX servers. The following prerequisites must be addressed before
 
 ### Configuring a vCenter Account for Action Automation
 
-Once you are ready to enable automation, you need to elevate the access permission on the Densify Connector. Create a new account or modify the existing user account with the following minimum privileges to run action automation.
+Once you are ready to enable automation, you need to elevate the access permission on the Kubex Connector. Create a new account or modify the existing user account with the following minimum privileges to run action automation.
 
 In order to run Action Automation you need to do the following:
 
@@ -228,7 +228,7 @@ Table: Required User Role Settings
 </td>
 <td>
 <p>Allows addition of a host to an existing cluster.</p>
-<p>Prior to executing rebalance moves Densify requires that the DRS Migration Threshold be set to 1, to ensure that DRS does not activate DRS any load balancing moves during the period that automation is running.  Once Densify completes automation, the DRS Migration Threshold can be reset to the original, customer value. In order to change the DRS Migration Threshold, the Modify Cluster permission is required, as <span class="mc-variable Document.VM2 variable">VMware</span> does not provide a separate permission for changes to this value.</p>
+<p>Prior to executing rebalance moves Kubex requires that the DRS Migration Threshold be set to 1, to ensure that DRS does not activate DRS any load balancing moves during the period that automation is running.  Once Kubex completes automation, the DRS Migration Threshold can be reset to the original, customer value. In order to change the DRS Migration Threshold, the Modify Cluster permission is required, as <span class="mc-variable Document.VM2 variable">VMware</span> does not provide a separate permission for changes to this value.</p>
 </td>
 </tr>
 <tr>
@@ -350,18 +350,18 @@ Contact your VMware administrator to configure the account and provide the requi
 DRS must be enabled for the cluster/s that you are targeting for action automation. Automation will fail on cluster/s that do not have DRS enabled. There may also be an indication that the specified user credential does not have sufficient permission to modify DRS settings.
 
 <Note>
-Action Automation will not attempt any moves if Densify cannot change the value of DRS.
+Action Automation will not attempt any moves if Kubex cannot change the value of DRS.
 </Note>
 
 
 
 #### Enabling vMotion
 
-When automating Densify rebalance recommendations, vMotion must be enabled on all the hosts in a cluster. This includes hosts, on which the VMs are currently running and the hosts to which the VMs may be moved.
+When automating Kubex rebalance recommendations, vMotion must be enabled on all the hosts in a cluster. This includes hosts, on which the VMs are currently running and the hosts to which the VMs may be moved.
 
 #### Enabling Hot Add
 
-When automating Densify re-sizing recommendations (bump ups), CPU and/or memory Hot Add may be enabled, but is not mandatory. If Hot Add is supported/enabled on a VM, then the you avoid the reboot required for the VM sizing allocation changes to take effect.
+When automating Kubex re-sizing recommendations (bump ups), CPU and/or memory Hot Add may be enabled, but is not mandatory. If Hot Add is supported/enabled on a VM, then the you avoid the reboot required for the VM sizing allocation changes to take effect.
 
 ## vCenter Server
 

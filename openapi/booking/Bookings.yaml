@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify API -- Bookings Project & Status Groups (Unofficial)
+  title: Kubex API -- Bookings Project & Status Groups (Unofficial)
   version: 1.0.0
   description: |
     OpenAPI description for the **Bookings Project, Status Groups** endpoints.
@@ -9,7 +9,7 @@ info:
 
 servers:
   - url: /
-    description: Relative server; prepend your Densify API base path as needed.
+    description: Relative server; prepend your Kubex API base path as needed.
 
 tags:
   - name: Bookings

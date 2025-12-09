@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – Subscriptions Suppressions API
+  title: Kubex – Subscriptions Suppressions API
   version: "1.0.0"
   description: |
     Catalog of suppression entries (attribute tags or recommendation properties)

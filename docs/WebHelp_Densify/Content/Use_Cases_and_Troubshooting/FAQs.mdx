@@ -7,7 +7,7 @@ This topic provides the answers to frequently asked questions.
 
 <Accordion title="Identifying Densification Opportunities">
 <Accordion title="How do I identify densification opportunities?">
-Through Densify, you can click on the Densify page to help you identify densification opportunities. You can drive up density by reducing reclaimable capacity (e.g. decommissioning excess resources, balancing workloads) and adding more workloads. See[Densifying Your Environment](../Reporting_Framework/Densifying_Your_Environment) for details.
+Through Densify, you can click on the Kubex page to help you identify densification opportunities. You can drive up density by reducing reclaimable capacity (e.g. decommissioning excess resources, balancing workloads) and adding more workloads. See[Densifying Your Environment](../Reporting_Framework/Densifying_Your_Environment) for details.
 
 Figure: Virtual Optimization > Opportunity >Cluster Capacity in VM Units > Clusters with Reclaimable Capacity
 <Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Use_Cases/03000014.png)</Frame>
@@ -32,7 +32,7 @@ You can recover the reclaimable capacity by actioning the recommendations, and p
 </Accordion>
 
 <Accordion title="How do I determine which VMs are oversized?">
-Guests that have too many allocated resources are considered to be oversized according to operational policy. By right-sizing these guests and reclaiming the resources, you can densify the hosts.
+Guests that have too many allocated resources are considered to be oversized according to operational policy. By right-sizing these guests and reclaiming the resources, you can Kubex the hosts.
 
 The Virtual Optimization > Opportunity > Clusters with Oversized Guests report provides the list of oversized guests, plus the bump-down recommendations required to reclaim the resources. For more information, see [Oversized Guests Reports](../Reporting_Framework/Oversized_Guests_Reports).
 
@@ -67,7 +67,7 @@ Reclaimable capacity is defined using the standard/average VM unit, having a spe
 <Accordion title="How do I plan for new demand?">
 Before you add more demand, you should make sure that your target environments are optimized and do not have significant risk. Imbalances and misallocations in resources can cause service-level problems. Adding more VMs to such environments can worsen the problems and can cause spare capacity to be reclaimed.
 
-Once your environments are in reasonable state, you can plan new demand through the Route and Reserve Demand page. Densify uses predictive analysis to determine which hosting venues have the capacity (as well as capabilities) to host the new demands. The Route and Reserve Demand page performs real-time checks on the capacity status to optimize placements based on latest operational conditions. It ensures the compute and storage capacity is held for that workload until it is ready to be deployed. See [Defining Demand](../Route_And_Reserve_Demand/Defining_Demand) to learn how to define booking requests and route them.
+Once your environments are in reasonable state, you can plan new demand through the Route and Reserve Demand page. Kubex uses predictive analysis to determine which hosting venues have the capacity (as well as capabilities) to host the new demands. The Route and Reserve Demand page performs real-time checks on the capacity status to optimize placements based on latest operational conditions. It ensures the compute and storage capacity is held for that workload until it is ready to be deployed. See [Defining Demand](../Route_And_Reserve_Demand/Defining_Demand) to learn how to define booking requests and route them.
 </Accordion>
 
 <Accordion title="How do I model inbound demand?">
@@ -80,7 +80,7 @@ See [Defining Demand](../Route_And_Reserve_Demand/Defining_Demand) to learn how 
 </Accordion>
 
 <Accordion title="Why did routing my booking requests fail?">
-Routing booking requests could fail for multiple reasons, such as: target hosting venue is not Fit for Purpose, no available capacity, the hosting venue is not accepting any new workloads, etc. Contact [Support@Densify.com](mailto:Support@Densify.com) for additional information.
+Routing booking requests could fail for multiple reasons, such as: target hosting venue is not Fit for Purpose, no available capacity, the hosting venue is not accepting any new workloads, etc. Contact [support@kubex.ai](mailto:support@kubex.ai) for additional information.
 </Accordion>
 
 <Accordion title="How do I plan for new supply?">
@@ -96,8 +96,8 @@ You can determine how many licenses are remaining by viewing the About dialog bo
 
 Two values of particular interest are “Full License Systems” and “Analysis Targets Used”.
 
-* "Full License Systems" is equivalent to the number of targets that are audited regularly. “Full License Systems” include the “Analysis Targets Used” and also include systems that are no longer being audited. These systems are typically candidates for eventual unlicensing and deletion. However, “Full License Systems” is the value that Densify license keys are tracking. During a period of transition (i.e. from older vCenters to newer, there may be confusion regarding duplicate systems.
-* The value of “Analysis Targets Used” is the number of systems that are in a control console or transform analysis. It includes VMs or physical servers for which Densify is generating right-size recommendations and in the case of VMs, running analyses that optimize stacking and rebalancing recommendations. Generally, these are the systems that are being audited daily.
+* "Full License Systems" is equivalent to the number of targets that are audited regularly. “Full License Systems” include the “Analysis Targets Used” and also include systems that are no longer being audited. These systems are typically candidates for eventual unlicensing and deletion. However, “Full License Systems” is the value that Kubex license keys are tracking. During a period of transition (i.e. from older vCenters to newer, there may be confusion regarding duplicate systems.
+* The value of “Analysis Targets Used” is the number of systems that are in a control console or transform analysis. It includes VMs or physical servers for which Kubex is generating right-size recommendations and in the case of VMs, running analyses that optimize stacking and rebalancing recommendations. Generally, these are the systems that are being audited daily.
 </Accordion>
 
 <Accordion title="Monitoring, Reporting and Trending Available Capacity">
@@ -130,7 +130,7 @@ The By the Numbers  page provides an overview of your environments, including de
 </Accordion>
 
 <Accordion title="How is the standard VM defined?">
-All reports, except for the Clusters with Supply/Demand Mismatch report, use a defined standard VM to size the available capacity. This defined standard VM is displayed as a footnote at the bottom of the report page for reference. To change the standard VM size, please contact [Support@Densify.com](mailto:Support@Densify.com).
+All reports, except for the Clusters with Supply/Demand Mismatch report, use a defined standard VM to size the available capacity. This defined standard VM is displayed as a footnote at the bottom of the report page for reference. To change the standard VM size, please contact [support@kubex.ai](mailto:support@kubex.ai).
 
 Note that you can define a separate standard VM size when routing new workloads through the Route and Reserve Demand page. See [Changing the Capacity Unit](../Route_And_Reserve_Demand/Viewing_Available_Capacity#Changing).
 </Accordion>
@@ -138,7 +138,7 @@ Note that you can define a separate standard VM size when routing new workloads 
 <Accordion title="How do I manage recommendations?">
 Recommendations are generated on a nightly basis by Control Console analytics, driven through policy. Recommendations help reduce risk and optimize your environments, bringing hosts and VMs "into the green". You can see the effect of actioning the recommendations by enabling the Display with recommendations applied through the Control Console. To view your recommendations, see [Working with Recommendations](../Control_Console/Working_with_Recommendations).
 
-Recommendations should be actioned on a regular basis. If using VMware, Action Automation can be used to manage and execute the recommendations for you. You can execute these recommendations through Action Automation. Contact [Support@Densify.com](mailto:Support@Densify.com) for details. If you are executing the recommendations manually, a customer-specific scripted solution or third-party tool must be used.
+Recommendations should be actioned on a regular basis. If using VMware, Action Automation can be used to manage and execute the recommendations for you. You can execute these recommendations through Action Automation. Contact [support@kubex.ai](mailto:support@kubex.ai) for details. If you are executing the recommendations manually, a customer-specific scripted solution or third-party tool must be used.
 
 You can see the same recommendations using two reports: the Virtual Optimization > Risk > Undersized Guests > Clusters with Undersized Guests report and the Virtual Optimization > Opportunity > Cluster Capacity in VM Units > Clusters with Reclaimable Capacity report. Use the historical reports to view progress. See [De-Risking Your Environment](../Reporting_Framework/De-Risking_Your_Environment) and [Densifying Your Environment](../Reporting_Framework/Densifying_Your_Environment)
 </Accordion>
@@ -161,21 +161,21 @@ Alternatively, you can add supply and then use the Forecast reports or Route and
 </Accordion>
 
 <Accordion title="How do I project how much bigger VMs should be if additional utilization is expected?">
-In some cases it may be necessary to increase the resource allocations for VMs if you know that increased utilization is expected in the near future. To determine this increase, contact [Support@Densify.com](mailto:Support@Densify.com).
+In some cases it may be necessary to increase the resource allocations for VMs if you know that increased utilization is expected in the near future. To determine this increase, contact [support@kubex.ai](mailto:support@kubex.ai).
 </Accordion>
 
 </Accordion>
 
 <Accordion title="Performing What-If Scenarios">
 <Accordion title="How do I estimate the amount of resources I need for a hardware upgrade?">
-For any hardware upgrade, contact [Support@Densify.com](mailto:Support@Densify.com).
+For any hardware upgrade, contact [support@kubex.ai](mailto:support@kubex.ai).
 </Accordion>
 
 </Accordion>
 
 <Accordion title="Densify Connector">
 <Accordion title="How do I limit my data collection to selected VMware clusters?">
-Create a vCenter read-only account and limit the Densify Connector to specific clusters. See [Installing the Densify Connector](../Densify_Com/Data_Collection_Connector_Installing)
+Create a vCenter read-only account and limit the Kubex Connector to specific clusters. See [Installing the Kubex Connector](../Densify_Com/Data_Collection_Connector_Installing)
 </Accordion>
 
 </Accordion>

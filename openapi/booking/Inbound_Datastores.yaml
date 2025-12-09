@@ -1,11 +1,11 @@
 openapi: 3.1.0
 info:
-  title: Densify API - Inbound Datastores
+  title: Kubex API - Inbound Datastores
   description: API for managing inbound datastores in Densify's full control hosting venues.
   version: 1.0.0
 servers:
   - url: https://api.densify.com/v1
-    description: Densify API Server
+    description: Kubex API Server
 paths:
   /inbound-datastores:
     get:

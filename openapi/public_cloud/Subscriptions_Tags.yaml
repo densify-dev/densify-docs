@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – Subscriptions Tags API
+  title: Kubex – Subscriptions Tags API
   version: "1.0.0"
   description: |
     Catalog of system attribute *tags* that subscriptions can reference via `tagReferences`.
@@ -241,7 +241,7 @@ components:
       properties:
         tagRef:        { type: string, description: "Unique reference ID." }
         tagName:       { type: string, description: "Tag name (unique per scope)." }
-        attributeName: { type: string, description: "Must be a Densify standard attribute or technology-specific ('Resource Tags' / 'Container Labels')." }
+        attributeName: { type: string, description: "Must be a Kubex standard attribute or technology-specific ('Resource Tags' / 'Container Labels')." }
         aliasName:     { type: string, description: "Display alias (scope-unique per rules)." }
         technology:
           type: string

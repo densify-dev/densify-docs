@@ -6,9 +6,9 @@ title: "Routing Workloads to Reserve Capacity for a Future Date"
 
 This use case determines where best to route a given set of Workloads at a future date. When the call is successful, capacity is reserved in the target environment and hosting venue for the future Workloads.
 
-A common scenario for this use case is initiated when a user makes a request to a cloud portal to reserve capacity for one or more virtual machines for a future date. The cloud portal, in turn, queries Densify for the best environment/hosting venue for the incoming Workload demand. Based on the results of the query, the cloud portal reserves capacity for the guests in the appropriate cloud infrastructure. The Routing Request is evaluated against all available hosting venues and the Workloads are routed to a hosting venue where the aggregate utilization of all Workloads fit and the policy constraints are satisfied. The Workloads may be routed and placed on different hosts within the hosting venue.
+A common scenario for this use case is initiated when a user makes a request to a cloud portal to reserve capacity for one or more virtual machines for a future date. The cloud portal, in turn, queries Kubex for the best environment/hosting venue for the incoming Workload demand. Based on the results of the query, the cloud portal reserves capacity for the guests in the appropriate cloud infrastructure. The Routing Request is evaluated against all available hosting venues and the Workloads are routed to a hosting venue where the aggregate utilization of all Workloads fit and the policy constraints are satisfied. The Workloads may be routed and placed on different hosts within the hosting venue.
 
-To perform this process through the Densify API, follow the sections below:
+To perform this process through the Kubex API, follow the sections below:
 
 1. [Describing Workloads to Place](./Routing_Workloads_for_Immediate_Placement#_Describe_Workloads_to)
 2. [Submitting Routing Request for Future Reservations](#_Submitting_Routing_Request)

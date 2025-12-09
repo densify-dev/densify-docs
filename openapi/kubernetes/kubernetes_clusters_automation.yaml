@@ -1,13 +1,13 @@
 openapi: 3.0.3
 info:
-  title: Densify API -- Kubernetes Clusters Automation
+  title: Kubex API -- Kubernetes Clusters Automation
   version: "1.0"
 servers:
   - url: https://{host}/api/v2
     variables:
       host:
         default: api.example.com
-        description: Replace with your Densify API host
+        description: Replace with your Kubex API host
 paths:
   "/kubernetes/clusters/{clusterName}/automation":
     get:

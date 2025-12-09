@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – Analysis Webhook API
+  title: Kubex – Analysis Webhook API
   version: "1.0.0"
   description: >
     Manage webhook definitions for analyses. Supports listing by platform, getting,

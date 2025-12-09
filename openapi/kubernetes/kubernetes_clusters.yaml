@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Densify API – Kubernetes Clusters
+  title: Kubex API – Kubernetes Clusters
   version: 1.0.0
   description: |
     Endpoints to list Kubernetes clusters configured in the data forwarder
@@ -12,7 +12,7 @@ servers:
     variables:
       host:
         default: api.example.com
-        description: Replace with your Densify API host
+        description: Replace with your Kubex API host
 tags:
   - name: Kubernetes Clusters
     description: Clusters discovered via the data forwarder

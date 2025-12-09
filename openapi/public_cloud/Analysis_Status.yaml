@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – Analysis Status API
+  title: Kubex – Analysis Status API
   version: "1.0.0"
   description: >
     GET `/analysis/{platformType}/{platformSubType}/{analysisId}/status` returns the current

@@ -413,7 +413,7 @@ The content of the table as well as the totals at the bottom reflect applied fil
 </td>
 <td style={{verticalAlign: "middle", textAlign: "left", padding: "8px", border: "1px solid #ccc"}}>
 <p>This column indicates the name of the Kubernetes cluster that the scale group is hosting. When populated the analysis requires additional information to ensure the scale group can satisfy all of the container requests. </p>
-<p>If the column "K8s Node Group" is populated with a dash (-) or the column is not visible, then consider deploying the <span style={{fontWeight: "bold"}}>Densify</span> <a href="#">data forwarder</a> into this cluster to collect the required data. Contact <span style={{fontWeight: "bold"}}>Support@Densify.com</span> for details.  </p>
+<p>If the column "K8s Node Group" is populated with a dash (-) or the column is not visible, then consider deploying the <span style={{fontWeight: "bold"}}>Densify</span> <a href="#">data forwarder</a> into this cluster to collect the required data. Contact <span style={{fontWeight: "bold"}}>support@kubex.ai</span> for details.  </p>
 <p><strong>Note: </strong>This column is displayed only if the scale group is hosting a Kubernetes cluster.</p>
 </td>
 <td style={{verticalAlign: "middle", textAlign: "left", padding: "8px", border: "1px solid #ccc"}}>
@@ -523,7 +523,7 @@ The content of the table as well as the totals at the bottom reflect applied fil
 <td style={{verticalAlign: "middle", textAlign: "left", padding: "8px", border: "1px solid #ccc"}}>
 <p>This is the percentage of reserved instance (RI)&nbsp;coverage  available for the current instance. Flexible RIs are taken into consideration when calculating the percentage of RI coverage. However, convertible RIs are included in the calculation depending on the RI&nbsp;coverage assessment <span style={{fontWeight: "bold"}}>Densify</span> settings.</p>
 <p> For individual compute or database instances, the coverage percentage is either 100% or 0%. Coverage between 0 and 100% occurs when Flexible RIs are converted into partial coverage.</p>
-<p>Contact <span style={{fontWeight: "bold"}}>Support@Densify.com</span> to review your RI candidate policies and RI coverage assessment <span style={{fontWeight: "bold"}}>Densify</span> settings. </p>
+<p>Contact <span style={{fontWeight: "bold"}}>support@kubex.ai</span> to review your RI candidate policies and RI coverage assessment <span style={{fontWeight: "bold"}}>Densify</span> settings. </p>
 </td>
 <td style={{verticalAlign: "middle", textAlign: "left", padding: "8px", border: "1px solid #ccc"}}>
 <ul>
@@ -543,7 +543,7 @@ The content of the table as well as the totals at the bottom reflect applied fil
 <li>"-" --not applicable; this is also the case for "Just Right" recommendation.</li>
 </ul>
 <p>An icon  on this column indicates that instances that are RI-constrained should not be modified to the recommended instance type at this time, since the current instance has existing reserved instance coverage. When the applicable reserved instances expire (as indicated by the "Current RI Expiry Date"), then the instance can be modified to the recommended instance type.</p>
-<p>Contact <span style={{fontWeight: "bold"}}>Support@Densify.com</span> to review the setting for "AWS&nbsp;Defer Recommendations". .</p>
+<p>Contact <span style={{fontWeight: "bold"}}>support@kubex.ai</span> to review the setting for "AWS&nbsp;Defer Recommendations". .</p>
 </td>
 <td style={{verticalAlign: "middle", textAlign: "left", padding: "8px", border: "1px solid #ccc"}}>
 <ul>
@@ -769,7 +769,7 @@ The content of the table as well as the totals at the bottom reflect applied fil
     - In the API, "Terminate" is returned in the /results.
   - Keep – If the current average group size is the same as the recommended average group size.  
     The optimization type = Just Right.
-  - Review – If Densify recommends changing one or more of instance type, average, minimum or maximum group size.
+  - Review – If Kubex recommends changing one or more of instance type, average, minimum or maximum group size.
 
 - VM Scale Set is NOT managed by an AKS cluster:
   - No Value – If the optimization type = Terminate, then:
@@ -777,8 +777,8 @@ The content of the table as well as the totals at the bottom reflect applied fil
     - In the API, "Terminate" is returned in the /results.
   - Keep – If the current average group size, minimum and maximum group size are not changed.  
     The optimization type = Just Right.
-  - Review – If Densify recommends changing one or more of instance type, average, minimum or maximum group.
-  - Enable Autoscale – If Densify recommends changing one or more of instance type, average, minimum  
+  - Review – If Kubex recommends changing one or more of instance type, average, minimum or maximum group.
+  - Enable Autoscale – If Kubex recommends changing one or more of instance type, average, minimum  
     or maximum group size and the VM Scale Set is not managed by AKS.
   - Adjust – If the current average group size is not the same as the predicted average group size **AND**  
     instance type and minimum and maximum group size do not change **AND** the VM Scale Set is not managed by AKS.
@@ -1121,17 +1121,17 @@ The following descriptions and color coding apply to all tables with cloud insta
 
 ### Details - VM Scale Set Mixed Mode Services
 
-Densify cannot analyze VM Scale Set with a set of mixed instance types i.e. VM Scale Set configured with Orchestration Mode = Flexible. However, a scale set with Orchestration Mode = Flexible, can still be configured to run on one instance type and Densify can analyze these services.
+Densify cannot analyze VM Scale Set with a set of mixed instance types i.e. VM Scale Set configured with Orchestration Mode = Flexible. However, a scale set with Orchestration Mode = Flexible, can still be configured to run on one instance type and Kubex can analyze these services.
 
 Densify checks the VM Scale Set to determine if it is actually configured to run a mix of instance types or to run on a single instance type. Mixed groups are tagged by setting the attribute, "Mixed Instance Policy Set" to True and these scale sets are filtered from the analysis using the Cloud Environment filter.
 
-Additionally, Densify detects mixed instance configurations that result from changes to the launch configuration/scale set model. When the configuration of a VM Scale Set changes then in the event of scale out, new instances are created based on the new configuration, while the existing child instances continue to run with the previous configuration.
+Additionally, Kubex detects mixed instance configurations that result from changes to the launch configuration/scale set model. When the configuration of a VM Scale Set changes then in the event of scale out, new instances are created based on the new configuration, while the existing child instances continue to run with the previous configuration.
 
 In the event of a scale in, VM Scale Sets are typically set to favour terminating instances created via the old launch template. This behaviour may also result in a mix of instance types.
 
 Densify detects these changes and excludes services where the configuration of the scale set has changed but the running child-instances have not been affected.
 
-Where Orchestration Mode = Uniform, Densify tags the VM Scale Set with the attribute, "Mixed Instance Policy Set"=True, when:
+Where Orchestration Mode = Uniform, Kubex tags the VM Scale Set with the attribute, "Mixed Instance Policy Set"=True, when:
 
 
 <ul>

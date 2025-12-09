@@ -3,7 +3,7 @@ title: "Optimizing GCP Compute Engine Instances"
 ---
 
 
-This use case includes GCP cloud infrastructure data collection, analysis, and generation of right-sizing recommendations for Compute Engine instances using a combination of Densify Console and Densify API operations. The recommendations, which can be downloaded on demand via Densify API, provide extensive details that can be used to feed downstream automation engines in either JSON or terraform-map formats.
+This use case includes GCP cloud infrastructure data collection, analysis, and generation of right-sizing recommendations for Compute Engine instances using a combination of Kubex Console and Kubex API operations. The recommendations, which can be downloaded on demand via Kubex API, provide extensive details that can be used to feed downstream automation engines in either JSON or terraform-map formats.
 
 A comprehensive PDF report can be downloaded for each instance to supply supporting evidence for a recommendation; this can be reviewed by a system owner before approvals are given for the suggested changes.
 
@@ -16,13 +16,13 @@ The diagram below provides an overview of the three major processes in Densify:
 
 1. **Data Collection**--Collect GCP data into Densify.
 
-   Use the Densify API or the Densify Console to initiate this process.
+   Use the Kubex API or the Kubex Console to initiate this process.
 2. **Analysis**--Analyze collected data based on pre-defined policies to make recommendations.
 
-   The analysis process is initiated automatically after data collection completes. Results can be immediately pulled from the Densify API or pushed to a webhook URI once the analysis is complete.
+   The analysis process is initiated automatically after data collection completes. Results can be immediately pulled from the Kubex API or pushed to a webhook URI once the analysis is complete.
 3. **Reporting Database Update**--Update reporting database tables with analysis results for reporting.
 
-   The reporting database update process is scheduled to run nightly after the analysis refresh is completed. The Densify Console GCP optimization opportunity report and the Impact Analysis and Recommendation reports are available after the reporting database update is complete.
+   The reporting database update process is scheduled to run nightly after the analysis refresh is completed. The Kubex Console GCP optimization opportunity report and the Impact Analysis and Recommendation reports are available after the reporting database update is complete.
 
 <Note>
 Before you can collect GCP cloud infrastructure data in Densify, you need to create a GCP service account with services enabled and permissions configured. See [Google Cloud Platform Data Collection Prerequisites](/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites) for details.
@@ -30,8 +30,8 @@ Before you can collect GCP cloud infrastructure data in Densify, you need to cre
 
 The steps below outline a typical workflow to optimize GCP Compute Engine instances:
 
-1. From the Densify API: [Authenticate using JWT](#_Authorize)--Retrieve a token to authenticate each API call.
-2. Collect GCP data through the Densify API or the Densify Console. See [Configuring a Google Cloud Platform Connection](/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Using_the_Public_Cloud_Connection_Wizard#GCP_Connection) for details.
+1. From the Kubex API: [Authenticate using JWT](#_Authorize)--Retrieve a token to authenticate each API call.
+2. Collect GCP data through the Kubex API or the Kubex Console. See [Configuring a Google Cloud Platform Connection](/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Using_the_Public_Cloud_Connection_Wizard#GCP_Connection) for details.
 
    After data collection completes, an analysis is initiated for each project associated with the GCP account configured for data collection.
 3. API: [List All GCP Analyses](#_ListAnalysis)--Query for the analysis entity of each project for which data was collected (from step 1). You can use the returned analysis entity to check for status and recommendations.
@@ -39,9 +39,9 @@ The steps below outline a typical workflow to optimize GCP Compute Engine insta
 5. API: [Download Results to Apply Recommendations](#_Results)--Retrieve recommendations for actioning or forward to orchestration engine.
 
    Alternatively, you can [Add a Webhook to an Existing GCP Analysis](#_AddWebhook) to push recommendations to an external URI once the next analysis process completes.
-6. API/Console (optional): [Download Impact Analysis and Recommendation Instance Report](#_Download) for system owners. This can achieved from the Densify API or from the Densify Console. See[Viewing the Impact Analysis and Recommendation Report](/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Viewing_the_Impact_Analysis_and_Recommendation_Report) for details on the content of the report.
-7. Console (optional alternative): Review GCP Virtual Machine optimization opportunity report from the Densify Console. See [GCP](/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Optimizing_Your_Public_Cloud#GCP) for details. The optimization opportunity report is available after the nightly reporting database update.
-8. Console (optional): Review GCP optimization policy settings used during analysis. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+6. API/Console (optional): [Download Impact Analysis and Recommendation Instance Report](#_Download) for system owners. This can achieved from the Kubex API or from the Kubex Console. See[Viewing the Impact Analysis and Recommendation Report](/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Viewing_the_Impact_Analysis_and_Recommendation_Report) for details on the content of the report.
+7. Console (optional alternative): Review GCP Virtual Machine optimization opportunity report from the Kubex Console. See [GCP](/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Optimizing_Your_Public_Cloud#GCP) for details. The optimization opportunity report is available after the nightly reporting database update.
+8. Console (optional): Review GCP optimization policy settings used during analysis. Contact [support@kubex.ai](mailto:support@kubex.ai) for details.
 
 ### Postman Collection
 
@@ -49,7 +49,7 @@ Densify provides a Postman collection of sample API requests for working with y
 
 ### Authenticate using JWT
 
-Use the `/authorize` resource to retrieve an authenticated token to make subsequent API calls. See [Authorize](./Authorize) for details. By default, the token expires in 5 minutes, therefore you will need to ensure that you have an active token for each Densify API request.
+Use the `/authorize` resource to retrieve an authenticated token to make subsequent API calls. See [Authorize](./Authorize) for details. By default, the token expires in 5 minutes, therefore you will need to ensure that you have an active token for each Kubex API request.
 
 <Accordion title="Example: Retrieving an Authenticated Token">
 Request:
@@ -75,7 +75,7 @@ Response:
 ```
 
 
-Use the `apiToken` value in your Authorization request header for subsequent Densify API calls.
+Use the `apiToken` value in your Authorization request header for subsequent Kubex API calls.
 </Accordion>
 
 

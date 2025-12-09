@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – Cloud Analyses API
+  title: Kubex – Cloud Analyses API
   version: "1.0.0"
   description: |
     Lists all cloud optimization analysis entities across providers (AWS, Azure, GCP).

@@ -8,7 +8,7 @@ This resource acts as a catalog of the suppression tags or properties to be refe
 
 There is a catalog for each supported `<platformType>`, which can only be referenced by the corresponding `<platformType>` subscription. For example, a container subscription (i.e. `/subscriptions/containers`) can only reference suppressions from the Container Subscriptions Suppressions catalog (i.e. `/subscriptions/containers/suppressions`).
 
-Suppression entries can be declared as global or private (i.e. user-specific). Global suppression entries can be used by any API enabled user, while private entries can only be used by their owners. Note that <Tooltip tip="An administrative user is a Densify user in the Administrator user group or with the Analysis Admin role.">administrative users</Tooltip> have access to all suppression entries - global or private user-specific.
+Suppression entries can be declared as global or private (i.e. user-specific). Global suppression entries can be used by any API enabled user, while private entries can only be used by their owners. Note that <Tooltip tip="An administrative user is a Kubex user in the Administrator user group or with the Analysis Admin role.">administrative users</Tooltip> have access to all suppression entries - global or private user-specific.
 
 ## Resource
 
@@ -25,7 +25,7 @@ Suppression entries can be declared as global or private (i.e. user-specific). G
 ```
 
 <Note>
-If you use this resource without the `<platformType>` specified (i.e. without `cloud` or `containers` specified), the behavior is exactly the same as specifying the `cloud`-specific resource. This behavior enables backward compatibility with scripts using the Densify API prior to release 12.1.6, where the platform-specific indicator was not available.
+If you use this resource without the `<platformType>` specified (i.e. without `cloud` or `containers` specified), the behavior is exactly the same as specifying the `cloud`-specific resource. This behavior enables backward compatibility with scripts using the Kubex API prior to release 12.1.6, where the platform-specific indicator was not available.
 </Note>
 
 ## endpoints

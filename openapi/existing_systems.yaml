@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Densify API – Existing Systems
+  title: Kubex API – Existing Systems
   version: 1.0.0
   description: |
     Endpoints to retrieve host and guest systems that belong to a control environment.

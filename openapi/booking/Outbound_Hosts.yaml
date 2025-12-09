@@ -1,11 +1,11 @@
 openapi: 3.1.0
 info:
-  title: Densify API - Outbound Hosts
+  title: Kubex API - Outbound Hosts
   description: API to manage hosts planned for removal in Densify.
   version: 1.0.0
 servers:
   - url: https://api.densify.com/v1
-    description: Main Densify API server
+    description: Main Kubex API server
 paths:
   /outbound-hosts:
     get:

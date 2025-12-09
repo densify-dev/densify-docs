@@ -4,17 +4,17 @@ title: "Action Automation Overview"
 
 Densify provides two types of automation that work together to maintain the efficiency of both your on-premise and/or your hybrid cloud environments.
 
-Proactive automation allows you to execute the recommendations resulting from your Densify analyses, thus maintaining your environments at optimal efficiency. The analysis refreshes are performed nightly and recommendations are generated and executed overnight based on policy settings, including software license optimization, if implemented. With Proactive Automation enabled, your environment should be optimized overnight and be ready to efficiently host workloads during the day.
+Proactive automation allows you to execute the recommendations resulting from your Kubex analyses, thus maintaining your environments at optimal efficiency. The analysis refreshes are performed nightly and recommendations are generated and executed overnight based on policy settings, including software license optimization, if implemented. With Proactive Automation enabled, your environment should be optimized overnight and be ready to efficiently host workloads during the day.
 
 Real-Time automation allows you to configure alarms that trigger recommendations to allocate resources during daily operation to address performance issues during the day. This mode of automation also addresses situations where Proactive automation cannot execute the required recommendations.
 
 <Note>
-Both types of automation are only supported for managed services and environments for which the Densify Connector is used to collect data.
+Both types of automation are only supported for managed services and environments for which the Kubex Connector is used to collect data.
 </Note>
 
 
 
-After the initial setup is performed by [Support@Densify.com](mailto:Support@Densify.com), no manual intervention is required. Recommendations are grouped by type, collected by the Densify Connector and then executed on your vCenter.
+After the initial setup is performed by [support@kubex.ai](mailto:support@kubex.ai), no manual intervention is required. Recommendations are grouped by type, collected by the Kubex Connector and then executed on your vCenter.
 
 Densify takes a conservative approach when performing action automation, so that the stability of your environment is never at risk. Action Automation can be configured to maintain the power state of your VMs. CPU and/or memory allocation changes can be done on running VMs that support "hot add". Allocation changes can also be made on VMs that are shut down or changes can be queued and made on the VM once it has been shutdown for maintenance, etc. You can also configure both types of automation to gracefully shutdown a VM, make the required changes and then restart it.
 
@@ -26,13 +26,13 @@ To learn more watch the video:
 
 ## Actioning Disk Allocation Recommendations
 
-Densify generates both Per Disk Allocation and aggregate Disk Allocation recommendations. Only the Per Disk Allocation bump up recommendations are actionable and are supported only through the Densify Connector using proactive automation.
+Densify generates both Per Disk Allocation and aggregate Disk Allocation recommendations. Only the Per Disk Allocation bump up recommendations are actionable and are supported only through the Kubex Connector using proactive automation.
 
-To enable the Per Disk Allocation bump up recommendations, you need to collect data from the VMware systems and their per disk metrics through the Densify Connector. From these recommendations, only certain disks can be resized, as described below. Recommendations for which disks cannot be resized are skipped and reported as such.
+To enable the Per Disk Allocation bump up recommendations, you need to collect data from the VMware systems and their per disk metrics through the Kubex Connector. From these recommendations, only certain disks can be resized, as described below. Recommendations for which disks cannot be resized are skipped and reported as such.
 
 Bump ups are performed through VMware Tools, to expand VM virtual disks and resize OS partitions.
 
-You can see the Per Disk Allocation recommendations through the Densify Console, through Automation > Proactive Automation > Proactive Allocation Changes. See [Using Proactive Automation](./Using_Proactive_Automation) for details.
+You can see the Per Disk Allocation recommendations through the Kubex Console, through Automation > Proactive Automation > Proactive Allocation Changes. See [Using Proactive Automation](./Using_Proactive_Automation) for details.
 
 ### VMware Tools
 

@@ -26,11 +26,11 @@ For Routing Requests routed for today, once the best hosting venue is determined
 
 ### Assessing Datastore
 
-If the datastore preference is specified in the Workload disk definition, Densify will try to respect the preferred placement according to the best candidate environment and hosting venue selected. If the preferred datastore is not available in the selected hosting venue, does not satisfy the tier condition, or does not have enough capacity, then the next suitable datastore available in the venue will be used. Regardless if the preferred datastore is used during routing, the Datastore Preference value is still preserved in the Workload disk definition after placement.
+If the datastore preference is specified in the Workload disk definition, Kubex will try to respect the preferred placement according to the best candidate environment and hosting venue selected. If the preferred datastore is not available in the selected hosting venue, does not satisfy the tier condition, or does not have enough capacity, then the next suitable datastore available in the venue will be used. Regardless if the preferred datastore is used during routing, the Datastore Preference value is still preserved in the Workload disk definition after placement.
 
 ### Forced Placement
 
-A particular hosting venue may not be a candidate for routing when it does not have the capacity, does not pass the Fit-for-Purpose validation or does not have the required storage tier requirements. With the `?force=true` option, a Routing Request can be forced to route to that hosting venue. Densify will then select the least full host and datastores (taking datastores with lower storage tier priorities if necessary), even if policy limits are violated or capacity is in the negative.
+A particular hosting venue may not be a candidate for routing when it does not have the capacity, does not pass the Fit-for-Purpose validation or does not have the required storage tier requirements. With the `?force=true` option, a Routing Request can be forced to route to that hosting venue. Kubex will then select the least full host and datastores (taking datastores with lower storage tier priorities if necessary), even if policy limits are violated or capacity is in the negative.
 
 The routing of disks with `?force=true` is performed in the following order:
 
@@ -125,10 +125,10 @@ If any of the Workloads within a request cannot be placed and/or booked (because
 
 You have two sensor placement options when routing workloads:
 
-* Balancing Strategy--Distributes incoming workloads across all suitable hosting venues with available sensor capacity. Using this option the resource with available sensor capacity that also matches the fit-for-purpose requirements of the incoming workload and has the most available capacity among all matching candidates is selected. Densify attempts to balance workloads across all available hosting venues. This is the default behaviour.
+* Balancing Strategy--Distributes incoming workloads across all suitable hosting venues with available sensor capacity. Using this option the resource with available sensor capacity that also matches the fit-for-purpose requirements of the incoming workload and has the most available capacity among all matching candidates is selected. Kubex attempts to balance workloads across all available hosting venues. This is the default behaviour.
 * Fill and Spill Strategy--Fills suitable hosting venues with available sensor capacity with incoming workloads until the resource reaches its threshold. When routing, the workloads with matching fit-for-purpose requirements are placed on the resource with the least capacity, first.
 
-You can specify sensor placement strategy when submitting a routing request via the API or you can set the placement strategy globally using a configuration setting. Contact [Support@Densify.com](mailto:Support@Densify.com) for details of configuring the global setting.
+You can specify sensor placement strategy when submitting a routing request via the API or you can set the placement strategy globally using a configuration setting. Contact [support@kubex.ai](mailto:support@kubex.ai) for details of configuring the global setting.
 
 <Note>
 If a preferred datastore is set, then that setting will override the sensor placement strategy (i.e. balanced/fill and spill).
@@ -153,7 +153,7 @@ At the end of each control environment refresh, existing data used for routing b
 
 During the period while this recalculation is performed, routing anomalies can occur. Specifically, while the sensor data is purged and then is temporarily unavailable for a given hosting venue. During routing of incoming workloads, any clusters that are in the state of sensor data recalculation are excluded from consideration as a hosting option.
 
-You can specify sensor lockout behaviour when submitting a routing request via the API or you can set the lockout during recalculation, globally using a configuration setting. Contact [Support@Densify.com](mailto:Support@Densify.com) for details of configuring the global setting.
+You can specify sensor lockout behaviour when submitting a routing request via the API or you can set the lockout during recalculation, globally using a configuration setting. Contact [support@kubex.ai](mailto:support@kubex.ai) for details of configuring the global setting.
 
 ### Auto-Reconciliation
 

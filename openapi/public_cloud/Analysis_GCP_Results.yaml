@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – GCP Recommendations API
+  title: Kubex – GCP Recommendations API
   version: "1.0.0"
   description: |
     GET `/analysis/cloud/gcp/{analysisId}/results` returns Compute Engine recommendations.
@@ -73,7 +73,7 @@ paths:
           in: query
           required: false
           schema: { type: string }
-          description: Filter by Densify entity ID.
+          description: Filter by Kubex entity ID.
         - name: accountIdRef
           in: query
           required: false

@@ -2,7 +2,7 @@
 title: "Optimizing Microsoft Azure Virtual Machine Instances"
 ---
 
-This use case includes Microsoft Azure cloud infrastructure data collection, analysis, and generation of right-sizing recommendations for Virtual Machine instances using a combination of Densify Console and Densify API operations. The recommendations, which can be downloaded on demand via Densify API, provide extensive details that can be used to feed downstream automation engines in either JSON or terraform-map formats.
+This use case includes Microsoft Azure cloud infrastructure data collection, analysis, and generation of right-sizing recommendations for Virtual Machine instances using a combination of Kubex Console and Kubex API operations. The recommendations, which can be downloaded on demand via Kubex API, provide extensive details that can be used to feed downstream automation engines in either JSON or terraform-map formats.
 
 A comprehensive PDF report can be downloaded for each instance to supply supporting evidence for a recommendation; this can be reviewed by a system owner before approvals are given for the suggested changes.
 
@@ -15,13 +15,13 @@ The diagram below provides an overview of the three major processes in Densify:
 
 1. **Data Collection**--Collect Azure data into Densify.
 
-   Use the Densify API or the Densify Console to initiate this process.
+   Use the Kubex API or the Kubex Console to initiate this process.
 2. **Analysis**--Analyze collected data based on pre-defined policies to make recommendations.
 
-   The analysis process is initiated automatically after data collection completes. Results can be immediately pulled from the Densify API or pushed to a webhook URI once the analysis is complete.
+   The analysis process is initiated automatically after data collection completes. Results can be immediately pulled from the Kubex API or pushed to a webhook URI once the analysis is complete.
 3. **Reporting Database Update**--Update reporting database tables with analysis results for reporting.
 
-   The reporting database update process is scheduled to run nightly after the analysis refresh process. The Densify Console Azure optimization opportunity report and the Impact Analysis and Recommendation reports are available after the reporting database update is complete.
+   The reporting database update process is scheduled to run nightly after the analysis refresh process. The Kubex Console Azure optimization opportunity report and the Impact Analysis and Recommendation reports are available after the reporting database update is complete.
 
 <Note>
 Before you can collect Microsoft Azure cloud infrastructure data in Densify, you need to create and configure an Azure account with access to your Azure subscriptions. See [Microsoft Azure Data Collection Prerequisites](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites) or [Microsoft Azure Data Collection Prerequisites for for a Service Principal](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_DataCollection_Prerequisites_for_a_Service_Principal) for details.
@@ -31,8 +31,8 @@ Before you can collect Microsoft Azure cloud infrastructure data in Densify, you
 
 The steps below outline a typical workflow to optimize Microsoft Azure Virtual Machine instances:
 
-1. From the Densify API: [Authenticate using JWT](#_Authorize)--Retrieve token to authenticate each subsequent API call.
-2. Collect Azure data through the Densify API or the Densify Console. See [Configuring a Microsoft Azure Connection](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Using_the_Public_Cloud_Connection_Wizard#Azure_Connection) for details.
+1. From the Kubex API: [Authenticate using JWT](#_Authorize)--Retrieve token to authenticate each subsequent API call.
+2. Collect Azure data through the Kubex API or the Kubex Console. See [Configuring a Microsoft Azure Connection](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Using_the_Public_Cloud_Connection_Wizard#Azure_Connection) for details.
 
 After data collection completes, an analysis is initiated for each subscription associated with the Azure account configured for data collection.
 
@@ -42,9 +42,9 @@ After data collection completes, an analysis is initiated for each subscription 
 
 Alternatively, you can [Add a Webhook to an Existing Azure Analysis](#_AddWebhook) to push recommendations to an external URI once the next analysis process completes.
 
-6. API/Console (optional): [Download Impact Analysis and Recommendation Instance Report](#_Download) for system owners. This can achieved from the Densify API or from the Densify Console. See [Viewing the Impact Analysis and Recommendation Report](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Viewing the Impact Analysis and Recommendation Report) for details of the report from the Densify Console.
-7. Console (optional alternative): Review Azure Virtual Machine optimization opportunity report from the Densify Console. See [Azure](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Optimizing Your Public Cloud#Azure) for details. The optimization opportunity report is available after the nightly reporting database update.
-8. Console (optional): Review Azure optimization policy settings used during analysis from the Densify Console. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+6. API/Console (optional): [Download Impact Analysis and Recommendation Instance Report](#_Download) for system owners. This can achieved from the Kubex API or from the Kubex Console. See [Viewing the Impact Analysis and Recommendation Report](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Viewing the Impact Analysis and Recommendation Report) for details of the report from the Kubex Console.
+7. Console (optional alternative): Review Azure Virtual Machine optimization opportunity report from the Kubex Console. See [Azure](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Optimizing Your Public Cloud#Azure) for details. The optimization opportunity report is available after the nightly reporting database update.
+8. Console (optional): Review Azure optimization policy settings used during analysis from the Kubex Console. Contact [support@kubex.ai](mailto:support@kubex.ai) for details.
 
 ## Postman Collection
 
@@ -52,7 +52,7 @@ Densify provides a Postman collection of sample API requests for working with y
 
 ## Authenticate using JWT
 
-Use the `/authorize` resource to retrieve an authenticated token to make subsequent API calls. See [Authorize](./Authorize) for details. By default, the token expires in 5 minutes, therefore you will need to ensure that you have an active token for each Densify API request.
+Use the `/authorize` resource to retrieve an authenticated token to make subsequent API calls. See [Authorize](./Authorize) for details. By default, the token expires in 5 minutes, therefore you will need to ensure that you have an active token for each Kubex API request.
 
 <Accordion title="Example: Retrieving an Authenticated Token">
 Request:
@@ -77,7 +77,7 @@ Response:
 ```
 
 
-Use the `apiToken` value in your Authorization request header for subsequent Densify API calls.
+Use the `apiToken` value in your Authorization request header for subsequent Kubex API calls.
 </Accordion>
 
 

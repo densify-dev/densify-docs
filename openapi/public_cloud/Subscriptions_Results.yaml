@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – Subscriptions Results API
+  title: Kubex – Subscriptions Results API
   version: "1.0.0"
   description: |
     On-demand retrieval of the latest personalized subscription results.

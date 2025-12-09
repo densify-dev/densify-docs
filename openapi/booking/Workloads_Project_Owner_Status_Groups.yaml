@@ -1,11 +1,11 @@
 openapi: 3.1.0
 info:
-  title: Densify Workload Grouping API
+  title: Kubex Workload Grouping API
   description: API for grouping workloads by project, owner, or status.
   version: 1.0.0
 servers:
   - url: https://api.densify.com/v1
-    description: Densify API Server
+    description: Kubex API Server
 paths:
   /workloads/projects:
     get:
