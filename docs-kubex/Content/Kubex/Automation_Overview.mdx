@@ -11,6 +11,7 @@ The Kubex Automation Controller provides intelligent, policy-driven automation f
 
 <ul>
   <li><strong>Automated Resizing</strong>: Dynamic CPU and memory optimization based on actual usage patterns</li>
+  <li><strong>Zero-Downtime Optimization</strong>: In-place container resizing without pod restarts (Kubernetes 1.33+) with automatic fallback to pod eviction</li>
   <li><strong>Safety-First Approach</strong>: Multi-layered validation that is HPA-aware, enforces LimitRange and ResourceQuota policies, respects PodDisruptionBudgets, and validates node capacity before applying changes</li>
   <li><strong>Smart Pause Control</strong>: Annotation-based pausing for learning periods after application changes or applying permanent exclusions</li>
   <li><strong>Policy-Driven</strong>: Configurable automation rules for downsizing, upsizing, and constraint handling</li>
