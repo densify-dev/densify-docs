@@ -5,7 +5,7 @@ sidebarTitle: "Resolved Issues"
 
 The following page provides details of resolved issues, listed by release.
 
-## Densify Resolved Issues
+## Kubex Resolved Issues
 
 Issues resolved in each release are listed below:
 
@@ -65,4 +65,36 @@ Issues resolved in each release are listed below:
     - Issue with Kubernetes Resource Quota metrics collection.
     - Issue in which a panic condition was encountered during collection of NodeGroups data.
     - Issue related to linking of readme.md files on Docker hub.
+</Accordion>
+
+## Kubex Automation Controller Resolved Issues
+
+<Accordion title="1.0.8 - December 12, 2025">
+    - Issue where deployments in air-gapped or restricted network environments could not deploy the controller due to inability to pull the wait-for-Valkey init container image from public registries.
+</Accordion>
+
+<Accordion title="1.0.7 - December 11, 2025">
+    - Issue where mutating webhook was triggering on pod updates in addition to pod creation, causing unnecessary processing overhead.
+    - Issue with API timeouts during peak loads when retrieving recommendations from the Kubex API.
+    - Issue where pods with `cluster-autoscaler.kubernetes.io/safe-to-evict=false` annotation could be evicted despite the safety restriction.
+    - Issue in mixed clusters where Windows nodes were incorrectly considered for in-place resizing, which is not supported on Windows. Windows nodes are now automatically excluded from in-place resize attempts.
+</Accordion>
+
+<Accordion title="1.0.6 - December 9, 2025">
+    - Issue where the mutating webhook was being triggered unnecessarily during pod update operations, causing increased API server load.
+</Accordion>
+
+<Accordion title="1.0.4 - November 4, 2025">
+    - Issue where customers using external secret management tools could not deploy the controller without allowing the Helm chart to create secrets internally.
+    - Issue where the controller could only be deployed in specific predefined namespaces, limiting flexibility in multi-tenant environments.
+</Accordion>
+
+<Accordion title="1.0.3 - October 31, 2025">
+    - Issue where environment variables lacked namespace context, complicating multi-namespace deployments and troubleshooting.
+</Accordion>
+
+<Accordion title="1.0.1 - August 22, 2025">
+    - Issue where secrets exposed through environment variables could be viewed through process listings.
+    - Issue where CA bundle had to be manually configured for webhook TLS certificates.
+    - Issue where gateway container lacked resource limits, potentially causing resource contention.
 </Accordion>
