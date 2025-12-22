@@ -57,7 +57,7 @@ This topic summarizes both new and updated features introduced in Kubex
       - Kubex now supports data collection and analysis of containers running in GKE Autopilot Clusters providing visibility to container level risk and waste along with remediation recommendations for optimizing container resource allocations.  
 </Accordion>
 <Accordion title="3.7.0 November 6, 2025">
-  <Accordion title="Kubex Updates">
+  <Accordion title="Updates to Container Optimization">
     The following changes have been made to Kubex in this release:
 
     - **CPU Throttling Risks** 
@@ -67,7 +67,7 @@ This topic summarizes both new and updated features introduced in Kubex
         <img src="/images/docs/ReleaseNotes/v3.7/cpu_throttling_risk_historgram.png" width="100%" />
       </Frame>
   </Accordion>
-  <Accordion title="Cloudex Updates">
+  <Accordion title="Updates to Cloud Optimization">
     - **Optimization Trends**
       - The Optimization Trends reports visualize historical trends across key operational metrics, including instance counts, costs, savings, and CPU/Memory utilization. This helps users better understand performance patterns and optimization impact over time.
       - Dashboards can be personalized — users can select which reports to display and organize them in their preferred layout. Each report can be resized to small, medium, or large for optimal viewing.
@@ -82,7 +82,7 @@ This topic summarizes both new and updated features introduced in Kubex
   </Accordion>
 </Accordion>
 <Accordion title="3.6.0 October 1, 2025">
-  <Accordion title="Kubex Updates">
+  <Accordion title="Updates to Container Optimization">
     The following changes have been made to Kubex in this release:
 
     - **GPU MIG Recommendation**--Supports NVIDIA MIG (Multi-Instance GPU) technology, recommending whether workloads should use a full GPU or a fraction (MIG slice). 
@@ -105,7 +105,7 @@ This topic summarizes both new and updated features introduced in Kubex
       - Container API now include a “analyzedOn” date which allows the automation to only consider fresh recommendations.
       - Removed the word “AI” from “AI Analysis Details”
   </Accordion>
-  <Accordion title="Cloudex Updates">
+  <Accordion title="Updates to Cloud Optimization">
     - **Policies**--View policies for Cloud environments in a new modal, accessible from the Policies tab and Analysis Details table.
       <Frame caption="Figure: Policy Modal">
         <img src="/images/docs/ReleaseNotes/v3.6/cloudex_policy_modal.png" width="100%" />
@@ -136,7 +136,7 @@ This topic summarizes both new and updated features introduced in Kubex
 </Accordion>  
 
 <Accordion title="3.5.0 August 13, 2025">
-  <Accordion title="Kubex Updates">
+  <Accordion title="Updates to Container Optimization">
     The following changes have been made to Kubex in this release:
 
      - **Updated Container Summary Tab**--The container summary page has been updated with a new look and feel to better highlight current spend, waste, and risk.
@@ -159,8 +159,8 @@ columns
 allocated now receive recommendations for downsize opportunities. The GPU Overview page has been updated to highlight this information:
       - Added system views to Analysis Details (Immediate GPU Savings & Addtional GPU Waste)
   </Accordion>
-  <Accordion title="Cloudex Updates">
-    The following changes have been made to Cloudex in this release:
+  <Accordion title="Updates to Cloud Optimization">
+    The following changes have been made to Public Cloud optimization in this release:
 
     - **Effort Popup**--The Effort column on the Analysis Details page is now clickable, showing a popup with additional details on the effort required to change to the recommended instance type.
       - Overall effort is the highest effort of the individual rule items. Possible values are None, Low, Medium, and High
@@ -170,7 +170,7 @@ columns
 </Accordion>  
 
 <Accordion title="3.4.0 July 9, 2025">
-  <Accordion title="Kubex Updates">
+  <Accordion title="Updates to Container Optimization">
     The following changes have been made to Kubex in this release:
 
     - **Updated Container Summary Tab**--The container summary page has been updated to better highlight both your current spend and the details of possible savings.
@@ -183,14 +183,14 @@ columns
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
-  <Accordion title="Cloudex Updates">
-    The following changes have been made to Cloudex in this release:
+  <Accordion title="Updates to Cloud Optimization">
+    The following changes have been made to the Public Cloud optimization in this release:
 
-    - **Cloud Connections**--In this release you can now can create and edit the connections to AWS and Azure. You can also view data collection status for each of the connections. Cloudex uses these connections to collect data from each account, daily.
+    - **Cloud Connections**--In this release you can now can create and edit the connections to AWS and Azure. You can also view data collection status for each of the connections. Kubex uses these connections to collect data from each account, daily.
     - **Accessing the Catalog Map**--You can now access the catalog map directly from the Analysis Details tab. The catalog map with a modal view has been added to the utilization charts. You now do not need to leave the Analysis Details tab to use the catalog map.
     - **Summary Tab**--The Cloud Summary tab has been updated to improve useability.
 
-    Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
+    Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
   <Accordion title="Enhanced Cost Modeling">
     The following changes have been made to improve how Kubex determines the cost of public cloud instances, using customer-specific discounts:
@@ -202,7 +202,7 @@ columns
       - License Model (Attr_key is aws:licensemodel)--The licensing model that has been configured for a cloud instance )
       - Life Cycle (Attr_key is aws:lifecycle)--This attribute is not currently used but is collected for future development. It is used to store whether or not the instance is a spot instance. Possible values are "spot" or "normal"
 
-    Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
+    Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
 </Accordion>
 
@@ -211,14 +211,14 @@ columns
     The following changes have been made to Kubex in this release:
 
     - **Node Modal**--A new modal opens when you click a node name on the Node Details page.
-    - **Performance Improvements**-- The Kubex/Cloudex UI no longer retrieves data from the Kubex Reporting Database (RDB). All Kubex and Cloudex UI component queries are directed exclusively to Kubex-specific tables in MS SQL.
+    - **Performance Improvements**-- The Kubex UI no longer retrieves data from the Kubex Reporting Database (RDB). All UI component queries are directed exclusively to Kubex-specific tables in MS SQL.
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
 </Accordion>
 
 <Accordion title="3.2.0 June 11, 2025">
-  <Accordion title="Kubex Updates">
+  <Accordion title="Updates to Container Optimization">
     The following changes have been made to Kubex in this release:
 
     - **GPU Metrics for Containers**--In this release Kubex introduces reporting of GPU configuration and utilization data for containers, node groups and nodes. This data enables you to identify GPU-enabled containers and nodes in your environment and see how effectively you are utilizing your GPU resources.
@@ -526,12 +526,12 @@ columns
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
-  <Accordion title="Cloudex Updates">
-    The following changes have been made to Cloudex in this release:
+  <Accordion title="Updates to Cloud Optimization">
+    The following changes have been made to Public Cloud optimization in this release:
 
-    - **Timezone**--The X-axis label has been updated to indicate the timezone designation for all historical utilization charts to ‘UTC ’ This change to does not currently apply to the ML charts. The ML charts on the Cloudex Analysis Details page use Kubex server's time. So this will be either “Eastern Time” or “Central Europe Time”.
+    - **Timezone**--The X-axis label has been updated to indicate the timezone designation for all historical utilization charts to ‘UTC ’ This change to does not currently apply to the ML charts. The ML charts on the Analysis Details page use Kubex server's time. So this will be either “Eastern Time” or “Central Europe Time”.
 
-    Refer to the [Cloudex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
+    Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
 </Accordion>
 
@@ -539,7 +539,7 @@ columns
   <Accordion title="Kubex Updates">
     The following changes have been made to Kubex in this release:
 
-    - Users no longer need to clear their browser cache after an upgrade. This changes applies to Kubex and Cloudex only.
+    - Users no longer need to clear their browser cache after an upgrade. 
 
       When using the Kubex Console users must clear their browser cache after an upgrade,
     - **Analysis Details Export** --When the content of the Analysis Details is exported, the Container Name is provided as a hyperlink that takes you to the Overview page for the selected container.
@@ -565,12 +565,12 @@ columns
 
     <div style={{ width:"70%" }}>
     <p>
-    In this release Kubex introduces Cloudex. In this new console, Densify’s patented analytics determine optimal resource settings for your public cloud environments and display the results in a new user interface.
+    In this release Kubex introduces Public Cloud optimization features. In this new console, Densify’s patented analytics determine optimal resource settings for your public cloud environments and display the results in a new user interface.
 
     </p>
 
     <p>
-    Use the new Cloudex console to review resource utilization across your AWS, Azure and Google Cloud environments.
+    Use the new console to review resource utilization across your AWS, Azure and Google Cloud environments.
 
     </p>
 
@@ -584,9 +584,9 @@ columns
     https://<customer name>.densify.com/kubex
     ```
 
-    See the new [Cloudex](https://www.densify.com/product/cloud-resource-optimizer/) website to start a free trial.
+    See the new [Kubex](https://www.kubex.ai) website to start a free trial.
 
-    Use your existing Kubex credentials to access the Cloudex console. You can either close the browser window or navigate back to the Kubex Console to log out.
+    Use your existing Kubex credentials to access the console. You can either close the browser window or navigate back to the Kubex Console to log out.
 
     The new console uses the latest MSSQL and Postgres databases.
   </Accordion>
