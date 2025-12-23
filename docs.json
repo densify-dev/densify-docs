@@ -466,8 +466,8 @@
         }
     },
     "logo": {
-        "light": "/images/kubex-logo-reverse.svg",
-        "dark": "/images/kubex-logo-reverse.svg",
+        "light": "images/kubex-logo-reverse.svg",
+        "dark": "images/kubex-logo-reverse.svg",
         "href": "https://www.kubex.ai"
     },
     "navbar": {
