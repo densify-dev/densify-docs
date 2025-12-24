@@ -7,14 +7,14 @@ This use case includes GCP cloud infrastructure data collection, analysis, and g
 
 A comprehensive PDF report can be downloaded for each instance to supply supporting evidence for a recommendation; this can be reviewed by a system owner before approvals are given for the suggested changes.
 
-The diagram below provides an overview of the three major processes in Densify:
+The diagram below provides an overview of the three major processes in Kubex:
 
 <Accordion title="Figure: Optimizing GCP Compute Engine Processes">
 <Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000012.png)</Frame>
 </Accordion>
 
 
-1. **Data Collection**--Collect GCP data into Densify.
+1. **Data Collection**--Collect GCP data into Kubex.
 
    Use the Kubex API or the Kubex Console to initiate this process.
 2. **Analysis**--Analyze collected data based on pre-defined policies to make recommendations.
@@ -25,7 +25,7 @@ The diagram below provides an overview of the three major processes in Densify:
    The reporting database update process is scheduled to run nightly after the analysis refresh is completed. The Kubex Console GCP optimization opportunity report and the Impact Analysis and Recommendation reports are available after the reporting database update is complete.
 
 <Note>
-Before you can collect GCP cloud infrastructure data in Densify, you need to create a GCP service account with services enabled and permissions configured. See [Google Cloud Platform Data Collection Prerequisites](/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites) for details.
+Before you can collect GCP cloud infrastructure data in Kubex, you need to create a GCP service account with services enabled and permissions configured. See [Google Cloud Platform Data Collection Prerequisites](/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites) for details.
 </Note>
 
 The steps below outline a typical workflow to optimize GCP Compute Engine instances:
@@ -45,7 +45,7 @@ The steps below outline a typical workflow to optimize GCP Compute Engine insta
 
 ### Postman Collection
 
-Densify provides a Postman collection of sample API requests for working with your public cloud environments. See the [Postman Collection](./Postman_Collection).
+Kubex provides a Postman collection of sample API requests for working with your public cloud environments. See the [Postman Collection](./Postman_Collection).
 
 ### Authenticate using JWT
 
@@ -113,7 +113,7 @@ Response:
 
 ### List All GCP Analyses
 
-To see a list of all GCP analyses currently in Densify, use the `/analysis/cloud/gcp` resource. See [List all analyses for a particular platform and vendor](./Analysis_Entity#_getAllAnalyses) for details of the resource operation.
+To see a list of all GCP analyses currently in Kubex, use the `/analysis/cloud/gcp` resource. See [List all analyses for a particular platform and vendor](./Analysis_Entity#_getAllAnalyses) for details of the resource operation.
 
 <Accordion title="Example: List all Saved GCPAnalyses">
 Request:

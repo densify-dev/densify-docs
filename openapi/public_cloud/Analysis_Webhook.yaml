@@ -162,7 +162,7 @@ components:
         uri:
           type: string
           format: uri
-          description: Fully-qualified webhook URI reachable by Densify.
+          description: Fully-qualified webhook URI reachable by Kubex.
         authType: { type: string, description: 'e.g., "Basic", "Bearer".' } 
         authValue: { type: string, description: "Credential (user:pass or token)." } 
       required: [uri]

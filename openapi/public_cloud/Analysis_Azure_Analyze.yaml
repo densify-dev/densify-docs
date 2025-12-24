@@ -221,7 +221,7 @@ components:
           description: Milliseconds timestamp when last analysis completed.
         analysisId:
           type: string
-          description: Densify-internal analysis ID.
+          description: Kubex-internal analysis ID.
         phase:
           type: string
           description: "Current phase, e.g., `analyzing: 42%` or `not analyzing`."

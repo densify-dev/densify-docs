@@ -94,7 +94,7 @@ Some recommendation elements are not common to all technologies. For example, pr
 
 When you create property filter conditions for your subscription, you need to reference properties from the corresponding platform Subscriptions Properties catalog (see the [Subscriptions: propertyReferences](./Subscriptions#propertyReferences) parameter). Similarly, you need to reference properties from the corresponding platform Subscriptions Properties catalog to personalize the notification output (see the [Subscriptions: returnStructure](./Subscriptions#returnStructure) parameter).
 
-You can only reference properties that are accessible to the Kubex username you use to authorize the API request. Property accessibility depends on the scope of the property: if the property is global, then the property is accessible to all API Densify users; if the property is private, then the property is accessible to the owner of the private property. If you are an <Tooltip tip="An administrative user is a Kubex user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the property scope rule and access all properties from the catalog. See [Subscriptions: Properties: owner](./Subscriptions_Properties#owner) for more property scope details.
+You can only reference properties that are accessible to the Kubex username you use to authorize the API request. Property accessibility depends on the scope of the property: if the property is global, then the property is accessible to all API Kubex users; if the property is private, then the property is accessible to the owner of the private property. If you are an <Tooltip tip="An administrative user is a Kubex user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the property scope rule and access all properties from the catalog. See [Subscriptions: Properties: owner](./Subscriptions_Properties#owner) for more property scope details.
 
 Refer to [Subscriptions: Properties](./Subscriptions_Properties) for the full resource definition.
 
@@ -111,7 +111,7 @@ By default, the platform-specific Subscriptions Tags catalogs already have a lis
 
 When you create tag filter conditions for your subscription, you need to reference tags from the corresponding platform Subscriptions Tags catalog (see the [Subscriptions: tagReferences](./Subscriptions#tagReferences) parameter). Similarly, you need to reference tags from the corresponding platform Subscriptions Tags catalog to personalize the notification output (see the [returnStructure](./Subscriptions#returnStructure) parameter).
 
-You can only reference tags that are accessible to the Kubex username you use to authorize the API request. Access to a particular tag in the catalog depends on its scope: if the tag is global, then the tag is accessible to all API Densify users; if the tag is private, then the tag is accessible to the owner of the private tag. If you are an <Tooltip tip="An administrative user is a Kubex user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the tag scope rule and access all tags from the catalog. See [Subscriptions: Tags: owner](./Subscriptions_Tags#_owner) for additional details of tag scope.
+You can only reference tags that are accessible to the Kubex username you use to authorize the API request. Access to a particular tag in the catalog depends on its scope: if the tag is global, then the tag is accessible to all API Kubex users; if the tag is private, then the tag is accessible to the owner of the private tag. If you are an <Tooltip tip="An administrative user is a Kubex user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the tag scope rule and access all tags from the catalog. See [Subscriptions: Tags: owner](./Subscriptions_Tags#_owner) for additional details of tag scope.
 
 Refer to [Subscriptions: Tags](./Subscriptions_Tags) for the full resource definition.
 
@@ -128,7 +128,7 @@ By default, the platform-specific Subscriptions Suppressions catalog already has
 
 When you create suppression conditions for your subscription, you need to reference suppressions from the corresponding platform Subscriptions Suppressions catalog (see the [Subscriptions: suppressionReferences](./Subscriptions#suppressionReferences) parameter).
 
-You can only reference suppressions that are accessible to the Kubex username you use to authorize the API request. Access to a particular suppression in the catalog depends on its scope: if the suppression is global, then it is accessible to all API Densify users; if the suppression is private, then it is accessible to the owner of the private suppression. If you are an <Tooltip tip="An administrative user is a Kubex user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the suppression scope rule and access all suppressions from the catalog. See [Subscriptions: Suppressions: owner](./Subscriptions_Suppressions#owner) for details of suppression scope.
+You can only reference suppressions that are accessible to the Kubex username you use to authorize the API request. Access to a particular suppression in the catalog depends on its scope: if the suppression is global, then it is accessible to all API Kubex users; if the suppression is private, then it is accessible to the owner of the private suppression. If you are an <Tooltip tip="An administrative user is a Kubex user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the suppression scope rule and access all suppressions from the catalog. See [Subscriptions: Suppressions: owner](./Subscriptions_Suppressions#owner) for details of suppression scope.
 
 <Note>
 The Subscriptions Suppressions catalogs are not used for a Subscription's return output.
@@ -491,4 +491,4 @@ Response:
 
 ## Postman Collection
 
-Densify provides a Postman collection of sample API requests for working with your public cloud environments. See [Postman Collection](./Postman_Collection)
+Kubex provides a Postman collection of sample API requests for working with your public cloud environments. See [Postman Collection](./Postman_Collection)

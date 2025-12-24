@@ -18,9 +18,9 @@ paths:
     get:
       tags: [Cloud Analysis]
       operationId: listCloudAnalyses
-      summary: List all cloud analyses in Densify
+      summary: List all cloud analyses in Kubex
       description: >
-        Returns a collection of all cloud analysis entities discovered by Densify
+        Returns a collection of all cloud analysis entities discovered by Kubex
         (e.g., per account/subscription/project), with hyperlinks to their details,
         recommendations, and status. Supports filtering by name and substring match.
       parameters:

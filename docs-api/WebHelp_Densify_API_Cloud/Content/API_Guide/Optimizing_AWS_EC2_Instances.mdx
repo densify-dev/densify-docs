@@ -13,14 +13,14 @@ Each `/analysis/cloud/aws/<analysisId>/results` API request returns recommendati
 </Accordion>
 
 
-The diagram below provides an overview of the three major processes in Densify:
+The diagram below provides an overview of the three major processes in Kubex:
 
 <Accordion title="Figure: Optimizing AWS EC2 Processes">
 ![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000011_563x357.png)
 </Accordion>
 
 
-1. **Data Collection**--Collect AWS data anbd load into Densify.
+1. **Data Collection**--Collect AWS data and load into Kubex.
 
    Use the Kubex API or the Kubex Console to initiate this process.
 2. **Analysis**--Analyze collected data based on pre-defined policies to make recommendations.
@@ -47,7 +47,7 @@ The steps below outline a typical API workflow to optimize AWS EC2 instances:
 
 ## Postman Collection
 
-Densify provides a Postman collection of sample API requests for working with your public cloud environments. See the [Postman Collection](./Postman_Collection).
+Kubex provides a Postman collection of sample API requests for working with your public cloud environments. See the [Postman Collection](./Postman_Collection).
 
 ## Authenticate using JWT
 
@@ -79,7 +79,7 @@ Use the `apiToken` value in your Authorization request header for subsequent Kub
 
 ## Review Policy
 
-Use the `/analysis/cloud/aws/policy` resource to view a list of policies available in Densify. You can use one of these policies for optimization analysis. This is an optional step as the analysis runs with the default policy if no policy is specified. See List AWS policies available for analysis on page 1 for details.
+Use the `/analysis/cloud/aws/policy` resource to view a list of policies available in Kubex. You can use one of these policies for optimization analysis. This is an optional step as the analysis runs with the default policy if no policy is specified. See List AWS policies available for analysis on page 1 for details.
 
 <Accordion title="Example: Listing AWS Cloud Policies with Description">
 Request:
@@ -213,7 +213,7 @@ Accept: application/terraform-map<br/>Authorization: Bearer <apiToken>
 ```
 
 <Note>
-This request returns low-effort EC2 recommendations only for the account defined in the specified analysis (analysisId=9a5d2d55-6d85-4fde-8bab-fcd0cef8c5bf). If you want all EC2 recommendations for your Kubex collected AWS infrastructure, you must accumulate the EC2 request results for all AWS analysis entities available in Densify.
+This request returns low-effort EC2 recommendations only for the account defined in the specified analysis (analysisId=9a5d2d55-6d85-4fde-8bab-fcd0cef8c5bf). If you want all EC2 recommendations for your Kubex collected AWS infrastructure, you must accumulate the EC2 request results for all AWS analysis entities available in Kubex.
 </Note>
 
 

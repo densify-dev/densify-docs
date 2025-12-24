@@ -11,11 +11,11 @@ The diagram below shows the major processes in Kubex to optimize Kubernetes cont
 </Accordion>
 
 
-1. **Data Collection**--Collect Kubernetes data into Densify.
+1. **Data Collection**--Collect Kubernetes data into Kubex.
 
 You need to have an existing monitoring and metrics collection service, such as Prometheus, configured for your container clusters. See [Container Prerequisites](/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Prerequisites) for details.
 
-Densify provides a collection and transfer tool called the Data Forwarder, which you can download from Docker Hub, configure, and launch into a container to transfer node information and resource metrics from Prometheus to Densify.
+Kubex provides a collection and transfer tool called the Data Forwarder, which you can download from Docker Hub, configure, and launch into a container to transfer node information and resource metrics from Prometheus to Kubex.
 
 Your Kubex instance needs to be enabled with Data Forwarder support to accept and ingest incoming data for optimization. Contact Kubex support ([support@kubex.ai](mailto:support@kubex.ai)) to enable Data Forwarder support.
 
@@ -38,7 +38,7 @@ The steps below outline a typical workflow to access Kubernetes container recom
 
 ## Postman Collection
 
-Densify provides a Postman collection of sample API requests for working with your public cloud environments. See the [Postman Collection](./Postman_Collection).
+Kubex provides a Postman collection of sample API requests for working with your public cloud environments. See the [Postman Collection](./Postman_Collection).
 
 ## Authenticate using JWT
 
@@ -72,7 +72,7 @@ Use the `apiToken` value in your Authorization request header for subsequent Kub
 
 ## List All Kubernetes Container Analyses
 
-To see a list of all Kubernetes analyses currently in Densify, use the `/analysis/containers/kubernetes` resource. See [List all analyses for a particular platform and vendor](./Analysis_Entity#_getAllAnalyses) for details of the resource operation.
+To see a list of all Kubernetes analyses currently in Kubex, use the `/analysis/containers/kubernetes` resource. See [List all analyses for a particular platform and vendor](./Analysis_Entity#_getAllAnalyses) for details of the resource operation.
 
 <Accordion title="Example: List all Saved Kubernetes Container Analyses">
 Request:

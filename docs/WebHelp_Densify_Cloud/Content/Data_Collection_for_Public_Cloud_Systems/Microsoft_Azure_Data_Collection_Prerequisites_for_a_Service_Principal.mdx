@@ -173,8 +173,41 @@ The "Kubex Resource Utilization Metrics Reader” custom role grants read-only p
 Custom Role: Kubex Resource Utilization Metrics Reader
 
 ```json
-
-{<br/>    "properties": {<br/>        "roleName": "KubexResourceUtilizationMetricsReaderCustomRole",<br/>        "description": "This custom role defines the minimum read-only permissions required by Kubex for collecting data related to VMs, SQL servers and reservations associated in the subscriptions specified in the assigned scope",<br/>        "assignableScopes": [<br/>        ],<br/>        "permissions": [<br/>            {<br/>                "actions": [<br/>                    <br/>                    "Microsoft.Capacity/appliedreservations/read",<br/>                    "Microsoft.ClassicCompute/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachines/instanceView/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines/instanceView/read",<br/>                    "Microsoft.Insights/AutoscaleSettings/Read",<br/>                    "Microsoft.Insights/eventtypes/values/read",<br/>                    "Microsoft.Insights/Metrics/read",<br/>                    "Microsoft.Insights/MetricDefinitions/read",<br/>                    "Microsoft.Network/networkInterfaces/read",<br/>                    "Microsoft.Network/networkSecurityGroups/read",<br/>                    "Microsoft.Network/virtualNetworks/read",<br/>                    "Microsoft.Resources/subscriptions/read",<br/>                    "Microsoft.Resources/subscriptions/resourceGroups/read",            <br/>                    "Microsoft.Sql/servers/databases/read",<br/>                    "Microsoft.Sql/servers/elasticPools/read",<br/>                    "Microsoft.Sql/servers/read"                <br/>                    <br/>                ],<br/>                "notActions": [],<br/>                "dataActions": [],<br/>                "notDataActions": []<br/>            }<br/>        ]<br/>    }<br/>}
+{
+    "properties": {
+        "roleName": "KubexResourceUtilizationMetricsReaderCustomRole",
+        "description": "This custom role defines the minimum read-only permissions required by Kubex for collecting data related to VMs, SQL servers and reservations associated in the subscriptions specified in the assigned scope",
+        "assignableScopes": [],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.Capacity/appliedreservations/read",
+                    "Microsoft.ClassicCompute/virtualMachines/read",
+                    "Microsoft.Compute/virtualMachines/read",
+                    "Microsoft.Compute/virtualMachines/instanceView/read",
+                    "Microsoft.Compute/virtualMachineScaleSets/read",
+                    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines/read",
+                    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines/instanceView/read",
+                    "Microsoft.Insights/AutoscaleSettings/read",
+                    "Microsoft.Insights/eventtypes/values/read",
+                    "Microsoft.Insights/Metrics/read",
+                    "Microsoft.Insights/MetricDefinitions/read",
+                    "Microsoft.Network/networkInterfaces/read",
+                    "Microsoft.Network/networkSecurityGroups/read",
+                    "Microsoft.Network/virtualNetworks/read",
+                    "Microsoft.Resources/subscriptions/read",
+                    "Microsoft.Resources/subscriptions/resourceGroups/read",
+                    "Microsoft.Sql/servers/databases/read",
+                    "Microsoft.Sql/servers/elasticPools/read",
+                    "Microsoft.Sql/servers/read"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
 ```
 
 
@@ -204,3 +237,4 @@ Once all of the prerequisites are complete, you can create the cloud connection 
 When you create the Azure cloud connection for the first time, Kubex discovers all of the subscriptions, associated with the user or service principal. Upon saving the connection it will schedule data collection from each of the discovered and selected subscriptions.
 
 If subsequently, subscriptions are added, they will not be included in data collection. Additionally, subscriptions that are removed will continue to be included, resulting in wasted time and resources. To add new subscriptions or remove old ones, edit the cloud connection. See [Editing a Connection](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard#Edit_Conn).
+

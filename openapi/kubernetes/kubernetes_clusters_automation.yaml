@@ -84,7 +84,7 @@ components:
           description: Container manifest name.
         entityId:
           type: string
-          description: Densify-assigned unique identifier for the selected cluster.
+          description: Kubex-assigned unique identifier for the selected cluster.
         containerId:
           type: string
           description: Unique identifier for the listed container.

@@ -12,7 +12,7 @@ from trusted systems into its reasoning process, enabling more informed and acti
 ## Kubex MCP 
 
 Kubex MCP extends this capability to your cloud and container environments. It gives LLMs access to detailed operational 
-information about containers, nodes, and cloud instances, including Densify’s optimization recommendations. 
+information about containers, nodes, and cloud instances, including Kubex optimization recommendations. 
 You can use a chat-based LLM interface to review key optimization insights, identify risks, and plan remediation 
 steps interactively. You can also use an LLM-based coding tool to apply Kubex recommendations directly to your 
 infrastructure-as-code definitions.  
@@ -37,8 +37,8 @@ developers who want to build their own MCP-enabled systems.
 ### Configuring Your Client 
 
 Each company has a unique Kubex MCP server endpoint. The MCP server URL follows a consistent pattern based on your 
-company’s Kubex dashboard address. For example, if your Kubex dashboard is located at https://corp.densify.com/kubex/, 
-your MCP server will be available at https://corp-mcp.densify.com. 
+company’s Kubex dashboard address. For example, if your Kubex dashboard is located at https://corp.kubex.ai, 
+your MCP server will be available at https://corp-mcp.kubex.ai. 
 
 When using a chat interface, you must add your MCP server to your workspace, which is sometimes 
 referred to as adding a “connector.” This step typically requires administrative privileges, 
@@ -78,5 +78,5 @@ Some client applications handle expired authorizations gracefully, automatically
 
 Because MCP allows direct integration between an LLM and your operational environment, it is essential to treat security as a first priority. You should only connect to MCP servers that you trust. A malicious MCP server could attempt to manipulate an LLM into revealing sensitive information or performing unwanted actions. 
 
-Densify guarantees that the Kubex MCP server is secure and trustworthy. It is designed to provide authorized users with access to relevant data and recommendations without compromising system integrity or user privacy. However, Kubex cannot make any guarantees about the behavior of third-party MCP servers. If you choose to use additional MCP connections, you do so at your own risk and should apply standard best practices for verifying the legitimacy and security of external systems. 
+Kubex guarantees that the Kubex MCP server is secure and trustworthy. It is designed to provide authorized users with access to relevant data and recommendations without compromising system integrity or user privacy. However, Kubex cannot make any guarantees about the behavior of third-party MCP servers. If you choose to use additional MCP connections, you do so at your own risk and should apply standard best practices for verifying the legitimacy and security of external systems. 
 

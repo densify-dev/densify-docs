@@ -238,7 +238,7 @@ components:
           description: >
             Attribute name (e.g., “Business Applications”, “Resource Tags”,
             “Container Labels”). For “Resource Tags”/“Container Labels”, supply
-            `key` and `technology`. Must exist in Densify’s standard attributes.
+            `key` and `technology`. Must exist in Kubex standard attributes.
         key:
           type: string
           description: "Resource tag/label key (with technology)."

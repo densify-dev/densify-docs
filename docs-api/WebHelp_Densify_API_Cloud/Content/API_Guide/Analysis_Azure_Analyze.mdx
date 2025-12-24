@@ -11,7 +11,7 @@ The `/analysis/azure/analyze` resource is used to collect Microsoft Azure infra
 3. While data collection or analysis is in progress, you can check the status (using `/analysis/azure/<``subscriptionId``>/status` resource) or wait for the results to be published to an optional webhook URI.
 4. The reporting database update is scheduled to run automatically on a nightly basis after the completion of the analysis. This process produces reports for each instance recommendation, which is useful for analysts or application owners. These reports are only created after the scheduled analysis is completed, and may therefore only be available on the following day for a new analysis. Exact timing depends on the size of your environment.
 
-The `/analysis/cloud/azure` resource is also used to return a list of Microsoft Azure optimization analyses currently in the Densify.
+The `/analysis/cloud/azure` resource is also used to return a list of Microsoft Azure optimization analyses currently in Kubex.
 
 ### Ad-Hoc Tasks
 
@@ -22,7 +22,7 @@ Generally you do not need to run once-off tasks as both data collection and anal
 When Kubex initiates data collection, normally audits collect only the last 24 hours of data. You can optionally collect up to 30 days of historical data. The historical data provides a more representative set of data on which to base resizing and optimization recommendations. You can run an ad-hoc task to collect the historical data.
 
 <Note>
-Collection of historical data can take a significant amount of time, depending on the number of instances from which Densifyis collecting data. Contact [support@kubex.ai](mailto:support@kubex.ai) to enable historical data collection and details of the performance impact.
+Collection of historical data can take a significant amount of time, depending on the number of instances from which Kubex is collecting data. Contact [support@kubex.ai](mailto:support@kubex.ai) to enable historical data collection and details of the performance impact.
 </Note>
 
 
@@ -50,7 +50,7 @@ You can make an ad-hoc request to refresh an existing analysis, outside of the s
 
 ### Prerequisite Configuration
 
-Before you can collect Azure cloud infrastructure data in Densify, you need to create a service principle and configure a secret key. See [Microsoft Azure Data Collection Prerequisites for a Service Principal](https://densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal) for details on creating and configuring the service principle.
+Before you can collect Azure cloud infrastructure data in Kubex, you need to create a service principle and configure a secret key. See [Microsoft Azure Data Collection Prerequisites for a Service Principal](/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal) for details on creating and configuring the service principle.
 
 <Note>
 When using the Kubex API only the Azure "Service Principal" can be used to connect to your Azure subscriptions.

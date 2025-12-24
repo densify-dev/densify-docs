@@ -108,7 +108,7 @@ components:
       type: object
       description: GCP recommendation object (JSON representation).
       properties:
-        entityId: { type: string, description: "Densify entity ID." }
+        entityId: { type: string, description: "Kubex entity ID." }
         resourceId: { type: string, description: "GCP identifier for the Compute Engine system." }
         accountIdRef: { type: string, description: "GCP project ID." }
         region: { type: string }

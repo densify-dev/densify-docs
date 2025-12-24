@@ -5,7 +5,7 @@ info:
   description: ""
   contact:
     name: Kubex Support
-    email: Support@Densify.com
+    email: Support@Kubex.ai
 
 servers:
   - url: https://{host}/api/v2

@@ -140,7 +140,7 @@ components:
           description: Container manifest name.
         entityId:
           type: string
-          description: Unique identifier for the selected cluster assigned by Densify.
+          description: Unique identifier for the selected cluster assigned by Kubex.
         containerId:
           type: string
           description: Unique identifier for the listed container.

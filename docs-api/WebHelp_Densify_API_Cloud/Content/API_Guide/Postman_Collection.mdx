@@ -4,7 +4,7 @@ title: "Postman Collection"
 
 ## Postman Collection
 
-Densify provides a Postman collection of sample API requests for public cloud and containers.
+Kubex provides a Postman collection of sample API requests for public cloud and containers.
 
 
 <Accordion title="Video: Using the Postman Collection">
@@ -21,11 +21,11 @@ Densify provides a Postman collection of sample API requests for public cloud a
 
 Follow the steps below to use the downloaded Postman collection:
 
-1. Unzip the downloaded file and import both the **Densify API Collection** collection and **Densify Environment** variables into your Postman workspace.
-2. Modify the variables in the **Densify Environment** to match your Kubex settings and credentials.
+1. Unzip the downloaded file and import both the **Kubex API Collection** collection and **Kubex Environment** variables into your Postman workspace.
+2. Modify the variables in the **Kubex Environment** to match your Kubex settings and credentials.
 
    <Note>
-   If you already have a **Densify** environment in your Postman application, you can either delete the previous version or rename it. Otherwise, you will have duplicate Kubex environments after the new collection is imported.
+   If you already have a **Kubex** environment in your Postman application, you can either delete the previous version or rename it. Otherwise, you will have duplicate Kubex environments after the new collection is imported.
    </Note>
 
 3. Review the **Documentation** section of the collection for an overview of the workflow and API requests.
@@ -37,9 +37,9 @@ Follow the steps below to use the downloaded Postman collection:
 <Accordion title="Token Requests">
 When using token-based authentication you need to request a token for each session. Subsequent API requests within the session are automatically authenticated with this token. Then in a future session you need to again request and acquire a token.
 
-Postman is only intended to provide the tools for learning and testing Densify's APIs.
+Postman is only intended to provide the tools for learning and testing Kubex APIs.
 
-Once you are comfortable with how the Kubex API works you can start to place the API calls within your code, used to interface with Densify. For example you could write a call to get all analysis IDs, then loop through each ID making another API call to get the associated recommendations, thus providing the full list of recommendations for the scope of systems.
+Once you are comfortable with how the Kubex API works you can start to place the API calls within your code, used to interface with Kubex. For example you could write a call to get all analysis IDs, then loop through each ID making another API call to get the associated recommendations, thus providing the full list of recommendations for the scope of systems.
 </Accordion>
 
 <Accordion title="&quot;Bad request, invalid accept header&quot; Error">

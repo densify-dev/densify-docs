@@ -4,7 +4,7 @@ info:
   version: "1.0.0"
   description: |
     Create, list, view, upload to, execute/schedule, download from, and delete Receive Metrics jobs
-    used to transfer utilization metrics into Densify. Download endpoints return a ZIP
+    used to transfer utilization metrics into Kubex. Download endpoints return a ZIP
     (application/octet-stream).
 
 servers:
