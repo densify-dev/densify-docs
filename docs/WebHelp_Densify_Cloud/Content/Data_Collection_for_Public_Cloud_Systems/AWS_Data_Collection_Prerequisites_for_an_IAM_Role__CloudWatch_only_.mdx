@@ -7,7 +7,7 @@ sidebarTitle: "AWS Prerequisites"
 
 ## Overview
 
-Densify collects resource utilization metrics (CloudWatch data) for your AWS services (e.g. EC2, RDS, ECS, etc.), analyzes the AWS data and then makes recommendations to save costs and reduce risks in your AWS environments.
+Kubex collects resource utilization metrics (CloudWatch data) for your AWS services (e.g. EC2, RDS, ECS, etc.), analyzes the AWS data and then makes recommendations to save costs and reduce risks in your AWS environments.
 
 Collecting data via a cross-account IAM Role simplifies the process of connecting to multiple AWS accounts from Kubex since the same role and external ID can be used across your multiple AWS accounts. As accounts are added or removed, you do not need to update the Kubex cloud connection.
 
@@ -16,7 +16,7 @@ Collecting data via a cross-account IAM Role simplifies the process of connectin
 </Accordion>
 
 
-Densify also supports connecting to AWS using;
+Kubex also supports connecting to AWS using;
 
 * An IAM Role and CloudFormation template--See [AWS Data Collection Using a CloudFormation Template](./AWS_Data_Collection_Using_a_CloudFormation_Template).
 
@@ -44,7 +44,7 @@ This role allows you to collect resource utilization data for the selected accou
 4. Enter an Account ID. This is the Kubex account that will assume the role. Enter the following Kubex account ID: 036437403198.
 5. Select Require external ID and enter your external ID. This value is similar to a password and should be unique and difficult to guess. Kubex recommends using a password generator to create a random, alphanumeric string (e.g. ae73mcf4ldjpet96) for the external ID.
 
-You will need this external ID later, when creating the cloud connection in Densify.
+You will need this external ID later, when creating the cloud connection in Kubex.
 
 6. Click Next.
 <Accordion title="Figure: Creating a Role ">
@@ -52,7 +52,7 @@ You will need this external ID later, when creating the cloud connection in Dens
 </Accordion>
 7. Attach the appropriate permission policy to the role. Select AWS's predefined ReadOnlyAccess policy. Use the filter to find the ReadOnlyAccess policy. Even with the filter set you will need to go to the last page to find the "ReadOnlyAccess" policy.
 <Note>
-The ReadOnlyAccess policy is provided here as an easy option for non-sensitive accounts. In most cases, you need to create a custom permission policy to grant Densify, the permissions to collect only the required CloudWatch data. Refer to [Creating an IAM Policy with Minimum Permissions for the CloudWatch Data Collection](#Limited_Access_IAM_Policy) for details.
+The ReadOnlyAccess policy is provided here as an easy option for non-sensitive accounts. In most cases, you need to create a custom permission policy to grant Kubex, the permissions to collect only the required CloudWatch data. Refer to [Creating an IAM Policy with Minimum Permissions for the CloudWatch Data Collection](#Limited_Access_IAM_Policy) for details.
 </Note>
 
 
@@ -60,16 +60,16 @@ The ReadOnlyAccess policy is provided here as an easy option for non-sensitive a
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000043.png)</Frame>
 </Accordion>
 8. After selecting the permission policy for the role, click Next.
-9. In the Review page, specify the Role name and Role description. The role name can be any string used to identify and describe the role within the AWS account (e.g. DensifyCrossAccountRole).
+9. In the Review page, specify the Role name and Role description. The role name can be any string used to identify and describe the role within the AWS account (e.g. KubexCrossAccountRole).
 10. Click Create role. The new role is created.
 11. From the Roles page, click on the role name that you have just created, to view the role summary.
 <Accordion title="Figure: Role Summary ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000046.png)</Frame>
 </Accordion>
-12. Copy and save the Role ARN as you will need to paste this string into the Densify Cloud Connection wizard to create the connection.
+12. Copy and save the Role ARN as you will need to paste this string into the Kubex Cloud Connection wizard to create the connection.
 13. You can now create an AWS connection through the Kubex Public Cloud Connection wizard. See [Using the Public Cloud Connections Wizard](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard).
 
-You can also use the Kubex API.See [Analysis: AWS](https://densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze).
+You can also use the Kubex API. See [Setting up AWS Connections](/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze).
 
 ## Optional Configuration
 
@@ -88,7 +88,7 @@ As the Kubex CloudWatch audit continues to evolve and expand, you do not need to
 Alternatively, if you must restrict the IAM user or role with the minimum permissions to perform the CloudWatch audit, you can create a custom policy with only the required permissions, as shown below.
 
 <Note>
-This custom policy must be updated periodically as Densify’s standard audit requirements are updated to support additional AWS services and features.
+This custom policy must be updated periodically as Kubex standard audit requirements are updated to support additional AWS services and features.
 </Note>
 
 
@@ -162,7 +162,7 @@ The permissions related to CloudFormation are used for linking ASGs with ECS clu
 1. Log into the AWS management console and navigate to Services > IAM.
 2. Select Policies and click Create policy.
 3. Click the JSON tab and enter the policy from the example above.
-4. Review the policy and enter a policy name (e.g. DensifyMinimumReadAccess) and a description (e.g. Minimum permissions required for Kubex standard audit).
+4. Review the policy and enter a policy name (e.g. KubexMinimumReadAccess) and a description (e.g. Minimum permissions required for Kubex standard audit).
 
 ### Enabling Collection of AWS Memory Usage Metrics
 
@@ -258,7 +258,7 @@ Additionally, when working with ASGs, the ASG's EC2 members provide memory utili
 
 #### Linux Configuration
 
-For Linux instances, the memory metric, “mem\_used\_percent” is collected by default, as specified in the config.json file. However, the metrics “mem\_active” and “mem\_used” need to be added for Densify's analysis.
+For Linux instances, the memory metric, “mem\_used\_percent” is collected by default, as specified in the config.json file. However, the metrics “mem\_active” and “mem\_used” need to be added for Kubex analysis.
 
 Use the following example to customize the default CloudWatch agent's configuration, to collect the required parameters and metrics that Kubex requires for memory analyses. The CloudWatch agent configuration file is located in the CWAgent namespace,
 
@@ -300,7 +300,7 @@ Example:  CloudWatch Agent Configuration For Linux Instances
 
 For Windows instances, the default CloudWatch agent config.json file are the same as listed above.
 
-The memory metric, "% Committed Bytes in Use" is collected by default, as specified in the config.json file. However, the metric “Available MBytes” needs be added to the CloudWatch agent's settings, for Densify's analysis.
+The memory metric, "% Committed Bytes in Use" is collected by default, as specified in the config.json file. However, the metric “Available MBytes” needs be added to the CloudWatch agent's settings, for Kubex analysis.
 
 Use the following example to customize the default CloudWatch agent's configuration, to collect the required parameters and metrics that Kubex requires for memory analyses. The CloudWatch agent configuration file is located in the CWAgent namespace,
 
@@ -354,7 +354,7 @@ Install the NVIDIA driver and CloudWatch agent on your instances. See [Collecti
 
 Alternatively, you can use a third party tool such as [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) for metrics collection from Window Servers.
 
-Densify requires the following GPU metrics:
+Kubex requires the following GPU metrics:
 
 <Accordion title="Table: Required GPU Metrics">
 <table>

@@ -33,7 +33,7 @@ You need to verify that the following APIs are enabled for your project:
 * Cloud Resource Manager API--Needs to be enabled, if not listed.
 * Cloud Monitoring API--is enabled by default when the project is created.
 
-Verify these APIs are enabled before creating the service account. When you create the keys for the service account the permissions for the required APIs will be included in the key file and are required by Densify.
+Verify these APIs are enabled before creating the service account. When you create the keys for the service account the permissions for the required APIs will be included in the key file and are required by Kubex.
 
 1. Login to the GCP console and select your project.
 2. From the GCP console main menu, navigate to APIs & services > Dashboard.
@@ -65,7 +65,7 @@ Use the following instructions to create and configure the GCP service account:
 3. From the Service Accounts page, click Create Service Account.
 4. In the Create service account pane:
 
-1. Specify Service account name. As a best practice, use the display name to keep track of what the account will be used for and what permissions are assigned. (e.g. Densify\_Connection\_Viewer)
+1. Specify Service account name. As a best practice, use the display name to keep track of what the account will be used for and what permissions are assigned. (e.g. Kubex\_Connection\_Viewer)
 2. Provide a description of the service. This step is optional, but may help you link this account to other projects later on.
 3. Click Create and Continue to create the service account.
 
@@ -96,7 +96,7 @@ Do not check these service account keys into your source code or leave them in t
 
 ### Creating a Role with Minimum Permissions for Data Collection
 
-Densify recommends using the viewer role, as indicated above, to simplify setup and maintenance of data collection. The viewer role provides read-only access to your GCP services and resources and supports the requirements of Kubex data collection and analysis.
+Kubex recommends using the viewer role, as indicated above, to simplify setup and maintenance of data collection. The viewer role provides read-only access to your GCP services and resources and supports the requirements of Kubex data collection and analysis.
 As the Kubex data collection continues to evolve and expand, you do not need to update this permission policy to include newly added services and features.
 
 Alternatively, you create a custom role and grant the minimum required permissions to the service account to be used Kubex for data collection.
@@ -104,7 +104,7 @@ Alternatively, you create a custom role and grant the minimum required permissio
 You must have the `iam.roles.create permission`, to create the custom role. The custom role must be created at the Organization level.
 
 <Note>
-This custom role must be updated periodically as Densify’s standard data collection requirements are updated to support additional services and features.
+This custom role must be updated periodically as Kubex standard data collection requirements are updated to support additional services and features.
 </Note>
 
 
@@ -200,7 +200,7 @@ The Ops Agent is the primary agent for collecting memory and other metrics from 
 
 Refer to https://cloud.google.com/stackdriver/docs/solutions/agents/ops-agent for details of installing and configuring the agent.
 
-## Creating the Cloud Connection in Densify
+## Creating the Cloud Connection in Kubex
 
 Once all of the prerequisites are complete, you can create the cloud connection through the Cloud Connection wizard. See [Using the Public Cloud Connections Wizard](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard).
 

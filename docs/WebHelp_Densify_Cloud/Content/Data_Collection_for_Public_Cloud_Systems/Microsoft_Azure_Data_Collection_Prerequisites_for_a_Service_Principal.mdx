@@ -28,7 +28,7 @@ The Service Principal possesses the following characteristics:
 * A service principal is then created for that application;
 * The service principal is granted access to your Azure subscription.
 
-The following procedure allows you to use a federated Microsoft Entra ID account to create a cloud connection to Densify. In this case a Service Principal is required to connect Kubex to your Azure subscriptions.
+The following procedure allows you to use a federated Microsoft Entra ID account to create a cloud connection to Kubex. In this case a Service Principal is required to connect Kubex to your Azure subscriptions.
 
 <Note>
 In this case "federated" indicates that your on-premise Active Directory is linked with your Azure Cloud's Entra ID so you can use your existing on-premise AD credentials to access your Azure portal.
@@ -49,7 +49,7 @@ Additionally, the application must be assigned the role of "Reader" for each of 
 
 ### Required Account Permissions
 
-You must have admin/owner privileges for your Azure portal to create the account required for Densify. Typically, your on-premise Active Directory is federated with the Azure AD. In this case, the admin access is likely provided from an on-premise Active Directory account (via federation) and will possess the required Azure admin privileges.
+You must have admin/owner privileges for your Azure portal to create the account required for Kubex. Typically, your on-premise Active Directory is federated with the Azure AD. In this case, the admin access is likely provided from an on-premise Active Directory account (via federation) and will possess the required Azure admin privileges.
 
 The user account/Service Principal to be used for data collection only requires the "Reader" role privileges to collect resource utilization data.
 
@@ -77,9 +77,9 @@ You now need to create a new application registration. This will be the service 
 </Accordion>
 3. In the Create pane enter the following information:
 
-* The Name of the application (e.g. Densify\_Connection).
+* The Name of the application (e.g. Kubex\_Connection).
 * Select who can access the application. Leave the default of "Accounts in this organizational directory only (Default Directory only - Single tenant)".
-* Select the Redirect URI (optional) as “Web” and specify a Sign-on URI (e.g. https://Densify.com).
+* Select the Redirect URI (optional) as “Web” and specify a Sign-on URI (e.g. https://Kubex.ai).
 
 The Register button becomes available once you enter valid data.
 
@@ -94,7 +94,7 @@ The Register button becomes available once you enter valid data.
 </Accordion>
 6. Click Client credentials to see create the credential.
 7. Click on New client secret to create a new key.
-8. In the Add a new client secret pane, enter a Description (e.g. DensifyKey) and an expiration period (e.g. 1 year, 2 years or never expires).
+8. In the Add a new client secret pane, enter a Description (e.g. KubexKey) and an expiration period (e.g. 1 year, 2 years or never expires).
 9. Click Add to create the key.
 10. Copy the secret key Value to a location from which you can easily retrieve it. You will need this key to create the Kubex connection.
 <Accordion title="Figure: Generate the Secret Key ">
@@ -135,7 +135,7 @@ The application registered above, now needs access to each of your subscriptions
 </Accordion>
 7. On the Add role assignment pane, ensure Assign Access to is set to "User, group or service principal".
 8. Click Select members.
-9. Search for or scroll to locate the service principle (Densify\_Connection), created above.
+9. Search for or scroll to locate the service principle (Kubex\_Connection), created above.
 10. Click Select.
 <Accordion title="Figure: Add Role Assigment ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000089.png)</Frame>
@@ -168,7 +168,7 @@ As the Kubex continues to evolve and expand, you do not need to update permissio
 
 Alternatively, if you must restrict the role with the minimum permissions you can create a custom role with only the required permissions. These custom roles provide an alternative method for granting permissions that are more restrictive than the built-in “Reader” role. These custom roles (JSON) define the minimum permissions required by Kubex to collect resource utilization metrics data, respectively.
 
-The “Densify Resource Utilization Metrics Reader” custom role grants read-only permissions for collecting data related to VMs, SQL servers and reservations in the subscriptions specified in the assigned scope.
+The "Kubex Resource Utilization Metrics Reader” custom role grants read-only permissions for collecting data related to VMs, SQL servers and reservations in the subscriptions specified in the assigned scope.
 
 Custom Role: Kubex Resource Utilization Metrics Reader
 
@@ -249,7 +249,7 @@ Custom Role: Kubex Resource Utilization Metrics Reader
 
 38
 
-{<br/>    "properties": {<br/>        "roleName": "DensifyResourceUtilizationMetricsReaderCustomRole",<br/>        "description": "This custom role defines the minimum read-only permissions required by Kubex for collecting data related to VMs, SQL servers and reservations associated in the subscriptions specified in the assigned scope",<br/>        "assignableScopes": [<br/>        ],<br/>        "permissions": [<br/>            {<br/>                "actions": [<br/>                    <br/>                    "Microsoft.Capacity/appliedreservations/read",<br/>                    "Microsoft.ClassicCompute/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachines/instanceView/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines/instanceView/read",<br/>                    "Microsoft.Insights/AutoscaleSettings/Read",<br/>                    "Microsoft.Insights/eventtypes/values/read",<br/>                    "Microsoft.Insights/Metrics/read",<br/>                    "Microsoft.Insights/MetricDefinitions/read",<br/>                    "Microsoft.Network/networkInterfaces/read",<br/>                    "Microsoft.Network/networkSecurityGroups/read",<br/>                    "Microsoft.Network/virtualNetworks/read",<br/>                    "Microsoft.Resources/subscriptions/read",<br/>                    "Microsoft.Resources/subscriptions/resourceGroups/read",            <br/>                    "Microsoft.Sql/servers/databases/read",<br/>                    "Microsoft.Sql/servers/elasticPools/read",<br/>                    "Microsoft.Sql/servers/read"                <br/>                    <br/>                ],<br/>                "notActions": [],<br/>                "dataActions": [],<br/>                "notDataActions": []<br/>            }<br/>        ]<br/>    }<br/>}
+{<br/>    "properties": {<br/>        "roleName": "KubexResourceUtilizationMetricsReaderCustomRole",<br/>        "description": "This custom role defines the minimum read-only permissions required by Kubex for collecting data related to VMs, SQL servers and reservations associated in the subscriptions specified in the assigned scope",<br/>        "assignableScopes": [<br/>        ],<br/>        "permissions": [<br/>            {<br/>                "actions": [<br/>                    <br/>                    "Microsoft.Capacity/appliedreservations/read",<br/>                    "Microsoft.ClassicCompute/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachines/instanceView/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines/read",<br/>                    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines/instanceView/read",<br/>                    "Microsoft.Insights/AutoscaleSettings/Read",<br/>                    "Microsoft.Insights/eventtypes/values/read",<br/>                    "Microsoft.Insights/Metrics/read",<br/>                    "Microsoft.Insights/MetricDefinitions/read",<br/>                    "Microsoft.Network/networkInterfaces/read",<br/>                    "Microsoft.Network/networkSecurityGroups/read",<br/>                    "Microsoft.Network/virtualNetworks/read",<br/>                    "Microsoft.Resources/subscriptions/read",<br/>                    "Microsoft.Resources/subscriptions/resourceGroups/read",            <br/>                    "Microsoft.Sql/servers/databases/read",<br/>                    "Microsoft.Sql/servers/elasticPools/read",<br/>                    "Microsoft.Sql/servers/read"                <br/>                    <br/>                ],<br/>                "notActions": [],<br/>                "dataActions": [],<br/>                "notDataActions": []<br/>            }<br/>        ]<br/>    }<br/>}
 ```
 
 
@@ -270,7 +270,7 @@ Use the following instructions to create the custom roles:
 
 If you are comfortable working with the command line, you can create the service principle through the Azure CLI. You can then use the resulting .JSON file when working with the Kubex API. Refer to the Azure website for details: [Create an Azure service principal with the Azure CLI](https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli).
 
-## Creating the Cloud Connection in Densify
+## Creating the Cloud Connection in Kubex
 
 Once all of the prerequisites are complete, you can create the cloud connection through the Cloud Connection wizard. See [Using the Public Cloud Connections Wizard](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard).
 
