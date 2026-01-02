@@ -4,8 +4,9 @@ title: "New Features"
 
 The following sections provide details of new features and updates introduced in each release.
 
-- Kubex--Features & enhancements in the latest Kubex releases.
-- [Container Data Forwarder](#Forwarder)--Updates to Kubex's Container data collection module.
+- Kubex -- Features & enhancements in the latest Kubex releases.
+- [Container Data Forwarder](#container-data-forwarder) -- Updates to Kubex's Container data collection module.
+- [Kubex Automation Controller](#kubex-automation-controller) -- Updates to Kubex's Automation Controller module.
 
 ## Kubex
 
@@ -908,6 +909,18 @@ Refer to [Github repository](https://github.com/densify-dev/container-data-colle
 
 When deploying the Container Data Forwarder ensure that the same version is deployed for all of your clusters. See [Data Collection for Containers](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview)
 
+<Accordion title="4.3.0 - November 28, 2025">
+  <Accordion title="Google Managed Prometheus (GMP) Support">
+    This release adds support for collecting data from Google Managed Prometheus (GMP), which is the only supported method for data collection from GKE Autopilot clusters.
+
+    - **GKE Autopilot Compatibility**--GMP is now fully supported, enabling data collection from GKE Autopilot clusters where traditional Prometheus deployments are not possible.
+    - **Managed Service Integration**--Leverages Google's managed Prometheus service for seamless data collection without requiring in-cluster Prometheus installations.
+  </Accordion>
+  <Accordion title="Enhanced Job Configuration">
+    - **backoffLimit Support**--The data forwarder now supports configuring `backoffLimit` for both Job and CronJob resources, providing better control over retry behavior when data collection encounters transient failures.
+  </Accordion>
+</Accordion>
+
 <Accordion title="4.2.2 - June 16, 2025">
   <Accordion title="Added GPU Metrics">
     This update collects additional GPU metrics.
@@ -1343,5 +1356,180 @@ When deploying the Container Data Forwarder ensure that the same version is depl
   <Accordion title="End of Support Notice - Container Data Forwarder 3.x.x">
     Kubex will discontinue support of Container Data Forwarder versions 3.x.x on June 30, 2024. Contact <a href="mailto:support@kubex.ai">
     support@kubex.ai</a> for details on migrating to Kubex's current version of the Container Data Forwarder.
+  </Accordion>
+</Accordion>
+
+## Kubex Automation Controller
+
+This section lists new features and updates to the Kubex Automation Controller, which automatically implements Densify's optimization recommendations for Kubernetes workloads.
+
+A Helm chart bundles all components required for automated container optimization. See [Kubex Automation Controller](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) for deployment details and configuration options.
+
+<Accordion title="1.0.9 - December 19, 2025 (Minor)">
+  <Accordion title="Simplified Certificate Management">
+    Streamlined deployment by changing the default certificate method, making cert-manager optional rather than required.
+
+    - **Easier Installation**--Reduced deployment complexity and external dependencies by no longer requiring cert-manager by default.
+    - **Flexible Options**--Continue to choose from self-signed certificates, cert-manager integration, or bring-your-own-certificate based on your environment requirements.
+  </Accordion>
+  <Accordion title="Performance Enhancements">
+    Optimized default settings for Kubernetes 1.33+ clusters to take advantage of in-place resizing capabilities, significantly reducing time-to-optimization.
+  </Accordion>
+  <Accordion title="Enhanced Visibility">
+    In-place resizing operations are now visible in the Kubex UI, providing better insight into automation activities and outcomes.
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.0.8 - December 12, 2025 (Patch)">
+  <Accordion title="Configurable Wait-for-Valkey Image">
+    Added support for overriding the wait-for-Valkey init container image to accommodate environments with restricted access to public container registries.
+
+    - **Private Registry Support**--Organizations that cannot pull images from public repositories can now configure the automation controller to use images hosted in their private registries.
+    - **Image Location Override**--The `waitForValkeyImage` configuration option allows specifying a custom image location (default: `busybox:latest`), enabling deployment in air-gapped or restricted network environments.
+    - **Flexible Deployment**--This enhancement ensures the automation controller can be deployed in security-hardened environments where all container images must be sourced from approved internal registries.
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.0.7 - December 11, 2025 (Major)">
+  <Accordion title="In-Place Pod Resizing Support">
+    The Kubex Automation Controller now supports Kubernetes In-Place Pod Resizing for eligible workloads running on Kubernetes 1.33 or higher. This capability enables resource adjustments without pod restarts, eliminating downtime during optimization.
+
+    - **Zero-Downtime Resizing**--Containers are resized in-place without eviction when supported by the cluster, ensuring continuous availability for critical workloads.
+    - **Automatic Fallback**--For clusters that don't support in-place resizing or workloads that require pod recreation, the controller automatically falls back to the traditional pod eviction method.
+    - **Kubernetes 1.33+ Required**--In-place resizing requires Kubernetes 1.33 or later with the InPlacePodVerticalScaling feature gate enabled.
+  </Accordion>
+  <Accordion title="Enhanced Logging and Action Visibility">
+    Pod scan logs have been significantly improved to provide clear summaries of the actions taken by the automation controller. Each log entry now clearly indicates the action taken and the reason:
+
+    - **RESIZED**--Pod was successfully resized using in-place resizing (zero downtime).
+    - **EVICTED**--Pod was evicted and recreated with new resource specifications (traditional method).
+    - **BLOCKED**--Pod could not be resized, with detailed blocking reasons explaining why (e.g., `hpa_conflict_cpu`, `limit_range_violation`, `resource_quota_exceeded`, `node_size_insufficient`, `manual_pause_infinite`).
+    - **SKIPPED**--Pod is already sized at the recommended specification, no action needed.
+
+    These enhanced logs make it easier to monitor automation activity, troubleshoot issues, and understand why specific pods were not optimized.
+  </Accordion>
+  <Accordion title="Annotation-Based Automation Control">
+    Administrators can now use Kubernetes annotations to control automation behavior at the pod or workload level using the `rightsizing.kubex.ai/pause-until: "<RFC3339 timestamp | infinite>"` annotation:
+
+    - **Learning Periods**--Pause automation temporarily after application changes or deployments to allow the system to gather sufficient metrics before optimizing. Specify an RFC3339 timestamp to pause until a specific date.
+    - **Permanent Exclusions**--Permanently exclude specific workloads from automation by setting the annotation value to `infinite`, providing granular control over which resources are managed by Densify.
+
+    Additionally, the controller now respects the `cluster-autoscaler.kubernetes.io/safe-to-evict=false` annotation, ensuring that pods marked as unsafe to evict are never evicted by the automation controller, even when optimization recommendations are available.
+
+    This annotation-based approach integrates seamlessly with GitOps workflows and provides declarative control over automation scope. See [Pausing Automation for Specific Pods](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-controller/docs/Advanced-Configuration.md#pausing-automation-for-specific-pods) for detailed usage examples.
+  </Accordion>
+  <Accordion title="Simplified Scope Configuration">
+    The `podLabels` field in the Helm values scope configuration is now optional, simplifying deployment for users who want to enable automation across entire namespaces without label-based filtering.
+
+    - Previously, `podLabels` was mandatory and required explicit configuration even when not needed.
+    - Now, you can define scope using only `namespace` for namespace-wide automation, or combine `namespace` with optional `podLabels` for more granular control.
+  </Accordion>
+  <Accordion title="Optimized Startup and Scan Intervals">
+    The controller's pod scanning behavior has been enhanced to balance responsiveness with efficiency:
+
+    - **Quick Initial Scan**--The first scan now executes 2 minutes after controller startup (default), allowing rapid initialization and faster time-to-value.
+    - **Configurable Regular Interval**--Subsequent scans run at the configured interval, providing predictable automation cadence.
+    - **Reduced Startup Delay**--Previously, users had to wait for the full scan interval before the first automation actions occurred.
+
+    These improvements ensure new deployments are evaluated quickly while maintaining efficient resource utilization for ongoing operations. See [Pod Scan Configuration](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-controller/docs/Pod-Scan-Configuration.md) for guidance on configuring scan intervals based on automation scope and cluster size.
+  </Accordion>
+  <Accordion title="Infrastructure and Stability Improvements">
+    - **Increased API Timeout**--API timeout values have been increased to handle slower Kubex API responses during peak loads, preventing unnecessary automation failures.
+    - **Updated cert-manager Dependency**--The cert-manager version has been updated to the latest stable release, ensuring compatibility with modern Kubernetes clusters and improving certificate management reliability.
+
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.0.6 - December 9, 2025 (Patch)">
+  <Accordion title="Webhook Configuration Optimization">
+    Optimized the mutating webhook configuration by removing the UPDATE operation, ensuring the webhook only triggers on pod creation events.
+
+    - **Reduced Webhook Invocations**--The mutating admission controller now only intercepts pod creation events, eliminating unnecessary processing during pod updates.
+    - **Improved Cluster Performance**--Reducing webhook triggers decreases API server load and improves overall cluster responsiveness.
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.0.5 - November 28, 2025 (Patch)">
+  <Accordion title="In-Place Resizing RBAC Support">
+    Added Kubernetes RBAC (Role-Based Access Control) permissions required for in-place pod resizing functionality. This update prepares the controller for the in-place resizing feature, which was still in development at the time of this release.
+
+    - **Future Feature Preparation**--RBAC rules have been added to grant the controller the necessary permissions to perform in-place pod resource updates when the feature becomes generally available.
+    - **No Functional Changes**--This release focuses on infrastructure readiness; the in-place resizing feature itself was introduced in version 1.0.7.
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.0.4 - November 4, 2025 (Minor)">
+  <Accordion title="External Secret Management Support">
+    Added support for external secret management tools, providing greater flexibility and security for enterprise deployments.
+
+    - **External Secrets Integration**--The Helm chart now supports working with secrets created and managed by external secret management tools (e.g., External Secrets Operator, Sealed Secrets), rather than requiring the chart to create secrets internally.
+    - **Enhanced Security Posture**--Organizations can now leverage their existing secret management workflows and tools, ensuring secrets are handled according to enterprise security policies and compliance requirements.
+    - **Customer-Driven Enhancement**--This feature was developed based on customer feedback to support real-world enterprise deployment scenarios where centralized secret management is required.
+  </Accordion>
+  <Accordion title="Flexible Namespace Deployment">
+    Removed namespace restrictions, allowing the Kubex Automation Controller to be deployed in any namespace.
+
+    - **Arbitrary Namespace Support**--The Helm chart can now be deployed in any namespace, not just predefined ones, providing greater flexibility for multi-tenant environments and organizational policies.
+    - **Improved Secret Management**--Namespace flexibility complements external secret management by allowing secrets to reside in different namespaces according to security boundaries and access control requirements.
+    - **Simplified Multi-Cluster Deployments**--Organizations with standardized namespace naming conventions can now deploy the controller consistently across multiple clusters without chart modifications.
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.0.3 - October 31, 2025 (Patch)">
+  <Accordion title="Environment Variable Enhancements">
+    Added release namespace information to relevant environment variables, improving namespace-aware operations.
+
+    - **Namespace Context**--Environment variables now include the release namespace, enabling better multi-namespace deployments and troubleshooting.
+    - **Improved Configuration**--Simplifies configuration in multi-tenant environments where multiple instances of the controller run in different namespaces.
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.0.2 - October 21, 2025 (Major)">
+  <Accordion title="Valkey Integration for Recommendation Storage">
+    Replaced the persistent volume claim (PVC) requirement with Valkey (Redis-compatible) for storing optimization recommendations, simplifying deployment and improving scalability.
+
+    - **Simplified Deployment**--Eliminates the need for persistent storage configuration, reducing deployment complexity and storage management overhead.
+    - **Improved Performance**--Valkey provides fast in-memory data access for recommendation retrieval, improving controller response times.
+    - **Enhanced Scalability**--In-memory storage enables better horizontal scaling capabilities for large-scale deployments.
+  </Accordion>
+  <Accordion title="Automated Pod Eviction and Resizing">
+    This release introduces the core Kubex Automation Controller deployment, which automatically manages container resource optimization through intelligent pod scanning and eviction.
+
+    - **Automated Pod Scanning**--The controller continuously scans all pods within the configured scope, evaluating them for optimization opportunities based on Densify recommendations.
+    - **Pre-Eviction Safety Checks**--Before resizing any pod, the controller runs a comprehensive series of checks to ensure safe eviction, including:
+      - Validation of workload owner types and controller compatibility
+      - HPA (Horizontal Pod Autoscaler) conflict detection
+      - Resource quota and limit range compliance
+      - Pod disruption budget (PDB) verification
+      - Policy specification compliance to verify automation is allowed
+    - **Intelligent Pod Eviction**--When a pod passes all safety checks, the controller performs controlled eviction, allowing the mutating admission controller to automatically apply optimized resource specifications when the pod is recreated.
+    - **Scope-Based Control**--Administrators define automation scope through Helm values, specifying namespaces and optional pod labels to control which workloads are managed by the automation controller.
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.0.1 - August 22, 2025 (Patch)">
+  <Accordion title="Security and Infrastructure Improvements">
+    This release focuses on security enhancements and infrastructure improvements for the Kubex Automation Controller deployment.
+
+    - **Gateway Resource Management**--Added resource requests and limits for the gateway container, ensuring predictable resource allocation and preventing resource contention in production environments.
+    - **Enhanced Secret Security**--Improved secret handling by switching from environment variables to volume mounts, reducing the risk of secret exposure through process listings and container inspection.
+    - **Automated CA Bundle Management**--The webhook configuration now automatically extracts the CA bundle from TLS secrets, eliminating the need for manual CA bundle configuration and reducing deployment complexity.
+    - **Simplified Configuration**--Removed the manual `caBundle` dependency from `values-edit.yaml`, streamlining the Helm chart configuration process.
+    - **Improved Documentation**--Enhanced certificate generation documentation with detailed examples for multiple certificate creation methods, including OpenSSL, CFSSL, and Bring Your Own Certificate (BYOC) scenarios.
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.0.0 - June 25, 2025 (Major)">
+  <Accordion title="Initial Kubex Automation Controller Release">
+    This inaugural release introduces the Kubex Automation Controller, rebranded from the Mutating Admission Controller to reflect broader automation capabilities.
+
+    - **Helm Chart Deployment**--Packaged as a Helm release for simplified installation and management.
+    - **Automated Setup Script**--Quick deployment script automates setup, including cert-manager installation.
+    - **Split Architecture**--Redesigned with separate containers for core webhook logic and secure API communication.
+  </Accordion>
+  <Accordion title="Security and Control Features">
+    - **Enhanced Security**--Encrypted credentials, non-root container execution, and seccomp profiles enabled by default.
+    - **Selective Automation**--Ability to include or exclude specific workload types (e.g., Deployment, StatefulSet) from automation.
+    - **Offline Resilience**--Mutations are cached locally during connectivity issues and synchronized when connection is restored.
   </Accordion>
 </Accordion>

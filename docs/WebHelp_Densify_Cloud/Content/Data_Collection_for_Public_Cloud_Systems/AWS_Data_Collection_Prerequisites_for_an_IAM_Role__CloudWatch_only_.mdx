@@ -96,13 +96,13 @@ This custom policy must be updated periodically as Kubex standard audit requirem
 Example: AWS Minimum User Permission Policy
 
 ```json
-	            "Version": "2012-10-17",    
+	        "Version": "2012-10-17",    
             "Statement": [
 	                    {
-	                        "Sid": "Stmt1499171905000",
+	                    "Sid": "Stmt1499171905000",
                         "Effect": "Allow",    
                         "Action": [
-	                            "autoscaling:DescribeAutoScalingGroups",
+	                        "autoscaling:DescribeAutoScalingGroups",
                             "autoscaling:DescribeLaunchConfigurations",
                             "autoscaling:DescribeScalingActivities",
                             "ce:GetCostAndUsage",
@@ -113,6 +113,7 @@ Example: AWS Minimum User Permission Policy
                             "cloudwatch:GetMetricData",
                             "cloudwatch:GetMetricStatistics",    
                             "cloudwatch:ListMetrics",
+                            "ec2:DescribeAvailabilityZones",
                             "ec2:DescribeHosts",
                             "ec2:DescribeImages",
                             "ec2:DescribeInstances",
@@ -135,21 +136,23 @@ Example: AWS Minimum User Permission Policy
                             "ecs:ListTagsForResource",    
                             "ecs:ListTaskDefinitions",    
                             "eks:DescribeCluster",
-                            "eks:ListClusters",    
+                            "eks:ListClusters",
+                            "elasticache:DescribeCacheClusters",
+                            "elasticache:DescribeReplicationGroups",
+                            "elasticache:ListTagsForResource",    
                             "iam:ListAccountAliases",
                             "organizations:DescribeOrganization",
                             "organizations:ListAccounts",
                             "rds:DescribeDBInstances",    
                             "rds:DescribeReservedDBInstances",    
                             "rds:DescribeDBClusters",    
-                            "rds:ListTagsForResource"
-                            
+                            "rds:ListTagsForResource"                            
                         ],
                         
                         "Resource": "*"
                      }
             ]
-}
+
 ```
 
 
