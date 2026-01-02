@@ -83,7 +83,7 @@ Kubex supports: [Google OpenID](./External_User_Authentication_Example_Configura
 </td>
 <td>
 <p>This is the callback URL to your <span class="mc-variable Document.Densify variable">Kubex</span> instance where the identity provider redirects the user after they have been authenticated. </p>
-<p>https://\<my-densify-instance>:443/</p>
+<p>https://\<my-kubex-instance>:443/</p>
 <p>The HTTP redirect URIs must be protected with TLS security, so the service will only redirect to URIs beginning with "https". This prevents tokens from being intercepted during the authorization process.</p>
 </td>
 </tr>
@@ -94,13 +94,13 @@ Kubex supports: [Google OpenID](./External_User_Authentication_Example_Configura
 <td>
 <p>A logout URL is a URL in  your <span class="mc-variable Document.Densify variable">Kubex</span> instance that the identity provider can return to after the user has been logged out of the authorization server. </p>
 <ul>
-<li>https://\<my-densify-instance>/ (for the <span class="mc-variable Document.Densify_Console variable">Kubex Console</span>)</li>
-<li>https://\<my-densify-instance>:443/admin (for the <span class="mc-variable Document.Analysis_Console variable">Analysis Console</span>)</li>
-<li>https://\<my-densify-instance>:443/openIdError</li>
+<li>https://\<my-kubex-instance>/ (for the <span class="mc-variable Document.Densify_Console variable">Kubex Console</span>)</li>
+<li>https://\<my-kubex-instance>:443/admin (for the <span class="mc-variable Document.Analysis_Console variable">Analysis Console</span>)</li>
+<li>https://\<my-kubex-instance>:443/openIdError</li>
 </ul>
 <p>When using Google OpenID Connect only the following is required:</p>
 <ul>
-<li>https://\<my-densify-instance>:443/openIdError</li>
+<li>https://\<my-kubex-instance>:443/openIdError</li>
 </ul>
 </td>
 </tr>
