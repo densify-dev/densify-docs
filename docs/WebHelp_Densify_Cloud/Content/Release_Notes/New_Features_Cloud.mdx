@@ -196,7 +196,7 @@ columns
     The following changes have been made to improve how Kubex determines the cost of public cloud instances, using customer-specific discounts:
 
     - **Azure Hybrid Benefit Status**--As part of enhancing the cost data model, Kubex needs to distinguish between systems that are BYOL (also called Azure Hybrid Benefit or AHB) to accurately represent the cost of the system. The license model is available in the existing data collection configuration so no changes are required to the minimum permissions for BYOL VMs.
-    - **Azure Instance OS Name**--Densify now determines the type of Linux OS. In this release RHEL and SUSE are supported. The OS name is used to accurately determine instance costs.
+    - **Azure Instance OS Name**--Kubex now determines the type of Linux OS. In this release RHEL and SUSE are supported. The OS name is used to accurately determine instance costs.
     - **Updated Cost Model**--The cloud cost data model has been updated to apply discounts based on the following details:
       - OS Type--The type of Linux OS installed on a cloud instance. This is not an attribute and is stored in a table but cannot be edited or cleared like an attribute.
       - License Model (Attr_key is aws:licensemodel)--The licensing model that has been configured for a cloud instance )
@@ -563,7 +563,7 @@ columns
 
     <div style={{ width:"70%" }}>
     <p>
-    In this release Kubex introduces Public Cloud optimization features. In this new console, Densify’s patented analytics determine optimal resource settings for your public cloud environments and display the results in a new user interface.
+    In this release Kubex introduces Public Cloud optimization features. In this new console, Kubex's patented analytics determine optimal resource settings for your public cloud environments and display the results in a new user interface.
 
     </p>
 
@@ -579,7 +579,7 @@ columns
     You can access the new console from your existing instance using:
 
     ```
-    https://<customer name>.densify.com/kubex
+    https://<customer name>.kubex.ai
     ```
 
     See the new [Kubex](https://www.kubex.ai) website to start a free trial.
@@ -596,7 +596,7 @@ columns
       - Three new columns have been added: Cluster Version, Kubex Collection Stack Version and Prometheus Version
       - A link that provides secure Kubex credentials has been added. The credentials are provided in a code snippet than can be copied directly into your `values.edit.yaml` file.
 
-        This new method makes it easier for you to set up container data collection, reducing the previous manual dependency of requesting these credentials from Densify.
+        This new method makes it easier for you to set up container data collection, reducing the previous manual dependency of requesting these credentials from Kubex.
     - **Updated Optimization Breakdown**--Hovering over any bar in this chart, displays a description of the recommended optimization. Badges have also been added to indicate significant information, such a s memory events or unspecified resource settings.
     - **Summary Page**--The Summary page has been updated for improved readability.
     - **Cost Modeling**--Kubex now has improved algorithms that use existing utilization data to estimate the cost for containers with unspecified CPU/memory request values. The Summary, Analysis Details, and Overview pages have all been updated to show the cost estimates for these containers. The following updates have been made to show these values:
@@ -631,7 +631,7 @@ columns
     - Kubex Automation--Indicates whether the container is eligible for automation within Kubex.The attribute is set one-time, is static, and is not inherited from cluster, node group, or any higher level.
     - Kubex Policy--Indicates what policy to use when automation is enabled.
 
-    See [Densify API New Features](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features)
+    See [Kubex API New Features](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features)
   </Accordion>
   <Accordion title="Updated API Token Expiry Duration">
     The token expiry has been increased from 5 to 60 minutes. Re-authorize will no longer be required for longer-running pipeline operations that previously exceed the 5-minute limit. The JSON Web Token (JWT) secures the Kubex API so users can only make authorized API requests.
@@ -1134,7 +1134,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
       - memory actual utilization (percent) (based on memory_actual_workload metric)
       - total node memory (in bytes) (configuration attribute)
 
-    Densify's container analyses will be updated in future releases to utilize this HPA data when generating recommendations.
+    Kubex's container analyses will be updated in future releases to utilize this HPA data when generating recommendations.
   </Accordion>
   <Accordion title="Updated Node Identification">
     To improve the identification of a container's parent node, the `provider_id` has been introduced as a third identification component. Currently, nodes are identified using `cluster_name` and `node_name`.
@@ -1144,7 +1144,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
     Specifically, for EKS and OKE clusters, existing node IDs will change and as a result, node history will be lost since these nodes will receive new IDs.
   </Accordion>
   <Accordion title="Updated Configuration Setting">
-    The data forwarder's configmap.yaml file has been updated. The setting, `node_group_list` has been updated to add `label_karpenter_sh_nodepool`. When enabled, Karpenter NodeGroups are discovered and created in Densify.
+    The data forwarder's configmap.yaml file has been updated. The setting, `node_group_list` has been updated to add `label_karpenter_sh_nodepool`. When enabled, Karpenter NodeGroups are discovered and created in Kubex.
   </Accordion>
 </Accordion>
 
@@ -1222,7 +1222,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 </Accordion>
 
 <Accordion title="4.0.0 - May 28, 2024 ">
-  Version 4 introduces significant updates to Densify's container data collection solution. This version resides in a new [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md).
+  Version 4 introduces significant updates to Kubex's container data collection solution. This version resides in a new [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md).
 
   While the core PromQL queries remain the same, with the exception of some improvements and bug fixes, the data forwarder has been re-architected to support multi-cluster data collection.
 
@@ -1252,7 +1252,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
     The following commercial observability platforms are supported:
 
     - Amazon Managed Service for Prometheus (AMP)--Refer to the [AWS website](https://docs.aws.amazon.com/prometheus/latest/userguide/indexl) for details on AMP. Kubex requires a specially configured role. See [Container Data Collection Using Amazon Managed Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_EKS_and_AMP) for configuration examples.
-    - Azure Monitor Managed Service for Prometheus (AzMP)--Refer to the [Azure website](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-overview) for details.Densify automates the process of acquiring and get and refreshing security tokens. See [Container Data Collection Using Azure Managed Service for Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_AzMP) for a configuration example.
+    - Azure Monitor Managed Service for Prometheus (AzMP)--Refer to the [Azure website](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-overview) for details. Kubex automates the process of acquiring and get and refreshing security tokens. See [Container Data Collection Using Azure Managed Service for Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_AzMP) for a configuration example.
     - [Grafana Cloud](https://grafana.com/products/cloud/)--See [Container Data Collection using Basic Authentication](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Forwarder_Basic_Auth) for a configuration example.
 
     The following self-hosted OSS solutions are supported:
@@ -1342,8 +1342,6 @@ When deploying the Container Data Forwarder ensure that the same version is depl
   </Accordion>
   <Accordion title="End of Support Notice - Container Data Forwarder 3.x.x">
     Kubex will discontinue support of Container Data Forwarder versions 3.x.x on June 30, 2024. Contact <a href="mailto:support@kubex.ai">
-    support@kubex.ai</a>
-
-     for details on migrating to Densify's current version of the Container Data Forwarder.
+    support@kubex.ai</a> for details on migrating to Kubex's current version of the Container Data Forwarder.
   </Accordion>
 </Accordion>
