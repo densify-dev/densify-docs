@@ -3,13 +3,13 @@ title: "External User Authentication for Azure Active Directory"
 sidebarTitle: "Azure Active Directory"
 ---
 
-You can use the following process to setup Azure Active Directory (AD). You need to register Densify as a web application in your Azure AD and then provide the following information to Densify:
+You can use the following process to setup Azure Active Directory (AD). You need to register Kubex as a web application in your Azure AD and then provide the following information to Kubex:
 
 * Application (client) ID
 * Directory (tenant) ID
 * Client secret (password)
 
-An auto-provisioning feature allows users to access the Densify Console without needing to manually create user accounts in Densify. Additional configuration is required as outlined in, [Creating User Groups for Users](#Create_groups). Contact [Support@Densify.com](mailto:Support@Densify.com) to enable the auto-provisioning feature.
+An auto-provisioning feature allows users to access the Kubex Console without needing to manually create user accounts in Kubex. Additional configuration is required as outlined in, [Creating User Groups for Users](#Create_groups). Contact [support@kubex.ai](mailto:support@kubex.ai) to enable the auto-provisioning feature.
 
 ### Register an Application
 
@@ -22,7 +22,7 @@ You must have permission to manage applications in Azure AD. i.e. Application ad
 </Accordion>
 3. In the Register an application pane, enter the following information:
 
-* The Name of the application (i.e. Densify\_Connection)
+* The Name of the application (i.e. Kubex\_Connection)
 * Specify who can use the application. You can leave the default setting, Accounts in this organizational directory only (Default Directory only – Single tenant).
 * You do not need to add anything under the Redirect URI. You can configure the URIs in the next section.
 
@@ -42,7 +42,7 @@ New app registrations are hidden to other users by default. Refer to Microsoft.c
 * Application (client) ID
 * Directory (tenant) ID
 
-You need to provide these values to Densify to complete the authentication process.
+You need to provide these values to Kubex to complete the authentication process.
 
 <Accordion title="Figure: Obtaining the Required IDs">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Administration_Guide/030000CB.png)</Frame>
@@ -58,15 +58,15 @@ A redirect URI is the location where the Microsoft identity platform redirects a
 3. Under Platform configurations, click Add a platform and then choose Web applications > Web.
 4. Under Redirect URIs, add the following URIs:
 <Note>
-These are examples only. Contact Densify for the actual URIs.
+These are examples only. Contact Kubex for the actual URIs.
 </Note>
 
 
 
-* https://\<instancename>.densify.com:443/redirect
-* https://\<instancename>.densify.com:443/
-* https://\<instancename>.densify.com:443/densify
-* https://\<instancename>.densify.com:443/openIdError
+* https://\<instancename>.kubex.ai:443/redirect
+* https://\<instancename>.kubex.ai:443/
+* https://\<instancename>.kubex.ai:443/kubex
+* https://\<instancename>.kubex.ai:443/openIdError
 
 5. Click Add URI to add each entry. You should have a total of 4 URIs.
 <Accordion title="Figure: Adding Redirect URIs">
@@ -76,18 +76,18 @@ These are examples only. Contact Densify for the actual URIs.
 
 ### Obtaining the Credentials
 
-The credentials generated here allow Densify to authenticate as itself, requiring no interaction from the user at runtime.
+The credentials generated here allow Kubex to authenticate as itself, requiring no interaction from the user at runtime.
 
-A client secret is sometimes called an application password. It is a string value that Densify can use in place of a certificate to identity itself.
+A client secret is sometimes called an application password. It is a string value that Kubex can use in place of a certificate to identity itself.
 
 1. In the Azure portal, in App registrations, select your application registration.
 2. Navigate to Certificates & secrets > Client secrets > New client secret.
-3. Add a description for your client secret. i.e.Densify-Client-Secret
+3. Add a description for your client secret. i.e.Kubex-Client-Secret
 4. Select an expiration for the client secret or specify a custom lifetime. Please note the following:
 
 * Client secret lifetime is limited to 24 months, or less.
 * Microsoft recommends that you set an expiration value of less than 12 months.
-* You will need to renew the secret prior to the expiry date and provide the new value to Densify each time the value expires.
+* You will need to renew the secret prior to the expiry date and provide the new value to Kubex each time the value expires.
 
 5. Click Add to save your settings and to generate the client secret.
 <Accordion title="Figure: Copying Client Secret Value">
@@ -95,11 +95,11 @@ A client secret is sometimes called an application password. It is a string valu
 </Accordion>
 
 
-Record the displayed value, as this value will not be displayed again once you leave this page and you need to provide this value to Densify.
+Record the displayed value, as this value will not be displayed again once you leave this page and you need to provide this value to Kubex.
 
 ### Configuring the API Permissions for the Connection
 
-In this section, you provide Densify, now registered with the Microsoft identity platform with access to your own web API. You also provide the client app access to Microsoft Graph.
+In this section, you provide Kubex, now registered with the Microsoft identity platform with access to your own web API. You also provide the client app access to Microsoft Graph.
 
 1. In the Azure portal, select App registrations and then select your application registration.
 2. Navigate to Manage > API permissions > Add a Permission > Microsoft Graph.
@@ -109,8 +109,8 @@ In this section, you provide Densify, now registered with the Microsoft identity
 3. Choose ‘Delegated Permissions’. Microsoft Graph exposes many permissions, with the most commonly used permissions shown at the top of the list.
 4. Under OpenId permissions, select:
 
-* email--Allow Densify to view the users’ email address;
-* profile--Allow Densify to view the users’ basic profile;
+* email--Allow Kubex to view the users’ email address;
+* profile--Allow Kubex to view the users’ basic profile;
 
 <Accordion title="Figure: Configuring the API Permissions">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Administration_Guide/03200050.png)</Frame>
@@ -119,7 +119,7 @@ In this section, you provide Densify, now registered with the Microsoft identity
 
 * Under GroupMember select:
 
-* GroupMember.Read.All--Allow Densify to read all user groups.
+* GroupMember.Read.All--Allow Kubex to read all user groups.
 
 <Note>
 If the auto-provisioning feature is enabled, you need to add this permission. If the auto-provisioning is not enabled you do not need this permission.
@@ -133,7 +133,7 @@ If the auto-provisioning feature is enabled, you need to add this permission. If
 
 5. Under User select:
 
-* User Read--should already be delegated. Allows Densify to sign in and read user profile.
+* User Read--should already be delegated. Allows Kubex to sign in and read user profile.
 
 6. Click Add Permissions and choose Grant admin consent confirmation. Then click ‘Yes’ when prompted.
 7. Click Yes when prompted.
@@ -142,7 +142,7 @@ If the auto-provisioning feature is enabled, you need to add this permission. If
 </Accordion>
 
 
-### Creating User Groups for Densify Users
+### Creating User Groups for Kubex Users
 
 <Note>
 If the auto-provisioning feature is enabled, you need to create these groups, otherwise you can skip these steps.
@@ -150,22 +150,22 @@ If the auto-provisioning feature is enabled, you need to create these groups, ot
 
 
 
-The auto-provisioning feature allows users to access the Densify Console without needing to manually create user accounts in Densify. Once the feature is enabled, you must create groups in your Azure AD, that correspond to Densify's user groups and add users to grant the required permissions.
+The auto-provisioning feature allows users to access the Kubex Console without needing to manually create user accounts in Kubex. Once the feature is enabled, you must create groups in your Azure AD, that correspond to Kubex's user groups and add users to grant the required permissions.
 
-Contact [Support@Densify.com](mailto:Support@Densify.com) to enable the auto-provisioning feature.
+Contact [support@kubex.ai](mailto:support@kubex.ai) to enable the auto-provisioning feature.
 
-You need to create user groups that correspond to the commonly used Densify user groups: DENSIFY\_USER, DENSIFY\_USER\_ADMIN and DENSIFY\_AUDIT\_ADMIN.
+You need to create user groups that correspond to the commonly used Kubex user groups: KUBEX\_USER, KUBEX\_USER\_ADMIN and KUBEX\_AUDIT\_ADMIN.
 
 1. Navigate to Manage > Groups. You will see the list of existing groups.
 2. Click New group at the top of the list and configure the group settings:
 
 * Group Type--Select "Security"
-* Group name--Specify the name, DENSIFY\_USER. Use this exact name (uppercase, underscore and no spaces) for your new group.
+* Group name--Specify the name, KUBEX\_USER. Use this exact name (uppercase, underscore and no spaces) for your new group.
 * Group description--Optional: Provide a description for this group.
 * Membership type--Specify how users will be added to the group i.e. "Assigned".
 
 3. Click Create to create the group.
-4. Repeat the process to create a group for DENSIFY\_USER\_ADMIN and for DENSIFY\_AUDIT\_ADMIN.
+4. Repeat the process to create a group for KUBEX\_USER\_ADMIN and for KUBEX\_AUDIT\_ADMIN.
 
 <Note>
 These new user groups cannot be hidden groups.
@@ -173,14 +173,14 @@ These new user groups cannot be hidden groups.
 
 
 
-### Adding Densify Users to Groups
+### Adding Kubex Users to Groups
 
 Add the users to one or more groups. You can add users to all groups or add them to a specifc group , based on their requirements.
 
-* SaaS\_User--Users with this role can access all features in the Densify Console.
-* SaaS\_User\_Admin--Users with this role can add, edit and remove Densify user accounts through the user management dialog box.
+* SaaS\_User--Users with this role can access all features in the Kubex Console.
+* SaaS\_User\_Admin--Users with this role can add, edit and remove Kubex user accounts through the user management dialog box.
 <Note>
-User management is not required within Densify when Open ID is configured and the auto-provisioning feature is enabled.
+User management is not required within Kubex when Open ID is configured and the auto-provisioning feature is enabled.
 </Note>
 
 * SaaS\_Audit\_Admin--Users with this role can create, edit or delete cloud audits, but cannot manage user accounts.
@@ -193,10 +193,10 @@ User management is not required within Densify when Open ID is configured and th
 
 ### Completing the Setup
 
-You now need to provide the following information to Densify to complete the setup:
+You now need to provide the following information to Kubex to complete the setup:
 
 * Application (client) ID;
 * Directory (tenant) ID;
 * client secret value
 
-These settings are all configured for you by Densify. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+These settings are all configured for you by Kubex. Contact [support@kubex.ai](mailto:support@kubex.ai) for details.

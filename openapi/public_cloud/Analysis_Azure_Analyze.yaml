@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – Azure Analysis API
+  title: Kubex – Azure Analysis API
   version: "1.0.0"
   description: |
     OpenAPI derived from "Analysis: Azure Analyze" documentation.
@@ -12,7 +12,7 @@ info:
     See also references to `/analysis/azure/{subscriptionId}/status` and list endpoint.
 servers:
   - url: https://{host}
-    description: Your Densify API host
+    description: Your Kubex API host
     variables:
       host:
         default: api.example.com
@@ -221,7 +221,7 @@ components:
           description: Milliseconds timestamp when last analysis completed.
         analysisId:
           type: string
-          description: Densify-internal analysis ID.
+          description: Kubex-internal analysis ID.
         phase:
           type: string
           description: "Current phase, e.g., `analyzing: 42%` or `not analyzing`."

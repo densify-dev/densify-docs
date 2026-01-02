@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – Subscriptions Properties API
+  title: Kubex – Subscriptions Properties API
   version: "1.0.0"
   description: |
     Catalog of recommendation properties available for use in subscription filters (`propertyReferences`).

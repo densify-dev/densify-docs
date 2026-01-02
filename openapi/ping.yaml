@@ -1,16 +1,16 @@
 openapi: 3.0.3
 info:
-  title: Densify Ping API
+  title: Kubex Ping API
   version: "1.0.0"
   description: |
-    Health-check endpoint for the Densify API subsystem.
+    Health-check endpoint for the Kubex API subsystem.
     No credentials required.
 servers:
   - url: https://{host}/api
     variables:
       host:
         default: api.example.com
-        description: Replace with your Densify API host
+        description: Replace with your Kubex API host
 tags:
   - name: Health
     description: Endpoints to check API health
@@ -20,7 +20,7 @@ paths:
       operationId: ping
       tags:
         - Health
-      summary: Ping Densify API subsystem
+      summary: Ping Kubex API subsystem
       description: |
         End-to-end connectivity check to ensure the API subsystem
         and database are reachable.

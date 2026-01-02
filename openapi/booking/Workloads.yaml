@@ -1,8 +1,8 @@
 openapi: 3.1.0
 info:
-  title: Densify Workloads API
+  title: Kubex Workloads API
   version: 1.0.0
-  description: API to manage workloads in the Densify platform.
+  description: API to manage workloads in the Kubex platform.
 servers:
   - url: https://api.densify.com/v1
 paths:

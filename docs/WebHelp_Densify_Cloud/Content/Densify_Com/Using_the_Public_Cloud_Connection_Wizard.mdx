@@ -4,7 +4,7 @@ title: "Using the Public Cloud Connections Wizard"
 
 The Public Cloud Connections wizard guides you through the steps to create and schedule daily data collection from your public cloud instances. Collected configuration and workload data is then analyzed and used to recommend sizing and placement optimization opportunities.
 
-The Public Cloud Connections wizard is accessible from the Densify Console's landing page or from the Public Cloud > dropdown menu.
+The Public Cloud Connections wizard is accessible from the Kubex Console's landing page or from the Public Cloud > dropdown menu.
 
 <Accordion title="Figure: Accessing the Cloud Connections Wizard">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_SaaS/06000236_282x182.png)</Frame>
@@ -25,21 +25,21 @@ You can modify the connections once they have been created:
 * [Delete Connections](#Deleting)
 * [Change Credentials](#Changing_Credentials)
 
-Additionally, you can collect and analyze AWS data through the Densify API. Refer to the following use cases for an example of API data collection:
+Additionally, you can collect and analyze AWS data through the Kubex API. Refer to the following use cases for an example of API data collection:
 
-* [Optimizing AWS EC2 Instances](https://densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_AWS_EC2_Instances)
-* [Optimizing Microsoft Azure Virtual Machine Instances](https://densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Microsoft_Azure_Virtual_Machine_Instances)
-* [Optimizing GCP Compute Engine Instances](https://densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_GCP_Compute_Engine_Instances)
+* [Optimizing AWS EC2 Instances](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_AWS_EC2_Instances)
+* [Optimizing Microsoft Azure Virtual Machine Instances](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Microsoft_Azure_Virtual_Machine_Instances)
+* [Optimizing GCP Compute Engine Instances](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_GCP_Compute_Engine_Instances)
 
 ### Considerations when Working with Large Environments
 
-In large environments, Densify highly recommends batching your accounts into smaller groups for improved performance when creating the cloud connections. i.e. 10 accounts at a time. You can use a resource tag, such as organization or business unit to split the total number of accounts so that data is collected in manageable batches.
+In large environments, Kubex highly recommends batching your accounts into smaller groups for improved performance when creating the cloud connections. i.e. 10 accounts at a time. You can use a resource tag, such as organization or business unit to split the total number of accounts so that data is collected in manageable batches.
 
 ## Configuring a Connection to AWS
 
 You can connect to your AWS account with the following method:
 
-* IAM User and Access keys--This process prompts you to enter your AWS credentials for either configuration/workload data. Your information is verified and can then be saved. Densify then creates the required audits and analyses and schedules them to run regularly.
+* IAM User and Access keys--This process prompts you to enter your AWS credentials for either configuration/workload data. Your information is verified and can then be saved. Kubex then creates the required audits and analyses and schedules them to run regularly.
 * IAM Role--An IAM cross-account role that establishes a trust relationship between AWS accounts. In order to create the connection you need the prerequisite information, including the external ID and Role ARN. See:
 
 * [AWS Data Collection Using a CloudFormation Template](../Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template) for details on collecting resource utilization data.
@@ -53,15 +53,15 @@ You can connect to your AWS account with the following method:
 </Accordion>
 
 
-1. On the Densify landing page, click Connect to your AWS accounts.
+1. On the Kubex landing page, click Connect to your AWS accounts.
 
 or
 
-from the Densify Console, navigate to Public Cloud > Add Cloud Connection.
+from the Kubex Console, navigate to Public Cloud > Add Cloud Connection.
 
 2. Click on the Amazon Web Services tab.
 3. Select Connect Using: "IAM Role".
-4. The Densify Account ID is predefined. This value must match the value you entered when you created the role in AWS.
+4. The Kubex Account ID is predefined. This value must match the value you entered when you created the role in AWS.
 5. Enter the AWS-specific connection parameters, as listed in the table below. Refer to [AWS Data Collection Using a CloudFormation Template](../Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template) for details on creating the accounts and obtaining the credentials.
 <Accordion title="Table: AWS Connection Parameters - IAM Role">
 <table>
@@ -82,7 +82,7 @@ from the Densify Console, navigate to Public Cloud > Add Cloud Connection.
 <p>External ID</p>
 </td>
 <td>
-<p>The external ID specified for <span class="mc-variable Document.Company variable">Densify</span>, when you created the IAM role in AWS.</p>
+<p>The external ID specified for <span class="mc-variable Document.Company variable">Kubex</span>, when you created the IAM role in AWS.</p>
 <p> If you need to edit or review a saved connection, for security reasons, you will need to re-enter the external ID.</p>
 </td>
 </tr>
@@ -104,9 +104,9 @@ The External ID and the Role ARN are encrypted and are not displayed as plain te
 
 6. Once your AWS connection parameters are entered, verify your connection using Click to Verify Account Connection.
 
-* If the credentials are valid, you will be connected and authenticated. Once the account is verified, Densify discovers the AWS account ID and displays the ID number. See Table: AWS Account ID and Connection Type Parameters below.
+* If the credentials are valid, you will be connected and authenticated. Once the account is verified, Kubex discovers the AWS account ID and displays the ID number. See Table: AWS Account ID and Connection Type Parameters below.
 <Note>
-The number of instances returned is a high level estimate obtained when Densify verifies the connectivity. It may not match the number of instances discovered during the more detailed, scheduled data collection.
+The number of instances returned is a high level estimate obtained when Kubex verifies the connectivity. It may not match the number of instances discovered during the more detailed, scheduled data collection.
 </Note>
 
 * If the credentials cannot be validated, then review the displayed error message and correct your credentials. It is possible that the user account does not have the required permissions. See [AWS Data Collection Using a CloudFormation Template](../Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template) for details.
@@ -119,7 +119,7 @@ The Save Connection button is disabled until the connection is successfully veri
 7. After you have specified the connection name click Save Connection.
 8. The connection status, at the bottom of the page, will be updated. You will also see the connection listed in the Saved Connections section.
 
-For resource utilization data, the initial audit collects the last 60 days of data, if available, and each, subsequent daily audit collects the last 24 hours of data. Contact [Support@Densify.com](mailto:Support@Densify.com) for details
+For resource utilization data, the initial audit collects the last 60 days of data, if available, and each, subsequent daily audit collects the last 24 hours of data. Contact [support@kubex.ai](mailto:support@kubex.ai) for details
 
 9. If you want to add another connection, click Add New Connection and follow steps 3 to 7 again to configure the connection.
 10. Close the Public Cloud Connections page once you have completed creating all your AWS connections.
@@ -128,8 +128,8 @@ Once the connection has been verified data collection starts. You will be contac
 
 ### Using the Public Cloud Connections Wizard--IAM User and Access Keys
 
-1. On the Densify landing page, click Connect to your AWS accounts.
-   From the Densify Console, navigate to Public Cloud >Add Cloud Connections.
+1. On the Kubex landing page, click Connect to your AWS accounts.
+   From the Kubex Console, navigate to Public Cloud >Add Cloud Connections.
 2. Click on the Amazon Web Services tab.
 3. Select the connection type:
 
@@ -169,7 +169,7 @@ Once the connection has been verified data collection starts. You will be contac
 </Accordion>
 5. Once your AWS connection parameters are entered, verify your connection. Click Click to Verify Account Connection.
 
-* If the credentials are valid, you will be connected and authenticated. Once the account is verified, Densify discovers the AWS account ID and displays the ID number. See [Using the Public Cloud Connections Wizard](#AWS_Account_ID) below.
+* If the credentials are valid, you will be connected and authenticated. Once the account is verified, Kubex discovers the AWS account ID and displays the ID number. See [Using the Public Cloud Connections Wizard](#AWS_Account_ID) below.
 * If the credentials cannot be validated, then review the displayed error message and correct your credentials. It is possible that the user account does not have the required permissions. See [AWS Data Collection Using a CloudFormation Template](../Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template) for details.
 
 6. After you have specified the connection name click Save Connection.
@@ -202,11 +202,11 @@ Your information is verified and the connection can then be saved and is schedul
 
 ### Using the Public Cloud Connections Wizard
 
-1. On the Densify landing page, click Connect to your AWS accounts.
+1. On the Kubex landing page, click Connect to your AWS accounts.
 
 or
 
-from the Densify Console, navigate to Public Cloud > Add Cloud Connection.
+from the Kubex Console, navigate to Public Cloud > Add Cloud Connection.
 
 2. Click on the Microsoft Azure tab.
 3. Click the appropriate radio button to select the type of connection to create:
@@ -251,7 +251,7 @@ from the Densify Console, navigate to Public Cloud > Add Cloud Connection.
 <p>Connection Name </p>
 </td>
 <td class="td_4">
-<p>Use the connection name to clearly identify the Azure subscription in <span class="mc-variable Document.Densify variable">Densify</span>. This name will appear in the <span >Saved Connections</span> list.</p>
+<p>Use the connection name to clearly identify the Azure subscription in <span class="mc-variable Document.Densify variable">Kubex</span>. This name will appear in the <span >Saved Connections</span> list.</p>
 <p> The connection name must be unique within the Azure connection type section, so if the name is already in use, you are prompted to enter a new connection name.</p>
 <p class="CiRBATableNote" data-mc-autonum="<b>Note: </b>"><span class="autonumber"><span><b>Note: </b></span></span>The Connection Name is limited to 32-characters. The Connection Wizard prevents you from entering a string that is more than 32-characters. <br/></p>
 </td>
@@ -320,7 +320,7 @@ from the Densify Console, navigate to Public Cloud > Add Cloud Connection.
 6. Once the connection has been verified, click Save Connection.
 7. The connection status, at the bottom of the page, will be updated. You will also see the connection listed in the Saved Connections section.
 
-For resource utilization data, the initial audit collects the last 60 days of data, if available, and each, subsequent daily audit collects the last 24 hours of data. Contact [Support@Densify.com](mailto:Support@Densify.com) for details
+For resource utilization data, the initial audit collects the last 60 days of data, if available, and each, subsequent daily audit collects the last 24 hours of data. Contact [support@kubex.ai](mailto:support@kubex.ai) for details
 
 8. Click Add New Connection, to add another connection.
 
@@ -347,11 +347,11 @@ Click the Google Cloud tab to configure a GCP connection. You will need to provi
 
 ### Adding a GCP Connection
 
-1. On the Densify landing page, click Connect to your AWS accounts.
+1. On the Kubex landing page, click Connect to your AWS accounts.
 
 or
 
-from the Densify Console, navigate to Public Cloud > Add Cloud Connection.
+from the Kubex Console, navigate to Public Cloud > Add Cloud Connection.
 
 2. Click the Google Cloud tab.
 3. Enter the GCP-specific account information. Refer to [Google Cloud Platform Data Collection Prerequisites](../Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites) for details on creating the accounts and obtaining the credentials.
@@ -411,7 +411,7 @@ from the Densify Console, navigate to Public Cloud > Add Cloud Connection.
 
 5. From the Projects In Scope section, select the projects to include in the audit. The newly discovered project has a New, Not Saved status.
 
-* If a project discovered with the service account has already been saved and scheduled for auditing within Densify(duplicate project realized), then the current status of the project will be displayed and the project is not selectable.
+* If a project discovered with the service account has already been saved and scheduled for auditing within Kubex (duplicate project realized), then the current status of the project will be displayed and the project is not selectable.
 
 6. Once the project(s) have been selected, click Save Connection.
 
@@ -425,7 +425,7 @@ from the Densify Console, navigate to Public Cloud > Add Cloud Connection.
 </Accordion>
 7. If you want to add another connection, click Add New Connection and follow steps 3 - 6 again to configure the connection.
 <Note>
-If you have many projects, select the projects to be included and then click Save Connection Densify creates the required structures within the Densify database and initiates a 60-day audit to collect historical data for each of the selected projects. This takes some time and you cannot create another connection while the audit is in progress
+If you have many projects, select the projects to be included and then click Save Connection Kubex creates the required structures within the Kubex database and initiates a 60-day audit to collect historical data for each of the selected projects. This takes some time and you cannot create another connection while the audit is in progress
 </Note>
 
 8. When you are done adding the connection, close the Public Cloud Connections page.
@@ -438,7 +438,7 @@ From the Google Cloud tab in the Public Cloud Connections wizard, you can perfo
 
 * Update the service account key (JSON) file--If your service account key file has changed, you can upload the new file and re-discover the projects associated with the service account.
 * Update the list of projects associated with the service account--If the projects associated with the service account have changed, you can re-discover the updated projects.
-* Projects in this list are from the service account, as of the latest data collection. You can deselect projects and these will be removed from data collection. If you deselect all projects associated with the GCP connection and save the connection, Densify will remove the connection.
+* Projects in this list are from the service account, as of the latest data collection. You can deselect projects and these will be removed from data collection. If you deselect all projects associated with the GCP connection and save the connection, Kubex will remove the connection.
 
 <Note>
 You cannot modify a connection (add/remove/modify projects) while data collectiom is running. Data collection runs when the connection is first created and then on a nightly basis.
@@ -459,7 +459,7 @@ The Projects In Scope list will not be up to date if projects in the service acc
 
 5. From the Project In Scope section, if you want to remove existing audited projects, de-select the desired projects and click Save Connection.
 
-If you de-select all projects associated with the GCP connection and try to save the connection, Densify displays a message indicating the connection will be deleted if you save an empty project connection.
+If you de-select all projects associated with the GCP connection and try to save the connection, Kubex displays a message indicating the connection will be deleted if you save an empty project connection.
 
 6. When you are done modifying the connection, close the Public Cloud Connections wizard.
 
@@ -469,9 +469,9 @@ After the you modify the connection data collection, analysis, and database refr
 
 These are common Public Cloud Connections features:
 
-### Accessing the Wizard from the Densify Console
+### Accessing the Wizard from the Kubex Console
 
-Once you have collected data and are using the Densify Console you will not see the Densify landing page.
+Once you have collected data and are using the Kubex Console you will not see the Kubex landing page.
 
 You can still access the Cloud Connections wizard from the Public Cloud >  Add Cloud Connection menu.
 
@@ -536,7 +536,7 @@ re-create a connection for the same account using the wizard, the new audits aut
 
 ### Configuring Public Cloud Connections to use a Proxy Server
 
-You can configure your public cloud connection to use a proxy server, for additional security. You need to provide the following information to [Support@Densify.com](mailto:Support@Densify.com):
+You can configure your public cloud connection to use a proxy server, for additional security. You need to provide the following information to [support@kubex.ai](mailto:support@kubex.ai):
 
 * Proxy server name
 * Proxy server access port

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – Azure Analysis Delete API
+  title: Kubex – Azure Analysis Delete API
   version: "1.0.0"
   description: >
     Derived from "Analysis: Azure Delete".

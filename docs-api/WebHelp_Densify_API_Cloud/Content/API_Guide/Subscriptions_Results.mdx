@@ -2,7 +2,7 @@
 title: "Subscriptions: Results"
 ---
 
-The `/subscriptions/<platformType>/<subscriptionRef>` resource is used to dynamically retrieve your latest personalized Densify subscription recommendations. This resource allows you to review your platform-specific subscription results on-demand. The same information is delivered to a third-party application for targeted distribution if the third-party application is defined in the subscription's webhook.
+The `/subscriptions/<platformType>/<subscriptionRef>` resource is used to dynamically retrieve your latest personalized Kubex subscription recommendations. This resource allows you to review your platform-specific subscription results on-demand. The same information is delivered to a third-party application for targeted distribution if the third-party application is defined in the subscription's webhook.
 
 To see how subscriptions are defined, refer to [Subscriptions](./Subscriptions).
 
@@ -21,7 +21,7 @@ To see how subscriptions are defined, refer to [Subscriptions](./Subscriptions).
 ```
 
 <Note>
-If you use this resource without the `<platformType>` specified (i.e. without `cloud` or `containers` specified), the behavior is exactly the same as specifying the `cloud`-specific resource. This behavior enables backward compatibility with scripts using the Densify API prior to release 12.1.6, where the platform-specific indicator was not available.
+If you use this resource without the `<platformType>` specified (i.e. without `cloud` or `containers` specified), the behavior is exactly the same as specifying the `cloud`-specific resource. This behavior enables backward compatibility with scripts using the Kubex API prior to release 12.1.6, where the platform-specific indicator was not available.
 </Note>
 
 ## endpoints

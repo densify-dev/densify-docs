@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Densify – Subscriptions Status API
+  title: Kubex – Subscriptions Status API
   version: "1.0.0"
   description: |
     Return the last on-demand/scheduled trigger and the last webhook post status

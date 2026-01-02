@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify API
+  title: Kubex API
   description: API for workload routing and capacity analysis.
   version: 1.0.0
 servers:

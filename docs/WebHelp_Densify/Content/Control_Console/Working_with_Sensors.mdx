@@ -2,7 +2,7 @@
 title: "Working with Sensors"
 ---
 
-Densify provides a framework that allows non-compute (non host-centric) metrics to be easily added to Densify Control and Reservation analytics. For example, the framework can be used to include the analysis of application data or network data. Each type of metric is considered to be a sensor, e.g. application data sensor.
+Densify provides a framework that allows non-compute (non host-centric) metrics to be easily added to Kubex Control and Reservation analytics. For example, the framework can be used to include the analysis of application data or network data. Each type of metric is considered to be a sensor, e.g. application data sensor.
 
 The Control Console supports the display and management of sensors, allowing you to visualize sensors in the Spectrum and react to sensor-specific recommendations. Sensors can be used for routing future workload reservation requests.
 
@@ -16,10 +16,10 @@ Densify is shipped with the support for datastore sensors, which are audited thr
 
 You have two sensor placement options when routing workloads:
 
-* Balancing Strategy--Distributes incoming workloads across all suitable hosting venues with available sensor capacity. Using this option the resource with available sensor capacity that also matches the fit-for-purpose requirements of the incoming workload and has the most available capacity among all matching candidates is selected. Densify attempts to balance workloads across all available hosting venues. This is the default behaviour.
+* Balancing Strategy--Distributes incoming workloads across all suitable hosting venues with available sensor capacity. Using this option the resource with available sensor capacity that also matches the fit-for-purpose requirements of the incoming workload and has the most available capacity among all matching candidates is selected. Kubex attempts to balance workloads across all available hosting venues. This is the default behaviour.
 * Fill and Spill Strategy--Fills suitable hosting venues with available sensor capacity with incoming workloads until the resource reaches its threshold. When routing, the workloads with matching fit-for-purpose requirements are placed on the resource with the least capacity, first.
 
-You can specify sensor placement strategy when submitting a routing request via the API or you can set the placement strategy globally using a configuration setting. Contact [Support@Densify.com](mailto:Support@Densify.com) for details of configuring the global setting.
+You can specify sensor placement strategy when submitting a routing request via the API or you can set the placement strategy globally using a configuration setting. Contact [support@kubex.ai](mailto:support@kubex.ai) for details of configuring the global setting.
 
 <Note>
 If a preferred datastore is set, then that setting will override the sensor placement strategy (i.e. balanced/fill and spill).
@@ -27,7 +27,7 @@ If a preferred datastore is set, then that setting will override the sensor plac
 
 
 
-Refer to the API documentation for details on creating a routing request that includes specifying a sensor placement strategy. See [Routing Requests](https://densify.com/docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests#Placement) in the Densify API documentation.
+Refer to the API documentation for details on creating a routing request that includes specifying a sensor placement strategy. See [Routing Requests](https://densify.com/docs-api/WebHelp_Densify_API/Content/API_Guide/Routing_Requests#Placement) in the Kubex API documentation.
 
 ## Displaying Sensors and Recommendations
 
@@ -123,7 +123,7 @@ Table: Sensor Placement
 
 Historical data is not retained. When the timeline is set back in time, the sensor area is removed from the Spectrum (and the Sensor Display toggle is disabled).
 
-For VMware datastores, their placement also accounts for disk usage metrics collected from the VMware VMs. Densify analytics calculates the datastore available capacity and determines whether or not there is sufficient capacity for existing VMs, and whether or not more VMs can be safely added to the datastores. For predictive timeframes, the required disk space is calculated based on the historical growth trend, headroom and age of the VMs. As you move your timeline into the future, the datastore sensors move as the projected disk space usage for VMs change.
+For VMware datastores, their placement also accounts for disk usage metrics collected from the VMware VMs. Kubex analytics calculates the datastore available capacity and determines whether or not there is sufficient capacity for existing VMs, and whether or not more VMs can be safely added to the datastores. For predictive timeframes, the required disk space is calculated based on the historical growth trend, headroom and age of the VMs. As you move your timeline into the future, the datastore sensors move as the projected disk space usage for VMs change.
 
 ## Bookings and Sensors
 
@@ -168,7 +168,7 @@ At the end of each control environment refresh, existing data used for routing b
 
 During the period while this recalculation is performed, routing anomalies can occur. Specifically, while the sensor data is purged and then is temporarily unavailable for a given hosting venue. During routing of incoming workloads, any clusters that are in the state of sensor data recalculation are excluded from consideration as a hosting option.
 
-You can specify sensor lockout behaviour when submitting a routing request via the API or you can set the lockout during recalculation, globally using a configuration setting. Contact [Support@Densify.com](mailto:Support@Densify.com) for details of configuring the global setting.
+You can specify sensor lockout behaviour when submitting a routing request via the API or you can set the lockout during recalculation, globally using a configuration setting. Contact [support@kubex.ai](mailto:support@kubex.ai) for details of configuring the global setting.
 
 ### Optional Metrics
 

@@ -7,7 +7,7 @@ You can use the following process to setup Okta for Authorization Code Flow:
 
 ### Authorization Server
 
-You need to register Densify as a web application in your Okta Authorization Server. and then provide the following information to Densify:
+You need to register Kubex as a web application in your Okta Authorization Server. and then provide the following information to Kubex:
 
 * Client ID
 * Client secret (password)
@@ -20,30 +20,30 @@ You need to register Densify as a web application in your Okta Authorization Ser
 3. Click *Next*.
 4. On the *New Web App Integration* page, select the following settings are click *Save*:
 
-    * App integration name--a name for the application (example Densify)
-    * Sign-in redirect URIs--https://\<yourcompany>.densify.com:443/redirect
+    * App integration name--a name for the application (example Kubex)
+    * Sign-in redirect URIs--https://\<yourcompany>.kubex.ai:443/redirect
     * Sign-out redirect URIs:
 
-        * https://\<yourcompany>.densify.com:443/ (for the Densify Console)
-        * https://\<yourcompany>.densify.com:443/admin/ (for the Analysis Console)
-        * https://\<yourcompany>.densify.com:443/openIdError
-        * https://\<yourcompany>.densify.com:443/densify
-        * https://\<yourcompany>.densify.com:443/kubex
+        * https://\<yourcompany>.kubex.ai:443/ (for the Kubex Console)
+        * https://\<yourcompany>.kubex.ai:443/admin/ (for the Analysis Console)
+        * https://\<yourcompany>.kubex.ai:443/openIdError
+        * https://\<yourcompany>.kubex.ai:443/kubex
+        * https://\<yourcompany>.kubex.ai:443/kubex
 
     * Controlled access - Allow everyone in your organization to access 
 
-5. From the application page copy Client ID and Client Secret. Provide these to Densify.
+5. From the application page copy Client ID and Client Secret. Provide these to Kubex.
 
 
 ### Testing the Token
 
 1.	From the *Admin Console* select *Security > API*
-2.	On the *API* page copy the *Issuer URI* and provide it to Densify.
+2.	On the *API* page copy the *Issuer URI* and provide it to Kubex.
 3.	Click *default* (or the name of the Authorization Server you are using) to bring up Authorization Server Settings.
 4.	Select *Token Preview* tab and enter the following settings then click *Preview Token*:
-    a.	OAuth/OIDC client – Densify (or the App integration name you used above)
+    a.	OAuth/OIDC client – Kubex (or the App integration name you used above)
     b.	Grant type – Authorization Code
-    c.	User – A user that will access Densify
+    c.	User – A user that will access Kubex
     d.	Scopes – openid email profile
 5.	If the token is generated the setup is complete. If you see an error “Policy evaluation failed for this request, please check the policy configurations.” You will need to follow the next section to create an access policy.
 
@@ -54,11 +54,11 @@ You need to register Densify as a web application in your Okta Authorization Ser
 2.	Click *default* (or the name of the Authorization Server you are using) to bring up Authorization Server Settings.
 3.	Select *Access Policies* tab and click *Add New Access Policy*
 4.	On the Add Policy page enter the following settings and click *Create Policy*:
-    a.	Name - Densify (or any name you want to use)
-    b.	Description – Densify (or any description you want to use)
-    c.	Assign to > The following clients – Densify (or the App integration name you used above)
+    a.	Name - Kubex (or any name you want to use)
+    b.	Description – Kubex (or any description you want to use)
+    c.	Assign to > The following clients – Kubex (or the App integration name you used above)
 5.	Select the newly created Access policy and click *Add Rule*
 6.	On the Add Rule page give the rule a name and click *Create Rule*
 
 
-You now need to provide the Client ID, Client Secret and Issuer URI, to complete the setup on the Densify server side. These settings are all configured for you by Densify. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+You now need to provide the Client ID, Client Secret and Issuer URI, to complete the setup on the Kubex server side. These settings are all configured for you by Kubex. Contact [support@kubex.ai](mailto:support@kubex.ai) for details.

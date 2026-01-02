@@ -1,15 +1,15 @@
 openapi: 3.0.3
 info:
   _postman_id: 8c5957cf-e611-43e4-9ab9-14fb7516f72c
-  name: Densify API Collection (Cloud & Containers)
+  name: Kubex API Collection (Cloud & Containers)
   description: |-
     ## Welcome to Densify
 
-    Densify helps you optimize your Public Cloud and/or Container hosted applications by reducing both cost and risk.
+    Kubex helps you optimize your Public Cloud and/or Container hosted applications by reducing both cost and risk.
 
-    _Before proceeding, you will need your Densify URL and credentials. These will be supplied in a Welcome email soon after signing up with_ [<i>Densify</i>](https://www.densify.com/)_._
+    _Before proceeding, you will need your Kubex URL and credentials. These will be supplied in a Welcome email soon after signing up with_ [<i>Densify</i>](https://www.densify.com/)_._
 
-    In order for Densify to make recommendations, three distinct phases must take place:
+    In order for Kubex to make recommendations, three distinct phases must take place:
 
     > 1\. **Data Collection**
     Connect to your cloud provider and/or container orchestration system and pull configuration details and workload metrics. Data collection typically runs once a day just after midnight and collects the last 24 hours of data for cloud and may run more frequently for containers.
@@ -18,25 +18,25 @@ info:
     Detailed analytics are run automatically after data collection is completed. When the analysis is complete, Densify's recommendations become available.
 
     > 3\. **Generating Reporting Data**
-    Updating the reporting database is a maintenance task that runs on a nightly basis and generates additional data for use by both Densify and custom reports.
+    Updating the reporting database is a maintenance task that runs on a nightly basis and generates additional data for use by both Kubex and custom reports.
 
 
     It all begins with data collection. This essential first phase is initialized with:
 
     > Creating a connection to your public cloud provider. An IAM role, service account or other method of authentication is required.
 
-    > Configuring Prometheus and the Densify Data Forwarder to collect data from your Kubernetes environments.
+    > Configuring Prometheus and the Kubex Data Forwarder to collect data from your Kubernetes environments.
 
 
-    Refer to the Densify Online Help for the data collection prerequistes for the following: [AWS, ](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_.htm) [Azure, ](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites.htm) [GCP, ](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites.htm) [Containers](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Prerequisites.htm)
+    Refer to the Kubex Online Help for the data collection prerequistes for the following: [AWS, ](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_.htm) [Azure, ](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites.htm) [GCP, ](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites.htm) [Containers](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Prerequisites.htm)
 
-    For basic Public Cloud optimization using the API, see [Cloud API](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Use_Cases.htm). For a more detailed overview of the Densify API see [Densify API Introduction](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Introduction.htm).
+    For basic Public Cloud optimization using the API, see [Cloud API](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Use_Cases.htm). For a more detailed overview of the Kubex API see [Densify API Introduction](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Introduction.htm).
 
     See [Subscriptions](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions.htm) for details on how to subscribe to recommendation notifications. Supporting resources include: [Subscriptions: Properties](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties.htm), [Subscriptions: Tags](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags.htm), [Subscriptions: Suppressions](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions.htm), [Subscriptions: Cloud Results](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Results.htm), and [Subscriptions: Status](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Status.htm).
 
-    Prior to using this Postman Collection you need to edit the Densify Environment settings and enter your specific details:
+    Prior to using this Postman Collection you need to edit the Kubex Environment settings and enter your specific details:
 
-    > Your Densify host and credentials. Edit the variables host, DensifyUser and DensifyPwd.
+    > Your Kubex host and credentials. Edit the variables host, DensifyUser and DensifyPwd.
 
     > If optimizing AWS, enter your Account, Role ARN and ARNId. Edit the variables AWS_account, AWS_roleARNname and AWS_roleARNid.
 
@@ -47,7 +47,7 @@ info:
 item:
   - name: 1.  Getting Ready
     item:
-      - name: Ping Densify Instance
+      - name: Ping Kubex Instance
         request:
           method: GET
           header: []
@@ -59,9 +59,9 @@ item:
             path:
               - api
               - ping
-          description: "The Ping request will confirm your Densify host is available. Environment variables *host* and *port* are used. \r\n\r\nSee example. Refer to Densify Online Help [Ping](https://www.densify.com/docs-api/Content/API_Guide/Ping.htm?Highlight=340430)."
+          description: "The Ping request will confirm your Kubex host is available. Environment variables *host* and *port* are used. \r\n\r\nSee example. Refer to Kubex Online Help [Ping](https://www.densify.com/docs-api/Content/API_Guide/Ping.htm?Highlight=340430)."
         response:
-          - name: Ping Densify Server
+          - name: Ping Kubex Server
             originalRequest:
               method: GET
               header: []
@@ -127,9 +127,9 @@ item:
               - "{{root}}"
               - authorize
           description: |-
-            Before you can access the Densify API you need to authenticate with your Densify instance and receive a JSON Web Token (JWT). Subsequent API calls will use this token for authorization.
+            Before you can access the Kubex API you need to authenticate with your Kubex instance and receive a JSON Web Token (JWT). Subsequent API calls will use this token for authorization.
 
-            Your Densify supplied credentials are used for authentication.
+            Your Kubex supplied credentials are used for authentication.
 
             Notes:
 
@@ -137,12 +137,12 @@ item:
 
             > The default token expiry time is 5 minutes. You must periodically refresh the token.
 
-            > Body of POST request references Densify Environment variables `DensifyUser` and `DensifyPwd`. Ensure these variables are set before making this request.
+            > Body of POST request references Kubex Environment variables `DensifyUser` and `DensifyPwd`. Ensure these variables are set before making this request.
 
             > The variable `currentDate` is also saved for future requests.
 
 
-            See example. Refer to Densify Online Help [Authentication](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Using_the_API.htm#_Authentication) and [Authorize](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize.htm)
+            See example. Refer to Kubex Online Help [Authentication](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Using_the_API.htm#_Authentication) and [Authorize](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize.htm)
         response:
           - name: Authorize and get Web Token
             originalRequest:
@@ -184,7 +184,7 @@ item:
                   "expires": 1547751227291,
                   "status": 200
               }
-    description: Confirm your Densify Environment variables are correct by testing the connection to your Densify instance and logging in.
+    description: Confirm your Kubex Environment variables are correct by testing the connection to your Kubex instance and logging in.
     event:
       - listen: prerequest
         script:
@@ -241,9 +241,9 @@ item:
                       - key: details
                         value: "true"
                   description: |-
-                    Densify Policy affects Recommendations. You have a choice of policies ranging from more aggressive (lowest operating cost, a bit of work on your end for review) to more conservative (more modest operating cost savings, minimal to no work on your end for review).
+                    Kubex Policy affects Recommendations. You have a choice of policies ranging from more aggressive (lowest operating cost, a bit of work on your end for review) to more conservative (more modest operating cost savings, minimal to no work on your end for review).
 
-                    Regardless of which policy you choose, Densify recommendations are always safe. Most can be fully automated with an orchestration tool of your choice.
+                    Regardless of which policy you choose, Kubex recommendations are always safe. Most can be fully automated with an orchestration tool of your choice.
 
                     This resource provides a list of available AWS policies for you to use.
 
@@ -252,9 +252,9 @@ item:
                     > In this example, the environment variable `policyInstId` is set to the ID of the "DevOps-Default" policy for future use.
 
 
-                    Contact Densify support for detailed settings of each available policy.
+                    Contact Kubex support for detailed settings of each available policy.
 
-                    Refer to Densify Online Help [Policy](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Policy.htm?Highlight=policy)
+                    Refer to Kubex Online Help [Policy](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Policy.htm?Highlight=policy)
                 response:
                   - name: Review Policy
                     originalRequest:
@@ -331,7 +331,7 @@ item:
                               "policyId": "4a63f651-a583-4157-97ff-35651370ffbe",
                               "policyInstanceId": "70a2ef4a-2ebb-4209-8ec8-9f6c70f77a74",
                               "name": "DevOps-Efficiency",
-                              "description": "This policy is intended for generating recommendations that provide maximum operational efficiency (and lowest operating cost).  This policy also includes recommendations rated as Moderate effort, generating higher cost reduction than the Densify Defaults policy.  Because of this, any recommendations should be reviewed before implementing. The resource utilization of each system is modeled using a minimum of 3 day and up to 30 days of historical workload. When optimizing instance sizes and families, the predicted CPU and memory usage levels must not exceed 75% and 95%, respectively. When memory usage metrics are not available, the analysis effectively assumes the existing memory allocation of the instance is required and will not change the memory configuration."
+                              "description": "This policy is intended for generating recommendations that provide maximum operational efficiency (and lowest operating cost).  This policy also includes recommendations rated as Moderate effort, generating higher cost reduction than the Kubex Defaults policy.  Because of this, any recommendations should be reviewed before implementing. The resource utilization of each system is modeled using a minimum of 3 day and up to 30 days of historical workload. When optimizing instance sizes and families, the predicted CPU and memory usage levels must not exceed 75% and 95%, respectively. When memory usage metrics are not available, the analysis effectively assumes the existing memory allocation of the instance is required and will not change the memory configuration."
                           },
                           {
                               "policyId": "4a63f651-a583-4157-97ff-35651370ffbe",
@@ -383,7 +383,7 @@ item:
                       - aws
                       - analyze
                   description: |-
-                    In a nutshell; Densify collects CloudWatch utilization metrics for your AWS services, analyzes the data and makes recommendations to help you save costs and reduce risk.
+                    In a nutshell; Kubex collects CloudWatch utilization metrics for your AWS services, analyzes the data and makes recommendations to help you save costs and reduce risk.
 
                     The /analysis/cloud/aws/analyze request kicks this process off and schedules it to automatically repeat nightly.
 
@@ -394,7 +394,7 @@ item:
                     > Body of POST request references variables `AWS_account`, `AWS_roleARNname` and `AWS_roleARNid`. See overview in the Collection documentation.
 
 
-                    See example. Refer to Refer to Densify Online Help [AWS Analysis](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze.htm).
+                    See example. Refer to Refer to Kubex Online Help [AWS Analysis](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze.htm).
                 response:
                   - name: Initiate Data Collection and Analysis
                     originalRequest:
@@ -557,7 +557,7 @@ item:
                       - aws
                       - analyze
                   description: |-
-                    In a nutshell; Densify collects CloudWatch utilization metrics for your AWS services, analyzes the data and makes recommendations to help you save costs and reduce risk.
+                    In a nutshell; Kubex collects CloudWatch utilization metrics for your AWS services, analyzes the data and makes recommendations to help you save costs and reduce risk.
 
                     The /analysis/cloud/aws/analyze request kicks this process off and schedules it to automatically repeat nightly.
 
@@ -571,7 +571,7 @@ item:
                     in the Collection documentation.
 
 
-                    See example. Refer to Refer to Densify Online Help [AWS Analysis](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze.htm).
+                    See example. Refer to Refer to Kubex Online Help [AWS Analysis](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Analyze.htm).
                 response:
                   - name: "Initiate Data Collection and Analysis - returned response after initiating "
                     originalRequest:
@@ -681,7 +681,7 @@ item:
                     > In this example, the environment variable `analysisId` is set to the first returned _analysisId_ element for future use.
 
 
-                    See example. Refer to Refer to Densify Online Help [Analysis Entity](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity.htm?Highlight=analysis%20entity).
+                    See example. Refer to Refer to Kubex Online Help [Analysis Entity](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity.htm?Highlight=analysis%20entity).
                 response:
                   - name: List all Generated Analyses
                     originalRequest:
@@ -805,7 +805,7 @@ item:
                       - aws
                       - "{{analysisId}}"
                       - status
-                  description: "Check AWS analysis status for a specific AWS account.\r\n\r\nNote:\r\n> The `analysisId` environment variable is used to identify the Analysis to search for. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.\r\n\r\n\r\nSee example. Refer to Refer to Densify Online Help  [Analysis Status](https://www.densify.com/docs-api/Content/API_Guide/Analysis_Status.htm?Highlight=340620)."
+                  description: "Check AWS analysis status for a specific AWS account.\r\n\r\nNote:\r\n> The `analysisId` environment variable is used to identify the Analysis to search for. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.\r\n\r\n\r\nSee example. Refer to Refer to Kubex Online Help  [Analysis Status](https://www.densify.com/docs-api/Content/API_Guide/Analysis_Status.htm?Highlight=340620)."
                 response:
                   - name: Get Analysis status
                     originalRequest:
@@ -897,7 +897,7 @@ item:
                       - cloud
                       - aws
                       - "{{analysisId}}"
-                  description: "If you want to update the policy used for the next analysis, you can update the `policyInstanceId` element in your Analysis.\r\n\r\nRefer to \"1. AWS Setup\" > \"Review Policy\" for details on availble policies for analysis (See Densify Online Help [Policy](https://www.densify.com/docs-api/Content/API_Guide/Analysis_Policy.htm)) \r\n\r\nUse this resource to update the policy instance ID (see the body of this request) for the specified analysis in the URL. The updated policy will be used in the next schedule analysis.\r\n\r\nNote:\r\n> In this example, the environment variable `{{analysisId}}` (i.e. latest AWS analysis) and `{{policyInstId}}` (i.e. DevOps-Default policy) are used in the request. These variables were set in previous requests. See \"List all Generted Analyses\" and \"Review Policy\" requests for AWS.\r\n\r\nRefer to Densify Online Help [AWS Analysis](https://www.densify.com/docs-api/Content/API_Guide/Analysis_AWS_Analyze.htm) for details on modifying the Analysis."
+                  description: "If you want to update the policy used for the next analysis, you can update the `policyInstanceId` element in your Analysis.\r\n\r\nRefer to \"1. AWS Setup\" > \"Review Policy\" for details on availble policies for analysis (See Kubex Online Help [Policy](https://www.densify.com/docs-api/Content/API_Guide/Analysis_Policy.htm)) \r\n\r\nUse this resource to update the policy instance ID (see the body of this request) for the specified analysis in the URL. The updated policy will be used in the next schedule analysis.\r\n\r\nNote:\r\n> In this example, the environment variable `{{analysisId}}` (i.e. latest AWS analysis) and `{{policyInstId}}` (i.e. DevOps-Default policy) are used in the request. These variables were set in previous requests. See \"List all Generted Analyses\" and \"Review Policy\" requests for AWS.\r\n\r\nRefer to Kubex Online Help [AWS Analysis](https://www.densify.com/docs-api/Content/API_Guide/Analysis_AWS_Analyze.htm) for details on modifying the Analysis."
                 response:
                   - name: Update Policy to DevOps-Default
                     originalRequest:
@@ -991,7 +991,7 @@ item:
 
                     Notes:
 
-                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to delete a webhook for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to delete a webhook for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
                     See example. Refer to [Analysis Webhook](https://www.densify.com/docs-api/Content/API_Guide/Analysis_Webhook.htm).
                 response:
@@ -1108,7 +1108,7 @@ item:
                       - aws
                       - "{{analysisId}}"
                       - systems
-                  description: "Return a collection of all the systems that were included in the optimization analysis.\r\n\r\nNotes:\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.\r\n\r\n> In this example, the environment variable `entityId` is set to the first returned *entityId* element for future use.\r\n\r\n\r\nSee example. Refer to Densify Online Help [AWS Analysis Systems](https://www.densify.com/docs-api/Content/API_Guide/Analysis_AWS_Systems.htm)."
+                  description: "Return a collection of all the systems that were included in the optimization analysis.\r\n\r\nNotes:\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.\r\n\r\n> In this example, the environment variable `entityId` is set to the first returned *entityId* element for future use.\r\n\r\n\r\nSee example. Refer to Kubex Online Help [AWS Analysis Systems](https://www.densify.com/docs-api/Content/API_Guide/Analysis_AWS_Systems.htm)."
                 response:
                   - name: Get Analysis System List
                     originalRequest:
@@ -2088,7 +2088,7 @@ item:
                       - aws
                       - "{{analysisId}}"
                       - results
-                  description: "Retrieves the latest AWS recommendations. Output available in JSON or Terraform media output.\r\n\r\nRefer to the help topic below for a full description of the elements. A few important ones:\r\n> **approvalType**  \r\n> This is a key element which triggers an Instance resize if you are using the Densify Terraform reference implementation. approvalType contains either **all** or a new instance type ex. **m4.large** if a recommendation has passed all criteria in your chosen Densify Policy. \r\n\r\n> **implementationMethod**  \r\n> A value of **Self Optimization** indicates the recommendation has passed all criteria and can be automated. This usually goes hand in hand with approvalType=all. A value of **Manual** indicates the recommendation should be manually done as in the case of a *Terminate* of idle instances.\r\n\r\n> Generally 'Self Optimization' is only set when Effort has been determined to be **Low**. See Informed decisions section.\r\n\r\n\r\nNotes:\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.\r\n\r\n> In this example, the environment variable `entityId` is set to the first returned *entityId* element for future use.\r\n\r\nSee example. Refer to Densify Online Help [AWS Analysis Recommendations](https://www.densify.com/docs-api/Content/API_Guide/Analysis_AWS_Results.htm\r\n)."
+                  description: "Retrieves the latest AWS recommendations. Output available in JSON or Terraform media output.\r\n\r\nRefer to the help topic below for a full description of the elements. A few important ones:\r\n> **approvalType**  \r\n> This is a key element which triggers an Instance resize if you are using the Kubex Terraform reference implementation. approvalType contains either **all** or a new instance type ex. **m4.large** if a recommendation has passed all criteria in your chosen Kubex Policy. \r\n\r\n> **implementationMethod**  \r\n> A value of **Self Optimization** indicates the recommendation has passed all criteria and can be automated. This usually goes hand in hand with approvalType=all. A value of **Manual** indicates the recommendation should be manually done as in the case of a *Terminate* of idle instances.\r\n\r\n> Generally 'Self Optimization' is only set when Effort has been determined to be **Low**. See Informed decisions section.\r\n\r\n\r\nNotes:\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.\r\n\r\n> In this example, the environment variable `entityId` is set to the first returned *entityId* element for future use.\r\n\r\nSee example. Refer to Kubex Online Help [AWS Analysis Recommendations](https://www.densify.com/docs-api/Content/API_Guide/Analysis_AWS_Results.htm\r\n)."
                 response:
                   - name: "Get Analysis Recommendations (JSON) + Workload dataQuality "
                     originalRequest:
@@ -9472,7 +9472,7 @@ item:
                       - aws
                       - "{{analysisId}}"
                       - results
-                  description: "Retrieves the latest AWS recommendations as a Terraform Parameter map of variables. The Densify Terraform reference implementation expects this format. This output can be saved as-is in a file called **densify.auto.tfvars** and placed in your Terraform directory. See [GitHub](https://github.com/densify-dev/terraform-null-optimization-as-code).\r\n\r\nRefer to Get Recommendations (JSON) for more details.\r\n\r\nNotes:\r\n> Use header: *Accept* - **application/terraform-map**\r\n\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.\r\n\r\nSee example. Refer to Densify Online Help [AWS Analysis Recommendations](https://www.densify.com/docs-api/Content/API_Guide/Analysis_AWS_Results.htm)."
+                  description: "Retrieves the latest AWS recommendations as a Terraform Parameter map of variables. The Kubex Terraform reference implementation expects this format. This output can be saved as-is in a file called **densify.auto.tfvars** and placed in your Terraform directory. See [GitHub](https://github.com/densify-dev/terraform-null-optimization-as-code).\r\n\r\nRefer to Get Recommendations (JSON) for more details.\r\n\r\nNotes:\r\n> Use header: *Accept* - **application/terraform-map**\r\n\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.\r\n\r\nSee example. Refer to Kubex Online Help [AWS Analysis Recommendations](https://www.densify.com/docs-api/Content/API_Guide/Analysis_AWS_Results.htm)."
                 response:
                   - name: "Get Analysis Recommendations (Terraform) "
                     originalRequest:
@@ -9664,14 +9664,14 @@ item:
 
                     Notes:
 
-                    > The `entityId` environment variable is used to identify the recommendation system. This variable was set in a previous request. If you want the report for a specific system, modify the `entityId` variable with your desired recommendation _entityId_ in the Densify environment.
+                    > The `entityId` environment variable is used to identify the recommendation system. This variable was set in a previous request. If you want the report for a specific system, modify the `entityId` variable with your desired recommendation _entityId_ in the Kubex environment.
 
                     > Ensure the request header includes: _Accept_ - **application/octet-stream**
 
                     > This report is based on data created by the _Reporting Data Generation_ maintenance task, which runs on a nightly basis. As a result, the first time you run `/analyze`, the report won't be available until the next day. Once automatic daily analysis updates begin, this restriction goes away.
 
 
-                    Refer to Densify Online Help [Impact Analysis and Recommendations Report](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results.htm?Highlight=impact%20analysis#Example_DownloadAppOwner)
+                    Refer to Kubex Online Help [Impact Analysis and Recommendations Report](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_AWS_Results.htm?Highlight=impact%20analysis#Example_DownloadAppOwner)
                 response: []
               - name: Get 'Upsize - Optimal Family' Recommendations (JSON)
                 event:
@@ -9707,7 +9707,7 @@ item:
                     query:
                       - key: recommendationType
                         value: Upsize - Optimal Family
-                  description: "There are several properties included with Recommendations. Three are key:\r\n+ **recommendationType**  \r\n   The recommendation class; Upsize, Modernize, Downsize, etc.\r\n\r\n+ **recommendedType**  \r\n   The Densify recommended optimal instance Type. It may be a larger or smaller instance of the same family i.e. m5.medium > m5.large, or a change to a different family i.e. M > C.\r\n\r\n+ **effortEstimate**  \r\n   Effort required to move to the new Type. Ranges High to None. Is determined by a rule engine. For example; effort might be 'Medium' when going from Storage Optimized Instance to a non. There might be a significant cost savings to be but you must review and decide.\r\n\r\nIn this example, a recommendations with 'Upsize - Optimal Family' category is requested.\r\n\r\nNotes:\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.\r\n\r\n> In this example, the environment variable `entityId` is set to the first returned *entityId* element for future use."
+                  description: "There are several properties included with Recommendations. Three are key:\r\n+ **recommendationType**  \r\n   The recommendation class; Upsize, Modernize, Downsize, etc.\r\n\r\n+ **recommendedType**  \r\n   The Kubex recommended optimal instance Type. It may be a larger or smaller instance of the same family i.e. m5.medium > m5.large, or a change to a different family i.e. M > C.\r\n\r\n+ **effortEstimate**  \r\n   Effort required to move to the new Type. Ranges High to None. Is determined by a rule engine. For example; effort might be 'Medium' when going from Storage Optimized Instance to a non. There might be a significant cost savings to be but you must review and decide.\r\n\r\nIn this example, a recommendations with 'Upsize - Optimal Family' category is requested.\r\n\r\nNotes:\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.\r\n\r\n> In this example, the environment variable `entityId` is set to the first returned *entityId* element for future use."
                 response:
                   - name: Get 'Upsize - Optimal Family' Recommendations (JSON)
                     originalRequest:
@@ -9931,7 +9931,7 @@ item:
                         value: aws
                       - key: attribute_name_value
                         value: Resource+Tags,LOB+:+Warehouse
-                  description: "In Densify System Attributes are synonymous to AWS Tags.\n\n- Densify maintains an extensive list of attributes for each instance.\n- Densify collects instance AWS Tags and maps them to a Densify System Attribute called **Resource Tags**\n- The format of the \"Resource Tags\" System Attribute is: **AWS_Tag_Key : AWS_Tag_Value**\n    \n\nFor example, an instance with an AWS Tag of **\"Owner\"** **\"Bill\"** is represented in Densify as System Attribute: _Name_ **Resource Tags** \_\_ _Value_ **Owner : Bill**\n\nHere we request recommendations for AWS Tag \"LOB\" with a value of \"Warehouse\"\n\n> /systems/?attribute_name_value=Resource+Tags,LOB+:+Warehouse \n  \n\nNotes:\n\n> The _systems_ resource uses data created by the _Reporting Data Generation_ maintenance task, which runs on a nightly basis. _Systems_ will return no/partial data until the reporting maintenance task is complete. \n  \n> In this example, the environment variable `systemId` is set to the first returned _id_ element for future use. \n  \n\nSee example. Refer to Densify Online Help [Systems](https://www.densify.com/docs-api/Content/API_Guide/Systems.htm)"
+                  description: "In Kubex System Attributes are synonymous to AWS Tags.\n\n- Kubex maintains an extensive list of attributes for each instance.\n- Kubex collects instance AWS Tags and maps them to a Kubex System Attribute called **Resource Tags**\n- The format of the \"Resource Tags\" System Attribute is: **AWS_Tag_Key : AWS_Tag_Value**\n    \n\nFor example, an instance with an AWS Tag of **\"Owner\"** **\"Bill\"** is represented in Kubex as System Attribute: _Name_ **Resource Tags** \_\_ _Value_ **Owner : Bill**\n\nHere we request recommendations for AWS Tag \"LOB\" with a value of \"Warehouse\"\n\n> /systems/?attribute_name_value=Resource+Tags,LOB+:+Warehouse \n  \n\nNotes:\n\n> The _systems_ resource uses data created by the _Reporting Data Generation_ maintenance task, which runs on a nightly basis. _Systems_ will return no/partial data until the reporting maintenance task is complete. \n  \n> In this example, the environment variable `systemId` is set to the first returned _id_ element for future use. \n  \n\nSee example. Refer to Kubex Online Help [Systems](https://www.densify.com/docs-api/Content/API_Guide/Systems.htm)"
                 response:
                   - name: Get AWS Tags (Densify Attributes)
                     originalRequest:
@@ -10872,12 +10872,12 @@ item:
 
                     Notes:
 
-                    > The `systemId` environment variable is used to identify the system. This variable was set in a previous request. If you want the details for another system, modify the `systemId` variable with your desired system _id_ in the Densify environment.
+                    > The `systemId` environment variable is used to identify the system. This variable was set in a previous request. If you want the details for another system, modify the `systemId` variable with your desired system _id_ in the Kubex environment.
 
                     > The _systems_ resource uses data created by the _Reporting Data Generation_ maintenance task, which runs on a nightly basis. _Systems_ will return no/partial data until the reporting task is complete.
 
 
-                    See example. Refer to Densify Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
+                    See example. Refer to Kubex Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
                 response:
                   - name: Get Full Details of an Instance
                     originalRequest:
@@ -11362,12 +11362,12 @@ item:
 
                     Notes:
 
-                    > The `systemId` environment variable is used to identify the system. This variable was set in a previous request. If you want the details for another system, modify the `systemId` variable with your desired system _id_ in the Densify environment.
+                    > The `systemId` environment variable is used to identify the system. This variable was set in a previous request. If you want the details for another system, modify the `systemId` variable with your desired system _id_ in the Kubex environment.
 
                     > The _systems_ resource uses data created by the _Reporting Data Generation_ maintenance task, which runs on a nightly basis. _Systems_ will return no/partial data until the reporting task is complete.
 
 
-                    See example. Refer to Densify Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
+                    See example. Refer to Kubex Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
                 response:
                   - name: Get Full Details of all AWS Instances
                     originalRequest:
@@ -45965,7 +45965,7 @@ item:
                                   {
                                       "id": "attr_resource_tags",
                                       "name": "Resource Tags",
-                                      "value": "Name : Densify Gateway Tom"
+                                      "value": "Name : Kubex Gateway Tom"
                                   },
                                   {
                                       "id": "attr_resource_tags",
@@ -67013,19 +67013,19 @@ item:
                       - key: platform
                         value: AWS
                   description: |-
-                    To improve analysis performance, Densify now removes instances that do not have
+                    To improve analysis performance, Kubex now removes instances that do not have
                     sufficient workload to produce valid recommendations. These instances are either transient systems
                     or have insufficient workload data to be analyzed accurately.
 
                     Using the 3 policy settings that define the amount of required workload and a table of required
-                    workload types for each container and cloud provider, Densify then filters out instances that do not
+                    workload types for each container and cloud provider, Kubex then filters out instances that do not
                     meet both the volume and type of workload data, requirements.
 
                     Once enable this feature applies to auto-created analysis and to analysis that are initiated through the
-                    Densify API.
+                    Kubex API.
                     Contact [Support@Densify.com](https://mailto:Support@Densify.com) for detail on enabling this feature
 
-                    Refer to Densify Online Help [Densify Docs](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features.htm)
+                    Refer to Kubex Online Help [Densify Docs](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features.htm)
                 response:
                   - name: Get Systems with Insufficient Workload
                     originalRequest:
@@ -74117,9 +74117,9 @@ item:
                           }
                       ]
             description: |-
-              After detailed analysis of your cloud environment, Densify generates recommendations to help you reduce risk and cost.
+              After detailed analysis of your cloud environment, Kubex generates recommendations to help you reduce risk and cost.
 
-              The next step is to decide which recommendations to action. Densify provides useful additional details. The following requests demonstrate some of the available options.
+              The next step is to decide which recommendations to action. Kubex provides useful additional details. The following requests demonstrate some of the available options.
             event:
               - listen: prerequest
                 script:
@@ -74132,7 +74132,7 @@ item:
                     - ""
                   type: text/javascript
         description: |-
-          Before Densify can make recommendations for optimizing your AWS environment, data collection must be initialized. Once your instance data begins rolling in, the analysis can be performed and recommendations generated.
+          Before Kubex can make recommendations for optimizing your AWS environment, data collection must be initialized. Once your instance data begins rolling in, the analysis can be performed and recommendations generated.
 
           See [Optimizing AWS EC2 Instances](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_AWS_EC2_Instances.htm).
         event:
@@ -74179,16 +74179,16 @@ item:
                   description: |-
                     _This is an optional step as the analysis runs with the default policy if no policy is specified._
 
-                    Densify Policy affects Recommendations. You have a choice of policies ranging from more aggressive (lowest operating cost, a bit of work on your end for review) to more conservative (more modest operating cost savings, minimal to no work on your end for review).
+                    Kubex Policy affects Recommendations. You have a choice of policies ranging from more aggressive (lowest operating cost, a bit of work on your end for review) to more conservative (more modest operating cost savings, minimal to no work on your end for review).
 
-                    Regardless of which policy you choose, Densify recommendations are always safe. Most can be fully automated with an orchestration tool of your choice.
+                    Regardless of which policy you choose, Kubex recommendations are always safe. Most can be fully automated with an orchestration tool of your choice.
 
                     Note:
 
-                    > Currently for Azure you need to contact your Densify Advisor to make changes to the policy.
+                    > Currently for Azure you need to contact your Kubex Advisor to make changes to the policy.
 
 
-                    See example. Refer to Densify Online Help [Policy](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Policy.htm?Highlight=policy)
+                    See example. Refer to Kubex Online Help [Policy](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Policy.htm?Highlight=policy)
                 response:
                   - name: Review Policy
                     originalRequest:
@@ -74246,7 +74246,7 @@ item:
                               "policyId": "20b1afdf-9c24-447f-8eca-759005fd5a54",
                               "policyInstanceId": "21099d91-560b-4358-9da6-284cc4f44811",
                               "name": "DevOps-Efficiency",
-                              "description": "This policy is intended for generating instance sizing and family optimization that provide maximum operational efficiency (and lowest operating cost).  This policy also includes recommendations rated as Moderate effort, generating higher cost reduction than the Densify Defaults policy.  Because of this, any recommendations should be reviewed before implementing.\r\nThe resource utilization of each system is modeled using a minimum of 3 day and up to 30 days of historical workload.\r\nWhen optimizing instance sizes and families, the predicted CPU and memory usage levels must not exceed 75% and 95%, respectively.\r\nWhen memory usage metrics are not available, the analysis effectively assumes the existing memory allocation of the instance is required and will not change the memory configuration."
+                              "description": "This policy is intended for generating instance sizing and family optimization that provide maximum operational efficiency (and lowest operating cost).  This policy also includes recommendations rated as Moderate effort, generating higher cost reduction than the Kubex Defaults policy.  Because of this, any recommendations should be reviewed before implementing.\r\nThe resource utilization of each system is modeled using a minimum of 3 day and up to 30 days of historical workload.\r\nWhen optimizing instance sizes and families, the predicted CPU and memory usage levels must not exceed 75% and 95%, respectively.\r\nWhen memory usage metrics are not available, the analysis effectively assumes the existing memory allocation of the instance is required and will not change the memory configuration."
                           },
                           {
                               "policyId": "20b1afdf-9c24-447f-8eca-759005fd5a54",
@@ -74309,7 +74309,7 @@ item:
                     > Body of POST request references variables `subscriptionId`, `applicationId`, `secretKey`, `tenantId` and `connectionName`. See overview in the Collection documentation.
 
 
-                    See example. Refer to Refer to Densify Online Help [AZURE Analysis](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze.htm).
+                    See example. Refer to Refer to Kubex Online Help [AZURE Analysis](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze.htm).
                 response:
                   - name: Initiate Data Collection and Analysis - returned response after initiating
                     originalRequest:
@@ -74485,7 +74485,7 @@ item:
 
                     Notes:
 
-                    When Densify initiates data collection, normally the first audit collects 30 days of historical data. This is run once and subsequent audits collect only the last day's data.
+                    When Kubex initiates data collection, normally the first audit collects 30 days of historical data. This is run once and subsequent audits collect only the last day's data.
 
                     If the initial historical audit has been disabled for performance reasons, you will need to run an ad-hoc task to collect the historical data.
 
@@ -74500,7 +74500,7 @@ item:
                     > Body of POST request references variables `subscriptionId`, `applicationId`, `secretKey`, `tenantId` and `connectionName`. See overview in the Collection documentation.
 
 
-                    See example. Refer to Refer to Densify Online Help [AZURE Analysis](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze.htm).
+                    See example. Refer to Refer to Kubex Online Help [AZURE Analysis](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Analyze.htm).
                 response:
                   - name: Initiate Data Collection and Analysis (Historical Audit) - returned response after initiating
                     originalRequest:
@@ -74631,7 +74631,7 @@ item:
                           "message": "OK",
                           "status": 200
                       }
-              - name: Setup Data Collection via Densify UI
+              - name: Setup Data Collection via Kubex UI
                 request:
                   method: GET
                   header: []
@@ -74648,11 +74648,11 @@ item:
 
                     ---
 
-                    Currently, Azure Cloud data collection is initiated from the Densify Console using the _Public Cloud Connections_ wizard. Before you can use the wizard, you need Azure credentials for your subscription.
+                    Currently, Azure Cloud data collection is initiated from the Kubex Console using the _Public Cloud Connections_ wizard. Before you can use the wizard, you need Azure credentials for your subscription.
 
-                    > Refer to Densify Online Help [Azure Credentials](https://densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites.htm) for setup details.
+                    > Refer to Kubex Online Help [Azure Credentials](https://densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites.htm) for setup details.
 
-                    > Once you have Azure Cloud credentials, refer to Densify Online Help [Public Cloud Connection Wizard > Configuring a Connection to Microsoft Azure](https://densify.com/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Using_the_Public_Cloud_Connection_Wizard.htm#Azure_Connection) for details.
+                    > Once you have Azure Cloud credentials, refer to Kubex Online Help [Public Cloud Connection Wizard > Configuring a Connection to Microsoft Azure](https://densify.com/docs/WebHelp_Densify_Cloud/Content/Densify_Com/Using_the_Public_Cloud_Connection_Wizard.htm#Azure_Connection) for details.
 
 
                     After you click **Save Connection** on the wizard, the data collection process starts. When data collection completes, the _Analysis_ process is automatically triggered.
@@ -74701,7 +74701,7 @@ item:
                     > In this example, the environment variable `analysisId` is set to the first returned _analysisId_ element for future use.
 
 
-                    See example. Refer to Densify Online Help [Analysis Entity](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity.htm?Highlight=analysis%20entity)
+                    See example. Refer to Kubex Online Help [Analysis Entity](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity.htm?Highlight=analysis%20entity)
                 response:
                   - name: List all Generated Analyses
                     originalRequest:
@@ -74819,10 +74819,10 @@ item:
 
                     Note:
 
-                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
 
-                    See example. Refer to Densify Online Help [Analysis Status](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Status.htm)
+                    See example. Refer to Kubex Online Help [Analysis Status](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Status.htm)
                 response:
                   - name: Get Analysis Status
                     originalRequest:
@@ -74916,7 +74916,7 @@ item:
 
                     Notes:
 
-                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to delete a webhook for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to delete a webhook for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
 
                     See example. Refer to [Analysis Webhook](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook.htm?Highlight=webhook).
@@ -75037,12 +75037,12 @@ item:
 
                     Notes:
 
-                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
                     > In this example, the environment variable `entityId` is set to the first returned _entityId_ element for future use.
 
 
-                    See example. Refer to Densify Online Help [Azure Analysis Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Systems.htm).
+                    See example. Refer to Kubex Online Help [Azure Analysis Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Systems.htm).
                 response:
                   - name: Get Analysis System List
                     originalRequest:
@@ -75207,7 +75207,7 @@ item:
                       - azure
                       - "{{analysisId}}"
                       - results
-                  description: "Retrieves the latest Azure recommendations for the systems within an Azure Analysis. \r\nThe output is available in JSON or Terraform media format.\r\n\r\nRefer to the help topic below for a full description of the elements. A few important ones:\r\n+ **approvalType**  \r\n   This is a key element which triggers an instance resize if you are using the Densify Terraform reference implementation. This will contain either **all** or a new instance type ex. **basic_a1** if a recommendation has passed all criteria in your chosen Densify Policy. \r\n\r\n+ **implementationMethod**  \r\n   A value of **Self Optimization** indicates the recommendation has passed all criteria and can be automated. This usually goes hand in hand with approvalType=all. A value of **Manual** indicates the recommendation should be manually done as in the case of a *Terminate* of idle instances.\r\n\r\n   Generally Self Optimization is only set when Effort has been determined to be **Low**. See Informed decisions section.\r\n\r\n\r\nNotes:\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.\r\n\r\n> In this example, the environment variable `entityId` is set to the first returned *entityId* element for future use.\r\n\r\nSee example. Refer to Densify Online Help [Azure Analysis Recommendations](https://www.densify.com/docs-api/Content/API_Guide/Analysis_Azure_Results.htm)."
+                  description: "Retrieves the latest Azure recommendations for the systems within an Azure Analysis. \r\nThe output is available in JSON or Terraform media format.\r\n\r\nRefer to the help topic below for a full description of the elements. A few important ones:\r\n+ **approvalType**  \r\n   This is a key element which triggers an instance resize if you are using the Kubex Terraform reference implementation. This will contain either **all** or a new instance type ex. **basic_a1** if a recommendation has passed all criteria in your chosen Kubex Policy. \r\n\r\n+ **implementationMethod**  \r\n   A value of **Self Optimization** indicates the recommendation has passed all criteria and can be automated. This usually goes hand in hand with approvalType=all. A value of **Manual** indicates the recommendation should be manually done as in the case of a *Terminate* of idle instances.\r\n\r\n   Generally Self Optimization is only set when Effort has been determined to be **Low**. See Informed decisions section.\r\n\r\n\r\nNotes:\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.\r\n\r\n> In this example, the environment variable `entityId` is set to the first returned *entityId* element for future use.\r\n\r\nSee example. Refer to Kubex Online Help [Azure Analysis Recommendations](https://www.densify.com/docs-api/Content/API_Guide/Analysis_Azure_Results.htm)."
                 response:
                   - name: Get Analysis Recommendations (JSON)
                     originalRequest:
@@ -75791,18 +75791,18 @@ item:
                       - "{{analysisId}}"
                       - results
                   description: |-
-                    Retrieves the latest Azure recommendations as a Terraform Parameter map of variables. The Densify Terraform reference implementation expects this format. This output can be saved as is as a file named **densify.auto.tfvars** and placed in your Terraform directory. See [GitHub](https://github.com/densify-dev/terraform-null-optimization-as-code).
+                    Retrieves the latest Azure recommendations as a Terraform Parameter map of variables. The Kubex Terraform reference implementation expects this format. This output can be saved as is as a file named **densify.auto.tfvars** and placed in your Terraform directory. See [GitHub](https://github.com/densify-dev/terraform-null-optimization-as-code).
 
                     Refer to Get Recommendations (JSON) for important details.
 
                     Notes:
 
-                    > The `analysisId` environment variable is used to identify the Azure Analysis. This variable was set in a previous request. If you want to search for a specific Azure Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Azure Analysis. This variable was set in a previous request. If you want to search for a specific Azure Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
                     > Use header: _Accept_ - **application/terraform-map**
 
 
-                    See example. Refer to Densify Online Help [Azure Analysis Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results.htm).
+                    See example. Refer to Kubex Online Help [Azure Analysis Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results.htm).
                 response:
                   - name: Get Analysis Recommendations (Terraform)
                     originalRequest:
@@ -75974,14 +75974,14 @@ item:
 
                     Notes:
 
-                    > The `entityId` environment variable is used to identify the recommendation system. This variable was set in a previous request. If you want the report for a specific system, modify the `entityId` variable with your desired recommendation _entityId_ in the Densify environment.
+                    > The `entityId` environment variable is used to identify the recommendation system. This variable was set in a previous request. If you want the report for a specific system, modify the `entityId` variable with your desired recommendation _entityId_ in the Kubex environment.
 
                     > Ensure the request header includes: _Accept_ - **application/octet-stream**
 
                     > This report is based on data created by the _Reporting Data Generation_ maintenance task, which runs on a nightly basis. As a result, the first time you run `/analyze`, the report won't be available until the next day. Once automatic daily analysis updates begin, this restriction is lifted.
 
 
-                    Refer to Densify Online Help [Impact Analysis and Recommendations Report](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results.htm?Highlight=impact%20analysis#Example_DownloadAppOwner)
+                    Refer to Kubex Online Help [Impact Analysis and Recommendations Report](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Azure_Results.htm?Highlight=impact%20analysis#Example_DownloadAppOwner)
                 response: []
               - name: Get 'Low' Effort Recommendations (JSON)
                 event:
@@ -76022,7 +76022,7 @@ item:
                     query:
                       - key: effortEstimate
                         value: Low
-                  description: "There are several properties included with Recommendations. Three are key:\r\n+ **recommendationType**  \r\n   The recommendation class; Upsize, Modernize, Downsize...\r\n\r\n+ **recommendedType**  \r\n   The Densify recommended optimal instance Type. For example the recommendation may be to transition an older D2 (General Purpose) instance to a lower cost B2MS (General Purpose, burstable) instance at about half the monthly cost.\r\n\r\n+ **effortEstimate**  \r\n   Effort required to move to the new Type. Ranges High to None. Is determined by a rule engine. For example; effort might be 'Medium' when changing family. There might be a significant cost savings to be but you must review and decide.\r\n\r\n\r\nIn this example, a recommendations with 'Low' effort or less is requested.\r\n\r\nNotes:\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.\r\n\r\n> In this example, the environment variable `entityId` is set to the first returned *entityId* element for future use."
+                  description: "There are several properties included with Recommendations. Three are key:\r\n+ **recommendationType**  \r\n   The recommendation class; Upsize, Modernize, Downsize...\r\n\r\n+ **recommendedType**  \r\n   The Kubex recommended optimal instance Type. For example the recommendation may be to transition an older D2 (General Purpose) instance to a lower cost B2MS (General Purpose, burstable) instance at about half the monthly cost.\r\n\r\n+ **effortEstimate**  \r\n   Effort required to move to the new Type. Ranges High to None. Is determined by a rule engine. For example; effort might be 'Medium' when changing family. There might be a significant cost savings to be but you must review and decide.\r\n\r\n\r\nIn this example, a recommendations with 'Low' effort or less is requested.\r\n\r\nNotes:\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.\r\n\r\n> In this example, the environment variable `entityId` is set to the first returned *entityId* element for future use."
                 response:
                   - name: Get 'Low' Effort Recommendations (JSON)
                     originalRequest:
@@ -76326,14 +76326,14 @@ item:
                       - key: attribute_name_value
                         value: Resource+Tags,LOB+:+Accounting
                   description: |-
-                    In Densify System Attributes are synonymous to Azure Tags.
+                    In Kubex System Attributes are synonymous to Azure Tags.
 
-                    - Densify maintains an extensive list of attributes for each Virtual Machine.
-                    - Densify collects Virtual Machine Tags and maps them to a Densify System Attribute called **Resource Tags**
+                    - Kubex maintains an extensive list of attributes for each Virtual Machine.
+                    - Kubex collects Virtual Machine Tags and maps them to a Kubex System Attribute called **Resource Tags**
                     - The format of the "Resource Tags" System Attribute is: **Azure_Tag_Name : Azure_Tag_Value**
 
 
-                    For example, an Virtual Machine with an Azure Tag of **"Owner"** **"Bill"** is represented in Densify as System Attribute: _Name_ **Resource Tags** _Value_ **Owner : Bill**
+                    For example, an Virtual Machine with an Azure Tag of **"Owner"** **"Bill"** is represented in Kubex as System Attribute: _Name_ **Resource Tags** _Value_ **Owner : Bill**
 
                     Here we request recommendations for Azure Tag "LOB" with a value of "Accounting"
 
@@ -76347,7 +76347,7 @@ item:
                     > In this example, the environment variable `systemId` is set to the first returned _id_ element for future use.
 
 
-                    See example. Refer to Densify Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
+                    See example. Refer to Kubex Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
                 response:
                   - name: Get Azure Tags (Densify Attributes)
                     originalRequest:
@@ -76743,12 +76743,12 @@ item:
 
                     Notes:
 
-                    > The `systemId` environment variable is used to identify the system. This variable was set in a previous request. If you want the details for another system, modify the `systemId` variable with your desired system _id_ in the Densify environment.
+                    > The `systemId` environment variable is used to identify the system. This variable was set in a previous request. If you want the details for another system, modify the `systemId` variable with your desired system _id_ in the Kubex environment.
 
                     > The _systems_ resource uses data created by the _Reporting Data Generation_ maintenance task, which runs on a nightly basis. The _systems_ resource returns no or partial data until the reporting task is complete.
 
 
-                    See example. Refer to Densify Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
+                    See example. Refer to Kubex Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
                 response:
                   - name: Get Full Details of an Instance
                     originalRequest:
@@ -77134,7 +77134,7 @@ item:
                     > The _systems_ resource uses data created by the _Reporting Data Generation_ maintenance task, which runs on a nightly basis. The _systems_ resource returns no or partial data until the reporting task is complete.
 
 
-                    See example. Refer to Densify Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
+                    See example. Refer to Kubex Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
                 response:
                   - name: Get Full Details of all Azure Instances
                     originalRequest:
@@ -77810,19 +77810,19 @@ item:
                       - key: platform
                         value: AZURE
                   description: |-
-                    To improve analysis performance, Densify now removes instances that do not have
+                    To improve analysis performance, Kubex now removes instances that do not have
                     sufficient workload to produce valid recommendations. These instances are either transient systems
                     or have insufficient workload data to be analyzed accurately.
 
                     Using the 3 policy settings that define the amount of required workload and a table of required
-                    workload types for each container and cloud provider, Densify then filters out instances that do not
+                    workload types for each container and cloud provider, Kubex then filters out instances that do not
                     meet both the volume and type of workload data, requirements.
 
                     Once enable this feature applies to auto-created analysis and to analysis that are initiated through the
-                    Densify API.
+                    Kubex API.
                     Contact [Support@Densify.com](https://mailto:Support@Densify.com) for detail on enabling this feature
 
-                    Refer to Densify Online Help [Densify Docs](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features.htm)
+                    Refer to Kubex Online Help [Densify Docs](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features.htm)
                 response:
                   - name: Get Systems with Insufficient Workload Copy
                     originalRequest:
@@ -82122,9 +82122,9 @@ item:
                           }
                       ]
             description: |-
-              After detailed analysis of your cloud environment, Densify generates recommendations to help you reduce risk and cost.
+              After detailed analysis of your cloud environment, Kubex generates recommendations to help you reduce risk and cost.
 
-              The next step is to decide which recommendations to action. Densify provides useful additional details. The following requests demonstrate some of the available options.
+              The next step is to decide which recommendations to action. Kubex provides useful additional details. The following requests demonstrate some of the available options.
             event:
               - listen: prerequest
                 script:
@@ -82137,7 +82137,7 @@ item:
                     - ""
                   type: text/javascript
         description: |-
-          Before Densify can make recommendations for optimizing your Azure environment, data collection must be initiated. Once your instance data begins rolling in, the analysis are performed and recommendations generated.
+          Before Kubex can make recommendations for optimizing your Azure environment, data collection must be initiated. Once your instance data begins rolling in, the analysis are performed and recommendations generated.
 
           See [Optimizing Microsoft Azure Virtual Machine Instances](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Microsoft_Azure_Virtual_Machine_Instances.htm).
         event:
@@ -82184,16 +82184,16 @@ item:
                   description: |-
                     _This is an optional step as the analysis runs with the default policy if no policy is specified._
 
-                    Densify Policy affects recommendations. You have a choice of policies ranging from more aggressive (lowest operating cost, a bit of work on your end for review) to more conservative (more modest operating cost savings, minimal to no work on your end for review).
+                    Kubex Policy affects recommendations. You have a choice of policies ranging from more aggressive (lowest operating cost, a bit of work on your end for review) to more conservative (more modest operating cost savings, minimal to no work on your end for review).
 
-                    Regardless of which policy you choose, Densify recommendations are always safe. Most can be fully automated with an orchestration tool of your choice.
+                    Regardless of which policy you choose, Kubex recommendations are always safe. Most can be fully automated with an orchestration tool of your choice.
 
                     Note:
 
-                    > Currently for GCP, you need to contact your Densify Advisor to make changes to the policy.
+                    > Currently for GCP, you need to contact your Kubex Advisor to make changes to the policy.
 
 
-                    See example. Refer to Densify Online Help [Policy](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Policy.htm)
+                    See example. Refer to Kubex Online Help [Policy](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Policy.htm)
                 response:
                   - name: Review Policy
                     originalRequest:
@@ -82258,7 +82258,7 @@ item:
                               "policyId": "4fe32fc6-6067-4647-8a87-9bd1dc74389e",
                               "policyInstanceId": "6131f154-8453-48c3-9747-edb327ec0bed",
                               "name": "DevOps-Efficiency",
-                              "description": "This policy is intended for generating instance sizing and family optimization that provide maximum operational efficiency (and lowest operating cost).  This policy also includes recommendations rated as Moderate effort, generating higher cost reduction than the Densify Defaults policy.  Because of this, any recommendations should be reviewed before implementing.\r\nThe resource utilization of each system is modeled using a minimum of 3 day and up to 30 days of historical workload.\r\nWhen optimizing instance sizes and families, the predicted CPU and memory usage levels must not exceed 75% and 95%, respectively.\r\nWhen memory usage metrics are not available, the analysis effectively assumes the existing memory allocation of the instance is required and will not change the memory configuration."
+                              "description": "This policy is intended for generating instance sizing and family optimization that provide maximum operational efficiency (and lowest operating cost).  This policy also includes recommendations rated as Moderate effort, generating higher cost reduction than the Kubex Defaults policy.  Because of this, any recommendations should be reviewed before implementing.\r\nThe resource utilization of each system is modeled using a minimum of 3 day and up to 30 days of historical workload.\r\nWhen optimizing instance sizes and families, the predicted CPU and memory usage levels must not exceed 75% and 95%, respectively.\r\nWhen memory usage metrics are not available, the analysis effectively assumes the existing memory allocation of the instance is required and will not change the memory configuration."
                           },
                           {
                               "policyId": "4fe32fc6-6067-4647-8a87-9bd1dc74389e",
@@ -82270,7 +82270,7 @@ item:
             description: In this section you will get a listing of available polices that can be used when analyzing your collected data.
           - name: 2.3.2 GCP Data Collection and Anaysis
             item:
-              - name: Setup Data Collection via Densify UI
+              - name: Setup Data Collection via Kubex UI
                 request:
                   method: GET
                   header: []
@@ -82282,7 +82282,7 @@ item:
                     path:
                       - api
                       - ping
-                  description: "*This Ping request is a no-op and simply a placeholder for somewhere to hang a description*.\r\n***\r\nCurrently, Google Cloud Platform data collection is initiated from the Densify Console using the *Public Cloud Connections Wizard*. Before you can use the wizard, you need a GCP service account and credentials in JSON file format.\r\n\r\n> Refer to Densify Online Help [GCP Data Collection Prerequisites](https://www.densify.com/docs/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites.htm) for setup details.\r\n\t\r\n> Once you have your GCP service account JSON file for the project, refer to Densify Online Help, [Public Cloud Connection Wizard > Configuring a Google Cloud Platform Connection](https://www.densify.com/docs/Content/Densify_Com/Using_the_Public_Cloud_Connection_Wizard.htm#GCP_Connection), for details.\r\n\r\nAfter you click **Save Connection** on the wizard, the data collection process starts. When data collection completes, the *Analysis* process is automatically triggered.\r\n\r\nImportant Note:\r\n> **Analysis requests such as /analysis/cloud/gcp returns data only after data collection is complete and the Analysis process has begun.**"
+                  description: "*This Ping request is a no-op and simply a placeholder for somewhere to hang a description*.\r\n***\r\nCurrently, Google Cloud Platform data collection is initiated from the Kubex Console using the *Public Cloud Connections Wizard*. Before you can use the wizard, you need a GCP service account and credentials in JSON file format.\r\n\r\n> Refer to Kubex Online Help [GCP Data Collection Prerequisites](https://www.densify.com/docs/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites.htm) for setup details.\r\n\t\r\n> Once you have your GCP service account JSON file for the project, refer to Kubex Online Help, [Public Cloud Connection Wizard > Configuring a Google Cloud Platform Connection](https://www.densify.com/docs/Content/Densify_Com/Using_the_Public_Cloud_Connection_Wizard.htm#GCP_Connection), for details.\r\n\r\nAfter you click **Save Connection** on the wizard, the data collection process starts. When data collection completes, the *Analysis* process is automatically triggered.\r\n\r\nImportant Note:\r\n> **Analysis requests such as /analysis/cloud/gcp returns data only after data collection is complete and the Analysis process has begun.**"
                 response: []
               - name: Initiate Data Collection and Analysis
                 request:
@@ -82338,7 +82338,7 @@ item:
                     > Body of POST request references variables `projectId`, `connectionName` and `credential`. See overview in the Collection documentation.
 
 
-                    See example. Refer to Refer to Densify Online Help [GCP Analysis](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze.htm).
+                    See example. Refer to Refer to Kubex Online Help [GCP Analysis](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze.htm).
                 response:
                   - name: Initiate Data Collection and Analysis
                     originalRequest:
@@ -82536,7 +82536,7 @@ item:
                     > Body of POST request references variables `projectId`, `connectionName`, `credential`, `startDayOffset` and `endDayOffset` . See overview in the Collection documentation.
 
 
-                    See example. Refer to Refer to Densify Online Help [GCP Analysis](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze.htm).
+                    See example. Refer to Refer to Kubex Online Help [GCP Analysis](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Analyze.htm).
                 response:
                   - name: Initiate Data Collection and Analysis (Historical Audit)
                     originalRequest:
@@ -82713,7 +82713,7 @@ item:
                     > This requests will only return data after the initial Data Collection has completed.
 
 
-                    See example. Refer to Densify Online Help [Analysis Entity](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity.htm).
+                    See example. Refer to Kubex Online Help [Analysis Entity](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity.htm).
                 response:
                   - name: List all Generated Analyses
                     originalRequest:
@@ -82808,10 +82808,10 @@ item:
 
                     Note:
 
-                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
 
-                    See example. Refer to Densify Online Help [Analysis Status](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Status.htm).
+                    See example. Refer to Kubex Online Help [Analysis Status](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Status.htm).
                 response:
                   - name: Get Analysis Status
                     originalRequest:
@@ -82901,7 +82901,7 @@ item:
 
                     Notes:
 
-                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to delete a webhook for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to delete a webhook for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
                     See example. Refer to [Analysis Webhook](https://www.densify.com/docs-api/Content/API_Guide/Analysis_Webhook.htm).
                 response:
@@ -83022,12 +83022,12 @@ item:
 
                     Notes:
 
-                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
                     > In this example, the environment variable `entityId` is set to the first returned _entityId_ element for future use.
 
 
-                    See example. Refer to Densify Online Help [GCP Analysis Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Systems.htm).
+                    See example. Refer to Kubex Online Help [GCP Analysis Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Systems.htm).
                 response:
                   - name: Get Analysis System List
                     originalRequest:
@@ -85730,7 +85730,7 @@ item:
                     Refer to the help topic below for a full description of the elements. A few important ones:
 
                     - **approvalType**
-                        This is a key element which triggers an instance resize if you are using the Densify Terraform reference implementation. This will contain either **all** or a new instance type (e.g. **n1-highmem-4**), if a recommendation has passed all criteria in your chosen Densify Policy.
+                        This is a key element which triggers an instance resize if you are using the Kubex Terraform reference implementation. This will contain either **all** or a new instance type (e.g. **n1-highmem-4**), if a recommendation has passed all criteria in your chosen Kubex Policy.
                     - **implementationMethod**
                         A value of **Self Optimization** indicates the recommendation has passed all criteria and can be automated. A value of **Manual** indicates the recommendation should be manually done as in the case of a _Terminate_ of idle instances.
                     - Generally Self Optimization is only set when Effort has been determined to be **Low**. See Informed decisions section.
@@ -85738,12 +85738,12 @@ item:
 
                     Notes:
 
-                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
                     > In this example, the environment variable `entityId` is set to the first returned _entityId_ element for future use.
 
 
-                    See example. Refer to Densify Online Help [GCP Analysis Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results.htm).
+                    See example. Refer to Kubex Online Help [GCP Analysis Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results.htm).
                 response:
                   - name: Get Analysis Recommendations (JSON)
                     originalRequest:
@@ -87081,18 +87081,18 @@ item:
                       - "{{analysisId}}"
                       - results
                   description: |-
-                    Retrieves the latest GCP recommendations as a Terraform Parameter map of variables. The Densify Terraform reference implementation expects this format. This output can be saved as-is in a file called **densify.auto.tfvars** and placed in your Terraform directory. See [GitHub](https://github.com/densify-dev/terraform-null-optimization-as-code).
+                    Retrieves the latest GCP recommendations as a Terraform Parameter map of variables. The Kubex Terraform reference implementation expects this format. This output can be saved as-is in a file called **densify.auto.tfvars** and placed in your Terraform directory. See [GitHub](https://github.com/densify-dev/terraform-null-optimization-as-code).
 
                     Refer to Get Recommendations (JSON) for important details.
 
                     Notes:
 
-                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
                     > Here we use header: _Accept_ - **application/terraform-map**
 
 
-                    See example. Refer to Densify Online Help [GCP Analysis Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results.htm).
+                    See example. Refer to Kubex Online Help [GCP Analysis Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results.htm).
                 response:
                   - name: Get Analysis Recommendations (Terraform)
                     originalRequest:
@@ -90659,14 +90659,14 @@ item:
 
                     Notes:
 
-                    > The `entityId` environment variable is used to identify the recommendation system. This variable was set in a previous request. If you want the report for a specific system, modify the `entityId` variable with your desired recommendation _entityId_ in the Densify environment.
+                    > The `entityId` environment variable is used to identify the recommendation system. This variable was set in a previous request. If you want the report for a specific system, modify the `entityId` variable with your desired recommendation _entityId_ in the Kubex environment.
 
                     > Ensure the request header includes: _Accept_ - **application/octet-stream**
 
                     > This report is based on data created by the _Reporting Data Generation_ maintenance task, which runs on a nightly basis. As a result, the first time you run `/analyze`, the report won't be available until the next day. Once automatic daily analysis updates begin, this restriction is lifted.
 
 
-                    Refer to Densify Online Help [Impact Analysis and Recommendations Report](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results.htm?Highlight=impact%20analysis#Example_DownloadAppOwner)
+                    Refer to Kubex Online Help [Impact Analysis and Recommendations Report](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_GCP_Results.htm?Highlight=impact%20analysis#Example_DownloadAppOwner)
                 response: []
               - name: Get 'Just Right' Recommendations (JSON)
                 event:
@@ -90707,7 +90707,7 @@ item:
                     query:
                       - key: recommendationType
                         value: Just Right
-                  description: "There are several properties included with Recommendations. Three are key:\r\n+ **recommendationType**  \r\n The recommendation class; Upsize, Modernize, Downsize...\r\n\r\n+ **recommendedType**  \r\n The Densify recommended optimal instance Type. For example the recommendation may be to transition an older instance type to a newer generation which almost always offers more and costs less.\r\n\r\n+ **effortEstimate**  \r\n Effort required to move to the new Type. Ranges High to None. Is determined by a rule engine. For example; effort might be 'Medium' when changing family. There might be a significant cost savings to be but you must review and decide.\r\n\r\nIn this example, we request \"Just Right\" recommendations (i.e. instances that are already optimal based on the selected policy).\r\n\r\nNote:\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.\r\n\r\n> In this example, the environment variable `entityId` is set to the first returned *entityId* element for future use."
+                  description: "There are several properties included with Recommendations. Three are key:\r\n+ **recommendationType**  \r\n The recommendation class; Upsize, Modernize, Downsize...\r\n\r\n+ **recommendedType**  \r\n The Kubex recommended optimal instance Type. For example the recommendation may be to transition an older instance type to a newer generation which almost always offers more and costs less.\r\n\r\n+ **effortEstimate**  \r\n Effort required to move to the new Type. Ranges High to None. Is determined by a rule engine. For example; effort might be 'Medium' when changing family. There might be a significant cost savings to be but you must review and decide.\r\n\r\nIn this example, we request \"Just Right\" recommendations (i.e. instances that are already optimal based on the selected policy).\r\n\r\nNote:\r\n> The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.\r\n\r\n> In this example, the environment variable `entityId` is set to the first returned *entityId* element for future use."
                 response:
                   - name: Get 'Just Right' Recommendations (JSON)
                     originalRequest:
@@ -91166,14 +91166,14 @@ item:
                       - key: attribute_name_value
                         value: Resource+Tags,owner+:+Max+Machino
                   description: |-
-                    In Densify System Attributes are synonymous to GCP Labels.
+                    In Kubex System Attributes are synonymous to GCP Labels.
 
-                    - Densify maintains an extensive list of attributes for each instance.
-                    - Densify collects instance GCP Labels and maps them to a Densify System Attribute called **Resource Tags**
+                    - Kubex maintains an extensive list of attributes for each instance.
+                    - Kubex collects instance GCP Labels and maps them to a Kubex System Attribute called **Resource Tags**
                     - The format of the _Resource Tags_ System Attribute is: **GCP_Label_Name : GCP_Label_Value**
 
 
-                    For example, an instance with an GCP Label of **"Owner"** **"Bill"** is represented in Densify as System Attribute: _Name_ **Resource Tags** _Value_ **Owner : Bill**
+                    For example, an instance with an GCP Label of **"Owner"** **"Bill"** is represented in Kubex as System Attribute: _Name_ **Resource Tags** _Value_ **Owner : Bill**
 
                     Here we request recommendations for GCP Label "Owner" with a value of "Max+Machino"
 
@@ -91187,7 +91187,7 @@ item:
                     > In this example, the environment variable `systemId` is set to the first returned _id_ element for future use.
 
 
-                    See example. Refer to Densify Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
+                    See example. Refer to Kubex Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
                 response:
                   - name: Get GCP Labels (Densify Attributes)
                     originalRequest:
@@ -92235,12 +92235,12 @@ item:
 
                     Notes:
 
-                    > The `systemId` environment variable is used to identify the system. This variable was set in a previous request. If you want the details for another system, modify the `systemId` variable with your desired system _id_ in the Densify environment.
+                    > The `systemId` environment variable is used to identify the system. This variable was set in a previous request. If you want the details for another system, modify the `systemId` variable with your desired system _id_ in the Kubex environment.
 
                     > The _systems_ resource uses data created by the _Reporting Data Generation_ maintenance task, which runs on a nightly basis. The _systems_ resource returns no or partial data until the reporting task is complete.
 
 
-                    See example. Refer to Densify Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
+                    See example. Refer to Kubex Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
                 response:
                   - name: Get Full Details of an Instance
                     originalRequest:
@@ -92705,7 +92705,7 @@ item:
                     > The _systems_ resource uses data created by the _Reporting Data Generation_ maintenance task, which runs on a nightly basis. The _systems_ resource returns no or partial data until the reporting task is complete.
 
 
-                    See example. Refer to Densify Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
+                    See example. Refer to Kubex Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm)
                 response:
                   - name: Get Full Details of all GCP Instances
                     originalRequest:
@@ -93221,19 +93221,19 @@ item:
                       - key: platform
                         value: GCP
                   description: |-
-                    To improve analysis performance, Densify now removes instances that do not have
+                    To improve analysis performance, Kubex now removes instances that do not have
                     sufficient workload to produce valid recommendations. These instances are either transient systems
                     or have insufficient workload data to be analyzed accurately.
 
                     Using the 3 policy settings that define the amount of required workload and a table of required
-                    workload types for each container and cloud provider, Densify then filters out instances that do not
+                    workload types for each container and cloud provider, Kubex then filters out instances that do not
                     meet both the volume and type of workload data, requirements.
 
                     Once enable this feature applies to auto-created analysis and to analysis that are initiated through the
-                    Densify API.
+                    Kubex API.
                     Contact [Support@Densify.com](https://mailto:Support@Densify.com) for detail on enabling this feature
 
-                    Refer to Densify Online Help [Densify Docs](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features.htm)
+                    Refer to Kubex Online Help [Densify Docs](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features.htm)
                 response:
                   - name: Get Systems with Insufficient Workload Copy
                     originalRequest:
@@ -97136,9 +97136,9 @@ item:
                           }
                       ]
             description: |-
-              After detailed analysis of your cloud environment, Densify generates recommendations to help you reduce risk and cost.
+              After detailed analysis of your cloud environment, Kubex generates recommendations to help you reduce risk and cost.
 
-              The next step is to decide which recommendations to action. Densify provides useful additional details. The following requests demonstrate some of the available options.
+              The next step is to decide which recommendations to action. Kubex provides useful additional details. The following requests demonstrate some of the available options.
             event:
               - listen: prerequest
                 script:
@@ -97151,7 +97151,7 @@ item:
                     - ""
                   type: text/javascript
         description: |-
-          Before Densify can make recommendations for optimizing your GCP environment, data collection must be initiated. Once your instance data begins rolling in, the analysis are performed and recommendations generated.
+          Before Kubex can make recommendations for optimizing your GCP environment, data collection must be initiated. Once your instance data begins rolling in, the analysis are performed and recommendations generated.
 
           See [Optimizing GCP Compute Engine Instances](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_GCP_Compute_Engine_Instances.htm).
         event:
@@ -97165,7 +97165,7 @@ item:
               exec:
                 - ""
               type: text/javascript
-    description: The analysis process is initiated automatically after data collection completes. Results can be immediately pulled from the Densify API or pushed to a webhook URI once the analysis is complete.
+    description: The analysis process is initiated automatically after data collection completes. Results can be immediately pulled from the Kubex API or pushed to a webhook URI once the analysis is complete.
   - name: 3. Analyzing Containers
     item:
       - name: 3.1 Analyzing Kubernetes
@@ -97201,16 +97201,16 @@ item:
                   description: |-
                     _This is an optional step as the analysis runs with the default policy if no policy is specified._
 
-                    Densify Policy affects recommendations. You have a choice of policies ranging from more aggressive (lowest operating cost, a bit of work on your end for review) to more conservative (more modest operating cost savings, minimal to no work on your end for review).
+                    Kubex Policy affects recommendations. You have a choice of policies ranging from more aggressive (lowest operating cost, a bit of work on your end for review) to more conservative (more modest operating cost savings, minimal to no work on your end for review).
 
-                    Regardless of which policy you choose, Densify recommendations are always safe. Most can be fully automated with an orchestration tool of your choice.
+                    Regardless of which policy you choose, Kubex recommendations are always safe. Most can be fully automated with an orchestration tool of your choice.
 
                     Note:
 
-                    > Currently for Kubernetes you need to contact your Densify Advisor to make changes to the policy.
+                    > Currently for Kubernetes you need to contact your Kubex Advisor to make changes to the policy.
 
 
-                    See example. Refer to Densify Online Help [Policy](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Policy.htm)
+                    See example. Refer to Kubex Online Help [Policy](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Policy.htm)
                 response:
                   - name: Review Policy
                     originalRequest:
@@ -97290,11 +97290,11 @@ item:
 
                     For Kubernetes _data collection_, you need to have an existing monitoring and metrics collection service. Prometheus, cAdvisor, kube-state-metrics and optionally node-exporter are used.
 
-                    With Prometheus providing the aggregation layer, a Densify _Data Forwarder_ container securely transmits the collected data to your Densify instance for analysis.
+                    With Prometheus providing the aggregation layer, a Kubex _Data Forwarder_ container securely transmits the collected data to your Kubex instance for analysis.
 
-                    Your Densify instance needs to be enabled with Data Forwarder support for Kubernetes data collection. Contact Densify support ([Support@Densify.com](https://mailto:Support@Densify.com)) to enable Data Forwarder support.
+                    Your Kubex instance needs to be enabled with Data Forwarder support for Kubernetes data collection. Contact Kubex support ([Support@Densify.com](https://mailto:Support@Densify.com)) to enable Data Forwarder support.
 
-                    Refer to Densify Online Help [Data Collection for Containers](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Prerequisites.htm) for details.
+                    Refer to Kubex Online Help [Data Collection for Containers](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Prerequisites.htm) for details.
                 response: []
               - name: List all Containers Analyses
                 event:
@@ -97336,7 +97336,7 @@ item:
                     > In this example, the environment variable `analysisId` is set to the first returned _analysisId_ element for future use.
 
 
-                    See example. Refer to Densify Online Help [Analysis Entity](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity.htm)
+                    See example. Refer to Kubex Online Help [Analysis Entity](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Entity.htm)
                 response:
                   - name: List all Generated Analyses
                     originalRequest:
@@ -97504,10 +97504,10 @@ item:
 
                     Note:
 
-                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
 
-                    See example. Refer to Densify Online Help [Analysis Status](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Status.htm)
+                    See example. Refer to Kubex Online Help [Analysis Status](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Status.htm)
                 response:
                   - name: Get Analysis Status
                     originalRequest:
@@ -97567,7 +97567,7 @@ item:
             description: |-
               Before initiating data collection you must configure metrics collection as outlined in [Data Collection for Containers](https://www.densify.com/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Prerequisites.htm).
 
-              The analysis process is initiated after data is ingested into the Densify data model. Results can be pulled from the Densify API or pushed to a webhook URI once the analysis is complete. See [Optimizing Kubernetes Containers](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Kubernetes_Containers.htm).
+              The analysis process is initiated after data is ingested into the Kubex data model. Results can be pulled from the Kubex API or pushed to a webhook URI once the analysis is complete. See [Optimizing Kubernetes Containers](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Kubernetes_Containers.htm).
             event:
               - listen: prerequest
                 script:
@@ -97617,12 +97617,12 @@ item:
 
                     Notes:
 
-                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
                     > In this example, the environment variable `entityId` is set to the first returned _entityId_ element for future use.
 
 
-                    See example. Refer to Densify Online Help [Kubernetes Analysis Container Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Systems.htm).
+                    See example. Refer to Kubex Online Help [Kubernetes Analysis Container Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Systems.htm).
                 response:
                   - name: Get Analysis Container List
                     originalRequest:
@@ -97929,14 +97929,14 @@ item:
 
                     Notes:
 
-                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
                     > In this example, the environment variable `entityId` is set to the first returned _entityId_ element for future use.
 
                     > Use header: _Accept_ - **application/json**
 
 
-                    See example. Refer to Densify Online Help [Kubernetes Analysis Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Results.htm).
+                    See example. Refer to Kubex Online Help [Kubernetes Analysis Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Results.htm).
                 response:
                   - name: Get Analysis Recommendations (JSON)
                     originalRequest:
@@ -100399,16 +100399,16 @@ item:
                       - "{{analysisId}}"
                       - results
                   description: |-
-                    Retrieves the latest Kubernetes recommendations as a Terraform Parameter map of variables. The Densify Terraform reference implementation expects this format. This output can be saved as-is in a file named **densify.auto.tfvars** and placed in your Terraform directory. See [GitHub](https://github.com/densify-dev/terraform-null-optimization-as-code).
+                    Retrieves the latest Kubernetes recommendations as a Terraform Parameter map of variables. The Kubex Terraform reference implementation expects this format. This output can be saved as-is in a file named **densify.auto.tfvars** and placed in your Terraform directory. See [GitHub](https://github.com/densify-dev/terraform-null-optimization-as-code).
 
                     Notes:
 
-                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to search for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
                     > Here we use header: _Accept_ - **application/terraform-map**
 
 
-                    See example. Refer to Densify Online Help [Kubernetes Analysis Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Results.htm).
+                    See example. Refer to Kubex Online Help [Kubernetes Analysis Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Results.htm).
                 response:
                   - name: Get Analysis Recommendations (Terraform)
                     originalRequest:
@@ -101232,12 +101232,12 @@ item:
 
                     Notes:
 
-                    > The `analysisId` environment variable is used to identify the Kubernetes Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+                    > The `analysisId` environment variable is used to identify the Kubernetes Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
                     > In this example, the environment variable `entityId` is set to the first returned _entityId_ element for future use.
 
 
-                    See example. Refer to Densify Online Help [Kubernetes Analysis Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Results.htm).
+                    See example. Refer to Kubex Online Help [Kubernetes Analysis Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Kubernetes_Results.htm).
                 response:
                   - name: Get Recommendations for a Specific Namespace (JSON) 12.1.6
                     originalRequest:
@@ -101421,7 +101421,7 @@ item:
                         value: containers
                       - key: attribute_name_value
                         value: Pod+Info,owner_kind+:+DaemonSet
-                  description: "In Densify System Attributes are synonymous with Kubernetes Labels. Densify maintains an extensive list of attributes for each Container. \r\n\r\nDensify collects Container Labels and maps them to Densify System Attributes **Container Info**, **Container Labels**, **Pod Info** and **Pod Labels**.\r\n\r\nThe format of these system Attributes is: **Label_Key : Label_Value**\r\n\r\nFor example, a Container with a Pod Label of **\"kubernetes_name\"** = **\"kube-state-metrics\"** is represented in Densify as System Attribute: *Name* = **Pod Labels** &nbsp;&nbsp; *Value* = **kubernetes_name : kube-state-metrics**.\r\n\r\nHere we request recommendations for containers with Pod Info of Kind \"owner_kind\" with a value of \"DaemonSet\"\r\n> /systems/?platform=containers&attribute_name_value=Pod+Info,owner_kind+:+DaemonSet\r\n \r\nNotes:\r\n> The *systems* resource uses data created by the *Reporting Data Generation* maintenance task, which runs on a nightly basis. The *systems* resource returns no or partial data until the reporting task completes.\r\n\r\n> In this example, the environment variable `systemId` is set to the first returned *id* element, for future use.\r\n\r\nSee example. Refer to Densify Online Help  [Systems](https://www.densify.com/docs-api/Content/API_Guide/Systems.htm)"
+                  description: "In Kubex System Attributes are synonymous with Kubernetes Labels. Kubex maintains an extensive list of attributes for each Container. \r\n\r\nDensify collects Container Labels and maps them to Kubex System Attributes **Container Info**, **Container Labels**, **Pod Info** and **Pod Labels**.\r\n\r\nThe format of these system Attributes is: **Label_Key : Label_Value**\r\n\r\nFor example, a Container with a Pod Label of **\"kubernetes_name\"** = **\"kube-state-metrics\"** is represented in Kubex as System Attribute: *Name* = **Pod Labels** &nbsp;&nbsp; *Value* = **kubernetes_name : kube-state-metrics**.\r\n\r\nHere we request recommendations for containers with Pod Info of Kind \"owner_kind\" with a value of \"DaemonSet\"\r\n> /systems/?platform=containers&attribute_name_value=Pod+Info,owner_kind+:+DaemonSet\r\n \r\nNotes:\r\n> The *systems* resource uses data created by the *Reporting Data Generation* maintenance task, which runs on a nightly basis. The *systems* resource returns no or partial data until the reporting task completes.\r\n\r\n> In this example, the environment variable `systemId` is set to the first returned *id* element, for future use.\r\n\r\nSee example. Refer to Kubex Online Help  [Systems](https://www.densify.com/docs-api/Content/API_Guide/Systems.htm)"
                 response:
                   - name: Get Kubernetes Labels (Densify Attributes)
                     originalRequest:
@@ -102878,12 +102878,12 @@ item:
 
                     Notes:
 
-                    > The `systemId` environment variable is used to identify the container system. This variable was set in a previous request. If you want the details for another system, modify the `systemId` variable with your desired system _id_ in the Densify environment.
+                    > The `systemId` environment variable is used to identify the container system. This variable was set in a previous request. If you want the details for another system, modify the `systemId` variable with your desired system _id_ in the Kubex environment.
 
                     > The _systems_ resource uses data created by the _Reporting Data Generation_ maintenance task, which runs on a nightly basis. The _systems_ resource returns no or partial data until the reporting task is complete.
 
 
-                    See example. Refer to Densify Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm).
+                    See example. Refer to Kubex Online Help [Systems](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems.htm).
                 response:
                   - name: Get Full Details of a Container Instance
                     originalRequest:
@@ -103417,9 +103417,9 @@ item:
                           ]
                       }
             description: |-
-              After the detailed analysis of your cloud environment, Densify generates recommendations to help you reduce risk and cost.
+              After the detailed analysis of your cloud environment, Kubex generates recommendations to help you reduce risk and cost.
 
-              The next step is to decide which recommendations to action. Densify provides useful additional details. The following requests demonstrate some of the available options.
+              The next step is to decide which recommendations to action. Kubex provides useful additional details. The following requests demonstrate some of the available options.
             event:
               - listen: prerequest
                 script:
@@ -103432,7 +103432,7 @@ item:
                     - ""
                   type: text/javascript
         description: |-
-          Before Densify can make recommendations for optimizing your Kubernetes environment, data collection must be initiated. Once your instance data begins rolling in, the analysis are performed and recommendations generated.
+          Before Kubex can make recommendations for optimizing your Kubernetes environment, data collection must be initiated. Once your instance data begins rolling in, the analysis are performed and recommendations generated.
 
           See [Optimizing Kubernetes Containers](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Optimizing_Kubernetes_Containers.htm).
         event:
@@ -103446,7 +103446,7 @@ item:
               exec:
                 - ""
               type: text/javascript
-    description: The analysis process is initiated automatically after data collection completes. Results can be immediately pulled from the Densify API or pushed to a webhook URI once the analysis is complete.
+    description: The analysis process is initiated automatically after data collection completes. Results can be immediately pulled from the Kubex API or pushed to a webhook URI once the analysis is complete.
   - name: 4.  Working with Webhooks
     item:
       - name: Adding a Webhook to an Analysis
@@ -103484,14 +103484,14 @@ item:
               - aws
               - "{{analysisId}}"
           description: |-
-            The /webhook/analysis resource is used to manage the webhook definition for a Densify analysis. The webhook definition is the path and authentication to a third-party application, where recommendation results are POSTed when analysis completes.
+            The /webhook/analysis resource is used to manage the webhook definition for a Kubex analysis. The webhook definition is the path and authentication to a third-party application, where recommendation results are POSTed when analysis completes.
 
             The receiving application can process the resulting data for downstream consumption. For example, the receiving application can route recommendations to an orchestration engine or distribute reports to instance owners.
 
             In this example, a webhook is added to an existing AWS analysis.
 
             Notes:
-            > The `analysisId` environment variable is used to identify the Analysis to add the webhook. This variable was set in a previous request (see "Analyzing AWS" > "List all Generated Analyses"). If you want to add the webhook for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+            > The `analysisId` environment variable is used to identify the Analysis to add the webhook. This variable was set in a previous request (see "Analyzing AWS" > "List all Generated Analyses"). If you want to add the webhook for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
             > Modify the parameters in the Body of the POST request with your webhook host and authorization.
 
@@ -103691,7 +103691,7 @@ item:
 
             Notes
 
-            > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+            > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
 
             See example. Refer to [Analysis Webhook](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook.htm).
@@ -103790,7 +103790,7 @@ item:
 
             Notes:
 
-            > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+            > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want the results for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
             > Modify the parameters in the Body of the request with your updated webhook host and authorization.
 
@@ -103891,7 +103891,7 @@ item:
 
             Notes:
 
-            > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to delete a webhook for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Densify environment.
+            > The `analysisId` environment variable is used to identify the Analysis. This variable was set in a previous request. If you want to delete a webhook for a specific Analysis, modify the `analysisId` variable with your desired Analysis GUID in the Kubex environment.
 
 
             See example. Refer to [Analysis Webhook](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Analysis_Webhook.htm).
@@ -104005,7 +104005,7 @@ item:
               description: |-
                 Review the list of available attribute tags you can use in your subscription.
 
-                Densify provides a list of default cloud attribute tags initially, but you can modify or add to this list using the /subscriptions/cloud/tags resource.
+                Kubex provides a list of default cloud attribute tags initially, but you can modify or add to this list using the /subscriptions/cloud/tags resource.
 
                 Use the attribute tag reference IDs (`tagRef` element) in this list for your subscription definition to filter and/or customize the returned response.
 
@@ -104258,7 +104258,7 @@ item:
               description: |-
                 Review the list of available container attribute tags you can use in your subscription.
 
-                Densify provides a list of default container attribute tags initially, but you can modify or add to this list using the /subscriptions/containers/tags resource.
+                Kubex provides a list of default container attribute tags initially, but you can modify or add to this list using the /subscriptions/containers/tags resource.
 
                 Use the attribute tag reference IDs (`tagRef` element) in this list for your subscription definition to filter and/or customize the returned response.
 
@@ -104410,7 +104410,7 @@ item:
               description: |-
                 Review the list of available cloud recommendation properties you can use in your subscription.
 
-                Densify provides a list of default properties initially, but you can modify or add to this list using the _/subscriptions/cloud/properties_ resource.
+                Kubex provides a list of default properties initially, but you can modify or add to this list using the _/subscriptions/cloud/properties_ resource.
 
                 Use the `propertyRef` elements in this list for your subscription definition, to filter and/or customize the returned subscription response.
 
@@ -104814,7 +104814,7 @@ item:
               description: |-
                 Review the list of available container recommendation properties you can use in your container subscription.
 
-                Densify provides a list of default properties initially, but you can modify or add to this list using the _/subscriptions/containers/properties_ resource.
+                Kubex provides a list of default properties initially, but you can modify or add to this list using the _/subscriptions/containers/properties_ resource.
 
                 Use the `propertyRef` elements in this list for your container subscription definition, to filter and/or customize the returned subscription response.
 
@@ -105121,7 +105121,7 @@ item:
                   - cloud
                   - suppressions
               description: |-
-                Get the list of default cloud suppressions provided by Densify for review. You can modify or add to this list using the _/subscriptions/cloud/suppressions_ resource.
+                Get the list of default cloud suppressions provided by Kubex for review. You can modify or add to this list using the _/subscriptions/cloud/suppressions_ resource.
 
                 Use the suppression reference IDs in this list for your subscription definition to suppress certain systems in the returned response.
 
@@ -105267,7 +105267,7 @@ item:
                   - containers
                   - suppressions
               description: |-
-                Get the list of default container suppressions provided by Densify for review. You can modify or add to this list using the _/subscriptions/containers/suppressions_ resource.
+                Get the list of default container suppressions provided by Kubex for review. You can modify or add to this list using the _/subscriptions/containers/suppressions_ resource.
 
                 Use the suppression reference IDs in this list for your container subscription definition to suppress certain containers in the returned response.
 
@@ -106048,7 +106048,7 @@ item:
                       }
                   ]
         description: |-
-          In order for you to create a subscription, you need to review existing artifacts in the Densify Subscriptions Framework (DSS) to understand the building blocks available to create your subscription. Review the following DSS catalogs:
+          In order for you to create a subscription, you need to review existing artifacts in the Kubex Subscriptions Framework (DSS) to understand the building blocks available to create your subscription. Review the following DSS catalogs:
 
           - [Cloud Subscriptions Attribute Tag Catalog](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags.htm)
 
@@ -106951,7 +106951,7 @@ item:
                     To use this example:
 
                     - Ensure that you obtain an authorization token for `{{DensifyUser}}`, who has adminitrative privileges, to make this request.
-                    - Ensure that you set the `{{nonAdminUser}}` variable to an API user in your Densify system without administrative privileges.
+                    - Ensure that you set the `{{nonAdminUser}}` variable to an API user in your Kubex system without administrative privileges.
 
 
                     See example. Refer to [Subscriptions: Tags](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Tags.htm).
@@ -108000,7 +108000,7 @@ item:
 
                     > In this example, two global properties are removed: _resourceId_ and _entityId_.
 
-                    > You must be an administrative user to remove these properties since they are global in scope. Ensure that the Densify username you use for this request has administrative privileges.
+                    > You must be an administrative user to remove these properties since they are global in scope. Ensure that the Kubex username you use for this request has administrative privileges.
 
                     > In the Body of this sample request, the `{{resourceIdPropertyRef}}` and `{{entityIdPropertyRef}}` variables are used to identify the properties to be removed; they were set in the previous "Review All Available Cloud Properties" request.
 
@@ -108073,7 +108073,7 @@ item:
                       - cloud
                       - properties
                       - "{{accountIdPropertyRef}}"
-                  description: "You can remove a single property from the Cloud Subscriptions Properties catalog using the *DELETE /subscriptions/cloud/properties/{{propertyRef}}* request.\r\n\r\nYou must have ownership of the property or be an administrative user to remove the property from the catalog.\r\n\r\nNotes:\r\n> In this example, the *accountIdRef* global property is removed. \r\n\r\n> You must be an administrative user to remove this property since it has global scope. Ensure that the Densify username you use for this request has administrative privileges. \r\n\r\n> In the URL of this sample request, the `{{accountIdPropertyRef}}` variable is used to identify the *accountIdRef* property to be removed. This variable was set in the previous \"Review All Available Cloud Properties\" request.\r\n\r\nSee example. Refer to [Subscriptions: Properties](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties.htm)."
+                  description: "You can remove a single property from the Cloud Subscriptions Properties catalog using the *DELETE /subscriptions/cloud/properties/{{propertyRef}}* request.\r\n\r\nYou must have ownership of the property or be an administrative user to remove the property from the catalog.\r\n\r\nNotes:\r\n> In this example, the *accountIdRef* global property is removed. \r\n\r\n> You must be an administrative user to remove this property since it has global scope. Ensure that the Kubex username you use for this request has administrative privileges. \r\n\r\n> In the URL of this sample request, the `{{accountIdPropertyRef}}` variable is used to identify the *accountIdRef* property to be removed. This variable was set in the previous \"Review All Available Cloud Properties\" request.\r\n\r\nSee example. Refer to [Subscriptions: Properties](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Properties.htm)."
                 response:
                   - name: Remove a Cloud Subscriptions Property with Reference ID (success == 204 No Content returned)
                     originalRequest:
@@ -109320,7 +109320,7 @@ item:
 
                     > In this example, two global properties are removed: _hostName_ and _conrollerType_.
 
-                    > You must be an administrative user to remove these properties since they are global in scope. Ensure that the Densify username you use for this request has administrative privileges.
+                    > You must be an administrative user to remove these properties since they are global in scope. Ensure that the Kubex username you use for this request has administrative privileges.
 
                     > In the Body of this sample request, the `{{hostNamePropertyRef}}` and `{{controllerTypePropertyRef}}` variables are used to identify the properties to be removed; they were set in the previous "Review All Available Container Properties" request.
 
@@ -110253,7 +110253,7 @@ item:
                       - "{{root}}"
                       - subscriptions
                       - suppressions
-                  description: "In this example, the following suppressions are added to the Cloud Subscriptions Suppressions catalog:\r\n\r\n* region (property)\r\n* accountIdRef (property)\r\n* Department (tag)\r\n\r\nSet the `{{DensifyUser}}` environment variable to a Densify user without administrative privileges. When the suppressions are created, the `owner` is set to `{{DensifyUser}}` automatically, making the suppressions private. By making these suppressions private, you can see the difference in behavior in the next few request examples.\r\n\r\nNotes:\r\n> In this example, the suppression reference for the 3 suppressions added are saved in the following environment variables for future use:\r\n> * `{{regionSupprRef}}` \r\n> * `{{accountIdSupprRef}}` \r\n> * `{{DeptSupprRef}}`\r\n\r\nSee example. Refer to [Subscriptions: Suppressions](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions.htm)."
+                  description: "In this example, the following suppressions are added to the Cloud Subscriptions Suppressions catalog:\r\n\r\n* region (property)\r\n* accountIdRef (property)\r\n* Department (tag)\r\n\r\nSet the `{{DensifyUser}}` environment variable to a Kubex user without administrative privileges. When the suppressions are created, the `owner` is set to `{{DensifyUser}}` automatically, making the suppressions private. By making these suppressions private, you can see the difference in behavior in the next few request examples.\r\n\r\nNotes:\r\n> In this example, the suppression reference for the 3 suppressions added are saved in the following environment variables for future use:\r\n> * `{{regionSupprRef}}` \r\n> * `{{accountIdSupprRef}}` \r\n> * `{{DeptSupprRef}}`\r\n\r\nSee example. Refer to [Subscriptions: Suppressions](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions.htm)."
                 response:
                   - name: Adding Subscriptions Suppressions
                     originalRequest:
@@ -111100,7 +111100,7 @@ item:
                       - subscriptions
                       - containers
                       - suppressions
-                  description: "In this example, the following suppressions are added to the Container Subscriptions Suppressions catalog:\r\n\r\n* cluster (property)\r\n* hostName (property)\r\n* virtualDomain (tag)\r\n\r\nSet the `{{DensifyUser}}` environment variable to a Densify user without administrative privileges. When the suppressions are created, the `owner` is set to `{{DensifyUser}}` automatically, making the suppressions private. By making these suppressions private, you can see the difference in behavior in the next few request examples.\r\n\r\nNotes:\r\n> In this example, the suppression reference for the 3 suppressions added are saved in the following environment variables for future use:\r\n> * `{{clusterSupprRef}}` \r\n> * `{{hostNameSupprRef}}` \r\n> * `{{virtualDomainSupprRef}}`\r\n\r\nSee example. Refer to [Subscriptions: Suppressions](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions.htm)."
+                  description: "In this example, the following suppressions are added to the Container Subscriptions Suppressions catalog:\r\n\r\n* cluster (property)\r\n* hostName (property)\r\n* virtualDomain (tag)\r\n\r\nSet the `{{DensifyUser}}` environment variable to a Kubex user without administrative privileges. When the suppressions are created, the `owner` is set to `{{DensifyUser}}` automatically, making the suppressions private. By making these suppressions private, you can see the difference in behavior in the next few request examples.\r\n\r\nNotes:\r\n> In this example, the suppression reference for the 3 suppressions added are saved in the following environment variables for future use:\r\n> * `{{clusterSupprRef}}` \r\n> * `{{hostNameSupprRef}}` \r\n> * `{{virtualDomainSupprRef}}`\r\n\r\nSee example. Refer to [Subscriptions: Suppressions](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions_Suppressions.htm)."
                 response:
                   - name: Adding Container Subscriptions Suppressions (cluster, hostName, Virtual Doman)
                     originalRequest:
@@ -111427,7 +111427,7 @@ item:
                       - subscriptions
                       - cloud
                   description: |-
-                    The _POST /subscriptions/cloud_ resource allows you to create a subscription to retreive Densify cloud recommendations.
+                    The _POST /subscriptions/cloud_ resource allows you to create a subscription to retreive Kubex cloud recommendations.
 
                     Notes:
 
@@ -111438,7 +111438,7 @@ item:
 
                     In this example, two subscription definitions are created: the first subscription is private, while the second subscription is global. You must have administrative privileges to create global subscriptions, therefore, ensure the `{{DensifyUser}}` and `{{DensifyPwd}}` environment variables are set to an administrative user and corresponding password.
 
-                    In additon, the private subscription will be created for owner = `{{nonAdminUser}}`. Ensure that `{{nonAdminUser}}` and `{{nonAdminPwd}}` environment variables are set to a Densify user and corresponding password with no administrative privileges in your Denisfy instance.
+                    In additon, the private subscription will be created for owner = `{{nonAdminUser}}`. Ensure that `{{nonAdminUser}}` and `{{nonAdminPwd}}` environment variables are set to a Kubex user and corresponding password with no administrative privileges in your Denisfy instance.
 
                     Notes:
 
@@ -111544,7 +111544,7 @@ item:
                       - "{{root}}"
                       - subscriptions
                       - cloud
-                  description: "Create a single cloud subscription definition.\r\n\r\nIn this example, the subscription filters for systems where predicted uptime is between 50-100% and suppress systems that have a \"Terminate\"\_recommendation. The subscription will be automatically owned by the `{{DensifyUser}}`. Ensure `{{DensifyUser}}` and `{{DensifyPwd}}` environment variables are set to a Densify user and corresponding password from your Densify instance.\r\n\r\nNotes:\r\n> This example uses environment variables (i.e. property and attribute tag references), which were set after executing requests from the \"1. Reviewing Existing Subscriptions Artifacts\" folder.\r\n\r\n> In this example, the `{{subscriptionRef3}}` environment variable is set to the returned subscription reference ID, for furture use.\r\n\r\n\r\nSee example. Refer to [Subscriptions](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions.htm)."
+                  description: "Create a single cloud subscription definition.\r\n\r\nIn this example, the subscription filters for systems where predicted uptime is between 50-100% and suppress systems that have a \"Terminate\"\_recommendation. The subscription will be automatically owned by the `{{DensifyUser}}`. Ensure `{{DensifyUser}}` and `{{DensifyPwd}}` environment variables are set to a Kubex user and corresponding password from your Kubex instance.\r\n\r\nNotes:\r\n> This example uses environment variables (i.e. property and attribute tag references), which were set after executing requests from the \"1. Reviewing Existing Subscriptions Artifacts\" folder.\r\n\r\n> In this example, the `{{subscriptionRef3}}` environment variable is set to the returned subscription reference ID, for furture use.\r\n\r\n\r\nSee example. Refer to [Subscriptions](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions.htm)."
                 response:
                   - name: Creating a Single Subscription
                     originalRequest:
@@ -111775,7 +111775,7 @@ item:
                       - subscriptions
                       - cloud
                       - "{{subscriptionRef1}}"
-                  description: "Modify a single cloud subscription with the reference ID in the URL request.\r\n\r\nYou have to specify all parameters in a PUT request because the request action is a *delete-and-replace* of all parameters. See the Body section of this request.\r\n\r\nNotes:\r\n\r\n> If you are a non-administrative user, you can only modify subscriptions owned by you.\r\n\r\n> If you have administrative privileges, you can modify any subscription.\r\n\r\nThe `{{subscriptionRef1}}` environment variable is used to identify the subscription to modify. This variable was set in a previous request (i.e. \"Creating Cloud Subscriptions\").\r\n\r\nThis example updates the subscription name, description and returned output content. The owner of the subscription was set to `{{nonAdminUser}}` from a previous request. Only an administrative user or the subscription owner can modify the subscription. Therefore, ensure that the authorized `{{DensifyUser}}` is set to the same user as `{{nonAdminUser}}` or to a Densify user with administrative privileges.\r\n\r\n\r\nRefer to [Subscriptions](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions.htm)."
+                  description: "Modify a single cloud subscription with the reference ID in the URL request.\r\n\r\nYou have to specify all parameters in a PUT request because the request action is a *delete-and-replace* of all parameters. See the Body section of this request.\r\n\r\nNotes:\r\n\r\n> If you are a non-administrative user, you can only modify subscriptions owned by you.\r\n\r\n> If you have administrative privileges, you can modify any subscription.\r\n\r\nThe `{{subscriptionRef1}}` environment variable is used to identify the subscription to modify. This variable was set in a previous request (i.e. \"Creating Cloud Subscriptions\").\r\n\r\nThis example updates the subscription name, description and returned output content. The owner of the subscription was set to `{{nonAdminUser}}` from a previous request. Only an administrative user or the subscription owner can modify the subscription. Therefore, ensure that the authorized `{{DensifyUser}}` is set to the same user as `{{nonAdminUser}}` or to a Kubex user with administrative privileges.\r\n\r\n\r\nRefer to [Subscriptions](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions.htm)."
                 response:
                   - name: Modifying a Subscription
                     originalRequest:
@@ -127957,7 +127957,7 @@ item:
                     - `{{subscriptionRef3}}`
 
 
-                    Ensure that the Densify user making this request has permission to delete all the subscriptions above.
+                    Ensure that the Kubex user making this request has permission to delete all the subscriptions above.
 
                     Note:
 
@@ -128071,7 +128071,7 @@ item:
                         value: Mon, 20 Jan 2020 00:29:29 GMT
                     cookie: []
                     body: ""
-            description: "Subscribe to a set of\_Densify\_recommendation notifications using the\_Densify\_Subscription Service (DSS) API framework. See [Subscribing to Densify Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscribing_to_Recommendations.htm)."
+            description: "Subscribe to a set of\_Densify\_recommendation notifications using the\_Densify\_Subscription Service (DSS) API framework. See [Subscribing to Kubex Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscribing_to_Recommendations.htm)."
           - name: 5.5.2 Container Subscriptions
             item:
               - name: Creating Container Subscriptions
@@ -128116,7 +128116,7 @@ item:
                       - "{{root}}"
                       - subscriptions
                       - containers
-                  description: "The *POST /subscriptions/containers* resource allows you to create a subscription to retreive Densify container recommendations.\r\n\r\nNotes:\r\n> If you are an administrative user and do not set the \"owner\" parameter, the subscription is considered global.\r\n\r\n> If you are a non-administrative user and do not set the \"owner\" parameter, the \"owner\" parameter is automatically set to your username.\r\n\r\nIn this example, two subscription definitions are created: CONTAINERS_1 and CONTAINERS_2 \r\n\r\nNotes:\r\n> This example uses environment variables (i.e. property references), which were set after executing requests from the \"1. Reviewing Existing Subscriptions Artifacts\" folder.\r\n\r\n> In this example, `{{subscriptionRef1}}` and `{{subscriptionRef2}}` environment variables are set to the first two returned subscription reference IDs, for furture use.\r\n\r\n\r\nSee example. Refer to [Subscriptions](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions.htm)."
+                  description: "The *POST /subscriptions/containers* resource allows you to create a subscription to retreive Kubex container recommendations.\r\n\r\nNotes:\r\n> If you are an administrative user and do not set the \"owner\" parameter, the subscription is considered global.\r\n\r\n> If you are a non-administrative user and do not set the \"owner\" parameter, the \"owner\" parameter is automatically set to your username.\r\n\r\nIn this example, two subscription definitions are created: CONTAINERS_1 and CONTAINERS_2 \r\n\r\nNotes:\r\n> This example uses environment variables (i.e. property references), which were set after executing requests from the \"1. Reviewing Existing Subscriptions Artifacts\" folder.\r\n\r\n> In this example, `{{subscriptionRef1}}` and `{{subscriptionRef2}}` environment variables are set to the first two returned subscription reference IDs, for furture use.\r\n\r\n\r\nSee example. Refer to [Subscriptions](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions.htm)."
                 response:
                   - name: Creating Container Subscriptions
                     originalRequest:
@@ -130672,7 +130672,7 @@ item:
                     - `{{subscriptionRef2}}`
 
 
-                    Ensure that the Densify user making this request has permission to delete all the subscriptions above.
+                    Ensure that the Kubex user making this request has permission to delete all the subscriptions above.
 
                     Note:
 
@@ -130728,7 +130728,7 @@ item:
                         value: Wed, 16 Sep 2020 19:49:43 GMT
                     cookie: []
                     body: ""
-            description: "Subscribe to a set of\_Densify\_recommendation notifications using the\_Densify\_Subscription Service (DSS) API framework. See [Subscribing to Densify Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscribing_to_Recommendations.htm)."
+            description: "Subscribe to a set of\_Densify\_recommendation notifications using the\_Densify\_Subscription Service (DSS) API framework. See [Subscribing to Kubex Recommendations](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscribing_to_Recommendations.htm)."
         description: Define your custom subscription notifications.
         event:
           - listen: prerequest
@@ -130741,7 +130741,7 @@ item:
               exec:
                 - ""
               type: text/javascript
-    description: The Densify Subscription Service (DSS) framework is a set of API resources that allow you to define customized subscriptions for third-party applications to receive Densify recommendations. The DSS enables you receive recommendations for specific systems by using property or attribute filters. See [Subscription](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions.htm) for details.
+    description: The Kubex Subscription Service (DSS) framework is a set of API resources that allow you to define customized subscriptions for third-party applications to receive Kubex recommendations. The DSS enables you receive recommendations for specific systems by using property or attribute filters. See [Subscription](https://www.densify.com/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Subscriptions.htm) for details.
     event:
       - listen: prerequest
         script:

@@ -1,11 +1,11 @@
 openapi: 3.1.0
 info:
-  title: Densify Inbound Hosts API
+  title: Kubex Inbound Hosts API
   version: 1.0.0
-  description: API for managing inbound hosts in Densify infrastructure groups.
+  description: API for managing inbound hosts in Kubex infrastructure groups.
 servers:
   - url: https://api.densify.com/v1
-    description: Densify API Server
+    description: Kubex API Server
 paths:
   /inbound-hosts:
     get:

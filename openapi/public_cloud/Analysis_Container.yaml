@@ -1,10 +1,10 @@
 openapi: 3.1.0
 info:
-  title: Densify – Container Analyses API
+  title: Kubex – Container Analyses API
   version: "1.0.0"
   description: |
-    Lists all optimized **container-based** analysis entities in your Densify system.
-    Each entity typically corresponds to the container resources within a cluster that Densify collected.
+    Lists all optimized **container-based** analysis entities in your Kubex system.
+    Each entity typically corresponds to the container resources within a cluster that Kubex collected.
 servers:
   - url: https://{host}
     variables:

@@ -25,7 +25,7 @@ Recommendations are based on the latest cloud catalogs from the supported public
 ## Page Navigation
 
 
-Use the breadcrumbs in the upper left corner or click the Back button, in the top-right corner of the page, to return to the parent dashboard. Do not use the browser's Back button for navigation within Densify. You will be logged out of your session. See [Navigating Densify](./Navigating_Densify) for other features of the Densify user interface.
+Use the breadcrumbs in the upper left corner or click the Back button, in the top-right corner of the page, to return to the parent dashboard. Do not use the browser's Back button for navigation within Densify. You will be logged out of your session. See [Navigating Densify](./Navigating_Densify) for other features of the Kubex user interface.
 
 <Accordion title="Figure: Instance Type Optimization Details - Page Navigation">
 <table>
@@ -216,7 +216,7 @@ The columns of the tabular report change depending on the selected instance type
 <p class="CiRBATableText">Recommendation Reason/Observation</p>
 </td>
 <td class="td_3">
-<p class="CiRBATableText">The reason for the Optimization Type recommendation. Densify also provides any relevant details related to the recommendation.</p>
+<p class="CiRBATableText">The reason for the Optimization Type recommendation. Kubex also provides any relevant details related to the recommendation.</p>
 </td>
 <td class="td_3">
 <ul class="ul_1">
@@ -328,7 +328,7 @@ The columns of the tabular report change depending on the selected instance type
 </td>
 <td class="td_3">
 <p class="CiRBATableText">[Moderate|Low|Very Low|None]</p>
-<p class="CiRBATableText">This column describes the effort required to investigate and implement the Densify recommendations. Effort for each instance is calculated by rule-driven analytics based on factors (such as instance family change, storage change, data quality checks, feature changes, etc.) that can be configured in the policy settings and rule set which captures best practices. </p>
+<p class="CiRBATableText">This column describes the effort required to investigate and implement the Kubex recommendations. Effort for each instance is calculated by rule-driven analytics based on factors (such as instance family change, storage change, data quality checks, feature changes, etc.) that can be configured in the policy settings and rule set which captures best practices. </p>
 <p class="CiRBATableText">Click on the <span class="CiRBAcharUIElement">Effort Details</span> tab to view  the factors that contribute to the effort level. See <a href="#Lower_Section">Reviewing the Workload Charts and Additional Details Tabs</a>, below.</p>
 </td>
 <td class="td_3">
@@ -764,9 +764,9 @@ The minimum and maximum utilization values are shown as vertical lines above and
 The scale used on the Y-axis is scaled dynamically to match the range of data. Where applicable, the pink line indicating the policy high limit, is shown, and the setting of the Y-axis scale also accounts for the policy limit setting.
 
 * System Information Tab—Click on this tab to see allocated resources and some of the organizational attributes that have been set for this guest.
-* Effort Details Tab—This tab lists the factors that contribute to the effort required to investigate and implement the Densify recommendations. Effort for each instance is calculated by rule-driven analytics based on factors (such as instance family change, storage change, data quality checks, feature changes, etc.) that can be configured in the policy settings and through analysis rule sets. A description of each rule/property and its impact on the effort to move the current instance to the recommended instance type are provided.
+* Effort Details Tab—This tab lists the factors that contribute to the effort required to investigate and implement the Kubex recommendations. Effort for each instance is calculated by rule-driven analytics based on factors (such as instance family change, storage change, data quality checks, feature changes, etc.) that can be configured in the policy settings and through analysis rule sets. A description of each rule/property and its impact on the effort to move the current instance to the recommended instance type are provided.
 
-Contact Support@Densify.com for further details on the policy settings and rule set configured for your environment.
+Contact support@kubex.ai for further details on the policy settings and rule set configured for your environment.
 
 * Predicted Uptime Details Tab—This tab shows a pie chart with the uptime details for the selected instance.
 
@@ -794,7 +794,7 @@ Quartiles are calculated in the following manner:
 
 The Edit System Attributes tab in the lower pane of the Instance Optimization Details report allows you to edit specific attributes of the system selected from the top pane.
 
-This feature is supported via the Densify API.
+This feature is supported via the Kubex API.
 
 <Accordion title="Figure: Edit System Attributes Tab">
 <Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/06000031.png)</Frame>
@@ -805,8 +805,8 @@ The following default system attribute categories are available for editing:
 * Business
 * Routing
 
-Contact Support@Densify.com if you require additional system attributes to be exposed for editing.
+Contact support@kubex.ai if you require additional system attributes to be exposed for editing.
 
 Attribute changes are displayed accordingly in the Edit Systems Attributes tab.
 
-Densify optimization and reporting database updates are required before the saved values are reflected in the Instance Optimization Details tabular report and footer. For example, if you update and save one of the Self-Optimizing Automation Overrides attributes, you can see the updated value in the Edit Systems Attributes tab and extract the updated attribute value from the Densify API. However, the Instance Optimization Details tabular report and footer will not display the recommendation results of the updated value until analysis has been performed and the reporting tables have been updated via the overnight scheduled job.
+Densify optimization and reporting database updates are required before the saved values are reflected in the Instance Optimization Details tabular report and footer. For example, if you update and save one of the Self-Optimizing Automation Overrides attributes, you can see the updated value in the Edit Systems Attributes tab and extract the updated attribute value from the Kubex API. However, the Instance Optimization Details tabular report and footer will not display the recommendation results of the updated value until analysis has been performed and the reporting tables have been updated via the overnight scheduled job.

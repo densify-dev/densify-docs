@@ -6,7 +6,7 @@ This topic provides the answers to frequently asked questions.
 
 <Accordion title="Cloud Cost">
 <Accordion title="How is the current monthly cloud cost determined?">
-In the Impact Analysis and Recommendation Report report > Cost Impact section, monthly savings are determined based on the current cost of the instance and the cost of the instance type that Densify is recommending.
+In the Impact Analysis and Recommendation Report report > Cost Impact section, monthly savings are determined based on the current cost of the instance and the cost of the instance type that Kubex is recommending.
 
 The current cost is calculated based on the current, monthly on-demand catalog price for the instance in the specified region multiplied by the predicted uptime %:
 
@@ -46,8 +46,8 @@ Figure: Densify's Impact Analysis and Recommendation Report
 See [Understanding the Instance Optimization Details Report](../Densify_Com/Understanding_the_Instance_Details_Report).
 </Accordion>
 
-<Accordion title="How is the value of savingsestimate calculated when using the Densify API ?">
-When you are using the Densify API the the predicted uptime % is not used when determining the value of savingestimate.
+<Accordion title="How is the value of savingsestimate calculated when using the Kubex API ?">
+When you are using the Kubex API the the predicted uptime % is not used when determining the value of savingestimate.
 
 In this case the current cost is calculated based on the current, monthly on-demand catalog price for the instance in the specified region:
 
@@ -88,11 +88,11 @@ In cases where memory utilization data is not collected you have 3 options:
 
 * Enable the collection of memory metrics.
 
-* AWS--Enable a CloudWatch agent to collect memory. There is an extra cost for each metric. Once enabled, Densify will collect the data automatically. See [AWS Data Collection Using a CloudFormation Template](../Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template#Enabling_Memory_Metrics).​
+* AWS--Enable a CloudWatch agent to collect memory. There is an extra cost for each metric. Once enabled, Kubex will collect the data automatically. See [AWS Data Collection Using a CloudFormation Template](../Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template#Enabling_Memory_Metrics).​
 * Azure provides memory data and the Azure data collection modules collect the available memory data.
 * GCP--Install the Ops agent on each instance to retrieve memory. See [Collecting GCP Memory Metrics](../Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites#GCP_Memory_Metrics).
 
-* Import collected memory data from a third-party tool, such as Prometheus, Splunk or SignalFX. The Densify services team can provide details of an integration for Datadog.
+* Import collected memory data from a third-party tool, such as Prometheus, Splunk or SignalFX. The Kubex services team can provide details of an integration for Datadog.
 * ​Backfill missing memory by enabling the corresponding policy settings. This is not the preferred option but is the easiest to implement if memory utilization metrics are not being collected.
 
 See [Public Cloud Memory Metrics](../Data_Collection_for_Public_Cloud_Systems/Public_Cloud_Memory_Metrics) for details and examples.
