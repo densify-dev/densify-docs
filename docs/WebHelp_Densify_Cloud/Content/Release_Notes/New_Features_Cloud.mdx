@@ -1361,7 +1361,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 
 ## Kubex Automation Controller
 
-This section lists new features and updates to the Kubex Automation Controller, which automatically implements Densify's optimization recommendations for Kubernetes workloads.
+This section lists new features and updates to the Kubex Automation Controller, which automatically implements Kubex's optimization recommendations for Kubernetes workloads.
 
 A Helm chart bundles all components required for automated container optimization. See [Kubex Automation Controller](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) for deployment details and configuration options.
 
@@ -1412,7 +1412,7 @@ A Helm chart bundles all components required for automated container optimizatio
     Administrators can now use Kubernetes annotations to control automation behavior at the pod or workload level using the `rightsizing.kubex.ai/pause-until: "<RFC3339 timestamp | infinite>"` annotation:
 
     - **Learning Periods**--Pause automation temporarily after application changes or deployments to allow the system to gather sufficient metrics before optimizing. Specify an RFC3339 timestamp to pause until a specific date.
-    - **Permanent Exclusions**--Permanently exclude specific workloads from automation by setting the annotation value to `infinite`, providing granular control over which resources are managed by Densify.
+    - **Permanent Exclusions**--Permanently exclude specific workloads from automation by setting the annotation value to `infinite`, providing granular control over which resources are managed by Kubex.
 
     Additionally, the controller now respects the `cluster-autoscaler.kubernetes.io/safe-to-evict=false` annotation, ensuring that pods marked as unsafe to evict are never evicted by the automation controller, even when optimization recommendations are available.
 
@@ -1495,7 +1495,7 @@ A Helm chart bundles all components required for automated container optimizatio
   <Accordion title="Automated Pod Eviction and Resizing">
     This release introduces the core Kubex Automation Controller deployment, which automatically manages container resource optimization through intelligent pod scanning and eviction.
 
-    - **Automated Pod Scanning**--The controller continuously scans all pods within the configured scope, evaluating them for optimization opportunities based on Densify recommendations.
+    - **Automated Pod Scanning**--The controller continuously scans all pods within the configured scope, evaluating them for optimization opportunities based on Kubex recommendations.
     - **Pre-Eviction Safety Checks**--Before resizing any pod, the controller runs a comprehensive series of checks to ensure safe eviction, including:
       - Validation of workload owner types and controller compatibility
       - HPA (Horizontal Pod Autoscaler) conflict detection

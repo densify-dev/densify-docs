@@ -472,12 +472,6 @@
         "href": "https://www.kubex.ai"
     },
     "navbar": {
-        "links": [
-            {
-                "label": "Book a Demo",
-                "href": "https://www.kubex.ai/#demo-up"
-            }
-        ],
         "primary": {
             "type": "button",
             "label": "Free Trial",
