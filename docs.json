@@ -469,13 +469,13 @@
     "logo": {
         "light": "images/kubex-logo-light.png",
         "dark": "images/kubex-logo-reverse 4.png",
-        "href": "https://www.kubex.ai"
+        "href": "https://kubex.ai"
     },
     "navbar": {
         "primary": {
             "type": "button",
             "label": "Free Trial",
-            "href": "https://www.kubex.ai/product/trial/"
+            "href": "https://kubex.ai/product/trial/"
         }
     },
     "footer": {
