@@ -8,9 +8,9 @@ This resource acts as a catalog of system attributes to be referenced by the [ta
 
 The SQL to filter results employs a "STRING" comparison and not a numeric comparison on tags so you may observe inconsistent results. Tags can only be lexicographically compared.
 
-There is a catalog for each supported `<platformType>`, which can only be referenced by the corresponding `<platformType>` subscription. For example, a container subscription (i.e. `/subscriptions/containers`) can only reference tags from the Container Subscriptions Tags catalog (i.e. `/subscriptions/containers/tags`). Densify provides an initial, default set of system attributes for each `<platformType>` catalog. You can extend these default sets by adding additional system attributes, or you can customize the sets by modifying or deleting existing attributes. Only Densify standard attributes or technology-specific attributes (e.g. AWS, Containers) can be added to the platform-specific Subscriptions Tags catalogs. Contact [Support@Densify.com](mailto:Support@Densify.com) for a complete list of available Densify standard attributes. See [Default Cloud Attribute Tags](#cloudDefaultTags) or [Default Container Attribute Tags](#containerDefaultTags).
+There is a catalog for each supported `<platformType>`, which can only be referenced by the corresponding `<platformType>` subscription. For example, a container subscription (i.e. `/subscriptions/containers`) can only reference tags from the Container Subscriptions Tags catalog (i.e. `/subscriptions/containers/tags`). Kubex provides an initial, default set of system attributes for each `<platformType>` catalog. You can extend these default sets by adding additional system attributes, or you can customize the sets by modifying or deleting existing attributes. Only Kubex standard attributes or technology-specific attributes (e.g. AWS, Containers) can be added to the platform-specific Subscriptions Tags catalogs. Contact [support@kubex.ai](mailto:support@kubex.ai) for a complete list of available Kubex standard attributes. See [Default Cloud Attribute Tags](#cloudDefaultTags) or [Default Container Attribute Tags](#containerDefaultTags).
 
-Attributes in the platform-specific Subscriptions Tags catalog can be declared as global or private (i.e. user-specific). Global attribute tags can be used by any API enabled user, whereas private attributes can only be used by their owners. Note that <Tooltip tip="An administrative user is a Densify user in the Administrator user group or with the Analysis Admin role.">administrative users</Tooltip> have access to both global and private attributes for all users.
+Attributes in the platform-specific Subscriptions Tags catalog can be declared as global or private (i.e. user-specific). Global attribute tags can be used by any API enabled user, whereas private attributes can only be used by their owners. Note that <Tooltip tip="An administrative user is a Kubex user in the Administrator user group or with the Analysis Admin role.">administrative users</Tooltip> have access to both global and private attributes for all users.
 
 ## Resource
 
@@ -27,7 +27,7 @@ Attributes in the platform-specific Subscriptions Tags catalog can be declared a
 ```
 
 <Note>
-If you use this resource without the `<platformType>` specified (i.e. without `cloud` or `containers` specified), the behavior is exactly the same as specifying the `cloud`-specific resource. This behavior enables backward compatibility with scripts using the Densify API prior to release 12.1.6, where the platform-specific indicator was not available.
+If you use this resource without the `<platformType>` specified (i.e. without `cloud` or `containers` specified), the behavior is exactly the same as specifying the `cloud`-specific resource. This behavior enables backward compatibility with scripts using the Kubex API prior to release 12.1.6, where the platform-specific indicator was not available.
 </Note>
 
 ## endpoints

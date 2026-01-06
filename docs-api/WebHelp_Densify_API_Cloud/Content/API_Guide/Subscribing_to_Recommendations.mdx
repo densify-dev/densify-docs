@@ -1,10 +1,10 @@
 ---
-title: "Subscribing to Densify Recommendations"
+title: "Subscribing to Kubex Recommendations"
 ---
 
-This use case shows you how to subscribe to a set of Densify recommendation notifications using the Densify Subscription Service (DSS) API framework.
+This use case shows you how to subscribe to a set of Kubex recommendation notifications using the Kubex Subscription Service (DSS) API framework.
 
-The DSS is a flexible framework that offers you the ability to customize the content of your Densify recommendations for targeted distribution. DSS features include:
+The DSS is a flexible framework that offers you the ability to customize the content of your Kubex recommendations for targeted distribution. DSS features include:
 
 * ability to filter recommendation systems based on recommendation fields (property filter);
 * ability to filter recommendation systems based on attribute tags (tag filter);
@@ -19,7 +19,7 @@ To use these features, you need to create an instance of the Subscription resour
 
 ## Creating a Subscription
 
-The diagram below provides a high-level overview of creating an instance of the Subscription resource through the Densify API:
+The diagram below provides a high-level overview of creating an instance of the Subscription resource through the Kubex API:
 
 <Accordion title="Figure: Subscription High Level Overview">
 <Frame>![](/images/docs-api/WebHelp_Densify_API_Cloud/Content/Resources/Images/CiRBA_API_Guide/03000017.png)</Frame>
@@ -36,18 +36,18 @@ An instance of the [Subscriptions](./Subscriptions) resource is created using th
 
 2. **Property Filter**--Specify [propertyReferences](./Subscriptions#propertyReferences) to filter the recommendation systems you are interested in receiving based on recommendation fields.
 
-   This feature is similar to the Recommendation Filter Menu in the Densify Console, where you can filter recommendation systems based on selected fields from the menu. In the `propertyReferences` filter condition, fields are selected by referencing property elements from the platform-specific Subscriptions Properties catalog.
+   This feature is similar to the Recommendation Filter Menu in the Kubex Console, where you can filter recommendation systems based on selected fields from the menu. In the `propertyReferences` filter condition, fields are selected by referencing property elements from the platform-specific Subscriptions Properties catalog.
    The platform of properties you reference must correspond with the platform of your subscription. Refer to [Subscriptions Properties Catalogs](#PropertyCatalog) for details on referencing properties.
 
    See [Example: Specifying Property Filters](#_SpecifyPropertyFilters) for an example of a property filter condition block in a `POST /subscriptions/<platformType>` request.
 
 3. **Tag Filter**--Specify [tagReferences](./Subscriptions#tagReferences) to filter the recommendation systems you are interested in receiving based on attribute fields.
 
-   This feature is similar to the Guest Filter from the Densify Console, but it also extends to filter platform-specific attribute tags. In the `tagReferences` filter condition, attributes are selected by referencing tag elements from the platform-specific Subscriptions Tags catalog. The platform of tags you reference must correspond with the platform of your subscription.
+   This feature is similar to the Guest Filter from the Kubex Console, but it also extends to filter platform-specific attribute tags. In the `tagReferences` filter condition, attributes are selected by referencing tag elements from the platform-specific Subscriptions Tags catalog. The platform of tags you reference must correspond with the platform of your subscription.
    Refer to [Subscriptions Tags Catalogs](#TagCatalog) for details.
 
    <Note>
-   You must ensure that the selected Densify attributes are marked as `searchable` for use with DSS. Contact Densify support ([Support@Densify.com](mailto:Support@Densify.com)) to confirm that the selected attributes are searchable in your Densify instance.
+   You must ensure that the selected Kubex attributes are marked as `searchable` for use with DSS. Contact Kubex support ([support@kubex.ai](mailto:support@kubex.ai)) to confirm that the selected attributes are searchable in your Kubex instance.
    </Note>
 
    See [Example: Specifying Tag Filters](#_SpecifyTagFilters) for an example of a tag filter condition block in a `POST /subscriptions/<platformType>` request.
@@ -86,7 +86,7 @@ Refer to [Subscriptions](./Subscriptions) for the complete subscription resource
 
 The platform-specific Subscriptions Properties catalogs are resources that provides you with a list of recommendation fields to use for filtering and for personalizing the notification output. The platform of the Subscriptions Properties catalog you use for filtering must correspond with the platform of your subscription.
 
-By default, the platform-specific Subscriptions Properties catalogs already have a list of recommendation fields for you to use. You can also add additional recommendation fields to the catalogs. The list of possible recommendation fields to add corresponds to the response elements from the Densify supported cloud and container recommendations (see [Analysis: AWS Recommendations: Response](./Analysis_AWS_Results#_ResultElements), [Analysis: Azure Recommendations: Response](./Analysis_Azure_Results#_ResultElements), [Analysis: GCP Recommendations: Response](./Analysis_GCP_Results#_ResultElements), and [Analysis: Kubernetes Container Recommendations: Response](./Analysis_Kubernetes_Results#_ResultElements)).
+By default, the platform-specific Subscriptions Properties catalogs already have a list of recommendation fields for you to use. You can also add additional recommendation fields to the catalogs. The list of possible recommendation fields to add corresponds to the response elements from the Kubex supported cloud and container recommendations (see [Analysis: AWS Recommendations: Response](./Analysis_AWS_Results#_ResultElements), [Analysis: Azure Recommendations: Response](./Analysis_Azure_Results#_ResultElements), [Analysis: GCP Recommendations: Response](./Analysis_GCP_Results#_ResultElements), and [Analysis: Kubernetes Container Recommendations: Response](./Analysis_Kubernetes_Results#_ResultElements)).
 
 <Note>
 Some recommendation elements are not common to all technologies. For example, propertyName="minGroupRecommended" only applies to AWS Auto Scaling group recommendations.
@@ -94,7 +94,7 @@ Some recommendation elements are not common to all technologies. For example, pr
 
 When you create property filter conditions for your subscription, you need to reference properties from the corresponding platform Subscriptions Properties catalog (see the [Subscriptions: propertyReferences](./Subscriptions#propertyReferences) parameter). Similarly, you need to reference properties from the corresponding platform Subscriptions Properties catalog to personalize the notification output (see the [Subscriptions: returnStructure](./Subscriptions#returnStructure) parameter).
 
-You can only reference properties that are accessible to the Densify username you use to authorize the API request. Property accessibility depends on the scope of the property: if the property is global, then the property is accessible to all API Densify users; if the property is private, then the property is accessible to the owner of the private property. If you are an <Tooltip tip="An administrative user is a Densify user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the property scope rule and access all properties from the catalog. See [Subscriptions: Properties: owner](./Subscriptions_Properties#owner) for more property scope details.
+You can only reference properties that are accessible to the Kubex username you use to authorize the API request. Property accessibility depends on the scope of the property: if the property is global, then the property is accessible to all API Kubex users; if the property is private, then the property is accessible to the owner of the private property. If you are an <Tooltip tip="An administrative user is a Kubex user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the property scope rule and access all properties from the catalog. See [Subscriptions: Properties: owner](./Subscriptions_Properties#owner) for more property scope details.
 
 Refer to [Subscriptions: Properties](./Subscriptions_Properties) for the full resource definition.
 
@@ -107,11 +107,11 @@ Refer to [Subscriptions: Properties](./Subscriptions_Properties) for the full re
 
 The platform-specific Subscriptions Tags catalogs are resources that provides you with a list of system attribute fields to use for filtering and for personalizing the notification output. The platform of the Subscriptions Tags catalog you use for filtering must correspond with the platform of your subscription.
 
-By default, the platform-specific Subscriptions Tags catalogs already have a list of common attributes for you to use. You can also add additional attribute fields to the catalogs. The possible attribute fields you can add comes from the set of Densify standard attributes or technology-specific attributes.
+By default, the platform-specific Subscriptions Tags catalogs already have a list of common attributes for you to use. You can also add additional attribute fields to the catalogs. The possible attribute fields you can add comes from the set of Kubex standard attributes or technology-specific attributes.
 
 When you create tag filter conditions for your subscription, you need to reference tags from the corresponding platform Subscriptions Tags catalog (see the [Subscriptions: tagReferences](./Subscriptions#tagReferences) parameter). Similarly, you need to reference tags from the corresponding platform Subscriptions Tags catalog to personalize the notification output (see the [returnStructure](./Subscriptions#returnStructure) parameter).
 
-You can only reference tags that are accessible to the Densify username you use to authorize the API request. Access to a particular tag in the catalog depends on its scope: if the tag is global, then the tag is accessible to all API Densify users; if the tag is private, then the tag is accessible to the owner of the private tag. If you are an <Tooltip tip="An administrative user is a Densify user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the tag scope rule and access all tags from the catalog. See [Subscriptions: Tags: owner](./Subscriptions_Tags#_owner) for additional details of tag scope.
+You can only reference tags that are accessible to the Kubex username you use to authorize the API request. Access to a particular tag in the catalog depends on its scope: if the tag is global, then the tag is accessible to all API Kubex users; if the tag is private, then the tag is accessible to the owner of the private tag. If you are an <Tooltip tip="An administrative user is a Kubex user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the tag scope rule and access all tags from the catalog. See [Subscriptions: Tags: owner](./Subscriptions_Tags#_owner) for additional details of tag scope.
 
 Refer to [Subscriptions: Tags](./Subscriptions_Tags) for the full resource definition.
 
@@ -124,11 +124,11 @@ Refer to [Subscriptions: Tags](./Subscriptions_Tags) for the full resource defin
 
 The platform-specific Subscriptions Suppressions catalogs are resources that provides you with a list of recommendation and system attribute fields to use for creating suppression conditions in your subscription. The platform of the Subscriptions Suppressions catalog you use for suppressing recommendations must correspond with the platform of your subscription.
 
-By default, the platform-specific Subscriptions Suppressions catalog already has a list of recommendation and attribute field suppressions for you to use. You can also add additional suppression fields. The list of possible recommendation fields correspond to the response elements from the Densify supported cloud recommendations (see [Analysis: AWS Recommendations: Response](./Analysis_AWS_Results#_ResultElements), [Analysis: Azure Recommendations: Response](./Analysis_Azure_Results#_ResultElements), [Analysis: GCP Recommendations: Response](./Analysis_GCP_Results#_ResultElements), and [Analysis: Kubernetes Container Recommendations: Response](./Analysis_Kubernetes_Results#_ResultElements)). The possible attribute fields you can add to a Subscriptions Suppressions catalog comes from the set of Densify standard attributes or technology-specific attributes.
+By default, the platform-specific Subscriptions Suppressions catalog already has a list of recommendation and attribute field suppressions for you to use. You can also add additional suppression fields. The list of possible recommendation fields correspond to the response elements from the Kubex supported cloud recommendations (see [Analysis: AWS Recommendations: Response](./Analysis_AWS_Results#_ResultElements), [Analysis: Azure Recommendations: Response](./Analysis_Azure_Results#_ResultElements), [Analysis: GCP Recommendations: Response](./Analysis_GCP_Results#_ResultElements), and [Analysis: Kubernetes Container Recommendations: Response](./Analysis_Kubernetes_Results#_ResultElements)). The possible attribute fields you can add to a Subscriptions Suppressions catalog comes from the set of Kubex standard attributes or technology-specific attributes.
 
 When you create suppression conditions for your subscription, you need to reference suppressions from the corresponding platform Subscriptions Suppressions catalog (see the [Subscriptions: suppressionReferences](./Subscriptions#suppressionReferences) parameter).
 
-You can only reference suppressions that are accessible to the Densify username you use to authorize the API request. Access to a particular suppression in the catalog depends on its scope: if the suppression is global, then it is accessible to all API Densify users; if the suppression is private, then it is accessible to the owner of the private suppression. If you are an <Tooltip tip="An administrative user is a Densify user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the suppression scope rule and access all suppressions from the catalog. See [Subscriptions: Suppressions: owner](./Subscriptions_Suppressions#owner) for details of suppression scope.
+You can only reference suppressions that are accessible to the Kubex username you use to authorize the API request. Access to a particular suppression in the catalog depends on its scope: if the suppression is global, then it is accessible to all API Kubex users; if the suppression is private, then it is accessible to the owner of the private suppression. If you are an <Tooltip tip="An administrative user is a Kubex user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>, then you can override the suppression scope rule and access all suppressions from the catalog. See [Subscriptions: Suppressions: owner](./Subscriptions_Suppressions#owner) for details of suppression scope.
 
 <Note>
 The Subscriptions Suppressions catalogs are not used for a Subscription's return output.
@@ -138,7 +138,7 @@ Refer to [Subscriptions: Suppressions](./Subscriptions_Suppressions) for the ful
 
 ## Example: Defining the Subscription
 
-Use the `POST /subscriptions/cloud` request to create a cloud subscription. The first set of parameters to specify are the [subscriptionName](./Subscriptions#subscriptionName) and [description](./Subscriptions#description), which are free-form strings. The [owner](./Subscriptions#owner) parameter is automatically set to your Densify username if you are not an <Tooltip tip="An administrative user is a Densify user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>. You can also set the [active](./Subscriptions#active) parameter to indicate if the subscription is dormant or active (the default is `active`). Remember to specify your active authorization key for each token-based authentication request (see [Authorize](./Authorize) for details).
+Use the `POST /subscriptions/cloud` request to create a cloud subscription. The first set of parameters to specify are the [subscriptionName](./Subscriptions#subscriptionName) and [description](./Subscriptions#description), which are free-form strings. The [owner](./Subscriptions#owner) parameter is automatically set to your Kubex username if you are not an <Tooltip tip="An administrative user is a Kubex user in the Administrator user group or with the Analysis Admin role.">administrative user</Tooltip>. You can also set the [active](./Subscriptions#active) parameter to indicate if the subscription is dormant or active (the default is `active`). Remember to specify your active authorization key for each token-based authentication request (see [Authorize](./Authorize) for details).
 
 <Accordion title="Example: Specifying Subscription Name and Description">
 Headers:
@@ -491,4 +491,4 @@ Response:
 
 ## Postman Collection
 
-Densify provides a Postman collection of sample API requests for working with your public cloud environments. See [Postman Collection](./Postman_Collection)
+Kubex provides a Postman collection of sample API requests for working with your public cloud environments. See [Postman Collection](./Postman_Collection)

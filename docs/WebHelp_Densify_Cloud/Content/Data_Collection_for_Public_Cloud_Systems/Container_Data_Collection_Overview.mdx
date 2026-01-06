@@ -8,7 +8,7 @@ title: "Data Collection for Containers"
 
 Densify collects and analyzes your container configuration and utilization data and provides resizing recommendations to run your container-based applications on the correct infrastructure.
 
-The Densify data forwarder is a container that collects data from Kubernetes using a Prometheus server and then forwards that data to Densify. You can quickly deploy the data forwarder and all of the required prerequisite software using a Helm chart. See [Kubex Collection Stack Helm Chart](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack).
+The Kubex data forwarder is a container that collects data from Kubernetes using a Prometheus server and then forwards that data to Densify. You can quickly deploy the data forwarder and all of the required prerequisite software using a Helm chart. See [Kubex Collection Stack Helm Chart](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack).
 
 The data forwarder can also be configured to use a commercially-available observability platform that collects data from multiple clusters and forwards that data to Densify. Refer to Densify's [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md) for configuration details.
 
@@ -32,7 +32,7 @@ Deploy the data forwarder with Authenticated Prometheus (e.g., OpenShift). See [
 ## Data Collection from an Observability Platform
 
 <Accordion title="Amazon Managed Prometheus">
-In this example the data forwarder is setup in an EKS cluster to connect to Amazon Managed Prometheus (AMP) and send container data to Densify on an hourly basis. Using an EKS cluster allows you to use EKS's ability to associate an IAM role with a Kubernetes service account and configure your pods to use the service account. This is the preferred way to connect to AMP.
+In this example the data forwarder is setup in an EKS cluster to connect to Amazon Managed Prometheus (AMP) and send container data to Kubex on an hourly basis. Using an EKS cluster allows you to use EKS's ability to associate an IAM role with a Kubernetes service account and configure your pods to use the service account. This is the preferred way to connect to AMP.
 
 <Accordion title="Figure: Container Data Collection Using EKS-AMP">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000276_587x179.png)</Frame>
@@ -52,7 +52,7 @@ Azure Monitor managed service for Prometheus can be used when deploying AKS clus
 * Deploy the data forwarder with AzMP: https://github.com/densify-dev/container-data-collection/tree/main/multi-cluster/examples/azmp
 </Accordion>
 <Accordion title="Other Observability platforms that support the Prometheus API with basic authentication">
-The data forwarder can be setup to connect to Prometheus or an observability platform that supports the Prometheus API with HTTP basic authentication and sends container data from multiple clusters to Densify on an hourly basis.
+The data forwarder can be setup to connect to Prometheus or an observability platform that supports the Prometheus API with HTTP basic authentication and sends container data from multiple clusters to Kubex on an hourly basis.
 
 <Accordion title="Figure: Container Data Collection from an Observability Platform">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000284_590x163.png)</Frame>

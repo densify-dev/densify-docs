@@ -1,7 +1,7 @@
 {
     "$schema": "https://mintlify.com/docs.json",
     "theme": "mint",
-    "name": "Densify Docs",
+    "name": "Kubex Docs",
     "colors": {
         "primary": "#0075eb",
         "light": "#0075eb",
@@ -47,13 +47,14 @@
                 ]
             },
             {
-                "tab": "Kubex",
+                "tab": "Containers",
                 "groups": [
                     {
                         "group": "Getting Started",
                         "pages": [
                             "docs-kubex/Content/Kubex/Getting_Started_with_Kubex",
-                            "docs-kubex/Content/Kubex/Visualizing_Your_Data"
+                            "docs-kubex/Content/Kubex/Visualizing_Your_Data",
+                            "docs-kubex/Content/General/KubexAIAgent"
                         ]
                     },
                     {
@@ -128,7 +129,7 @@
                 ]
             },
             {
-                "tab": "Cloudex",
+                "tab": "Public Cloud",
                 "groups": [
                     {
                         "group": "Getting Started",
@@ -466,21 +467,15 @@
         }
     },
     "logo": {
-        "light": "/logo/light.svg",
-        "dark": "/logo/dark.svg",
-        "href": "https://www.densify.com"
+        "light": "images/kubex-logo-light.png",
+        "dark": "images/kubex-logo-reverse 4.png",
+        "href": "https://kubex.ai"
     },
     "navbar": {
-        "links": [
-            {
-                "label": "Book a Demo",
-                "href": "https://www.densify.com/product/demo/"
-            }
-        ],
         "primary": {
             "type": "button",
             "label": "Free Trial",
-            "href": "https://www.densify.com/product/trial/"
+            "href": "https://kubex.ai/product/trial/"
         }
     },
     "footer": {

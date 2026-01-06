@@ -1,13 +1,13 @@
 openapi: 3.1.0
 info:
-  title: Densify API - Control Environments
+  title: Kubex API - Control Environments
   description: |
     Control Environments represent collections of Infrastructure Groups (hosting venues).
     Endpoints to list and retrieve individual control environments, with stats per timeframe.
   version: "1.0.0"
 servers:
   - url: https://api.densify.com
-    description: Densify API (example)
+    description: Kubex API (example)
 
 paths:
   /control-environments:

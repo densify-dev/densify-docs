@@ -1,12 +1,12 @@
 openapi: 3.1.0
 info:
-  title: Densify API - Configuration Parameters
+  title: Kubex API - Configuration Parameters
   version: "1.0.0"
   description: |
-    Returns the API configuration settings defined in the Analysis Console (Administration > Densify Configuration, category API and Report Settings).
+    Returns the API configuration settings defined in the Analysis Console (Administration > Kubex Configuration, category API and Report Settings).
 servers:
   - url: https://api.densify.com/v1
-    description: Densify API (replace with your environment)
+    description: Kubex API (replace with your environment)
 paths:
   /configuration-parameters:
     get:
@@ -62,7 +62,7 @@ components:
           example: "rest.api.catalogSpec.default"
         name:
           type: string
-          description: The parameter name displayed in the Densify Configuration screen.
+          description: The parameter name displayed in the Kubex Configuration screen.
           example: "API Default Catalog Specification"
         value:
           type: string

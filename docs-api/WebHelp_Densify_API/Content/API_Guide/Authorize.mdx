@@ -3,23 +3,23 @@ sidebarTitle: Overview
 title: "Authorize"
 ---
 
-The `authorize` resource is used to obtain a JSON Web Token (JWT) for Densify users to make authorized API requests. The resource will return a token for any active Densify user when the proper credentials are provided. Only API-enabled users can make authorized API calls. See [Using the API: Authentication](./Using_the_API#_Authentication) for details on API-enabled users.
+The `authorize` resource is used to obtain a JSON Web Token (JWT) for Kubex users to make authorized API requests. The resource will return a token for any active Kubex user when the proper credentials are provided. Only API-enabled users can make authorized API calls. See [Using the API: Authentication](./Using_the_API#_Authentication) for details on API-enabled users.
 
 The JWT API token is only valid within the expiry time of the token, which by default is set to 60 minutes.
 
 The key used to validate the token is also refreshed every 30 days.
 
 <Note>
-To access the Densify API, you need user credentials with membership in the following Densify user group: SaaS\_User\_Admin.or SaaS\_User.
+To access the Kubex API, you need user credentials with membership in the following Kubex user group: SaaS\_User\_Admin.or SaaS\_User.
 </Note>
 
 ## Security Considerations
 
 The authorization workflow provides a progressively longer delay each time an invalid password is entered in an Authorize request.
 
-This behaviour is applied regardless of whether or not you have enabled the Densify password policy. The workflow does change if the password policy has been enabled. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+This behaviour is applied regardless of whether or not you have enabled the Kubex password policy. The workflow does change if the password policy has been enabled. Contact [support@kubex.ai](mailto:support@kubex.ai) for details.
 
-Contact [Support@Densify.com](mailto:Support@Densify.com) for details on configuring the Densify password policy.
+Contact [support@kubex.ai](mailto:support@kubex.ai) for details on configuring the Kubex password policy.
 
 ## Resource
 

@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Densify API – AWS Delete
+  title: Kubex API – AWS Delete
   version: "1.0"
 servers:
   - url: https://{host}/api/v2

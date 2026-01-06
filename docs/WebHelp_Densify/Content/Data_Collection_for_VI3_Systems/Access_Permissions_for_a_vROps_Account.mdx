@@ -10,7 +10,7 @@ Your VMware administrator needs to provide the proper access for your existing u
 
 When using Active Directory, the user name for your vROps server may be in one of the following formats:
 
-* User Principal Name (UPN)--This format includes the name of the user in an email address format. When entering the domain user account, specify \<username>@\<domain>@\<authenticated source>. e.g. [Support@Densify.com](mailto:Support@Densify.com).
+* User Principal Name (UPN)--This format includes the name of the user in an email address format. When entering the domain user account, specify \<username>@\<domain>@\<authenticated source>. e.g. [support@kubex.ai](mailto:support@kubex.ai).
 
 The authenticated source (@densify in the above example) is defined during your initial set up of the vROps server.
 
@@ -49,7 +49,7 @@ Refer to the following VMware articles for information:
 2. Create a user group:
 
 1. Create a user group and name it accordingly, i.e. "Densify\_Group". Provide a description.
-2. Assign the new Densify role to the newly created Densify group.
+2. Assign the new Kubex role to the newly created Kubex group.
 3. Give the group access to the following object hierarchies:
 
 ```
@@ -69,7 +69,7 @@ vSphere Storage
 3. Create a user account:
 
 1. Create a user account and name it accordingly, i.e. "Densify\_User". Provide a password.
-2. Assign the new user to the Densify group.
+2. Assign the new user to the Kubex group.
 
 ## Creating a New vROps Policy
 
@@ -89,13 +89,13 @@ Optionally, your VMware administrator can create a new policy to collect workloa
 
 Starting in vROps Manager v8.1, basic authentication when using the REST API is deprecated and disabled in new deployments, by default. vROps installations that have been upgraded will inherit the same properties that were in use and continue to run as before.
 
-Token-based authentication, for vRealize Operations Manager, is supported by the Densify Connector. You can enable the option when creating the connection.
+Token-based authentication, for vRealize Operations Manager, is supported by the Kubex Connector. You can enable the option when creating the connection.
 
-For ease of use, if basic authentication is enabled on the vROps server (via the API), then you can use either basic authentication or token-based when you create the Densify connection, by enabling the setting, "Enable vROps token-based authentication ".
+For ease of use, if basic authentication is enabled on the vROps server (via the API), then you can use either basic authentication or token-based when you create the Kubex connection, by enabling the setting, "Enable vROps token-based authentication ".
 
 <Accordion title="Figure: Enable Token-Based authentication Setting">
 <Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/Cirba_SaaS/03000184_305x120.png)</Frame>
 </Accordion>
 
 
-If basic authentication is disabled on the vROps server (by default in vROps v8.1 or later), then you must use the token-based authentication when your create the Densify connection, by using the UI setting.
+If basic authentication is disabled on the vROps server (by default in vROps v8.1 or later), then you must use the token-based authentication when your create the Kubex connection, by using the UI setting.

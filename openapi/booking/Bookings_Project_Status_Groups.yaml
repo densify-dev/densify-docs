@@ -1,15 +1,15 @@
 openapi: 3.1.0
 info:
-  title: Densify Bookings API
+  title: Kubex Bookings API
   version: "1.0.0"
   description: |
-    OpenAPI definition for the **Bookings** resource in the Densify API,
+    OpenAPI definition for the **Bookings** resource in the Kubex API,
     derived from the public documentation page "Bookings".
     Covers collection retrieval, individual booking retrieval, attribute
     management, and completing VM bookings.
 servers:
   - url: https://api.densify.example.com
-    description: Placeholder server URL. Replace with your Densify API base.
+    description: Placeholder server URL. Replace with your Kubex API base.
 paths:
   /bookings:
     get:

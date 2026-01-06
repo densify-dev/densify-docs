@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify API - Monitored Hosts
+  title: Kubex API - Monitored Hosts
   version: 1.0.0
   description: |
     This API allows you to retrieve and modify the health status of monitored hosts.
@@ -8,7 +8,7 @@ info:
     and override the health status of a host.
 servers:
   - url: https://api.densify.com/v1
-    description: Densify API Server
+    description: Kubex API Server
 paths:
   /monitored-hosts:
     get:

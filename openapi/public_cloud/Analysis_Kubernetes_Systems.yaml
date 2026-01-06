@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – Kubernetes Container Systems API
+  title: Kubex – Kubernetes Container Systems API
   version: "1.0.0"
   description: |
     GET `/analysis/containers/kubernetes/{analysisId}/systems` lists all container
@@ -37,7 +37,7 @@ paths:
                 sample:
                   value:
                     - hostName: "d3cf25f4-01b1-4c0b-66a8-86bd1ea771d3"
-                      displayName: "kube-abcserver-kube-ctrl.densify.com__kube-abcserver"
+                      displayName: "kube-abcserver-kube-ctrl.kubex.com__kube-abcserver"
                       entityId: "06770825-988a-4aa4-b047-41bda995a69e"
                       href: "/systems/06770825-988a-4aa4-b047-41bda995a69e"
         '401':
@@ -55,13 +55,13 @@ components:
       properties:
         hostName:
           type: string
-          description: Densify internal reference ensuring uniqueness across clusters.
+          description: Kubex internal reference ensuring uniqueness across clusters.
         displayName:
           type: string
           description: Combination of pod and container name.
         entityId:
           type: string
-          description: Densify entity ID of the container system.
+          description: Kubex entity ID of the container system.
         href:
           type: string
           description: Link to the `/systems/{entityId}` resource.

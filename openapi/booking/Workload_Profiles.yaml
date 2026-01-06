@@ -1,12 +1,12 @@
 openapi: 3.1.0
 info:
-  title: Densify Workload Profiles API
+  title: Kubex Workload Profiles API
   version: 1.0.0
   description: |
     This API provides access to Densify's workload profile data, allowing users to retrieve information about workload types, specific profiles, and their associated utilization patterns.
 servers:
   - url: https://api.densify.com/v1
-    description: Densify API Server
+    description: Kubex API Server
 paths:
   /workload-profiles:
     get:

@@ -18,7 +18,7 @@ A value in the column, Instance Type Updated On | Container Configuration Update
 
 Since loading of data always occurs after midnight, the attributes, "Config Last Changed On" and "ASG Instance Type Updated On" are set to the previous day's date (i.e. date - 1), corresponding to the actual instance change.
 
-For example, if the instance type is loaded on October 6 at 12:10am, after collecting the data up to 11:59pm on October 5, the attribute "Config Last Changed On" is set to October 5. Densify does the the following:
+For example, if the instance type is loaded on October 6 at 12:10am, after collecting the data up to 11:59pm on October 5, the attribute "Config Last Changed On" is set to October 5. Kubex does the the following:
 
 * The attribute, "Config Last Changed On" will be set to October 5 (loading date - 1),
 * On October 6 and before the minimum number of days is reached, the instance's optimization type is set to "Just Right" and its workload is not displayed.
@@ -28,8 +28,8 @@ For example, if the instance type is loaded on October 6 at 12:10am, after colle
 
 If the attribute has been set, this also impacts the display of the workload charts in the lower pane. You will observe the following:
 
-* [PD-55745] If a container instance has been optimized, then on the next day in the Densify UI you will see the Optimization Type set to "Just Right" and since the required data has not been excluded, the charts will not change, See [Optimizing Your Containers - Details Tab](./Optimizing_Your_Containers_-_Details_Tab#Config_Updated)
-* If there is a cloud instance type change, then on the next day in the Densify UI you will see the Optimization Type set to "Just Right and since the required data has not been accumulated, only the Memory BackFill workload chart is displayed, if enabled. See [Understanding the Instance Optimization Details Report](./Understanding_the_Instance_Details_Report#Inst_Updated) or [Understanding the Instance Optimization Details for RDS](./Understanding_the_Instance_Details__RDS_#Inst_Updated)
+* [PD-55745] If a container instance has been optimized, then on the next day in the Kubex UI you will see the Optimization Type set to "Just Right" and since the required data has not been excluded, the charts will not change, See [Optimizing Your Containers - Details Tab](./Optimizing_Your_Containers_-_Details_Tab#Config_Updated)
+* If there is a cloud instance type change, then on the next day in the Kubex UI you will see the Optimization Type set to "Just Right and since the required data has not been accumulated, only the Memory BackFill workload chart is displayed, if enabled. See [Understanding the Instance Optimization Details Report](./Understanding_the_Instance_Details_Report#Inst_Updated) or [Understanding the Instance Optimization Details for RDS](./Understanding_the_Instance_Details__RDS_#Inst_Updated)
 
 #### Metrics Viewer Charts
 

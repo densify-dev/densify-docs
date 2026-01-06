@@ -8,7 +8,7 @@ Setting this attribute allows you to closely control how your cloud instances ar
 
 This feature is primarily intended for self-aware automation integration and ensures recommendations are consistent with your business practices.
 
-You can use the feature to control the recommendations that Densify makes for a specific instance. The feature is enabled by populating the "Instance Type Override" attribute in the "Recommendations Override " category.
+You can use the feature to control the recommendations that Kubex makes for a specific instance. The feature is enabled by populating the "Instance Type Override" attribute in the "Recommendations Override " category.
 
 This attribute can be used in many ways:
 
@@ -52,7 +52,7 @@ Attribute Category:: Recommendations Override
       <td style={{ verticalAlign: "middle", textAlign: "left" }}>
         Use this value to force the instance to stay on the same instance type.
         <br />
-        If you set a group of instances to Locked, then Densify will not exclude those instances from being analyzed but rather force the recommendation to be "Just Right" for the tagged instances, potentially suppressing Upsize/Downsize recommendations. This may be apparent from the Detailed Utilization charts.
+        If you set a group of instances to Locked, then Kubex will not exclude those instances from being analyzed but rather force the recommendation to be "Just Right" for the tagged instances, potentially suppressing Upsize/Downsize recommendations. This may be apparent from the Detailed Utilization charts.
       </td>
     </tr>
     <tr>
@@ -118,7 +118,7 @@ These values are case-sensitive.
 
 You can use the "Instance Type Override" attribute to tag catalog entries.
 
-These settings can be used to customize the catalog used for making Densify optimization recommendations. You can remove a particular instance type or a whole instance family from consideration.
+These settings can be used to customize the catalog used for making Kubex optimization recommendations. You can remove a particular instance type or a whole instance family from consideration.
 
 Choosing whether to use "Disabled" versus "Vacate" is based on whether the customer is prepared to move to a higher cost instance in order to avoid using a particular instance type. This means “vacate at any cost” or the customer just wants the instance type to be “Disabled for use as an optimization target.
 
@@ -157,7 +157,7 @@ Attribute Category:: Recommendations Override
     <tr>
       <td style={{ verticalAlign: "middle", textAlign: "left" }}>Disabled</td>
       <td style={{ verticalAlign: "middle", textAlign: "left" }}>
-        Use this value to suppress Densify from making a recommendation to the tagged catalog instance.
+        Use this value to suppress Kubex from making a recommendation to the tagged catalog instance.
         <br />
         If a VM is already on this instance type, a "Just Right" recommendation can be made.
       </td>
@@ -165,7 +165,7 @@ Attribute Category:: Recommendations Override
     <tr>
       <td style={{ verticalAlign: "middle", textAlign: "left" }}>Vacate</td>
       <td style={{ verticalAlign: "middle", textAlign: "left" }}>
-        Use this value to suppress Densify from making a recommendation to the tagged catalog instance, and if any instance is currently on this instance type, then move it to another instance.
+        Use this value to suppress Kubex from making a recommendation to the tagged catalog instance, and if any instance is currently on this instance type, then move it to another instance.
       </td>
     </tr>
   </tbody>
@@ -179,13 +179,13 @@ These values are not case-sensitive.
 
 #### Azure Generation 1/Generation 2 Overrides
 
-Microsoft Azure will stop supporting both Generation 1 and Generation 2 VMs on new hardware. Densify supports optimizing Gen1 VMs onto Gen2-only instance types. Densify compares/checks against the metadata to determine the optimal target instance type. The default behaviour is to not make recommendations to move between generation types.
+Microsoft Azure will stop supporting both Generation 1 and Generation 2 VMs on new hardware. Kubex supports optimizing Gen1 VMs onto Gen2-only instance types. Kubex compares/checks against the metadata to determine the optimal target instance type. The default behaviour is to not make recommendations to move between generation types.
 
 You can control the behaviour using the "Instance Type Override" attribute
 
 * After data collection, the VM's HyperV Generation (V1 or V2) is mapped to the "VM Virtualization Type" attribute.
 * The Azure rulesets include a check of the "VM Virtualization Type" attribute against the supported target instances.
-* The Densify set of metadata includes the supported VM virtualization type (Gen1 or Gen2) for Azure instances. Azure catalog model target instances then include the metadata of V1, V2 or V1;V2.
+* The Kubex set of metadata includes the supported VM virtualization type (Gen1 or Gen2) for Azure instances. Azure catalog model target instances then include the metadata of V1, V2 or V1;V2.
 * The default behaviour is to leave VMs on the same generation. i.e. Gen1 on Gen1 and Gen2 on Gen2.
 
 * Gen1 VMs cannot go to a V2-only instance type
@@ -365,7 +365,7 @@ Attribute Category: Scale Group Overrides
 Use the following procedure to tag you instances:
 
 1. Navigate to the Analysis Console > Analysis Workbench > Data Center Explorer.
-2. Use the default Cloud Environment view and select the instances to tag. You can configure one instance at a time using this method. You can also create custom views and filters to select multiple systems and then set the attribute. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+2. Use the default Cloud Environment view and select the instances to tag. You can configure one instance at a time using this method. You can also create custom views and filters to select multiple systems and then set the attribute. Contact [support@kubex.ai](mailto:support@kubex.ai) for details.
 3. In the Info tab click Attributes.
 4. On the attribute page, click the Select Attribute Category dropdown menu and select the appropriate category.
 5. In the Select Attributes to Edit dropdown menu select the required attribute.
@@ -412,7 +412,7 @@ Once the instances are tagged, you need to refresh the environment containing th
 
 When an analysis refresh is in progress, the Cloud Environment landing page shows the refresh progress for an environment in Last Refresh column. After the refresh is finished, the Refresh Duration column displays appropriate value and a status icon is displayed in the Name column.
 
-Lastly you also need to re-populate the RDB before the updated results are displayed in the Densify Console.
+Lastly you also need to re-populate the RDB before the updated results are displayed in the Kubex Console.
 
 1. At the command line, start the customer CLI pod and open the customer CLI shell.
 2. Navigate to `%CIRBA_HOME%\bin` and execute the following command:

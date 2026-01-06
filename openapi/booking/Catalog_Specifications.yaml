@@ -1,9 +1,9 @@
 openapi: 3.1.0
 info:
-  title: Densify Catalog Specifications API
+  title: Kubex Catalog Specifications API
   description: |
     API endpoints for Catalog Specifications and Catalog Specification Groups.
-    Generated from Densify documentation: "Catalog Specifications".
+    Generated from Kubex documentation: "Catalog Specifications".
   version: "1.0.0"
 servers:
   - url: https://{host}

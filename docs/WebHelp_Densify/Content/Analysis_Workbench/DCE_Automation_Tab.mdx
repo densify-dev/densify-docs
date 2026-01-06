@@ -3,9 +3,9 @@ title: "DCE Automation Tab"
 ---
 import { InlineImage } from "/snippets/InlineImage.mdx";
 
-The Automation tab provides a single point of reference to view and troubleshoot Proactive Automation, performed through the Densify Connector. This tab shows the system automation results, effective automation settings, and supporting information such as HotAdd status. This report works against a given date and scope of guest systems, and reports on both Compute and Disk recommendations. Only those guest systems with recommendations are included in the report.
+The Automation tab provides a single point of reference to view and troubleshoot Proactive Automation, performed through the Kubex Connector. This tab shows the system automation results, effective automation settings, and supporting information such as HotAdd status. This report works against a given date and scope of guest systems, and reports on both Compute and Disk recommendations. Only those guest systems with recommendations are included in the report.
 
-The Automation tab also provides a way to disable automated actioning of allocation changes for a given set of systems when performing Proactive and Real-Time Automation through the Densify Connector.
+The Automation tab also provides a way to disable automated actioning of allocation changes for a given set of systems when performing Proactive and Real-Time Automation through the Kubex Connector.
 
 <Accordion title="Figure: Automation Tab">
 <Frame>![](/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Intelligence_Workbench_Guide/08000067.png)</Frame>
@@ -82,13 +82,13 @@ To disable actioning allocation changes for a given set of systems:
 4. Navigate to the Automation tab.
 5. Select the Disable Allocations button. The Disable Allocations icon will display and only displays when a cluster is selected.
 6. Select the guest systems to disable and Submit.
-7. Navigate to Administration > Densify Configuration. Define the configuration setting Enable Densify Connector Communication to "TRUE" and make sure the configuration setting Densify Connector Port is properly defined. Both these settings can be found in category Advanced - General Configuration.
+7. Navigate to Administration > Kubex Configuration. Define the configuration setting Enable Kubex Connector Communication to "TRUE" and make sure the configuration setting Kubex Connector Port is properly defined. Both these settings can be found in category Advanced - General Configuration.
 
 To re-enable a system that has been disabled, just de-select the system and Submit.
 
 ## Viewing Disabled Systems
 
-To view the systems that have been disabled, navigate to Data Center Explorer (DCE) > Info tab and click on Attributes. For those guest systems disabled through [Disabling Proactive or Real-Time Automation for a Set of Systems](#Disablin), the attribute Disable Allocations in category Densify Automation contains the UTC when automation was disabled.
+To view the systems that have been disabled, navigate to Data Center Explorer (DCE) > Info tab and click on Attributes. For those guest systems disabled through [Disabling Proactive or Real-Time Automation for a Set of Systems](#Disablin), the attribute Disable Allocations in category Kubex Automation contains the UTC when automation was disabled.
 
 You can also view the systems that are disabled through the Disable Allocations page, as described in [Disabling Proactive or Real-Time Automation for a Set of Systems](#Disablin) above.
 
@@ -103,17 +103,17 @@ To troubleshoot your action automation:
 5. View the CPU, memory and placement automation status for each guest system in scope. "-" is used to indicate no recommendation, on columns: To, Status Detail, Automation Setting. You can hover over the <InlineImage src="/images/docs/WebHelp_Densify/Content/Resources/Images/CiRBA_Intelligence_Workbench_Guide/08000069.png"/> icon (displayed under the date you specified) to display information on the columns.
 6. Troubleshoot by searching for recommendations with Automation Status:
 
-* "External"--confirm that these recommendations are intended to be execution by an external system (i.e. not through the Densify server or Densify Connector)
+* "External"--confirm that these recommendations are intended to be execution by an external system (i.e. not through the Kubex server or Kubex Connector)
 * "Pending"--review these recommendations, pending execution
 * "Skipped"--review the Status Details and perform the necessary actions. For example:
 
 * VMware guest tools not installed and not running--install VMware Tools, which is required for Windows Guests in order to action these recommendations
-* Environment validation failed - critical errors occurred--review and confirm the systems that have environmental drift (Densify compares the environment with the last data collection and results show, for example, that the system was actually moved or that the CPU was bumped up in the environment); this error means that the environment has changed since the recommendation was generated and as a result, Densify does not know what action to recommend
-* Recommendation for this system has been skipped as allocations have been disabled--confirm that the system was intentionally disabled for Proactive Automation, since the time specified by attribute, Disable Allocations in the category Densify Automation (see [Disabling Proactive or Real-Time Automation for a Set of Systems](#Disablin))
+* Environment validation failed - critical errors occurred--review and confirm the systems that have environmental drift (Densify compares the environment with the last data collection and results show, for example, that the system was actually moved or that the CPU was bumped up in the environment); this error means that the environment has changed since the recommendation was generated and as a result, Kubex does not know what action to recommend
+* Recommendation for this system has been skipped as allocations have been disabled--confirm that the system was intentionally disabled for Proactive Automation, since the time specified by attribute, Disable Allocations in the category Kubex Automation (see [Disabling Proactive or Real-Time Automation for a Set of Systems](#Disablin))
 
 * "Not In Plan"--confirms that these recommendations have been intentionally excluded from any action plan. Auto-creation of action plans has been disabled. This is accomplished using the policy setting, Proactive Automation > Automatically Create Action Plans (advanced setting).
 
-The Allocation Change Maintenance Window is the time window used to perform the CPU and memory allocation changes that require system power off. Contact [Support@Densify.com](mailto:Support@Densify.com) to define a maintenance window. The HotAdd values are from the last data collection for the date you specified. The Automation Setting is the setting in effect (i.e., taken from any attribute override definition, then system level policy setting, then cluster level policy setting).
+The Allocation Change Maintenance Window is the time window used to perform the CPU and memory allocation changes that require system power off. Contact [support@kubex.ai](mailto:support@kubex.ai) to define a maintenance window. The HotAdd values are from the last data collection for the date you specified. The Automation Setting is the setting in effect (i.e., taken from any attribute override definition, then system level policy setting, then cluster level policy setting).
 
 7. Click Disk to view the disk automation status and perform similar steps as above.
 
@@ -127,7 +127,7 @@ From the Analysis Console, you can also use Data Center Explorer > Info > Config
 * VMware Tools Status
 * In Mode Maintenance
 
-From the Analysis Console, you can also use the Data Center Explorer > Info > Attributes page to view Densify Automation attributes:
+From the Analysis Console, you can also use the Data Center Explorer > Info > Attributes page to view Kubex Automation attributes:
 
 * Automation Time Window--which is the date and time of the last maintenance window
 * Disable Allocations--which is the date and time when the system was disabled for actioning allocation changes. See [Disabling Proactive or Real-Time Automation for a Set of Systems](#Disablin).

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – Analysis Webhook API
+  title: Kubex – Analysis Webhook API
   version: "1.0.0"
   description: >
     Manage webhook definitions for analyses. Supports listing by platform, getting,
@@ -162,7 +162,7 @@ components:
         uri:
           type: string
           format: uri
-          description: Fully-qualified webhook URI reachable by Densify.
+          description: Fully-qualified webhook URI reachable by Kubex.
         authType: { type: string, description: 'e.g., "Basic", "Bearer".' } 
         authValue: { type: string, description: "Credential (user:pass or token)." } 
       required: [uri]

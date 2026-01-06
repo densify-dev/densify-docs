@@ -13,8 +13,8 @@ When working with ASGs note the following:
 
 * EC2 instances that belong to an ASG are logically treated as part of the ASG service entity and recommendations are made for the group and not for the individual instances.
 * Auto Scaling groups configured with maximum group size = 1, are only included in the EC2 tab. ASGs configured with maximum group size > 1, are included in the Auto Scaling Groups tab.
-* If an ASG is associated with an ECS or EKS service, the Densify analysis requires additional information to ensure the ASG can satisfy all of the container reservation requests. Additional data should be collected by deploying the Densify container data forwarder into this cluster. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
-* ASGs configured to use the 'Combined Purchasing Options and Instance Types' feature will have an attached policy that defines the mix of instance types on which the ASG can run. Densify cannot analyze these ASGs. However, an ASG with a mixed policy attached, can still be configured to run on one instance type. These ASGs can be analyzed.
+* If an ASG is associated with an ECS or EKS service, the Kubex analysis requires additional information to ensure the ASG can satisfy all of the container reservation requests. Additional data should be collected by deploying the Kubex container data forwarder into this cluster. Contact [support@kubex.ai](mailto:support@kubex.ai) for details.
+* ASGs configured to use the 'Combined Purchasing Options and Instance Types' feature will have an attached policy that defines the mix of instance types on which the ASG can run. Kubex cannot analyze these ASGs. However, an ASG with a mixed policy attached, can still be configured to run on one instance type. These ASGs can be analyzed.
 * If memory data is not available for ASGs, memory utilization of the parent ECS or EKS service will be used and if that data is also not available, the backfill memory settings will be used for the analysis. See [ASG Backfilling Memory](#Backfill_Mem).
 
 The ASG optimization opportunity report is divided into two sections:
@@ -38,7 +38,7 @@ This summary bar will not be updated based on the criteria in the table filter. 
 
 <Note>
 When exported to .CSV the Total Savings value may not match the value in the exported .CSV file because the .CSV format does not support formulas and the total savings are a calculation per line, of the number of containers multiplied by savings.
-Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+Contact [support@kubex.ai](mailto:support@kubex.ai) for details.
 </Note>
 
 
@@ -141,11 +141,11 @@ You can filter the ASG optimization tabular report based on recommendations usin
 
 ### Mixed Mode Services
 
-Densify cannot analyze ASGs with a set of mixed instance types i.e. ASGs configured to use the 'Combined Purchasing Options and Instance Types' feature. However, an ASG with a mixed policy attached, can still be configured to run on one instance type and Densify can analyze these ASGs.
+Densify cannot analyze ASGs with a set of mixed instance types i.e. ASGs configured to use the 'Combined Purchasing Options and Instance Types' feature. However, an ASG with a mixed policy attached, can still be configured to run on one instance type and Kubex can analyze these ASGs.
 
 Densify checks the ASG's attached policy to determine if it is actually configured to run on a single instance type. Mixed groups are tagged by setting the attribute, "Mixed Instance Policy Set" to True and these ASGs are filtered from the analysis using the Cloud Environment filter.
 
-Additionally, Densify detects mixed instance configurations that result from changes to the launch configuration/scale set model. When the configuration of an ASG changes then in the event of scale out, new instances are created based on the new configuration, while the existing child instances continue to run with the previous configuration.
+Additionally, Kubex detects mixed instance configurations that result from changes to the launch configuration/scale set model. When the configuration of an ASG changes then in the event of scale out, new instances are created based on the new configuration, while the existing child instances continue to run with the previous configuration.
 
 In the event of a scale in, ASGs are typically set to favour terminating instance types created via the old launch template. This behaviour may result in a mix of instance types in the ASG.
 
@@ -169,7 +169,7 @@ The bottom pane of the ASG report provides the following information for the ASG
 
 * In Service Instances--Shows workload charts for current and recommended predicted scaling activities for the selected ASG. For ASGs identified as "Just Right" or "Terminate" (optimization type), only the current in-service auto scaling activity chart is displayed.
 * ASG Utilization --Shows charts for current and recommended CPU Utilization, Memory Utilization for the selected ASG. Network I/O, Disk I/O workload charts are also included, showing utilization at the ASG level. For ASGs belonging to ECS clusters, additional CPU and Memory Reservation charts are displayed. You can view workload charts for each group member from the [Working with Auto Scaling Groups](#ASGInServiceInstanceDetails) page.
-* Effort Details Tab--This table lists the factors that contribute to the effort required to investigate and implement the Densify recommendations. Effort for each group is calculated by rule-driven analytics based on factors (such as instance family change, data quality checks, feature changes, etc.) that can be configured in the policy settings and through analysis rule sets. A description of each rule and its impact on the effort to implement the recommended changes are provided.
+* Effort Details Tab--This table lists the factors that contribute to the effort required to investigate and implement the Kubex recommendations. Effort for each group is calculated by rule-driven analytics based on factors (such as instance family change, data quality checks, feature changes, etc.) that can be configured in the policy settings and through analysis rule sets. A description of each rule and its impact on the effort to implement the recommended changes are provided.
 
 ### Reviewing the ASG Optimization Opportunity Report Columns
 
@@ -248,7 +248,7 @@ The bottom pane of the ASG report provides the following information for the ASG
 <p><a name="EKSCluster"></a>K8s Node Group</p>
 </td>
 <td>
-<p>This column indicates the name of the Kubernetes node group associated with this ASG. When populated, Densify has the data required for enhanced Scale Group analysis.  </p>
+<p>This column indicates the name of the Kubernetes node group associated with this ASG. When populated, Kubex has the data required for enhanced Scale Group analysis.  </p>
 <Note>
   This column is available only if the Auto Scaling group is hosting a Kubernetes cluster.
 </Note>
@@ -512,7 +512,7 @@ The bottom pane of the ASG report provides the following information for the ASG
 </td>
 <td>
 <p>[ High | Medium | Low | None ]</p>
-<p>This column describes the effort required to investigate and implement the Densify recommendations. The displayed group effort is an average of all the calculated efforts for each instance (or service) in the group. Effort for each instance is calculated by rule-driven analytics based on factors  (such as family change, storage change, data quality checks, feature changes, etc.) that can be configured in the policy settings and rule set which captures best practices.</p>
+<p>This column describes the effort required to investigate and implement the Kubex recommendations. The displayed group effort is an average of all the calculated efforts for each instance (or service) in the group. Effort for each instance is calculated by rule-driven analytics based on factors  (such as family change, storage change, data quality checks, feature changes, etc.) that can be configured in the policy settings and rule set which captures best practices.</p>
 <p>See the <a alt="Effort Details" href="#effort_tab" title="Effort Details">Effort Details tab</a> in the lower pane for additional effort details for the selected ASG. </p>
 <p>There will be an impact to the effort value for ASGs, hosting a Kubernetes cluster, and not linked with a ECS/EKS reference (i.e. has no parent). </p>
 </td>
@@ -525,7 +525,7 @@ The bottom pane of the ASG report provides the following information for the ASG
 <p>A value in this column indicates the instance type has been changed recently.</p>
 <p>The workload for this instance, on which the recommendation is based, includes only the days of data from the indicated date to the current date. All historical data for this instance, collected prior to the indicated date is not included in the analysis. Previous data has been excluded because it was based on the previous instance type. <a name="kanchor37"></a></p>
 <p>A blank cell indicates the current instance type has not changed and all available workload data within the range, defined by the policy, has been used to generate the recommendation.</p>
-<p>Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="174462676778656357537279647e716e3974787a" href="mailto:Support@Densify.com">Support@Densify.com</a></span> to enable this feature. See <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Relearning_Workload_Patterns"><u>Relearning Workload Patterns</u></a> for more details.</p>
+<p>Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="174462676778656357537279647e716e3974787a" href="mailto:support@kubex.ai">support@kubex.ai</a></span> to enable this feature. See <a class="RefToBookmarkNoPage MCXref xref xrefRefToBookmarkNoPage" href="./Relearning_Workload_Patterns"><u>Relearning Workload Patterns</u></a> for more details.</p>
 <p>This column is hidden by default. You can enable it for display, as required. See Data Controls, above.</p>
 </td>
 </tr>
@@ -560,7 +560,7 @@ The AutoScalingGroupsSummary report contains the tabular list of ASGs from the A
 
 #### EKS-aware ASG Recommendations
 
-ASGs and their EC2 group members are loaded from AWS audits and Kubernetes entities are collected via the Densify Data Forwarder from Prometheus data. Linking these entities is extremely complex as even the Kubernetes cluster names may not match.
+ASGs and their EC2 group members are loaded from AWS audits and Kubernetes entities are collected via the Kubex Data Forwarder from Prometheus data. Linking these entities is extremely complex as even the Kubernetes cluster names may not match.
 
 A single Kubernetes cluster can run on one or more ASG with each ASG running in a node group within the cluster; however it is possible to skip node groups, and in this case the ASG must be linked directly to the cluster entity.
 
@@ -573,4 +573,4 @@ Densify matches, counts and links entities and ASG recommendations are made base
 
 #### ASG Backfilling Memory
 
-If you are not collecting memory metrics, Densify provides a method to simulate memory utilization using backfill memory policy settings. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+If you are not collecting memory metrics, Kubex provides a method to simulate memory utilization using backfill memory policy settings. Contact [support@kubex.ai](mailto:support@kubex.ai) for details.

@@ -1,9 +1,9 @@
 openapi: 3.0.3
 info:
-  title: Densify – Subscriptions API
+  title: Kubex – Subscriptions API
   version: "1.0.0"
   description: |
-    Create and manage subscription-based notifications for Densify cloud and container recommendations.
+    Create and manage subscription-based notifications for Kubex cloud and container recommendations.
     - `GET /subscriptions/{platformType}` lists subscriptions with filters.
     - `POST /subscriptions/{platformType}` creates **one or more** subscriptions (bulk add, all-or-nothing).
     - `PUT /subscriptions/{platformType}/{subscriptionRef}` replaces an existing subscription.
@@ -195,7 +195,7 @@ components:
       name: owner
       in: query
       required: false
-      description: Densify username to scope `type=owner` queries (admins only for others). 
+      description: Kubex username to scope `type=owner` queries (admins only for others). 
       schema: { type: string }
 
   responses:

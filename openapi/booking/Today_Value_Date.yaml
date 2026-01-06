@@ -1,18 +1,18 @@
 openapi: 3.1.0
 info:
-  title: Densify API
-  description: API for scheduling Workloads using the Densify system date/time.
+  title: Kubex API
+  description: API for scheduling Workloads using the Kubex system date/time.
   version: 1.0.0
 servers:
   - url: https://api.densify.com/v1
 paths:
   /today-value:
     get:
-      summary: Retrieves the current date/time of the Densify system.
+      summary: Retrieves the current date/time of the Kubex system.
       operationId: getTodayValue
       responses:
         "200":
-          description: Current date/time of the Densify system.
+          description: Current date/time of the Kubex system.
           content:
             application/json:
               schema:
@@ -20,19 +20,19 @@ paths:
                 properties:
                   today_value_int:
                     type: integer
-                    description: Date/time in UTC of the Densify system.
+                    description: Date/time in UTC of the Kubex system.
                   today_value:
                     type: string
-                    description: Date in DD-MM-YYYY format from the Densify system.
+                    description: Date in DD-MM-YYYY format from the Kubex system.
                   today_setting:
                     type: string
                     enum:
                       - CALENDAR
                       - SPECIFIED
-                    description: Indicates whether Densify is using the actual date ("CALENDAR") or a static date ("SPECIFIED").
+                    description: Indicates whether Kubex is using the actual date ("CALENDAR") or a static date ("SPECIFIED").
                   time_zone:
                     type: string
-                    description: Time zone of the Densify system.
+                    description: Time zone of the Kubex system.
                   utc_offset:
                     type: string
                     description: Offset relative to GMT.

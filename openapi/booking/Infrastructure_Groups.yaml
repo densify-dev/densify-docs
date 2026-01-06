@@ -1,12 +1,12 @@
 openapi: 3.1.0
 info:
-  title: Densify Infrastructure Groups API
+  title: Kubex Infrastructure Groups API
   description: |
     API for managing Infrastructure Groups in Densify, including operations for retrieving group details, amenities, and performing Fit-for-Purpose checks.
   version: 1.0.0
 servers:
   - url: https://api.densify.com/v1
-    description: Densify API Server
+    description: Kubex API Server
 paths:
   /infrastructure-groups:
     get:

@@ -9,7 +9,7 @@ You can use the Azure Managed Service for Prometheus (AzMP) for container data c
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000277.png)</Frame>
 </Accordion>
 
-One limitation is that the default AKS monitoring stack does not collect all of the metrics required by Densify for its analysis. A script, setup-azmp-aks-cluster.sh is provided to address this issue.
+One limitation is that the default AKS monitoring stack does not collect all of the metrics required by Kubex for its analysis. A script, setup-azmp-aks-cluster.sh is provided to address this issue.
 
 Additionally, you need to configure an Azure service principal and give it the required permissions to access to run PromQL queries against the AzMP API. Another script, register-app-create-secret.sh to automate this process.
 
@@ -55,7 +55,7 @@ Table: Data Forwarder Settings in config.yaml
 <p class="CiRBATableText">scheme</p>
 </td>
 <td class="td_3">
-<p class="CiRBATableText">Specify the protocol  to be used to connect to the Densify REST API interface. Select <code>http</code> or <code>https</code>.</p>
+<p class="CiRBATableText">Specify the protocol  to be used to connect to the Kubex REST API interface. Select <code>http</code> or <code>https</code>.</p>
 </td>
 <td class="td_3">
 <p class="CiRBATableText">https</p>
@@ -90,7 +90,7 @@ Table: Data Forwarder Settings in config.yaml
 </td>
 <td class="td_3">
 <p class="CiRBATableText">Specify the <span class="mc-variable Document.Densify variable">Densify</span> user account that the Data Forwarder will use. This user must already exist in your <span class="mc-variable Document.Company variable">Densify</span> instance and have API access privileges. Contact <span class="mc-variable Document.Support variable"><a class="__cf_email__" data-cfemail="5a092f2a2a35282e1a1e3f3429333c2374393537" href="/cdn-cgi/l/email-protection">[email protected]</a></span> for the <span class="mc-variable Document.Densify variable">Densify</span> user and epassword required to connect to your <span class="mc-variable Document.Densify variable">Densify</span> instance. </p>
-<p class="CiRBATableText">This user will be authenticated by the Densify server. </p>
+<p class="CiRBATableText">This user will be authenticated by the Kubex server. </p>
 </td>
 <td class="td_3">
 <p class="CiRBATableText">&lt;user name&gt;</p>

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Densify – Kubernetes Container Recommendations API
+  title: Kubex – Kubernetes Container Recommendations API
   version: "1.0.0"
   description: |
     GET `/analysis/containers/kubernetes/{analysisId}/results` returns container
@@ -120,7 +120,7 @@ components:
       properties:
         container: { type: string, description: "Container name." }
         cluster: { type: string, description: "Cluster name." }
-        hostName: { type: string, description: "Densify internal unique host ref." }
+        hostName: { type: string, description: "Kubex internal unique host ref." }
         predictedUptime: { type: number, description: "Predicted uptime (% as fraction)." }
         displayName: { type: string, description: "Pod + container name combo." }
         recommLastSeen: { type: integer, format: int64 }

@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Densify API – AWS Systems
+  title: Kubex API – AWS Systems
   version: "1.0"
 servers:
   - url: https://{host}/api/v2
@@ -82,7 +82,7 @@ components:
           description: AWS-assigned system name.
         entityId:
           type: string
-          description: Densify entity ID for the system.
+          description: Kubex entity ID for the system.
         href:
           type: string
           description: API href to the system resource (see `/systems`).

@@ -1,13 +1,13 @@
 openapi: 3.1.0
 info:
-  title: Densify Routing Requests API
+  title: Kubex Routing Requests API
   version: 1.0.0
   description: |
     API for routing new workload demand entities, such as VMs, to appropriate hosting venues.
     Takes into account scalar and non-scalar workload requirements to ensure optimal placement.
 servers:
   - url: https://api.densify.com/v1
-    description: Densify API Server
+    description: Kubex API Server
 paths:
   /routing-requests:
     post:

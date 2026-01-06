@@ -2,7 +2,7 @@
 title: "Metrics Viewer Tab"
 ---
 
-The Densify metrics viewer allows you to view your collected and analyzed time series data to review specific container details. You can use the metrics viewer to investigate specific utilization details when deciding whether to action specific recommendations.
+The Kubex metrics viewer allows you to view your collected and analyzed time series data to review specific container details. You can use the metrics viewer to investigate specific utilization details when deciding whether to action specific recommendations.
 
 <ol start="1">
   <li>Select one container to review. The metrics viewer tab is not displayed until only one container is selected.</li>
@@ -72,7 +72,7 @@ Figure: Metrics Viewer Controls <madcap:conditionaltext></madcap:conditionaltext
 The slider is not required for the ML Model view that only shows the last 24 hours of data.
 <Note>
 <b>Note: </b><br/>
-Densify retains up to 3 months of historical data for the metrics viewer. When creating a customized period, you cannot view data older than 90 days.
+Kubex retains up to 3 months of historical data for the metrics viewer. When creating a customized period, you cannot view data older than 90 days.
 </Note>
 </td>
 </tr>
@@ -97,24 +97,14 @@ Figure: Metrics Viewer Chart Options <madcap:conditionaltext></madcap:conditiona
 
 
 
+All of the charts are refreshed immediately when you change any of the control options. Your settings are saved for the current user session and are returned to the default values if you log out.
 
-All of the charts, are refreshed immediately when you change any of the control options. Your settings are saved for the current user session and are returned to the default values if you log out or if another user opens the metrics viewer.
-The line chart shows the selected metric plotted by the hour or date.
-The X-axis scales based on the amount of data up to the maximum of 90-days. The X-axis will show both date and hour when the date range includes less than 7-days. Only the date is shown when there are more than 7-days of data on the chart.
-If you hover over any data point in the graph a popup indicates the values on the selected date. You can slide the mouse along the plotted lines to see data values at the specific date or time.
-If metric data is not available, the message NA:  is shown in the legend of the impacted chart.
-Where:
+**Chart Features:**
 
-
-<ol start="1">
-  <li>CPU and memory request and limit values are shown as straight lines.</li>
-  <li>Tool tip indicating specific values on the selected date or hour.</li>
-  <li>
-    Legend - See <a href="/docs-kubex/Content/Kubex/AI_Analysis_Details_Charts#workload-charts-details"> 1 </a>
-    .
-  </li>
-</ol>
-
+* The line chart shows the selected metric plotted by the hour or date.
+* The X-axis scales based on the amount of data up to the maximum of 90-days. The X-axis will show both date and hour when the date range includes less than 7-days. Only the date is shown when there are more than 7-days of data on the chart.
+* If you hover over any data point in the graph a popup indicates the values on the selected date. You can slide the mouse along the plotted lines to see data values at the specific date or time.
+* If metric data is not available, the message "NA" is shown in the legend of the impacted chart.
 
 
 ### Available Container Metrics

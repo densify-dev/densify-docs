@@ -1,12 +1,12 @@
 openapi: 3.0.3
 info:
-  title: Densify Systems API
+  title: Kubex Systems API
   version: "1.0.0"
   description: |
-    Endpoints for retrieving and managing systems discovered via Densify data collection.
+    Endpoints for retrieving and managing systems discovered via Kubex data collection.
 
     Notes:
-    - Returned element values match those shown in Densify Analysis Console (DSE > System Summary / Attributes).
+    - Returned element values match those shown in Kubex Analysis Console (DSE > System Summary / Attributes).
     - Filtering supports element filters and advanced attribute filters (see query parameters on `GET /systems`).
     - Some fields appear only when `details=true` is requested.
 
@@ -15,7 +15,7 @@ servers:
     variables:
       host:
         default: api.example.com
-        description: Replace with your Densify API host
+        description: Replace with your Kubex API host
 
 tags:
   - name: Systems
@@ -106,7 +106,7 @@ components:
       type: object
       description: A discovered system
       properties:
-        id: { type: string, description: Densify unique system ID }
+        id: { type: string, description: Kubex unique system ID }
         name: { type: string }
         href: { type: string }
         resource_id:
@@ -347,7 +347,7 @@ paths:
           in: path
           required: true
           schema: { type: string }
-          description: Densify unique system ID
+          description: Kubex unique system ID
         - $ref: '#/components/parameters/Details'
       responses:
         '200':
@@ -375,7 +375,7 @@ paths:
           in: path
           required: true
           schema: { type: string }
-          description: Densify unique system ID
+          description: Kubex unique system ID
       requestBody:
         required: true
         description: Array of attribute criteria (name/value pairs)
@@ -424,7 +424,7 @@ paths:
           in: path
           required: true
           schema: { type: string }
-          description: Densify unique system ID
+          description: Kubex unique system ID
       responses:
         '200':
           description: PDF report
@@ -460,7 +460,7 @@ paths:
           in: path
           required: true
           schema: { type: string }
-          description: Densify unique system ID
+          description: Kubex unique system ID
       requestBody:
         required: true
         description: Array of attributes to set/add
@@ -507,7 +507,7 @@ paths:
           in: path
           required: true
           schema: { type: string }
-          description: Densify unique system ID
+          description: Kubex unique system ID
       requestBody:
         required: true
         description: Array of attribute delete directives

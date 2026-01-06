@@ -4,7 +4,7 @@ title: "Overview"
 
 Densify provides the capability to authenticate users through external identity providers, that support the OpenID Connect specification. OpenID provides a framework for communicating between an identity provider and the OpenID acceptor, such as Okta and Microsoft Azure AD.
 
-When authenticating users externally, authentication of Densify users is first delegated to an external identity provider.
+When authenticating users externally, authentication of Kubex users is first delegated to an external identity provider.
 
 A user can be authenticated in one of two ways:
 
@@ -49,24 +49,24 @@ Ping
 </table>
 
 <Note>
-  Once Open ID is enabled, users must exist in their OpenID provider before they can access Densify. Users that are created in the Densify user management console must use the same email address as their user ID in Azure, Okta or Google.
+  Once Open ID is enabled, users must exist in their OpenID provider before they can access Densify. Users that are created in the Kubex user management console must use the same email address as their user ID in Azure, Okta or Google.
 </Note>
 
-Once configured you can access either the Densify Console or the Analysis Console using the configured connection.
+Once configured you can access either the Kubex Console or the Analysis Console using the configured connection.
 
 <Note>
-  The one exception is Google OpenID. When using Google Open ID, only the Densify Console is supported. If you try to access the Analysis Console, the connection request will fail. If you need to access the Analysis Console, use AzureAD, Okta or Ping.
+  The one exception is Google OpenID. When using Google Open ID, only the Kubex Console is supported. If you try to access the Analysis Console, the connection request will fail. If you need to access the Analysis Console, use AzureAD, Okta or Ping.
 </Note>
 
 ## Prerequisites
 
 ### Identity Provider Requirements
 
-Before you can configure the feature in Densify, you must register Densify with your identity provider. You need to provide information about the application type, login/logout URLs etc. This is a standard procedure across all applications using OpenID for authentication.
+Before you can configure the feature in Densify, you must register Kubex with your identity provider. You need to provide information about the application type, login/logout URLs etc. This is a standard procedure across all applications using OpenID for authentication.
 
 Densify supports: [Google OpenID](./External_User_Authentication_Example_Configuration_for_Google_OpenID), [Microsoft Azure AD](./External_User_Authentication_Example_Configuration_for_Azure_Active_Directory), [Okta](./External_User_Authentication_Example_Configuration_for_Okta) and Ping as external identity providers.
 
-<Accordion title="Table: Configuring Densify with the Identity Provider">
+<Accordion title="Table: Configuring Kubex with the Identity Provider">
   <table>
   <col />
 
@@ -163,7 +163,7 @@ Densify supports: [Google OpenID](./External_User_Authentication_Example_Configu
   <ul>
   <li>
   https://\<my-densify-instance\>/ (for the <span class="mc-variable Document.Densify_Console variable">
-  Densify Console</span>
+  Kubex Console</span>
 
   )
   </li>
@@ -235,22 +235,22 @@ Densify supports: [Google OpenID](./External_User_Authentication_Example_Configu
   </table>
 </Accordion>
 
-### Densify User Configuration
+### Kubex User Configuration
 
-The user's login ID returned from the identity provider must be in the form of an email address, and this email address must correspond to the email address in the Densify user ’s profile.
+The user's login ID returned from the identity provider must be in the form of an email address, and this email address must correspond to the email address in the Kubex user ’s profile.
 
 ## Authentication Code Workflow
 
 When this option is enabled, rather than transmit the user details, the identity provider sends a special, one-time-use authentication code that can be exchanged for an access token. This exchange includes the client_id and client_secret in addition to the authentication code.
 
-The Densify user, attempting to access Densify is still redirected to their identity provider's login screen where they enter their credentials.
+The Kubex user, attempting to access Kubex is still redirected to their identity provider's login screen where they enter their credentials.
 The user must be registered with the identity provider and must have valid credentials to access Densify.
 
-Upon successful login, Densify validates the user using the ID token returned by the identity provider, as defined by the OpenID Connect specification. Additionally, the identity provider returns an authorization code to the browser.
+Upon successful login, Kubex validates the user using the ID token returned by the identity provider, as defined by the OpenID Connect specification. Additionally, the identity provider returns an authorization code to the browser.
 
-The Densify web server now uses the supplied authorization code to request an access token. The identity provider validates the authorization code and sends the access token.
+The Kubex web server now uses the supplied authorization code to request an access token. The identity provider validates the authorization code and sends the access token.
 
-Validation is completed by Densify when a user profile with an email address that matches the user's email address is located in the Densify database.
+Validation is completed by Kubex when a user profile with an email address that matches the user's email address is located in the Kubex database.
 
 <Accordion title="Figure: Authentication Code Workflow">
   <Frame>
@@ -260,8 +260,8 @@ Validation is completed by Densify when a user profile with an email address tha
 
 ### Configuring Authentication Code
 
-1. You must first register Densify with your identity provider. This is a standard procedure across all applications using OpenID for authentication. See [Configuring External User Authentication](#Table_Configuring_ID_Provider), above
-2. You now need to provide the following information to Densify. These settings are all configured for you by Densify. Contact [Support@Densify.com](mailto:Support@Densify.com) for details.
+1. You must first register Kubex with your identity provider. This is a standard procedure across all applications using OpenID for authentication. See [Configuring External User Authentication](#Table_Configuring_ID_Provider), above
+2. You now need to provide the following information to Densify. These settings are all configured for you by Densify. Contact [support@kubex.ai](mailto:support@kubex.ai) for details.
 
 <table data-mc-conditions="CiRBA.SaaSOnly">
 <col />
@@ -326,14 +326,14 @@ Use static page for OpenID Connect logout
 
 </table>
 
-Once the configuration has been completed, both Densify and the user are verified by your authentication provider and then permitted access to Densify, upon user login.
+Once the configuration has been completed, both Kubex and the user are verified by your authentication provider and then permitted access to Densify, upon user login.
 
 ### Validation Failure
 
 If user validation fails at any point the user is re-directed to a login failure page. This page is configured and managed by the identity provider.
 Similarly all session timeouts result in a session timeout call to the external identity provider and users are re-directed to the session time out page, that is configured and managed by the identity provider.
 
-This feature only applies to the Densify application and is not applicable to Densify's REST API.
+This feature only applies to the Kubex application and is not applicable to Densify's REST API.
 
 Validation is only performed on the mandatory fields defined in the OpenID Connect specification.
 

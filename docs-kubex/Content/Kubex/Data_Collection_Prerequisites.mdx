@@ -15,10 +15,10 @@ The data forwarder is only supported on Linux OS and x64 architecture.
 
 <ol start="1">
   <li>
-    Densify account--Contact Densify for details of your subscription or sign up for a free trial.
+    Kubex account--Contact Kubex for details of your subscription or sign up for a free trial.
     <ul>
     <li>
-    See <a alt="Click to begin your free trial." href="https://www.densify.com/product/trial" title="Click to begin your free trial."> www.densify.com/product/trial </a>
+    See <a alt="Click to begin your free trial." href="https://www.kubex.ai/product/trial" title="Click to begin your free trial."> www.kubex.ai/product/trial </a>
     </li>
     </ul>
   </li>
@@ -26,7 +26,7 @@ The data forwarder is only supported on Linux OS and x64 architecture.
     Kubernetes or OpenShift must be deployed.
     <ul>
     <li>
-    Running cAdvisor as part of the kubelet provides the workload and configuration data required by Densify.
+    Running cAdvisor as part of the kubelet provides the workload and configuration data required by Kubex.
     </li>
     </ul>
   </li>
@@ -84,7 +84,7 @@ The following additional prerequisites are reuired to collect NVIDIA GPU data:
 
 <ul>
   <li>NVIDIA-device-plugin--This plugin allows containers to access the NVIDIA GPUs. It must be installed on all your Kubernetes clusters to allocate NVIDIA GPU resources to workloads and to provide the GPU data.</li>
-  <li>dcgm-exporter--This Prometheus exporter  exposes GPU metrics from the Data Center GPU Manager (DCGM). It is required to collect  GPU data such as, utilization, memory usage, and power usage from NVIDIA GPUs, The dcgm-exporter can be deployed as a DaemonSet, where each node with an NVIDIA GPU runs a pod that exposes these metrics in a format that Prometheus can scrape and the Densifydata forwarder then collects.</li>
+  <li>dcgm-exporter--This Prometheus exporter  exposes GPU metrics from the Data Center GPU Manager (DCGM). It is required to collect  GPU data such as, utilization, memory usage, and power usage from NVIDIA GPUs, The dcgm-exporter can be deployed as a DaemonSet, where each node with an NVIDIA GPU runs a pod that exposes these metrics in a format that Prometheus can scrape and the kubex data collector then collects.</li>
 </ul>
 
 
@@ -101,14 +101,14 @@ The GPU data collection is currently support on the following platforms:
 
 ### Additional Considerations
 
-If your cloud provider has not already deployed the NVIDIA plugin, you can deploy it yourself using the gpu-operator. Without this plugin, the Kubernetes cluster cannot support NVIDIA GPU data collection, meaning the Densifydata forwarder will have no GPU data to collect.
+If your cloud provider has not already deployed the NVIDIA plugin, you can deploy it yourself using the gpu-operator. Without this plugin, the Kubernetes cluster cannot support NVIDIA GPU data collection, meaning the Container Data Collector will have no GPU data to collect.
 
 Additionally, the dcgm-exporter must be deployed--either by your cloud provider, by you directly, or as part of the gpu-operator. Like the NVIDIA plugin, the dcgm-exporter is required for collecting GPU metrics.
 
-Densify’s All-in-One (AIO) Helm chart includes an option to deploy the dcgm-exporter as a subchart, controlled by a configuration value (which is disabled by default). The AIO Helm chart also provides the option to deploy the gpu-operator.
+Kubex’s All-in-One (AIO) Helm chart includes an option to deploy the dcgm-exporter as a subchart, controlled by a configuration value (which is disabled by default). The AIO Helm chart also provides the option to deploy the gpu-operator.
 If you are using the AIO Helm chart, the bundled Prometheus instance will automatically scrape GPU metrics from the dcgm-exporter. However, if you're using your own Prometheus deployment, you must ensure it is configured to scrape GPU data from the dcgm-exporter.
 
-Refer to Densify's [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/requirements.md#requirements) for configuration details.
+Refer to Kubex's [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/requirements.md#requirements) for configuration details.
 
 #### Video Resources
 <AccordionGroup>

@@ -8,7 +8,7 @@ This resource acts as a catalog of recommendation properties to be referenced by
 
 There is a catalog for each supported `<platformType>`, which can only be referenced by the corresponding `<platformType>` subscription. For example, a container subscription (i.e. `/subscriptions/containers`) can only reference properties from the Container Subscriptions Properties catalog (i.e. `/subscriptions/containers/properties`).
 
-Densify provides a default set of properties for each `<platformType>` catalog. You can extend these default sets by adding additional properties, or you can customize the sets by modify or deleting existing properties.
+Kubex provides a default set of properties for each `<platformType>` catalog. You can extend these default sets by adding additional properties, or you can customize the sets by modify or deleting existing properties.
 
 For the full set of available properties to add to the Cloud Subscriptions Properties catalog, refer to the cloud recommendation response schema:
 
@@ -28,7 +28,7 @@ For the full set of available properties to add to the Container Subscriptions P
 
 See [Default Container Properties](#containerDefaultProperties) for the list of default cloud properties.
 
-Properties in the platform-specific Subscriptions Properties catalogs can be declared as: global or private (i.e. user-specific). Global properties can be used by any API enabled user, while private properties can only be used by their owners. An exception to this rule is that <Tooltip tip="An administrative user is a Densify user in the Administrator user group or with the Analysis Admin role.">administrative users</Tooltip> have access to all properties - global or private user-specific.
+Properties in the platform-specific Subscriptions Properties catalogs can be declared as: global or private (i.e. user-specific). Global properties can be used by any API enabled user, while private properties can only be used by their owners. An exception to this rule is that <Tooltip tip="An administrative user is a Kubex user in the Administrator user group or with the Analysis Admin role.">administrative users</Tooltip> have access to all properties - global or private user-specific.
 
 ## Resource
 
@@ -45,7 +45,7 @@ Properties in the platform-specific Subscriptions Properties catalogs can be dec
 ```
 
 <Note>
-If you use this resource without the `<platformType>` specified (i.e. without `cloud` or `containers` specified), the behavior is exactly the same as specifying the `cloud`-specific resource. This behavior enables backward compatibility with scripts using the Densify API prior to release 12.1.6, where the platform-specific indicator was not available.
+If you use this resource without the `<platformType>` specified (i.e. without `cloud` or `containers` specified), the behavior is exactly the same as specifying the `cloud`-specific resource. This behavior enables backward compatibility with scripts using the Kubex API prior to release 12.1.6, where the platform-specific indicator was not available.
 </Note>
 
 ## endpoints

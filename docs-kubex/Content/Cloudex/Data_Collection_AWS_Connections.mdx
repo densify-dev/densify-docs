@@ -1,6 +1,6 @@
 ---
-title: "Connecting AWS to Cloudex"
-sidebarTitle: "Connecting AWS to Cloudex"
+title: "Connecting AWS to Kubex"
+sidebarTitle: "Connecting AWS to Kubex"
 ---
 
 You can connect to your AWS account with the following method:
@@ -12,7 +12,7 @@ You can connect to your AWS account with the following method:
     page.
   </li>
   <li>
-    IAM Role--An IAM role establishes a trust relationship between AWS accounts and <span class="mc-variable General.ProductName variable">Densify</span>. You need to complete the prerequisite setup in your AWS account, including the external ID and Role ARN. See <a href="/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_">AWS Data Collection Using IAM Roles Prerequisites</a>.
+    IAM Role--An IAM role establishes a trust relationship between AWS accounts and <span class="mc-variable General.ProductName variable">Kubex</span>. You need to complete the prerequisite setup in your AWS account, including the external ID and Role ARN. See <a href="/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_">AWS Data Collection Using IAM Roles Prerequisites</a>.
   </li>
 </ul>
 
@@ -30,7 +30,7 @@ You can connect to your AWS account with the following method:
   </Frame>
   </li>
   <li>
-    The Densify Account ID is predefined. This value must match the value you entered when you created the role in AWS.
+    The Kubex Account ID is predefined. This value must match the value you entered when you created the role in AWS.
     <Frame caption="Figure: AWS Connection Window">
       <img src='/images/docs-kubex/Content/Cloudex/03000033_535x307.png'/>
     </Frame>
@@ -56,7 +56,7 @@ You can connect to your AWS account with the following method:
     <tr>
       <td style={{ verticalAlign: "middle" }}>External ID</td>
       <td style={{ verticalAlign: "middle" }}>
-        The external ID specified for Densify, when you created the IAM role in AWS.
+        The external ID specified for Kubex, when you created the IAM role in AWS.
         <br />
         If you need to edit or review a saved connection, for security reasons, you will need to re-enter the external ID.
       </td>
@@ -91,12 +91,12 @@ You can connect to your AWS account with the following method:
     Once the account is verified, discovers the AWS account ID and displays the ID number in a second dialog box.
 
   <Note>
-    <strong>Note:</strong> The number of instances returned is an estimate obtained when Densify verifies the connectivity. It may not match the number of instances discovered during the more detailed, scheduled data collection.
+    <strong>Note:</strong> The number of instances returned is an estimate obtained when Kubex verifies the connectivity. It may not match the number of instances discovered during the more detailed, scheduled data collection.
   </Note>
   </li>
 
   <li>
-    Optionally, specify a connection name to clearly identify the AWS account in Densify. This name will appear in the <strong>Cloud Connections</strong> list so you can easily identify this connection.
+    Optionally, specify a connection name to clearly identify the AWS account in Kubex. This name will appear in the <strong>Cloud Connections</strong> list so you can easily identify this connection.
     <Frame caption="Figure: Connection Confirmation Window">
       <img src='/images/docs-kubex/Content/Cloudex/03000035_530x283.png' />
     </Frame>
