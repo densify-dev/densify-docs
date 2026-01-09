@@ -480,12 +480,10 @@
     },
     "footer": {
         "socials": {
-            "x": "https://twitter.com/densify",
             "github": "https://github.com/densify-dev",
-            "linkedin": "https://www.linkedin.com/company/densify",
-            "facebook": "https://www.facebook.com/densifycloud/",
-            "youtube": "https://www.youtube.com/c/densify",
-            "instagram": "https://www.instagram.com/densifycloud/"
+            "linkedin": "https://www.linkedin.com/company/kubex-ai",
+            "youtube": "https://www.youtube.com/@Kubex-ai",
+            "instagram": "https://www.instagram.com/kubex.ai"
         }
     }
 }
