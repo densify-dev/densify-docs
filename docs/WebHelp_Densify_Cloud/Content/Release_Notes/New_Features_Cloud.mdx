@@ -12,6 +12,42 @@ The following sections provide details of new features and updates introduced in
 
 This topic summarizes both new and updated features introduced in Kubex
 
+<Accordion title="4.1 January 21, 2026">
+
+    The following changes have been made to Kubex in this release:
+
+    - ** AWS ECS Support **
+      - Kubex now shows optimization recommendations for Amazon ECS workloads, helping you right-size your containerized applications running on ECS for optimal performance and cost efficiency.
+      - The ECS button the left-hand menu only shows up if there is ECS data. 
+
+      <Frame caption="Figure: AWS ECS Recommendations">
+        <img src="/images/docs-cloudex/aws_ecs_details.png" width="100%" />
+      </Frame>
+
+    - **PKCE Support for SSO using OpenID**
+      - PKCE (Proof Key for Code Exchange) is a security extension that enhances OAuth 2.0 authorization flows.
+      
+    - **Cloud Summary Separates Waste and Risk**
+      - Netting out Waste and Risk hides the true savings potential. 
+      
+      <Frame caption="Figure: Cloud Waste and Risk">
+        <img src="/images/docs/docs-cloudex/cloud_summary_risk_waste_separation.png" width="100%" />
+      </Frame>
+
+    - **Node Group Cost on the Details table**
+      - Node Group costs are displayed in the details table.
+      - Costs are calculated based on the sum of the costs of all nodes running in the node group. It takes into account the # of hours each node was running.
+
+    - **License Compliance Report**
+      - The license compliance report has been migrated to the KUbex UI.
+      - The report shows how many Kubex licenses are being consumed against what is contractually allowed. 
+      
+      <Frame caption="Figure: License Compliance">
+        <img src="/images/docs/docs-cloudex/license_compliance.png" width="100%" />
+      </Frame>
+
+</Accordion>
+
 <Accordion title="4.0.0 December 03, 2025">
 
     The following changes have been made to Kubex in this release:
