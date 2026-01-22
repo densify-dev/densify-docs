@@ -45,10 +45,10 @@ You need to register Kubex as a web application in your Okta Authorization Serve
 2.	On the *API* page copy the *Issuer URI* and provide it to Kubex.
 3.	Click *default* (or the name of the Authorization Server you are using) to bring up Authorization Server Settings.
 4.	Select *Token Preview* tab and enter the following settings then click *Preview Token*:
-    a. OAuth/OIDC client – Kubex (or the App integration name you used above)
-    b. Grant type – Authorization Code
-    c. User – A user that will access Kubex
-    d. Scopes – openid email profile
+    * OAuth/OIDC client – Kubex (or the App integration name you used above)
+    * Grant type – Authorization Code
+    * User – A user that will access Kubex
+    * Scopes – openid email profile
 5.	If the token is generated the setup is complete. If you see an error "Policy evaluation failed for this request, please check the policy configurations." You will need to follow the next section to create an access policy.
 
 
@@ -58,9 +58,9 @@ You need to register Kubex as a web application in your Okta Authorization Serve
 2.	Click *default* (or the name of the Authorization Server you are using) to bring up Authorization Server Settings.
 3.	Select *Access Policies* tab and click *Add New Access Policy*
 4.	On the Add Policy page enter the following settings and click *Create Policy*:
-    a. Name - Kubex (or any name you want to use)...
-    b. Description – Kubex (or any description you want to use)
-    c. Assign to > The following clients – Kubex (or the App integration name you used above)
+    * Name - Kubex (or any name you want to use)...
+    * Description – Kubex (or any description you want to use)
+    * Assign to > The following clients – Kubex (or the App integration name you used above)
 5.	Select the newly created Access policy and click *Add Rule*
 6.	On the Add Rule page give the rule a name and click *Create Rule*
 
