@@ -7,7 +7,7 @@ You can use the following process to setup Okta for Authorization Code Flow:
 
 ### Authorization Server
 
-You need to register Kubex as a web application in your Okta Authorization Server. and then provide the following information to Kubex:
+You need to register Kubex as a web application in your Okta Authorization Server. and then provide the following information to the Kubex support team:
 
 * Client ID
 * Client secret (password)
@@ -24,15 +24,19 @@ You need to register Kubex as a web application in your Okta Authorization Serve
     * Sign-in redirect URIs--https://\<yourcompany>.kubex.ai:443/redirect
     * Sign-out redirect URIs:
 
-        * https://\<yourcompany>.kubex.ai:443/ (for the Kubex Console)
-        * https://\<yourcompany>.kubex.ai:443/admin/ (for the Analysis Console)
+        * https://\<yourcompany>.kubex.ai:443
         * https://\<yourcompany>.kubex.ai:443/openIdError
         * https://\<yourcompany>.kubex.ai:443/kubex
-        * https://\<yourcompany>.kubex.ai:443/kubex
-
+        
     * Controlled access - Allow everyone in your organization to access 
 
-5. From the application page copy Client ID and Client Secret. Provide these to Kubex.
+5. Optional – If Proof Key for Code Exchange (PKCE) is required, include these additional steps:
+
+    a. Client Credentials – click ‘Edit’
+    b. Enable ‘Require PKCE as additional verification’
+    c. Click Save
+
+6. From the application page copy Client ID and Client Secret. Provide these to Kubex.
 
 
 ### Testing the Token
@@ -60,5 +64,5 @@ You need to register Kubex as a web application in your Okta Authorization Serve
 5.	Select the newly created Access policy and click *Add Rule*
 6.	On the Add Rule page give the rule a name and click *Create Rule*
 
-
-You now need to provide the Client ID, Client Secret and Issuer URI, to complete the setup on the Kubex server side. These settings are all configured for you by Kubex. Contact [support@kubex.ai](mailto:support@kubex.ai) for details.
+### Provide Information to Kubex 
+You now need to provide the Client ID, Client Secret and Issuer URI, to complete the setup on the Kubex server side. These settings are all configured for you by the Kubex support team. Contact [support@kubex.ai](mailto:support@kubex.ai) for details.
