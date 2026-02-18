@@ -1404,6 +1404,39 @@ This section lists new features and updates to the Kubex Automation Controller, 
 
 A Helm chart bundles all components required for automated container optimization. See [Kubex Automation Controller](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) for deployment details and configuration options.
 
+<Accordion title="1.0.13 - February 6, 2026 (Patch)">
+  <Accordion title="Valkey Helm & OpenShift Compatibility Fixes">
+    <ul>
+      <li>Provided complete security contexts to resolve Helm <code>coalesce.go:298</code> warnings for <code>valkey.podSecurityContext</code> and <code>valkey.securityContext</code>.</li>
+      <li>Added initContainer resource requests/limits to satisfy OpenShift admission requirements.</li>
+      <li>Removed fixed UIDs/GIDs from valkey for OpenShift SCC compatibility.</li>
+    </ul>
+  </Accordion>
+  <Accordion title="VPA Exclusion to Prevent Autoscaler Conflicts">
+    <ul>
+      <li>Automatic VerticalPodAutoscaler (VPA) detection and exclusion to prevent Kubex Automation from competing with VPA for resource management.</li>
+      <li>Prevents conflicts between VPA and Kubex automation.</li>
+    </ul>
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.0.12 - January 28, 2026 (Patch)">
+  <Accordion title="OpenShift anyuid Requirement Removed">
+    <ul>
+      <li>Removed OpenShift SCC rolebinding configuration—no longer requires <code>anyuid</code> for Kubex Automation Controller.</li>
+    </ul>
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.0.11 - January 27, 2026 (Patch)">
+  <Accordion title="OpenShift Support & Valkey Storage Update">
+    <ul>
+      <li>Added OpenShift support for Kubex Automation Controller.</li>
+      <li>Removed default valkey storage settings—now ephemeral by default.</li>
+    </ul>
+  </Accordion>
+</Accordion>
+
 <Accordion title="1.0.10 - January 22, 2026 (Patch)">
   <Accordion title="Service Account Metadata & Logging Improvements">
     The following improvements have been made in this release:
