@@ -4,24 +4,24 @@
 .max-w-5xl,
 .max-w-6xl,
 .max-w-7xl {
-  max-width: 90% !important;
+  max-width: 95% !important;
 }
 
 /* Target main content containers */
 main[class*="max-w"] {
-  max-width: 90% !important;
+  max-width: 95% !important;
 }
 
 /* Ensure the main layout uses more screen width */
 .mintlify-content {
-  max-width: 90% !important;
+  max-width: 95% !important;
   margin: 0 auto !important;
 }
 
 /* Override any container width restrictions */
 .container,
 [class*="container"] {
-  max-width: 90% !important;
+  max-width: 95% !important;
 }
 
 /* Target the main documentation content area */
