@@ -1,110 +1,24 @@
-/* AGGRESSIVE WIDTH OVERRIDE - Target everything */
-* {
-  max-width: none !important;
-}
-
-/* Re-apply sensible defaults for specific elements */
-img, video, iframe {
-  max-width: 100% !important;
-}
-
-/* Force full width on main containers */
-html, body, #__next, [data-testid], main, article, section {
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-/* Target specific Mintlify containers */
-div[class*="max-w"],
-div[style*="max-width"],
-.mx-auto {
-  max-width: 95% !important;
-  width: 95% !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* Media query for larger screens */
-@media (min-width: 768px) {
-  .container, 
-  .max-w-4xl, 
-  .max-w-5xl, 
-  .max-w-6xl, 
-  .max-w-7xl,
-  [class*="max-w"],
-  main,
-  article {
-    max-width: 95% !important;
-    width: 95% !important;
-  }
-}
-
-/* Make webpage width wider - Target all possible content containers */
-.docs-container,
-.max-w-4xl,
-.max-w-5xl,
-.max-w-6xl,
-.max-w-7xl,
-.max-w-3xl,
-.max-w-2xl,
-.max-w-xl,
-.max-w-lg,
-.max-w-md,
-.max-w-sm {
-  max-width: 95% !important;
-  width: 95% !important;
-}
-
-/* Target main content containers */
-main[class*="max-w"],
-main {
-  max-width: 95% !important;
-  width: 95% !important;
-}
-
-/* Ensure the main layout uses more screen width */
-.mintlify-content,
-[class*="mintlify"],
-[class*="content"] {
-  max-width: 95% !important;
-  width: 95% !important;
-  margin: 0 auto !important;
-}
-
-/* Override any container width restrictions */
-.container,
-[class*="container"],
-div[class*="w-"],
-div[class*="max-w"] {
-  max-width: 95% !important;
-  width: 95% !important;
-}
-
-/* Target the main documentation content area */
-article,
-section,
-.prose,
-[class*="prose"] {
+/* Target only the main content area without breaking layout */
+[data-testid="main-content"],
+[role="main"],
+main > div,
+main article,
+.prose {
   max-width: none !important;
   width: 100% !important;
 }
 
-/* Target flex containers and grid layouts */
-.flex,
-.grid,
-[class*="flex"],
-[class*="grid"] {
-  max-width: 95% !important;
-  width: 95% !important;
+/* Target specific Mintlify content containers */
+.mx-auto:has(article),
+.max-w-4xl:has(.prose),
+.max-w-3xl:has(.prose) {
+  max-width: 90% !important;
 }
 
-/* Force wider content for common Mintlify selectors */
-body > div,
-#__next,
-[data-testid*="content"],
-[class*="layout"] {
-  max-width: 95% !important;
-  width: 95% !important;
+/* Ensure content wrapper uses more width */
+article > div,
+.prose > div {
+  max-width: none !important;
 }
 
 .home_card_container {
