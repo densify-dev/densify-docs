@@ -1,3 +1,44 @@
+/* AGGRESSIVE WIDTH OVERRIDE - Target everything */
+* {
+  max-width: none !important;
+}
+
+/* Re-apply sensible defaults for specific elements */
+img, video, iframe {
+  max-width: 100% !important;
+}
+
+/* Force full width on main containers */
+html, body, #__next, [data-testid], main, article, section {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Target specific Mintlify containers */
+div[class*="max-w"],
+div[style*="max-width"],
+.mx-auto {
+  max-width: 95% !important;
+  width: 95% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Media query for larger screens */
+@media (min-width: 768px) {
+  .container, 
+  .max-w-4xl, 
+  .max-w-5xl, 
+  .max-w-6xl, 
+  .max-w-7xl,
+  [class*="max-w"],
+  main,
+  article {
+    max-width: 95% !important;
+    width: 95% !important;
+  }
+}
+
 /* Make webpage width wider - Target all possible content containers */
 .docs-container,
 .max-w-4xl,
