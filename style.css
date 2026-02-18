@@ -1,32 +1,69 @@
-/* Make webpage width wider */
+/* Make webpage width wider - Target all possible content containers */
 .docs-container,
 .max-w-4xl,
 .max-w-5xl,
 .max-w-6xl,
-.max-w-7xl {
+.max-w-7xl,
+.max-w-3xl,
+.max-w-2xl,
+.max-w-xl,
+.max-w-lg,
+.max-w-md,
+.max-w-sm {
   max-width: 95% !important;
+  width: 95% !important;
 }
 
 /* Target main content containers */
-main[class*="max-w"] {
+main[class*="max-w"],
+main {
   max-width: 95% !important;
+  width: 95% !important;
 }
 
 /* Ensure the main layout uses more screen width */
-.mintlify-content {
+.mintlify-content,
+[class*="mintlify"],
+[class*="content"] {
   max-width: 95% !important;
+  width: 95% !important;
   margin: 0 auto !important;
 }
 
 /* Override any container width restrictions */
 .container,
-[class*="container"] {
+[class*="container"],
+div[class*="w-"],
+div[class*="max-w"] {
   max-width: 95% !important;
+  width: 95% !important;
 }
 
 /* Target the main documentation content area */
-article {
+article,
+section,
+.prose,
+[class*="prose"] {
   max-width: none !important;
+  width: 100% !important;
+}
+
+/* Target flex containers and grid layouts */
+.flex,
+.grid,
+[class*="flex"],
+[class*="grid"] {
+  max-width: 95% !important;
+  width: 95% !important;
+}
+
+/* Force wider content for common Mintlify selectors */
+body > div,
+#__next,
+[data-testid*="content"],
+[class*="layout"] {
+  max-width: 95% !important;
+  width: 95% !important;
 }
 
 .home_card_container {
