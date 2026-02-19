@@ -1,3 +1,25 @@
+/* Hide the "on this page" right sidebar */
+[data-testid="toc"],
+[data-testid="table-of-contents"],
+.toc,
+.table-of-contents,
+aside[class*="toc"],
+nav[aria-label="Table of contents"],
+[class*="right-sidebar"],
+[class*="right-panel"] {
+  display: none !important;
+}
+
+/* Expand main content to fill the space */
+[data-testid="main-content"],
+main,
+.main-content {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
 /* Target only the main content area without breaking layout */
 [data-testid="main-content"],
 [role="main"],

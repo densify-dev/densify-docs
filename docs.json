@@ -29,6 +29,12 @@
             "view"
         ]
     },
+    "sidebar": {
+        "items": "left"
+    },
+    "toc": {
+        "enabled": false
+    },
     "api": {
         "openapi": [
             "/openapi/authorize.yaml"
