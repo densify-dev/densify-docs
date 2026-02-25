@@ -1,9 +1,9 @@
 ---
-title: "External User Authentication for Microsft Entra ID"
+title: "External User Authentication for Microsoft Entra ID"
 sidebarTitle: "Microsoft Entra ID"
 ---
 
-You can use the following process to setup Microsft Entra ID (formerly know as Azure AD). You need to register Kubex as a web application in your Microsoft Entra ID and then provide the following information to Kubex:
+You can use the following process to setup Microsoft Entra ID (formerly know as Azure AD). You need to register Kubex as a web application in your Microsoft Entra ID and then provide the following information to Kubex:
 
 * Application (client) ID
 * Directory (tenant) ID
@@ -13,10 +13,10 @@ An auto-provisioning feature allows users to access the Kubex Console without ne
 
 ### Register an Application
 
-You must have permission to manage applications in Microsft Entra ID. i.e. Application administrator or Application developer, etc.
+You must have permission to manage applications in Microsoft Entra ID. i.e. Application administrator or Application developer, etc.
 
-1. In the Microsft Entra ID portal. If you have access to multiple tenants, use the Directories + subscriptions filter in the top menu to switch to the tenant in which you want to register the application.
-2. Navigate to Microsft Entra ID > App Registrations > New registration.
+1. In the Microsoft Entra ID portal. If you have access to multiple tenants, use the Directories + subscriptions filter in the top menu to switch to the tenant in which you want to register the application.
+2. Navigate to Microsoft Entra ID > App Registrations > New registration.
 <Accordion title="Figure: Creating a New Registration">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Administration_Guide/030000C6_329x191.png)</Frame>
 </Accordion>
@@ -36,7 +36,7 @@ New app registrations are hidden to other users by default. Refer to Microsoft.c
 
 #### Obtaining the Application and Directory IDs
 
-1. In the Microsft Entra ID portal, navigate to Microsft Entra ID > App Registrations.
+1. In the Microsoft Entra ID portal, navigate to Microsoft Entra ID > App Registrations.
 2. Select your new App Registration and copy the following values:
 
 * Application (client) ID
@@ -53,7 +53,7 @@ You need to provide these values to Kubex to complete the authentication process
 
 A redirect URI is the location where the Microsoft identity platform redirects a user's client and sends back the security tokens after authentication.
 
-1. In the Microsft Entra ID portal, in App registrations, select your application registration.
+1. In the Microsoft Entra ID portal, in App registrations, select your application registration.
 2. Select Authentication from the side menu.
 3. Under Platform configurations, click Add a platform and then choose Web applications > Web.
 4. Under Redirect URIs, add the following URIs:
@@ -80,7 +80,7 @@ The credentials generated here allow Kubex to authenticate as itself, requiring 
 
 A client secret is sometimes called an application password. It is a string value that Kubex can use in place of a certificate to identity itself.
 
-1. In the Microsft Entra ID portal, in App registrations, select your application registration.
+1. In the Microsoft Entra ID portal, in App registrations, select your application registration.
 2. Navigate to Certificates & secrets > Client secrets > New client secret.
 3. Add a description for your client secret. i.e.Kubex-Client-Secret
 4. Select an expiration for the client secret or specify a custom lifetime. Please note the following:
@@ -101,7 +101,7 @@ Record the displayed value, as this value will not be displayed again once you l
 
 In this section, you provide Kubex, now registered with the Microsoft identity platform with access to your own web API. You also provide the client app access to Microsoft Graph.
 
-1. In the Microsft Entra ID portal, select App registrations and then select your application registration.
+1. In the Microsoft Entra ID portal, select App registrations and then select your application registration.
 2. Navigate to Manage > API permissions > Add a Permission > Microsoft Graph.
 <Accordion title="Figure: Configuring the API Permissions">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/CiRBA_Administration_Guide/03200049.png)</Frame>
