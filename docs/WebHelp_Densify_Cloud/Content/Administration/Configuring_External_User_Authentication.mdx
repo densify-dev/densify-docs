@@ -2,14 +2,14 @@
 title: "Overview"
 ---
 
-Kubex provides the capability to authenticate users through external identity providers, that support the OpenID Connect specification. OpenID provides a framework for communicating between an identity provider and the OpenID acceptor, such as Okta and Microsoft Azure AD.
+Kubex provides the capability to authenticate users through external identity providers, that support the OpenID Connect specification. OpenID provides a framework for communicating between an identity provider and the OpenID acceptor, such as Okta and Microsoft Entra ID.
 
 When authenticating users externally, authentication of Kubex users is first delegated to an external identity provider.
 
 A user can be authenticated in one of two ways:
 
 * Local user--The account is created and validated within Kubex. For on-premise deployments, you can configure a local account linked to a Windows® Active Directory™ account to access Kubex. Windows® Active Directory™ is not supported for SaaS deployments.
-* Externally authentication--These users are authenticated through an external identity provider, that support the OpenID Connect specification. Only the following external identity providers are supported:
+* External authentication--These users are authenticated through an external identity provider, that support the OpenID Connect specification. Only the following external identity providers are supported:
 
 <table>
 <col/>
@@ -33,7 +33,7 @@ A user can be authenticated in one of two ways:
 </table>
 
 <Note>
-Once Open ID is enabled, users must exist in their OpenID provider before they can access Kubex. Users that are created in the Kubex user management console must use the same email address as their user ID in Azure, Okta or Google.
+Once Open ID is enabled, users must exist in their OpenID provider before they can access Kubex. Users that are created in the Kubex user management console must use the same email address as their user ID in Microsoft Entra ID, Okta or Google.
 </Note>
 
 
@@ -52,7 +52,7 @@ The one exception is Google OpenID. When using Google Open ID, only the Kubex Co
 
 Before you can configure the feature in Kubex, you must register Kubex with your identity provider. You need to provide information about the application type, login/logout URLs etc. This is a standard procedure across all applications using OpenID for authentication.
 
-Kubex supports: [Google OpenID](./External_User_Authentication_Example_Configuration_for_Google_OpenID), [Microsoft Azure AD](./External_User_Authentication_Example_Configuration_for_Azure_Active_Directory), [Okta](./External_User_Authentication_Example_Configuration_for_Okta) and Ping as external identity providers.
+Kubex supports: [Google OpenID](./External_User_Authentication_Example_Configuration_for_Google_OpenID), [Microsoft Entra ID](./External_User_Authentication_Example_Configuration_for_Azure_Active_Directory), [Okta](./External_User_Authentication_Example_Configuration_for_Okta) and Ping as external identity providers.
 
 <Accordion title="Table: Configuring Kubex with the Identity Provider">
 <table>
