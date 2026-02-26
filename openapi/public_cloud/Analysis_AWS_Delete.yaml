@@ -15,12 +15,15 @@ paths:
       tags: [AWS Analysis]
       summary: Delete AWS audit
       description: >
-        Deletes the single-day and 60-day audits and all associated scheduler entries
-        for the specified analysis. Collected data and the analysis entity are retained
-        for reporting or future restart. During deletion, any attempt to access other
-        endpoints for this analysisId (GET/PUT/POST) returns 400 Bad Request. While the
-        operation is in progress, poll `/analysis/cloud/aws/{analysisId}/status` or
-        provide a webhook to receive completion status.
+        Deletes the Cloud Connection and Analysis for the specified AWS account. 
+        Collected data and the analysis entity are retained for reporting or future restart. 
+        During deletion, any attempt to access other endpoints for this analysisId (GET/PUT/POST) 
+        will return 400 Bad Request.
+
+        This API only supports deletion for AWS accounts that have a valid analysisId. If the AWS
+        account was not analyzed (for example, unsupported resources or insufficient data), no
+        analysisId exists and this API cannot be used. In those cases, delete the cloud connection
+        manually and contact support@densify.com if assistance is required.
       parameters:
         - in: path
           name: analysisId
