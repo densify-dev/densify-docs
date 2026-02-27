@@ -1,18 +1,12 @@
 openapi: 3.1.0
 info:
-  title: Kubex – GCP Analysis Delete API
+  title: Kubex API – GCP Delete Connection
   version: "1.0.0"
-  description: >
-    DELETE `/analysis/cloud/gcp/{analysisId}` deletes the audit and its scheduler entries.
-    Removes single-day and 60-day historical audits if present. Fails for many-to-one
-    (aggregate) connections created via the Cloud Connection Wizard; those must be
-    deleted via the Wizard. While delete is in progress, other ops on the same analysisId
-    return 400. Collected data and the analysis structure remain available for reporting.
 servers:
-  - url: https://{host}
+  - url: https://{host}/api/v2
     variables:
       host:
-        default: api.example.com
+        default: hostname.kubex.ai
 tags:
   - name: GCP Analysis
 paths:
@@ -20,10 +14,14 @@ paths:
     delete:
       tags: [GCP Analysis]
       operationId: deleteGcpAnalysisAudit
-      summary: Delete GCP data-collection audit for an analysis
+      summary: Delete GCP Cloud Connection and Analysis
       description: |
-        Deletes the audit and associated scheduler entries for the specified analysis.
-        Status may be sent to an optional webhook on completion.
+        Deletes the Cloud Connection and Analysis for the specified GCP project. 
+
+        This API only supports deletion for GCP projects that have a valid analysisId. If the GCP
+        project was not analyzed (for example, unsupported resources or insufficient data), no
+        analysisId exists and this API cannot be used. In those cases, delete the cloud connection
+        manually and contact support@kubex.ai if assistance is required.
       parameters:
         - name: analysisId
           in: path
@@ -31,32 +29,11 @@ paths:
           description: The unique referenced ID of the GCP analysis.
           schema:
             type: string
-      requestBody:
-        required: false
-        description: Optional webhook to receive completion status.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DeleteWebhook'
-            examples:
-              withWebhook:
-                value:
-                  webHook:
-                    uri: "http://mywebhookserver/webhook/results"
-                    authType: "basic"
-                    authValue: "user:pass"
       responses:
         '200':
-          description: OK -- delete accepted/completed.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusMessage'
-              examples:
-                ok:
-                  value: { message: "OK", status: 200 }
+          description: Delete request acknowledged / completed
         '400':
-          description: Bad Request (e.g., other ops attempted during delete).
+          description: Invalid parameter or conflicting in-progress operation
         '401':
           description: Authentication failed.
         '404':
@@ -64,47 +41,4 @@ paths:
         '405':
           description: Method not allowed.
         '500':
-          description: Server error (e.g., audit in progress or aggregate connection).
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusMessage'
-              examples:
-                inProgress:
-                  value:
-                    message: "Connection has an audit in progress. It cannot be deleted at this time."
-                    status: 500
-                aggregate:
-                  value:
-                    message: "Account dfc04848-3848-44c0-b85a-02311951de36 was created via UI and subscriptions [cc377154-9605-4cb0-8b41-1b39e1c4ac0f,3d4ba999-cbd8-40b8-9998-574be6824a97] are incompatible with API use; please delete via UI"
-                    status: 500
-
-components:
-  schemas:
-    DeleteWebhook:
-      type: object
-      additionalProperties: false
-      properties:
-        webHook:
-          type: object
-          additionalProperties: false
-          properties:
-            uri:
-              type: string
-              format: uri
-            authType:
-              type: string
-              description: Authentication scheme ("basic", "bearer", etc.).
-            authValue:
-              type: string
-              description: Credential value.
-          required: [uri]
-    StatusMessage:
-      type: object
-      additionalProperties: false
-      properties:
-        message: { type: string }
-        status:
-          type: integer
-          description: One of 200, 400, 401, 404, 405, 500.
-      required: [message, status]
+          description: Internal server error (e.g., data collection in progress).
