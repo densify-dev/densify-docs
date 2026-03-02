@@ -15,7 +15,7 @@ paths:
       tags: [AWS Analysis]
       summary: List all systems included in an AWS analysis
       description: >
-        Returns all systems (EC2, RDS, ASG, SPOT) that were part of the specified
+        Returns all systems (EC2, RDS, ASG) that were part of the specified
         AWS optimization analysis. Some systems may not have recommendations; use
         `/analysis/cloud/aws/{analysisId}/results` to fetch recommendation details.
       parameters:
@@ -64,10 +64,9 @@ components:
       properties:
         serviceType:
           type: string
-          enum: [EC2, RDS, ASG, SPOT]
+          enum: [EC2, RDS, ASG]
           description: >
-            Cloud service type. Note: ASGs with maximum group size of 1 still appear
-            as `ASG` here; min/max group fields are not returned by this endpoint.
+            Cloud service type.
         resourceId:
           type: string
           description: Cloud provider resource identifier.
