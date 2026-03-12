@@ -52,29 +52,23 @@
                     {
                         "group": "Getting Started",
                         "pages": [
-                            "docs-kubex/Content/Kubex/Getting_Started_with_Kubex",
-                            "docs-kubex/Content/Kubex/Visualizing_Your_Data",
-                            "docs-kubex/Content/General/KubexAIAgent"
+                            "docs-kubex/Content/Kubex/Data_Collection_Overview",
+                            {
+                                "group": "Alternate Data Collection Methods",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods",
+                                    "docs-kubex/Content/Kubex/Data_Collection_Prerequisites",
+                                    "docs-kubex/Content/Kubex/Data_Collection_Additional_Considerations"
+                                ]
+                            },
+                        "docs-kubex/Content/Kubex/Kubex_Dashboard",
+                        "docs-kubex/Content/General/KubexAIAgent"
                         ]
                     },
                     {
                         "group": "Container Analysis",
                         "pages": [
                             "docs-kubex/Content/Kubex/Containers_Analysis",
-                            {
-                                "group": "Data Collection ",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Data_Collection_Overview",
-                                    {
-                                        "group": "Alternate Data Collection Methods",
-                                        "pages": [
-                                            "docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods",
-                                            "docs-kubex/Content/Kubex/Data_Collection_Prerequisites",
-                                            "docs-kubex/Content/Kubex/Data_Collection_Additional_Considerations"
-                                        ]
-                                    }
-                                ]
-                            },
                             {
                                 "group": "Using the Tree Viewer",
                                 "pages": [
