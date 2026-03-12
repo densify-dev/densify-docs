@@ -12,16 +12,17 @@ The following sections provide details of new features and updates introduced in
 
 This topic summarizes both new and updated features introduced in Kubex
 
-<Accordion title="4.2.0 February 15, 2026">
+<Accordion title="4.2.0 March 10, 2026">
 
     The following changes have been made to Kubex in this release:
 
-    - **AWS ECS Support**
-      - Kubex now shows optimization recommendations for Amazon ECS workloads, helping you right-size your containerized applications running on ECS for optimal performance and cost efficiency.
-      - The ECS button the left-hand menu only shows up if there is ECS data. 
+    - **Kubernetes Dashboard**
+      - Kubex introduces a new customizable dashboard that serves as the default landing page, enabling users to compose their own workspace using widgets for faster operational insights.
+      - The dashboard includes preconfigured views that organize key metrics and charts into ready-to-use layouts. Users can customize these views by arranging widgets and visualizations to match their operational workflow.
+      - A feature flag allows users to choose whether the classic interface or the new composable dashboard is used as their default landing page.
 
       <Frame caption="Figure: AWS ECS Recommendations">
-        <img src="/images/docs-cloudex/aws_ecs_details.png" width="100%" />
+        <img src="/images/docs-kubex/k8s_kubernetes_dashboard.png" width="100%" />
       </Frame>
 
 
