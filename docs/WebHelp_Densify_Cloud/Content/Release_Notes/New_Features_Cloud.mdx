@@ -12,6 +12,46 @@ The following sections provide details of new features and updates introduced in
 
 This topic summarizes both new and updated features introduced in Kubex
 
+<Accordion title="4.2.0 March 10, 2026">
+
+    The following changes have been made to Kubex in this release:
+
+    - **Kubernetes Dashboard**
+      - Kubex introduces a new customizable dashboard that serves as the default landing page, enabling users to compose their own workspace using widgets for faster operational insights.
+      - The dashboard includes preconfigured views that organize key metrics and charts into ready-to-use layouts. Users can customize these views by arranging widgets and visualizations to match their operational workflow.
+      - A feature flag allows users to choose whether the classic interface or the new composable dashboard is used as their default landing page.
+
+      <Frame caption="Figure: AWS ECS Recommendations">
+        <img src="/images/docs-kubex/k8s_kubernetes_dashboard.png" width="100%" />
+      </Frame>
+
+
+    - **PKCE Support for SSO using OpenID**
+      - PKCE (Proof Key for Code Exchange) is a security extension that enhances OAuth 2.0 authorization flows.
+      
+    - **Cloud Summary Separates Waste and Risk**
+      - Netting out Waste and Risk hides the true savings potential. 
+      - By displaying 'waste' and 'cost of risk removal' as separate metrics, users can better understand each savings opportunity. 
+      
+      <Frame caption="Figure: Cloud Waste and Risk">
+        <img src="/images/docs-cloudex/cloud_summary_risk_waste_separation.png" width="100%" />
+      </Frame>
+
+
+    - **Node Group Cost on the Details table**
+      - Node Group costs are displayed in the details table.
+      - Costs are calculated based on the sum of the costs of all nodes running in the node group. It takes into account the # of hours each node was running.
+
+    - **License Compliance Report**
+      - The license compliance report has been migrated to the Kubex UI.
+      - The report shows how many Kubex licenses are being consumed against what is contractually allowed. 
+      
+      <Frame caption="Figure: License Compliance">
+        <img src="/images/docs-cloudex/license_compliance.png" width="100%" />
+      </Frame>
+
+</Accordion>
+
 <Accordion title="4.1.0 January 21, 2026">
 
     The following changes have been made to Kubex in this release:
