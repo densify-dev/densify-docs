@@ -12,7 +12,7 @@ The following sections provide details of new features and updates introduced in
 
 This topic summarizes both new and updated features introduced in Kubex
 
-<Accordion title="4.2.0 March 10, 2026">
+<Accordion title="4.2.0 March 11, 2026">
 
     The following changes have been made to Kubex in this release:
 
@@ -26,8 +26,16 @@ This topic summarizes both new and updated features introduced in Kubex
       </Frame>
 
 
+    - **Improved Node and Container Visibility**
+      - Container Details now displays node names instead of only a count.
+      - Horizontal Pod Autoscaler (HPA) settings are now visible in the Container Details table.
+      - Node group and node metrics now include 5-minute metric samples.
+
+    - **API Enhancements**
+      - GPU recommendation details added to the Containers API endpoint `GET /kubernetes/clusters/<clusterName>/containers?details=true`
+
     - **Google Cloud (GCP) Connection Support**
-      - Kubex now supports Google Cloud Platform (GCP) connections directly from the Kubex UI
+      - Kubex now supports Google Cloud Platform (GCP) connections directly from the Kubex UI.
 
       <Frame caption="Figure: Add GCP Connection">
         <img src="/images/docs-cloudex/cloud_gcp_connection.png" width="100%" />
@@ -36,8 +44,16 @@ This topic summarizes both new and updated features introduced in Kubex
       
     - **AWS RDS Connection Data Support**
       - Kubex now collects and analyzes AWS RDS connection data, enabling deeper visibility into database activity and incorporating this data into platform analysis.
-       
-      
+
+    - **User Management**
+      - Users in the Access Manager group can now access User Management
+      - Added sign-out functionality in the Kubex UI
+
+      <Frame caption="Figure: User Management">
+        <img src="/images/docs-kubex/kubex_user_management.png" width="100%" />
+      </Frame>
+
+
 </Accordion>
 
 <Accordion title="4.1.0 January 21, 2026">
