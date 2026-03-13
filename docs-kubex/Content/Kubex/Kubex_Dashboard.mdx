@@ -1,0 +1,118 @@
+---
+title: "Kubex Dashboard"
+---
+import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
+
+<Frame caption="Figure: Kubex Dashboard">
+![](/images/docs-kubex/k8s_dashboard.png)
+</Frame>
+
+The Kubex dashboard provides a high-level summary of cluster resources, workload usage, costs, and potential risks. It helps users understand how Kubernetes resources are allocated, requested, and utilized across clusters, and highlights areas of inefficiency or operational risk.
+
+### Cluster Filter
+
+The Cluster Filter on the left side panel allows users to select which clusters are included in the dashboard. By default all clusters are included. 
+
+<Frame caption="Figure: Kubex Dashboard Cluster Filter">
+![](/images/docs-kubex/k8s_dashboard_cluster_filter.png)
+</Frame>
+
+
+**Capabilities**
+
+- Search for clusters
+- Select one or multiple clusters
+- Select all or deselect all clusters
+- Apply or reset filters
+
+The dashboard metrics and visualizations update automatically based on the selected clusters.
+
+### Dashboard Views
+
+Users can switch between multiple system views that are available out of the box:
+
+<Frame caption="Figure: Kubex Dashboard Views">
+![](/images/docs-kubex/k8s_dashboard_views.png)
+</Frame>
+
+
+- Overview – High-level usage, cost and risk insights
+- Waste – Focus on resource inefficiency and cost waste
+- Risk – Focus on Node and Cluster performance and resource risks
+
+Users can create new views and designate them as public or as private.
+
+### Key widgets
+
+**CPU Allocatable vs Requested vs Utilized**
+
+This chart compares the allocatable CPU/Memory with what is being requested and the actual usage over time.
+
+<Frame caption="Figure: Cluster Usage Trends">
+![](/images/docs-kubex/k8s_dashboard_charts.png)
+</Frame>
+
+Metrics displayed
+
+Allocatable – Total CPU/Memory capacity available on nodes
+Requested – CPU/Memory resources requested by workloads
+Utilized – Actual CPU/WorkingSetMemory usage by running workloads
+
+How to interpret
+
+- If Utilized is much lower than Requested, workloads may be over-provisioned.
+- Large gaps between Allocatable and Requested may indicate unused capacity due to other factors (like max pods/node or ephemeral storage constraints) that makes the node autoscaler spin up more nodes.
+
+This helps identify opportunities to optimize CPU & Memory resource allocation.
+
+**Cluster Cost / Waste**
+
+This section shows monthly infrastructure cost and estimated waste per cluster and node groups.
+
+<Frame caption="Figure: Cluster Cost/Waste">
+![](/images/docs-kubex/k8s_dashboard_cluster_costs.png)
+</Frame>
+
+Metrics
+
+- Monthly Cost – Total estimated monthly cost of the cluster
+- Waste – Estimated cost of unused or over-provisioned resources
+- Waste % – Percentage of cluster cost that is inefficiently used
+
+This helps teams identify clusters where resource optimization could significantly reduce costs.
+
+**Node Risks**
+
+The Node Risks widget highlights nodes experiencing potential resource issues.
+
+<Frame caption="Figure: Node Risks">
+![](/images/docs-kubex/k8s_dashboard_risks.png)
+</Frame>
+
+- Memory Saturated Nodes:	# of Nodes experiencing very high memory usage in the last 7 days
+- CPU Saturated Nodes: # of Nodes experiencing very high CPU usage in the last 7 days
+- Nodes at Max Pods: # of Nodes that have reached the maximum allowed number of pods in the last 7 days
+
+These indicators help identify infrastructure pressure points that may impact workload performance.
+
+**Container Risks**
+
+This section highlights potential risks at the container level.
+
+<Frame caption="Figure: Container Risks">
+![](/images/docs-kubex/k8s_dashboard_risks.png)
+</Frame>
+
+- Containers with Memory Limit Events: # of Containers where the working set utilization is at or very close to the Memory limit in the last 7 days
+- Containers with Kill Events:	Containers terminated due to a kill event (SIGKILL)
+- Containers with CPU Throttling:	Containers experiencing CPU throttling
+
+High values may indicate workloads that need resource tuning.
+
+**Automation**
+
+The Automation widget shows workloads that have been automatically optimized by Kubex. This helps track automated efficiency improvements.
+
+<Frame caption="Figure: Container Automation">
+![](/images/docs-kubex/k8s_dashboard_automation.png)
+</Frame>

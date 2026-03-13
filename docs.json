@@ -52,62 +52,53 @@
                     {
                         "group": "Getting Started",
                         "pages": [
-                            "docs-kubex/Content/Kubex/Getting_Started_with_Kubex",
-                            "docs-kubex/Content/Kubex/Visualizing_Your_Data",
+                            "docs-kubex/Content/Kubex/Data_Collection_Overview",
+                            "docs-kubex/Content/Kubex/Kubex_Dashboard",
                             "docs-kubex/Content/General/KubexAIAgent"
                         ]
                     },
                     {
-                        "group": "Container Analysis",
+                        "group": "Container Optimization",
                         "pages": [
                             "docs-kubex/Content/Kubex/Containers_Analysis",
                             {
-                                "group": "Data Collection ",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Data_Collection_Overview",
-                                    {
-                                        "group": "Alternate Data Collection Methods",
-                                        "pages": [
-                                            "docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods",
-                                            "docs-kubex/Content/Kubex/Data_Collection_Prerequisites",
-                                            "docs-kubex/Content/Kubex/Data_Collection_Additional_Considerations"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "group": "Using the Tree Viewer",
+                                "group": "Container Tree Viewer",
                                 "pages": [
                                     "docs-kubex/Content/Kubex/Using_the_Tree_Viewer",
                                     "docs-kubex/Content/Kubex/Creating_Custom_Views",
                                     "docs-kubex/Content/Kubex/Creating_Custom_Filters"
                                 ]
                             },
-                            "docs-kubex/Content/Kubex/Summary_Tab",
-                            "docs-kubex/Content/Kubex/Breakdown_Tab",
-                            "docs-kubex/Content/Kubex/Histograms_Tab",
-                            "docs-kubex/Content/Kubex/Overview_Tab",
-                            "docs-kubex/Content/Kubex/GPU_Tab",
-                            "docs-kubex/Content/Kubex/Metrics_Viewer_Tab",
-                            {
-                                "group": "Analysis Details Tab",
+                            {                            
+                                "group": "Container Data Tabs",
                                 "pages": [
-                                    "docs-kubex/Content/Kubex/AI_Analysis_Details_Tab",
-                                    "docs-kubex/Content/Kubex/AI_Analysis_Details_Table",
-                                    "docs-kubex/Content/Kubex/Using_Table_Column_Features",
-                                    "docs-kubex/Content/Kubex/Using_Filters",
-                                    "docs-kubex/Content/Kubex/AI_Analysis_Details_Charts"
+                                    "docs-kubex/Content/Kubex/Summary_Tab",
+                                    "docs-kubex/Content/Kubex/Breakdown_Tab",
+                                    "docs-kubex/Content/Kubex/Histograms_Tab",
+                                    "docs-kubex/Content/Kubex/Overview_Tab",
+                                    "docs-kubex/Content/Kubex/GPU_Tab",
+                                    "docs-kubex/Content/Kubex/Metrics_Viewer_Tab",
+                                    {
+                                        "group": "Analysis Details Tab",
+                                        "pages": [
+                                            "docs-kubex/Content/Kubex/AI_Analysis_Details_Tab",
+                                            "docs-kubex/Content/Kubex/AI_Analysis_Details_Table",
+                                            "docs-kubex/Content/Kubex/Using_Table_Column_Features",
+                                            "docs-kubex/Content/Kubex/Using_Filters",
+                                            "docs-kubex/Content/Kubex/AI_Analysis_Details_Charts"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "group": "Policy Overview",
+                                "group": "Container Policy",
                                 "pages": [
                                     "docs-kubex/Content/Kubex/Policy_Overview",
                                     "docs-kubex/Content/Kubex/Policies_Tab"
                                 ]
                             },
                             {
-                                "group": "Automation Overview",
+                                "group": "Container Automation",
                                 "pages": [
                                     "docs-kubex/Content/Kubex/Automation_Overview",
                                     "docs-kubex/Content/Kubex/Automation_Tab"
@@ -116,16 +107,35 @@
                         ]
                     },
                     {
-                        "group": "Node Group Analysis",
+                        "group": "Node Group Optimization",
                         "pages": [
                             "docs-kubex/Content/Kubex/Node_Group_Analysis",
                             "docs-kubex/Content/Kubex/Using_the_Node_Tree_Viewer",
-                            "docs-kubex/Content/Kubex/Node_Group_Analysis_Table",
-                            "docs-kubex/Content/Kubex/Node-Group-Overview_Tab",
-                            "docs-kubex/Content/Kubex/Nodes_Tab",
-                            "docs-kubex/Content/Kubex/Node-Overview-Tab"
+                             {                            
+                                "group": "Node Group Data Tabs",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/Node_Group_Analysis_Table",
+                                    "docs-kubex/Content/Kubex/Node-Group-Overview_Tab",
+                                    "docs-kubex/Content/Kubex/Nodes_Tab",
+                                    "docs-kubex/Content/Kubex/Node-Overview-Tab"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "group": "Advanced",
+                        "pages": [
+                            {
+                                "group": "Alternate Data Collection Methods",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods",
+                                    "docs-kubex/Content/Kubex/Data_Collection_Prerequisites",
+                                    "docs-kubex/Content/Kubex/Data_Collection_Additional_Considerations"
+                                ]
+                            }
                         ]
                     }
+
                 ]
             },
             {
