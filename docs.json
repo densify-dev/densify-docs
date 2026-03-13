@@ -53,16 +53,8 @@
                         "group": "Getting Started",
                         "pages": [
                             "docs-kubex/Content/Kubex/Data_Collection_Overview",
-                            {
-                                "group": "Alternate Data Collection Methods",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods",
-                                    "docs-kubex/Content/Kubex/Data_Collection_Prerequisites",
-                                    "docs-kubex/Content/Kubex/Data_Collection_Additional_Considerations"
-                                ]
-                            },
-                        "docs-kubex/Content/Kubex/Kubex_Dashboard",
-                        "docs-kubex/Content/General/KubexAIAgent"
+                            "docs-kubex/Content/Kubex/Kubex_Dashboard",
+                            "docs-kubex/Content/General/KubexAIAgent"
                         ]
                     },
                     {
@@ -120,6 +112,20 @@
                             "docs-kubex/Content/Kubex/Node-Overview-Tab"
                         ]
                     }
+                    {
+                        "group": "Advanced",
+                        "pages": [
+                            {
+                                "group": "Alternate Data Collection Methods",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods",
+                                    "docs-kubex/Content/Kubex/Data_Collection_Prerequisites",
+                                    "docs-kubex/Content/Kubex/Data_Collection_Additional_Considerations"
+                                ]
+                            }
+                        ]
+                    },
+
                 ]
             },
             {
