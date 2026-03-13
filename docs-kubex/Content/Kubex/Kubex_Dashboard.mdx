@@ -3,17 +3,17 @@ title: "Kubex Dashboard"
 ---
 import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
 
-<Frame caption="Figure: Kubex User Interface">
+<Frame caption="Figure: Kubex Dashboard">
 ![](/images/docs-kubex/k8s_dashboard.png)
 </Frame>
 
 The Kubex dashboard provides a high-level summary of cluster resources, workload usage, costs, and potential risks. It helps users understand how Kubernetes resources are allocated, requested, and utilized across clusters, and highlights areas of inefficiency or operational risk.
 
-## Cluster Filter
+### Cluster Filter
 
 The Cluster Filter on the left side panel allows users to select which clusters are included in the dashboard. By default all clusters are included. 
 
-<Frame caption="Figure: Kubex User Interface">
+<Frame caption="Figure: Kubex Dashboard Cluster Filter">
 ![](/images/docs-kubex/k8s_dashboard_cluster_filter.png)
 </Frame>
 
@@ -27,11 +27,11 @@ The Cluster Filter on the left side panel allows users to select which clusters 
 
 The dashboard metrics and visualizations update automatically based on the selected clusters.
 
-## Dashboard Views
+### Dashboard Views
 
 Users can switch between multiple system views that are available out of the box:
 
-<Frame caption="Figure: Kubex User Interface">
+<Frame caption="Figure: Kubex Dashboard Views">
 ![](/images/docs-kubex/k8s_dashboard_views.png)
 </Frame>
 
@@ -42,13 +42,13 @@ Users can switch between multiple system views that are available out of the box
 
 Users can create new views and designate them as public or as private.
 
-## Key widgets
+### Key widgets
 
 **CPU Allocatable vs Requested vs Utilized**
 
 This chart compares the allocatable CPU/Memory with what is being requested and the actual usage over time.
 
-<Frame caption="Figure: Kubex User Interface">
+<Frame caption="Figure: Cluster Usage Trends">
 ![](/images/docs-kubex/k8s_dashboard_charts.png)
 </Frame>
 
@@ -69,7 +69,7 @@ This helps identify opportunities to optimize CPU & Memory resource allocation.
 
 This section shows monthly infrastructure cost and estimated waste per cluster and node groups.
 
-<Frame caption="Figure: Kubex User Interface">
+<Frame caption="Figure: Cluster Cost/Waste">
 ![](/images/docs-kubex/k8s_dashboard_cluster_costs.png)
 </Frame>
 
@@ -85,7 +85,7 @@ This helps teams identify clusters where resource optimization could significant
 
 The Node Risks widget highlights nodes experiencing potential resource issues.
 
-<Frame caption="Figure: Kubex User Interface">
+<Frame caption="Figure: Node Risks">
 ![](/images/docs-kubex/k8s_dashboard_risks.png)
 </Frame>
 
@@ -99,6 +99,10 @@ These indicators help identify infrastructure pressure points that may impact wo
 
 This section highlights potential risks at the container level.
 
+<Frame caption="Figure: Container Risks">
+![](/images/docs-kubex/k8s_dashboard_risks.png)
+</Frame>
+
 - Containers with Memory Limit Events: # of Containers where the working set utilization is at or very close to the Memory limit in the last 7 days
 - Containers with Kill Events:	Containers terminated due to a kill event (SIGKILL)
 - Containers with CPU Throttling:	Containers experiencing CPU throttling
@@ -107,8 +111,8 @@ High values may indicate workloads that need resource tuning.
 
 **Automation**
 
-The Automation panel shows workloads that have been automatically optimized by Kubex. This helps track automated efficiency improvements.
+The Automation widget shows workloads that have been automatically optimized by Kubex. This helps track automated efficiency improvements.
 
-<Frame caption="Figure: Kubex User Interface">
+<Frame caption="Figure: Container Automation">
 ![](/images/docs-kubex/k8s_dashboard_automation.png)
 </Frame>
