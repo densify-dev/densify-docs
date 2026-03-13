@@ -111,7 +111,7 @@
                             "docs-kubex/Content/Kubex/Nodes_Tab",
                             "docs-kubex/Content/Kubex/Node-Overview-Tab"
                         ]
-                    }
+                    },
                     {
                         "group": "Advanced",
                         "pages": [
@@ -124,7 +124,7 @@
                                 ]
                             }
                         ]
-                    },
+                    }
 
                 ]
             },
