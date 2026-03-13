@@ -12,42 +12,53 @@ The following sections provide details of new features and updates introduced in
 
 This topic summarizes both new and updated features introduced in Kubex
 
-<Accordion title="4.2.0 March 10, 2026">
+<Accordion title="4.2.0 March 11, 2026">
 
     The following changes have been made to Kubex in this release:
 
     - **Kubernetes Dashboard**
       - Kubex introduces a new customizable dashboard that serves as the default landing page, enabling users to compose their own workspace using widgets for faster operational insights.
       - The dashboard includes preconfigured views that organize key metrics and charts into ready-to-use layouts. Users can customize these views by arranging widgets and visualizations to match their operational workflow.
-      - A feature flag allows users to choose whether the classic interface or the new composable dashboard is used as their default landing page.
+      - Users can choose whether the classic interface or the new dashboard is used as their default landing page.
 
-      <Frame caption="Figure: AWS ECS Recommendations">
+      <Frame caption="Figure: Kubernetes Overview">
         <img src="/images/docs-kubex/k8s_kubernetes_dashboard.png" width="100%" />
       </Frame>
 
 
-    - **PKCE Support for SSO using OpenID**
-      - PKCE (Proof Key for Code Exchange) is a security extension that enhances OAuth 2.0 authorization flows.
+    - **Improved Node and Container Visibility**
+      - Container Details now displays node names instead of only a count.
+      - Horizontal Pod Autoscaler (HPA) settings are now visible in the Container Details table.
+      - Node group and node metrics now include 5-minute metric samples.
+
+    - **API Enhancements**
+      - GPU recommendation details added to the Containers API endpoint `GET /kubernetes/clusters/<clusterName>/containers?details=true`
+
+    - **Google Cloud (GCP) Connection Support**
+      - Kubex now supports Google Cloud Platform (GCP) connections directly from the Kubex UI.
+
+      <Frame caption="Figure: Add GCP Connection">
+        <img src="/images/docs-cloudex/cloud_gcp_connection.png" width="100%" />
+      </Frame>
+
       
-    - **Cloud Summary Separates Waste and Risk**
-      - Netting out Waste and Risk hides the true savings potential. 
-      - By displaying 'waste' and 'cost of risk removal' as separate metrics, users can better understand each savings opportunity. 
-      
-      <Frame caption="Figure: Cloud Waste and Risk">
-        <img src="/images/docs-cloudex/cloud_summary_risk_waste_separation.png" width="100%" />
+    - **AWS RDS Connection Data Support**
+      - Kubex now collects and analyzes AWS RDS connection data, enabling deeper visibility into database activity and incorporating this data into platform analysis.
+
+    - **User Management**
+      - Users in the Access Manager group can now access User Management
+      - Added sign-out functionality in the Kubex UI
+
+      <Frame caption="Figure: User Management">
+        <img src="/images/docs-kubex/kubex_user_management.png" width="100%" />
       </Frame>
 
 
-    - **Node Group Cost on the Details table**
-      - Node Group costs are displayed in the details table.
-      - Costs are calculated based on the sum of the costs of all nodes running in the node group. It takes into account the # of hours each node was running.
+    - **Multi AI-Agent Support**
+      - Kubex now supports multiple AI agents, enabling users to switch between specialized agents for tasks such as predictive pod scaling, node pre-warming, container sizing, and automation impact analysis. 
 
-    - **License Compliance Report**
-      - The license compliance report has been migrated to the Kubex UI.
-      - The report shows how many Kubex licenses are being consumed against what is contractually allowed. 
-      
-      <Frame caption="Figure: License Compliance">
-        <img src="/images/docs-cloudex/license_compliance.png" width="100%" />
+      <Frame caption="Figure: User Management">
+        <img src="/images/docs-kubex/kubex_multi_ai_agent.png" width="100%" />
       </Frame>
 
 </Accordion>
