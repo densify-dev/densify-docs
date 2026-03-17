@@ -468,6 +468,12 @@
                             "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Google_OpenID",
                             "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Okta"
                         ]
+                    },
+                    {
+                        "group": "User Management",
+                        "pages": [
+                            "docs/WebHelp_Densify_Cloud/Content/Administration/Kubex_User_Mgmt_RBAC"
+                        ]
                     }
                 ]
             }
