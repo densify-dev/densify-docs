@@ -60,6 +60,21 @@ Handles creation and management of analysis policies.
 
 ## Assigning Roles
 
+### If using SSO
+If you are using Single-Sign-On (refer: [SSO Overview](/docs/WebHelp_Densify_Cloud/Content/Administration/Configuring_External_User_Authentication)), you can map your user groups to specific roles in Kubex.
+
+By default, the following user groups are mapped to roles as described above:
+- KUBEX_USER -> Analyst
+- KUBEX_USER_ADMIN -> Access Manager
+- KUBEX_AUDIT_ADMIN -> Connection Manager
+- KUBEX_POLICY_ADMIN -> Policy Manager
+
+You can create these user groups in your identity provider and assign users to them. Once SSO is configured, Kubex will automatically provision users with the appropriate roles.
+
+If you need to map existing user groups to Kubex roles, contact [support@kubex.ai](mailto:support@kubex.ai) to request an update to the mapping.
+
+
+### If not using SSO
 To assign roles to a user:
 1. Navigate to the **User Management** section.
 2. Edit or create a user and assign the desired role(s) using the checkboxes.
