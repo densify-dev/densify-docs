@@ -472,7 +472,7 @@
                     {
                         "group": "User Management",
                         "pages": [
-                            "docs/WebHelp_Densify_Cloud/Content/Administration/Kubex_UserMgmt_RBAC"
+                            "docs/WebHelp_Densify_Cloud/Content/Administration/Kubex_User_Mgmt_RBAC"
                         ]
                     }
                 ]
