@@ -5,6 +5,20 @@ title: "Overview"
 import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
 import {ContentWrapper} from "/snippets/ContentWrapper.mdx";
 
+## Initiating Container Data Collection
+
+
+
+<ContentWrapper src="/images/docs-kubex\Content\Kubex/03000115.png">
+The Kubex data collector is a container that collects data from Kubernetes using the Prometheus server and then forwards that data to Kubex.<br/>
+<br/>
+Refer to <a href="/docs-kubex/Content/Kubex/Data_Collection_Overview">Data Collection Overview</a> to get the Helm commands to deploy the data collector.
+<br/>
+You can also go directly to the GitHub page:  <a href="https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack">Kubex Collection Stack Helm Chart</a>.<br/>
+<br/>
+Other configuration options including multi-cluster and observability platforms are also supported. See <a href="/docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods" xrefformat="{u}{paratext}{/u}">Data Collection for Containers</a> or <a href="https://github.com/densify-dev/container-data-collection/blob/main/requirements.md#data-source">Github</a> for other configuration options.
+</ContentWrapper>
+
 
 
 ## Viewing and Managing Your Kubernetes Environments
@@ -14,22 +28,12 @@ import {ContentWrapper} from "/snippets/ContentWrapper.mdx";
 <ContentWrapper href="https://kubex.ai/resources/video-densify-kubex-demo-product-tour/" src="/images/docs-kubex\Content\Kubex/03000174.png">
 Watch a <a href="https://kubex.ai/resources/video-densify-kubex-demo-product-tour/">walk-through</a> with specific use cases to learn how Kubex can help optimize your Kubernetes environments.<br/>
 <br/>
-A <a href="/docs-kubex/Content/Kubex/Using_the_Tree_Viewer">tree viewer</a> and a <a href="/docs-kubex/Content/Kubex/Using_the_Tree_Viewer#ct-tabs">number of tabs</a> allow you to view your environments to better understand where resources are being wasted.<br/>
+The <a href="/docs-kubex/Content/Kubex/Kubex_Dashboard">Kubernetes dashboard</a> provides a high-level summary of cluster resources, workload usage, costs, and potential risks.
+
+Explore your <a href="/docs-kubex/Content/Kubex/Containers_Analysis">Containers</a> and the <a href="/docs-kubex/Content/Kubex/Node_Group_Analysis">Nodes</a> that host the container to better understand how resources are being used and how to optimize them.<br/>
 <br/>
 Take a guided <a href="/docs-kubex/Content/Kubex/Visualizing_Your_Data#tour">tour</a> through the significant features and find out how to view and optimize your container environments.<br/>
 </ContentWrapper>
 
 
-
-## Initiating Container Data Collection
-
-
-
-<ContentWrapper src="/images/docs-kubex\Content\Kubex/03000115.png">
-The Kubex data forwarder is a container that collects data from Kubernetes using the Prometheus server and then forwards that data to Kubex.<br/>
-<br/>
-You can quickly deploy the data forwarder and all of the required prerequisite software using a Helm chart. See <a href="https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack">Kubex Collection Stack Helm Chart</a>.<br/>
-<br/>
-Other configuration options including multi-cluster and observability platforms are also supported. See <a href="/docs-kubex/Content/Kubex/Data_Collection_Overview" xrefformat="{u}{paratext}{/u}">Data Collection for Containers</a> or <a href="https://github.com/densify-dev/container-data-collection/blob/main/requirements.md#data-source">Github</a> for other configuration options.
-</ContentWrapper>
 
