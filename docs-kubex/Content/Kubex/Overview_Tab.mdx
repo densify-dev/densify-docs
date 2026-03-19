@@ -152,7 +152,10 @@ These 2 cards summarize potential resource risks for the container and node grou
     <Tooltip tip="The total number of restarts of all containers associated with the deployment, in the last day. A dash (-) is displayed if no data has been collected.">Restarts</Tooltip>
   </li>
   <li>
-    <Tooltip tip="Indicates if the peak working set memory utilization was near or exceeded the memory limit, in the last 7 days. The table cell is shaded to clearly indicate this container is at risk.">Memory Limit Event</Tooltip>
+    <Tooltip tip="Indicates how many times this container has a sigkill in the last day">OOM Kills</Tooltip>
+  </li>
+  <li>
+    <Tooltip tip="Maximum CPU throttling seen in any 5-minute interval over the last day. High values indicate periods where CPU limits may have impacted performance.">CPU Throttling %</Tooltip>
   </li>
 </ul>
 </td><td>
