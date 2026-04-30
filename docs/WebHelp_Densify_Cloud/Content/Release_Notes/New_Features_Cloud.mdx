@@ -17,35 +17,35 @@ This topic summarizes both new and updated features introduced in Kubex
     The following changes have been made to Kubex in this release:
 
     - **Oracle Cloud Infrastructure (OCI) Support**
-      - Kubex now supports OCI connections from the Cloud Connections page
-      - Data collection and analysis are supported for OCI Virtual Machines (VMs)
-      - OCI resources are displayed across the UI similar to AWS EC2 and Azure VMs
-      - App Owner report and GraphQL API support are available
+      - Added support for OCI connections from the Cloud Connections page
+      - Enabled data collection and analysis for OCI Virtual Machines (VMs)
+      - Integrated OCI resources across the UI
+      - Added support for App Owner report
 
-    - **Container Ephemeral Storage & Optimization Enhancements**
-      - Kubex now provides ephemeral storage recommendations in both the UI and REST API
-      - Ephemeral storage policies have been introduced
+    - **Container Ephemeral Storage Optimization**
+      - Introduced ephemeral storage recommendations in the UI and REST API
+      - Added support for ephemeral storage policies
 
     - **Widget Enhancements**
-      - Kubex introduces a GPU Trend widget, providing visibility into GPU usage trends over time
-      - Kubex introduces the Prioritizer Insights widget, providing a personalized summary of recommended actions to focus on based on environment and preferences
+      - Added GPU Trend widget to visualize GPU usage over time
+      - Added Prioritizer Insights widget to summarize recommended actions to focus on based on environment and preferences
 
-     - **Policy Enhancements**
-      - Policy Viewer layout has been improved for better readability and navigation
-      - Kubex now supports configuring samples percentile in Container and Cloud policies 
+    - **Policy Enhancements**
+      - Improved Policy Viewer layout for readability and navigation
+      - Added support for configuring samples percentile in Container and Cloud policies 
 
-     - **API Enhancements**
-      - Heartbeat API endpoint for Automation Controller has been added 
+    - **API Enhancements**
+      - Added Automation Controller heartbeat endpoint: 
         `POST /automation/clusters/{clusterName}/heartbeat`
 
-     - **UI Improvements**
-      - Kubex now displayes container cost on the Container Overview page
-      - Cloud Connections page now supports Edit and Delete functionality
-      - Kubex displays a scope limit message in the Container Analysis Details tab (default = 80K manifests)
+    - **UI Improvements**
+      - Added container cost visibility to the Container Overview page
+      - Enabled Edit and Delete functionality on the Cloud Connections page
 
-     - **Access Control & Security**
-      - Okta
-      - Microsoft graph      
+    - **Access Control & Security**
+      - Added support for Okta Groups for permission management. Enabled assignment of user permissions based on group membership
+      - Added support for Microsoft Graph scopes (for example, `User.Read`) in Azure OpenID integrations
+      
 
 </Accordion>
 
