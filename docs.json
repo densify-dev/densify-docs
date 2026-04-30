@@ -103,6 +103,12 @@
                                     "docs-kubex/Content/Kubex/Automation_Overview",
                                     "docs-kubex/Content/Kubex/Automation_Tab"
                                 ]
+                            },
+                            {
+                                "group": "Resource Optimization",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/Ephemeral_Storage"
+                                ]
                             }
                         ]
                     },
