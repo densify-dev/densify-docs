@@ -34,6 +34,7 @@ This topic summarizes both new and updated features introduced in Kubex
     - **Container Ephemeral Storage Optimization**
       - Introduced ephemeral storage recommendations in the UI and REST API
       - Added support for ephemeral storage policies
+      - Note: Ephemeral storage data collection is opt-in and disabled by default
 
       <Frame caption="Figure: Ephemeral Storage Optimization">
         <img src="/images/docs-kubex/k8s_overview_ephemeralStorage.png" width="100%" />
@@ -1054,6 +1055,21 @@ A Helm chart bundles all of the components required for container data collectio
 Refer to [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md) for samples and configuration files for multi-cluster configurations.
 
 When deploying the Container Data Forwarder ensure that the same version is deployed for all of your clusters. See [Data Collection for Containers](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview)
+
+<Accordion title="4.4.0 - March 23, 2026">
+  <Accordion title="Ephemeral Storage metrics">
+    Introduced ephemeral storage metrics collection (opt-in)
+      - Enables support for ephemeral storage analysis and recommendations
+  </Accordion>
+
+  <Accordion title="Node Group Detection">
+    Added enhanced node group detection using:
+      - Kubernetes labels
+      - OpenShift machine sets
+      - Node roles
+  </Accordion>
+   
+</Accordion>
 
 <Accordion title="4.3.0 - November 28, 2025">
   <Accordion title="Google Managed Prometheus (GMP) Support">
