@@ -1,0 +1,87 @@
+---
+title: "Connecting GCP to Kubex"
+sidebarTitle: "Connecting GCP to Kubex"
+---
+
+Kubex uses an API-Key user to access your Google Cloud Platform (GCP) project. See [Google Cloud Platform Data Collection Prerequisites](/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites) for details on configuring the API-Key user and obtaining the required credentials.
+
+## Configuring GCP Connections
+
+<ol start="1">
+  <li>
+    Click the **Add** button and select GCP.
+    <Frame caption="Figure: Accessing the Add Button">
+      <img src="/images/docs-kubex/Content/Cloudex/add_cloud_connection.png"/>
+    </Frame>
+  </li>
+  <li>
+    Enter the GCP-specific connection parameters.
+    <Frame caption="Figure: GCP Connection Window">
+      <img src="/images/docs-kubex/Content/Cloudex/add_gcp_connection.png"/>
+    </Frame>
+    <Accordion title="Table: GCP Connection Parameters">
+      <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <colgroup>
+          <col style={{ width: "30%" }} />
+          <col style={{ width: "70%" }} />
+        </colgroup>
+        <thead>
+          <tr>
+            <th style={{ verticalAlign: "middle" }}>Field</th>
+            <th style={{ verticalAlign: "middle" }}>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style={{ verticalAlign: "middle" }}>Service Account Key File</td>
+            <td style={{ verticalAlign: "middle" }}>
+              The JSON key file for the service account you created in GCP for Kubex data collection.
+            </td>
+          </tr>
+          <tr>
+            <td style={{ verticalAlign: "middle" }}>Client ID</td>
+            <td style={{ verticalAlign: "middle" }}>
+              The client ID for the service account you created in GCP for Kubex data collection. This is auto filled when you upload the service account key file.
+            </td>
+          </tr>
+          <tr>
+            <td style={{ verticalAlign: "middle" }}>Client Email</td>
+            <td style={{ verticalAlign: "middle" }}>
+              The client email for the service account you created in GCP for Kubex data collection. This is auto filled when you upload the service account key file.
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </Accordion>
+  </li>
+  <li>
+    Verify your connection by clicking the **Verify Connection** button.
+    <ul>
+    <li class="ListBullet">
+    If the credentials are valid, you will be connected and authenticated.
+    </li>
+    <li class="ListBullet">
+    If the credentials cannot be validated, then review the displayed error message and correct your credentials. See <a href="/docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/GCP_Cloud_Connections">Troubleshooting GCP Cloud Connections</a> for details.
+    </li>
+    </ul>
+  </li>
+  <li>
+    Once the account is verified, the available projects that are associated with the service account are listed. Select the projects that you want to include in this connection and click **Next**.
+  </li>
+  <Frame caption="Figure: Select GCP Project Window">
+    <img src="/images/docs-kubex/Content/Cloudex/select_gcp_connection.png"/>
+  </Frame>
+  <li>
+    Review the connection details and add a name for your connection. Click **Save** to save the connection.
+  </li>
+  <Frame caption="Figure: Save GCP Connection Window">
+    <img src="/images/docs-kubex/Content/Cloudex/save_gcp_connection.png"/>
+  </Frame>
+  
+
+  <li>
+  If you want to connect another tenancy, click **Add** and repeat these steps to configure the connection.
+  </li>
+</ol>
+
