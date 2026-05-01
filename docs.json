@@ -62,6 +62,12 @@
                         "pages": [
                             "docs-kubex/Content/Kubex/Containers_Analysis",
                             {
+                                "group": "Resource Optimization",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/Ephemeral_Storage"
+                                ]
+                            },
+                            {
                                 "group": "Container Tree Viewer",
                                 "pages": [
                                     "docs-kubex/Content/Kubex/Using_the_Tree_Viewer",
