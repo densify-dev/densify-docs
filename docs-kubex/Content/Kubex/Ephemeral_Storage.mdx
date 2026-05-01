@@ -1,0 +1,31 @@
+# Ephemeral Storage Optimization
+
+Ephemeral storage is a critical yet frequently overlooked resource in Kubernetes environments. It provides containers with temporary space for logs, caches, and scratch data. Unlike persistent volumes, ephemeral storage is tied to the pod lifecycle and is typically backed by the node's local disk.
+
+While transient, inefficient ephemeral storage management can lead to performance degradation, unexpected pod evictions, and inflated infrastructure costs.
+
+## Why Optimization Matters
+
+**Preventing Pod Evictions**: Kubernetes triggers eviction policies when node-level storage is under pressure. Containers exceeding their limits or contributing to disk pressure are terminated, causing service disruptions.
+
+**Improving Resource Utilization**: Over-provisioning wastes capacity, while under-provisioning increases the risk of failures. Right-sizing storage requests and limits helps maximize node utilization.
+
+**Cost Efficiency**: Although ephemeral storage is often bundled with node costs, it still represents a finite and valuable resource. Inefficient usage can drive unnecessary scaling of nodes, indirectly increasing infrastructure costs.
+
+## Key Challenges
+
+| Challenge | Impact |
+|-----------|---------|
+| **Shared Pod Storage** | Limits are enforced at the pod level but consumed by individual containers. One "greedy" container can cause the entire pod to be evicted. |
+| **Workload Variability** | Ephemeral storage usage can be highly dynamic, driven by log generation, temporary file creation, and workload-specific behavior. |
+| **Inconsistent Configs** | Many workloads do not define explicit ephemeral storage requests and limits, relying instead on defaults. This leads to unpredictable scheduling and resource contention. |
+
+## Optimization
+
+Kubex provides intelligent ephemeral storage optimization by analyzing granular container-level usage of ephemeral storage.
+
+The optimization is based on observed storage consumption patterns over time, combined with configurable policy settings that define acceptable risk levels and optimization strategies.
+
+Each recommendation includes:
+- Recommended ephemeral storage request
+- Recommended ephemeral storage limit

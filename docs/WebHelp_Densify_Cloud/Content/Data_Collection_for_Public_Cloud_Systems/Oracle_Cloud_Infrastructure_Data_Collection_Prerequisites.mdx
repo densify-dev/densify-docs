@@ -1,0 +1,102 @@
+---
+title: "Oracle Cloud Infrastructure Data Collection Prerequisites for API Key User"
+sidebarTitle: "OCI Prerequisites"
+---
+
+## Overview
+
+Kubex currently supports data collection from an OCI tenancy using API Key user authentication. This method requires creating a dedicated user in OCI, generating an API signing key pair, and configuring appropriate policies to allow Kubex to collect Instance data.
+
+## Requirements to Create a Cloud Connection
+
+To connect Kubex to your OCI tenancy using API Key user authentication, you will need the following information for each tenancy you wish to connect:
+
+* Tenancy OCID
+* User OCID
+* Region Identifier
+* API Key Fingerprint
+* Private Key File
+
+Before configuring OCI data collection, ensure you have:
+
+- **Administrative Access**: You must have administrative privileges in your OCI tenancy or sufficient permissions to create users, groups, and policies
+- **Console Access**: Access to the [Oracle Cloud Infrastructure Console](https://cloud.oracle.com)
+
+## Creating a User, Group and Policy for Kubex Data Collection
+
+<Steps>
+    <Step title="Select the Identity Domain">
+        Sign in to the OCI Console and navigate to Identity & Security > Identity > Domains. Select the appropriate identity domain for the Kubex data collection user.
+        <Note>
+            Ensure the selected domain exists in the root compartment of your tenancy to allow Kubex access to resources across all compartments. If your tenancy has resources deployed in multiple regions, verify that the selected domain is replicated to all regions Kubex should collect data from.
+        </Note>
+    </Step>
+    <Step title="Create a Dedicated User for Kubex Data Collection">
+        In your selected Identity Domain:
+            1. Navigate to **User management** tab
+            2. Click **Create** button in the **Users** section
+            3. Fill in the required fields:
+                - Last name: `Kubex Data Collector`
+                - User name: `kubex-data-collector`
+                - (Optional) Email: `support@kubex.ai`
+            4. Click **Create** to create the user
+    </Step>
+    <Step title="Create a Group for the Kubex Data Collection User">
+        In your selected Identity Domain:
+            1. Navigate to **User management** tab
+            2. Click **Create group** button in the **Groups** section
+            3. Fill in the required fields:
+                - Name: `Kubex`
+                - Description: `Group for Kubex data collection`
+            4. Select the user you created in the previous step to add to this group
+            5. Click **Create** to create the group
+    </Step>
+    <Step title="Create Policies to Allow Kubex Data Collection">
+        1. Navigate to Identity & Security > Identity > Policies
+        2. Select the Policies tab and click **Create Policy**
+        3. Fill in the required fields:
+            - Name: `Kubex Data Collection Policy`
+            - Description: `Policy to allow Kubex data collection`
+        4. Switch to the manual editor and add the following policy statements:
+            ```
+            Allow group Kubex to inspect compartments in tenancy
+            Allow group Kubex to inspect tenancies in tenancy
+            Allow group Kubex to read instances in tenancy
+            Allow group Kubex to inspect instance-images in tenancy
+            Allow group Kubex to inspect vnic-attachments in tenancy
+            Allow group Kubex to inspect vnics in tenancy
+            Allow group Kubex to read public-ips in tenancy
+            Allow group Kubex to inspect instance-pools in tenancy
+            Allow group Kubex to inspect instance-configurations in tenancy
+            Allow group Kubex to read metrics in tenancy
+            ```
+        5. Click **Create** to create the policy and apply it to the group and user
+        <Note>
+            Ensure the policy is created in the root compartment of your tenancy.
+        </Note>
+    </Step>
+</Steps>
+
+## Obtaining the Required Credentials for Connection
+
+<Steps>
+    <Step title="Navigate to the User Details Page">
+        In your selected Identity Domain, navigate to the **User management** tab and click on the user you created for Kubex data collection 
+    </Step>
+    <Step title="Create an API Key for the User">
+        1. Click on the **API Keys** tab in the user details page
+        2. Click **Add API Key** button
+        3. Select **Generate API key pair**
+        4. Download private and public key files and save securely. The private key file will be required when configuring the cloud connection in Kubex 
+        5. Click **Add** button to create the API key and associate it with the user
+    </Step>
+    <Step title="Copy the Configuration file preview">
+        After adding the API key, a configuration file preview will be displayed. Copy the following values from the preview:
+        * user (User OCID)
+        * tenancy (Tenancy OCID)
+        * region (Region Identifier)
+        * fingerprint (API Key Fingerprint)
+    </Step>
+</Steps>
+
+Once you have the required credentials, you can add the connection in Kubex. See [Connecting OCI to Kubex](/docs-kubex/Content/Cloudex/Data_Collection_OCI_Connections) for more details.
