@@ -43,13 +43,15 @@
     "navigation": {
         "groups": [
             {
-                "group": "Home",
+                "group": "Getting Started",
                 "pages": [
-                    "index"
+                    {
+                        "group": "Introduction to Kubex"
+                    }
                 ]
             },
             {
-                "group": "Containers",
+                "group": "Kubernetes",
                 "pages": [
                     {
                         "group": "Getting Started",
