@@ -41,9 +41,9 @@
         ]
     },
     "navigation": {
-        "tabs": [
+        "anchors": [
             {
-                "tab": "Home",
+            "anchor": "Home",
                 "groups": [
                     {
                         "group": " ",
@@ -54,7 +54,7 @@
                 ]
             },
             {
-                "tab": "Containers",
+                "anchor": "Containers",
                 "groups": [
                     {
                         "group": "Getting Started",
@@ -136,7 +136,7 @@
                 ]
             },
             {
-                "tab": "Public Cloud",
+                "anchor": "Public Cloud",
                 "groups": [
                     {
                         "group": "Getting Started",
@@ -196,7 +196,7 @@
                 ]
             },
             {
-                "tab": "API Reference",
+                "anchor": "API Reference",
                       "groups": [
                           {
                               "group": "Getting Started",
@@ -442,7 +442,7 @@
                     ]
             },
             {
-                "tab": "Release Notes",
+                "anchor": "Release Notes",
                 "groups": [
                     {
                         "group": "Release Notes",
@@ -455,7 +455,7 @@
                 ]
             },
             {
-                "tab": "Administration",
+                "anchor": "Administration",
                 "groups": [
                     {
                         "group": "Single Sign On (SSO)",
