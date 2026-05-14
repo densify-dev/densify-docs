@@ -50,6 +50,42 @@
                         "pages": [
                             "docs-kubex/Content/Kubex/Getting_Started_with_Kubex"
                         ]
+                    },
+                    {
+                        "group": "Connect Your K8s Cluster",
+                        "pages": [
+                            "docs-kubex/Content/General/KubexAIAgent"
+                        ]
+                    },
+                    {
+                        "group": "Connect Your Public Cloud Accounts",
+                        "pages": [
+                            "docs-kubex/Content/General/KubexAIAgent"
+                        ]
+                    },
+                    {
+                        "group": "Kubex Dashboard",
+                        "pages": [
+                            "docs-kubex/Content/General/KubexAIAgent"
+                        ]
+                    },
+                    {
+                        "group": "Kubex AI Agent",
+                        "pages": [
+                            "docs-kubex/Content/General/KubexAIAgent"
+                        ]
+                    },
+                    {
+                        "group": "Concepts and Terminology",
+                        "pages": [
+                            "docs-kubex/Content/General/KubexAIAgent"
+                        ]
+                    },
+                    {
+                        "group": "Supported Platforms and Integrations",
+                        "pages": [
+                            "docs-kubex/Content/General/KubexAIAgent"
+                        ]
                     }
                 ]
             },
