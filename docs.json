@@ -159,6 +159,17 @@
                         ]
                     },
                     {
+                        "group": "GPU - Optimize Your GPU Resources",
+                        "pages": [
+                            "docs-kubex/Content/Kubex/Node_Group_Analysis",
+                            "docs-kubex/Content/Kubex/Using_the_Node_Tree_Viewer",
+                            "docs-kubex/Content/Kubex/Node_Group_Analysis_Table",
+                            "docs-kubex/Content/Kubex/Node-Group-Overview_Tab",
+                            "docs-kubex/Content/Kubex/Nodes_Tab",
+                            "docs-kubex/Content/Kubex/Node-Overview-Tab"
+                        ]
+                    },
+                    {
                         "group": "Automation - Take Action with Confidence",
                         "pages": [
                             "docs-kubex/Content/Kubex/Node_Group_Analysis",
@@ -170,7 +181,7 @@
                         ]
                     },
                     {
-                        "group": "Navigation the User Interface",
+                        "group": "User Interface",
                         "pages": [
                             "docs-kubex/Content/Kubex/Node_Group_Analysis"
                         ]
@@ -181,13 +192,7 @@
                 "group": "Public Cloud",
                 "pages": [
                     {
-                        "group": "Getting Started",
-                        "pages": [
-                            "docs-kubex/Content/Cloudex/Getting_Started_with_Cloudex"
-                        ]
-                    },
-                    {
-                        "group": "Public Cloud Analysis",
+                        "group": "Instance Type Optimization",
                         "pages": [
                             "docs-kubex/Content/Cloudex/Cloud_Analysis",
                             "docs-kubex/Content/Cloudex/Using_the_Cloud_Tree_Viewer",
@@ -205,7 +210,7 @@
                         ]
                     },
                     {
-                        "group": "Data Collection",
+                        "group": "Scale Group Optimization",
                         "pages": [
                             "docs-kubex/Content/Cloudex/Data_Collection_Overview-Cloud",
                             {
@@ -234,27 +239,23 @@
                             },
                             "docs-kubex/Content/Cloudex/Cloud_Connections"
                         ]
-                    }
-                ]
-            },
-            {
-                "group": "Release Notes",
-                "pages": [
-                    "docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud",
-                    "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Resolved_Issues-Cloud",
-                    "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Third_Party_Software_Updates-Cloud"
-                ]
-            },
-            {
-                "group": "Administration",
-                "pages": [
+                    },
                     {
-                        "group": "Single Sign On (SSO)",
+                        "group": "User Interface",
                         "pages": [
-                            "docs/WebHelp_Densify_Cloud/Content/Administration/Configuring_External_User_Authentication",
-                            "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Azure_Active_Directory",
-                            "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Google_OpenID",
-                            "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Okta"
+                            "docs-kubex/Content/Cloudex/Cloud_Analysis",
+                            "docs-kubex/Content/Cloudex/Using_the_Cloud_Tree_Viewer",
+                            "docs-kubex/Content/Cloudex/Summary_Tab-Cloud",
+                            {
+                                "group": "Analysis Details Tab",
+                                "pages": [
+                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Tab-Cloud",
+                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Table-Cloud",
+                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Modal-Cloud"
+                                ]
+                            },
+                            "docs-kubex/Content/Cloudex/Overview_Tab-Cloud",
+                            "docs-kubex/Content/Cloudex/Catalog_Map_Tab"
                         ]
                     }
                 ]
@@ -504,7 +505,29 @@
                             ]
                         }
                     ]
-            }
+            },
+            {
+                "group": "Release Notes",
+                "pages": [
+                    "docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud",
+                    "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Resolved_Issues-Cloud",
+                    "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Third_Party_Software_Updates-Cloud"
+                ]
+            },
+            {
+                "group": "Administration",
+                "pages": [
+                    {
+                        "group": "Single Sign On (SSO)",
+                        "pages": [
+                            "docs/WebHelp_Densify_Cloud/Content/Administration/Configuring_External_User_Authentication",
+                            "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Azure_Active_Directory",
+                            "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Google_OpenID",
+                            "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Okta"
+                        ]
+                    }
+                ]
+            },
         ]
     },
     "logo": {
