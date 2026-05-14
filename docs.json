@@ -52,7 +52,7 @@
                         ]
                     },
                     {
-                        "group": "Connect Your K8s Cluster",
+                        "group": "Connect Your Kubernetes Clusters",
                         "pages": [
                             "docs-kubex/Content/General/KubexAIAgent"
                         ]
@@ -90,7 +90,7 @@
                 ]
             },
             {
-                "group": "Kubernetes",
+                "group": "Kubernetes Optimization",
                 "pages": [
                     {
                         "group": "Reduce Waste - Maximizing Efficiency",
@@ -159,7 +159,7 @@
                         ]
                     },
                     {
-                        "group": "GPU - Optimize Your GPU Resources",
+                        "group": "GPU Optimization",
                         "pages": [
                             "docs-kubex/Content/Kubex/Node_Group_Analysis",
                             "docs-kubex/Content/Kubex/Using_the_Node_Tree_Viewer",
@@ -181,7 +181,7 @@
                         ]
                     },
                     {
-                        "group": "User Interface",
+                        "group": "Workload Insights",
                         "pages": [
                             "docs-kubex/Content/Kubex/Node_Group_Analysis"
                         ]
@@ -189,7 +189,7 @@
                 ]
             },
             {
-                "group": "Public Cloud",
+                "group": "Public Cloud Optimization",
                 "pages": [
                     {
                         "group": "Instance Type Optimization",
@@ -241,7 +241,7 @@
                         ]
                     },
                     {
-                        "group": "User Interface",
+                        "group": "Cloud Insights",
                         "pages": [
                             "docs-kubex/Content/Cloudex/Cloud_Analysis",
                             "docs-kubex/Content/Cloudex/Using_the_Cloud_Tree_Viewer",
