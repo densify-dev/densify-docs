@@ -46,7 +46,10 @@
                 "group": "Getting Started",
                 "pages": [
                     {
-                        "group": "Introduction to Kubex"
+                        "group": "Introduction to Kubex",
+                        "pages": [
+                            "docs-kubex/Content/Kubex/Getting_Started_with_Kubex"
+                        ]
                     }
                 ]
             },
