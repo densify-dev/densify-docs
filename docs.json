@@ -41,21 +41,16 @@
         ]
     },
     "navigation": {
-        "anchors": [
+        "groups": [
             {
-            "anchor": "Home",
-                "groups": [
-                    {
-                        "group": " ",
-                        "pages": [
-                            "index"
-                        ]
-                    }
+                "group": "Home",
+                "pages": [
+                    "index"
                 ]
             },
             {
-                "anchor": "Containers",
-                "groups": [
+                "group": "Containers",
+                "pages": [
                     {
                         "group": "Getting Started",
                         "pages": [
@@ -136,8 +131,8 @@
                 ]
             },
             {
-                "anchor": "Public Cloud",
-                "groups": [
+                "group": "Public Cloud",
+                "pages": [
                     {
                         "group": "Getting Started",
                         "pages": [
@@ -218,8 +213,8 @@
                 ]
             },
             {
-                "anchor": "API Reference",
-                      "groups": [
+                "group": "API Reference",
+                "pages": [
                           {
                               "group": "Getting Started",
                               "pages": [
@@ -463,10 +458,7 @@
                         }
                     ]
             }
-        ],
-        "global": {
-            "anchors": []
-        }
+        ]
     },
     "logo": {
         "light": "images/kubex-logo-light.png",
