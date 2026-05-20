@@ -45,34 +45,37 @@
             {
                 "group": "Getting Started",
                 "pages": [
-                    {
-                        "group": "Introduction to Kubex",
-                        "pages": [
-                            "docs-kubex/Content/General/Kubex_Overview"
-                        ]
-                    },
-                    {
-                        "group": "Connect Your Kubernetes Clusters",
-                        "pages": [
-                            "docs-kubex/Content/General/KubexAIAgent"
-                        ]
-                    },
+                    "docs-kubex/Content/General/Kubex_Overview",
+                    "docs-kubex/Content/Kubex/Data_Collection_Overview",
                     {
                         "group": "Connect Your Public Cloud Accounts",
                         "pages": [
-                            "docs-kubex/Content/General/KubexAIAgent"
-                        ]
-                    },
-                    {
-                        "group": "Kubex Dashboard",
-                        "pages": [
-                            "docs-kubex/Content/General/KubexAIAgent"
-                        ]
-                    },
-                    {
-                        "group": "Kubex AI Agents",
-                        "pages": [
-                            "docs-kubex/Content/General/KubexAIAgent"
+                            "docs-kubex/Content/Cloudex/Data_Collection_Overview-Cloud",
+                            {
+                                "group": "AWS Data Collection",
+                                "pages": [
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_",
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template",
+                                    "docs-kubex/Content/Cloudex/Data_Collection_AWS_Connections",
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/AWS_Cloud_Connections"
+                                ]
+                            },
+                            {
+                                "group": "Azure Data Collection",
+                                "pages": [
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal",
+                                    "docs-kubex/Content/Cloudex/Data_Collection_Azure_Connections",
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/Azure_Cloud_Connections"
+                                ]
+                            },
+                            {
+                                "group": "GCP Data Collection",
+                                "pages": [
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites",
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/GCP_Cloud_Connections"
+                                ]
+                            },
+                            "docs-kubex/Content/Cloudex/Cloud_Connections"
                         ]
                     },
                     {
@@ -93,7 +96,7 @@
                 "group": "Kubernetes Optimization",
                 "pages": [
                     {
-                        "group": "Reduce Waste - Maximizing Efficiency",
+                        "group": "Pod Optimization",
                         "pages": [
                             "docs-kubex/Content/Kubex/Getting_Started_with_Kubex",
                             "docs-kubex/Content/Kubex/Visualizing_Your_Data",
