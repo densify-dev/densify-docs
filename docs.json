@@ -95,16 +95,9 @@
             {
                 "group": "Kubernetes Optimization",
                 "pages": [
+                    "docs-kubex/Content/Kubex/container_optimization",
                     {
-                        "group": "Pod Optimization",
-                        "pages": [
-                            "docs-kubex/Content/Kubex/Getting_Started_with_Kubex",
-                            "docs-kubex/Content/Kubex/Visualizing_Your_Data",
-                            "docs-kubex/Content/General/KubexAIAgent"
-                        ]
-                    },
-                    {
-                        "group": "Reduce Risk - Ensure Reliability",
+                        "group": "Node Optimization",
                         "pages": [
                             "docs-kubex/Content/Kubex/Containers_Analysis",
                             {
