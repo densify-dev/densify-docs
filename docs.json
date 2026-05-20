@@ -95,7 +95,13 @@
             {
                 "group": "Kubernetes Optimization",
                 "pages": [
-                    "docs-kubex/Content/Kubex/container_optimization",
+                    {
+                        "group": "Container Optimization",
+                        "pages": [
+                            "docs-kubex/Content/Kubex/container_optimization",
+                            "docs-kubex/Content/Kubex/k8s_container_policy"
+                        ]
+                    },
                     {
                         "group": "Node Optimization",
                         "pages": [
@@ -142,6 +148,7 @@
                                 "group": "Policy Overview",
                                 "pages": [
                                     "docs-kubex/Content/Kubex/Policy_Overview",
+                                    "docs-kubex/Content/Kubex/k8s_container_policy",
                                     "docs-kubex/Content/Kubex/Policies_Tab"
                                 ]
                             },
@@ -157,12 +164,7 @@
                     {
                         "group": "GPU Optimization",
                         "pages": [
-                            "docs-kubex/Content/Kubex/Node_Group_Analysis",
-                            "docs-kubex/Content/Kubex/Using_the_Node_Tree_Viewer",
-                            "docs-kubex/Content/Kubex/Node_Group_Analysis_Table",
-                            "docs-kubex/Content/Kubex/Node-Group-Overview_Tab",
-                            "docs-kubex/Content/Kubex/Nodes_Tab",
-                            "docs-kubex/Content/Kubex/Node-Overview-Tab"
+                            "docs-kubex/Content/Kubex/gpu_optimization"
                         ]
                     },
                     {
