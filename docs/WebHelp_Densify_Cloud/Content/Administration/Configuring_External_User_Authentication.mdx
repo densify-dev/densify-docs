@@ -2,14 +2,14 @@
 title: "Overview"
 ---
 
-Kubex provides the capability to authenticate users through external identity providers, that support the OpenID Connect specification. OpenID provides a framework for communicating between an identity provider and the OpenID acceptor, such as Okta and Microsoft Azure AD.
+Kubex provides the capability to authenticate users through external identity providers, that support the OpenID Connect specification. OpenID provides a framework for communicating between an identity provider and the OpenID acceptor, such as Okta and Microsoft Entra ID.
 
 When authenticating users externally, authentication of Kubex users is first delegated to an external identity provider.
 
 A user can be authenticated in one of two ways:
 
 * Local user--The account is created and validated within Kubex. For on-premise deployments, you can configure a local account linked to a Windows® Active Directory™ account to access Kubex. Windows® Active Directory™ is not supported for SaaS deployments.
-* Externally authentication--These users are authenticated through an external identity provider, that support the OpenID Connect specification. Only the following external identity providers are supported:
+* External authentication--These users are authenticated through an external identity provider, that support the OpenID Connect specification. Only the following external identity providers are supported:
 
 <table>
 <col/>
@@ -19,7 +19,7 @@ A user can be authenticated in one of two ways:
 <td>
 <ul>
 <li><a href="./External_User_Authentication_Example_Configuration_for_Google_OpenID">Google OpenID</a></li>
-<li><a href="./External_User_Authentication_Example_Configuration_for_Azure_Active_Directory">Microsoft Azure AD</a></li>
+<li><a href="./External_User_Authentication_Example_Configuration_for_Azure_Active_Directory">Microsoft Entra ID</a></li>
 </ul>
 </td>
 <td>
@@ -33,7 +33,7 @@ A user can be authenticated in one of two ways:
 </table>
 
 <Note>
-Once Open ID is enabled, users must exist in their OpenID provider before they can access Kubex. Users that are created in the Kubex user management console must use the same email address as their user ID in Azure, Okta or Google.
+Once Open ID is enabled, users must exist in their OpenID provider before they can access Kubex. Users that are created in the Kubex user management console must use the same email address as their user ID in Microsoft Entra ID, Okta or Google.
 </Note>
 
 
@@ -41,7 +41,7 @@ Once Open ID is enabled, users must exist in their OpenID provider before they c
 Once configured you can access either the Kubex Console or the Analysis Console using the configured connection.
 
 <Note>
-The one exception is Google OpenID. When using Google Open ID, only the Kubex Console is supported. If you try to access the Analysis Console, the connection request will fail. If you need to access the Analysis Console, use AzureAD, Okta or Ping.
+The one exception is Google OpenID. When using Google Open ID, only the Kubex Console is supported. If you try to access the Analysis Console, the connection request will fail. If you need to access the Analysis Console, use Microsoft Entra ID, Okta or Ping.
 </Note>
 
 
@@ -52,7 +52,7 @@ The one exception is Google OpenID. When using Google Open ID, only the Kubex Co
 
 Before you can configure the feature in Kubex, you must register Kubex with your identity provider. You need to provide information about the application type, login/logout URLs etc. This is a standard procedure across all applications using OpenID for authentication.
 
-Kubex supports: [Google OpenID](./External_User_Authentication_Example_Configuration_for_Google_OpenID), [Microsoft Azure AD](./External_User_Authentication_Example_Configuration_for_Azure_Active_Directory), [Okta](./External_User_Authentication_Example_Configuration_for_Okta) and Ping as external identity providers.
+Kubex supports: [Google OpenID](./External_User_Authentication_Example_Configuration_for_Google_OpenID), [Microsoft Entra ID](./External_User_Authentication_Example_Configuration_for_Azure_Active_Directory), [Okta](./External_User_Authentication_Example_Configuration_for_Okta) and Ping as external identity providers.
 
 <Accordion title="Table: Configuring Kubex with the Identity Provider">
 <table>
@@ -83,7 +83,7 @@ Kubex supports: [Google OpenID](./External_User_Authentication_Example_Configura
 </td>
 <td>
 <p>This is the callback URL to your <span class="mc-variable Document.Densify variable">Kubex</span> instance where the identity provider redirects the user after they have been authenticated. </p>
-<p>https://\<my-kubex-instance>:443/</p>
+<p>https://\<instancename>.kubex.ai:443</p>
 <p>The HTTP redirect URIs must be protected with TLS security, so the service will only redirect to URIs beginning with "https". This prevents tokens from being intercepted during the authorization process.</p>
 </td>
 </tr>
@@ -94,13 +94,13 @@ Kubex supports: [Google OpenID](./External_User_Authentication_Example_Configura
 <td>
 <p>A logout URL is a URL in  your <span class="mc-variable Document.Densify variable">Kubex</span> instance that the identity provider can return to after the user has been logged out of the authorization server. </p>
 <ul>
-<li>https://\<my-kubex-instance>/ (for the <span class="mc-variable Document.Densify_Console variable">Kubex Console</span>)</li>
-<li>https://\<my-kubex-instance>:443/admin (for the <span class="mc-variable Document.Analysis_Console variable">Analysis Console</span>)</li>
-<li>https://\<my-kubex-instance>:443/openIdError</li>
+<li>https://\<instancename>.kubex.ai (for the <span class="mc-variable Document.Densify_Console variable">Kubex Console</span>)</li>
+<li>https://\<instancename>.kubex.ai:443/admin (for the <span class="mc-variable Document.Analysis_Console variable">Analysis Console</span>)</li>
+<li>https://\<instancename>.kubex.ai:443/openIdError</li>
 </ul>
 <p>When using Google OpenID Connect only the following is required:</p>
 <ul>
-<li>https://\<my-kubex-instance>:443/openIdError</li>
+<li>https://\<instancename>.kubex.ai:443/openIdError</li>
 </ul>
 </td>
 </tr>
@@ -110,6 +110,7 @@ Kubex supports: [Google OpenID](./External_User_Authentication_Example_Configura
 </td>
 <td>
 <ul>
+<li>openid</li>
 <li>Profile</li>
 <li>Email – If not available, <span class="mc-variable Document.Company variable">Kubex</span> will use the preferred user name (preferred_username) value of the claim to verify that the user is registered with <span class="mc-variable Document.Company variable">Kubex</span>. <span class="mc-variable Document.Company variable">Kubex</span> assumes this is an email address.</li>
 </ul>
@@ -185,6 +186,6 @@ Validation is only performed on the mandatory fields defined in the OpenID Conne
 
 The next section contains the following topics:
 
-- [External User Authentication Example Configuration for Azure Active Directory](/docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Azure_Active_Directory)
+- [External User Authentication Example Configuration for Microsoft Entra ID](/docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Azure_Active_Directory)
 - [External User Authentication Example Configuration for Google OpenID](/docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Google_OpenID)
 - [External User Authentication Example Configuration for Okta](/docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Okta)

@@ -16,10 +16,8 @@ paths:
       description: >
         Initiates AWS CloudWatch data collection and runs optimization analysis.
         Subsequent data collection and analysis are scheduled nightly.
-        If `triggerAdhocAudit` is provided, runs a one-time historical audit
-        (up to 60 days, optionally narrowed via start/end offsets). If an
-        analysis already exists, this endpoint re-runs analysis without data
-        collection and can update the webhook for result delivery.
+        If an analysis already exists, this endpoint re-runs analysis and can update 
+        the webhook for result delivery.
       tags: [AWS Analyze]
       requestBody:
         required: true
@@ -127,19 +125,35 @@ components:
       type: object
       description: Minimal representation of an AWS analysis created by the system.
       properties:
-        analysisId:
-          type: string
         accountId:
           type: string
+          description: AWS account ID linked to the analysis.
+        accountName:
+          type: string
+          description: Friendly account display name, when configured.
+        analysisName:
+          type: string
+          description: Internal name assigned to the analysis (defaults to accountId).
+        policyInstanceId:
+          type: string
+          description: Identifier of the policy instance applied to this analysis.
+        policyName:
+          type: string
+          description: Human-readable policy name applied to the analysis.
+        analysisId:
+          type: string
+          description: Unique identifier for the analysis entity.
         href:
           type: string
-          description: Link to the analysis entity or status.
-        createdOn:
+          description: Link to the analysis resource.
+        analysisStatus:
           type: string
-          format: date-time
-        lastRunOn:
+          description: Link to the status endpoint for this analysis.
+        analysisResults:
           type: string
-          format: date-time
-        webhookConfigured:
-          type: boolean
-      additionalProperties: true
+          description: Link to the results endpoint for this analysis run.
+        analysisCompletedOn:
+          type: integer
+          format: int64
+          description: Unix epoch timestamp (ms) of the latest completed analysis run.
+

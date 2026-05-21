@@ -96,45 +96,42 @@
                         "pages": [
                             "docs-kubex/Content/Kubex/Containers_Analysis",
                             {
-                                "group": "Data Collection ",
+                                "group": "Resource Optimization",
                                 "pages": [
-                                    "docs-kubex/Content/Kubex/Data_Collection_Overview",
-                                    {
-                                        "group": "Alternate Data Collection Methods",
-                                        "pages": [
-                                            "docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods",
-                                            "docs-kubex/Content/Kubex/Data_Collection_Prerequisites",
-                                            "docs-kubex/Content/Kubex/Data_Collection_Additional_Considerations"
-                                        ]
-                                    }
+                                    "docs-kubex/Content/Kubex/Ephemeral_Storage"
                                 ]
                             },
                             {
-                                "group": "Using the Tree Viewer",
+                                "group": "Container Tree Viewer",
                                 "pages": [
                                     "docs-kubex/Content/Kubex/Using_the_Tree_Viewer",
                                     "docs-kubex/Content/Kubex/Creating_Custom_Views",
                                     "docs-kubex/Content/Kubex/Creating_Custom_Filters"
                                 ]
                             },
-                            "docs-kubex/Content/Kubex/Summary_Tab",
-                            "docs-kubex/Content/Kubex/Breakdown_Tab",
-                            "docs-kubex/Content/Kubex/Histograms_Tab",
-                            "docs-kubex/Content/Kubex/Overview_Tab",
-                            "docs-kubex/Content/Kubex/GPU_Tab",
-                            "docs-kubex/Content/Kubex/Metrics_Viewer_Tab",
-                            {
-                                "group": "Analysis Details Tab",
+                            {                            
+                                "group": "Container Data Tabs",
                                 "pages": [
-                                    "docs-kubex/Content/Kubex/AI_Analysis_Details_Tab",
-                                    "docs-kubex/Content/Kubex/AI_Analysis_Details_Table",
-                                    "docs-kubex/Content/Kubex/Using_Table_Column_Features",
-                                    "docs-kubex/Content/Kubex/Using_Filters",
-                                    "docs-kubex/Content/Kubex/AI_Analysis_Details_Charts"
+                                    "docs-kubex/Content/Kubex/Summary_Tab",
+                                    "docs-kubex/Content/Kubex/Breakdown_Tab",
+                                    "docs-kubex/Content/Kubex/Histograms_Tab",
+                                    "docs-kubex/Content/Kubex/Overview_Tab",
+                                    "docs-kubex/Content/Kubex/GPU_Tab",
+                                    "docs-kubex/Content/Kubex/Metrics_Viewer_Tab",
+                                    {
+                                        "group": "Analysis Details Tab",
+                                        "pages": [
+                                            "docs-kubex/Content/Kubex/AI_Analysis_Details_Tab",
+                                            "docs-kubex/Content/Kubex/AI_Analysis_Details_Table",
+                                            "docs-kubex/Content/Kubex/Using_Table_Column_Features",
+                                            "docs-kubex/Content/Kubex/Using_Filters",
+                                            "docs-kubex/Content/Kubex/AI_Analysis_Details_Charts"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "group": "Policy Overview",
+                                "group": "Container Policy",
                                 "pages": [
                                     "docs-kubex/Content/Kubex/Policy_Overview",
                                     "docs-kubex/Content/Kubex/k8s_container_policy",
@@ -142,7 +139,7 @@
                                 ]
                             },
                             {
-                                "group": "Automation Overview",
+                                "group": "Container Automation",
                                 "pages": [
                                     "docs-kubex/Content/Kubex/Automation_Overview",
                                     "docs-kubex/Content/Kubex/Automation_Tab"
@@ -174,6 +171,7 @@
                             "docs-kubex/Content/Kubex/Metrics_Viewer_Tab"
                         ]
                     }
+
                 ]
             },
             {
@@ -222,7 +220,16 @@
                                 "group": "GCP Data Collection",
                                 "pages": [
                                     "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites",
+                                    "docs-kubex/Content/Cloudex/Data_Collection_GCP_Connections",
                                     "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/GCP_Cloud_Connections"
+                                ]
+                            },
+                            {
+                                "group": "OCI Data Collection",
+                                "pages": [
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Oracle_Cloud_Infrastructure_Data_Collection_Prerequisites",
+                                    "docs-kubex/Content/Cloudex/Data_Collection_OCI_Connections",
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/OCI_Cloud_Connections"
                                 ]
                             },
                             "docs-kubex/Content/Cloudex/Cloud_Connections"
@@ -512,6 +519,12 @@
                             "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Azure_Active_Directory",
                             "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Google_OpenID",
                             "docs/WebHelp_Densify_Cloud/Content/Administration/External_User_Authentication_Example_Configuration_for_Okta"
+                        ]
+                    },
+                    {
+                        "group": "User Management",
+                        "pages": [
+                            "docs/WebHelp_Densify_Cloud/Content/Administration/Kubex_User_Mgmt_RBAC"
                         ]
                     }
                 ]

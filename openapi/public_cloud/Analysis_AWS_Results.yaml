@@ -15,7 +15,7 @@ paths:
       tags: [AWS Analysis]
       summary: AWS recommendations using analysisId
       description: >
-        Returns optimization recommendations for systems (EC2, RDS, ASG, SPOT) in the
+        Returns optimization recommendations for systems (EC2, RDS, ASG) in the
         specified analysis. Use the `Accept` header to choose the representation:
         `application/json` (array of recommendation objects) or `application/terraform-map`
         (Terraform-style map where each key is the system's **provisioningId** or name).
@@ -83,7 +83,7 @@ paths:
           name: serviceType
           schema:
             type: string
-            enum: [EC2, RDS, ASG, SPOT]
+            enum: [EC2, RDS, ASG]
           description: Filter by AWS service type.
         - in: query
           name: approvalType
@@ -244,7 +244,7 @@ components:
         recommendedCost: { type: number }
         serviceType:
           type: string
-          enum: [EC2, RDS, ASG, SPOT]
+          enum: [EC2, RDS, ASG]
         currentHourlyRate: { type: number }
         recommendedHourlyRate: { type: number }
         currentRiCoverage: { type: integer }

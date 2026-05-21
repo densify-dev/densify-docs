@@ -1,0 +1,92 @@
+---
+title: "Connecting OCI to Kubex"
+sidebarTitle: "Connecting OCI to Kubex"
+---
+
+Kubex uses an API-Key user to access your Oracle Cloud Infrastructure (OCI) tenancy. See [Oracle Cloud Infrastructure Data Collection Prerequisites](/docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Oracle_Cloud_Infrastructure_Data_Collection_Prerequisites) for details on configuring the API-Key user and obtaining the required credentials.
+
+## Configuring OCI Connections
+
+<ol start="1">
+  <li>
+    Click the **Add** button and select OCI.
+    <Frame caption="Figure: Accessing the Add Button">
+      <img src="/images/docs-kubex/Content/Cloudex/add_cloud_connection.png"/>
+    </Frame>
+  </li>
+  <li>
+    Enter the OCI-specific connection parameters.
+    <Frame caption="Figure: OCI Connection Window">
+      <img src="/images/docs-kubex/Content/Cloudex/add_oci_connection.png"/>
+    </Frame>
+    <Accordion title="Table: OCI Connection Parameters">
+      <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <colgroup>
+          <col style={{ width: "30%" }} />
+          <col style={{ width: "70%" }} />
+        </colgroup>
+        <thead>
+          <tr>
+            <th style={{ verticalAlign: "middle" }}>Field</th>
+            <th style={{ verticalAlign: "middle" }}>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style={{ verticalAlign: "middle" }}>Tenancy OCID</td>
+            <td style={{ verticalAlign: "middle" }}>
+              The Oracle Cloud Identifier (OCID) for your tenancy.
+            </td>
+          </tr>
+          <tr>
+            <td style={{ verticalAlign: "middle" }}>User OCID</td>
+            <td style={{ verticalAlign: "middle" }}>
+              The OCID for the API-Key user you created in the OCI Console for Kubex data collection.
+            </td>
+          </tr>
+          <tr>
+            <td style={{ verticalAlign: "middle" }}>Region Identifier</td>
+            <td style={{ verticalAlign: "middle" }}>
+              The identifier for the home region assigned to your tenancy.
+            </td>
+          </tr>
+          <tr>
+            <td style={{ verticalAlign: "middle" }}>API Key Fingerprint</td>
+            <td style={{ verticalAlign: "middle" }}>
+              The fingerprint for the API key you created in OCI for the Kubex data collection user.
+            </td>
+          </tr>
+          <tr>
+            <td style={{ verticalAlign: "middle" }}>Private Key File</td>
+            <td style={{ verticalAlign: "middle" }}>
+              The private key file you created in OCI for the Kubex data collection user. This file must be in PEM format.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </Accordion>
+  </li>
+  <li>
+    Verify your connection by clicking the **Verify Connection** button.
+    <ul>
+    <li class="ListBullet">
+    If the credentials are valid, you will be connected and authenticated.
+    </li>
+    <li class="ListBullet">
+    If the credentials cannot be validated, then review the displayed error message and correct your credentials. See <a href="/docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/OCI_Cloud_Connections">Troubleshooting OCI Cloud Connections</a> for details.
+    </li>
+    </ul>
+  </li>
+  <li>
+    Once the connection to the tenancy is verified, you can edit the connection name or use the prefilled tenancy name. This name will appear in the **Cloud Connections** list so you can easily identify this connection. When ready, click the **Save** button to save your connection.
+  </li>
+  
+  <Frame caption="Figure: Save OCI Connection Window">
+    <img src="/images/docs-kubex/Content/Cloudex/save_oci_connection.png"/>
+  </Frame>
+
+  <li>
+  If you want to connect another tenancy, click **Add** and repeat these steps to configure the connection.
+  </li>
+</ol>
+

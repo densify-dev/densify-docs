@@ -12,6 +12,113 @@ The following sections provide details of new features and updates introduced in
 
 This topic summarizes both new and updated features introduced in Kubex
 
+<Accordion title="4.4.0 April 29, 2026">
+
+    The following changes have been made to Kubex in this release:
+
+    - **Oracle Cloud Infrastructure (OCI) Support**
+      - Added support for OCI connections from the Cloud Connections page
+      - Enabled data collection and optimization for OCI Virtual Machines (VMs)
+      - Added support for App Owner report
+
+      <Frame caption="Figure: Add OCI Connection">
+        <img src="/images/docs-cloudex/cloud_oci_connection.png" width="100%" />
+      </Frame>
+
+      <Frame caption="Figure: OCI Optimization">
+        <img src="/images/docs-cloudex/cloud_oci_summary.png" width="100%" />
+      </Frame>
+
+
+    - **Container Ephemeral Storage Optimization**
+      - Introduced ephemeral storage recommendations in the UI and REST API
+      - Added support for ephemeral storage policies
+      - Note: Ephemeral storage data collection is opt-in and disabled by default
+
+      <Frame caption="Figure: Ephemeral Storage Optimization">
+        <img src="/images/docs-kubex/k8s_overview_ephemeralStorage.png" width="100%" />
+      </Frame>
+
+
+    - **Widget Enhancements**
+      - Added GPU Trend widget to visualize GPU usage over time
+      - Added Prioritizer Insights widget to summarize recommended actions to focus on based on environment and preferences
+
+    - **Policy Enhancements**
+      - Improved Policy Viewer layout for readability and navigation
+      - Added support for configuring samples percentile in Container and Cloud policies 
+
+      <Frame caption="Figure: Container Policy">
+        <img src="/images/docs-kubex/k8s_policy.png" width="100%" />
+      </Frame>
+
+
+    - **API Enhancements**
+      - Added Automation Controller heartbeat endpoint: 
+        `POST /automation/clusters/{clusterName}/heartbeat`
+
+    - **UI Improvements**
+      - Added container cost visibility to the Container Overview page
+      - Enabled Edit and Delete functionality on the Cloud Connections page
+
+    - **Access Control & Security**
+      - Added support for Okta Groups for permission management. Enabled assignment of user permissions based on group membership
+      - Added support for Microsoft Graph scopes (for example, `User.Read`) in Azure OpenID integrations
+      
+
+</Accordion>
+
+<Accordion title="4.2.0 March 11, 2026">
+
+    The following changes have been made to Kubex in this release:
+
+    - **Kubernetes Dashboard**
+      - Kubex introduces a new customizable dashboard that serves as the default landing page, enabling users to compose their own workspace using widgets for faster operational insights.
+      - The dashboard includes preconfigured views that organize key metrics and charts into ready-to-use layouts. Users can customize these views by arranging widgets and visualizations to match their operational workflow.
+      - Users can choose whether the classic interface or the new dashboard is used as their default landing page.
+
+      <Frame caption="Figure: Kubernetes Overview">
+        <img src="/images/docs-kubex/k8s_kubernetes_dashboard.png" width="100%" />
+      </Frame>
+
+
+    - **Improved Node and Container Visibility**
+      - Container Details now displays node names instead of only a count.
+      - Horizontal Pod Autoscaler (HPA) settings are now visible in the Container Details table.
+      - Node group and node metrics now include 5-minute metric samples.
+
+    - **API Enhancements**
+      - GPU recommendation details added to the Containers API endpoint `GET /kubernetes/clusters/<clusterName>/containers?details=true`
+
+    - **Google Cloud (GCP) Connection Support**
+      - Kubex now supports Google Cloud Platform (GCP) connections directly from the Kubex UI.
+
+      <Frame caption="Figure: Add GCP Connection">
+        <img src="/images/docs-cloudex/cloud_gcp_connection.png" width="100%" />
+      </Frame>
+
+      
+    - **AWS RDS Connection Data Support**
+      - Kubex now collects and analyzes AWS RDS connection data, enabling deeper visibility into database activity and incorporating this data into platform analysis.
+
+    - **User Management**
+      - Users in the Access Manager group can now access User Management
+      - Added sign-out functionality in the Kubex UI
+
+      <Frame caption="Figure: User Management">
+        <img src="/images/docs-kubex/kubex_user_management.png" width="100%" />
+      </Frame>
+
+
+    - **Multi AI-Agent Support**
+      - Kubex now supports multiple AI agents, enabling users to switch between specialized agents for tasks such as predictive pod scaling, node pre-warming, container sizing, and automation impact analysis. 
+
+      <Frame caption="Figure: Multi AI-Agent Support">
+        <img src="/images/docs-kubex/kubex_multi_ai_agent.png" width="100%" />
+      </Frame>
+
+</Accordion>
+
 <Accordion title="4.1.0 January 21, 2026">
 
     The following changes have been made to Kubex in this release:
@@ -947,6 +1054,21 @@ A Helm chart bundles all of the components required for container data collectio
 Refer to [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md) for samples and configuration files for multi-cluster configurations.
 
 When deploying the Container Data Forwarder ensure that the same version is deployed for all of your clusters. See [Data Collection for Containers](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview)
+
+<Accordion title="4.4.0 - March 23, 2026">
+  <Accordion title="Ephemeral Storage metrics">
+    Introduced ephemeral storage metrics collection (opt-in)
+      - Enables support for ephemeral storage analysis and recommendations
+  </Accordion>
+
+  <Accordion title="Node Group Detection">
+    Added enhanced node group detection using:
+      - Kubernetes labels
+      - OpenShift machine sets
+      - Node roles
+  </Accordion>
+   
+</Accordion>
 
 <Accordion title="4.3.0 - November 28, 2025">
   <Accordion title="Google Managed Prometheus (GMP) Support">

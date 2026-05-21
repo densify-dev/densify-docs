@@ -23,9 +23,9 @@ You must have permission to manage applications in your Google Console.
 4. Select "Web application" from the Application type dropdown menu. You can accept the default Name for the OAuth 2.0 client.
 5. Add the following redirect URIs:
 
-* https://\<Kubex instance>:443/redirect--This is the login redirect for Kubex.
-* https://\<Kubex instance>:443/openIdError--This is an error message page. The session management filter will redirect the user to the specified OpenID page. For example, when the Google user does not exist in Kubex.
-* https://\<Kubex instance>:443/openIdLoggedOut--This is logout URI. Specify this page if the configuration property, "login.openId.useStaticLogout" is set in the Kubex configuration settings.
+* https://\<instancename>.kubex.ai:443/redirect--This is the login redirect for Kubex.
+* https://\<instancename>.kubex.ai:443/openIdError--This is an error message page. The session management filter will redirect the user to the specified OpenID page. For example, when the Google user does not exist in Kubex.
+* https://\<instancename>.kubex.ai:443/openIdLoggedOut--This is logout URI. Specify this page if the configuration property, "login.openId.useStaticLogout" is set in the Kubex configuration settings.
 
 <Note>
 These are examples only. Contact Kubex for the actual URIs.
