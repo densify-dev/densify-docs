@@ -163,7 +163,7 @@
                     },
                     "docs-kubex/Content/Kubex/gpu_optimization",
                     {
-                        "group": "Automation - Take Action with Confidence",
+                        "group": "Automation",
                         "pages": [
                             "docs-kubex/Content/Kubex/Automation_Engine_Overview",
                             "docs-kubex/Content/Kubex/Automation_Engine_Getting_Started",
