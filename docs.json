@@ -161,27 +161,28 @@
                             }
                         ]
                     },
-                    {
-                        "group": "GPU Optimization",
-                        "pages": [
-                            "docs-kubex/Content/Kubex/gpu_optimization"
-                        ]
-                    },
+                    "docs-kubex/Content/Kubex/gpu_optimization",
                     {
                         "group": "Automation - Take Action with Confidence",
                         "pages": [
-                            "docs-kubex/Content/Kubex/Node_Group_Analysis",
-                            "docs-kubex/Content/Kubex/Using_the_Node_Tree_Viewer",
-                            "docs-kubex/Content/Kubex/Node_Group_Analysis_Table",
-                            "docs-kubex/Content/Kubex/Node-Group-Overview_Tab",
-                            "docs-kubex/Content/Kubex/Nodes_Tab",
-                            "docs-kubex/Content/Kubex/Node-Overview-Tab"
+                            "docs-kubex/Content/Kubex/Automation_Engine_Overview",
+                            "docs-kubex/Content/Kubex/Automation_Engine_Getting_Started",
+                            "docs-kubex/Content/Kubex/Automation_Engine_Configuration_Reference",
+                            "docs-kubex/Content/Kubex/Automation_Engine_Policy_Model",
+                            "docs-kubex/Content/Kubex/Automation_Engine_Safety_and_Operations",
+                            "docs-kubex/Content/Kubex/Automation_Engine_Troubleshooting_and_FAQ"
                         ]
                     },
                     {
                         "group": "Workload Insights",
                         "pages": [
-                            "docs-kubex/Content/Kubex/Node_Group_Analysis"
+                            "docs-kubex/Content/Kubex/Kubex_Dashboard",
+                            "docs-kubex/Content/Kubex/Summary_Tab",
+                            "docs-kubex/Content/Kubex/Breakdown_Tab",
+                            "docs-kubex/Content/Kubex/Histograms_Tab",
+                            "docs-kubex/Content/Kubex/Overview_Tab",
+                            "docs-kubex/Content/Kubex/GPU_Tab",
+                            "docs-kubex/Content/Kubex/Metrics_Viewer_Tab"
                         ]
                     }
                 ]
