@@ -78,18 +78,7 @@
                             "docs-kubex/Content/Cloudex/Cloud_Connections"
                         ]
                     },
-                    {
-                        "group": "Concepts and Terminology",
-                        "pages": [
-                            "docs-kubex/Content/General/KubexAIAgent"
-                        ]
-                    },
-                    {
-                        "group": "Supported Platforms and Integrations",
-                        "pages": [
-                            "docs-kubex/Content/General/KubexAIAgent"
-                        ]
-                    }
+                    "docs-kubex/Content/General/Supported_Platforms"
                 ]
             },
             {
