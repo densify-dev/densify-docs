@@ -1,0 +1,89 @@
+---
+title: "Getting Started with Automation Engine"
+sidebar_label: "Getting Started"
+---
+
+This page summarizes the installation flow for Kubex Automation Engine.
+
+## Prerequisites
+
+Before installing:
+
+- You have access to your Kubex instance details
+- You have Helm access to your cluster
+- You can install CRDs in the target cluster
+
+## Step 1: Prepare Required Values
+
+Start from the chart template:
+
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/kubex-automation-values.yaml
+
+At minimum, set:
+
+```yaml
+kubex:
+  url:
+    host: your-instance.kubex.ai
+  clusterName: my-cluster
+
+kubexCredentials:
+  username: your-username
+  epassword: your-encrypted-password
+```
+
+If credentials are managed externally:
+
+```yaml
+createSecrets: false
+
+gateway:
+  configSecretName: kubex-gateway-config
+
+kubex:
+  url:
+    host: your-instance.kubex.ai
+  clusterName: my-cluster
+```
+
+## Step 2: Add Helm Repo
+
+```bash
+helm repo add kubex https://densify-dev.github.io/helm-charts
+helm repo update
+```
+
+## Step 3: Install CRDs
+
+```bash
+helm install kubex-crds kubex/kubex-crds \
+  --namespace kubex \
+  --create-namespace
+```
+
+## Step 4: Install Automation Engine
+
+```bash
+helm install kubex-automation-engine kubex/kubex-automation-engine \
+  --namespace kubex \
+  --create-namespace \
+  -f kubex-automation-values.yaml
+```
+
+## Step 5: Verify Health
+
+```bash
+kubectl get deployment kubex-automation-engine -n kubex
+kubectl get pods -n kubex -l control-plane=controller-manager
+```
+
+## Step 6: Create First Strategy and Policy
+
+You can either:
+
+- Use Helm-managed values (`scope` and `policy.policies`) for generated cluster-scoped resources
+- Manage CR manifests directly with `kubectl` or GitOps
+
+For full guided steps, see:
+
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Getting-Started.md

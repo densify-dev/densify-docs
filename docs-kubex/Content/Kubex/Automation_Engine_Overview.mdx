@@ -1,0 +1,64 @@
+---
+title: "Kubex Automation Engine Overview"
+sidebar_label: "Automation Engine Overview"
+---
+
+Kubex Automation Engine is the Kubernetes rightsizing automation component that applies Kubex recommendations safely and continuously.
+
+It uses policy-driven controls to decide:
+
+- What workloads are eligible for automation
+- Which resource dimensions can change
+- How and when changes are applied
+- Which safety checks must pass before any mutation
+
+## Why This Matters
+
+Automation Engine is designed to reduce manual tuning while preserving workload stability and platform controls.
+
+Key outcomes include:
+
+- Continuous rightsizing for CPU and memory
+- Lower infrastructure waste
+- Better scheduler packing efficiency
+- Safer automation with Kubernetes-aware guardrails
+
+## Core Components
+
+A standard deployment includes:
+
+- A single `kubex-automation-engine` controller deployment
+- Mutating admission webhook for pod-time optimization
+- Gateway sidecar that retrieves recommendations from Kubex
+- CRDs for global behavior, strategy, policy, and policy-evaluation logic
+
+## Supported Workload Owners
+
+Recommendation-driven automation can target:
+
+- Deployment
+- StatefulSet
+- CronJob
+- Rollout
+- Job
+- AnalysisRun
+- DaemonSet (when explicitly enabled)
+
+## Engine Model in One View
+
+The Automation Engine separates behavior from scope:
+
+- Strategy: Defines how resizing is allowed to happen
+- Policy: Defines where strategy applies
+- Global Configuration: Defines cluster-wide runtime behavior
+
+This makes automation easier to standardize across teams while still allowing namespace-level exceptions.
+
+## Deprecation Note
+
+The older Kubex Automation Controller chart has been deprecated and replaced by Kubex Automation Engine.
+
+## Official Source Documentation
+
+- Helm chart root: https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-engine
+- Chart README: https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-engine/README.md

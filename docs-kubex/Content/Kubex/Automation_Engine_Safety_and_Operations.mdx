@@ -1,0 +1,64 @@
+---
+title: "Automation Safety and Operations"
+sidebar_label: "Safety and Operations"
+---
+
+Kubex Automation Engine uses a fail-closed safety model so recommendations are only applied when runtime checks pass.
+
+## Safety Controls
+
+The engine combines multiple protections:
+
+- Webhook health gating
+- HPA and VPA compatibility filters
+- LimitRange and ResourceQuota checks
+- Node headroom checks
+- Readiness and rollout safety checks
+- Protected namespace patterns
+
+When checks fail, mutations are blocked and reasons are surfaced through events and logs.
+
+## Global Runtime Controls
+
+`GlobalConfiguration` is used for cluster-wide behavior:
+
+- Recommendation refresh cadence
+- Pod rescan cadence
+- Mutation and snapshot upload intervals
+- Automation on/off switch
+- Webhook health thresholds
+- Protected namespace patterns
+
+## Pause and Control Patterns
+
+Operational pause options include:
+
+- Global disable through `globalConfiguration.automationEnabled`
+- Targeted exclusions via scope and selectors
+- Annotation-based per-pod pause behaviors
+
+## Execution Paths
+
+The engine can apply rightsizing via:
+
+- In-place resize when supported by cluster version and policy
+- Eviction/restart fallback path when in-place resize cannot be applied
+
+## Diagnostics for Runtime Safety
+
+Useful commands:
+
+```bash
+kubectl get globalconfiguration global-config -o yaml
+kubectl get events -A --field-selector reason=PrecheckFailed
+kubectl logs -n kubex -l control-plane=controller-manager -c manager --since=10m | grep 'rightsizing summary'
+```
+
+## Source References
+
+- Advanced Configuration:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Advanced-Configuration.md
+- Safety Controls Reference:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Safety-Controls.md
+- Global Configuration:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Global-Configuration.md

@@ -1,0 +1,49 @@
+---
+title: "Automation Troubleshooting and FAQ"
+sidebar_label: "Troubleshooting and FAQ"
+---
+
+This page consolidates common operational checks and FAQ topics for Kubex Automation Engine.
+
+## Quick Verification Checklist
+
+1. Confirm deployment exists and is ready
+2. Confirm controller pods are running
+3. Confirm CRDs and policy objects exist
+4. Confirm no repeated `PrecheckFailed` events for intended targets
+5. Confirm recent `rightsizing summary` logs are present
+
+## Diagnostic Commands
+
+```bash
+kubectl get deployment kubex-automation-engine -n kubex
+kubectl get pods -n kubex -l control-plane=controller-manager
+kubectl get globalconfiguration global-config -o yaml
+kubectl get clusterproactivepolicy,proactivepolicy,clusterstaticpolicy,staticpolicy,clusterautomationstrategy,automationstrategy -A
+kubectl get events -A --field-selector reason=PrecheckFailed
+kubectl logs -n kubex -l control-plane=controller-manager -c manager --since=10m | grep 'rightsizing summary'
+```
+
+## Common Questions
+
+### What is the difference between strategy and policy?
+
+- Strategy defines how changes are allowed.
+- Policy defines where those changes apply.
+
+### Can Helm-managed and manual CRs coexist?
+
+Yes. A common pattern is Helm-managed baseline with manually managed exception policies.
+
+### How do I stop automation quickly?
+
+Set `globalConfiguration.automationEnabled: false` and run `helm upgrade`, or scale down the controller as an emergency action.
+
+## Detailed References
+
+- Troubleshooting Guide:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Troubleshooting.md
+- Known Issues:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Known-Issues.md
+- FAQ:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/FAQ.md
