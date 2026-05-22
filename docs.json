@@ -87,57 +87,9 @@
                     {
                         "group": "Node Optimization",
                         "pages": [
-                            "docs-kubex/Content/Kubex/Containers_Analysis",
-                            {
-                                "group": "Resource Optimization",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Ephemeral_Storage"
-                                ]
-                            },
-                            {
-                                "group": "Container Tree Viewer",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Using_the_Tree_Viewer",
-                                    "docs-kubex/Content/Kubex/Creating_Custom_Views",
-                                    "docs-kubex/Content/Kubex/Creating_Custom_Filters"
-                                ]
-                            },
-                            {                            
-                                "group": "Container Data Tabs",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Summary_Tab",
-                                    "docs-kubex/Content/Kubex/Breakdown_Tab",
-                                    "docs-kubex/Content/Kubex/Histograms_Tab",
-                                    "docs-kubex/Content/Kubex/Overview_Tab",
-                                    "docs-kubex/Content/Kubex/GPU_Tab",
-                                    "docs-kubex/Content/Kubex/Metrics_Viewer_Tab",
-                                    {
-                                        "group": "Analysis Details Tab",
-                                        "pages": [
-                                            "docs-kubex/Content/Kubex/AI_Analysis_Details_Tab",
-                                            "docs-kubex/Content/Kubex/AI_Analysis_Details_Table",
-                                            "docs-kubex/Content/Kubex/Using_Table_Column_Features",
-                                            "docs-kubex/Content/Kubex/Using_Filters",
-                                            "docs-kubex/Content/Kubex/AI_Analysis_Details_Charts"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "group": "Container Policy",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Policy_Overview",
-                                    "docs-kubex/Content/Kubex/k8s_container_policy",
-                                    "docs-kubex/Content/Kubex/Policies_Tab"
-                                ]
-                            },
-                            {
-                                "group": "Container Automation",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Automation_Overview",
-                                    "docs-kubex/Content/Kubex/Automation_Tab"
-                                ]
-                            }
+                            "docs-kubex/Content/Kubex/Node_Optimization",
+                            "docs-kubex/Content/Kubex/NodeGroup_Optimization",
+                            "docs-kubex/Content/Kubex/Node_Detail"
                         ]
                     },
                     "docs-kubex/Content/Kubex/gpu_optimization",
