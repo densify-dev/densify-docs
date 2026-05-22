@@ -1,0 +1,234 @@
+---
+title: "Node Details"
+sidebarTitle: "Node Analysis"
+---
+
+## Introduction
+
+The Node Detail page provides detailed analysis and optimization insights for individual Kubernetes nodes.
+
+This page enables operators to:
+
+- Analyze node utilization patterns
+- Identify inefficient resource allocation
+- Detect operational risks
+- Understand workload density
+- Evaluate optimization opportunities
+- Investigate node-specific performance behavior
+
+## Accessing the Node Detail Page
+
+Node details can be accessed from:
+
+**Infrastructure → Kubernetes → Nodes → Node Details**
+
+Direct URL:
+
+```
+https://sandboxuat.densify.com/kubex/nodes-tree/tree-item?fullPath=Nodes+%28Last+Day%29&level=1&tnodeId=0&type=ROOT&tabGroupNode=node-detail&tabGroup2=overview
+```
+
+## Node Overview
+
+The Node Overview page presents comprehensive operational and optimization data for a selected Kubernetes node.
+
+### Information Available
+
+The page includes:
+
+- Node status
+- CPU utilization
+- Memory utilization
+- Kubernetes requests
+- Kubernetes limits
+- Running workloads
+- Capacity allocation
+- Resource efficiency
+- Optimization insights
+- Risk indicators
+
+## Understanding Node Efficiency
+
+Kubex evaluates node efficiency by comparing:
+
+- Total available node capacity
+- Allocated Kubernetes requests
+- Actual workload utilization
+
+This analysis helps identify nodes that are:
+
+- Overprovisioned
+- Underutilized
+- Overloaded
+- Fragmented
+- Inefficiently packed
+
+### Waste Identification
+
+One of the most common inefficiencies occurs when:
+
+- CPU and memory requests are significantly higher than actual utilization
+- Nodes reserve large amounts of unused capacity
+- Workloads consume only a fraction of allocated resources
+
+The charts on the node page clearly visualize these inefficiencies.
+
+### Examples of Waste
+
+- Nodes running at 20–30% CPU utilization while requests reserve 70–90% capacity
+- Memory requests reserving large amounts of unused RAM
+- Nodes blocked from consolidation due to inflated requests
+- Cluster autoscaling prevented from reducing infrastructure footprint
+
+Kubex highlights these patterns to support safer optimization decisions.
+
+## Node Risk Analysis
+
+Kubex continuously evaluates operational risks at the node level.
+
+### CPU Risk
+
+Nodes with sustained high CPU utilization may experience:
+
+- Workload throttling
+- Scheduling delays
+- Application latency
+- Resource contention
+
+### Memory Risk
+
+Nodes approaching memory saturation may experience:
+
+- OOMKills
+- Pod evictions
+- Node instability
+- Performance degradation
+
+### Scheduling Risk
+
+Kubex identifies nodes affected by:
+
+- Resource fragmentation
+- Imbalanced workload placement
+- Excessive reserved capacity
+- Poor bin-packing efficiency
+
+### Stability Risk
+
+Node instability indicators may include:
+
+- Frequent workload churn
+- Saturation spikes
+- Persistent high utilization
+- Capacity exhaustion trends
+
+## Optimization Recommendations
+
+Kubex provides actionable recommendations to improve node efficiency and reduce infrastructure costs.
+
+### Types of Recommendations
+
+**Node Rightsizing**
+
+Adjust node instance types based on observed utilization patterns.
+
+**Workload Rebalancing**
+
+Improve workload distribution across the cluster.
+
+**Request Optimization**
+
+Reduce excessive Kubernetes requests that limit scheduling density.
+
+**Consolidation Opportunities**
+
+Move workloads to fewer nodes while maintaining operational safety.
+
+**Autoscaling Improvements**
+
+Optimize autoscaler configuration to reduce idle capacity.
+
+## Cost Optimization
+
+Node-level analysis helps organizations reduce Kubernetes costs by identifying inefficient infrastructure usage.
+
+### Common Cost Drivers Identified
+
+Kubex identifies:
+
+- Underutilized nodes
+- Idle infrastructure
+- Oversized node instances
+- Excessive Kubernetes requests
+- Poor workload density
+- Over-allocation of cloud resources
+
+### Cost Savings Impact
+
+By acting on Kubex recommendations, organizations can:
+
+- Increase node utilization
+- Reduce cloud infrastructure costs
+- Improve workload density
+- Minimize wasted capacity
+- Reduce unnecessary scaling events
+- Improve Kubernetes operational efficiency
+
+## Charts and Analytics
+
+The Node Detail page includes rich visualizations that expose node behavior and optimization opportunities.
+
+### Utilization Charts
+
+Charts display:
+
+- CPU utilization over time
+- Memory utilization over time
+- Kubernetes requests
+- Resource allocation patterns
+
+These visualizations make it easy to identify:
+
+- Persistent underutilization
+- Excess reserved capacity
+- Saturation trends
+- Request inflation
+
+### Request vs Utilization Analysis
+
+A key optimization insight comes from comparing:
+
+- Requested resources
+- Actual consumed resources
+
+Large gaps between these metrics indicate wasted infrastructure capacity and opportunities for:
+
+- Rightsizing
+- Better workload packing
+- Reduced cloud spend
+- Improved cluster efficiency
+
+## Operational Benefits
+
+Node-level optimization analytics provide several operational benefits.
+
+### Improved Cluster Efficiency
+
+Teams can increase workload density while maintaining reliability.
+
+### Reduced Infrastructure Waste
+
+Kubex exposes hidden waste caused by inflated requests and unused capacity.
+
+### Better Capacity Planning
+
+Historical utilization analysis supports more accurate forecasting and scaling decisions.
+
+### Faster Troubleshooting
+
+Detailed node analytics simplify root-cause analysis for:
+
+- Performance issues
+- Capacity bottlenecks
+- Scheduling failures
+- Resource contention
