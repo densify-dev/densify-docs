@@ -2,7 +2,6 @@
     "$schema": "https://mintlify.com/docs.json",
     "theme": "mint",
     "name": "Kubex Docs",
-    "layout": "wide",
     "colors": {
         "primary": "#0075eb",
         "light": "#0075eb",
@@ -28,12 +27,6 @@
             "copy",
             "view"
         ]
-    },
-    "sidebar": {
-        "items": "left"
-    },
-    "toc": {
-        "enabled": false
     },
     "api": {
         "openapi": [
