@@ -20,29 +20,6 @@ When evaluating node groups for optimization opportunities, focus on:
 - **Oversized Instances** – Nodes larger than necessary for current workloads
 - **Stranded Resources** – Reserved resources that are rarely consumed
 
-### Prioritization Strategy
-
-Focus your optimization efforts on node groups with:
-
-1. **Highest Absolute Savings** – Groups consuming the most resources with the lowest utilization
-2. **Easiest Quick Wins** – Opportunities that can be implemented with minimal disruption
-3. **Greatest Percentage Improvements** – Groups where optimization yields the highest efficiency gains
-
----
-
-## Visual Analysis
-
-### Node Group Waste Distribution
-
-[**Image Placeholder: Dashboard showing node group waste analysis and savings potential ranking**]
-
-This visualization helps you:
-- Compare waste levels across different node groups
-- Identify outliers with exceptional savings opportunities
-- Track optimization progress over time
-
----
-
 ## Three Optimization Strategies
 
 Once you've identified high-waste node groups, apply these proven optimization approaches:
@@ -57,13 +34,15 @@ Check the **max pods per node** setting for your node groups. This configuration
 
 ### 2. Right-Size Resource Requests and Limits
 
-Verify that CPU, memory, and ephemeral storage requests are aligned with actual usage patterns.
+Verify that #CPU, #Memory, and #Ephemeral storage requests are aligned with actual usage patterns.
 
 **The Problem:** Misaligned resource requests lead to waste in two ways:
 - **Over-requested resources** – Nodes remain underutilized because pods reserve more capacity than they need
 - **Under-requested resources** – Workloads may fail or perform poorly, requiring larger nodes than necessary
 
 **Best Practice:** Set requests and limits based on real usage patterns with an appropriate headroom buffer for variability. This ensures efficient bin-packing of workloads while maintaining reliability.
+
+For guidance on applying these recommendations through policies and automation workflows, see [Automation Overview](/docs-kubex/Content/Kubex/Automation_Overview).
 
 ### 3. Match Instance Types to Usage Patterns
 
@@ -75,6 +54,8 @@ When using Scale Groups (such as AWS Auto Scaling Groups or Azure Scale Sets), t
 - **General workloads** – Use balanced general-purpose instances
 
 **Kubex ScaleGroup Analysis:** Kubex provides intelligent recommendations for optimal instance types based on your actual usage patterns, helping you eliminate the cost of oversized or mismatched instances.
+
+Refer to [Scale Group Analysis](PLACEHOLDER).
 
 ---
 
