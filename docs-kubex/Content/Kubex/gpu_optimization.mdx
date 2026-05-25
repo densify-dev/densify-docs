@@ -67,7 +67,7 @@ Example findings:
 
 ### GPU Memory Utilization
 
-Kubex independently analyzes:
+Kubex additionally analyzes:
 
 - GPU memory allocation
 - Memory consumption trends
@@ -83,7 +83,7 @@ Kubex evaluates both dimensions together to determine safe consolidation opportu
 
 ### GPU Power Consumption Analysis
 
-Kubex also monitors:
+Kubex also provides visibility into power usage:
 
 - GPU power utilization
 - Consumption patterns
@@ -152,12 +152,11 @@ For partitionable GPU models, Kubex can identify opportunities to:
 - Run multiple workloads on a single GPU
 - Increase infrastructure efficiency
 
-### Time Slicing
+### Fractional GPU Allocation
 
 Kubex can evaluate workloads suitable for:
 
 - Shared GPU execution
-- Temporal GPU scheduling
 - Workload multiplexing
 
 The platform analyzes:
@@ -205,13 +204,6 @@ These "deadwood" GPUs represent:
 - Wasted infrastructure cost
 - Idle GPU capacity
 - Overprovisioned environments
-
-Kubex helps teams:
-
-- Detect idle GPU nodes
-- Shut down unused resources
-- Reassign workloads
-- Improve infrastructure efficiency
 
 ## Detection of Non-GPU Workloads on GPU Nodes
 
