@@ -11,6 +11,11 @@ Node cost optimization is a critical aspect of managing Kubernetes infrastructur
 
 The first step in optimizing node costs is to analyze your node groups and identify which ones have the most significant savings potential. This involves examining resource utilization patterns and waste metrics across your infrastructure.
 
+<Frame caption="Figure: Finding high-waste Node Groups">
+![](/images/docs-kubex/nodegroups_waste_ranked.png)
+</Frame>
+
+
 ### Key Metrics to Consider
 
 When evaluating node groups for optimization opportunities, focus on:
@@ -18,7 +23,11 @@ When evaluating node groups for optimization opportunities, focus on:
 - **Resource Utilization Gaps** – Difference between allocated and actual usage
 - **Idle Capacity** – Nodes running with minimal workloads
 - **Oversized Instances** – Nodes larger than necessary for current workloads
-- **Stranded Resources** – Reserved resources that are rarely consumed
+
+<Frame caption="Figure: Resource Utilization Gaps">
+![](/images/docs-kubex/nodegroups_wasted_resources.png)
+</Frame>
+
 
 ## Three Optimization Strategies
 
@@ -32,9 +41,18 @@ Check the **max pods per node** setting for your node groups. This configuration
 
 **Action:** Review your Kubernetes configuration and adjust pod density limits to match your actual resource constraints, not default limits.
 
+<Frame caption="Figure: Identifying Nodes with # of Pods at Max Allowed">
+![](/images/docs-kubex/noderiskwidget.png)
+</Frame>
+
+<Frame caption="Figure: Nodes with # of Pods at Max Allowed">
+![](/images/docs-kubex/node_maxpods.png)
+</Frame>
+
+
 ### 2. Right-Size Resource Requests and Limits
 
-Verify that #CPU, #Memory, and #Ephemeral storage requests are aligned with actual usage patterns.
+Verify that **CPU**, **Memory**, and **Ephemeral storage** Container requests are aligned with actual usage patterns.
 
 **The Problem:** Misaligned resource requests lead to waste in two ways:
 - **Over-requested resources** – Nodes remain underutilized because pods reserve more capacity than they need
@@ -42,7 +60,11 @@ Verify that #CPU, #Memory, and #Ephemeral storage requests are aligned with actu
 
 **Best Practice:** Set requests and limits based on real usage patterns with an appropriate headroom buffer for variability. This ensures efficient bin-packing of workloads while maintaining reliability.
 
-For guidance on applying these recommendations through policies and automation workflows, see [Automation Overview](/docs-kubex/Content/Kubex/Automation_Overview).
+<Frame caption="Figure: Surplus Container Request">
+![](/images/docs-kubex/container_waste.png)
+</Frame>
+
+For guidance on applying these recommendations through Kubex's **Automation Engine**, see [Automation Overview](/docs-kubex/Content/Kubex/Automation_Overview).
 
 ### 3. Match Instance Types to Usage Patterns
 
@@ -53,7 +75,19 @@ When using Scale Groups (such as AWS Auto Scaling Groups or Azure Scale Sets), t
 - **CPU-intensive workloads** – Use compute-optimized instances
 - **General workloads** – Use balanced general-purpose instances
 
+<Frame caption="Figure: Surplus Container Request">
+![](/images/docs-kubex/nodegroup_instfam_optimization.png)
+</Frame>
+
+
 **Kubex ScaleGroup Analysis:** Kubex provides intelligent recommendations for optimal instance types based on your actual usage patterns, helping you eliminate the cost of oversized or mismatched instances.
+
+Kubex links K8s Clusters & NodeGroups to the underlying Azure Scaleset / AWS ASG to provide actionable recommendation on how to size and spec the scale group. This includes utilization as well as the current CPU/Memory Requests.
+
+<Frame caption="Figure: Cloud ScaleGroup - K8s Linkage">
+![](/images/docs-kubex/scalegroup_k8s_linkage.png)
+</Frame>
+
 
 Refer to [Scale Group Analysis](PLACEHOLDER).
 

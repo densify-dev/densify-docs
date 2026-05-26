@@ -87,9 +87,6 @@
                     {
                         "group": "Node Optimization",
                         "pages": [
-                            "docs-kubex/Content/Kubex/Node_Optimization",
-                            "docs-kubex/Content/Kubex/NodeGroup_Optimization",
-                            "docs-kubex/Content/Kubex/Node_Detail",
                             "docs-kubex/Content/Kubex/Optimizing_Node_Cost"
                         ]
                     },
