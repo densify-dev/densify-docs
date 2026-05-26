@@ -25,7 +25,7 @@ When evaluating node groups for optimization opportunities, focus on:
 - **Oversized Instances** – Nodes larger than necessary for current workloads
 
 <Frame caption="Figure: Resource Utilization Gaps">
-![](/images/docs-kubex/nodegroups_wasted_resources.png)
+![](/images/docs-kubex/nodegroup_wasted_resources.png)
 </Frame>
 
 
@@ -52,7 +52,7 @@ Check the **max pods per node** setting for your node groups. This configuration
 
 ### 2. Right-Size Resource Requests and Limits
 
-Verify that **CPU**, **Memory**, and **Ephemeral storage** Container requests are aligned with actual usage patterns.
+Verify that container **CPU**, **Memory**, and **Ephemeral storage** requests are aligned with actual usage patterns.
 
 **The Problem:** Misaligned resource requests lead to waste in two ways:
 - **Over-requested resources** – Nodes remain underutilized because pods reserve more capacity than they need
@@ -80,9 +80,7 @@ When using Scale Groups (such as AWS Auto Scaling Groups or Azure Scale Sets), t
 </Frame>
 
 
-**Kubex ScaleGroup Analysis:** Kubex provides intelligent recommendations for optimal instance types based on your actual usage patterns, helping you eliminate the cost of oversized or mismatched instances.
-
-Kubex links K8s Clusters & NodeGroups to the underlying Azure Scaleset / AWS ASG to provide actionable recommendation on how to size and spec the scale group. This includes utilization as well as the current CPU/Memory Requests.
+**Kubex ScaleGroup Analysis:** Kubex links K8s Clusters & NodeGroups to the underlying Azure Scaleset / AWS ASG to provide actionable recommendation on how to size and spec the scale group. This includes utilization as well as the current CPU/Memory Requests.
 
 <Frame caption="Figure: Cloud ScaleGroup - K8s Linkage">
 ![](/images/docs-kubex/scalegroup_k8s_linkage.png)
