@@ -33,6 +33,12 @@
             "/openapi/authorize.yaml"
         ]
     },
+    "redirects": [
+        {
+            "source": "/",
+            "destination": "/docs-kubex/Content/General/Kubex_Overview"
+        }
+    ],
     "navigation": {
         "groups": [
             {
