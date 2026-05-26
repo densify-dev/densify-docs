@@ -93,7 +93,8 @@
                     {
                         "group": "Node Optimization",
                         "pages": [
-                            "docs-kubex/Content/Kubex/Optimizing_Node_Cost"
+                            "docs-kubex/Content/Kubex/Optimizing_Node_Cost",
+                            "docs-kubex/Content/Kubex/Improving_Node_Health"
                         ]
                     },
                     "docs-kubex/Content/Kubex/gpu_optimization",

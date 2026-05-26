@@ -11,6 +11,14 @@ Two of the most important node health risks are sustained saturation and resourc
 
 CPU and memory saturation occur when utilization remains very high for prolonged periods.
 
+<Frame caption="Figure: Node Risk Summary">
+![](/images/docs-kubex/Node_risk_summary.png)
+</Frame>
+
+<Frame caption="Figure: High Node Memory Usage">
+![](/images/docs-kubex/node_memory_saturation.png)
+</Frame>
+
 Typical causes include:
 
 - Mismatch between configured requests and actual workload usage
@@ -25,7 +33,7 @@ When saturation is not addressed:
 
 Apply Kubex recommendations for containers to better align requests with actual usage and reduce saturation risk.
 
-For the most efficient and hands-off execution path, use Kubex automation to apply approved recommendations at scale.
+For the most efficient and hands-off execution path, use Kubex automation to apply approved recommendations at scale. See [Automation Overview](/docs-kubex/Content/Kubex/Automation_Overview).
 
 ## 2. High CPU and Memory Balance Ratios
 
@@ -34,6 +42,10 @@ High CPU and memory balance ratios indicate uneven usage across nodes. Some node
 This is commonly caused when container requests and actual usage are not aligned.
 
 A high imbalance can destabilize the environment by increasing contention on busy nodes while wasting capacity on underused nodes.
+
+<Frame caption="Figure: High Node Memory Usage">
+![](/images/docs-kubex/node_high_balance_ratio.png)
+</Frame>
 
 ### Recommended Action
 
