@@ -87,6 +87,7 @@
                         "group": "Container Optimization",
                         "pages": [
                             "docs-kubex/Content/Kubex/container_optimization",
+                            "docs-kubex/Content/Kubex/RightSizing_containers",
                             "docs-kubex/Content/Kubex/k8s_container_policy"
                         ]
                     },

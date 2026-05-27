@@ -5,6 +5,11 @@ sidebarTitle: "Overview"
 
 Kubex analyzes Kubernetes containers by combining machine learning, workload behavior analysis, and policy-driven optimization to determine the scientifically optimal CPU and memory settings for each workload. The platform continuously evaluates real container behavior over time and generates safe, explainable recommendations that reduce waste while maintaining application stability.
 
+<Frame caption="Figure: Example of Wasted CPU Resources">
+![](/images/docs-kubex/container_waste.png)
+</Frame>
+
+
 ## Container Optimization Workflow
 
 ### 1. Container Telemetry Collection
@@ -44,19 +49,7 @@ Analyzes:
 
 - Time-of-day usage
 - Daily and weekly cycles
-- Seasonal spikes
-- Growth trends
 
-#### Replica-Level Analysis
-
-Kubex evaluates container behavior across replicas to identify:
-
-- Consistent resource needs
-- Scaling inefficiencies
-- Overprovisioning patterns
-- Imbalanced workloads
-
-This enables Kubex to distinguish between temporary spikes and true sustained resource requirements.
 
 ### 3. Policy-Based Optimization
 
@@ -66,10 +59,8 @@ Policies allow teams to control:
 
 - Optimization aggressiveness
 - Minimum headroom requirements
-- Cost vs stability balance
 - Downsizing behavior
 - Upsizing sensitivity
-- Namespace-specific rules
 - Environment-specific standards
 
 This ensures recommendations align with business and operational objectives rather than applying generic optimization logic.
@@ -83,11 +74,6 @@ Based on workload analysis and policy evaluation, Kubex generates optimized reco
 - Memory requests
 - Memory limits
 
-Example:
-
-- Current CPU request: 1000
-- Kubex recommended request: 130
-
 The recommendations are designed to:
 
 - Eliminate wasted capacity
@@ -97,45 +83,6 @@ The recommendations are designed to:
 
 Kubex focuses on determining the correct resource configuration scientifically rather than relying on static thresholds or simplistic heuristics.
 
-### 5. Safety Validation Checks
-
-Before recommendations are automated or applied, Kubex performs multiple Kubernetes-aware safety checks.
-
-#### LimitRange Awareness
-
-Ensures recommendations do not violate namespace policies.
-
-#### Node Size Awareness
-
-Prevents recommendations that exceed available node capacity.
-
-#### HPA Awareness
-
-Avoids conflicts with Horizontal Pod Autoscaler behavior.
-
-#### Quota Validation
-
-Ensures namespace resource quotas remain compliant.
-
-#### Dry-Run Eviction Logic
-
-Validates restart and eviction operations while respecting PodDisruptionBudgets.
-
-These safeguards ensure optimization actions can be safely executed in production environments.
-
-### 6. Continuous Optimization and Automation
-
-Kubex continuously reevaluates container behavior as workloads evolve.
-
-The Automation Controller can:
-
-- Apply recommendations automatically
-- Perform in-place resizing
-- Mutate workload definitions
-- Optionally restart workloads
-- Independently control upsizing and downsizing behavior
-
-This enables Kubernetes environments to remain continuously optimized without requiring manual analysis or intervention.
 
 ## Key Benefits of Kubex Container Analysis
 
