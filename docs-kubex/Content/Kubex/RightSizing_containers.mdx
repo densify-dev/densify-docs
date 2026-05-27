@@ -1,0 +1,46 @@
+---
+title: "Rightsizing Containers"
+description: "Understand key risks of oversized and undersized container resources and how to reduce them with Kubex recommendations and automation."
+---
+
+## Rightsizing Containers
+
+Container rightsizing is critical for both cost efficiency and runtime stability.
+
+## Risks of Oversized Containers
+
+Oversized containers reserve more CPU or memory than workloads actually use. This creates multiple operational and financial risks:
+
+- Infrastructure cost waste due to idle reserved capacity
+- Reduced cluster utilization
+- Increased probability of pending pods
+- Failed deployments caused by resource fragmentation
+- Autoscaler thrashing from inefficient scheduling pressure
+
+## Risks of Undersized Containers
+
+Undersizing creates performance and reliability risk because workloads do not receive enough resources to run safely.
+
+### Undersized Memory Limits
+
+Undersized memory limits can cause OOM kills.
+
+### Undersized CPU Limits
+
+Undersized CPU limits can cause throttling and degraded application performance.
+
+### Undersized Requests
+
+The biggest risk of undersized requests is node overcommitment, which can lead to unstable scheduling behavior and capacity contention.
+
+## Recommended Action
+
+Apply Kubex recommendations for containers to align requests and limits with real usage patterns.
+
+For the most efficient and hands-off execution path, use Kubex automation to apply approved recommendations consistently at scale.
+
+## Related Topics
+
+- [Container Optimization Overview](/docs-kubex/Content/Kubex/container_optimization)
+- [Container Policy](/docs-kubex/Content/Kubex/k8s_container_policy)
+- [Automation Overview](/docs-kubex/Content/Kubex/Automation_Overview)
