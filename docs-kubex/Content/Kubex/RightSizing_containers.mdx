@@ -7,31 +7,13 @@ description: "Understand key risks of oversized and undersized container resourc
 
 Container rightsizing is critical for both cost efficiency and runtime stability.
 
-## Risks of Oversized Containers
-
-Oversized containers reserve more CPU or memory than workloads actually use. This creates multiple operational and financial risks:
-
-- Infrastructure cost waste due to idle reserved capacity
-- Reduced cluster utilization
-- Increased probability of pending pods
-- Failed deployments caused by resource fragmentation
-- Autoscaler thrashing from inefficient scheduling pressure
-
-## Risks of Undersized Containers
-
-Undersizing creates performance and reliability risk because workloads do not receive enough resources to run safely.
-
-### Undersized Memory Limits
-
-Undersized memory limits can cause OOM kills.
-
-### Undersized CPU Limits
-
-Undersized CPU limits can cause throttling and degraded application performance.
-
-### Undersized Requests
-
-The biggest risk of undersized requests is node overcommitment, which can lead to unstable scheduling behavior and capacity contention.
+| Risk Type | Risk Details |
+| --- | --- |
+| Oversized containers | Reserve more CPU or memory than workloads actually use, which can cause infrastructure cost waste from idle reserved capacity, reduced cluster utilization, higher probability of pending pods, failed deployments due to resource fragmentation, and autoscaler thrashing from inefficient scheduling pressure. |
+| Undersized containers | Create performance and reliability risk because workloads do not receive enough resources to run safely. |
+| Undersized memory limits | Can cause OOM kills. |
+| Undersized CPU limits | Can cause throttling and degraded application performance. |
+| Undersized requests | Can cause node overcommitment, leading to unstable scheduling behavior and capacity contention. |
 
 ## Recommended Action
 
