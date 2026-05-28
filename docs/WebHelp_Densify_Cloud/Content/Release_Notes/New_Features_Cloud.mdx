@@ -12,6 +12,34 @@ The following sections provide details of new features and updates introduced in
 
 This topic summarizes both new and updated features introduced in Kubex
 
+<Accordion title="4.5.0 May 27, 2026">
+    The following changes have been made to Kubex in this release:
+
+    - **Fractional GPU Recommendations**
+      - Fractional GPU recommendations on the current GPU model
+
+      <Frame caption="Figure: Fractional GPU recommendations">
+        <img src="/images/docs/ReleaseNotes/v4.5/fractional_gpu_recos.png" width="100%" />
+      </Frame>
+
+    - **GKE Autopilot Recommendations are Compute Class Aware**
+      - Recognizes "balanced" and "general-purpose" compute classes and maintains the allowed CPU:Memory ranges
+
+    - **Guaranteed QoS Support**
+      - Kubex recommendations support Guaranteed QoS
+      - This policy can be enforced (even if not currently setup) or auto-detected and maintained 
+
+    - **Container Automation Policy**
+      - Visibility to the automation policy set up in the K8s cluster
+
+      <Frame caption="Figure: Automation Policy">
+        <img src="/images/docs/ReleaseNotes/v4.5/automation_policy.png" width="100%" />
+      </Frame>
+
+    - **RBAC for AI Agent**
+
+</Accordion>
+
 <Accordion title="4.4.0 April 29, 2026">
 
     The following changes have been made to Kubex in this release:
