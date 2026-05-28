@@ -16,12 +16,17 @@ Container rightsizing is critical for both cost efficiency and runtime stability
 
 ## Recommended Action
 
+Kubex uses [policies] (docs-kubex/Content/Kubex/k8s_container_policy) to recommend the optimal
+ - **CPU** Limit & Request
+ - **Memory** Limit & Request
+ - **Ephemeral Storage** Limit & Request
+ - **GPU** fractional recommendations and optimal MIG profile. See [GPU Optimization] ("docs-kubex/Content/Kubex/gpu_optimization")
 
+<Frame caption="Figure: Surplus Container Request">
+![](/images/docs-kubex/container_waste.png)
+</Frame>
 
-
-Apply Kubex recommendations for containers to align requests and limits with real usage patterns.
-
-For the most efficient and hands-off execution path, use Kubex automation to apply approved recommendations consistently at scale.
+For the most efficient and hands-off execution path, use [Kubex automation](docs-kubex/Content/Kubex/Automation_Engine_Overview) to apply approved recommendations consistently at scale.
 
 ## Related Topics
 
