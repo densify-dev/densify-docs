@@ -9,12 +9,15 @@ Container rightsizing is critical for both cost efficiency and runtime stability
 
 | Undersized Risk | Oversized Risk |
 | --- | --- |
-| Workloads do not receive enough resources to run safely, creating performance and reliability risk. | Containers reserve more CPU or memory than workloads use, causing idle capacity waste and reduced cluster utilization. |
+| Workloads do not receive enough resources to run safely, creating performance and reliability risk. | Idle capacity waste and reduced cluster utilization. |
 | Undersized memory limits can cause OOM kills. | Increased probability of pending pods. |
-| Undersized CPU limits can cause throttling and degraded application performance. | Failed deployments caused by resource fragmentation. |
-| Undersized requests can cause node overcommitment, leading to unstable scheduling behavior and capacity contention. | Autoscaler thrashing from inefficient scheduling pressure. |
+| CPU Throttling and degraded application performance. | Failed deployments caused by resource fragmentation. |
+| Node overcommitment, leading to unstable scheduling behavior and capacity contention. | Autoscaler thrashing from inefficient scheduling pressure. |
 
 ## Recommended Action
+
+
+
 
 Apply Kubex recommendations for containers to align requests and limits with real usage patterns.
 
