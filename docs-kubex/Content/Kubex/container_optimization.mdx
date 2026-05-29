@@ -3,6 +3,16 @@ title: "How Kubex Analyzes Kubernetes Containers"
 sidebarTitle: "Overview"
 ---
 
+Container rightsizing is critical for both cost efficiency and runtime stability.
+
+| Undersized Risk | Oversized Risk |
+| --- | --- |
+| Workloads do not receive enough resources to run safely, creating performance and reliability risk. | Idle capacity waste and reduced cluster utilization. |
+| Undersized memory limits can cause OOM kills. | Increased probability of pending pods. |
+| CPU Throttling and degraded application performance. | Failed deployments caused by resource fragmentation. |
+| Node overcommitment, leading to unstable scheduling behavior and capacity contention. | Autoscaler thrashing from inefficient scheduling pressure. |
+
+
 Kubex analyzes Kubernetes containers by combining machine learning, workload behavior analysis, and policy-driven optimization to determine the scientifically optimal CPU and memory settings for each workload. The platform continuously evaluates real container behavior over time and generates safe, explainable recommendations that reduce waste while maintaining application stability.
 
 <Frame caption="Figure: Example of Wasted CPU Resources">
@@ -50,12 +60,15 @@ Analyzes:
 - Time-of-day usage
 - Daily and weekly cycles
 
+<Frame caption="Figure: Example of Wasted CPU Resources">
+![](/images/docs-kubex/workload_pattern.png)
+</Frame>
 
 ### 3. Policy-Based Optimization
 
 Kubex combines machine learning analysis with configurable operational policies.
 
-Policies allow teams to control:
+ [Policies](docs-kubex/Content/Kubex/k8s_container_policy) allow teams to control:
 
 - Optimization aggressiveness
 - Minimum headroom requirements
@@ -69,10 +82,10 @@ This ensures recommendations align with business and operational objectives rath
 
 Based on workload analysis and policy evaluation, Kubex generates optimized recommendations for:
 
-- CPU requests
-- CPU limits
-- Memory requests
-- Memory limits
+ - **CPU** Limit & Request
+ - **Memory** Limit & Request
+ - **Ephemeral Storage** Limit & Request
+ - **GPU** fractional recommendations and optimal MIG profile. See [GPU Optimization]("docs-kubex/Content/Kubex/gpu_optimization")
 
 The recommendations are designed to:
 
@@ -83,6 +96,7 @@ The recommendations are designed to:
 
 Kubex focuses on determining the correct resource configuration scientifically rather than relying on static thresholds or simplistic heuristics.
 
+For the most efficient and hands-off execution path, use [Kubex automation](docs-kubex/Content/Kubex/Automation_Engine_Overview) to apply approved recommendations consistently at scale.
 
 ## Key Benefits of Kubex Container Analysis
 
