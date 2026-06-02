@@ -85,7 +85,8 @@
                             "docs-kubex/Content/Cloudex/Cloud_Connections"
                         ]
                     },
-                    "docs-kubex/Content/General/supported_platforms"
+                    "docs-kubex/Content/General/supported_platforms",
+                    "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/MCP"
                 ]
             },
             {
@@ -176,12 +177,6 @@
                                   "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Introduction",
                                   "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Postman_Collection"
                               ]
-                          },
-                          {
-                                "group": "Model Context Protocol (MCP)",
-                                "pages": [
-                                    "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/MCP"
-                                ]
                           },
                           {
                               "group": "Ping",
