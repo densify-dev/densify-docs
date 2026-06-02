@@ -87,7 +87,6 @@
                         "group": "Container Optimization",
                         "pages": [
                             "docs-kubex/Content/Kubex/container_optimization",
-                            "docs-kubex/Content/Kubex/RightSizing_containers",
                             "docs-kubex/Content/Kubex/k8s_container_policy"
                         ]
                     },
@@ -129,61 +128,15 @@
                 "group": "Public Cloud Optimization",
                 "pages": [
                     {
-                        "group": "Instance Type Optimization",
+                        "group": "Instance (VM) Optimization",
                         "pages": [
-                            "docs-kubex/Content/Cloudex/Cloud_Analysis",
-                            "docs-kubex/Content/Cloudex/Using_the_Cloud_Tree_Viewer",
-                            "docs-kubex/Content/Cloudex/Summary_Tab-Cloud",
-                            {
-                                "group": "Analysis Details Tab",
-                                "pages": [
-                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Tab-Cloud",
-                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Table-Cloud",
-                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Modal-Cloud"
-                                ]
-                            },
-                            "docs-kubex/Content/Cloudex/Overview_Tab-Cloud",
-                            "docs-kubex/Content/Cloudex/Catalog_Map_Tab"
+                            "UnderConstruction"
                         ]
                     },
                     {
                         "group": "Scale Group Optimization",
                         "pages": [
-                            "docs-kubex/Content/Cloudex/Data_Collection_Overview-Cloud",
-                            {
-                                "group": "AWS Data Collection",
-                                "pages": [
-                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_",
-                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/AWS_Data_Collection_Using_a_CloudFormation_Template",
-                                    "docs-kubex/Content/Cloudex/Data_Collection_AWS_Connections",
-                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/AWS_Cloud_Connections"
-                                ]
-                            },
-                            {
-                                "group": "Azure Data Collection",
-                                "pages": [
-                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Microsoft_Azure_Data_Collection_Prerequisites_for_a_Service_Principal",
-                                    "docs-kubex/Content/Cloudex/Data_Collection_Azure_Connections",
-                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/Azure_Cloud_Connections"
-                                ]
-                            },
-                            {
-                                "group": "GCP Data Collection",
-                                "pages": [
-                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites",
-                                    "docs-kubex/Content/Cloudex/Data_Collection_GCP_Connections",
-                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/GCP_Cloud_Connections"
-                                ]
-                            },
-                            {
-                                "group": "OCI Data Collection",
-                                "pages": [
-                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Oracle_Cloud_Infrastructure_Data_Collection_Prerequisites",
-                                    "docs-kubex/Content/Cloudex/Data_Collection_OCI_Connections",
-                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/OCI_Cloud_Connections"
-                                ]
-                            },
-                            "docs-kubex/Content/Cloudex/Cloud_Connections"
+                            "UnderConstruction"
                         ]
                     },
                     {
