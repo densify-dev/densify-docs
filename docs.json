@@ -37,6 +37,14 @@
         {
             "source": "/",
             "destination": "/docs-kubex/Content/General/Kubex_Overview"
+        },
+        {
+            "source": "/docs-kubex/Content/General/Supported_Platforms",
+            "destination": "/docs-kubex/Content/General/supported_platforms"
+        },
+        {
+            "source": "/docs-kubex/content/general/supported_platforms",
+            "destination": "/docs-kubex/Content/General/supported_platforms"
         }
     ],
     "navigation": {
@@ -77,7 +85,7 @@
                             "docs-kubex/Content/Cloudex/Cloud_Connections"
                         ]
                     },
-                    "docs-kubex/Content/General/Supported_Platforms"
+                    "docs-kubex/Content/General/supported_platforms"
                 ]
             },
             {
