@@ -67,7 +67,7 @@ You can run the Kubex CloudFormation template in any of the following regions;
 </table>
 
 
-Kubex CloudFormation template can must be run in a single region even if the target accounts span multiple regions. The template creates an IAM role and permission policy which are both global and are not region-specific.
+The Kubex CloudFormation template must be run in a single region even if the target accounts span multiple regions. The template creates an IAM role and permission policy which are both global and are not region-specific.
 
 Please contact [Support@Kubex.ai](mailto:Support@Kubex.ai) if you need to run the template in regions, not listed above.
 
@@ -124,8 +124,14 @@ Your selection, here depends on the nature of your organizational structure and 
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000069.png)</Frame>
 </Accordion>
 6. In the next section, Prerequisite - Prepare template, select Template is ready
-7. In the next section, Specify template copy and then paste the following URL into the Amazon S3 URL field: https://densify-cf-template.s3.us-east-2.amazonaws.com/Densify_CloudFormation.yml
+7. In the next section, Specify template copy and paste the appropriate URL into the Amazon S3 URL field: https://kubex-cf-template.s3.us-east-2.amazonaws.com/Kubex_CloudFormation.yml
+   For new Kubex deployments, use the Kubex CloudFormation template:
 
+   https://kubex-cf-template.s3.us-east-2.amazonaws.com/Kubex_CloudFormation.yml
+
+   If you already have a Densify CloudFormation StackSet deployed, continue using the Densify template for StackSet updates. Existing Densify deployments cannot be switched to the Kubex template.
+
+   https://densify-cf-template.s3.us-east-2.amazonaws.com/Densify_CloudFormation.yml
 8. Click Next to proceed with creating the stack.
 <Accordion title="Figure: Specify CloudFormation Template ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000070.png)</Frame>
