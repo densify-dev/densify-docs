@@ -136,6 +136,7 @@
             {
                 "group": "Public Cloud Optimization",
                 "pages": [
+                    "docs/WebHelp_Densify_Cloud/Content/Cloud_Optimization",
                     {
                         "group": "Instance (VM) Optimization",
                         "pages": [
