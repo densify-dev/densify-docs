@@ -213,38 +213,25 @@ Kubex will:
 - Increase scale groups by at most **100%**
 - Analyze groups containing between **1 and 1000 instances**
 
----
+## Tying Kubernetes Node Groups to the Scale Groups hosting them
 
-# Kubernetes Cluster Optimization
+When an AWS ASG or Azure ScaleSet hosts an EKS/AKS cluster, scale group optimization cannot rely on utilization metrics alone. Kubernetes CPU and memory requests must also be included in the analysis.
 
-Kubernetes cluster recommendations evaluate reserved capacity against actual demand.
+If Kubex is connected to the Kubernetes clusters, it can correlate scale groups with their node groups and produce actionable recommendations.
 
-## CPU Reservation
-
-| Setting | Value |
-|----------|--------|
-| Evaluated Based On | Sustained |
-| Threshold | > 90% |
-
-## Memory Reservation
+## CPU Request
 
 | Setting | Value |
 |----------|--------|
 | Evaluated Based On | Sustained |
 | Threshold | > 90% |
 
-### Recommendation Logic
+## Memory Request
 
-Kubex evaluates cluster efficiency using sustained reservation metrics.
-
-Recommendations are triggered when reservation utilization exceeds:
-
-```text
-CPU Reservation > 90%
-Memory Reservation > 90%
-```
-
-These thresholds help maintain cluster resiliency while minimizing excess capacity.
+| Setting | Value |
+|----------|--------|
+| Evaluated Based On | Sustained |
+| Threshold | > 90% |
 
 ---
 
@@ -256,70 +243,15 @@ The Rule Engine controls how Kubex selects target instance types during optimiza
 |--------|--------|
 | Optimize Family | Allow alternative instance families when a more cost-effective or performant option exists |
 | Generation Changes | Permits migration between instance generations |
-| Favor Latest Generation | Enabled |
-| Older Architectures | Enabled |
-| Allow Flex Types | Enabled |
-| Intel ↔ AMD Migration | Enabled |
-| Allow Storage Optimized | Enabled |
-| Allow Burstable | Enabled |
-
-## Disabled Rules
-
-| Rule | Status |
-|--------|--------|
-| Keep Storage Optimized | Disabled |
-| Keep Local Disk | Disabled |
-| Software Affinity | Disabled |
-
----
-
-## Rule Behavior
-
-### Optimize Family
-
-Allows Kubex to recommend alternative instance families when a more cost-effective or performant option exists.
-
-### Generation Changes
-
-Permits migration between instance generations.
-
-**Example**
-
-```text
-m5.large → m7i.large
-```
-
-### Favor Latest Generation
-
-Prioritizes newer generation instance types when available.
-
-### Intel ↔ AMD Migration
-
-Allows cross-architecture recommendations between Intel and AMD platforms when cost or performance benefits exist.
-
-### Allow Flex Types
-
-Permits recommendations to flexible instance families where supported.
-
-### Allow Storage Optimized
-
-Enables recommendations to storage-optimized instance types when appropriate.
-
-### Allow Burstable
-
-Allows migration to burstable instance families for suitable workloads.
-
-### Keep Storage Optimized (Disabled)
-
-Kubex may move workloads away from storage-optimized families if better alternatives are available.
-
-### Keep Local Disk (Disabled)
-
-Kubex is allowed to recommend instance types without local storage.
-
-### Software Affinity (Disabled)
-
-Recommendations are not constrained by software-specific affinity requirements.
+| Favor Latest Generation | Prioritizes newer generation instance types when available |
+| Older Architectures | Allow recommendations to older CPU architectures |
+| Allow Flex Types | Permits recommendations to flexible instance families where supported |
+| Intel ↔ AMD Migration | Allows cross-architecture recommendations between Intel and AMD platforms when cost or performance benefits exist |
+| Allow Storage Optimized | Enables recommendations to storage-optimized instance types when appropriate |
+| Allow Burstable | Allows migration to burstable instance families for suitable workloads |
+| Keep Storage Optimized | Stay on a storage optimized instance |
+| Keep Local Disk | Kubex is allowed to recommend instance types without local storage |
+| Software Affinity | Recommendations are not constrained by software-specific affinity requirements |
 
 ---
 
@@ -331,7 +263,6 @@ With this policy configuration:
 - Overprovisioned workloads are downsized based on CPU and memory efficiency rules.
 - Nearly idle workloads are flagged for termination.
 - Scale groups can shrink by up to 50% or grow by up to 100%.
-- Kubernetes clusters are evaluated using 90% sustained reservation targets.
 - Instance recommendations can migrate across families, generations, and CPU vendors to maximize efficiency and cost savings.
 
 This policy balances **performance protection**, **cost optimization**, and **infrastructure modernization** while maintaining operational flexibility.
