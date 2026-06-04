@@ -1,0 +1,339 @@
+---
+title: Cloud Analysis Policy
+description: Configure and understand Kubex Cloud Analysis Policies for rightsizing, risk detection, scale optimization, and Kubernetes cluster recommendations.
+---
+
+# Cloud Analysis Policy
+
+Cloud Analysis Policies define how Kubex evaluates cloud workloads and generates optimization recommendations. Policies control the analysis window, utilization thresholds, scaling constraints, Kubernetes reservation targets, and instance selection preferences.
+
+These settings determine when Kubex recommends:
+
+- **Upsizing** under-provisioned resources
+- **Downsizing** over-provisioned resources
+- **Terminating** unused instances
+- **Optimizing** scale groups
+- **Adjusting** Kubernetes cluster reservations
+- **Migrating** to more efficient instance families or generations
+
+---
+
+## Operational Windowing
+
+The operational window determines which historical utilization data is included during analysis.
+
+| Setting | Value |
+|----------|--------|
+| Workload Range | 60 Days |
+| Include Weekends | Yes |
+| Include Samples Between | 30th - 93rd Percentile |
+| Exclude Hours | None |
+| Minimum Data for Analysis | 1 Day / 1 Hour |
+
+### Configuration Details
+
+#### Workload Range
+Defines the historical period used for workload analysis.
+
+**Current Setting:** `60 Days`
+
+A longer analysis period captures seasonal trends and workload variability while reducing sensitivity to short-term spikes.
+
+#### Include Weekends
+Determines whether weekend utilization data is included.
+
+**Current Setting:** `Yes`
+
+#### Include Samples Between
+Filters utilization samples to eliminate statistical outliers.
+
+**Current Setting:** `30th - 93rd Percentile`
+
+This means:
+
+- Samples below the 30th percentile are excluded.
+- Samples above the 93rd percentile are excluded.
+- Recommendations are based on the remaining representative workload behavior.
+
+#### Minimum Data Requirement
+
+| Metric | Value |
+|----------|--------|
+| Days | 1 |
+| Hours | 1 |
+
+Kubex requires at least this amount of utilization data before generating recommendations.
+
+---
+
+# Resource Risk Detection
+
+Resource Risk Detection identifies workloads that may be undersized and at risk of performance degradation.
+
+Recommendations are generated when **any** configured threshold is exceeded.
+
+## CPU Risk Thresholds
+
+| Metric | Threshold |
+|----------|--------|
+| Peak | > 95% |
+| Sustained | > 85% |
+| Average | > 75% |
+
+### Recommendation Logic
+
+Kubex recommends an **Upsize** when:
+
+```text
+Peak CPU > 95%
+OR
+Sustained CPU > 85%
+OR
+Average CPU > 75%
+```
+
+## Memory Risk Thresholds
+
+| Setting | Value |
+|----------|--------|
+| Evaluated Based On | Peak |
+| Threshold | > 95% |
+
+### Recommendation Logic
+
+Kubex recommends an **Upsize** when:
+
+```text
+Peak Memory Utilization > 95%
+```
+
+---
+
+# Resource Inefficiency Detection
+
+Resource Inefficiency Detection identifies workloads that are overprovisioned.
+
+Recommendations are generated only when **all** configured conditions are satisfied.
+
+## CPU Inefficiency Thresholds
+
+| Metric | Threshold |
+|----------|--------|
+| Peak | < 94% |
+| Sustained | < 84% |
+| Average | < 74% |
+| Maximum Decrease | 75% |
+
+### Recommendation Logic
+
+Kubex recommends a **Downsize** when:
+
+```text
+Peak CPU < 94%
+AND
+Sustained CPU < 84%
+AND
+Average CPU < 74%
+```
+
+The recommended decrease will never exceed:
+
+```text
+75%
+```
+
+## Memory Inefficiency Thresholds
+
+| Setting | Value |
+|----------|--------|
+| Evaluated Based On | Sustained |
+| Threshold | < 95% |
+| Maximum Decrease | 75% |
+
+### Recommendation Logic
+
+Kubex evaluates sustained memory utilization and limits reduction recommendations to a maximum 75% decrease.
+
+---
+
+# Unused Instance Detection
+
+Unused Instance Detection identifies workloads that can potentially be terminated.
+
+Recommendations are generated only when all thresholds are met.
+
+## CPU Thresholds
+
+| Metric | Threshold |
+|----------|--------|
+| Peak | < 20% |
+| Sustained | < 10% |
+| Average | < 4% |
+
+## Memory Thresholds
+
+| Setting | Value |
+|----------|--------|
+| Evaluated Based On | Peak |
+| Threshold | < 100% |
+
+### Recommendation Logic
+
+Kubex recommends a **Terminate** action when:
+
+```text
+Peak CPU < 20%
+AND
+Sustained CPU < 10%
+AND
+Average CPU < 4%
+```
+
+This policy identifies workloads that demonstrate consistently negligible resource utilization.
+
+---
+
+# Scale Group Optimization
+
+Scale Group Optimization controls how Kubex recommends adjustments for Auto Scaling Groups and similar scaling constructs.
+
+## Configuration
+
+| Setting | Value |
+|----------|--------|
+| Group Size | 1 - 1000 |
+| Allowed Decrease | 50% |
+| Allowed Increase | 100% |
+
+### Recommendation Constraints
+
+Kubex will:
+
+- Reduce scale groups by at most **50%**
+- Increase scale groups by at most **100%**
+- Analyze groups containing between **1 and 1000 instances**
+
+---
+
+# Kubernetes Cluster Optimization
+
+Kubernetes cluster recommendations evaluate reserved capacity against actual demand.
+
+## CPU Reservation
+
+| Setting | Value |
+|----------|--------|
+| Evaluated Based On | Sustained |
+| Threshold | > 90% |
+
+## Memory Reservation
+
+| Setting | Value |
+|----------|--------|
+| Evaluated Based On | Sustained |
+| Threshold | > 90% |
+
+### Recommendation Logic
+
+Kubex evaluates cluster efficiency using sustained reservation metrics.
+
+Recommendations are triggered when reservation utilization exceeds:
+
+```text
+CPU Reservation > 90%
+Memory Reservation > 90%
+```
+
+These thresholds help maintain cluster resiliency while minimizing excess capacity.
+
+---
+
+# Rule Engine
+
+The Rule Engine controls how Kubex selects target instance types during optimization.
+
+## Enabled Rules
+
+| Rule | Status |
+|--------|--------|
+| Optimize Family | Enabled |
+| Generation Changes | Enabled |
+| Favor Latest Generation | Enabled |
+| Older Architectures | Enabled |
+| Allow Flex Types | Enabled |
+| Intel ↔ AMD Migration | Enabled |
+| Allow Storage Optimized | Enabled |
+| Allow Burstable | Enabled |
+
+## Disabled Rules
+
+| Rule | Status |
+|--------|--------|
+| Keep Storage Optimized | Disabled |
+| Keep Local Disk | Disabled |
+| Software Affinity | Disabled |
+
+---
+
+## Rule Behavior
+
+### Optimize Family
+
+Allows Kubex to recommend alternative instance families when a more cost-effective or performant option exists.
+
+### Generation Changes
+
+Permits migration between instance generations.
+
+**Example**
+
+```text
+m5.large → m7i.large
+```
+
+### Favor Latest Generation
+
+Prioritizes newer generation instance types when available.
+
+### Intel ↔ AMD Migration
+
+Allows cross-architecture recommendations between Intel and AMD platforms when cost or performance benefits exist.
+
+### Allow Flex Types
+
+Permits recommendations to flexible instance families where supported.
+
+### Allow Storage Optimized
+
+Enables recommendations to storage-optimized instance types when appropriate.
+
+### Allow Burstable
+
+Allows migration to burstable instance families for suitable workloads.
+
+### Keep Storage Optimized (Disabled)
+
+Kubex may move workloads away from storage-optimized families if better alternatives are available.
+
+### Keep Local Disk (Disabled)
+
+Kubex is allowed to recommend instance types without local storage.
+
+### Software Affinity (Disabled)
+
+Recommendations are not constrained by software-specific affinity requirements.
+
+---
+
+# Recommendation Summary
+
+With this policy configuration:
+
+- Workloads at risk are upsized when CPU or memory utilization exceeds defined thresholds.
+- Overprovisioned workloads are downsized based on CPU and memory efficiency rules.
+- Nearly idle workloads are flagged for termination.
+- Scale groups can shrink by up to 50% or grow by up to 100%.
+- Kubernetes clusters are evaluated using 90% sustained reservation targets.
+- Instance recommendations can migrate across families, generations, and CPU vendors to maximize efficiency and cost savings.
+
+This policy balances **performance protection**, **cost optimization**, and **infrastructure modernization** while maintaining operational flexibility.
