@@ -1,14 +1,9 @@
 ---
-title: Cloud Resource Optimizer
-sidebarTitle: Overview
-description: Optimize cloud infrastructure costs and performance across AWS, Azure, Google Cloud and Oracle Cloud
+title: Overview
+description: Optimize cloud infrastructure costs and performance across AWS, Azure, Google and Oracle Cloud
 ---
 
-# Cloud Resource Optimizer
-
-Optimize cloud infrastructure costs without sacrificing performance.
-
-Kubex Cloud Resource Optimizer continuously analyzes cloud workloads, identifies waste, recommends right-sizing actions, and automates optimization across AWS, Azure, and Google Cloud environments. The platform helps SREs, Platform Engineering teams, Cloud Architects, and FinOps practitioners maximize utilization while maintaining operational reliability.
+Kubex Cloud Resource Optimizer continuously analyzes cloud workloads, identifies waste, and recommends right-sizing actions across AWS, Azure, and Google Cloud and OCI environments. The platform helps SREs, Platform Engineering teams, Cloud Architects, and FinOps practitioners maximize utilization while maintaining operational reliability.
 
 ---
 
@@ -21,6 +16,10 @@ Cloud environments often suffer from:
 - Excessive cloud spend
 - Performance bottlenecks caused by poor sizing decisions
 - Manual optimization processes that don't scale
+
+<Frame caption="Figure: Typical Cloud Waste Reasons">
+![](/images/docs-cloudex/cloud_waste_breakdown.png)
+</Frame>
 
 Kubex helps organizations continuously align resource allocation with real workload demand, reducing waste while maintaining application performance.
 
@@ -46,33 +45,11 @@ Enable engineering, operations, and finance teams to collaborate around a shared
 
 ---
 
-## Supported Cloud Platforms
-
-Kubex supports optimization across major cloud providers:
-
-<CardGroup cols={3}>
-  <Card title="Amazon Web Services">
-    Optimize EC2 workloads, instance selections, and cloud resource allocations.
-  </Card>
-
-  <Card title="Microsoft Azure">
-    Identify sizing inefficiencies and improve utilization across Azure environments.
-  </Card>
-
-  <Card title="Google Cloud Platform">
-    Continuously optimize GCP workloads and infrastructure resources.
-  </Card>
-</CardGroup>
-
-Kubex provides a consistent optimization experience across multi-cloud deployments.
-
----
-
 ## How It Works
 
 ### 1. Connect Cloud Accounts
 
-Connect your cloud environment securely and begin collecting infrastructure and utilization data.
+Connect your cloud environment securely and begin collecting infrastructure and utilization data. See [Setup Cloud Data Collection](/docs-kubex/Content/Kubex/Data_Collection_Overview)
 
 ### 2. Analyze Workload Behavior
 
@@ -86,6 +63,10 @@ Kubex continuously evaluates:
 
 using machine learning and historical workload analysis.
 
+<Frame caption="Figure: Typical Cloud Waste Reasons">
+![](/images/docs-cloudex/catalog_map_example.png)
+</Frame>
+
 ### 3. Identify Optimization Opportunities
 
 The platform surfaces:
@@ -98,28 +79,6 @@ The platform surfaces:
 
 prioritized by business impact and risk.
 
-### 4. Automate Optimization
-
-Apply approved recommendations automatically through policy-controlled workflows and automation guardrails.
-
----
-
-## AI-Powered Optimization
-
-Kubex combines machine learning, workload analytics, and automation to continuously optimize infrastructure.
-
-Key capabilities include:
-
-- Predictive resource sizing
-- Historical workload analysis
-- Risk-aware recommendations
-- Automated execution workflows
-- Policy-based governance controls
-- AI-assisted operational workflows
-
-The platform can integrate with enterprise AI and automation frameworks through its MCP interface, enabling advanced optimization workflows and agent-driven operations.
-
----
 
 ## FinOps Enablement
 
@@ -130,72 +89,17 @@ Kubex helps organizations mature their FinOps practices by providing:
 | Cost Visibility | Understand where cloud spend occurs |
 | Resource Rightsizing | Eliminate overprovisioning |
 | Savings Tracking | Measure optimization impact |
-| Team Collaboration | Align engineering and finance teams |
 | Continuous Optimization | Maintain long-term efficiency |
 
 By embedding optimization into operational workflows, teams can make cloud cost management an ongoing process instead of a periodic exercise.
 
----
-
-## Safety and Governance
-
-Optimization recommendations are designed to be safe and explainable.
-
-Kubex evaluates:
-
-- Historical utilization patterns
-- Workload stability
-- Performance risk
-- Expected impact
-- Organizational policies
-
-Low-confidence or potentially disruptive actions can be filtered out automatically, allowing teams to focus on high-value optimization opportunities.
+<Frame caption="Figure: Cloud Usage Trends">
+![](/images/docs-cloudex/catalog_map_example.png)
+</Frame>
 
 ---
-
-## Common Use Cases
-
-### Cloud Cost Reduction
-
-Reduce monthly cloud spending by identifying waste and rightsizing infrastructure resources.
-
-### Capacity Planning
-
-Forecast future infrastructure requirements based on historical demand patterns.
-
-### Multi-Cloud Optimization
-
-Maintain efficiency and governance across AWS, Azure, and Google Cloud deployments.
-
-### FinOps Programs
-
-Provide engineering teams with actionable recommendations that support cost-management initiatives.
-
-### Platform Engineering
-
-Automate optimization workflows and reduce manual operational overhead.
-
----
-
-## Who Uses Cloud Resource Optimizer?
-
-- Site Reliability Engineers (SREs)
-- Platform Engineering Teams
-- Cloud Architects
-- Infrastructure Operations Teams
-- FinOps Practitioners
-- IT Leadership
 
 Organizations use Kubex to improve cloud efficiency, reduce operational complexity, and ensure infrastructure resources align with actual business demand.
 
 ---
-
-## Getting Started
-
-1. Connect your cloud accounts.
-2. Run an initial assessment.
-3. Review optimization recommendations.
-4. Configure governance policies.
-5. Enable automation workflows.
-6. Continuously monitor savings and performance.
 
