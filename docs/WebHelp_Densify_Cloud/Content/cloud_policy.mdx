@@ -1,5 +1,6 @@
 ---
 title: Cloud Analysis Policy
+sidebarTitle: Cloud Policy
 description: Configure and understand Kubex Cloud Analysis Policies for rightsizing, risk detection, scale optimization, and Kubernetes cluster recommendations.
 ---
 
@@ -30,7 +31,7 @@ The operational window determines which historical utilization data is included 
 |----------|--------|
 | Workload Range | 60 Days |
 | Include Weekends | Yes |
-| Include Samples Between | 30th - 93rd Percentile |
+| Include Samples Between | 0 - 100th Percentile |
 | Exclude Hours | None |
 | Minimum Data for Analysis | 1 Day / 1 Hour |
 
@@ -51,13 +52,8 @@ Determines whether weekend utilization data is included.
 #### Include Samples Between
 Filters utilization samples to eliminate statistical outliers.
 
-**Current Setting:** `30th - 93rd Percentile`
+**Default Setting:** `0 - 100th Percentile`
 
-This means:
-
-- Samples below the 30th percentile are excluded.
-- Samples above the 93rd percentile are excluded.
-- Recommendations are based on the remaining representative workload behavior.
 
 #### Minimum Data Requirement
 
@@ -256,12 +252,10 @@ These thresholds help maintain cluster resiliency while minimizing excess capaci
 
 The Rule Engine controls how Kubex selects target instance types during optimization.
 
-## Enabled Rules
-
-| Rule | Status |
+| Rule | Description |
 |--------|--------|
-| Optimize Family | Enabled |
-| Generation Changes | Enabled |
+| Optimize Family | Allow alternative instance families when a more cost-effective or performant option exists |
+| Generation Changes | Permits migration between instance generations |
 | Favor Latest Generation | Enabled |
 | Older Architectures | Enabled |
 | Allow Flex Types | Enabled |
