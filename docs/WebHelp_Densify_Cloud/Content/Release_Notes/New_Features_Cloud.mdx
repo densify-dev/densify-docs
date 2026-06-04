@@ -6,7 +6,7 @@ The following sections provide details of new features and updates introduced in
 
 - Kubex -- Features & enhancements in the latest Kubex releases.
 - [Container Data Forwarder](#container-data-forwarder) -- Updates to Kubex's Container data collection module.
-- [Kubex Automation Controller](#kubex-automation-controller) -- Updates to Kubex's Automation Controller module.
+- [Kubex Automation Engine](#kubex-automation-engine) -- Updates to Kubex's Automation Engine module.
 
 ## Kubex
 
@@ -82,7 +82,7 @@ This topic summarizes both new and updated features introduced in Kubex
 
 
     - **API Enhancements**
-      - Added Automation Controller heartbeat endpoint: 
+      - Added Automation Engine heartbeat endpoint: 
         `POST /automation/clusters/{clusterName}/heartbeat`
 
     - **UI Improvements**
@@ -325,7 +325,7 @@ OOM Kills in the environment
     - **CPU Throttling (%)**--CPU Throttling data is now visible in CPU Throttling (%) column on the Analysis Details page:
       - ML Model and historical data available in Utilization Charts carousel and 
 Metrics Viewer  
-    - **Automation Tab**--Automation tab has been added to highlight request and limit changes made by the Kubex Automation Controller. An overview of optimized manifests 
+    - **Automation Tab**--Automation tab has been added to highlight request and limit changes made by the Kubex Automation Engine. An overview of optimized manifests 
 is also available on the summary page
     - **Business & Operational Attributes**--Various business and operations related 
 attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and Analysis Details 
@@ -785,12 +785,12 @@ columns
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
-  <Accordion title="Mutating Admission Controller">
-    This release provides enhancements to the Kubernetes automation framework including an updated version of the Mutating Admission Controller (MAC) that sends configuration and modification event status information to your Kubex instance
+  <Accordion title="Kubex Automation">
+    This release provides enhancements to the Kubernetes automation framework that sends configuration and modification event status information to your Kubex instance
 
     A new Automation status page has been added to Kubex that reports on the status of containers that have been enabled for automation, You can enable/disable containers for automation using a right-click context menu from the Kubex container tree viewer. Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
 
-    Refer to [Mutating Admission Controller](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) for details on deploying and using the Kubex Container Automation solution.
+    Refer to [Kubex Automation Engine](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-engine) for details on deploying and using the Kubex Container Automation solution.
   </Accordion>
   <Accordion title="New Kubernetes API Endpoints">
     The following endpoints have been added to the Kubex API:
@@ -1293,7 +1293,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
     - GKE
   </Accordion>
   <Accordion title="HPA Updates">
-    **HPA Scales Based on Multiple Metrics**--With this update Kubex recommendations are not implemented for any containers enabled for HPA that scale based on single or multiple metrics, that are also enabled for automation using the Kubex Mutating Automation Controller (MAC).
+    **HPA Scales Based on Multiple Metrics**--With this update Kubex recommendations are not implemented for any containers enabled for HPA that scale based on single or multiple metrics, that are also enabled for automation using the Kubex Automation Engine.
 
     Previously Kubex did not support HPA-based on multiple metrics.
   </Accordion>
@@ -1548,11 +1548,17 @@ When deploying the Container Data Forwarder ensure that the same version is depl
   </Accordion>
 </Accordion>
 
-## Kubex Automation Controller
+## Kubex Automation Engine
 
-This section lists new features and updates to the Kubex Automation Controller, which automatically implements Kubex's optimization recommendations for Kubernetes workloads.
+<Note>
+The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine. All release notes for the Kubex Automation Engine are now maintained on GitHub. See the [Kubex Automation Engine CHANGELOG](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/CHANGELOG.md) for the latest updates.
+</Note>
 
-A Helm chart bundles all components required for automated container optimization. See [Kubex Automation Controller](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) for deployment details and configuration options.
+This section lists historical features and updates to the Kubex Automation Controller (now deprecated). For current release information, refer to the [Kubex Automation Engine](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-engine) repository.
+
+### Legacy Kubex Automation Controller Release Notes
+
+The Kubex Automation Controller automatically implemented Kubex's optimization recommendations for Kubernetes workloads.
 
 <Accordion title="1.0.13 - February 6, 2026 (Patch)">
   <Accordion title="Valkey Helm & OpenShift Compatibility Fixes">

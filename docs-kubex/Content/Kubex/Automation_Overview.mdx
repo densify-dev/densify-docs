@@ -5,7 +5,7 @@ import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
 
 ## Automating Container Recommendation
 
-The Kubex Automation Controller provides intelligent, policy-driven automation for managing container resource configurations in Kubernetes clusters. It safely and efficiently optimizes workload resources based on Kubex's optimization recommendations while respecting your operational constraints.
+The Kubex Automation Engine provides intelligent, policy-driven automation for managing container resource configurations in Kubernetes clusters. It safely and efficiently optimizes workload resources based on Kubex's optimization recommendations while respecting your operational constraints.
 
 ### Key Features
 
@@ -21,51 +21,8 @@ The Kubex Automation Controller provides intelligent, policy-driven automation f
 
 ### Getting Started
 
-There are a few steps to enable automation for your environment:
 
-<ol start="1">
-  <li>
-    <strong>Deploy the Kubex Automation Controller</strong>: Use the Helm chart to deploy the controller and mutating admission webhook. All required files and detailed instructions are provided in the [
-    <a href="https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller"> Kubex Automation Controller Helm Chart </a>
-    ].
-  </li>
-  <li>
-    <strong>Configure Policies</strong>: Define your automation behavior through the configuration files. The policy settings determine which workloads are optimized and how the automation behaves. 
-    <br/>
-    See the [
-    <a href="https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-controller/docs/Getting-Started.md"> Getting Started Guide </a>
-    ] for detailed configuration instructions.
-  </li>
-  <li>
-    <strong>Optional Kubex Management Layer</strong>: 
-    <p><strong>Important:</strong> The filter and enable/disable controls inside Kubex only work when the Helm values set <code>remoteEnablement: true</code>. When this flag remains <code>false</code> (the default), automation scope is managed exclusively through the Helm chart configuration.</p>
-    <p><strong>Both conditions must be met</strong>: the workload must match your Helm-defined scope (namespace and optional <code>podLabel</code>) <em>and</em> be enabled in Kubex. If either side is missing, automation does not run for that container.</p>
-    <p>Right-click in the container tree view to select <strong>Enable Automation</strong> or <strong>Disable Automation</strong> for workloads that already match your Helm scope.</p>
-
-<InlineImageWithText 
-  src="/images/docs-kubex/Content/Kubex/03000194_298x216.png" 
-  alt="Enabling Automation" 
-  width="360px"
->
-  **Figure: Enabling Automation from Kubex**
-  
-  Remote enablement lets you toggle automation directly from the tree viewer for workloads matching your Helm-defined scope.
-</InlineImageWithText>
-
-<p>The <strong>Automation Enabled</strong> tree filter then shows only the containers that have been explicitly enabled through this additional management layer, so you can audit what has been turned on from the UI.</p>
-
-<InlineImageWithText 
-  src="/images/docs-kubex/Content/Kubex/03000195.png" 
-  alt="Containers with Automation Enabled" 
-  width="360px"
->
-  **Figure: Containers with Automation Enabled**
-  
-  The tree filter surfaces only those workloads you have explicitly enabled through Kubex, giving you a quick audit list of automation-ready containers.
-</InlineImageWithText>
-  </li>
-</ol>
-
+Use the Helm chart to deploy the [Kubex Automation Engine Helm Chart](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Getting-Started.md).
 
 ### Monitoring Automation Activity
 
@@ -108,8 +65,12 @@ Each metric is interactive—clicking any of the numbers drills into the filtere
 </Frame>
 
 
-### Automation Policies
+### Automation Policies and Configuration
 
-Automation policies define how the Kubex Automation Controller optimizes your workloads. These policies are configured through the Helm chart values and determine which resources are automatically optimized, under what conditions, and with what constraints.
+Automation policies define how the Kubex Automation Engine optimizes your workloads. These policies are configured through the Helm chart values and determine which resources are automatically optimized, under what conditions, and with what constraints.
 
-For detailed information on configuring automation policies, including policy structure, safety rules, and advanced configurations, see the [Policy Configuration Guide](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-controller/docs/Policy-Configuration.md) in the Helm chart documentation.
+**Creating Automation Strategies and Policies:**
+- See the [Configuration Reference](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Configuration-Reference.md) for complete details on policy structure, targeting rules, and optimization strategies.
+
+**Safety Controls and Advanced Configuration:**
+- The [Advanced Configuration Guide](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Advanced-Configuration.md) covers safety controls, pausing automation, and advanced deployment scenarios.

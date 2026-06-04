@@ -7,7 +7,7 @@ import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
 
 
 <InlineImageWithText src="/images/docs-kubex/Content/Kubex/03000199.png">
-The automation features allow you to optimize your Kubernetes pods based on Kubex recommendations, ensuring resources are effectively allocated for improved performance and cost efficiency. See <a href="/docs-kubex/Content/Kubex/Automation_Overview">Automation Overview</a> for more information and [<a href="https://github.com/densify-dev/container-automation-deployment">Kubex Container Automation</a>] in GitHub for deployment details.
+The automation features allow you to optimize your Kubernetes pods based on Kubex recommendations, ensuring resources are effectively allocated for improved performance and cost efficiency. See <a href="/docs-kubex/Content/Kubex/Automation_Overview">Automation Overview</a> for more information and the <a href="https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/README.md">Kubex Automation Engine</a> in GitHub for deployment details and <a href="https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/CHANGELOG.md">release notes</a>.
 </InlineImageWithText>
 
 
@@ -53,7 +53,7 @@ The name of cluster.
 Automation Deployed
 </td>
 <td>
-The red or green icons indicate whether or not the Mutating Admission Controller has been deployed.
+The red or green icons indicate whether or not the Kubex Automation Engine has been deployed.
 </td>
 </tr>
 <tr>
@@ -64,7 +64,7 @@ Automation Status
 The status of the last automation attempt. The status will be one of the following:
 <ul>
   <li>Healthy--The cluster has been enabled for automation and is actively optimizing containers..</li>
-  <li>Unknown--The Mutating Admission Controller has been deployed, but no mutations have occured in the last 24 hours</li>
+  <li>Unknown--The Kubex Automation Engine has been deployed, but no mutations have occured in the last 24 hours</li>
 </ul>
 </td>
 </tr>
