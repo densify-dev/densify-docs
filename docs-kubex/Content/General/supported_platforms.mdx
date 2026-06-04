@@ -48,62 +48,150 @@ Kubex provides container and node optimization across all major Kubernetes distr
 </div>
 
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/amazon-eks-icon-455x512-0zairb3r.png" alt="AWS EKS" width="16" /> AWS EKS: Amazon Elastic Kubernetes Service</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/azure-aks-logo.png" alt="Azure AKS" width="16" /> Azure AKS: Azure Kubernetes Service</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/gke-logo-e1766168359186.png" alt="Google GKE" width="16" /> Google GKE: Google Kubernetes Engine</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/openshift-logo-png-transparent.png" alt="Red Hat OpenShift" width="16" /> Red Hat OpenShift: Enterprise Kubernetes</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/rancher-logo-cow-blue.png" alt="Rancher" width="16" /> Rancher: Multi-cloud Kubernetes management</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/nutanix-nkp-logo-1.png" alt="Nutanix NKP" width="16" /> Nutanix NKP: Nutanix Kubernetes Platform</span>
-</div>
-
-
 ## Public Cloud Platforms
 
 Kubex optimizes infrastructure across all major cloud providers:
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/aws-logo.svg" alt="AWS" width="16" /> AWS: EC2, RDS, Auto Scaling Groups</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/Microsoft_Azure.svg" alt="Azure" width="16" /> Azure: Virtual Machines, Scale Sets</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/gcp-logo.png" alt="Google Cloud" width="16" /> Google Cloud: Compute Engine instances</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/ORCL-logo.png" alt="Oracle Cloud" width="16" /> Oracle Cloud: OCI Compute instances</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/Amazon-ecs.png" alt="Amazon ECS" width="16" /> Amazon ECS: Elastic Container Service</span>
+<div
+  style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '8px 16px',
+    marginTop: '8px',
+  }}
+>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://kubex.ai/wp-content/uploads/aws-logo.svg" alt="AWS" width="16" />
+    <span>AWS: EC2, RDS, Auto Scaling Groups</span>
+  </div>
+
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://kubex.ai/wp-content/uploads/Microsoft_Azure.svg" alt="Azure" width="16" />
+    <span>Azure: Virtual Machines, Scale Sets</span>
+  </div>
+
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://kubex.ai/wp-content/uploads/gcp-logo.png" alt="Google Cloud" width="16" />
+    <span>Google Cloud: Compute Engine instances</span>
+  </div>
+
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://kubex.ai/wp-content/uploads/ORCL-logo.png" alt="Oracle Cloud" width="16" />
+    <span>Oracle Cloud: OCI Compute instances</span>
+  </div>
+
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://kubex.ai/wp-content/uploads/Amazon-ecs.png" alt="Amazon ECS" width="16" />
+    <span>Amazon ECS: Elastic Container Service</span>
+  </div>
 </div>
 
 ## Observability & Monitoring Integrations
 
 Kubex augments optimization analysis by integrating with leading observability platforms:
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/Prometheus_software_logo.svg.png" alt="Prometheus" width="16" /> Prometheus: Ingest Kubernetes metrics for optimization analysis</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/datadog-seeklogo.png" alt="Datadog" width="16" /> Datadog: Collect monitoring and observability data</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/new_relic_logo_white.png" alt="New Relic" width="16" /> New Relic: Collect monitoring and observability data</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana" width="16" /> Grafana: Visualize and explore metrics used by Kubex</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://cdn.simpleicons.org/opentelemetry/6F2DA8" alt="OpenTelemetry" width="16" /> OpenTelemetry: Collect distributed traces, metrics, and logs</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://cdn.simpleicons.org/nvidia/76B900" alt="DCGM Exporter" width="16" /> DCGM Exporter: NVIDIA GPU performance and utilization metrics</span>
+<div
+  style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '8px 16px',
+    marginTop: '8px',
+  }}
+>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://kubex.ai/wp-content/uploads/Prometheus_software_logo.svg.png" alt="Prometheus" width="16" />
+    <span>Prometheus: Ingest Kubernetes metrics for optimization analysis</span>
+  </div>
+
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://kubex.ai/wp-content/uploads/datadog-seeklogo.png" alt="Datadog" width="16" />
+    <span>Datadog: Collect monitoring and observability data</span>
+  </div>
+
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://kubex.ai/wp-content/uploads/new_relic_logo_white.png" alt="New Relic" width="16" />
+    <span>New Relic: Collect monitoring and observability data</span>
+  </div>
+
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana" width="16" />
+    <span>Grafana: Visualize and explore metrics used by Kubex</span>
+  </div>
+
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://cdn.simpleicons.org/opentelemetry/6F2DA8" alt="OpenTelemetry" width="16" />
+    <span>OpenTelemetry: Collect distributed traces, metrics, and logs</span>
+  </div>
+
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://cdn.simpleicons.org/nvidia/76B900" alt="DCGM Exporter" width="16" />
+    <span>DCGM Exporter: NVIDIA GPU performance and utilization metrics</span>
+  </div>
 </div>
 
 ## Process Automation Integrations
 
 Kubex integrates with ticketing and infrastructure-as-code platforms:
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://cdn.simpleicons.org/jira/0052CC" alt="JIRA" width="16" /> JIRA: Automate optimization ticket creation and management</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/logo-servicenow.webp" alt="ServiceNow" width="16" /> ServiceNow: Automate optimization ticket creation and management</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform" width="16" /> Terraform: Align infrastructure as code with optimization outputs</span>
+<div
+  style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '8px 16px',
+    marginTop: '8px',
+  }}
+>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://cdn.simpleicons.org/jira/0052CC" alt="JIRA" width="16" />
+    <span>JIRA: Automate optimization ticket creation and management</span>
+  </div>
+
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://kubex.ai/wp-content/uploads/logo-servicenow.webp" alt="ServiceNow" width="16" />
+    <span>ServiceNow: Automate optimization ticket creation and management</span>
+  </div>
+
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform" width="16" />
+    <span>Terraform: Align infrastructure as code with optimization outputs</span>
+  </div>
 </div>
 
 ## Deployment and Orchestration
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/helm-logo-white.png" alt="Helm" width="16" /> Helm: Deploy and manage Kubex components via Helm charts</span>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/karpenter-logo.png" alt="Karpenter" width="16" /> Karpenter: Optimize Kubernetes node provisioning and scaling</span>
+<div
+  style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '8px 16px',
+    marginTop: '8px',
+  }}
+>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://kubex.ai/wp-content/uploads/helm-logo-white.png" alt="Helm" width="16" />
+    <span>Helm: Deploy and manage Kubex components via Helm charts</span>
+  </div>
+
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://kubex.ai/wp-content/uploads/karpenter-logo.png" alt="Karpenter" width="16" />
+    <span>Karpenter: Optimize Kubernetes node provisioning and scaling</span>
+  </div>
 </div>
 
 ## AI and Advanced Capabilities
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><img src="https://kubex.ai/wp-content/uploads/mcp-server-logo.png" alt="MCP Server" width="16" /> MCP Server: Provide secure and structured access to optimization data for AI agents</span>
+<div
+  style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '8px 16px',
+    marginTop: '8px',
+  }}
+>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img src="https://kubex.ai/wp-content/uploads/mcp-server-logo.png" alt="MCP Server" width="16" />
+    <span>MCP Server: Provide secure and structured access to optimization data for AI agents</span>
+  </div>
 </div>
 
 ## Marketplace Availability
