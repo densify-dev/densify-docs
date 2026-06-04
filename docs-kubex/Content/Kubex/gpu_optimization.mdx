@@ -9,6 +9,10 @@ Kubex provides advanced GPU optimization capabilities for Kubernetes environment
 
 GPU infrastructure is significantly more expensive than traditional CPU and memory resources, yet many AI workloads consume only a fraction of the GPU resources allocated to them.
 
+<Frame caption="Figure: GPU Inventory">
+![](/images/docs-kubex/gpu_summary.png)
+</Frame>
+
 Kubex addresses this challenge by:
 
 - Continuously monitoring GPU workloads
@@ -23,6 +27,10 @@ Kubex focuses on increasing GPU yield while maintaining application performance 
 ## GPU Workload Visibility
 
 Kubex automatically identifies containers consuming GPU resources and separates GPU spend from standard CPU and memory infrastructure costs.
+
+<Frame caption="Figure: GPU Utilization">
+![](/images/docs-kubex/gpu_usage_chart.png)
+</Frame>
 
 The platform provides:
 
@@ -120,6 +128,10 @@ The result is more accurate optimization decisions compared to static threshold-
 ## GPU Density Optimization
 
 One of Kubex's core optimization goals is improving GPU density.
+
+<Frame caption="Figure: GPU Recommendations">
+![](/images/docs-kubex/gpu_details.png)
+</Frame>
 
 Kubex identifies workloads that:
 
