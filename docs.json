@@ -137,6 +137,7 @@
                 "group": "Public Cloud Optimization",
                 "pages": [
                     "docs/WebHelp_Densify_Cloud/Content/Cloud_Optimization",
+                    "docs/WebHelp_Densify_Cloud/Content/ecs_optimization",
                     "docs/WebHelp_Densify_Cloud/Content/cloud_policy",
                     {
                         "group": "Cloud Insights",
