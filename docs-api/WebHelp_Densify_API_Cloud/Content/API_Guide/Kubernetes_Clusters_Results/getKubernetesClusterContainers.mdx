@@ -1,3 +1,64 @@
 ---
 openapi: "/openapi/kubernetes/kubernetes_clusters_results.yaml GET /kubernetes/clusters/{clusterName}/containers"
 ---
+
+## Overview
+
+This endpoint returns container recommendation details for a specific cluster. This is the **base response format** without additional details.
+
+For extended information including uptime predictions, OOM kill counts, node group associations, and audit history, use the detailed endpoint with `details=true`. See [getKubernetesClusterContainersDetailed](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results/getKubernetesClusterContainersDetailed) for more information.
+
+## Example Request
+
+```bash
+curl -X GET "https://api.example.com/api/v2/kubernetes/clusters/my-cluster/containers" \
+  -H "Authorization: Bearer YOUR_API_TOKEN"
+```
+
+## Example Response
+
+```json
+[
+  {
+    "cluster": "my-cluster",
+    "namespace": "production",
+    "podOwnerName": "web-app",
+    "podOwnerKind": "Deployment",
+    "container": "nginx",
+    "entityId": "abc123",
+    "containerId": "def456",
+    "avgContainerCount": 3,
+    "currentCpuRequestmCores": 500,
+    "currentCpuLimitmCores": 1000,
+    "currentMemRequestBytes": 536870912,
+    "currentMemLimitBytes": 1073741824,
+    "recommendedCpuRequestmCores": 300,
+    "recommendedCpuLimitmCores": 600,
+    "recommendedMemRequestBytes": 268435456,
+    "recommendedMemLimitBytes": 536870912,
+    "estimatedSavingsPerContainer": 45.50,
+    "analyzedOn": "2026-06-08T10:30:00Z",
+    "hpaMetricName": "cpu",
+    "hpaMetricThreshold": "75%",
+    "currentEphemeralStorageRequestBytes": 1073741824,
+    "currentEphemeralStorageLimitBytes": 2147483648,
+    "recommendedEphemeralStorageRequestBytes": 536870912,
+    "recommendedEphemeralStorageLimitBytes": 1073741824
+  }
+]
+```
+
+<Note>
+Fields without values may be omitted from the response. All timestamps are in UTC format (`YYYY-MM-DDTHH:mm:ssZ`).
+</Note>
+
+## Need More Details?
+
+If you need additional fields such as:
+- Predicted uptime percentage
+- Configuration change history
+- Node group associations
+- OOM kill events
+- Audit timeline information
+
+Use the [detailed endpoint](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results/getKubernetesClusterContainersDetailed) by adding `?details=true` to your request.
