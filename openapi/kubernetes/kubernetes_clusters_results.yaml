@@ -39,7 +39,10 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ContainerRecommendation'
+                  oneOf:
+                    - $ref: '#/components/schemas/ContainerRecommendation'
+                    - $ref: '#/components/schemas/ContainerRecommendationDetailed'
+                  description: Returns ContainerRecommendation by default, or ContainerRecommendationDetailed when details=true
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
@@ -51,38 +54,6 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 
-  /analysis/containers/kubernetes/clusters/{clusterName}/containers:
-    get:
-      tags: [Kubernetes Cluster Results]
-      summary: List container recommendations for a cluster (detailed)
-      operationId: getKubernetesClusterContainersDetailed
-      description: |
-        Detailed variant that includes the same fields as `/kubernetes/clusters/{clusterName}/containers`
-        with `details=true`.
-      security:
-        - bearerAuth: []
-      parameters:
-        - $ref: '#/components/parameters/k8s_clusterName'
-        - $ref: '#/components/parameters/detailsTrueDefault'
-      responses:
-        '200':
-          description: Array of container recommendations with additional details
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ContainerRecommendation'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          description: Cluster not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          $ref: '#/components/responses/ServerError'
 
 components:
   securitySchemes:
@@ -108,20 +79,12 @@ components:
       schema:
         type: boolean
         default: false
-    detailsTrueDefault:
-      name: details
-      in: query
-      required: false
-      description: Same as `details`; defaults to true for this resource.
-      schema:
-        type: boolean
-        default: true
 
   # ===== Schemas =====
   schemas:
     ContainerRecommendation:
       type: object
-      description: Container recommendation entry. Fields without values may be omitted.
+      description: Container recommendation entry (base fields). Fields without values may be omitted.
       properties:
         cluster:
           type: string
@@ -179,32 +142,90 @@ components:
           type: string
           format: date-time
           description: Most recent analysis refresh (UTC, `YYYY-MM-DDTHH:mm:ssZ`).
-
-        # --- Additional fields when details=true ---
-        predictedUptime:
+        hpaMetricName:
+          type: string
+          description: HPA metric name (e.g., cpu, memory).
+        hpaMetricThreshold:
+          type: string
+          description: HPA metric threshold (e.g., 75%).
+        currentEphemeralStorageRequestBytes:
           type: number
-          format: float
-          description: Predicted uptime percentage for the container.
-        configLastChangedOn:
-          type: string
-          format: date-time
-          description: Timestamp of the most recent change to requests/limits.
-        nodeGroup:
-          type: array
-          items:
-            type: string
-          description: Names of associated node groups.
-        oomKills_last7days:
-          type: integer
-          description: Number of OOM events in the last 7 days.
-        dateFirstAudited:
-          type: string
-          format: date-time
-          description: When this container was first audited (from workload history).
-        dateLastAudited:
-          type: string
-          format: date-time
-          description: When this container was last audited (from workload history).
+          description: Current ephemeral storage request (bytes).
+        currentEphemeralStorageLimitBytes:
+          type: number
+          description: Current ephemeral storage limit (bytes).
+        recommendedEphemeralStorageRequestBytes:
+          type: number
+          description: Recommended ephemeral storage request (bytes).
+        recommendedEphemeralStorageLimitBytes:
+          type: number
+          description: Recommended ephemeral storage limit (bytes).
+        gpu:
+          type: object
+          description: GPU-related recommendations and metrics (present for GPU workloads).
+          properties:
+            currentGpuModel:
+              type: string
+              description: Current GPU model.
+            currentGpuSharingStrategy:
+              type: string
+              description: Current GPU sharing strategy (e.g., kai-scheduler, time-slicing).
+            currentGpuRequest:
+              type: number
+              format: float
+              description: Current GPU request (fractional GPU units).
+            gpuComputeOptimal:
+              type: number
+              format: float
+              description: Optimal GPU compute utilization.
+            gpuMemoryOptimalBytes:
+              type: number
+              description: Optimal GPU memory usage (bytes).
+            gpuOverallOptimal:
+              type: number
+              format: float
+              description: Overall optimal GPU utilization.
+            recommendedGpuModel:
+              type: string
+              description: Recommended GPU model.
+            recommendedGpuSharingStrategy:
+              type: string
+              description: Recommended GPU sharing strategy.
+            recommendedGpuRequest:
+              type: number
+              format: float
+              description: Recommended GPU request (fractional GPU units).
+
+    ContainerRecommendationDetailed:
+      allOf:
+        - $ref: '#/components/schemas/ContainerRecommendation'
+        - type: object
+          description: Container recommendation entry with additional detail fields (returned when details=true).
+          properties:
+            predictedUptime:
+              type: number
+              format: float
+              description: Predicted uptime percentage for the container.
+            configLastChangedOn:
+              type: string
+              format: date-time
+              description: Timestamp of the most recent change to requests/limits.
+            nodeGroup:
+              type: array
+              items:
+                type: string
+              description: Names of associated node groups.
+            oomKills_last7days:
+              type: integer
+              description: Number of OOM events in the last 7 days.
+            dateFirstAudited:
+              type: string
+              format: date-time
+              description: When this container was first audited (from workload history).
+            dateLastAudited:
+              type: string
+              format: date-time
+              description: When this container was last audited (from workload history).
 
     Error:
       type: object
