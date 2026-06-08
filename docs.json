@@ -200,8 +200,7 @@
                                   {
                                       "group": "Kubernetes Clusters Automation",
                                       "pages": [
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Automation",
-                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Automation/listClusterAutomationContainers"
+                                          "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Automation"
                                       ]
                                   }
                               ]
