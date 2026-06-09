@@ -95,3 +95,15 @@ article > div,
 .home_card_container .card p {
   color: #fff !important;
 }
+
+/* Stack OpenAPI example panes vertically (request and response) */
+[data-testid*="api"] [class*="grid-cols-2"],
+[data-testid*="api"] [class*="lg:grid-cols-2"],
+[data-testid*="api"] [class*="xl:grid-cols-2"],
+[data-testid*="api"] [class*="2xl:grid-cols-2"] {
+  grid-template-columns: 1fr !important;
+}
+
+[data-testid*="api"] [class*="flex-row"] {
+  flex-direction: column !important;
+}
