@@ -107,3 +107,15 @@ article > div,
 [data-testid*="api"] [class*="flex-row"] {
   flex-direction: column !important;
 }
+
+/* Fallback: stack API request/response code panes when test ids are absent */
+[role="main"] div:has(> div [role="tablist"]):has(> div + div [role="tablist"]) {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0.75rem !important;
+}
+
+[role="main"] div:has(> div [role="tablist"]):has(> div + div [role="tablist"]) > div {
+  width: 100% !important;
+  max-width: 100% !important;
+}
