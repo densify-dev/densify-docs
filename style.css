@@ -46,12 +46,6 @@ article {
   flex: 1 1 100% !important;
 }
 
-/* Target the layout container and force it to be single column */
-body [class*="flex"],
-body [class*="grid"] {
-  grid-template-columns: auto 1fr !important;
-}
-
 /* Hide any element containing "On this page" text */
 *:has-text("On this page") {
   display: none !important;
