@@ -44,6 +44,10 @@ When using Helm-managed policy generation:
 - `scope[].name` becomes `ClusterProactivePolicy.metadata.name`
 - `scope[].policy` (or `policy.defaultPolicy`) references strategy name
 
+Helm-managed `scope` and `policy.policies` preserve the values-driven flow from `values-edit.yaml`, while those generated CRs can still be managed independently when needed.
+
+Namespaced `AutomationStrategy`, `ProactivePolicy`, `StaticPolicy`, and cluster static policies are supported by the controller and are commonly managed through dedicated CR manifests.
+
 ## Scope Design Guidance
 
 Recommended practices:
@@ -57,6 +61,8 @@ Recommended practices:
 
 - Policy Configuration Guide:
 https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Policy-Configuration.md
+- Policy Evaluation Reference:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Policy-Evaluation.md
 - Cluster Automation Strategies:
 https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Cluster-Automation-Strategies.md
 - Cluster Proactive Policies:

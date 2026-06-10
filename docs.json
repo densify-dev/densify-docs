@@ -302,7 +302,12 @@
                                   }
                                 ]
                             },
-                            "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/downloadAnalysisReport",
+                            {
+                                "group": "Analysis Report",
+                                "pages": [
+                                    "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/downloadAnalysisReport"
+                                ]
+                            },
                             {
                                 "group": "Analysis: Webhook",
                                 "pages": [

@@ -5,6 +5,10 @@ sidebarTitle: "Getting Started"
 
 This page summarizes the installation flow for Kubex Automation Engine.
 
+For the full workflow, use the upstream guide:
+
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Getting-Started.md
+
 ## Prerequisites
 
 Before installing:
@@ -12,6 +16,7 @@ Before installing:
 - You have access to your Kubex instance details
 - You have Helm access to your cluster
 - You can install CRDs in the target cluster
+- You can create required cluster-scoped RBAC and admission webhook resources
 
 ## Step 1: Prepare Required Values
 
@@ -70,11 +75,18 @@ helm install kubex-automation-engine kubex/kubex-automation-engine \
   -f kubex-automation-values.yaml
 ```
 
+OpenShift note:
+
+- Installation still requires cluster-scoped permissions for RBAC and admission webhook resources
+- Set `openshift.enabled=true` for the chart's restricted-friendly OpenShift path
+- Set `openshift.fsGroup` only if your cluster policy requires it
+
 ## Step 5: Verify Health
 
 ```bash
 kubectl get deployment kubex-automation-engine -n kubex
 kubectl get pods -n kubex -l control-plane=controller-manager
+kubectl get validatingwebhookconfigurations,mutatingwebhookconfigurations | grep kubex
 ```
 
 ## Step 6: Create First Strategy and Policy
@@ -83,6 +95,25 @@ You can either:
 
 - Use Helm-managed values (`scope` and `policy.policies`) for generated cluster-scoped resources
 - Manage CR manifests directly with `kubectl` or GitOps
+
+Also validate:
+
+- Policy resolution in controller logs
+- Recommendation ingestion and rightsizing application for targeted workloads
+
+## Step 7: Apply Configuration Updates
+
+After changing values or policy configuration, re-run:
+
+```bash
+helm upgrade kubex-automation-engine kubex/kubex-automation-engine \
+  --namespace kubex \
+  -f kubex-automation-values.yaml
+```
+
+## Uninstall Notes
+
+When uninstalling, remove chart resources and clean up any remaining finalizers for externally managed CRs.
 
 For full guided steps, see:
 

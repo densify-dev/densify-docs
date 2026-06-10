@@ -35,9 +35,24 @@ kubectl logs -n kubex -l control-plane=controller-manager -c manager --since=10m
 
 Yes. A common pattern is Helm-managed baseline with manually managed exception policies.
 
+### What FAQ topics should I review first?
+
+Start with FAQ coverage for:
+
+- Getting started and prerequisites
+- Helm-managed versus manual CR management
+- Safety controls and emergency stop options
+- Troubleshooting and verification steps
+
 ### How do I stop automation quickly?
 
 Set `globalConfiguration.automationEnabled: false` and run `helm upgrade`, or scale down the controller as an emergency action.
+
+## Support Routing
+
+- Documentation issues: begin with Troubleshooting and runtime diagnostics
+- Configuration questions: compare chart values and generated CR behavior against Configuration Reference
+- Upgrade and migration concerns: review backward compatibility notes in Advanced Configuration
 
 ## Detailed References
 
@@ -47,3 +62,5 @@ https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-e
 https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Known-Issues.md
 - FAQ:
 https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/FAQ.md
+- Advanced Configuration:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Advanced-Configuration.md#backward-compatibility-and-migration

@@ -27,10 +27,21 @@ Key outcomes include:
 
 A standard deployment includes:
 
-- A single `kubex-automation-engine` controller deployment
-- Mutating admission webhook for pod-time optimization
+- A single `kubex-automation-engine` deployment that evaluates policy, performs safety checks, and applies in-place or eviction-based resize
+- Mutating admission webhook configuration for admission-time pod mutation
 - Gateway sidecar that retrieves recommendations from Kubex
-- CRDs for global behavior, strategy, policy, and policy-evaluation logic
+- Custom resources for global behavior, strategy, policy, and runtime evaluation state
+
+## Key Features
+
+- Declarative automation model using CRDs or Helm-generated resources
+- Recommendation-driven and static policy support
+- Zero-downtime optimization with in-place resize on Kubernetes 1.33+ and eviction fallback when required
+- Namespaced and cluster-scoped control patterns
+- Admission-time and proactive enforcement paths
+- Fail-closed safety model with health gating and prechecks
+- Smart pause control with per-pod annotations
+- GitOps-friendly adoption path with backward compatibility for values-based settings
 
 ## Supported Workload Owners
 
@@ -42,17 +53,24 @@ Recommendation-driven automation can target:
 - Rollout
 - Job
 - AnalysisRun
-- DaemonSet (when explicitly enabled)
+- StrimziPodSet
+- DaemonSet
 
 ## Engine Model in One View
 
 The Automation Engine separates behavior from scope:
 
-- Strategy: Defines how resizing is allowed to happen
-- Policy: Defines where strategy applies
-- Global Configuration: Defines cluster-wide runtime behavior
+- `AutomationStrategy` and `ClusterAutomationStrategy`: Define how rightsizing is allowed to happen
+- `ProactivePolicy` and `ClusterProactivePolicy`: Define where recommendation-driven automation applies
+- `StaticPolicy` and `ClusterStaticPolicy`: Define fixed resource behavior when recommendations are not used
+- `GlobalConfiguration`: Defines cluster-wide runtime behavior
 
 This makes automation easier to standardize across teams while still allowing namespace-level exceptions.
+
+Important:
+
+- Helm-managed `scope` and `policy.policies` preserve the existing values-driven flow by generating cluster-scoped strategy and proactive policy resources
+- Namespaced `AutomationStrategy`, `ProactivePolicy`, `StaticPolicy`, and cluster static policies are supported by the controller and can be managed independently through CR manifests
 
 ## Deprecation Note
 
