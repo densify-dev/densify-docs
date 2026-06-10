@@ -302,15 +302,7 @@
                                   }
                                 ]
                             },
-                            {
-                            "group": "Systems",
-                            "pages": [
-                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems",
-                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/getSystem",
-                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/downloadAnalysisReport",
-                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/modifySystemAttributes"
-                            ]
-                            },
+                            "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/downloadAnalysisReport",
                             {
                                 "group": "Analysis: Webhook",
                                 "pages": [
