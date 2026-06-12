@@ -4,9 +4,9 @@ title: "New Features"
 
 The following sections provide details of new features and updates introduced in each release.
 
-- Kubex -- Features & enhancements in the latest Kubex releases.
-- [Container Data Forwarder](#container-data-forwarder) -- Updates to Kubex's Container data collection module.
-- [Kubex Automation Engine](#kubex-automation-engine) -- Updates to Kubex's Automation Engine module.
+- [Kubex](#kubex) -- Features & enhancements in the latest Kubex releases.
+- [Kubex Data Collector](#container-data-forwarder) -- Updates to the Kubex Data Collector.
+- [Kubex Automation Engine](#kubex-automation-engine) -- Updates to the Kubex Automation Engine.
 
 ## Kubex
 
@@ -1073,15 +1073,15 @@ columns
   </Accordion>
 </Accordion>
 
-## Container Data Forwarder
+## Kubex Data Collector
 
-This section lists new features and updates to the Container Data Forwarder.
+This section lists new features and updates to the Kubex Data Collector.
 
 A Helm chart bundles all of the components required for container data collection and automates the process. See [Kubex Collection Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) for details for a single-cluster configuration.
 
 Refer to [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md) for samples and configuration files for multi-cluster configurations.
 
-When deploying the Container Data Forwarder ensure that the same version is deployed for all of your clusters. See [Data Collection for Containers](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview)
+When deploying the Kubex Data Collector ensure that the same version is deployed for all of your clusters. See [Data Collection for Containers](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview)
 
 <Accordion title="4.4.0 - March 23, 2026">
   <Accordion title="Ephemeral Storage metrics">
@@ -1542,9 +1542,9 @@ When deploying the Container Data Forwarder ensure that the same version is depl
     - The data forwarder has been upgraded to Go 1.22,
     - Updated examples for both single and multiple cluster configurations are provided in the new [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md).
   </Accordion>
-  <Accordion title="End of Support Notice - Container Data Forwarder 3.x.x">
-    Kubex will discontinue support of Container Data Forwarder versions 3.x.x on June 30, 2024. Contact <a href="mailto:support@kubex.ai">
-    support@kubex.ai</a> for details on migrating to Kubex's current version of the Container Data Forwarder.
+  <Accordion title="End of Support Notice - Kubex Data Collector 3.x.x">
+    Kubex will discontinue support of Kubex Data Collector versions 3.x.x on June 30, 2024. Contact <a href="mailto:support@kubex.ai">
+    support@kubex.ai</a> for details on migrating to Kubex's current version of the Kubex Data Collector.
   </Accordion>
 </Accordion>
 
