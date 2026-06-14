@@ -6,11 +6,39 @@ The following sections provide details of new features and updates introduced in
 
 - Kubex -- Features & enhancements in the latest Kubex releases.
 - [Container Data Forwarder](#container-data-forwarder) -- Updates to Kubex's Container data collection module.
-- [Kubex Automation Controller](#kubex-automation-controller) -- Updates to Kubex's Automation Controller module.
+- [Kubex Automation Engine](#kubex-automation-engine) -- Updates to Kubex's Automation Engine module.
 
 ## Kubex
 
 This topic summarizes both new and updated features introduced in Kubex
+
+<Accordion title="4.5.0 May 27, 2026">
+    The following changes have been made to Kubex in this release:
+
+    - **Fractional GPU Recommendations**
+      - Fractional GPU recommendations on the current GPU model
+
+      <Frame caption="Figure: Fractional GPU recommendations">
+        <img src="/images/docs/ReleaseNotes/v4.5/fractional_gpu_recos.png" width="100%" />
+      </Frame>
+
+    - **GKE Autopilot Recommendations are Compute Class Aware**
+      - Recognizes "balanced" and "general-purpose" compute classes and maintains the allowed CPU:Memory ranges
+
+    - **Guaranteed QoS Support**
+      - Kubex recommendations support Guaranteed QoS
+      - This policy can be enforced (even if not currently setup) or auto-detected and maintained 
+
+    - **Container Automation Policy**
+      - Visibility to the automation policy set up in the K8s cluster
+
+      <Frame caption="Figure: Automation Policy">
+        <img src="/images/docs/ReleaseNotes/v4.5/automation_policy.png" width="100%" />
+      </Frame>
+
+    - **RBAC for AI Agent**
+
+</Accordion>
 
 <Accordion title="4.4.0 April 29, 2026">
 
@@ -54,7 +82,7 @@ This topic summarizes both new and updated features introduced in Kubex
 
 
     - **API Enhancements**
-      - Added Automation Controller heartbeat endpoint: 
+      - Added Automation Engine heartbeat endpoint: 
         `POST /automation/clusters/{clusterName}/heartbeat`
 
     - **UI Improvements**
@@ -297,7 +325,7 @@ OOM Kills in the environment
     - **CPU Throttling (%)**--CPU Throttling data is now visible in CPU Throttling (%) column on the Analysis Details page:
       - ML Model and historical data available in Utilization Charts carousel and 
 Metrics Viewer  
-    - **Automation Tab**--Automation tab has been added to highlight request and limit changes made by the Kubex Automation Controller. An overview of optimized manifests 
+    - **Automation Tab**--Automation tab has been added to highlight request and limit changes made by the Kubex Automation Engine. An overview of optimized manifests 
 is also available on the summary page
     - **Business & Operational Attributes**--Various business and operations related 
 attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and Analysis Details 
@@ -757,12 +785,12 @@ columns
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
-  <Accordion title="Mutating Admission Controller">
-    This release provides enhancements to the Kubernetes automation framework including an updated version of the Mutating Admission Controller (MAC) that sends configuration and modification event status information to your Kubex instance
+  <Accordion title="Kubex Automation">
+    This release provides enhancements to the Kubernetes automation framework that sends configuration and modification event status information to your Kubex instance
 
     A new Automation status page has been added to Kubex that reports on the status of containers that have been enabled for automation, You can enable/disable containers for automation using a right-click context menu from the Kubex container tree viewer. Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
 
-    Refer to [Mutating Admission Controller](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) for details on deploying and using the Kubex Container Automation solution.
+    Refer to [Kubex Automation Engine](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-engine) for details on deploying and using the Kubex Container Automation solution.
   </Accordion>
   <Accordion title="New Kubernetes API Endpoints">
     The following endpoints have been added to the Kubex API:
@@ -1265,7 +1293,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
     - GKE
   </Accordion>
   <Accordion title="HPA Updates">
-    **HPA Scales Based on Multiple Metrics**--With this update Kubex recommendations are not implemented for any containers enabled for HPA that scale based on single or multiple metrics, that are also enabled for automation using the Kubex Mutating Automation Controller (MAC).
+    **HPA Scales Based on Multiple Metrics**--With this update Kubex recommendations are not implemented for any containers enabled for HPA that scale based on single or multiple metrics, that are also enabled for automation using the Kubex Automation Engine.
 
     Previously Kubex did not support HPA-based on multiple metrics.
   </Accordion>
@@ -1520,11 +1548,161 @@ When deploying the Container Data Forwarder ensure that the same version is depl
   </Accordion>
 </Accordion>
 
-## Kubex Automation Controller
+## Kubex Automation Engine
 
-This section lists new features and updates to the Kubex Automation Controller, which automatically implements Kubex's optimization recommendations for Kubernetes workloads.
+<Accordion title="1.4.0 - June 11, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - Initial formal release of the integration with the KAI scheduler for rightsizing fractional GPUs
+    
+    **Changed:**
+    - KAI documentation, examples, and release notes were updated for the `v1.4.0` release
+  </Accordion>
+</Accordion>
 
-A Helm chart bundles all components required for automated container optimization. See [Kubex Automation Controller](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-controller) for deployment details and configuration options.
+<Accordion title="1.3.1 - June 09, 2026">
+  <Accordion title="Updates and Improvements">
+    **Changed:**
+    - Default policy evaluation now gives `RollbackPolicy` and `ClusterRollbackPolicy` the highest precedence.
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.3.0 - June 04, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - Introduced Rollback automation so clusters can now use the rollback state machine in live environments.
+    
+    **Changed:**
+    - Rollback owner/runtime handling and e2e fixtures were updated to support the new rollback flow.
+    
+    **Fixed:**
+    - Live rollback e2e instability caused by synthetic state seeding.
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.2.0 - June 02, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - Webhook/client behavior improvements that make policy admission and reconciliation more resilient.
+    
+    **Changed:**
+    - Webhook reconciliation now uses informers/client behavior tuned for more reliable event handling.
+    - GPU-related e2e and policy behavior was refined for stability and consistency.
+    - Chart/docs content was updated to reflect the current release flow and user-facing guidance.
+    
+    **Fixed:**
+    - Webhook error handling paths that could surface avoidable failures.
+    - Miscellaneous release-blocking regressions from the beta cycle.
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.1.0 - May 26, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - PodAffinityPolicy automation for supported workload types, including preferred node placement rules
+    - StrimziPodSet workload support for automating Strimzi-managed Kafka pods
+    - Prometheus scraping support for controller metrics with a chart-managed metrics service and optional ServiceMonitor
+    - Added experimental support for GPU sharing using the KAI scheduler
+    
+    **Changed:**
+    - GPU proactive policies can use `gpuOverallOptimal` recommendations from KAI for overall GPU optimization
+    - Resize summaries now show when recommendations were clamped to configured resource bounds
+  </Accordion>
+</Accordion>
+
+<Accordion title="1.0.0 - May 07, 2026">
+  <Accordion title="Updates and Improvements">
+    **Changed:**
+    - No customer-facing changes in this release.
+  </Accordion>
+</Accordion>
+
+<Accordion title="0.4.0 - May 05, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - Namespace-level pause controls using the `rightsizing.kubex.ai/pause-until` annotation so automation can be paused across an entire namespace without annotating each pod individually
+  </Accordion>
+</Accordion>
+
+<Accordion title="0.3.0 - May 01, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - Time-based automation scheduling with configurable windows including all-day support, overnight windows, and 24:00 explicit end time
+    - Policy snapshot uploads to Kubex gateway via automation-gateway with configurable intervals
+    
+    **Changed:**
+    - VPA resizing now requires active VPA recommendation conditions before allowing resize plans to prevent premature operations
+    
+    **Fixed:**
+    - Stale owner recommendation cleanup flow for missing automation strategies
+    - Overlapping exclusion window handling by jumping to the latest end time
+    - Startup policy rescan now triggers automatically after readiness opens
+  </Accordion>
+</Accordion>
+
+<Accordion title="0.2.1 - April 01, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - Configurable webhook probe pod settings via GlobalConfiguration including image selection
+    - ImagePullSecrets and securityContext support for enhanced security configuration
+    - GlobalConfiguration singleton enforcement via validating webhook to prevent multiple instances
+    
+    **Fixed:**
+    - Case-insensitive HPA kind detection to match HPA targets regardless of casing
+    - Guaranteed QoS resize plan calculation to correctly normalize requests and limits
+  </Accordion>
+</Accordion>
+
+<Accordion title="0.2.0 - March 01, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - Guaranteed QoS support with `retainGuaranteedQOS` flag to enforce requests==limits constraint
+    
+    **Fixed:**
+    - Webhook retry handling to properly manage too-many-requests scenarios
+    - Resize method preservation in retry scenarios to maintain consistency across retries
+    - Workload-to-policy namespace matching to ensure correct policy application
+  </Accordion>
+</Accordion>
+
+<Accordion title="0.1.3 - February 01, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - Per-container enablement bounds to set different resource floor and ceiling limits for individual containers within a pod
+    
+    **Fixed:**
+    - Webhook validation for inherited automation strategy bounds to ensure proper constraint enforcement
+  </Accordion>
+</Accordion>
+
+<Accordion title="0.1.2 - January 15, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - Webhook validation for policy automation strategy references to ensure referential integrity
+    - Protection against deleting automation strategies that are actively referenced by policies
+    
+    **Fixed:**
+    - ENABLE_WEBHOOKS flag parsing to correctly interpret as boolean value
+  </Accordion>
+</Accordion>
+
+<Accordion title="0.1.1 - January 01, 2026">
+  <Accordion title="Updates and Improvements">
+    **Changed:**
+    - Rebranded from previous name to Kubex
+    
+    **Fixed:**
+    - Workload-to-policy namespace matching to ensure policies are applied to correct workloads
+  </Accordion>
+</Accordion>
+
+### Legacy Kubex Automation Controller Release Notes
+
+<Note>
+The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine.
+</Note>
+
+The Kubex Automation Controller automatically implemented Kubex's optimization recommendations for Kubernetes workloads.
 
 <Accordion title="1.0.13 - February 6, 2026 (Patch)">
   <Accordion title="Valkey Helm & OpenShift Compatibility Fixes">

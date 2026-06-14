@@ -40,7 +40,10 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ContainerRecommendation'
+                  oneOf:
+                    - $ref: '#/components/schemas/ContainerRecommendation'
+                    - $ref: '#/components/schemas/ContainerRecommendationDetailed'
+                  description: Returns ContainerRecommendation by default, or ContainerRecommendationDetailed when details=true
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
