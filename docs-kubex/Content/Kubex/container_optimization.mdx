@@ -1,0 +1,112 @@
+---
+title: "How Kubex Analyzes Kubernetes Containers"
+sidebarTitle: "Overview"
+---
+
+Container rightsizing is critical for both cost efficiency and runtime stability.
+
+| Undersized Risk | Oversized Risk |
+| --- | --- |
+| Workloads do not receive enough resources to run safely, creating performance and reliability risk. | Idle capacity waste and reduced cluster utilization. |
+| Undersized memory limits can cause OOM kills. | Increased probability of pending pods. |
+| CPU Throttling and degraded application performance. | Failed deployments caused by resource fragmentation. |
+| Node overcommitment, leading to unstable scheduling behavior and capacity contention. | Autoscaler thrashing from inefficient scheduling pressure. |
+
+
+Kubex analyzes Kubernetes containers by combining machine learning, workload behavior analysis, and policy-driven optimization to determine the scientifically optimal CPU and memory settings for each workload. The platform continuously evaluates real container behavior over time and generates safe, explainable recommendations that reduce waste while maintaining application stability.
+
+<Frame caption="Figure: Example of Wasted CPU Resources">
+![](/images/docs-kubex/container_waste.png)
+</Frame>
+
+
+## Container Optimization Workflow
+
+### 1. Container Telemetry Collection
+
+Kubex continuously collects raw operational data from Kubernetes containers, including:
+
+- CPU utilization
+- Memory utilization
+- Resource requests
+- Resource limits
+- Replica behavior
+- Scaling activity
+- OOM kill events
+- Runtime utilization trends
+
+The platform analyzes this data across all replicas of a workload to understand actual application behavior rather than relying on static configuration values.
+
+### 2. Usage Pattern Analysis
+
+Kubex applies machine learning models to identify workload behavior patterns over time.
+
+The analysis includes:
+
+#### Historical Resource Consumption
+
+Evaluates:
+
+- Average utilization
+- Peak utilization
+- Sustained demand
+- Burst patterns
+- Idle periods
+
+#### Temporal Workload Behavior
+
+Analyzes:
+
+- Time-of-day usage
+- Daily and weekly cycles
+
+<Frame caption="Figure: 24 hr ML model of usage patterns">
+![](/images/docs-kubex/workload_pattern.png)
+</Frame>
+
+### 3. Policy-Based Optimization
+
+Kubex combines machine learning analysis with configurable operational policies.
+
+ [Policies](k8s_container_policy) allow teams to control:
+
+- Optimization aggressiveness
+- Minimum headroom requirements
+- Downsizing behavior
+- Upsizing sensitivity
+- Environment-specific standards
+- Assignment of policies to clusters, namespace or label-based
+
+This ensures recommendations align with business and operational objectives rather than applying generic optimization logic.
+
+### 4. Scientific Rightsizing Recommendations
+
+Based on workload analysis and policy evaluation, Kubex generates optimized recommendations for:
+
+ - **CPU** Limit & Request
+ - **Memory** Limit & Request
+ - **Ephemeral Storage** Limit & Request
+ - **GPU** fractional recommendations and optimal MIG profile. See [GPU Optimization](gpu_optimization)
+
+The recommendations are designed to:
+
+- Eliminate wasted capacity
+- Maintain workload stability
+- Improve scheduler efficiency
+- Reduce infrastructure cost
+
+Kubex focuses on determining the correct resource configuration scientifically rather than relying on static thresholds or simplistic heuristics.
+
+For the most efficient and hands-off execution path, use [Kubex automation](Automation_Engine_Overview) to apply approved recommendations consistently at scale.
+
+## Key Benefits of Kubex Container Analysis
+
+| Capability | Benefit |
+| --- | --- |
+| ML-Based Workload Analysis | Accurate resource sizing based on real behavior |
+| Policy-Driven Optimization | Aligns recommendations with operational goals |
+| Replica-Aware Analysis | Detects workload-wide inefficiencies |
+| Continuous Reassessment | Adapts to changing workload demands |
+| Kubernetes-Aware Safety Checks | Reduces operational risk |
+| Automated Rightsizing | Eliminates manual tuning effort |
+| Explainable Recommendations | Builds trust with platform and application teams |

@@ -1,0 +1,234 @@
+---
+title: "Node Group Analysis"
+---
+
+## Key Insights Provided
+
+Kubex's Node Group Analysis helps teams answer critical operational and financial questions such as:
+
+- Which node groups are overprovisioned?
+- Which node groups are at risk of CPU or memory exhaustion?
+- Where is infrastructure capacity being wasted?
+- Which node groups should be resized?
+- Which node groups are operating inefficiently?
+- What cost savings opportunities exist?
+
+## Understanding Resource Waste
+
+One of the most significant sources of Kubernetes infrastructure waste comes from the mismatch between #Requests# and #Actual workload utilization#
+
+Kubex visualizes this inefficiency directly in the utilization and request charts.
+
+### High Requests vs Low Utilization
+
+In many environments, application teams configure CPU and memory requests conservatively to avoid performance issues. While this provides workload protection, it often results in substantial over-allocation of infrastructure resources.
+
+**Common scenarios include:**
+
+- CPU requests significantly higher than actual CPU consumption
+- Memory requests greatly exceeding observed usage
+- Large node groups operating at low average utilization
+- Idle capacity reserved but never consumed
+- Cluster autoscaler unable to scale down due to inflated requests
+
+**This leads to:**
+
+- Increased cloud costs
+- Poor node density
+- Lower workload packing efficiency
+- Unnecessary infrastructure expansion
+- Reduced ROI on Kubernetes infrastructure
+
+Kubex highlights this waste by comparing:
+
+- Requested resources
+- Allocated resources
+- Actual utilization
+
+The visual gap between request levels and actual utilization provides a clear indication of optimization potential.
+
+## Identifying Optimization Opportunities
+
+Kubex continuously analyzes Kubernetes telemetry and infrastructure metrics to identify optimization opportunities.
+
+### Optimization Analytics Include
+
+- CPU rightsizing opportunities
+- Memory rightsizing opportunities
+- Node consolidation opportunities
+- Underutilized node detection
+- Oversized instance identification
+- Bin-packing inefficiencies
+- Infrastructure fragmentation
+- Idle capacity analysis
+- Reserved capacity waste
+
+### Recommendation Intelligence
+
+Recommendations are generated using historical utilization trends and workload behavior analysis.
+
+Kubex evaluates:
+
+- Peak utilization
+- Sustained utilization
+- Seasonal patterns
+- Burst behavior
+- Node saturation risk
+- Resource headroom requirements
+- Kubernetes scheduling behavior
+- Cluster resiliency requirements
+
+This ensures recommendations are both safe and actionable.
+
+## Risk Identification for Node Groups
+
+Kubex identifies operational and capacity risks that may impact cluster stability, workload performance, or infrastructure resiliency.
+
+### Types of Risks Identified
+
+#### Capacity Risks
+
+Node groups approaching sustained high utilization may experience:
+
+- CPU saturation
+- Memory exhaustion
+- Pod scheduling failures
+- Increased workload latency
+- Resource contention
+
+Kubex flags node groups with elevated utilization or insufficient headroom.
+
+#### Resiliency Risks
+
+Node groups with insufficient redundancy or excessive consolidation may create resiliency concerns such as:
+
+- Single points of failure
+- Limited failover capacity
+- Reduced cluster fault tolerance
+- Insufficient scaling headroom
+
+#### Cost Risks
+
+Kubex identifies node groups with:
+
+- Persistent low utilization
+- Excessive overprovisioning
+- Large request-to-utilization gaps
+- Inefficient instance sizing
+- Unnecessary infrastructure expansion
+
+These conditions represent avoidable infrastructure spend.
+
+#### Scheduling Risks
+
+Improperly sized nodes or fragmented capacity may create scheduling inefficiencies including:
+
+- Pending pods
+- Resource fragmentation
+- Inefficient workload placement
+- Autoscaling instability
+
+## Cost Savings Opportunities
+
+Kubex quantifies infrastructure savings opportunities by analyzing:
+
+- Underutilized nodes
+- Oversized instances
+- Resource waste
+- Idle reserved capacity
+- Kubernetes request inflation
+- Consolidation opportunities
+
+### Common Savings Strategies
+
+#### Rightsizing Nodes
+
+Reducing oversized node instance types based on actual workload consumption.
+
+#### Consolidating Node Groups
+
+Reducing excess infrastructure by consolidating workloads onto fewer nodes.
+
+#### Optimizing Kubernetes Requests
+
+Aligning requests closer to actual utilization to improve scheduling density.
+
+#### Improving Bin Packing
+
+Increasing workload density while maintaining operational safety margins.
+
+#### Eliminating Idle Capacity
+
+Removing unused nodes or reducing autoscaler minimums.
+
+### Business Impact
+
+Organizations commonly achieve:
+
+- Reduced Kubernetes infrastructure costs
+- Improved cloud efficiency
+- Better workload density
+- Higher infrastructure utilization
+- Improved cluster scalability
+- Faster identification of inefficiencies
+
+## Charts and Visualization
+
+The Node Group Analysis page includes charts designed to clearly expose inefficiencies and optimization opportunities.
+
+### Utilization vs Requests Charts
+
+These charts compare:
+
+- Actual CPU utilization
+- Actual memory utilization
+- Kubernetes CPU requests
+- Kubernetes memory requests
+
+The difference between requested resources and actual utilization reveals:
+
+- Excess reserved capacity
+- Overprovisioning
+- Infrastructure waste
+- Rightsizing opportunities
+
+Large gaps between requests and utilization are strong indicators of optimization potential.
+
+### Trend Analysis
+
+Historical trend charts help teams understand:
+
+- Growth patterns
+- Utilization trends
+- Seasonal spikes
+- Workload stability
+- Capacity evolution
+
+This enables safer and more confident optimization decisions.
+
+## Operational Benefits
+
+Using Node Group Optimization provides multiple operational advantages.
+
+### Improved Visibility
+
+Teams gain visibility into:
+
+- Infrastructure inefficiency
+- Cluster health
+- Workload behavior
+- Resource allocation patterns
+- Capacity risk exposure
+
+### Faster Decision Making
+
+Kubex provides prioritized recommendations that reduce manual analysis effort.
+
+### Better Collaboration
+
+Platform engineering, SRE, DevOps, and FinOps teams can collaborate using a shared view of:
+
+- Infrastructure efficiency
+- Cost optimization
+- Capacity planning
+- Operational risk

@@ -1,0 +1,71 @@
+---
+title: "Automation Strategy and Policy Model"
+sidebarTitle: "Policy Model"
+---
+
+Kubex Automation Engine separates automation into strategy and policy.
+
+## Strategy vs Policy
+
+- Strategy: Defines how resource changes are allowed
+- Policy: Defines where those rules apply and how recommendations are selected
+
+## Main CRD Types
+
+### Strategy CRs
+
+- `AutomationStrategy` (namespaced)
+- `ClusterAutomationStrategy` (cluster scoped)
+
+These define:
+
+- Resource enablement for CPU and memory requests and limits
+- In-place resize behavior
+- Pod eviction fallback behavior
+- Safety-check behavior
+
+### Policy CRs
+
+- `ProactivePolicy` and `ClusterProactivePolicy` (recommendation-driven)
+- `StaticPolicy` and `ClusterStaticPolicy` (fixed resource values)
+
+These define:
+
+- Namespace and workload selection scope
+- Strategy reference
+- Resource targets (for static policies)
+- Weight and precedence behavior
+
+## Mapping from Helm Values
+
+When using Helm-managed policy generation:
+
+- `policy.policies.<name>` creates a `ClusterAutomationStrategy`
+- `scope[].name` becomes `ClusterProactivePolicy.metadata.name`
+- `scope[].policy` (or `policy.defaultPolicy`) references strategy name
+
+Helm-managed `scope` and `policy.policies` preserve the values-driven flow from `values-edit.yaml`, while those generated CRs can still be managed independently when needed.
+
+Namespaced `AutomationStrategy`, `ProactivePolicy`, `StaticPolicy`, and cluster static policies are supported by the controller and are commonly managed through dedicated CR manifests.
+
+## Scope Design Guidance
+
+Recommended practices:
+
+- Keep policy ownership clear between platform and app teams
+- Use separate strategies for conservative and aggressive automation profiles
+- Use scope selectors to avoid broad accidental inclusion
+- Validate precedence when scopes overlap
+
+## Deep References
+
+- Policy Configuration Guide:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Policy-Configuration.md
+- Policy Evaluation Reference:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Policy-Evaluation.md
+- Cluster Automation Strategies:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Cluster-Automation-Strategies.md
+- Cluster Proactive Policies:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Cluster-Proactive-Policies.md
+- Static Policies:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Static-Policies.md

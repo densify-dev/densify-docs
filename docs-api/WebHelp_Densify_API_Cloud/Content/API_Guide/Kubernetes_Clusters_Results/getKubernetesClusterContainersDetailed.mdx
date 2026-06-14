@@ -1,3 +1,86 @@
 ---
-openapi: "/openapi/kubernetes/kubernetes_clusters_results.yaml GET /analysis/containers/kubernetes/clusters/{clusterName}/containers"
+openapi: "/openapi/kubernetes/kubernetes_clusters_results.yaml GET /kubernetes/clusters/{clusterName}/containers?details=true"
 ---
+
+## Overview
+
+This endpoint returns container recommendation details for a specific cluster with **additional fields** when `details=true` is included.
+
+For the base response format without additional details, see [getKubernetesClusterContainers](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Kubernetes_Clusters_Results/getKubernetesClusterContainers).
+
+## Additional Fields with details=true
+
+When you include `details=true` in the query parameters, the following additional fields are included in each container recommendation:
+
+<Accordion title="Additional Fields Reference">
+| Field | Type | Description |
+|-------|------|-------------|
+| `predictedUptime` | number (float) | Predicted uptime percentage for the container |
+| `configLastChangedOn` | string (date-time) | Timestamp of the most recent change to requests/limits |
+| `nodeGroup` | array of strings | Names of associated node groups |
+| `oomKills_last7days` | integer | Number of OOM (Out Of Memory) events in the last 7 days |
+| `dateFirstAudited` | string (date-time) | When this container was first audited (from workload history) |
+| `dateLastAudited` | string (date-time) | When this container was last audited (from workload history) |
+</Accordion>
+
+## Example Request
+
+```bash
+curl -X GET "https://api.example.com/api/v2/kubernetes/clusters/my-cluster/containers?details=true" \
+  -H "Authorization: Bearer YOUR_API_TOKEN"
+```
+
+## Example Response
+
+```json
+[
+  {
+    "cluster": "my-cluster",
+    "namespace": "production",
+    "podOwnerName": "web-app",
+    "podOwnerKind": "Deployment",
+    "container": "nginx",
+    "entityId": "abc123",
+    "containerId": "def456",
+    "avgContainerCount": 3,
+    "currentCpuRequestmCores": 500,
+    "currentCpuLimitmCores": 1000,
+    "currentMemRequestBytes": 536870912,
+    "currentMemLimitBytes": 1073741824,
+    "recommendedCpuRequestmCores": 300,
+    "recommendedCpuLimitmCores": 600,
+    "recommendedMemRequestBytes": 268435456,
+    "recommendedMemLimitBytes": 536870912,
+    "estimatedSavingsPerContainer": 45.50,
+    "analyzedOn": "2026-06-08T10:30:00Z",
+    "hpaMetricName": "cpu",
+    "hpaMetricThreshold": "75%",
+    "currentEphemeralStorageRequestBytes": 1073741824,
+    "currentEphemeralStorageLimitBytes": 2147483648,
+    "recommendedEphemeralStorageRequestBytes": 536870912,
+    "recommendedEphemeralStorageLimitBytes": 1073741824,
+    
+    // Additional fields when details=true
+    "predictedUptime": 99.8,
+    "configLastChangedOn": "2026-05-15T14:20:00Z",
+    "nodeGroup": ["node-group-1", "node-group-2"],
+    "oomKills_last7days": 2,
+    "dateFirstAudited": "2026-01-10T08:00:00Z",
+    "dateLastAudited": "2026-06-08T10:30:00Z"
+  }
+]
+```
+
+## Use Cases
+
+The detailed fields are particularly useful for:
+
+- **Stability Monitoring**: `oomKills_last7days` helps identify containers experiencing memory pressure
+- **Change Tracking**: `configLastChangedOn` shows when resource configurations were last modified
+- **Historical Analysis**: `dateFirstAudited` and `dateLastAudited` provide audit timeline context
+- **Infrastructure Planning**: `nodeGroup` information helps with placement and scaling decisions
+- **Reliability Metrics**: `predictedUptime` aids in understanding container availability patterns
+
+<Note>
+Fields without values may be omitted from the response. All timestamps are in UTC format (`YYYY-MM-DDTHH:mm:ssZ`).
+</Note>

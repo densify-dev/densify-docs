@@ -415,7 +415,7 @@ paths:
     get:
       tags: [Systems]
       operationId: downloadAnalysisReport
-      summary: Get Report PDF
+      summary: Impact Analysis and Recommendation Report (PDF)
       description: |
         Downloads the Impact Analysis and Recommendation Report (Application Owner report) as a PDF.
         Use `Accept: application/octet-stream` to download the file.

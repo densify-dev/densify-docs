@@ -33,146 +33,35 @@
             "/openapi/authorize.yaml"
         ]
     },
+    "redirects": [
+        {
+            "source": "/",
+            "destination": "/docs-kubex/Content/General/Kubex_Overview"
+        },
+        {
+            "source": "/docs-kubex/Content/General/Supported_Platforms",
+            "destination": "/docs-kubex/Content/General/supported_platforms"
+        },
+        {
+            "source": "/docs-kubex/content/general/supported_platforms",
+            "destination": "/docs-kubex/Content/General/supported_platforms"
+        }
+    ],
     "navigation": {
-        "tabs": [
+        "groups": [
             {
-                "tab": "Home",
-                "groups": [
+                "group": "Getting Started",
+                "pages": [
+                    "docs-kubex/Content/General/Kubex_Overview",
                     {
-                        "group": " ",
-                        "pages": [
-                            "index"
-                        ]
-                    }
-                ]
-            },
-            {
-                "tab": "Containers",
-                "groups": [
-                    {
-                        "group": "Getting Started",
+                        "group": "Connect Your Kubernetes Clusters",
                         "pages": [
                             "docs-kubex/Content/Kubex/Data_Collection_Overview",
-                            "docs-kubex/Content/Kubex/Kubex_Dashboard",
-                            "docs-kubex/Content/General/KubexAIAgent"
+                            "docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods"
                         ]
                     },
                     {
-                        "group": "Container Optimization",
-                        "pages": [
-                            "docs-kubex/Content/Kubex/Containers_Analysis",
-                            {
-                                "group": "Resource Optimization",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Ephemeral_Storage"
-                                ]
-                            },
-                            {
-                                "group": "Container Tree Viewer",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Using_the_Tree_Viewer",
-                                    "docs-kubex/Content/Kubex/Creating_Custom_Views",
-                                    "docs-kubex/Content/Kubex/Creating_Custom_Filters"
-                                ]
-                            },
-                            {                            
-                                "group": "Container Data Tabs",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Summary_Tab",
-                                    "docs-kubex/Content/Kubex/Breakdown_Tab",
-                                    "docs-kubex/Content/Kubex/Histograms_Tab",
-                                    "docs-kubex/Content/Kubex/Overview_Tab",
-                                    "docs-kubex/Content/Kubex/GPU_Tab",
-                                    "docs-kubex/Content/Kubex/Metrics_Viewer_Tab",
-                                    {
-                                        "group": "Analysis Details Tab",
-                                        "pages": [
-                                            "docs-kubex/Content/Kubex/AI_Analysis_Details_Tab",
-                                            "docs-kubex/Content/Kubex/AI_Analysis_Details_Table",
-                                            "docs-kubex/Content/Kubex/Using_Table_Column_Features",
-                                            "docs-kubex/Content/Kubex/Using_Filters",
-                                            "docs-kubex/Content/Kubex/AI_Analysis_Details_Charts"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "group": "Container Policy",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Policy_Overview",
-                                    "docs-kubex/Content/Kubex/Policies_Tab"
-                                ]
-                            },
-                            {
-                                "group": "Container Automation",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Automation_Overview",
-                                    "docs-kubex/Content/Kubex/Automation_Tab"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "group": "Node Group Optimization",
-                        "pages": [
-                            "docs-kubex/Content/Kubex/Node_Group_Analysis",
-                            "docs-kubex/Content/Kubex/Using_the_Node_Tree_Viewer",
-                             {                            
-                                "group": "Node Group Data Tabs",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Node_Group_Analysis_Table",
-                                    "docs-kubex/Content/Kubex/Node-Group-Overview_Tab",
-                                    "docs-kubex/Content/Kubex/Nodes_Tab",
-                                    "docs-kubex/Content/Kubex/Node-Overview-Tab"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "group": "Advanced",
-                        "pages": [
-                            {
-                                "group": "Alternate Data Collection Methods",
-                                "pages": [
-                                    "docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods",
-                                    "docs-kubex/Content/Kubex/Data_Collection_Prerequisites",
-                                    "docs-kubex/Content/Kubex/Data_Collection_Additional_Considerations"
-                                ]
-                            }
-                        ]
-                    }
-
-                ]
-            },
-            {
-                "tab": "Public Cloud",
-                "groups": [
-                    {
-                        "group": "Getting Started",
-                        "pages": [
-                            "docs-kubex/Content/Cloudex/Getting_Started_with_Cloudex"
-                        ]
-                    },
-                    {
-                        "group": "Public Cloud Analysis",
-                        "pages": [
-                            "docs-kubex/Content/Cloudex/Cloud_Analysis",
-                            "docs-kubex/Content/Cloudex/Using_the_Cloud_Tree_Viewer",
-                            "docs-kubex/Content/Cloudex/Summary_Tab-Cloud",
-                            {
-                                "group": "Analysis Details Tab",
-                                "pages": [
-                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Tab-Cloud",
-                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Table-Cloud",
-                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Modal-Cloud"
-                                ]
-                            },
-                            "docs-kubex/Content/Cloudex/Overview_Tab-Cloud",
-                            "docs-kubex/Content/Cloudex/Catalog_Map_Tab"
-                        ]
-                    },
-                    {
-                        "group": "Data Collection",
+                        "group": "Connect Your Public Cloud Accounts",
                         "pages": [
                             "docs-kubex/Content/Cloudex/Data_Collection_Overview-Cloud",
                             {
@@ -196,38 +85,96 @@
                                 "group": "GCP Data Collection",
                                 "pages": [
                                     "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites",
-                                    "docs-kubex/Content/Cloudex/Data_Collection_GCP_Connections",
                                     "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/GCP_Cloud_Connections"
                                 ]
                             },
+                            "docs-kubex/Content/Cloudex/Cloud_Connections"
+                        ]
+                    },
+                    "docs-kubex/Content/General/supported_platforms",
+                    "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/MCP"
+                ]
+            },
+            {
+                "group": "Kubernetes Optimization",
+                "pages": [
+                    {
+                        "group": "Container Optimization",
+                        "pages": [
+                            "docs-kubex/Content/Kubex/container_optimization",
+                            "docs-kubex/Content/Kubex/k8s_container_policy"
+                        ]
+                    },
+                    {
+                        "group": "Node Optimization",
+                        "pages": [
+                            "docs-kubex/Content/Kubex/Optimizing_Node_Cost",
+                            "docs-kubex/Content/Kubex/Improving_Node_Health"
+                        ]
+                    },
+                    "docs-kubex/Content/Kubex/gpu_optimization",
+                    {
+                        "group": "Automation",
+                        "pages": [
+                            "docs-kubex/Content/Kubex/Automation_Engine_Overview",
+                            "docs-kubex/Content/Kubex/Automation_Engine_Getting_Started",
+                            "docs-kubex/Content/Kubex/Automation_Engine_Configuration_Reference",
+                            "docs-kubex/Content/Kubex/Automation_Engine_Policy_Model",
+                            "docs-kubex/Content/Kubex/Automation_Engine_Safety_and_Operations",
+                            "docs-kubex/Content/Kubex/Automation_Engine_Troubleshooting_and_FAQ"
+                        ]
+                    },
+                    {
+                        "group": "Workload Insights",
+                        "pages": [
+                            "docs-kubex/Content/Kubex/Kubex_Dashboard",
+                            "docs-kubex/Content/Kubex/Summary_Tab",
+                            "docs-kubex/Content/Kubex/Breakdown_Tab",
+                            "docs-kubex/Content/Kubex/Histograms_Tab",
+                            "docs-kubex/Content/Kubex/Overview_Tab",
+                            "docs-kubex/Content/Kubex/GPU_Tab",
+                            "docs-kubex/Content/Kubex/Metrics_Viewer_Tab"
+                        ]
+                    }
+
+                ]
+            },
+            {
+                "group": "Public Cloud Optimization",
+                "pages": [
+                    "docs/WebHelp_Densify_Cloud/Content/Cloud_Optimization",
+                    "docs/WebHelp_Densify_Cloud/Content/ecs_optimization",
+                    "docs/WebHelp_Densify_Cloud/Content/cloud_cost_estimation",
+                    "docs/WebHelp_Densify_Cloud/Content/cloud_policy",
+                    {
+                        "group": "Cloud Insights",
+                        "pages": [
+                            "docs-kubex/Content/Cloudex/Cloud_Analysis",
+                            "docs-kubex/Content/Cloudex/Using_the_Cloud_Tree_Viewer",
+                            "docs-kubex/Content/Cloudex/Summary_Tab-Cloud",
                             {
-                                "group": "OCI Data Collection",
+                                "group": "Analysis Details Tab",
                                 "pages": [
-                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Oracle_Cloud_Infrastructure_Data_Collection_Prerequisites",
-                                    "docs-kubex/Content/Cloudex/Data_Collection_OCI_Connections",
-                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/OCI_Cloud_Connections"
+                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Tab-Cloud",
+                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Table-Cloud",
+                                    "docs-kubex/Content/Cloudex/AI_Analysis_Details_Modal-Cloud"
                                 ]
                             },
-                            "docs-kubex/Content/Cloudex/Cloud_Connections"
+                            "docs-kubex/Content/Cloudex/Overview_Tab-Cloud",
+                            "docs-kubex/Content/Cloudex/Catalog_Map_Tab"
                         ]
                     }
                 ]
             },
             {
-                "tab": "API Reference",
-                      "groups": [
+                "group": "API Reference",
+                "pages": [
                           {
                               "group": "Getting Started",
                               "pages": [
                                   "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Introduction",
                                   "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Postman_Collection"
                               ]
-                          },
-                          {
-                                "group": "Model Context Protocol (MCP)",
-                                "pages": [
-                                    "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/MCP"
-                                ]
                           },
                           {
                               "group": "Ping",
@@ -352,17 +299,15 @@
                                       "pages": [
                                              "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/CatalogMap"
                                       ]
+                                  },
+                                  {
+                                      "group": "Analysis Report",
+                                      "pages": [
+                                             "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/downloadAnalysisReport"
+                                      ]
                                   }
+                                  
                                 ]
-                            },
-                            {
-                            "group": "Systems",
-                            "pages": [
-                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems",
-                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/getSystem",
-                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/downloadAnalysisReport",
-                                "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Systems/modifySystemAttributes"
-                            ]
                             },
                             {
                                 "group": "Analysis: Webhook",
@@ -453,21 +398,15 @@
                     ]
             },
             {
-                "tab": "Release Notes",
-                "groups": [
-                    {
-                        "group": "Release Notes",
-                        "pages": [
-                                                        "docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud",
-                            "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Resolved_Issues-Cloud",
-                            "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Third_Party_Software_Updates-Cloud"
-                        ]
-                    }
+                "group": "Release Notes",
+                "pages": [
+                    "docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud",
+                    "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Third_Party_Software_Updates-Cloud"
                 ]
             },
             {
-                "tab": "Administration",
-                "groups": [
+                "group": "Administration",
+                "pages": [
                     {
                         "group": "Single Sign On (SSO)",
                         "pages": [
@@ -485,10 +424,7 @@
                     }
                 ]
             }
-        ],
-        "global": {
-            "anchors": []
-        }
+        ]
     },
     "logo": {
         "light": "images/kubex-logo-light.png",

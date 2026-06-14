@@ -1,0 +1,103 @@
+---
+title: "Optimizing Node Cost"
+---
+
+
+## Overview
+
+Node cost optimization is a critical aspect of managing Kubernetes infrastructure efficiently. By identifying and prioritizing the node groups with the highest savings potential, you can implement targeted optimization strategies that deliver maximum ROI on your infrastructure spending.
+
+## Identifying Node Groups with the Most Waste
+
+The first step in optimizing node costs is to analyze your node groups and identify which ones have the most significant savings potential. This involves examining resource utilization patterns and waste metrics across your infrastructure.
+
+<Frame caption="Figure: Finding high-waste Node Groups">
+![](/images/docs-kubex/nodegroups_waste_ranked.png)
+</Frame>
+
+
+### Key Metrics to Consider
+
+When evaluating node groups for optimization opportunities, focus on:
+
+- **Resource Utilization Gaps** – Difference between requested resources and actual usage
+- **Idle Capacity** – Nodes running with minimal workloads
+- **Oversized Instances** – Nodes larger than necessary for current workloads
+
+<Frame caption="Figure: Resource Utilization Gaps">
+![](/images/docs-kubex/nodegroup_wasted_resources.png)
+</Frame>
+
+
+## Three Optimization Strategies
+
+Once you've identified high-waste node groups, apply these proven optimization approaches:
+
+### 1. Optimize Pod Density (Low Hanging Fruit)
+
+Check the **max pods per node** setting for your node groups. This configuration often limits the number of pods that can run on a single node, even when resources remain available.
+
+**Impact:** This is frequently the quickest win—increasing max pod density allows the autoscaler to provision more workloads on existing nodes, reducing the need for additional nodes.
+
+**Action:** Review your Kubernetes configuration and adjust pod density limits to match your actual resource constraints, not default limits.
+
+<Frame caption="Figure: Identifying Nodes with # of Pods at Max Allowed">
+![](/images/docs-kubex/noderiskwidget.png)
+</Frame>
+
+<Frame caption="Figure: Nodes with # of Pods at Max Allowed">
+![](/images/docs-kubex/node_maxpods.png)
+</Frame>
+
+
+### 2. Right-Size Resource Requests and Limits
+
+Verify that container **CPU**, **Memory**, and **Ephemeral storage** requests are aligned with actual usage patterns.
+
+**The Problem:** Misaligned resource requests lead to waste in two ways:
+- **Over-requested resources** – Nodes remain underutilized because pods reserve more capacity than they need
+- **Under-requested resources** – Workloads may fail or perform poorly, requiring larger nodes than necessary
+
+**Best Practice:** Set requests and limits based on real usage patterns with an appropriate headroom buffer for variability. This ensures efficient bin-packing of workloads while maintaining reliability.
+
+<Frame caption="Figure: Surplus Container Request">
+![](/images/docs-kubex/container_waste.png)
+</Frame>
+
+For guidance on applying these recommendations through Kubex's [Automation Engine](/docs-kubex/Content/Kubex/Automation_Overview).
+
+### 3. Match Instance Types to Usage Patterns
+
+When using Scale Groups (such as AWS Auto Scaling Groups or Azure Scale Sets), the instance types must align with your workload characteristics.
+
+**Key Considerations:**
+- **Memory-heavy workloads** – Use memory-optimized instance types
+- **CPU-intensive workloads** – Use compute-optimized instances
+- **General workloads** – Use balanced general-purpose instances
+
+<Frame caption="Figure: Surplus Container Request">
+![](/images/docs-kubex/nodegroup_instfam_optimization.png)
+</Frame>
+
+
+**Kubex ScaleGroup Analysis:** Kubex links K8s Clusters & NodeGroups to the underlying Azure Scaleset / AWS ASG to provide actionable recommendation on how to size and spec the scale group. This includes utilization as well as the current CPU/Memory Requests.
+
+<Frame caption="Figure: Cloud ScaleGroup - K8s Linkage">
+![](/images/docs-kubex/scalegroup_k8s_linkage.png)
+</Frame>
+
+
+Refer to [Scale Group Analysis](/docs/WebHelp_Densify_Cloud/Content/Cloud_Optimization).
+
+---
+
+## Next Steps
+
+Once you've identified your highest-priority node groups:
+
+1. **Apply the three optimization strategies** – start with pod density (quick win), then resource requests, then instance type matching
+2. **Monitor and validate** improvements in utilization and cost metrics
+3. **Plan migration strategies** to minimize disruption when changing instance types
+4. **Track ROI** on optimization efforts
+
+By systematically addressing node groups with the most waste using these targeted strategies, you can significantly reduce infrastructure costs while maintaining performance and reliability.

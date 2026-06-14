@@ -25,15 +25,16 @@ paths:
       operationId: getKubernetesClusterContainers
       description: |
         Returns recommendation details for container manifests in the specified cluster.
-        When `details=true`, additional fields are included. Fields with no value may be omitted from the response.
+        This endpoint returns the base set of fields. For additional details including uptime predictions,
+        OOM kill counts, and audit history, use the detailed endpoint with details=true.
+        Fields with no value may be omitted from the response.
       security:
         - bearerAuth: []
       parameters:
         - $ref: '#/components/parameters/k8s_clusterName'
-        - $ref: '#/components/parameters/details'
       responses:
         '200':
-          description: Array of container recommendations
+          description: Array of container recommendations (base fields)
           content:
             application/json:
               schema:
@@ -43,6 +44,47 @@ paths:
                     - $ref: '#/components/schemas/ContainerRecommendation'
                     - $ref: '#/components/schemas/ContainerRecommendationDetailed'
                   description: Returns ContainerRecommendation by default, or ContainerRecommendationDetailed when details=true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Cluster not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /kubernetes/clusters/{clusterName}/containers?details=true:
+    get:
+      tags: [Kubernetes Cluster Results]
+      summary: List container recommendations with additional details
+      operationId: getKubernetesClusterContainersDetailed
+      description: |
+        Returns recommendation details for container manifests in the specified cluster with additional fields.
+        This endpoint includes all base fields plus: predictedUptime, configLastChangedOn, nodeGroup,
+        oomKills_last7days, dateFirstAudited, and dateLastAudited.
+        Fields with no value may be omitted from the response.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/k8s_clusterName'
+        - name: details
+          in: query
+          required: true
+          description: Must be set to true to get additional fields
+          schema:
+            type: boolean
+            enum: [true]
+      responses:
+        '200':
+          description: Array of container recommendations with additional details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContainerRecommendationDetailed'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':

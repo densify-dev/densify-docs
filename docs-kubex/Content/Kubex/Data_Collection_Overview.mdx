@@ -1,6 +1,6 @@
 ---
-title: "Connect Your Cluster to Kubex"
-sidebar: "Connect Your Cluster to Kubex"
+title: "Connect Your Kubernetes Clusters"
+sidebarTitle: "Single Cluster (Typical)"
 ---
 import { InlineImageWithText } from "/snippets/InlineImageWithText.mdx"
 
@@ -17,6 +17,7 @@ When you first log into Kubex, you'll be presented with a getting started page t
 
 ## Helm Commands to deploy the Kubex data collector
 
+Note: Refer to GitHub for <a href="https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-stack/README.md">OpenShift</a> and <a href="https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-collection-gke-autopilot/README.md">GKE Autopilot</a>
 
 <Frame caption="Figure: Data Collection Status Page">
 ![](/images/docs-kubex/Content/Kubex/k8s_getdata_setup.png)
@@ -33,5 +34,5 @@ After deploying Kubex data collection, data will begin flowing within an hour. Y
 </Frame>
 
 <br/>
-Other configuration options including multi-cluster and observability platforms are also supported. See <a href="/docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods" xrefformat="{u}{paratext}{/u}">Data Collection for Containers</a> or <a href="https://github.com/densify-dev/container-data-collection/blob/main/requirements.md#data-source">Github</a> for other configuration options.
+Other configuration options including multi-cluster and observability platforms are also supported. See <a href="/docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods" xrefformat="{u}{paratext}{/u}">Advanced Data Collection for Containers</a> or <a href="https://github.com/densify-dev/container-data-collection">Github</a> for other configuration options.
 

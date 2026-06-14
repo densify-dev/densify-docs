@@ -1,0 +1,121 @@
+---
+title: Instance & ScaleGroup Optimization
+description: Optimize cloud infrastructure costs and performance across AWS, Azure, Google and Oracle Cloud
+---
+
+Kubex Cloud Resource Optimizer continuously analyzes cloud workloads, identifies waste, and recommends right-sizing actions across AWS, Azure, and Google Cloud and OCI environments. The platform helps SREs, Platform Engineering teams, Cloud Architects, and FinOps practitioners maximize utilization while maintaining operational reliability.
+
+<Frame caption="Figure: Cloud Usage Trends">
+![](/images/docs-cloudex/cloudtrends.png)
+</Frame>
+
+---
+
+## Kubex Collects and Analyzes
+
+| Cloud Provider | Service Type |
+|------|------------|
+| AWS| EC2, RDS, ASG |
+| Azure | VM, ScaleSet |
+| GCP | Compute Instance |
+| OCI | VM |
+
+---
+
+## Why Cloud Optimization Matters
+
+Cloud environments often suffer from:
+
+- Overprovisioned compute resources
+- Underutilized instances
+- Excessive cloud spend
+- Performance bottlenecks caused by poor sizing decisions
+- Manual optimization processes that don't scale
+
+<Frame caption="Figure: Typical Cloud Waste Reasons">
+![](/images/docs-cloudex/cloud_waste_breakdown.png)
+</Frame>
+
+Kubex helps organizations continuously align resource allocation with real workload demand, reducing waste while maintaining application performance.
+
+---
+
+## Key Benefits
+
+### Lower Cloud Costs
+
+Identify and eliminate unnecessary infrastructure spend through intelligent rightsizing recommendations and automated optimization workflows.
+
+### Improve Resource Efficiency
+
+Analyze actual workload behavior and allocate resources based on observed demand patterns rather than estimates.
+
+### Reduce Operational Risk
+
+Optimization recommendations are prioritized based on confidence, impact, and safety to minimize disruption.
+
+### Accelerate FinOps Outcomes
+
+Enable engineering, operations, and finance teams to collaborate around a shared view of optimization opportunities and realized savings.
+
+---
+
+## How It Works
+
+### 1. Connect Cloud Accounts
+
+Connect your cloud environment securely and begin collecting infrastructure and utilization data. See [Setup Cloud Data Collection](/docs-kubex/Content/Cloudex/Data_Collection_Overview-Cloud)
+
+### 2. Assign Policies
+
+A default policy is automatically assigned to instances in each account connected to Kubex. You can reassign policies at any time. For more details, refer to the [Cloud Policy](cloud_policy) page.
+
+### 3. Analyze Workload Behavior
+
+Kubex continuously evaluates:
+
+- CPU utilization
+- Memory consumption
+- Resource allocation patterns
+- Growth trends
+- Performance characteristics
+
+using machine learning and historical workload analysis.
+
+<Frame caption="Figure: Typical Cloud Waste Reasons">
+![](/images/docs-cloudex/catalog_map_example.png)
+</Frame>
+
+### 4. Identify Optimization Opportunities
+
+The platform surfaces:
+
+- Overprovisioned resources
+- Underutilized instances
+- Inefficient instance families
+- Rightsizing opportunities
+- Cost reduction recommendations
+- For **Scale Groups (ASG, ScaleSet)**, Kubex additionally provides recommendations for min and max group sizes
+
+prioritized by business impact and risk.
+
+
+## FinOps Enablement
+
+Kubex helps organizations mature their FinOps practices by providing:
+
+| Capability | Benefit |
+|------------|---------|
+| Cost Visibility | Understand where cloud spend occurs |
+| Resource Rightsizing | Eliminate overprovisioning |
+| Savings Tracking | Measure optimization impact |
+| Continuous Optimization | Maintain long-term efficiency |
+
+By embedding optimization into operational workflows, teams can make cloud cost management an ongoing process instead of a periodic exercise.
+
+---
+
+Organizations use Kubex to improve cloud efficiency, reduce operational complexity, and ensure infrastructure resources align with actual business demand.
+
+---
+

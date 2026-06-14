@@ -1,3 +1,79 @@
+/* Completely remove the entire right sidebar */
+[data-testid="toc"],
+[data-testid="table-of-contents"],
+.toc,
+.table-of-contents,
+aside[class*="toc"],
+nav[aria-label="Table of contents"],
+[class*="right-sidebar"],
+[class*="right-panel"],
+aside:last-child,
+aside[class*="w-"],
+div[class*="right"],
+/* Target "On this page" heading and container */
+h3:contains("On this page"),
+h4:contains("On this page"),
+h2:contains("On this page"),
+[class*="toc-heading"],
+/* Hide any flex or grid item that's on the right */
+main + aside,
+main ~ aside,
+article + aside,
+article ~ aside {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Force single-column layout */
+[class*="grid-cols-"],
+[class*="lg:grid-cols-"],
+[class*="xl:grid-cols-"] {
+  grid-template-columns: 1fr !important;
+}
+
+/* Expand main content to fill entire width */
+[data-testid="main-content"],
+main,
+.main-content,
+article {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  flex: 1 1 100% !important;
+}
+
+/* Hide any element containing "On this page" text */
+*:has-text("On this page") {
+  display: none !important;
+}
+
+/* Target only the main content area without breaking layout */
+[data-testid="main-content"],
+[role="main"],
+main > div,
+main article,
+.prose {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Target specific Mintlify content containers */
+.mx-auto:has(article),
+.max-w-4xl:has(.prose),
+.max-w-3xl:has(.prose) {
+  max-width: 90% !important;
+}
+
+/* Ensure content wrapper uses more width */
+article > div,
+.prose > div {
+  max-width: none !important;
+}
+
 .home_card_container {
   padding-top: 2rem;
   padding-bottom: 8rem;
@@ -12,4 +88,28 @@
 .home_card_container .card strong,
 .home_card_container .card p {
   color: #fff !important;
+}
+
+/* Stack OpenAPI example panes vertically (request and response) */
+[data-testid*="api"] [class*="grid-cols-2"],
+[data-testid*="api"] [class*="lg:grid-cols-2"],
+[data-testid*="api"] [class*="xl:grid-cols-2"],
+[data-testid*="api"] [class*="2xl:grid-cols-2"] {
+  grid-template-columns: 1fr !important;
+}
+
+[data-testid*="api"] [class*="flex-row"] {
+  flex-direction: column !important;
+}
+
+/* Fallback: stack API request/response code panes when test ids are absent */
+[role="main"] div:has(> div [role="tablist"]):has(> div + div [role="tablist"]) {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0.75rem !important;
+}
+
+[role="main"] div:has(> div [role="tablist"]):has(> div + div [role="tablist"]) > div {
+  width: 100% !important;
+  max-width: 100% !important;
 }

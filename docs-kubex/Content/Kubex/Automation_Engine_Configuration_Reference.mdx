@@ -1,0 +1,71 @@
+---
+title: "Automation Engine Configuration Reference"
+sidebarTitle: "Configuration Reference"
+---
+
+This page highlights the most important configuration keys for Kubex Automation Engine.
+
+## Required Values
+
+| Key | Purpose |
+| --- | --- |
+| `kubex.url.host` | Kubex host (for example: `example.kubex.ai`) |
+| `kubex.url.scheme` | URL scheme used to build Kubex API base URL |
+| `kubex.clusterName` | Cluster identifier sent to Kubex |
+| `kubexCredentials.username` | Required when `createSecrets=true` |
+| `kubexCredentials.epassword` | Required when `createSecrets=true` |
+| `gateway.configSecretName` | Required when `createSecrets=false` |
+
+## Core Operational Values
+
+Commonly tuned fields:
+
+- `replicaCount`
+- `image.repository`
+- `image.tag`
+- `gateway.image.repository`
+- `webhook.enabled`
+- `webhook.certManager.enabled`
+- `metrics.enabled`
+
+## Global Configuration Values
+
+These values render into the `GlobalConfiguration` custom resource:
+
+- `globalConfiguration.recommendationReloadInterval`
+- `globalConfiguration.rescanInterval`
+- `globalConfiguration.mutationLogInterval`
+- `globalConfiguration.snapshotInterval`
+- `globalConfiguration.heartbeatInterval`
+- `globalConfiguration.kubexAPIRequestTimeout`
+- `globalConfiguration.automationEnabled`
+- `globalConfiguration.respectKubexAutomation`
+- `globalConfiguration.protectedNamespacePatterns`
+- `globalConfiguration.webhookHealth.*`
+
+## Helm-Managed Policy Values
+
+If you use Helm to generate policies, key inputs are:
+
+- `policy.defaultPolicy`
+- `policy.policies`
+- `scope[]`
+
+These are mapped by the chart into cluster-scoped policy and strategy CRs.
+
+## Full Reference
+
+- Configuration Reference:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Configuration-Reference.md
+- Global Configuration details:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Global-Configuration.md
+- Policy Configuration:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Policy-Configuration.md
+- Policy Evaluation reference:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Policy-Evaluation.md
+- Rollback Backoff:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Rollback-Backoff.md
+- GPU Sharing with KAI:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/GPU-Sharing-with-KAI.md
+- Apply updates workflow:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Getting-Started.md#apply-configuration-updates
