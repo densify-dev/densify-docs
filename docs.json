@@ -88,6 +88,14 @@
                                     "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/GCP_Cloud_Connections"
                                 ]
                             },
+                            {
+                                "group": "OCI Data Collection",
+                                "pages": [
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Oracle_Cloud_Infrastructure_Data_Collection_Prerequisites",
+                                    "docs-kubex/Content/Cloudex/Data_Collection_OCI_Connections",
+                                    "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/OCI_Cloud_Connections"
+                                ]
+                            },
                             "docs-kubex/Content/Cloudex/Cloud_Connections"
                         ]
                     },
