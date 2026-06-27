@@ -1550,6 +1550,22 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 
 ## Kubex Automation Engine
 
+<Accordion title="1.5.0 - June 23, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - KubeAI `Model` workload support, including owner-scoped recommendation and rollback state handling.
+    - KAI/vLLM tuning controls for GPU-sharing automation strategies.
+    
+    **Changed:**
+    - Default policy workload scope now includes KubeAI `Model` objects when `workloadTypes` is omitted.
+    - Rollback monitoring now enforces adoption-threshold behavior more consistently.
+    - Agentic Proposal sync remains opt-in through `GlobalConfiguration` and is disabled by default.
+    
+    **Fixed:**
+    - Helm uninstall reliability by aligning the pre-delete cleanup hook permissions with the rightsizing resources it patches.
+  </Accordion>
+</Accordion>
+
 <Accordion title="1.4.0 - June 11, 2026">
   <Accordion title="Updates and Improvements">
     **Added:**
@@ -1697,6 +1713,10 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 </Accordion>
 
 ### Legacy Kubex Automation Controller Release Notes
+
+<Note>
+The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine.
+</Note>
 
 <Note>
 The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine.
