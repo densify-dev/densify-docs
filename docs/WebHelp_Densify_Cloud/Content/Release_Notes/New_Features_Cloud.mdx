@@ -1550,6 +1550,23 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 
 ## Kubex Automation Engine
 
+<Accordion title="1.6.0 - July 06, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - KubeAI `Model` workload support for automated rightsizing and rollback tracking.
+    - GPU-sharing tuning controls for KAI-based automation strategies.
+    - Container-level skip controls for rightsizing, so specific containers can be excluded without blocking resize actions for the rest of the pod.
+    
+    **Changed:**
+    - Default policy evaluation now includes KubeAI `Model` workloads when `workloadTypes` is not set.
+    - VPA-aware resize handling is more consistent across live workloads.
+    
+    **Fixed:**
+    - Helm uninstall reliability for charts using rightsizing resources.
+    - GPU rightsizing and validation stability.
+  </Accordion>
+</Accordion>
+
 <Accordion title="1.5.0 - June 23, 2026">
   <Accordion title="Updates and Improvements">
     **Added:**
@@ -1713,6 +1730,10 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 </Accordion>
 
 ### Legacy Kubex Automation Controller Release Notes
+
+<Note>
+The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine.
+</Note>
 
 <Note>
 The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine.
