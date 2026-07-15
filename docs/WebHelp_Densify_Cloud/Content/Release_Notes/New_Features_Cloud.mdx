@@ -1550,6 +1550,13 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 
 ## Kubex Automation Engine
 
+<Accordion title="1.7.0 - July 14, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - Secondary/DR cluster mode for recommendation consumption from a primary cluster.
+  </Accordion>
+</Accordion>
+
 <Accordion title="1.6.0 - July 06, 2026">
   <Accordion title="Updates and Improvements">
     **Added:**
@@ -1564,6 +1571,7 @@ When deploying the Container Data Forwarder ensure that the same version is depl
     **Fixed:**
     - Helm uninstall reliability for charts using rightsizing resources.
     - GPU rightsizing and validation stability.
+    - In-place resized pods now retain the pod-rightsizing-info annotation so live pod state stays observable.
   </Accordion>
 </Accordion>
 
@@ -1730,6 +1738,10 @@ When deploying the Container Data Forwarder ensure that the same version is depl
 </Accordion>
 
 ### Legacy Kubex Automation Controller Release Notes
+
+<Note>
+The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine.
+</Note>
 
 <Note>
 The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine.
