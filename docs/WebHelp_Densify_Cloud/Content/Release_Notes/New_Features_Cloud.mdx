@@ -1,14 +1,6 @@
 ---
-title: "New Features"
+title: "Kubex Features"
 ---
-
-The following sections provide details of new features and updates introduced in each release.
-
-- Kubex -- Features & enhancements in the latest Kubex releases.
-- [Container Data Collector](#container-data-forwarder) -- Updates to Kubex's Container data collection module.
-- [Kubex Automation Engine](#kubex-automation-engine) -- Updates to Kubex's Automation Engine module.
-
-## Kubex
 
 This topic summarizes both new and updated features introduced in Kubex
 
@@ -192,7 +184,7 @@ This topic summarizes both new and updated features introduced in Kubex
 
     - **New Kubex AI Agent Experience**
       - Natural-Language Interaction: Users can now simply ask questions in plain English and get accurate, contextual answers directly from the AI agent.
-      - Guided Navigation: The agent can take users to the right features or pages in the product—no need to search menus or remember where things live.
+      - Guided Navigation: The agent can take users to the right features or pages in the product-no need to search menus or remember where things live.
       - Action Assistance: Beyond answering questions, the agent can help surface relevant insights, and streamline everyday tasks.
       - Enterprise-Grade Data Privacy: No customer data is used for model training. The underlying LLM does not learn from or use customer data to train or improve itself.
 
@@ -218,7 +210,7 @@ This topic summarizes both new and updated features introduced in Kubex
     - **Policy Editing** 
       - Version 3.8 includes a new and often requested capability to edit analysis policies via the UI. 
       - The "policy_admin" role enables specific users with the ability to edit both cloud and container analysis policy settings directly from the Kubex UI. 
-      - Additionally, the last update date – and who made the update – are now exposed in the UI.  
+      - Additionally, the last update date - and who made the update - are now exposed in the UI.  
       - The policy descriptions have been updated to make them easier to understand, and tooltips now include detailed information about each setting along with their default value. 
       <Frame caption="Figure: Policy Editing">
         <img src="/images/docs/ReleaseNotes/v3.8/policy_editable_dialog.png" width="100%" />
@@ -245,7 +237,7 @@ This topic summarizes both new and updated features introduced in Kubex
   <Accordion title="Updates to Cloud Optimization">
     - **Optimization Trends**
       - The Optimization Trends reports visualize historical trends across key operational metrics, including instance counts, costs, savings, and CPU/Memory utilization. This helps users better understand performance patterns and optimization impact over time.
-      - Dashboards can be personalized — users can select which reports to display and organize them in their preferred layout. Each report can be resized to small, medium, or large for optimal viewing.
+      - Dashboards can be personalized - users can select which reports to display and organize them in their preferred layout. Each report can be resized to small, medium, or large for optimal viewing.
       - Users can save dashboards as public (where others in your organization can view but not edit) and private (where only they can view/edit them).
       <Frame caption="Figure: Optimization Trends on the Summary Tab">
         <img src="/images/docs/ReleaseNotes/v3.7/optimization_trend_summary.png" width="100%" />
@@ -275,10 +267,10 @@ This topic summarizes both new and updated features introduced in Kubex
     - **Memory Limit Events (Last Day) added to Analysis Details table**--This is a hidden column by default.
     - **Node/Node Group Analysis**--Improved quality of recommendations by switching to "Working Set Memory" when available. Working set memory is a better metric to analyze the memory requirements for Nodes.
     - **Other Improvements & Updates**
-      - GPU and GPU Memory metrics viewer chart: added “Current Request” line
-      - Added a new view on the Analysis Details table: “GPU Request Surplus”. This highlights the container manifests that have surplus GPU and can be optimized to reduce waste.
-      - Container API now include a “analyzedOn” date which allows the automation to only consider fresh recommendations.
-      - Removed the word “AI” from “AI Analysis Details”
+      - GPU and GPU Memory metrics viewer chart: added "Current Request" line
+      - Added a new view on the Analysis Details table: "GPU Request Surplus". This highlights the container manifests that have surplus GPU and can be optimized to reduce waste.
+      - Container API now include a "analyzedOn" date which allows the automation to only consider fresh recommendations.
+      - Removed the word "AI" from "AI Analysis Details"
   </Accordion>
   <Accordion title="Updates to Cloud Optimization">
     - **Policies**--View policies for Cloud environments in a new modal, accessible from the Policies tab and Analysis Details table.
@@ -305,7 +297,7 @@ This topic summarizes both new and updated features introduced in Kubex
   </Accordion>
   
   <Accordion title="Administration">
-    - **SSO with Okta**--Removed requirement for Okta’s CAS (Central Authentication Service).
+    - **SSO with Okta**--Removed requirement for Okta's CAS (Central Authentication Service).
     - **Password Reset**--Password reset emails now link to Kubex instead of Kubex Console.
   </Accordion>
 </Accordion>  
@@ -330,7 +322,7 @@ is also available on the summary page
     - **Business & Operational Attributes**--Various business and operations related 
 attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and Analysis Details 
 columns
-    - **GPU Optimization for Container Resource Requests**--– Containers with GPUs 
+    - **GPU Optimization for Container Resource Requests**--- Containers with GPUs 
 allocated now receive recommendations for downsize opportunities. The GPU Overview page has been updated to highlight this information:
       - Added system views to Analysis Details (Immediate GPU Savings & Addtional GPU Waste)
   </Accordion>
@@ -371,7 +363,7 @@ columns
     The following changes have been made to improve how Kubex determines the cost of public cloud instances, using customer-specific discounts:
 
     - **Azure Hybrid Benefit Status**--As part of enhancing the cost data model, Kubex needs to distinguish between systems that are BYOL (also called Azure Hybrid Benefit or AHB) to accurately represent the cost of the system. The license model is available in the existing data collection configuration so no changes are required to the minimum permissions for BYOL VMs.
-    - **Azure Instance OS Name**--Kubex now determines the type of Linux OS. In this release RHEL and SUSE are supported. The OS name is used to accurately determine instance costs.
+    - **Azure Instance OS Name**--Kubex now determines the type of Linux OS. In this release RHEL and SUSE are supported. The OS name is used to accurately determine instance costs.
     - **Updated Cost Model**--The cloud cost data model has been updated to apply discounts based on the following details:
       - OS Type--The type of Linux OS installed on a cloud instance. This is not an attribute and is stored in a table but cannot be edited or cleared like an attribute.
       - License Model (Attr_key is aws:licensemodel)--The licensing model that has been configured for a cloud instance )
@@ -386,7 +378,7 @@ columns
     The following changes have been made to Kubex in this release:
 
     - **Node Modal**--A new modal opens when you click a node name on the Node Details page.
-    - **Performance Improvements**-- The Kubex UI no longer retrieves data from the Kubex Reporting Database (RDB). All UI component queries are directed exclusively to Kubex-specific tables in MS SQL.
+    - **Performance Improvements**-- The Kubex UI no longer retrieves data from the Kubex Reporting Database (RDB). All UI component queries are directed exclusively to Kubex-specific tables in MS SQL.
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
@@ -396,12 +388,12 @@ columns
   <Accordion title="Updates to Container Optimization">
     The following changes have been made to Kubex in this release:
 
-    - **GPU Metrics for Containers**--In this release Kubex introduces reporting of GPU configuration and utilization data for containers, node groups and nodes. This data enables you to identify GPU-enabled containers and nodes in your environment and see how effectively you are utilizing your GPU resources.
+    - **GPU Metrics for Containers**--In this release Kubex introduces reporting of GPU configuration and utilization data for containers, node groups and nodes. This data enables you to identify GPU-enabled containers and nodes in your environment and see how effectively you are utilizing your GPU resources.
 
-      You must have [data forwarder v4.2.1](#Forwarder) deployed to collect the GPU data from your environments.
+      You must have [data forwarder v4.2.1](#Forwarder) deployed to collect the GPU data from your environments.
 
       There are updates on many pages to highlight GPU resource configuration and utilization:
-      - **Updated Analysis Details**--A number of data points allow you to identify containers with GPU requests and to determine where the GPU and GPU memory request values are higher than peak utilization over a given period.
+      - **Updated Analysis Details**--A number of data points allow you to identify containers with GPU requests and to determine where the GPU and GPU memory request values are higher than peak utilization over a given period.
         The analysis populates these attribute values based on the date range and data selection options that are defined in your container optimization policy. The Analysis Details page has been updated to display the following GPU data.
 
         <table>
@@ -414,17 +406,17 @@ columns
         <td>
         <ul class="ul_3">
         <li>
-        GPU Model 
+        GPU Model 
         </li>
 
         
         <li>
-        GPU Request
+        GPU Request
         </li>
 
         
         <li>
-        Total GPU Request 
+        Total GPU Request 
         </li>
 
         
@@ -434,7 +426,7 @@ columns
 
         
         <li>
-        %GPU Average
+        %GPU Average
         </li>
 
         
@@ -449,12 +441,12 @@ columns
 
         
         <li>
-        GPU Memory Request
+        GPU Memory Request
         </li>
 
         
         <li>
-        Total GPU Memory Request
+        Total GPU Memory Request
         </li>
 
         </ul>
@@ -550,13 +542,13 @@ columns
       - **Updated Summary**--New GPU-specific cards have been added to the containers Summary page. A note includes a link that opens a modal containing GPU pricing details.
 
         The top two cards on the Summary page have also been updated to better highlight both your current spend and the details of possible savings.
-      - **New GPU Tab**--A new GPU tab has been added when reviewing a single container. This new page provides details of the GPU utilization on the selected container.
+      - **New GPU Tab**--A new GPU tab has been added when reviewing a single container. This new page provides details of the GPU utilization on the selected container.
       - **Updated Metrics Viewer**--The following GPU metrics are available in the metrics viewer:
         - GPU Utilization in GPUs - Average Container
         - GPU Memory Utilization (MB) - Average Container
         - GPU Memory Utilization (%) - Average Container
         - GPU Power Usage (Watts) - Average Container
-    - **GPU Metrics for Node Groups**--GPU metrics have also been added for Node Groups and individual nodes.
+    - **GPU Metrics for Node Groups**--GPU metrics have also been added for Node Groups and individual nodes.
 
       <table>
       <tbody>
@@ -687,24 +679,24 @@ columns
 
       </table>
     - **Updated Node Overview Tab**--This tab has been updated add GPU details and to improve usability.
-    - **New Data in Analysis Details**--Six new data points allow you to find containers where the CPU and memory request values are higher than peak utilization over a given period.
+    - **New Data in Analysis Details**--Six new data points allow you to find containers where the CPU and memory request values are higher than peak utilization over a given period.
 
       The analysis populates these values based on the date range and data selection options that are defined in your container optimization policy.
       - CPU Peak--Highest peak value in mCores, on the busiest container.
-      - CPU Sustained--Highest sustained value in mCores, on the average container.
+      - CPU Sustained--Highest sustained value in mCores, on the average container.
       - CPU Min--Lowest value in mCores, on the average container.
       - Memory Peak--Highest peak value in MB, on the busiest container.
       - Memory Sustained--Highest sustained value in MB, on the average container.
       - Memory Min--Lowest value in mCores, on the average container.
-    - **Timezone**--The utilization charts for containers, node groups and nodes have been updated to standardize the timeline on UTC. The X-axis label has been updated to indicate the timezone designation for all charts to ‘UTC ’.
-    - **Updated Node Overview**--The node overview page has been updated to improve useability and add details of GPU utilization.
+    - **Timezone**--The utilization charts for containers, node groups and nodes have been updated to standardize the timeline on UTC. The X-axis label has been updated to indicate the timezone designation for all charts to 'UTC '.
+    - **Updated Node Overview**--The node overview page has been updated to improve useability and add details of GPU utilization.
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
   <Accordion title="Updates to Cloud Optimization">
     The following changes have been made to Public Cloud optimization in this release:
 
-    - **Timezone**--The X-axis label has been updated to indicate the timezone designation for all historical utilization charts to ‘UTC ’ This change to does not currently apply to the ML charts. The ML charts on the Analysis Details page use Kubex server's time. So this will be either “Eastern Time” or “Central Europe Time”.
+    - **Timezone**--The X-axis label has been updated to indicate the timezone designation for all historical utilization charts to 'UTC ' This change to does not currently apply to the ML charts. The ML charts on the Analysis Details page use Kubex server's time. So this will be either "Eastern Time" or "Central Europe Time".
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
@@ -776,7 +768,7 @@ columns
     - **Summary Page**--The Summary page has been updated for improved readability.
     - **Cost Modeling**--Kubex now has improved algorithms that use existing utilization data to estimate the cost for containers with unspecified CPU/memory request values. The Summary, Analysis Details, and Overview pages have all been updated to show the cost estimates for these containers. The following updates have been made to show these values:
       - Two columns have been added to the Analysis Details tab:
-        - "Total Surplus CPU Request from Unspecified (mCores)";
+        - "Total Surplus CPU Request from Unspecified (mCores)";
         - "Total Surplus Memory Request from Unspecified (MB)"
       - Two system views have been added to the Analysis Details tab:
         - "CPU Request Shortfall (from Unspecified)"
@@ -809,7 +801,7 @@ columns
     See [Kubex API New Features](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features)
   </Accordion>
   <Accordion title="Updated API Token Expiry Duration">
-    The token expiry has been increased from 5 to 60 minutes. Re-authorize will no longer be required for longer-running pipeline operations that previously exceed the 5-minute limit. The JSON Web Token (JWT) secures the Kubex API so users can only make authorized API requests.
+    The token expiry has been increased from 5 to 60 minutes. Re-authorize will no longer be required for longer-running pipeline operations that previously exceed the 5-minute limit. The JSON Web Token (JWT) secures the Kubex API so users can only make authorized API requests.
 
     See [Authorize](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize)
   </Accordion>
@@ -843,7 +835,7 @@ columns
   <Accordion title="Updated Public Cloud Catalog">
     The public cloud metadata catalogs have been updated to ensure Kubex recommendations are based on the latest vendor pricing:
 
-    - AWS Metadata Updates:
+    - AWS Metadata Updates:
       - The pricing has been updated and is correct as of April 7, 2025.
       - The following new instance type has been added:
 
@@ -1030,7 +1022,7 @@ columns
         </tbody>
 
         </table>
-    - GCP Metadata Updates:
+    - GCP Metadata Updates:
       - The pricing has been updated and is correct as of April 14, 2025.
       - The following new instance families have been added:
 
@@ -1070,900 +1062,5 @@ columns
         </tbody>
 
         </table>
-  </Accordion>
-</Accordion>
-
-## Container Data Collector
-
-This section lists new features and updates to the Container Data Collector.
-
-A Helm chart bundles all of the components required for container data collection and automates the process. See [Kubex Collection Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) for details for a single-cluster configuration.
-
-Refer to [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md) for samples and configuration files for multi-cluster configurations.
-
-When deploying the Container Data Collector ensure that the same version is deployed for all of your clusters. See [Data Collection for Containers](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview)
-
-<Accordion title="4.4.0 - March 23, 2026">
-  <Accordion title="Ephemeral Storage metrics">
-    Introduced ephemeral storage metrics collection (opt-in)
-      - Enables support for ephemeral storage analysis and recommendations
-  </Accordion>
-
-  <Accordion title="Node Group Detection">
-    Added enhanced node group detection using:
-      - Kubernetes labels
-      - OpenShift machine sets
-      - Node roles
-  </Accordion>
-   
-</Accordion>
-
-<Accordion title="4.3.0 - November 28, 2025">
-  <Accordion title="Google Managed Prometheus (GMP) Support">
-    This release adds support for collecting data from Google Managed Prometheus (GMP), which is the only supported method for data collection from GKE Autopilot clusters.
-
-    - **GKE Autopilot Compatibility**--GMP is now fully supported, enabling data collection from GKE Autopilot clusters where traditional Prometheus deployments are not possible.
-    - **Managed Service Integration**--Leverages Google's managed Prometheus service for seamless data collection without requiring in-cluster Prometheus installations.
-  </Accordion>
-  <Accordion title="Enhanced Job Configuration">
-    - **backoffLimit Support**--The data collector now supports configuring `backoffLimit` for both Job and CronJob resources, providing better control over retry behavior when data collection encounters transient failures.
-  </Accordion>
-</Accordion>
-
-<Accordion title="4.2.2 - June 16, 2025">
-  <Accordion title="Added GPU Metrics">
-    This update collects additional GPU metrics.
-
-    - The following GPU metrics are now collected for Containers:
-
-      <table>
-      <col />
-
-      <col />
-
-      <tbody>
-      <tr>
-      <td>
-      <ul>
-      <li>
-      GPU Utilization in GPUs - Average Container\*
-      </li>
-
-      
-      <li>
-      GPU Utilization in Percent - Average Container\*
-      </li>
-
-      
-      <li>
-      GPU Memory Utilization in MB - Average Container\*
-      </li>
-
-      
-      <li>
-      GPU Memory Utilization (%) - Average Container\*
-      </li>
-
-      
-      <li>
-      GPU Power Usage (W) - Average Container\*
-      </li>
-
-      </ul>
-
-      </td>
-
-      <td>
-      <ul>
-      <li>
-      GPU Utilization in GPUs - Busiest Container
-      </li>
-
-      
-      <li>
-      GPU Utilization in Percent - Busiest Container
-      </li>
-
-      
-      <li>
-      GPU Memory Utilization in MB - Busiest Container
-      </li>
-
-      
-      <li>
-      GPU Memory Utilization (%) - Busiest Container
-      </li>
-
-      
-      <li>
-      GPU Power Usage (W) - Busiest Container
-      </li>
-
-      </ul>
-
-      </td>
-
-      </tr>
-
-      </tbody>
-
-      </table>
-    - The following GPU metrics are now collected for nodes:
-
-      <table>
-      <col />
-
-      <col />
-
-      <tbody>
-      <tr>
-      <td>
-      <ul>
-      <li>
-      GPU Utilization( GPUs)
-      </li>
-
-      
-      <li>
-      GPU Utilization(%)\*
-      </li>
-
-      
-      <li>
-      GPU Memory Utilization (MB)
-      </li>
-
-      
-      <li>
-      GPU Memory Utilization (%)\*
-      </li>
-
-      
-      <li>
-      GPU Power Usage (W)\*
-      </li>
-
-      </ul>
-
-      </td>
-
-      <td>
-      <ul>
-      <li>
-      GPU Requests (GPU)
-      </li>
-
-      
-      <li>
-      GPU Limit (GPU)
-      </li>
-
-      </ul>
-
-      </td>
-
-      </tr>
-
-      </tbody>
-
-      </table>
-
-      Only those metrics indicated with an asterisk(\*) are displayed in the current Kubex user interface. The remaining metrics will be covered in a future release.
-  </Accordion>
-  <Accordion title="Updated Helm Charts">
-    The Helm charts have been updated as follows:
-
-    - All-In-One Kubex Collection Stack has been updated to version 0.9.8;
-    - The chart containing only the data forwarder has been updated to version 4.0.6.
-
-    These updates address the following issues:
-
-    - The metrics that are retained in Prometheus are now limited to only the metrics that Kubex requested. This change reduces the resources consumed by Prometheus, in large clusters.
-    - Both the pod security context and container security context are now set for all of the AIO chart components, including the Kubex data forwarder, Prometheus, Node exporter etc. This includes using the runtime default seccomp profile, running as a non-root user, no privileges for escalation, mounting the root file system as read-only, etc.
-    - A sizing option for Prometheus resources, has been added. The size is based on the cluster size.
-    - The Prometheus subchart has been updated to the latest version.
-    - The Prometheus scrape configuration has been updated to use the k8s endpointslice. The endpoints that the data forwarder was using were deprecated in the K8s v1.33 API and will be removed in a future release. Endpointslice has been available since K8s v1.21.
-    - Installation instructions for offline (or air-gapped) mode are now provided.
-
-    See [Kubex Collection Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) for details. Ensure that your helm chart has been upgraded to the latest version, using the helm `upgrade` command.
-  </Accordion>
-</Accordion>
-
-<Accordion title="4.2.1 - May 29, 2025">
-  This update contains an upgrade for Go to 1.24 for all package dependencies. This upgrade eliminates security scan warnings preventing some customers from upgrading their data forwarder to the latest version.
-</Accordion>
-
-<Accordion title="4.2.0 - May 15, 2025">
-  This update adds support for **NVIDIA GPU metrics** and HPA:
-
-  <Accordion title="Collection of NVIDIA GPU Metrics">
-    NVIDIA GPU Metrics--With this update, the Kubex data forwarder now collects GPU data from your Kubernetes clusters.
-
-    The analysis and display of the collected metrics will be provided in a future release of Kubex.
-
-    Note the following additional prerequisites to collect the GPU data:
-
-    - NVIDIA-device-plugin--This plugin allows containers to access the NVIDIA GPUs. It must be installed on all your Kubernetes clusters to allocate NVIDIA GPU resources to workloads and to provide the GPU data.
-    - dcgm-exporter--This Prometheus exporter exposes GPU metrics from the Data Center GPU Manager (DCGM). It is required to collect GPU data such as, utilization, memory usage, and power usage from NVIDIA GPUs, The dcgm-exporter can be deployed as a DaemonSet, where each node with an NVIDIA GPU runs a pod that exposes these metrics in a format that Prometheus can scrape and the Kubex data forwarder then collects.
-
-    The GPU data collection is currently supported on the following platforms:
-
-    - AKS
-    - EKS
-    - GKE
-  </Accordion>
-  <Accordion title="HPA Updates">
-    **HPA Scales Based on Multiple Metrics**--With this update Kubex recommendations are not implemented for any containers enabled for HPA that scale based on single or multiple metrics, that are also enabled for automation using the Kubex Automation Engine.
-
-    Previously Kubex did not support HPA-based on multiple metrics.
-  </Accordion>
-  <Accordion title="Updated Kubex Collection Stack">
-    The [Kubex Collection Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) has been updated to collect data from the NVIDIA DCGM exporter. You must ensure that your helm chart has been upgraded to the latest version (0.9.6) to get GPU data. You will get the updates automatically if you have the following settings, in the data forwarder cronJob specification:
-
-    - image: densify/container-optimization-data-forwarder:4
-    - imagePullPolicy: Always
-
-    If the settings are not configured as above, then you need to update the image, manually.
-  </Accordion>
-</Accordion>
-
-<Accordion title="4.1.3 - April 1, 2025">
-  This update resolves an issue with reporting a container's parent node and node groups.
-</Accordion>
-
-<Accordion title="4.1.2 - March 17, 2025">
-  This update collects new container and node-level metrics to provide more accurate recommendations.
-
-  Upgrade data forwarder v4.1.2 after upgrading to Kubex v2.10.0. New database columns have been added in v2.10.0 that are required by this version of the data forwarder for the new metrics and attributes.
-
-  When updating the data forwarder, you need to ensure that the same version is deployed for all of your clusters.
-
-  <Accordion title="Collection of New Metrics">
-    The data forwarder has been updated to collect the following:
-
-    - Horizontal Pod Autoscaler (HPA) target metrics--Three new attributes have been added.
-      - hpa_target_metric_name
-      - hpa_target_metric_type
-      - hpa_target_metric_value
-    - Node taints--The configuration attribute and new metrics will be collected:
-      - Added the multi-value attribute, “Node Taints” (attr_NodeTaints)
-    - QoS class--The configuration attribute and new metrics will be collected.
-      - Added the attribute, Quality of Service Class” (attr_QOSClass)
-    - Node Working Set Memory Metrics--Working set memory is a process (or container) metric, rather than a node metric. It has been added to align with what is already shown in the AKS console. Kubex provides the following additional node memory metrics:
-      - working set memory (in bytes)
-      - working set memory utilization (percent)
-      - memory utilization (percent) (based on memory_bytes metric)
-      - memory actual utilization (percent) (based on memory_actual_workload metric)
-      - total node memory (in bytes) (configuration attribute)
-
-    Kubex's container analyses will be updated in future releases to utilize this HPA data when generating recommendations.
-  </Accordion>
-  <Accordion title="Updated Node Identification">
-    To improve the identification of a container's parent node, the `provider_id` has been introduced as a third identification component. Currently, nodes are identified using `cluster_name` and `node_name`.
-
-    The `provider_id` is optional and will be used only if required. In Kubernetes clusters without a`provider_id`, node identification will continue to rely on `cluster_name` and `node_name`, ensuring that node IDs remain unchanged.
-
-    Specifically, for EKS and OKE clusters, existing node IDs will change and as a result, node history will be lost since these nodes will receive new IDs.
-  </Accordion>
-  <Accordion title="Updated Configuration Setting">
-    The data forwarder's configmap.yaml file has been updated. The setting, `node_group_list` has been updated to add `label_karpenter_sh_nodepool`. When enabled, Karpenter NodeGroups are discovered and created in Kubex.
-  </Accordion>
-</Accordion>
-
-<Accordion title="4.1.1 - November 27, 2024">
-  This update resolves an issue with reporting CPU and memory reservation percent for nodes, node groups and clusters.
-</Accordion>
-
-<Accordion title="4.1.0 - September 19, 2024 ">
-  Version 4.1.0 collects new container and node-level metrics to provide more accurate container sizing recommendations.
-
-  <Note>
-    Node level metrics and some new container metrics are collected, but will not be available in the Kubex Console until the release of Kubex v2.6.
-  </Note>
-  <Accordion title="New Container Metrics">
-    The following container metrics are now collected:
-
-    - max_cpu_throttling_percent--The Linux kernel allocates "CPU periods" (default = 100 milliseconds) to both processes and containers. The percentage is the number of throttled periods out of the total number of 100-ms periods. This value is a percentage of periods that were throttled vs those that were requested. This provides a more accurate indication of resource limitations.
-
-      For example if the pod was throttled for 8 seconds out of the 5 minutes, this would be 2.7%, but if the CPU was not actually requested for the full 5 minutes, then the 2.7% is not an accurate representation of the state of the container. If the pod was throttled for 8 seconds, and it's request was less that than the 300 seconds the throttled percentage is higher.
-    - avg_cpu_throttling_percent--Indicates the average percentage of the number of 100-ms periods that a container is throttled in terms of CPU usage.
-
-      The average and maximum values are collected since the container is likely aggregated. Metrics are aggregated at the highest level of the pod owner. For a deployment of one pod in one container the average and maximum will be the same. If it is a deployment of 10 pods then the average and maximum will not be the same.
-    - sum_cpu_throttling_seconds--Aggregates the total time during which throttling has been applied.
-    - Container Events--These are not metrics that are collected at 5-minute intervals, but are individual events and the time that the event occurred or was detected. In this version of the data forwarder "process exit" is now collected. The exit code and whether or not this is the main process (i.e. PID #1 using a true/false flag) of the container is collected and stored. In this version process exit will be false only when PID #1 exits with code 137 which corresponds to an OOM kill. In all other cases, process exit will be true.
-
-    CPU and memory request and limit values at the top of the hour are already collected and stored as attributes, once per day. In this release the data forwarder collects the following metrics at 5-minute intervals:
-
-    - CPU Limit--The defined CPU allocation limit for the container.
-    - Memory Limit--The defined memory allocation limit for the container.
-    - CPU Request--The defined CPU allocation requested for the container.
-    - Memory Request--The defined memory allocation requested for the container.
-
-    You must have Kubex v2.5, to see these new metrics in the Container Details report and metrics viewer. See [Optimizing Your Containers - Details Tab](../Densify_Com/Optimizing_Your_Containers_-_Details_Tab#Tabular_Report) and [Using the Metrics Viewer for Containers](../Densify_Com/Using_the_Metrics_Viewer-Containers).
-  </Accordion>
-  <Accordion title="Node-Level Metrics">
-    Kubex currently sets configuration attributes with both the node-level and container-level CPU, memory request and limit values from the top of the hour. This provides a point in time data point that allows you to see how a node’s request and limit values move during the day.
-
-    In this release the data forwarder collects the following metrics at 5-minute intervals:
-
-    - CPU Limit--The defined CPU allocation limit for the node.
-    - Memory Limit--The defined memory allocation limit for the node.
-    - CPU Request--The defined CPU allocation requested for the node.
-    - Memory Request--The defined memory allocation requested for the node.
-    - Pod Count--The number of pods running on the selected node.
-
-    If values have not been specified this will be indicated.
-
-    The following node events are collected at 5-minute intervals:
-
-    - oom_kill_events--The number of kill events that happened on the node in a 5-minute interval;
-    - cpu_throttling_events--The number of CPU throttling events that happened on the node in a 5-minute interval;
-
-    The following metrics are calculated from the raw data:
-
-    - cpu_reservation_percent--The percentage of the node's total CPU resources that are reserved or guaranteed for workloads, containers, or virtual machines.
-    - memory_reservation_percent--The percentage of the node's total memory resources that are reserved or guaranteed for workloads, containers, or virtual machines.
-
-    The following configuration details are now collected and stored in attributes:
-
-    - provider_ID--The provider_id is available as a Prometheus label of kube_node_info metric which is extracted to its own column in the k8s_node_v0 postgres table. The relevant node data is then used to facilitate link the Kubernetes node to a cloud instance. This linking will be done in postgres, as will the determination of the relationship between cloud instance and ASGs or VM Scale Sets.
-    - k8s_version--The Kubernetes version of the node is collected and stored in the attribute, k8s_node.
-
-      This value is collected for each node and for the cluster. This is currently informational only and is not used not used in the analysis.
-
-    The features allowing you to view node details will be provided in Kubex v2.6.
-  </Accordion>
-  <Accordion title="Cluster-Level Metrics">
-    The Kubernetes version of the cluster is collected and stored in the attribute, k8s_cluster. This is the version of the control plane/API server. It can be higher than those of the nodes in cases where the control plane was upgraded and the nodes have not yet been updated. This is used when determining OOM kills for Kubernetes versions older than 1.28.
-  </Accordion>
-  <Accordion title="Linking Containers to Node Groups">
-    Containers will now be linked to their node group using a provider ID that is populated by each public cloud provider's Kubernetes offerings (i.e. EKS, AKS and GKE). The provider_id attribute is passed to the kubelet.
-
-    The provider_id is available as a Prometheus label of kube_node_info metric which is extracted to its own column in the k8s_node_v0 postgres table. The relevant node data is then used to facilitate linking the Kubernetes node to a cloud instance. This will be done in postgres, as will the relationship between cloud instance and ASGs or VM Scale Sets.
-  </Accordion>
-</Accordion>
-
-<Accordion title="4.0.0 - May 28, 2024 ">
-  Version 4 introduces significant updates to Kubex's container data collection solution. This version resides in a new [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md).
-
-  While the core PromQL queries remain the same, with the exception of some improvements and bug fixes, the data forwarder has been re-architected to support multi-cluster data collection.
-
-  You can upgrade from version 2.x or 3.x to version 4.0. You need to update the image tag to "4":
-
-  - image: densify/container-optimization-data-forwarder:4
-  - imagePullPolicy: Always
-
-  When updating the data forwarder, you need to ensure that the same version is deployed for all of your clusters.
-
-  See [Data Collection for Containers](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview) for details of configuring the connection.
-
-  <Accordion title="Supported Third Party Observability Platforms">
-    In addition to Prometheus, third party observability platforms are supported. Commercially-available observability platforms do not need to reside within a cluster and can be used to monitor multi-cluster environments. The observability platform must support the Prometheus API and one of the following authentication mechanisms:
-
-    - HTTP basic authentication--Supported by Prometheus and is required by some commercial observability platforms, i.e. [Grafana Cloud](https://grafana.com/docs/grafana-cloud/cost-management-and-billing/analyze-costs/metrics-costs/prometheus-metrics-costs/usage-analysis-api/);
-    - Bearer token--Required by [OpenShift Monitoring](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.14/html/monitoring/accessing-third-party-monitoring-apis) and some commercial observability platforms, i.e. [Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-api-promql);
-    - AWS SigV4--Required by [Amazon Managed Service for Prometheus](https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-secure-queryingl).
-
-    If you are using Amazon Managed Service for Prometheus (AMP), an AWS role is required to associate the Kubernetes service account with Kubex for the purpose of container data collection. The additional required annotations can be added to your Helm charts.
-
-    The following Prometheus dependencies are applicable:
-
-    - AWS Managed Prometheus data ingestion requires Prometheus v2.26.0 or higher.
-    - Starting with version 16.0, the Prometheus chart requires Helm 3.7 or higher, to install successfully.
-
-    The following commercial observability platforms are supported:
-
-    - Amazon Managed Service for Prometheus (AMP)--Refer to the [AWS website](https://docs.aws.amazon.com/prometheus/latest/userguide/indexl) for details on AMP. Kubex requires a specially configured role. See [Container Data Collection Using Amazon Managed Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_EKS_and_AMP) for configuration examples.
-    - Azure Monitor Managed Service for Prometheus (AzMP)--Refer to the [Azure website](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-overview) for details. Kubex automates the process of acquiring and get and refreshing security tokens. See [Container Data Collection Using Azure Managed Service for Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_AzMP) for a configuration example.
-    - [Grafana Cloud](https://grafana.com/products/cloud/)--See [Container Data Collection using Basic Authentication](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Forwarder_Basic_Auth) for a configuration example.
-
-    The following self-hosted OSS solutions are supported:
-
-    <table>
-    <col />
-
-    <col />
-
-    <tbody>
-    <tr>
-    <td>
-    <ul>
-    <li>
-    <a href="https://thanos.io/">
-    Thanos
-    </a>
-
-    </li>
-
-    
-    <li>
-    <a href="https://cortexmetrics.io/">
-    Cortex
-    </a>
-
-    </li>
-
-    </ul>
-
-    </td>
-
-    <td>
-    <ul>
-    <li>
-    <a href="https://grafana.com/oss/mimir/">
-    Grafana Mimir
-    </a>
-
-    </li>
-
-    
-    <li>
-    <a href="https://prometheus.io/docs/prometheus/latest/federation/">
-    Prometheus Federation
-    </a>
-
-    </li>
-
-    </ul>
-
-    </td>
-
-    </tr>
-
-    </tbody>
-
-    </table>
-  </Accordion>
-  <Accordion title="External Cluster Support">
-    Version 4 collects data from external Prometheus servers. In this use case Prometheus runs outside the Kubernetes cluster, in which the data collection runs.
-  </Accordion>
-  <Accordion title="Multiple Kubernetes Clusters Support">
-    Since Prometheus can now be run externally, you can now run a single job to collect data for multiple Kubernetes clusters from a single Prometheus server/observability platform. Using Prometheus labels, the job determines which data belongs to which cluster.
-  </Accordion>
-  <Accordion title="Added Memory Options for Container Data Collection">
-    You now have the option to select "container_memory_working_set_bytes" in addition to "container_memory_usage_bytes" or "container_memory_rss" for container data collection. This new metric allows you to determine how aggressively you want to optimize your container memory allocations, when analyzing your Kubernetes environments.
-
-    Using the metrics, "container_memory_rss" and "container_memory_working_set_bytes" provides more aggressive recommendations that allow you to reclaim more memory. Using "container_memory_usage_bytes" and "container_memory_rss" provide recommendations that will not result in downsizing recommendations that may lead to out-of-memory (OOM) issues.
-
-    The corresponding workload charts were added to the Containers - Details Tab in v2.2.0. See [Optimizing Your Containers - Details Tab](../Densify_Com/Optimizing_Your_Containers_-_Details_Tab#Lower_Section)
-
-    Contact <a href="mailto:support@kubex.ai">
-    support@kubex.ai</a>
-
-     for details on selecting memory utilization for your container data collection.
-  </Accordion>
-  <Accordion title="Other Features">
-    The following updates and bug fixes were made in this release:
-
-    - HTTP retries have been added to the calls to the Prometheus API. This handles observability platform rate limiting.
-    - The data forwarder now handles the relabel configs of Node Exporter.
-    - Outdated Node Exporter metrics have been addressed.
-    - Utilizes improved Horizontal Pod Autoscaler metrics (autoscaling v2).
-    - The data forwarder has been upgraded to Go 1.22,
-    - Updated examples for both single and multiple cluster configurations are provided in the new [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md).
-  </Accordion>
-  <Accordion title="End of Support Notice - Container Data Forwarder 3.x.x">
-    Kubex will discontinue support of Container Data Forwarder versions 3.x.x on June 30, 2024. Contact <a href="mailto:support@kubex.ai">
-    support@kubex.ai</a> for details on migrating to Kubex's current version of the Container Data Forwarder.
-  </Accordion>
-</Accordion>
-
-## Kubex Automation Engine
-
-<Accordion title="1.7.0 - July 14, 2026">
-  <Accordion title="Updates and Improvements">
-    **Added:**
-    - Secondary/DR cluster mode for recommendation consumption from a primary cluster.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.6.0 - July 06, 2026">
-  <Accordion title="Updates and Improvements">
-    **Added:**
-    - KubeAI `Model` workload support for automated rightsizing and rollback tracking.
-    - GPU-sharing tuning controls for KAI-based automation strategies.
-    - Container-level skip controls for rightsizing, so specific containers can be excluded without blocking resize actions for the rest of the pod.
-    
-    **Changed:**
-    - Default policy evaluation now includes KubeAI `Model` workloads when `workloadTypes` is not set.
-    - VPA-aware resize handling is more consistent across live workloads.
-    
-    **Fixed:**
-    - Helm uninstall reliability for charts using rightsizing resources.
-    - GPU rightsizing and validation stability.
-    - In-place resized pods now retain the pod-rightsizing-info annotation so live pod state stays observable.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.5.0 - June 23, 2026">
-  <Accordion title="Updates and Improvements">
-    **Added:**
-    - KubeAI `Model` workload support, including owner-scoped recommendation and rollback state handling.
-    - KAI/vLLM tuning controls for GPU-sharing automation strategies.
-    
-    **Changed:**
-    - Default policy workload scope now includes KubeAI `Model` objects when `workloadTypes` is omitted.
-    - Rollback monitoring now enforces adoption-threshold behavior more consistently.
-    - Agentic Proposal sync remains opt-in through `GlobalConfiguration` and is disabled by default.
-    
-    **Fixed:**
-    - Helm uninstall reliability by aligning the pre-delete cleanup hook permissions with the rightsizing resources it patches.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.4.0 - June 11, 2026">
-  <Accordion title="Updates and Improvements">
-    **Added:**
-    - Initial formal release of the integration with the KAI scheduler for rightsizing fractional GPUs
-    
-    **Changed:**
-    - KAI documentation, examples, and release notes were updated for the `v1.4.0` release
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.3.1 - June 09, 2026">
-  <Accordion title="Updates and Improvements">
-    **Changed:**
-    - Default policy evaluation now gives `RollbackPolicy` and `ClusterRollbackPolicy` the highest precedence.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.3.0 - June 04, 2026">
-  <Accordion title="Updates and Improvements">
-    **Added:**
-    - Introduced Rollback automation so clusters can now use the rollback state machine in live environments.
-    
-    **Changed:**
-    - Rollback owner/runtime handling and e2e fixtures were updated to support the new rollback flow.
-    
-    **Fixed:**
-    - Live rollback e2e instability caused by synthetic state seeding.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.2.0 - June 02, 2026">
-  <Accordion title="Updates and Improvements">
-    **Added:**
-    - Webhook/client behavior improvements that make policy admission and reconciliation more resilient.
-    
-    **Changed:**
-    - Webhook reconciliation now uses informers/client behavior tuned for more reliable event handling.
-    - GPU-related e2e and policy behavior was refined for stability and consistency.
-    - Chart/docs content was updated to reflect the current release flow and user-facing guidance.
-    
-    **Fixed:**
-    - Webhook error handling paths that could surface avoidable failures.
-    - Miscellaneous release-blocking regressions from the beta cycle.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.1.0 - May 26, 2026">
-  <Accordion title="Updates and Improvements">
-    **Added:**
-    - PodAffinityPolicy automation for supported workload types, including preferred node placement rules
-    - StrimziPodSet workload support for automating Strimzi-managed Kafka pods
-    - Prometheus scraping support for controller metrics with a chart-managed metrics service and optional ServiceMonitor
-    - Added experimental support for GPU sharing using the KAI scheduler
-    
-    **Changed:**
-    - GPU proactive policies can use `gpuOverallOptimal` recommendations from KAI for overall GPU optimization
-    - Resize summaries now show when recommendations were clamped to configured resource bounds
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.0 - May 07, 2026">
-  <Accordion title="Updates and Improvements">
-    **Changed:**
-    - No customer-facing changes in this release.
-  </Accordion>
-</Accordion>
-
-<Accordion title="0.4.0 - May 05, 2026">
-  <Accordion title="Updates and Improvements">
-    **Added:**
-    - Namespace-level pause controls using the `rightsizing.kubex.ai/pause-until` annotation so automation can be paused across an entire namespace without annotating each pod individually
-  </Accordion>
-</Accordion>
-
-<Accordion title="0.3.0 - May 01, 2026">
-  <Accordion title="Updates and Improvements">
-    **Added:**
-    - Time-based automation scheduling with configurable windows including all-day support, overnight windows, and 24:00 explicit end time
-    - Policy snapshot uploads to Kubex gateway via automation-gateway with configurable intervals
-    
-    **Changed:**
-    - VPA resizing now requires active VPA recommendation conditions before allowing resize plans to prevent premature operations
-    
-    **Fixed:**
-    - Stale owner recommendation cleanup flow for missing automation strategies
-    - Overlapping exclusion window handling by jumping to the latest end time
-    - Startup policy rescan now triggers automatically after readiness opens
-  </Accordion>
-</Accordion>
-
-<Accordion title="0.2.1 - April 01, 2026">
-  <Accordion title="Updates and Improvements">
-    **Added:**
-    - Configurable webhook probe pod settings via GlobalConfiguration including image selection
-    - ImagePullSecrets and securityContext support for enhanced security configuration
-    - GlobalConfiguration singleton enforcement via validating webhook to prevent multiple instances
-    
-    **Fixed:**
-    - Case-insensitive HPA kind detection to match HPA targets regardless of casing
-    - Guaranteed QoS resize plan calculation to correctly normalize requests and limits
-  </Accordion>
-</Accordion>
-
-<Accordion title="0.2.0 - March 01, 2026">
-  <Accordion title="Updates and Improvements">
-    **Added:**
-    - Guaranteed QoS support with `retainGuaranteedQOS` flag to enforce requests==limits constraint
-    
-    **Fixed:**
-    - Webhook retry handling to properly manage too-many-requests scenarios
-    - Resize method preservation in retry scenarios to maintain consistency across retries
-    - Workload-to-policy namespace matching to ensure correct policy application
-  </Accordion>
-</Accordion>
-
-<Accordion title="0.1.3 - February 01, 2026">
-  <Accordion title="Updates and Improvements">
-    **Added:**
-    - Per-container enablement bounds to set different resource floor and ceiling limits for individual containers within a pod
-    
-    **Fixed:**
-    - Webhook validation for inherited automation strategy bounds to ensure proper constraint enforcement
-  </Accordion>
-</Accordion>
-
-<Accordion title="0.1.2 - January 15, 2026">
-  <Accordion title="Updates and Improvements">
-    **Added:**
-    - Webhook validation for policy automation strategy references to ensure referential integrity
-    - Protection against deleting automation strategies that are actively referenced by policies
-    
-    **Fixed:**
-    - ENABLE_WEBHOOKS flag parsing to correctly interpret as boolean value
-  </Accordion>
-</Accordion>
-
-<Accordion title="0.1.1 - January 01, 2026">
-  <Accordion title="Updates and Improvements">
-    **Changed:**
-    - Rebranded from previous name to Kubex
-    
-    **Fixed:**
-    - Workload-to-policy namespace matching to ensure policies are applied to correct workloads
-  </Accordion>
-</Accordion>
-
-### Legacy Kubex Automation Controller Release Notes
-
-<Note>
-The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine.
-</Note>
-
-<Note>
-The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine.
-</Note>
-
-<Note>
-The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine.
-</Note>
-
-<Note>
-The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine.
-</Note>
-
-The Kubex Automation Controller automatically implemented Kubex's optimization recommendations for Kubernetes workloads.
-
-<Accordion title="1.0.13 - February 6, 2026 (Patch)">
-  <Accordion title="Valkey Helm & OpenShift Compatibility Fixes">
-    <ul>
-      <li>Provided complete security contexts to resolve Helm <code>coalesce.go:298</code> warnings for <code>valkey.podSecurityContext</code> and <code>valkey.securityContext</code>.</li>
-      <li>Added initContainer resource requests/limits to satisfy OpenShift admission requirements.</li>
-      <li>Removed fixed UIDs/GIDs from valkey for OpenShift SCC compatibility.</li>
-    </ul>
-  </Accordion>
-  <Accordion title="VPA Exclusion to Prevent Autoscaler Conflicts">
-    <ul>
-      <li>Automatic VerticalPodAutoscaler (VPA) detection and exclusion to prevent Kubex Automation from competing with VPA for resource management.</li>
-      <li>Prevents conflicts between VPA and Kubex automation.</li>
-    </ul>
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.12 - January 28, 2026 (Patch)">
-  <Accordion title="OpenShift anyuid Requirement Removed">
-    <ul>
-      <li>Removed OpenShift SCC rolebinding configuration—no longer requires <code>anyuid</code> for Kubex Automation Controller.</li>
-    </ul>
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.11 - January 27, 2026 (Patch)">
-  <Accordion title="OpenShift Support & Valkey Storage Update">
-    <ul>
-      <li>Added OpenShift support for Kubex Automation Controller.</li>
-      <li>Removed default valkey storage settings—now ephemeral by default.</li>
-    </ul>
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.10 - January 22, 2026 (Patch)">
-  <Accordion title="Service Account Metadata & Logging Improvements">
-    The following improvements have been made in this release:
-
-    - **Human-readable timestamps for automation logs**--All automation logs now use clear, human-readable timestamps, improving readability, troubleshooting, and auditability.
-    - **Support for user-defined metadata on service accounts**--Users can now attach additional, custom metadata to service accounts.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.9 - December 19, 2025 (Minor)">
-  <Accordion title="Simplified Certificate Management">
-    Streamlined deployment by changing the default certificate method, making cert-manager optional rather than required.
-
-    - **Easier Installation**--Reduced deployment complexity and external dependencies by no longer requiring cert-manager by default.
-    - **Flexible Options**--Continue to choose from self-signed certificates, cert-manager integration, or bring-your-own-certificate based on your environment requirements.
-  </Accordion>
-  <Accordion title="Performance Enhancements">
-    Optimized default settings for Kubernetes 1.33+ clusters to take advantage of in-place resizing capabilities, significantly reducing time-to-optimization.
-  </Accordion>
-  <Accordion title="Enhanced Visibility">
-    In-place resizing operations are now visible in the Kubex UI, providing better insight into automation activities and outcomes.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.8 - December 12, 2025 (Patch)">
-  <Accordion title="Configurable Wait-for-Valkey Image">
-    Added support for overriding the wait-for-Valkey init container image to accommodate environments with restricted access to public container registries.
-
-    - **Private Registry Support**--Organizations that cannot pull images from public repositories can now configure the automation controller to use images hosted in their private registries.
-    - **Image Location Override**--The `waitForValkeyImage` configuration option allows specifying a custom image location (default: `busybox:latest`), enabling deployment in air-gapped or restricted network environments.
-    - **Flexible Deployment**--This enhancement ensures the automation controller can be deployed in security-hardened environments where all container images must be sourced from approved internal registries.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.7 - December 11, 2025 (Major)">
-  <Accordion title="In-Place Pod Resizing Support">
-    The Kubex Automation Controller now supports Kubernetes In-Place Pod Resizing for eligible workloads running on Kubernetes 1.33 or higher. This capability enables resource adjustments without pod restarts, eliminating downtime during optimization.
-
-    - **Zero-Downtime Resizing**--Containers are resized in-place without eviction when supported by the cluster, ensuring continuous availability for critical workloads.
-    - **Automatic Fallback**--For clusters that don't support in-place resizing or workloads that require pod recreation, the controller automatically falls back to the traditional pod eviction method.
-    - **Kubernetes 1.33+ Required**--In-place resizing requires Kubernetes 1.33 or later with the InPlacePodVerticalScaling feature gate enabled.
-  </Accordion>
-  <Accordion title="Enhanced Logging and Action Visibility">
-    Pod scan logs have been significantly improved to provide clear summaries of the actions taken by the automation controller. Each log entry now clearly indicates the action taken and the reason:
-
-    - **RESIZED**--Pod was successfully resized using in-place resizing (zero downtime).
-    - **EVICTED**--Pod was evicted and recreated with new resource specifications (traditional method).
-    - **BLOCKED**--Pod could not be resized, with detailed blocking reasons explaining why (e.g., `hpa_conflict_cpu`, `limit_range_violation`, `resource_quota_exceeded`, `node_size_insufficient`, `manual_pause_infinite`).
-    - **SKIPPED**--Pod is already sized at the recommended specification, no action needed.
-
-    These enhanced logs make it easier to monitor automation activity, troubleshoot issues, and understand why specific pods were not optimized.
-  </Accordion>
-  <Accordion title="Annotation-Based Automation Control">
-    Administrators can now use Kubernetes annotations to control automation behavior at the pod or workload level using the `rightsizing.kubex.ai/pause-until: "<RFC3339 timestamp | infinite>"` annotation:
-
-    - **Learning Periods**--Pause automation temporarily after application changes or deployments to allow the system to gather sufficient metrics before optimizing. Specify an RFC3339 timestamp to pause until a specific date.
-    - **Permanent Exclusions**--Permanently exclude specific workloads from automation by setting the annotation value to `infinite`, providing granular control over which resources are managed by Kubex.
-
-    Additionally, the controller now respects the `cluster-autoscaler.kubernetes.io/safe-to-evict=false` annotation, ensuring that pods marked as unsafe to evict are never evicted by the automation controller, even when optimization recommendations are available.
-
-    This annotation-based approach integrates seamlessly with GitOps workflows and provides declarative control over automation scope. See [Pausing Automation for Specific Pods](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-controller/docs/Advanced-Configuration.md#pausing-automation-for-specific-pods) for detailed usage examples.
-  </Accordion>
-  <Accordion title="Simplified Scope Configuration">
-    The `podLabels` field in the Helm values scope configuration is now optional, simplifying deployment for users who want to enable automation across entire namespaces without label-based filtering.
-
-    - Previously, `podLabels` was mandatory and required explicit configuration even when not needed.
-    - Now, you can define scope using only `namespace` for namespace-wide automation, or combine `namespace` with optional `podLabels` for more granular control.
-  </Accordion>
-  <Accordion title="Optimized Startup and Scan Intervals">
-    The controller's pod scanning behavior has been enhanced to balance responsiveness with efficiency:
-
-    - **Quick Initial Scan**--The first scan now executes 2 minutes after controller startup (default), allowing rapid initialization and faster time-to-value.
-    - **Configurable Regular Interval**--Subsequent scans run at the configured interval, providing predictable automation cadence.
-    - **Reduced Startup Delay**--Previously, users had to wait for the full scan interval before the first automation actions occurred.
-
-    These improvements ensure new deployments are evaluated quickly while maintaining efficient resource utilization for ongoing operations. See [Pod Scan Configuration](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-controller/docs/Pod-Scan-Configuration.md) for guidance on configuring scan intervals based on automation scope and cluster size.
-  </Accordion>
-  <Accordion title="Infrastructure and Stability Improvements">
-    - **Increased API Timeout**--API timeout values have been increased to handle slower Kubex API responses during peak loads, preventing unnecessary automation failures.
-    - **Updated cert-manager Dependency**--The cert-manager version has been updated to the latest stable release, ensuring compatibility with modern Kubernetes clusters and improving certificate management reliability.
-
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.6 - December 9, 2025 (Patch)">
-  <Accordion title="Webhook Configuration Optimization">
-    Optimized the mutating webhook configuration by removing the UPDATE operation, ensuring the webhook only triggers on pod creation events.
-
-    - **Reduced Webhook Invocations**--The mutating admission controller now only intercepts pod creation events, eliminating unnecessary processing during pod updates.
-    - **Improved Cluster Performance**--Reducing webhook triggers decreases API server load and improves overall cluster responsiveness.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.5 - November 28, 2025 (Patch)">
-  <Accordion title="In-Place Resizing RBAC Support">
-    Added Kubernetes RBAC (Role-Based Access Control) permissions required for in-place pod resizing functionality. This update prepares the controller for the in-place resizing feature, which was still in development at the time of this release.
-
-    - **Future Feature Preparation**--RBAC rules have been added to grant the controller the necessary permissions to perform in-place pod resource updates when the feature becomes generally available.
-    - **No Functional Changes**--This release focuses on infrastructure readiness; the in-place resizing feature itself was introduced in version 1.0.7.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.4 - November 4, 2025 (Minor)">
-  <Accordion title="External Secret Management Support">
-    Added support for external secret management tools, providing greater flexibility and security for enterprise deployments.
-
-    - **External Secrets Integration**--The Helm chart now supports working with secrets created and managed by external secret management tools (e.g., External Secrets Operator, Sealed Secrets), rather than requiring the chart to create secrets internally.
-    - **Enhanced Security Posture**--Organizations can now leverage their existing secret management workflows and tools, ensuring secrets are handled according to enterprise security policies and compliance requirements.
-    - **Customer-Driven Enhancement**--This feature was developed based on customer feedback to support real-world enterprise deployment scenarios where centralized secret management is required.
-  </Accordion>
-  <Accordion title="Flexible Namespace Deployment">
-    Removed namespace restrictions, allowing the Kubex Automation Controller to be deployed in any namespace.
-
-    - **Arbitrary Namespace Support**--The Helm chart can now be deployed in any namespace, not just predefined ones, providing greater flexibility for multi-tenant environments and organizational policies.
-    - **Improved Secret Management**--Namespace flexibility complements external secret management by allowing secrets to reside in different namespaces according to security boundaries and access control requirements.
-    - **Simplified Multi-Cluster Deployments**--Organizations with standardized namespace naming conventions can now deploy the controller consistently across multiple clusters without chart modifications.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.3 - October 31, 2025 (Patch)">
-  <Accordion title="Environment Variable Enhancements">
-    Added release namespace information to relevant environment variables, improving namespace-aware operations.
-
-    - **Namespace Context**--Environment variables now include the release namespace, enabling better multi-namespace deployments and troubleshooting.
-    - **Improved Configuration**--Simplifies configuration in multi-tenant environments where multiple instances of the controller run in different namespaces.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.2 - October 21, 2025 (Major)">
-  <Accordion title="Valkey Integration for Recommendation Storage">
-    Replaced the persistent volume claim (PVC) requirement with Valkey (Redis-compatible) for storing optimization recommendations, simplifying deployment and improving scalability.
-
-    - **Simplified Deployment**--Eliminates the need for persistent storage configuration, reducing deployment complexity and storage management overhead.
-    - **Improved Performance**--Valkey provides fast in-memory data access for recommendation retrieval, improving controller response times.
-    - **Enhanced Scalability**--In-memory storage enables better horizontal scaling capabilities for large-scale deployments.
-  </Accordion>
-  <Accordion title="Automated Pod Eviction and Resizing">
-    This release introduces the core Kubex Automation Controller deployment, which automatically manages container resource optimization through intelligent pod scanning and eviction.
-
-    - **Automated Pod Scanning**--The controller continuously scans all pods within the configured scope, evaluating them for optimization opportunities based on Kubex recommendations.
-    - **Pre-Eviction Safety Checks**--Before resizing any pod, the controller runs a comprehensive series of checks to ensure safe eviction, including:
-      - Validation of workload owner types and controller compatibility
-      - HPA (Horizontal Pod Autoscaler) conflict detection
-      - Resource quota and limit range compliance
-      - Pod disruption budget (PDB) verification
-      - Policy specification compliance to verify automation is allowed
-    - **Intelligent Pod Eviction**--When a pod passes all safety checks, the controller performs controlled eviction, allowing the mutating admission controller to automatically apply optimized resource specifications when the pod is recreated.
-    - **Scope-Based Control**--Administrators define automation scope through Helm values, specifying namespaces and optional pod labels to control which workloads are managed by the automation controller.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.1 - August 22, 2025 (Patch)">
-  <Accordion title="Security and Infrastructure Improvements">
-    This release focuses on security enhancements and infrastructure improvements for the Kubex Automation Controller deployment.
-
-    - **Gateway Resource Management**--Added resource requests and limits for the gateway container, ensuring predictable resource allocation and preventing resource contention in production environments.
-    - **Enhanced Secret Security**--Improved secret handling by switching from environment variables to volume mounts, reducing the risk of secret exposure through process listings and container inspection.
-    - **Automated CA Bundle Management**--The webhook configuration now automatically extracts the CA bundle from TLS secrets, eliminating the need for manual CA bundle configuration and reducing deployment complexity.
-    - **Simplified Configuration**--Removed the manual `caBundle` dependency from `values-edit.yaml`, streamlining the Helm chart configuration process.
-    - **Improved Documentation**--Enhanced certificate generation documentation with detailed examples for multiple certificate creation methods, including OpenSSL, CFSSL, and Bring Your Own Certificate (BYOC) scenarios.
-  </Accordion>
-</Accordion>
-
-<Accordion title="1.0.0 - June 25, 2025 (Major)">
-  <Accordion title="Initial Kubex Automation Controller Release">
-    This inaugural release introduces the Kubex Automation Controller, rebranded from the Mutating Admission Controller to reflect broader automation capabilities.
-
-    - **Helm Chart Deployment**--Packaged as a Helm release for simplified installation and management.
-    - **Automated Setup Script**--Quick deployment script automates setup, including cert-manager installation.
-    - **Split Architecture**--Redesigned with separate containers for core webhook logic and secure API communication.
-  </Accordion>
-  <Accordion title="Security and Control Features">
-    - **Enhanced Security**--Encrypted credentials, non-root container execution, and seccomp profiles enabled by default.
-    - **Selective Automation**--Ability to include or exclude specific workload types (e.g., Deployment, StatefulSet) from automation.
-    - **Offline Resilience**--Mutations are cached locally during connectivity issues and synchronized when connection is restored.
   </Accordion>
 </Accordion>

@@ -1,0 +1,475 @@
+﻿## Container Data Collector
+
+This section lists new features and updates to the Container Data Collector.
+
+A Helm chart bundles all of the components required for container data collection and automates the process. See [Kubex Collection Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) for details for a single-cluster configuration.
+
+Refer to [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md) for samples and configuration files for multi-cluster configurations.
+
+When deploying the Container Data Collector ensure that the same version is deployed for all of your clusters. See [Data Collection for Containers](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview)
+
+<Accordion title="4.4.0 - March 23, 2026">
+  <Accordion title="Ephemeral Storage metrics">
+    Introduced ephemeral storage metrics collection (opt-in)
+      - Enables support for ephemeral storage analysis and recommendations
+  </Accordion>
+
+  <Accordion title="Node Group Detection">
+    Added enhanced node group detection using:
+      - Kubernetes labels
+      - OpenShift machine sets
+      - Node roles
+  </Accordion>
+   
+</Accordion>
+
+<Accordion title="4.3.0 - November 28, 2025">
+  <Accordion title="Google Managed Prometheus (GMP) Support">
+    This release adds support for collecting data from Google Managed Prometheus (GMP), which is the only supported method for data collection from GKE Autopilot clusters.
+
+    - **GKE Autopilot Compatibility**--GMP is now fully supported, enabling data collection from GKE Autopilot clusters where traditional Prometheus deployments are not possible.
+    - **Managed Service Integration**--Leverages Google's managed Prometheus service for seamless data collection without requiring in-cluster Prometheus installations.
+  </Accordion>
+  <Accordion title="Enhanced Job Configuration">
+    - **backoffLimit Support**--The data collector now supports configuring `backoffLimit` for both Job and CronJob resources, providing better control over retry behavior when data collection encounters transient failures.
+  </Accordion>
+</Accordion>
+
+<Accordion title="4.2.2 - June 16, 2025">
+  <Accordion title="Added GPU Metrics">
+    This update collects additional GPU metrics.
+
+    - The following GPUÂ metrics are now collected for Containers:
+
+      <table>
+      <col />
+
+      <col />
+
+      <tbody>
+      <tr>
+      <td>
+      <ul>
+      <li>
+      GPU Utilization in GPUs - Average Container\*
+      </li>
+
+      
+      <li>
+      GPU Utilization in Percent - Average Container\*
+      </li>
+
+      
+      <li>
+      GPU Memory Utilization in MB - Average Container\*
+      </li>
+
+      
+      <li>
+      GPU Memory Utilization (%) - Average Container\*
+      </li>
+
+      
+      <li>
+      GPU Power Usage (W) - Average Container\*
+      </li>
+
+      </ul>
+
+      </td>
+
+      <td>
+      <ul>
+      <li>
+      GPU Utilization in GPUs - Busiest Container
+      </li>
+
+      
+      <li>
+      GPU Utilization in Percent - Busiest Container
+      </li>
+
+      
+      <li>
+      GPU Memory Utilization in MB - Busiest Container
+      </li>
+
+      
+      <li>
+      GPU Memory Utilization (%) - Busiest Container
+      </li>
+
+      
+      <li>
+      GPU Power Usage (W) - Busiest Container
+      </li>
+
+      </ul>
+
+      </td>
+
+      </tr>
+
+      </tbody>
+
+      </table>
+    - The following GPUÂ metrics are now collected for nodes:
+
+      <table>
+      <col />
+
+      <col />
+
+      <tbody>
+      <tr>
+      <td>
+      <ul>
+      <li>
+      GPU Utilization( GPUs)
+      </li>
+
+      
+      <li>
+      GPU Utilization(%)\*
+      </li>
+
+      
+      <li>
+      GPU Memory Utilization (MB)
+      </li>
+
+      
+      <li>
+      GPU Memory Utilization (%)\*
+      </li>
+
+      
+      <li>
+      GPU Power Usage (W)\*
+      </li>
+
+      </ul>
+
+      </td>
+
+      <td>
+      <ul>
+      <li>
+      GPU Requests (GPU)
+      </li>
+
+      
+      <li>
+      GPU Limit (GPU)
+      </li>
+
+      </ul>
+
+      </td>
+
+      </tr>
+
+      </tbody>
+
+      </table>
+
+      Only those metrics indicated with an asterisk(\*) are displayed in the current Kubex user interface. The remaining metrics will be covered in a future release.
+  </Accordion>
+  <Accordion title="Updated Helm Charts">
+    The Helm charts have been updated as follows:
+
+    - All-In-One Kubex Collection Stack has been updated to version 0.9.8;
+    - The chart containing only the data forwarder has been updated to version 4.0.6.
+
+    These updates address the following issues:
+
+    - The metrics that are retained in Prometheus are now limited to only the metrics that Kubex requested. This change reduces the resources consumed by Prometheus, in large clusters.
+    - Both the pod security context and container security context are now set for all of the AIO chart components, including the Kubex data forwarder, Prometheus, Node exporter etc. This includes using the runtime default seccomp profile, running as a non-root user, no privileges for escalation, mounting the root file system as read-only, etc.
+    - A sizing option for Prometheus resources, has been added. The size is based on the cluster size.
+    - The Prometheus subchart has been updated to the latest version.
+    - The Prometheus scrape configuration has been updated to use the k8s endpointslice. The endpoints that the data forwarder was using were deprecated in the K8s v1.33 API and will be removed in a future release. Endpointslice has been available since K8s v1.21.
+    - Installation instructions for offline (or air-gapped) mode are now provided.
+
+    See [Kubex Collection Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) for details. Ensure that your helm chart has been upgraded to the latest version, using the helm `upgrade` command.
+  </Accordion>
+</Accordion>
+
+<Accordion title="4.2.1 - May 29, 2025">
+  This update contains an upgrade for Go to 1.24 for all package dependencies. This upgrade eliminates security scan warnings preventing some customers from upgrading their data forwarder to the latest version.
+</Accordion>
+
+<Accordion title="4.2.0 - May 15, 2025">
+  This update adds support for **NVIDIA GPU metrics** and HPA:
+
+  <Accordion title="Collection of NVIDIA GPU Metrics">
+    NVIDIA GPU Metrics--With this update, the Kubex data forwarder now collects GPU data from your Kubernetes clusters.
+
+    The analysis and display of the collected metrics will be provided in a future release of Kubex.
+
+    Note the following additional prerequisites to collect the GPUÂ data:
+
+    - NVIDIA-device-plugin--This plugin allows containers to access the NVIDIA GPUs. It must be installed on all your Kubernetes clusters to allocate NVIDIA GPU resources to workloads and to provide the GPUÂ data.
+    - dcgm-exporter--This Prometheus exporter exposes GPU metrics from the Data Center GPU Manager (DCGM). It is required to collect GPU data such as, utilization, memory usage, and power usage from NVIDIA GPUs, The dcgm-exporter can be deployed as a DaemonSet, where each node with an NVIDIA GPU runs a pod that exposes these metrics in a format that Prometheus can scrape and the Kubex data forwarder then collects.
+
+    The GPU data collection is currently supported on the following platforms:
+
+    - AKS
+    - EKS
+    - GKE
+  </Accordion>
+  <Accordion title="HPA Updates">
+    **HPA Scales Based on Multiple Metrics**--With this update Kubex recommendations are not implemented for any containers enabled for HPA that scale based on single or multiple metrics, that are also enabled for automation using the Kubex Automation Engine.
+
+    Previously Kubex did not support HPA-based on multiple metrics.
+  </Accordion>
+  <Accordion title="Updated Kubex Collection Stack">
+    The [Kubex Collection Stack](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-stack) has been updated to collect data from the NVIDIA DCGM exporter. You must ensure that your helm chart has been upgraded to the latest version (0.9.6) to get GPU data. You will get the updates automatically if you have the following settings, in the data forwarder cronJob specification:
+
+    - image: densify/container-optimization-data-forwarder:4
+    - imagePullPolicy: Always
+
+    If the settings are not configured as above, then you need to update the image, manually.
+  </Accordion>
+</Accordion>
+
+<Accordion title="4.1.3 - April 1, 2025">
+  This update resolves an issue with reporting a container's parent node and node groups.
+</Accordion>
+
+<Accordion title="4.1.2 - March 17, 2025">
+  This update collects new container and node-level metrics to provide more accurate recommendations.
+
+  Upgrade data forwarder v4.1.2 after upgrading to Kubex v2.10.0. New database columns have been added in v2.10.0 that are required by this version of the data forwarder for the new metrics and attributes.
+
+  When updating the data forwarder, you need to ensure that the same version is deployed for all of your clusters.
+
+  <Accordion title="Collection of New Metrics">
+    The data forwarder has been updated to collect the following:
+
+    - Horizontal Pod Autoscaler (HPA) target metrics--Three new attributes have been added.
+      - hpa_target_metric_name
+      - hpa_target_metric_type
+      - hpa_target_metric_value
+    - Node taints--The configuration attribute and new metrics will be collected:
+      - Added the multi-value attribute, â€œNode Taintsâ€ (attr_NodeTaints)
+    - QoS class--The configuration attribute and new metrics will be collected.
+      - Added the attribute, Quality of Service Classâ€ (attr_QOSClass)
+    - Node Working Set Memory Metrics--Working set memory is a process (or container) metric, rather than a node metric. It has been added to align with what is already shown in the AKS console. Kubex provides the following additional node memory metrics:
+      - working set memory (in bytes)
+      - working set memory utilization (percent)
+      - memory utilization (percent) (based on memory_bytes metric)
+      - memory actual utilization (percent) (based on memory_actual_workload metric)
+      - total node memory (in bytes) (configuration attribute)
+
+    Kubex's container analyses will be updated in future releases to utilize this HPAÂ data when generating recommendations.
+  </Accordion>
+  <Accordion title="Updated Node Identification">
+    To improve the identification of a container's parent node, the `provider_id` has been introduced as a third identification component. Currently, nodes are identified using `cluster_name` and `node_name`.
+
+    The `provider_id` is optional and will be used only if required. In Kubernetes clusters without a`provider_id`, node identification will continue to rely on `cluster_name` and `node_name`, ensuring that node IDs remain unchanged.
+
+    Specifically, for EKS and OKE clusters, existing node IDs will change and as a result, node history will be lost since these nodes will receive new IDs.
+  </Accordion>
+  <Accordion title="Updated Configuration Setting">
+    The data forwarder's configmap.yaml file has been updated. The setting, `node_group_list` has been updated to add `label_karpenter_sh_nodepool`. When enabled, Karpenter NodeGroups are discovered and created in Kubex.
+  </Accordion>
+</Accordion>
+
+<Accordion title="4.1.1 - November 27, 2024">
+  This update resolves an issue with reporting CPU and memory reservation percent for nodes, node groups and clusters.
+</Accordion>
+
+<Accordion title="4.1.0 - September 19, 2024 ">
+  Version 4.1.0 collects new container and node-level metrics to provide more accurate container sizing recommendations.
+
+  <Note>
+    Node level metrics and some new container metrics are collected, but will not be available in the Kubex Console until the release of Kubex v2.6.
+  </Note>
+  <Accordion title="New Container Metrics">
+    The following container metrics are now collected:
+
+    - max_cpu_throttling_percent--The Linux kernel allocates "CPU periods" (default = 100 milliseconds) to both processes and containers. The percentage is the number of throttled periods out of the total number of 100-ms periods. This value is a percentage of periods that were throttled vs those that were requested. This provides a more accurate indication of resource limitations.
+
+      For example if the pod was throttled for 8 seconds out of the 5 minutes, this would be 2.7%, but if the CPU was not actually requested for the full 5 minutes, then the 2.7% is not an accurate representation of the state of the container. If the pod was throttled for 8 seconds, and it's request was less that than the 300 seconds the throttled percentage is higher.
+    - avg_cpu_throttling_percent--Indicates the average percentage of the number of 100-ms periods that a container is throttled in terms of CPU usage.
+
+      The average and maximum values are collected since the container is likely aggregated. Metrics are aggregated at the highest level of the pod owner. For a deployment of one pod in one container the average and maximum will be the same. If it is a deployment of 10 pods then the average and maximum will not be the same.
+    - sum_cpu_throttling_seconds--Aggregates the total time during which throttling has been applied.
+    - Container Events--These are not metrics that are collected at 5-minute intervals, but are individual events and the time that the event occurred or was detected. In this version of the data forwarder "process exit" is now collected. The exit code and whether or not this is the main process (i.e. PIDÂ #1 using a true/false flag) of the container is collected and stored. In this version process exit will be false only when PIDÂ #1 exits with code 137 which corresponds to an OOM kill. In all other cases, process exit will be true.
+
+    CPU and memory request and limit values at the top of the hour are already collected and stored as attributes, once per day. In this release the data forwarder collects the following metrics at 5-minute intervals:
+
+    - CPUÂ Limit--The defined CPUÂ allocation limit for the container.
+    - Memory Limit--The defined memory allocation limit for the container.
+    - CPUÂ Request--The defined CPU allocation requested for the container.
+    - Memory Request--The defined memory allocation requested for the container.
+
+    You must have Kubex v2.5, to see these new metrics in the Container Details report and metrics viewer. See [Optimizing Your Containers - Details Tab](../Densify_Com/Optimizing_Your_Containers_-_Details_Tab#Tabular_Report) and [Using the Metrics Viewer for Containers](../Densify_Com/Using_the_Metrics_Viewer-Containers).
+  </Accordion>
+  <Accordion title="Node-Level Metrics">
+    Kubex currently sets configuration attributes with both the node-level and container-level CPU, memory request and limit values from the top of the hour. This provides a point in time data point that allows you to see how a nodeâ€™s request and limit values move during the day.
+
+    In this release the data forwarder collects the following metrics at 5-minute intervals:
+
+    - CPUÂ Limit--The defined CPUÂ allocation limit for the node.
+    - Memory Limit--The defined memory allocation limit for the node.
+    - CPUÂ Request--The defined CPU allocation requested for the node.
+    - Memory Request--The defined memory allocation requested for the node.
+    - Pod Count--The number of pods running on the selected node.
+
+    If values have not been specified this will be indicated.
+
+    The following node events are collected at 5-minute intervals:
+
+    - oom_kill_events--The number of kill events that happened on the node in a 5-minute interval;
+    - cpu_throttling_events--The number of CPUÂ throttling events that happened on the node in a 5-minute interval;
+
+    The following metrics are calculated from the raw data:
+
+    - cpu_reservation_percent--The percentage of the node's total CPU resources that are reserved or guaranteed for workloads, containers, or virtual machines.
+    - memory_reservation_percent--The percentage of the node's total memory resources that are reserved or guaranteed for workloads, containers, or virtual machines.
+
+    The following configuration details are now collected and stored in attributes:
+
+    - provider_ID--The provider_id is available as a Prometheus label of kube_node_info metric which is extracted to its own column in the k8s_node_v0 postgres table. The relevant node data is then used to facilitate link the Kubernetes node to a cloud instance. This linking will be done in postgres, as will the determination of the relationship between cloud instance and ASGs or VMÂ Scale Sets.
+    - k8s_version--The Kubernetes version of the node is collected and stored in the attribute, k8s_node.
+
+      This value is collected for each node and for the cluster. This is currently informational only and is not used not used in the analysis.
+
+    The features allowing you to view node details will be provided in Kubex v2.6.
+  </Accordion>
+  <Accordion title="Cluster-Level Metrics">
+    The Kubernetes version of the cluster is collected and stored in the attribute, k8s_cluster. This is the version of the control plane/API server. It can be higher than those of the nodes in cases where the control plane was upgraded and the nodes have not yet been updated. This is used when determining OOM kills for Kubernetes versions older than 1.28.
+  </Accordion>
+  <Accordion title="Linking Containers to Node Groups">
+    Containers will now be linked to their node group using a provider ID that is populated by each public cloud provider's Kubernetes offerings (i.e. EKS, AKS and GKE). The provider_id attribute is passed to the kubelet.
+
+    The provider_id is available as a Prometheus label of kube_node_info metric which is extracted to its own column in the k8s_node_v0 postgres table. The relevant node data is then used to facilitate linking the Kubernetes node to a cloud instance. This will be done in postgres, as will the relationship between cloud instance and ASGs or VMÂ Scale Sets.
+  </Accordion>
+</Accordion>
+
+<Accordion title="4.0.0 - May 28, 2024 ">
+  Version 4 introduces significant updates to Kubex's container data collection solution. This version resides in a new [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md).
+
+  While the core PromQL queries remain the same, with the exception of some improvements and bug fixes, the data forwarder has been re-architected to support multi-cluster data collection.
+
+  You can upgrade from version 2.x or 3.x to version 4.0. You need to update the image tag to "4":
+
+  - image: densify/container-optimization-data-forwarder:4
+  - imagePullPolicy: Always
+
+  When updating the data forwarder, you need to ensure that the same version is deployed for all of your clusters.
+
+  See [Data Collection for Containers](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview) for details of configuring the connection.
+
+  <Accordion title="Supported Third Party Observability Platforms">
+    In addition to Prometheus, third party observability platforms are supported. Commercially-available observability platforms do not need to reside within a cluster and can be used to monitor multi-cluster environments. The observability platform must support the Prometheus API and one of the following authentication mechanisms:
+
+    - HTTP basic authentication--Supported by Prometheus and is required by some commercial observability platforms, i.e. [Grafana Cloud](https://grafana.com/docs/grafana-cloud/cost-management-and-billing/analyze-costs/metrics-costs/prometheus-metrics-costs/usage-analysis-api/);
+    - Bearer token--Required by [OpenShift Monitoring](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.14/html/monitoring/accessing-third-party-monitoring-apis) and some commercial observability platforms, i.e. [Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-api-promql);
+    - AWS SigV4--Required by [Amazon Managed Service for Prometheus](https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-secure-queryingl).
+
+    If you are using Amazon Managed Service for Prometheus (AMP), an AWS role is required to associate the Kubernetes service account with Kubex for the purpose of container data collection. The additional required annotations can be added to your Helm charts.
+
+    The following Prometheus dependencies are applicable:
+
+    - AWS Managed Prometheus data ingestion requires Prometheus v2.26.0 or higher.
+    - Starting with version 16.0, the Prometheus chart requires Helm 3.7 or higher, to install successfully.
+
+    The following commercial observability platforms are supported:
+
+    - Amazon Managed Service for Prometheus (AMP)--Refer to the [AWS website](https://docs.aws.amazon.com/prometheus/latest/userguide/indexl) for details on AMP. Kubex requires a specially configured role. See [Container Data Collection Using Amazon Managed Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_EKS_and_AMP) for configuration examples.
+    - Azure Monitor Managed Service for Prometheus (AzMP)--Refer to the [Azure website](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-overview) for details. Kubex automates the process of acquiring and get and refreshing security tokens. See [Container Data Collection Using Azure Managed Service for Prometheus](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Using_AzMP) for a configuration example.
+    - [Grafana Cloud](https://grafana.com/products/cloud/)--See [Container Data Collection using Basic Authentication](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Forwarder_Basic_Auth) for a configuration example.
+
+    The following self-hosted OSS solutions are supported:
+
+    <table>
+    <col />
+
+    <col />
+
+    <tbody>
+    <tr>
+    <td>
+    <ul>
+    <li>
+    <a href="https://thanos.io/">
+    Thanos
+    </a>
+
+    </li>
+
+    
+    <li>
+    <a href="https://cortexmetrics.io/">
+    Cortex
+    </a>
+
+    </li>
+
+    </ul>
+
+    </td>
+
+    <td>
+    <ul>
+    <li>
+    <a href="https://grafana.com/oss/mimir/">
+    Grafana Mimir
+    </a>
+
+    </li>
+
+    
+    <li>
+    <a href="https://prometheus.io/docs/prometheus/latest/federation/">
+    Prometheus Federation
+    </a>
+
+    </li>
+
+    </ul>
+
+    </td>
+
+    </tr>
+
+    </tbody>
+
+    </table>
+  </Accordion>
+  <Accordion title="External Cluster Support">
+    Version 4 collects data from external Prometheus servers. In this use case Prometheus runs outside the Kubernetes cluster, in which the data collection runs.
+  </Accordion>
+  <Accordion title="Multiple Kubernetes Clusters Support">
+    Since Prometheus can now be run externally, you can now run a single job to collect data for multiple Kubernetes clusters from a single Prometheus server/observability platform. Using Prometheus labels, the job determines which data belongs to which cluster.
+  </Accordion>
+  <Accordion title="Added Memory Options for Container Data Collection">
+    You now have the option to select "container_memory_working_set_bytes" in addition to "container_memory_usage_bytes" or "container_memory_rss" for container data collection. This new metric allows you to determine how aggressively you want to optimize your container memory allocations, when analyzing your Kubernetes environments.
+
+    Using the metrics, "container_memory_rss" and "container_memory_working_set_bytes" provides more aggressive recommendations that allow you to reclaim more memory. Using "container_memory_usage_bytes" and "container_memory_rss" provide recommendations that will not result in downsizing recommendations that may lead to out-of-memory (OOM) issues.
+
+    The corresponding workload charts were added to the Containers - Details Tab in v2.2.0. See [Optimizing Your Containers - Details Tab](../Densify_Com/Optimizing_Your_Containers_-_Details_Tab#Lower_Section)
+
+    Contact <a href="mailto:support@kubex.ai">
+    support@kubex.ai</a>
+
+     for details on selecting memory utilization for your container data collection.
+  </Accordion>
+  <Accordion title="Other Features">
+    The following updates and bug fixes were made in this release:
+
+    - HTTP retries have been added to the calls to the Prometheus API. This handles observability platform rate limiting.
+    - The data forwarder now handles the relabel configs of Node Exporter.
+    - Outdated Node Exporter metrics have been addressed.
+    - Utilizes improved Horizontal Pod Autoscaler metrics (autoscaling v2).
+    - The data forwarder has been upgraded to Go 1.22,
+    - Updated examples for both single and multiple cluster configurations are provided in the new [Github repository](https://github.com/densify-dev/container-data-collection/blob/main/README.md).
+  </Accordion>
+  <Accordion title="End of Support Notice - Container Data Forwarder 3.x.x">
+    Kubex will discontinue support of Container Data Forwarder versions 3.x.x on June 30, 2024. Contact <a href="mailto:support@kubex.ai">
+    support@kubex.ai</a> for details on migrating to Kubex's current version of the Container Data Forwarder.
+  </Accordion>
+</Accordion>
+
