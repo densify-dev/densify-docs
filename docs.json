@@ -85,6 +85,7 @@
                                 "group": "GCP Data Collection",
                                 "pages": [
                                     "docs/WebHelp_Densify_Cloud/Content/Data_Collection_for_Public_Cloud_Systems/Google_Cloud_Platform_Data_Collection_Prerequisites",
+                                    "docs-kubex/Content/Cloudex/Data_Collection_GCP_Connections",
                                     "docs/WebHelp_Densify_Cloud/Content/Data_Collection_Troubleshooting/GCP_Cloud_Connections"
                                 ]
                             },
@@ -409,7 +410,6 @@
                 "group": "Release Notes",
                 "pages": [
                     "docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud",
-                    "docs/WebHelp_Densify_Cloud/Content/Release_Notes/Third_Party_Software_Updates-Cloud"
                 ]
             },
             {
