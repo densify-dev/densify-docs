@@ -9,7 +9,7 @@ from pathlib import Path
 
 # Configuration
 CHANGELOG_URL = "https://raw.githubusercontent.com/densify-dev/helm-charts/master/charts/kubex-automation-engine/CHANGELOG.md"
-RELEASE_NOTES_FILE = "docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud.mdx"
+RELEASE_NOTES_FILE = "docs/WebHelp_Densify_Cloud/Content/Release_Notes/release_notes_k8s_automation_engine.mdx"
 
 # Markers to identify the section to replace
 START_MARKER = "## Kubex Automation Engine"
