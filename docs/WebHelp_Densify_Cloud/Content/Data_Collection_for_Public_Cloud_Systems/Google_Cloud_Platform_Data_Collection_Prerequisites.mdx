@@ -7,19 +7,23 @@ sidebarTitle: "GCP Prerequisites"
 
 The following prerequisites are required for each Google Cloud Platform (GCP) project in order to connect to and collect compute engine (GCE) instance data from GCP:
 
-1. Data collection APIs
+1. [Data collection APIs](#Ensuring)
 
 * Enable Cloud Resource Manager API;
 * Verify Cloud Monitoring API is enabled.
 
-2. Google Cloud Platform Service Account
+2. [Google Cloud Platform Service Account](#Creating)
 
 * Create a service account with Project role set to "Viewer". Alternatively, you can create a [role with the minimum permissions](#Min_Policy) required for data collection.
 * Create the JSON key credentials;
 * Optionally, link this service account to other GCP projects from which you want to collect data.
 
 3. Optionally, you can install the Ops agent on each GCE instance to collect memory data.
-   See [Ops Agent](https://cloud.google.com/stackdriver/docs/solutions/agents/ops-agent) for details.
+   See [https://cloud.google.com/stackdriver/docs/solutions/agents/ops-agent](./Container_Data_Collection_Prerequisites) for details.
+
+<Accordion title="Video: Google Cloud Platform Prerequisites for Collecting Data">
+<iframe allowfullscreen="allowfullscreen" class="vidyard_iframe" frameborder="0" height="360" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" src="https://player.vimeo.com/video/301290736" webkitallowfullscreen="webkitallowfullscreen" width="630"></iframe>
+</Accordion>
 
 
 ## Verify GCP Data Collection APIs are Enabled
@@ -46,7 +50,7 @@ Verify these APIs are enabled before creating the service account. When you crea
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000063.png)</Frame>
 </Accordion>
 
-<a id="Creating"></a>
+
 ## Creating a GCP Service Account
 
 To connect Kubex to your GCP project, you will need a GCP service account and corresponding credentials in JSON format. You need to repeat this process for each of your GCP projects and save the credential JSON files in an encrypted .ZIP file. You will then import this file to create a connection to collect data from your GCP projects.
@@ -90,7 +94,6 @@ Do not check these service account keys into your source code or leave them in t
 
 
 
-<a id="Min_Policy"></a>
 ### Creating a Role with Minimum Permissions for Data Collection
 
 Kubex recommends using the viewer role, as indicated above, to simplify setup and maintenance of data collection. The viewer role provides read-only access to your GCP services and resources and supports the requirements of Kubex data collection and analysis.
@@ -197,3 +200,12 @@ The Ops Agent is the primary agent for collecting memory and other metrics from 
 
 Refer to https://cloud.google.com/stackdriver/docs/solutions/agents/ops-agent for details of installing and configuring the agent.
 
+## Creating the Cloud Connection in Kubex
+
+Once all of the prerequisites are complete, you can create the cloud connection through the Cloud Connection wizard. See [Using the Public Cloud Connections Wizard](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard).
+
+### Modifying Your Google Cloud Connection
+
+When you create the GCP cloud connection for the first time, Kubex discovers all of the projects, associated with the role or service account. Upon saving the connection Kubex will schedule data collection from each of the discovered and selected projects.
+
+If subsequently, projects are added, they will not be included in data collection. Additionally, projects that are removed will continue to be included, resulting in wasted time and resources. To add new projects or remove old ones, edit the cloud connection. See [Editing a Connection](../Densify_Com/Using_the_Public_Cloud_Connection_Wizard#Edit_Conn).

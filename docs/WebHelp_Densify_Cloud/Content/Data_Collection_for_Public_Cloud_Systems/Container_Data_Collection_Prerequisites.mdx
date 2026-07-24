@@ -18,7 +18,7 @@ The following software is required for Kubex container data collection and optim
 
 3. kube-state-metrics—This service monitors the Kubernetes API server and generates metrics from the various objects inside the individual Kubernetes components. This service provides orchestration and cluster level metrics such as deployments, pod metrics, resource reservation, etc. The collected metrics allow Kubex to get a complete picture of how your containers are setup i.e. Replica Sets, Deployments, Pod and Container Labels.
 
-* Requires v1.5.0 or later. 
+* Requires v1.5.0 or later. See [additional considerations](./Container_Data_Collection_Additional_Considerations#ksm2x) when using v2.x.
 * https://github.com/kubernetes/kube-state-metrics
 
 4. Prometheus or supported observability platform—Collects metrics from configured targets at given intervals. It provides the monitoring/data aggregation layer. It must be deployed and configured to collect kube-state-metrics and cAdvisor/kubelet metrics. See [additional considerations](./Container_Data_Collection_Additional_Considerations#ObsPlat) when using an observability platform.

@@ -36,123 +36,37 @@ developers who want to build their own MCP-enabled systems.
 
 ### Configuring Your Client 
 
-#### General
+Each company has a unique Kubex MCP server endpoint. The MCP server URL follows a consistent pattern based on your 
+company’s Kubex dashboard address. For example, if your Kubex dashboard is located at https://corp.kubex.ai, 
+your MCP server will be available at https://corp-mcp.kubex.ai. 
 
-Each company has a unique Kubex MCP server endpoint. The MCP server URL follows a consistent pattern based on your company dashboard address.
+When using a chat interface, you must add your MCP server to your workspace, which is sometimes 
+referred to as adding a “connector.” This step typically requires administrative privileges, 
+so only a workspace owner or administrator can perform the initial setup. Once the MCP server has been added, 
+authorized users within your organization can connect to it using their Kubex credentials. 
 
-- If your Kubex dashboard is [https://corp.kubex.ai](https://corp.kubex.ai/), your MCP server URL is [https://corp-mcp.kubex.ai](https://corp-mcp.kubex.ai/).
-- If your organization uses a densify.com host such as [https://corp.densify.com/kubex](https://corp.densify.com/kubex), use the corresponding MCP URL: [https://corp-mcp.densify.com](https://corp-mcp.densify.com/).
+#### Example (Anthropic Claude)
 
-Kubex MCP supports the streamable HTTP transport, using OAuth 2.1 with dynamic client registration for authentication.
+A user with “Owner” or “Primary Owner” privileges must do the initial setup by going to “Admin settings”: 
 
-#### Claude
+<Frame>![](/images/docs-api/mcp_claude_admin_setting.png)</Frame>
 
-##### Claude for Web (Claude.ai):
+Click ”Add custom connector”, give the connection a name and fill in your MCP server URL:
 
-Navigate to the [connectors](https://claude.ai/customize/connectors) page and connect Kubex.
+<Frame>![](/images/docs-api/mcp_claude_admin_setting.png)</Frame>
 
-##### Claude Desktop:
+Now that the workspace has been connected to Kubex MCP, each user in the workspace can then connect to it in their user settings:
+<Frame>![](/images/docs-api/mcp_claude_setting_connect.png)</Frame>
 
-From Claude Settings, go to Connectors and add the Kubex connector.
+Clicking ”Connect” will redirect to your authentication portal (whether through Kubex or a third-party OIDC provider), and then prompt you to authorize Claude to access your Kubex data: 
+<Frame>![](/images/docs-api/mcp_claude_authorize.png)</Frame>
 
-##### Claude Code:
+Clicking “Authorize” here will complete the connection. Claude will now be able to access your Kubex data whenever it needs it. 
 
-Run the following command:
-
-```bash
-claude mcp add --transport http kubex https://corp-mcp.kubex.ai/
-```
-
-Then run `/mcp` after you open a Claude Code session to sign in with your Kubex account and connect it to Claude Code.
-
-#### Codex
-
-The setup steps for the MCP server apply to both the IDE extension and the CLI because the configuration is shared.
-
-Run the following command in your terminal:
-
-```bash
-codex mcp add kubex --url https://corp-mcp.kubex.ai/
-```
-
-You will be prompted to sign in with your Kubex account and connect it to Codex.
-
-#### Cursor
-
-1. Press `Ctrl/Cmd + ,` to open settings.
-2. Go to the **Tools & MCPs** tab.
-3. Click **Add Custom MCP Server**.
-4. Add the following configuration (replace the URL with your Kubex MCP URL):
-
-```json
-{
-	"mcpServers": {
-		"kubex": {
-			"command": "npx",
-			"args": ["-y", "mcp-remote", "https://corp-mcp.kubex.ai/"]
-		}
-	}
-}
-```
-
-You may need to restart Cursor for the MCP tools to appear in chat.
-
-#### Visual Studio Code
-
-1. Press `Shift + Ctrl/Cmd + P` and search for **MCP: Add Server**.
-2. Select **HTTP**.
-3. Enter your Kubex MCP URL and use `kubex` as the server name.
-4. Authorize access to your Kubex instance when prompted.
-5. Activate the server through **MCP: List Servers**, select `kubex`, then select **Start Server**.
-
-You may need to restart Visual Studio Code for the MCP tools to appear in chat.
-
-#### Devin Desktop (formerly Windsurf)
-
-1. Press `Ctrl/Cmd + ,` to open settings.
-2. Scroll to **Devin Local -> MCP servers**.
-3. Select **Open Devin MCP marketplace -> Add custom MCP**.
-4. Add the following configuration (replace the URL with your Kubex MCP URL):
-
-```json
-{
-	"mcpServers": {
-		"kubex": {
-			"command": "npx",
-			"args": ["-y", "mcp-remote", "https://corp-mcp.kubex.ai/"]
-		}
-	}
-}
-```
-
-Return to the Devin MCP marketplace and click **Connect** to authorize with Kubex.
-
-#### Zed
-
-1. Press `Ctrl/Cmd + ,` to open Zed settings.
-2. Add the following configuration (replace the URL with your Kubex MCP URL):
-
-```json
-{
-	"context_servers": {
-		"kubex": {
-			"source": "custom",
-			"command": "npx",
-			"args": ["-y", "mcp-remote", "https://corp-mcp.kubex.ai/"],
-			"env": {}
-		}
-	}
-}
-```
-
-#### Others
-
-Many other tools now support MCP servers. You can configure Kubex MCP with the following settings (replace the URL with your Kubex MCP URL):
-
-- Command: `npx`
-- Arguments: `-y mcp-remote https://corp-mcp.kubex.ai/`
-- Environment: `None`
-
+If you are using a coding tool, you will need to configure your MCP server URL using the tool’s specific configuration method. 
+This usually involves running a command in a command-line interface or editing a configuration file. 
+After adding the MCP server information, you will be prompted to authorize the tool using your Kubex credentials.
+Once authorization is complete, your coding tool will be able to access Kubex data through MCP in accordance with your permissions. 
 
 ## Authorization 
 

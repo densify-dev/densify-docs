@@ -1,6 +1,14 @@
 ---
-title: "Kubex Features"
+title: "New Features"
 ---
+
+The following sections provide details of new features and updates introduced in each release.
+
+- Kubex -- Features & enhancements in the latest Kubex releases.
+- [Container Data Forwarder](#container-data-forwarder) -- Updates to Kubex's Container data collection module.
+- [Kubex Automation Engine](#kubex-automation-engine) -- Updates to Kubex's Automation Engine module.
+
+## Kubex
 
 This topic summarizes both new and updated features introduced in Kubex
 
@@ -184,7 +192,7 @@ This topic summarizes both new and updated features introduced in Kubex
 
     - **New Kubex AI Agent Experience**
       - Natural-Language Interaction: Users can now simply ask questions in plain English and get accurate, contextual answers directly from the AI agent.
-      - Guided Navigation: The agent can take users to the right features or pages in the product-no need to search menus or remember where things live.
+      - Guided Navigation: The agent can take users to the right features or pages in the product—no need to search menus or remember where things live.
       - Action Assistance: Beyond answering questions, the agent can help surface relevant insights, and streamline everyday tasks.
       - Enterprise-Grade Data Privacy: No customer data is used for model training. The underlying LLM does not learn from or use customer data to train or improve itself.
 
@@ -210,7 +218,7 @@ This topic summarizes both new and updated features introduced in Kubex
     - **Policy Editing** 
       - Version 3.8 includes a new and often requested capability to edit analysis policies via the UI. 
       - The "policy_admin" role enables specific users with the ability to edit both cloud and container analysis policy settings directly from the Kubex UI. 
-      - Additionally, the last update date - and who made the update - are now exposed in the UI.  
+      - Additionally, the last update date – and who made the update – are now exposed in the UI.  
       - The policy descriptions have been updated to make them easier to understand, and tooltips now include detailed information about each setting along with their default value. 
       <Frame caption="Figure: Policy Editing">
         <img src="/images/docs/ReleaseNotes/v3.8/policy_editable_dialog.png" width="100%" />
@@ -237,7 +245,7 @@ This topic summarizes both new and updated features introduced in Kubex
   <Accordion title="Updates to Cloud Optimization">
     - **Optimization Trends**
       - The Optimization Trends reports visualize historical trends across key operational metrics, including instance counts, costs, savings, and CPU/Memory utilization. This helps users better understand performance patterns and optimization impact over time.
-      - Dashboards can be personalized - users can select which reports to display and organize them in their preferred layout. Each report can be resized to small, medium, or large for optimal viewing.
+      - Dashboards can be personalized — users can select which reports to display and organize them in their preferred layout. Each report can be resized to small, medium, or large for optimal viewing.
       - Users can save dashboards as public (where others in your organization can view but not edit) and private (where only they can view/edit them).
       <Frame caption="Figure: Optimization Trends on the Summary Tab">
         <img src="/images/docs/ReleaseNotes/v3.7/optimization_trend_summary.png" width="100%" />
@@ -267,10 +275,10 @@ This topic summarizes both new and updated features introduced in Kubex
     - **Memory Limit Events (Last Day) added to Analysis Details table**--This is a hidden column by default.
     - **Node/Node Group Analysis**--Improved quality of recommendations by switching to "Working Set Memory" when available. Working set memory is a better metric to analyze the memory requirements for Nodes.
     - **Other Improvements & Updates**
-      - GPU and GPU Memory metrics viewer chart: added "Current Request" line
-      - Added a new view on the Analysis Details table: "GPU Request Surplus". This highlights the container manifests that have surplus GPU and can be optimized to reduce waste.
-      - Container API now include a "analyzedOn" date which allows the automation to only consider fresh recommendations.
-      - Removed the word "AI" from "AI Analysis Details"
+      - GPU and GPU Memory metrics viewer chart: added “Current Request” line
+      - Added a new view on the Analysis Details table: “GPU Request Surplus”. This highlights the container manifests that have surplus GPU and can be optimized to reduce waste.
+      - Container API now include a “analyzedOn” date which allows the automation to only consider fresh recommendations.
+      - Removed the word “AI” from “AI Analysis Details”
   </Accordion>
   <Accordion title="Updates to Cloud Optimization">
     - **Policies**--View policies for Cloud environments in a new modal, accessible from the Policies tab and Analysis Details table.
@@ -297,7 +305,7 @@ This topic summarizes both new and updated features introduced in Kubex
   </Accordion>
   
   <Accordion title="Administration">
-    - **SSO with Okta**--Removed requirement for Okta's CAS (Central Authentication Service).
+    - **SSO with Okta**--Removed requirement for Okta’s CAS (Central Authentication Service).
     - **Password Reset**--Password reset emails now link to Kubex instead of Kubex Console.
   </Accordion>
 </Accordion>  
@@ -322,7 +330,7 @@ is also available on the summary page
     - **Business & Operational Attributes**--Various business and operations related 
 attributes (e.g., Application, Business Unit, Cost Center, Operational Environment) have been added to the tree view/filter options and Analysis Details 
 columns
-    - **GPU Optimization for Container Resource Requests**--- Containers with GPUs 
+    - **GPU Optimization for Container Resource Requests**--– Containers with GPUs 
 allocated now receive recommendations for downsize opportunities. The GPU Overview page has been updated to highlight this information:
       - Added system views to Analysis Details (Immediate GPU Savings & Addtional GPU Waste)
   </Accordion>
@@ -363,7 +371,7 @@ columns
     The following changes have been made to improve how Kubex determines the cost of public cloud instances, using customer-specific discounts:
 
     - **Azure Hybrid Benefit Status**--As part of enhancing the cost data model, Kubex needs to distinguish between systems that are BYOL (also called Azure Hybrid Benefit or AHB) to accurately represent the cost of the system. The license model is available in the existing data collection configuration so no changes are required to the minimum permissions for BYOL VMs.
-    - **Azure Instance OS Name**--Kubex now determines the type of Linux OS. In this release RHEL and SUSE are supported. The OS name is used to accurately determine instance costs.
+    - **Azure Instance OS Name**--Kubex now determines the type of Linux OS. In this release RHEL and SUSE are supported. The OS name is used to accurately determine instance costs.
     - **Updated Cost Model**--The cloud cost data model has been updated to apply discounts based on the following details:
       - OS Type--The type of Linux OS installed on a cloud instance. This is not an attribute and is stored in a table but cannot be edited or cleared like an attribute.
       - License Model (Attr_key is aws:licensemodel)--The licensing model that has been configured for a cloud instance )
@@ -378,7 +386,7 @@ columns
     The following changes have been made to Kubex in this release:
 
     - **Node Modal**--A new modal opens when you click a node name on the Node Details page.
-    - **Performance Improvements**-- The Kubex UI no longer retrieves data from the Kubex Reporting Database (RDB). All UI component queries are directed exclusively to Kubex-specific tables in MS SQL.
+    - **Performance Improvements**-- The Kubex UI no longer retrieves data from the Kubex Reporting Database (RDB). All UI component queries are directed exclusively to Kubex-specific tables in MS SQL.
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
@@ -388,12 +396,12 @@ columns
   <Accordion title="Updates to Container Optimization">
     The following changes have been made to Kubex in this release:
 
-    - **GPU Metrics for Containers**--In this release Kubex introduces reporting of GPU configuration and utilization data for containers, node groups and nodes. This data enables you to identify GPU-enabled containers and nodes in your environment and see how effectively you are utilizing your GPU resources.
+    - **GPU Metrics for Containers**--In this release Kubex introduces reporting of GPU configuration and utilization data for containers, node groups and nodes. This data enables you to identify GPU-enabled containers and nodes in your environment and see how effectively you are utilizing your GPU resources.
 
-      You must have [data forwarder v4.2.1](#Forwarder) deployed to collect the GPU data from your environments.
+      You must have [data forwarder v4.2.1](#Forwarder) deployed to collect the GPU data from your environments.
 
       There are updates on many pages to highlight GPU resource configuration and utilization:
-      - **Updated Analysis Details**--A number of data points allow you to identify containers with GPU requests and to determine where the GPU and GPU memory request values are higher than peak utilization over a given period.
+      - **Updated Analysis Details**--A number of data points allow you to identify containers with GPU requests and to determine where the GPU and GPU memory request values are higher than peak utilization over a given period.
         The analysis populates these attribute values based on the date range and data selection options that are defined in your container optimization policy. The Analysis Details page has been updated to display the following GPU data.
 
         <table>
@@ -406,17 +414,17 @@ columns
         <td>
         <ul class="ul_3">
         <li>
-        GPU Model 
+        GPU Model 
         </li>
 
         
         <li>
-        GPU Request
+        GPU Request
         </li>
 
         
         <li>
-        Total GPU Request 
+        Total GPU Request 
         </li>
 
         
@@ -426,7 +434,7 @@ columns
 
         
         <li>
-        %GPU Average
+        %GPU Average
         </li>
 
         
@@ -441,12 +449,12 @@ columns
 
         
         <li>
-        GPU Memory Request
+        GPU Memory Request
         </li>
 
         
         <li>
-        Total GPU Memory Request
+        Total GPU Memory Request
         </li>
 
         </ul>
@@ -542,13 +550,13 @@ columns
       - **Updated Summary**--New GPU-specific cards have been added to the containers Summary page. A note includes a link that opens a modal containing GPU pricing details.
 
         The top two cards on the Summary page have also been updated to better highlight both your current spend and the details of possible savings.
-      - **New GPU Tab**--A new GPU tab has been added when reviewing a single container. This new page provides details of the GPU utilization on the selected container.
+      - **New GPU Tab**--A new GPU tab has been added when reviewing a single container. This new page provides details of the GPU utilization on the selected container.
       - **Updated Metrics Viewer**--The following GPU metrics are available in the metrics viewer:
         - GPU Utilization in GPUs - Average Container
         - GPU Memory Utilization (MB) - Average Container
         - GPU Memory Utilization (%) - Average Container
         - GPU Power Usage (Watts) - Average Container
-    - **GPU Metrics for Node Groups**--GPU metrics have also been added for Node Groups and individual nodes.
+    - **GPU Metrics for Node Groups**--GPU metrics have also been added for Node Groups and individual nodes.
 
       <table>
       <tbody>
@@ -679,24 +687,24 @@ columns
 
       </table>
     - **Updated Node Overview Tab**--This tab has been updated add GPU details and to improve usability.
-    - **New Data in Analysis Details**--Six new data points allow you to find containers where the CPU and memory request values are higher than peak utilization over a given period.
+    - **New Data in Analysis Details**--Six new data points allow you to find containers where the CPU and memory request values are higher than peak utilization over a given period.
 
       The analysis populates these values based on the date range and data selection options that are defined in your container optimization policy.
       - CPU Peak--Highest peak value in mCores, on the busiest container.
-      - CPU Sustained--Highest sustained value in mCores, on the average container.
+      - CPU Sustained--Highest sustained value in mCores, on the average container.
       - CPU Min--Lowest value in mCores, on the average container.
       - Memory Peak--Highest peak value in MB, on the busiest container.
       - Memory Sustained--Highest sustained value in MB, on the average container.
       - Memory Min--Lowest value in mCores, on the average container.
-    - **Timezone**--The utilization charts for containers, node groups and nodes have been updated to standardize the timeline on UTC. The X-axis label has been updated to indicate the timezone designation for all charts to 'UTC '.
-    - **Updated Node Overview**--The node overview page has been updated to improve useability and add details of GPU utilization.
+    - **Timezone**--The utilization charts for containers, node groups and nodes have been updated to standardize the timeline on UTC. The X-axis label has been updated to indicate the timezone designation for all charts to ‘UTC ’.
+    - **Updated Node Overview**--The node overview page has been updated to improve useability and add details of GPU utilization.
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
   <Accordion title="Updates to Cloud Optimization">
     The following changes have been made to Public Cloud optimization in this release:
 
-    - **Timezone**--The X-axis label has been updated to indicate the timezone designation for all historical utilization charts to 'UTC ' This change to does not currently apply to the ML charts. The ML charts on the Analysis Details page use Kubex server's time. So this will be either "Eastern Time" or "Central Europe Time".
+    - **Timezone**--The X-axis label has been updated to indicate the timezone designation for all historical utilization charts to ‘UTC ’ This change to does not currently apply to the ML charts. The ML charts on the Analysis Details page use Kubex server's time. So this will be either “Eastern Time” or “Central Europe Time”.
 
     Refer to the [Kubex documentation](/docs-kubex/Content/Kubex/Getting_Started_with_Kubex) for details.
   </Accordion>
@@ -768,7 +776,7 @@ columns
     - **Summary Page**--The Summary page has been updated for improved readability.
     - **Cost Modeling**--Kubex now has improved algorithms that use existing utilization data to estimate the cost for containers with unspecified CPU/memory request values. The Summary, Analysis Details, and Overview pages have all been updated to show the cost estimates for these containers. The following updates have been made to show these values:
       - Two columns have been added to the Analysis Details tab:
-        - "Total Surplus CPU Request from Unspecified (mCores)";
+        - "Total Surplus CPU Request from Unspecified (mCores)";
         - "Total Surplus Memory Request from Unspecified (MB)"
       - Two system views have been added to the Analysis Details tab:
         - "CPU Request Shortfall (from Unspecified)"
@@ -801,7 +809,7 @@ columns
     See [Kubex API New Features](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/API_New_Features)
   </Accordion>
   <Accordion title="Updated API Token Expiry Duration">
-    The token expiry has been increased from 5 to 60 minutes. Re-authorize will no longer be required for longer-running pipeline operations that previously exceed the 5-minute limit. The JSON Web Token (JWT) secures the Kubex API so users can only make authorized API requests.
+    The token expiry has been increased from 5 to 60 minutes. Re-authorize will no longer be required for longer-running pipeline operations that previously exceed the 5-minute limit. The JSON Web Token (JWT) secures the Kubex API so users can only make authorized API requests.
 
     See [Authorize](/docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/Authorize)
   </Accordion>
@@ -835,7 +843,7 @@ columns
   <Accordion title="Updated Public Cloud Catalog">
     The public cloud metadata catalogs have been updated to ensure Kubex recommendations are based on the latest vendor pricing:
 
-    - AWS Metadata Updates:
+    - AWS Metadata Updates:
       - The pricing has been updated and is correct as of April 7, 2025.
       - The following new instance type has been added:
 
@@ -1022,7 +1030,7 @@ columns
         </tbody>
 
         </table>
-    - GCP Metadata Updates:
+    - GCP Metadata Updates:
       - The pricing has been updated and is correct as of April 14, 2025.
       - The following new instance families have been added:
 
