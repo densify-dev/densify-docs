@@ -136,8 +136,19 @@ def update_release_notes(new_content):
 
     frontmatter = current_content[:frontmatter_end + 4]  # Include --- and newline
 
-    # Build new content with frontmatter + changelog
-    updated_content = frontmatter + new_content + '\n'
+    # Find the legacy section marker
+    legacy_marker = "### Legacy Kubex Automation Controller Release Notes"
+    legacy_idx = current_content.find(legacy_marker)
+
+    if legacy_idx == -1:
+        print("Warning: Could not find legacy section marker, will replace entire file")
+        legacy_section = ""
+    else:
+        # Extract everything from the legacy marker onwards
+        legacy_section = "\n" + current_content[legacy_idx:]
+
+    # Build new content with frontmatter + new changelog + legacy section
+    updated_content = frontmatter + new_content + legacy_section + '\n'
 
     # Write back
     file_path.write_text(updated_content, encoding='utf-8')
