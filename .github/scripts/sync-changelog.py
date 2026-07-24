@@ -128,38 +128,16 @@ def update_release_notes(new_content):
     # Read current content
     current_content = file_path.read_text(encoding='utf-8')
 
-    # Find the section to replace
-    start_idx = current_content.find(START_MARKER)
-    legacy_idx = current_content.find(LEGACY_MARKER, start_idx)
-
-    if start_idx == -1 or legacy_idx == -1:
-        print("Error: Could not find markers in release notes file")
+    # Extract frontmatter (everything up to and including the closing ---)
+    frontmatter_end = current_content.find('---', 3)  # Skip first ---
+    if frontmatter_end == -1:
+        print("Error: Could not find frontmatter in release notes file")
         return False
 
-    # Build new content - just the header and changelog, no note
-    header = '''## Kubex Automation Engine
+    frontmatter = current_content[:frontmatter_end + 4]  # Include --- and newline
 
-'''
-
-    new_section = header + new_content + '\n\n'
-
-    # Replace the section
-    before = current_content[:start_idx]
-    after = current_content[legacy_idx:]
-
-    # Add the deprecation note to the legacy section header
-    legacy_with_note = '''### Legacy Kubex Automation Controller Release Notes
-
-<Note>
-The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine.
-</Note>
-
-'''
-
-    # Replace just the legacy header line with header + note
-    after = after.replace(LEGACY_MARKER + '\n\n', legacy_with_note)
-
-    updated_content = before + new_section + after
+    # Build new content with frontmatter + changelog
+    updated_content = frontmatter + new_content + '\n'
 
     # Write back
     file_path.write_text(updated_content, encoding='utf-8')
