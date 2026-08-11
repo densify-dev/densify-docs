@@ -1,6 +1,17 @@
 ---
 title: "Kubex Automation Engine"
 ---
+<Accordion title="1.9.1 - August 06, 2026">
+  <Accordion title="Updates and Improvements">
+    **Fixed:**
+    - Rollback no longer gets stuck indefinitely when there's nothing to roll back to; it now stops with a clear error instead of looping forever.
+    - Rollback now correctly restores the last known-good configuration, instead of reapplying the broken one that triggered it.
+    - Fixed a safety check that could permanently block recovery for single-replica workloads.
+    - A resize that triggered a rollback can no longer be immediately reapplied by another policy while the workload is recovering.
+    - Improved reliability of rollback handling for workloads with deleted or missing owners.
+  </Accordion>
+</Accordion>
+
 <Accordion title="1.9.0 - July 28, 2026">
   <Accordion title="Updates and Improvements">
     ### Breaking
@@ -434,6 +445,7 @@ The Kubex Automation Controller automatically implemented Kubex's optimization r
     - **Offline Resilience**--Mutations are cached locally during connectivity issues and synchronized when connection is restored.
   </Accordion>
 </Accordion>
+
 
 
 
