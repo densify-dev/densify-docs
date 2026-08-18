@@ -1,74 +1,11 @@
-/* Completely remove the entire right sidebar */
+/* Hide only the table-of-contents/right docs panel; avoid global layout overrides. */
 [data-testid="toc"],
 [data-testid="table-of-contents"],
 .toc,
 .table-of-contents,
 aside[class*="toc"],
-nav[aria-label="Table of contents"],
-[class*="right-sidebar"],
-[class*="right-panel"],
-/* Target "On this page" heading and container */
-h3:contains("On this page"),
-h4:contains("On this page"),
-h2:contains("On this page"),
-[class*="toc-heading"],
-/* Hide any flex or grid item that's on the right */
-main + aside,
-main ~ aside,
-article + aside,
-article ~ aside {
+nav[aria-label="Table of contents"] {
   display: none !important;
-  visibility: hidden !important;
-  width: 0 !important;
-  height: 0 !important;
-}
-
-/* Force single-column layout */
-[class*="grid-cols-"],
-[class*="lg:grid-cols-"],
-[class*="xl:grid-cols-"] {
-  grid-template-columns: 1fr !important;
-}
-
-/* Expand main content to fill entire width */
-[data-testid="main-content"],
-main,
-.main-content,
-article {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding-right: 0 !important;
-  max-width: 100% !important;
-  width: 100% !important;
-  flex: 1 1 100% !important;
-}
-
-/* Hide any element containing "On this page" text */
-*:has-text("On this page") {
-  display: none !important;
-}
-
-/* Target only the main content area without breaking layout */
-[data-testid="main-content"],
-[role="main"],
-main > div,
-main article,
-.prose {
-  max-width: none !important;
-  width: 100% !important;
-}
-
-/* Target specific Mintlify content containers */
-.mx-auto:has(article),
-.max-w-4xl:has(.prose),
-.max-w-3xl:has(.prose) {
-  max-width: 90% !important;
-}
-
-/* Ensure content wrapper uses more width */
-article > div,
-.prose > div {
-  max-width: none !important;
 }
 
 .home_card_container {
@@ -99,49 +36,3 @@ article > div,
   flex-direction: column !important;
 }
 
-/* Fallback: stack API request/response code panes when test ids are absent */
-[role="main"] div:has(> div [role="tablist"]):has(> div + div [role="tablist"]) {
-  display: grid !important;
-  grid-template-columns: 1fr !important;
-  gap: 0.75rem !important;
-}
-
-[role="main"] div:has(> div [role="tablist"]):has(> div + div [role="tablist"]) > div {
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-/* Prevent content clipping in long release-note bullets and accordion content */
-[role="main"] article,
-[role="main"] .prose,
-[role="main"] details,
-[role="main"] [data-state="open"] {
-  overflow: visible !important;
-}
-
-[role="main"] .prose p,
-[role="main"] .prose li,
-[role="main"] .prose td,
-[role="main"] .prose div {
-  white-space: normal !important;
-  overflow-wrap: anywhere !important;
-  word-break: break-word !important;
-}
-
-/* Mint/Tailwind utility overrides: prevent single-line truncation in release notes */
-[role="main"] [class*="truncate"],
-[role="main"] [class*="line-clamp"],
-[role="main"] [class*="whitespace-nowrap"] {
-  white-space: normal !important;
-  overflow: visible !important;
-  text-overflow: clip !important;
-  line-clamp: unset !important;
-  -webkit-line-clamp: unset !important;
-}
-
-/* Allow flex/grid children to shrink and wrap instead of overflowing/clipping */
-[role="main"] .prose *,
-[role="main"] details *,
-[role="main"] [data-state="open"] * {
-  min-width: 0 !important;
-}
