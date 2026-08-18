@@ -9,7 +9,7 @@ from pathlib import Path
 
 # Configuration
 CHANGELOG_URL = "https://raw.githubusercontent.com/densify-dev/helm-charts/master/charts/kubex-automation-engine/CHANGELOG.md"
-RELEASE_NOTES_FILE = "docs/WebHelp_Densify_Cloud/Content/Release_Notes/New_Features_Cloud.mdx"
+RELEASE_NOTES_FILE = "docs/WebHelp_Densify_Cloud/Content/Release_Notes/release_notes_k8s_automation_engine.mdx"
 
 # Markers to identify the section to replace
 START_MARKER = "## Kubex Automation Engine"
@@ -128,38 +128,27 @@ def update_release_notes(new_content):
     # Read current content
     current_content = file_path.read_text(encoding='utf-8')
 
-    # Find the section to replace
-    start_idx = current_content.find(START_MARKER)
-    legacy_idx = current_content.find(LEGACY_MARKER, start_idx)
-
-    if start_idx == -1 or legacy_idx == -1:
-        print("Error: Could not find markers in release notes file")
+    # Extract frontmatter (everything up to and including the closing ---)
+    frontmatter_end = current_content.find('---', 3)  # Skip first ---
+    if frontmatter_end == -1:
+        print("Error: Could not find frontmatter in release notes file")
         return False
 
-    # Build new content - just the header and changelog, no note
-    header = '''## Kubex Automation Engine
+    frontmatter = current_content[:frontmatter_end + 4]  # Include --- and newline
 
-'''
+    # Find the legacy section marker
+    legacy_marker = "### Legacy Kubex Automation Controller Release Notes"
+    legacy_idx = current_content.find(legacy_marker)
 
-    new_section = header + new_content + '\n\n'
+    if legacy_idx == -1:
+        print("Warning: Could not find legacy section marker, will replace entire file")
+        legacy_section = ""
+    else:
+        # Extract everything from the legacy marker onwards
+        legacy_section = "\n" + current_content[legacy_idx:]
 
-    # Replace the section
-    before = current_content[:start_idx]
-    after = current_content[legacy_idx:]
-
-    # Add the deprecation note to the legacy section header
-    legacy_with_note = '''### Legacy Kubex Automation Controller Release Notes
-
-<Note>
-The Kubex Automation Controller has been deprecated and replaced by the Kubex Automation Engine.
-</Note>
-
-'''
-
-    # Replace just the legacy header line with header + note
-    after = after.replace(LEGACY_MARKER + '\n\n', legacy_with_note)
-
-    updated_content = before + new_section + after
+    # Build new content with frontmatter + new changelog + legacy section
+    updated_content = frontmatter + new_content + legacy_section + '\n'
 
     # Write back
     file_path.write_text(updated_content, encoding='utf-8')
