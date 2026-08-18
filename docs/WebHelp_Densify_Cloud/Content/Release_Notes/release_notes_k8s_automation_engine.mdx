@@ -1,6 +1,22 @@
 ---
 title: "Kubex Automation Engine"
 ---
+<Accordion title="1.10.0 - August 11, 2026">
+  <Accordion title="Updates and Improvements">
+    **Added:**
+    - ObjectPatch and ClusterObjectPatch resources for applying controlled JSON merge patches to Kubernetes objects.
+    - Cluster compaction policies for bin-packing workloads with Kubex-managed or external schedulers, per-policy descheduler settings, and eviction-loop suppression.
+    
+    **Changed:**
+    - Resource and workload handling now preserves more Kubernetes state across resize, rollback, and controller-managed reconciliation paths.
+    - Updated the KAI GPU-sharing guide for KAI v0.17.0 and optional HAMi-core 1.1.0 integration.
+    
+    **Fixed:**
+    - In-place resize rollback monitoring now records the refreshed post-resize Pod state.
+    - Compaction eviction convergence now reacts when replacement Pods are assigned to nodes.
+  </Accordion>
+</Accordion>
+
 <Accordion title="1.9.1 - August 06, 2026">
   <Accordion title="Updates and Improvements">
     **Fixed:**
@@ -445,6 +461,7 @@ The Kubex Automation Controller automatically implemented Kubex's optimization r
     - **Offline Resilience**--Mutations are cached locally during connectivity issues and synchronized when connection is restored.
   </Accordion>
 </Accordion>
+
 
 
 
