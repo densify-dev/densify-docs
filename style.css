@@ -127,3 +127,21 @@ article > div,
   overflow-wrap: anywhere !important;
   word-break: break-word !important;
 }
+
+/* Mint/Tailwind utility overrides: prevent single-line truncation in release notes */
+[role="main"] [class*="truncate"],
+[role="main"] [class*="line-clamp"],
+[role="main"] [class*="whitespace-nowrap"] {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  line-clamp: unset !important;
+  -webkit-line-clamp: unset !important;
+}
+
+/* Allow flex/grid children to shrink and wrap instead of overflowing/clipping */
+[role="main"] .prose *,
+[role="main"] details *,
+[role="main"] [data-state="open"] * {
+  min-width: 0 !important;
+}
