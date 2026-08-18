@@ -110,3 +110,20 @@ article > div,
   width: 100% !important;
   max-width: 100% !important;
 }
+
+/* Prevent content clipping in long release-note bullets and accordion content */
+[role="main"] article,
+[role="main"] .prose,
+[role="main"] details,
+[role="main"] [data-state="open"] {
+  overflow: visible !important;
+}
+
+[role="main"] .prose p,
+[role="main"] .prose li,
+[role="main"] .prose td,
+[role="main"] .prose div {
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
