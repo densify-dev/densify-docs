@@ -71,25 +71,11 @@ def parse_changelog_entry(version_block):
     for line in content_lines:
         formatted_lines.append(line)
 
-    content = '\n    '.join(formatted_lines).strip()
-
-    # Create a title for the accordion
-    title_parts = []
-    if '**Added:**' in content:
-        # Extract first Added item as title
-        added_match = re.search(r'\*\*Added:\*\* ([^\n]+)', content)
-        if added_match:
-            title_parts.append(added_match.group(1))
-
-    if not title_parts:
-        title_parts.append("Updates and Improvements")
-
-    title = title_parts[0][:60]  # Truncate if too long
+    content = '\n  '.join(formatted_lines).strip()
 
     return {
         'version': version,
         'date': formatted_date,
-        'title': title,
         'content': content
     }
 
@@ -108,9 +94,7 @@ def convert_changelog_to_mdx(changelog_text):
 
         if entry:
             accordion = f'''<Accordion title="{entry['version']} - {entry['date']}">
-  <Accordion title="{entry['title']}">
-    {entry['content']}
-  </Accordion>
+  {entry['content']}
 </Accordion>'''
             mdx_sections.append(accordion)
 
