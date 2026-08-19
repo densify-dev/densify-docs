@@ -6,22 +6,6 @@ Kubex recommends using the [Kubex Collection Stack Helm Chart](https://github.co
 The following configuration options support multi-cluster configurations and observability platforms. See [Container Data Collection Prerequisites](/docs-kubex/Content/Kubex/Data_Collection_Prerequisites) for required prerequisite software.
 
 
-
-<Accordion title="OpenShift">
-In this configuration you can deploy the <span>data forwarder</span> with OpenShift (e.g. Authenticated Prometheus). Refer to  <a href="https://github.com/densify-dev/container-data-collection/tree/main/single-cluster/examples/bearer-openshift">Example: bearer-openshift</a> for details.
-Figure: Container Data Collection Using Authenticated Prometheus
-
-<frame/>
-![](/images/docs-kubex/Content/Kubex/03000282_587x179.png)
-
-See <a href="/docs-kubex/Content/Kubex/Data_Collection_Prerequisites">Container Data Collection Prerequisites</a> for details on prerequisite software.
-</Accordion>
-
-
-
-
-
-
 <Accordion title="Amazon Managed Prometheus">
 In this example the data forwarder is setup in an EKS cluster to connect to Amazon Managed Prometheus (AMP) and send container data to <span>Kubex</span> on an hourly basis. Using an EKS cluster allows you to use EKS's ability to associate an IAM role with a Kubernetes service account and configure your pods to use the service account. This is the preferred way to connect to AMP. 
 Figure: Container Data Collection Using EKS-AMP
