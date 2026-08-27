@@ -1,6 +1,24 @@
 ---
 title: "Kubex Automation Engine"
 ---
+<Accordion title="1.11.1 - August 26, 2026">
+  **Fixed:**
+  - KAI vLLM GPU memory tuning now accounts for HAMi's visible GPU memory instead of the raw device total, avoiding an incorrect double application of the GPU fraction on HAMi-backed clusters.
+  - vLLM GPU memory tuning is now applied correctly in mixed resize plans and when the selected GPU recommendation is already applied (no-op resizes).
+</Accordion>
+
+<Accordion title="1.11.0 - August 19, 2026">
+  **Added:**
+  - `ContainerArgsPolicy` for managing named container arguments during admission and pod replacement, with support for add, update, and remove operations to support GPU vLLM tuning.
+  - Policy snapshots now include all supported `rightsizing.kubex.ai` custom resources, including GPU, compaction, object patch, and container argument policies.
+  - Cluster names can be sourced from a ConfigMap or Secret instead of being specified directly in chart values, supporting installations from `kubex-automation-stack`.
+  
+  **Changed:**
+  - Policy evaluation now includes `PodAffinityPolicy` resources.
+  - Compaction scheduler and descheduler components are enabled by default for compaction policy support.
+  - Pre-delete cleanup now removes finalizers from every supported `rightsizing.kubex.ai` custom resource.
+</Accordion>
+
 <Accordion title="1.10.0 - August 11, 2026">
   **Added:**
   - ObjectPatch and ClusterObjectPatch resources for applying controlled JSON merge patches to Kubernetes objects.
@@ -417,6 +435,7 @@ The Kubex Automation Controller automatically implemented Kubex's optimization r
   - **Selective Automation**--Ability to include or exclude specific workload types (e.g., Deployment, StatefulSet) from automation.
   - **Offline Resilience**--Mutations are cached locally during connectivity issues and synchronized when connection is restored.
 </Accordion>
+
 
 
 
