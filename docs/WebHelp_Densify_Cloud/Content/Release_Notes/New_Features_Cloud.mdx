@@ -4,6 +4,23 @@ title: "Kubex Features"
 
 This topic summarizes both new and updated features introduced in Kubex
 
+<Accordion title="5.1 September 02, 2026">
+    The following changes have been made to Kubex in this release:
+
+    - **Updates to Public Cloud Metadata**
+      - Updates to AWS, Azure and OCI for new instance types and costs.
+
+    - **K8s Analysis Policy Updates**
+      - Ability for users to change the default policy. Any new clusters added to Kubex will use this default policy.
+      - Updates to the thresholds on the policies shipped with Kubex. This is to reflect feedback from how users are setting these in the field.
+
+    - **K8s Analysis using Custom Metrics**
+      - Kubex uses CPU and Memory metrics for optimizing Containers. It can now also use custom cpu and/or memory metrics for optimization. 
+      - These could be different metrics that are more accurate for optimization. E.g., Queue Depth, Kafka driven metrics.
+      - To help set this up, please contact your Kubex team.
+
+</Accordion>
+
 <Accordion title="5.0 August 12, 2026">
     The following changes have been made to Kubex in this release:
 
