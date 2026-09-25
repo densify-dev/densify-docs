@@ -107,7 +107,6 @@
             {
                 "group": "Kubernetes Optimization",
                 "pages": [
-                    "docs-kubex/Content/Kubex/K8s_Dashboards",
                     {
                         "group": "Container Optimization",
                         "pages": [
@@ -137,10 +136,10 @@
                     {
                         "group": "Workload Insights",
                         "pages": [
-                            "docs-kubex/Content/Kubex/Kubex_Dashboard",
+                            "docs-kubex/Content/Kubex/Container_Explorer",
+                            "docs-kubex/Content/Kubex/Histograms_Tab",
                             "docs-kubex/Content/Kubex/Summary_Tab",
                             "docs-kubex/Content/Kubex/Breakdown_Tab",
-                            "docs-kubex/Content/Kubex/Histograms_Tab",
                             "docs-kubex/Content/Kubex/Overview_Tab",
                             "docs-kubex/Content/Kubex/GPU_Tab",
                             "docs-kubex/Content/Kubex/Metrics_Viewer_Tab"
