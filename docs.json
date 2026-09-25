@@ -107,7 +107,7 @@
             {
                 "group": "Kubernetes Optimization",
                 "pages": [
-                    "docs-kubex/Content/Kubex/k8s_overview",
+                    "docs-kubex/Content/Kubex/K8s_Dashboards",
                     {
                         "group": "Container Optimization",
                         "pages": [
