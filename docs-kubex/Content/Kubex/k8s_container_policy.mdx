@@ -84,8 +84,8 @@ Operational Windowing specifies the analysis period and the samples used for ana
 
 ### ML Model Strategy
 
-- **Combined** looks at the historical workload range and come up with a 24-hr representative model. 
-- **Outer envelope** will react quickly to any increase in usage.
+- **Combined** looks at the historical workload range and generates a 24-hr representative model
+- **Outer envelope** will react quickly to any increase in usage
 
 ### Guaranteed QoS
 
@@ -106,7 +106,7 @@ When configuring headroom, the dialog provides **HPA Target Headroom (%)** value
 
 The resource policy sections include these additional controls where shown:
 
-- **Min Hours for Reclaim** sets a minimum number of hours before reclaiming resources; the screenshots show 50 hours for requests, 100 hours for CPU, Memory, and Ephemeral Storage limits, and 168 hours for GPU and GPU Memory.
+- **Min Hours for Reclaim** sets a minimum number of hours before reclaiming resources; the defaults are 2 hours for requests, 100 hours for CPU, Memory, and Ephemeral Storage limits, and 168 hours for GPU and GPU Memory.
 - **Max Increase** and **Max Decrease** can be left blank for no limit.
 - **Allow Downsize** controls whether the policy can recommend a smaller allocation.
 - **Max Limit-to-Request Ratio** is available for CPU and Memory requests; leave it blank for no ratio limit.
