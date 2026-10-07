@@ -4,6 +4,25 @@ title: "Kubex Features"
 
 This topic summarizes both new and updated features introduced in Kubex
 
+<Accordion title="5.3 October 07, 2026">
+    The following changes have been made to Kubex in this release:
+
+    - **Automation Blockers**
+      - Insight into the reasons of why a container's automation was blocked
+
+      <Frame caption="Figure: Automation Blockers">
+        <img src="/images/docs-kubex/Content/k8s_automation_blockers.png" width="100%" />
+      </Frame>
+
+    - **Policy setting for Limit-Request ratio**
+      - Use this setting if you want to set the max allowed CPU/Memory Limit-Request ratio for recommendations
+      - This is useful if for very peaky workloads, you dont want the limits and requests to be very far apart
+
+    - **Policy setting for HPA CPU & Memory overhead**
+      - Updates to split this setting into CPU and Memory HPA overhead (previously it was one setting)
+
+</Accordion>
+
 <Accordion title="5.2 September 23, 2026">
     The following changes have been made to Kubex in this release:
 
