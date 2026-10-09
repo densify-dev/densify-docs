@@ -1,6 +1,21 @@
 ---
 title: "Kubex Automation Engine"
 ---
+<Accordion title="1.15.1 - October 08, 2026">
+  **Changed:**
+  - CPU limits are no longer set by default on the controller, gateway, and compaction components, so they are no longer CPU-throttled. Memory limits and CPU requests are unchanged.
+  - The pre-delete cleanup job's resources are now configurable through `cleanup.resources`.
+</Accordion>
+
+<Accordion title="1.15.0 - October 05, 2026">
+  **Added:**
+  - Multi-policy container rightsizing: multiple policies of the same kind can now manage different containers of the same workload. Opt in with `globalConfiguration.multiPolicyContainerRightsizingEnabled`, and use the new `scope.containers` field to target specific containers.
+  - Mutation logs now include the workload's current replica count.
+  
+  **Changed:**
+  - Resize safety checks are stricter when several strategies apply to the same pod, and resizes are blocked when no common resize method is available.
+</Accordion>
+
 <Accordion title="1.14.0 - September 23, 2026">
   **Added:**
   - ObjectPatch and ClusterObjectPatch support selector-aware JSON Patch operations (`add`, `remove`, `replace`) alongside JSON Merge Patch, letting a single patch target specific array elements (for example, a named container) using a CEL selector.
@@ -484,6 +499,7 @@ The Kubex Automation Controller automatically implemented Kubex's optimization r
   - **Selective Automation**--Ability to include or exclude specific workload types (e.g., Deployment, StatefulSet) from automation.
   - **Offline Resilience**--Mutations are cached locally during connectivity issues and synchronized when connection is restored.
 </Accordion>
+
 
 
 
