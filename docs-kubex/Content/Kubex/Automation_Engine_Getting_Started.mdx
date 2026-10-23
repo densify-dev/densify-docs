@@ -78,7 +78,7 @@ helm install kubex-automation-engine kubex/kubex-automation-engine \
 OpenShift note:
 
 - Installation still requires cluster-scoped permissions for RBAC and admission webhook resources
-- Set `openshift.enabled=true` for the chart's restricted-friendly OpenShift path
+- Set `openshift.enabled=true` for arbitrary-UID-compatible controller, cleanup, scheduler, and descheduler Pods under the `restricted-v2` Security Context Constraint
 - Set `openshift.fsGroup` only if your cluster policy requires it
 
 ## Step 5: Verify Health

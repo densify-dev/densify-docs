@@ -70,7 +70,7 @@ This makes automation easier to standardize across teams while still allowing na
 Important:
 
 - Helm-managed `scope` and `policy.policies` preserve the existing values-driven flow by generating cluster-scoped strategy and proactive policy resources
-- Namespaced `AutomationStrategy`, `ProactivePolicy`, `StaticPolicy`, and cluster static policies are supported by the controller and can be managed independently through CR manifests
+- `ProactivePolicy`, `StaticPolicy`, `ClusterStaticPolicy`, `PodAffinityPolicy`, and namespaced `AutomationStrategy` are supported by the controller and managed independently through CR manifests
 
 ## Deprecation Note
 

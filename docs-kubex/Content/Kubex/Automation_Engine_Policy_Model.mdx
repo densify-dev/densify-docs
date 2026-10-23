@@ -48,6 +48,8 @@ Helm-managed `scope` and `policy.policies` preserve the values-driven flow from 
 
 Namespaced `AutomationStrategy`, `ProactivePolicy`, `StaticPolicy`, and cluster static policies are supported by the controller and are commonly managed through dedicated CR manifests.
 
+`PodAffinityPolicy` is also supported and is managed as a separate CR manifest. For more advanced policy behavior, see the upstream guides for policy evaluation and multi-policy container rightsizing.
+
 ## Scope Design Guidance
 
 Recommended practices:
@@ -63,6 +65,10 @@ Recommended practices:
 https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Policy-Configuration.md
 - Policy Evaluation Reference:
 https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Policy-Evaluation.md
+- Multi-Policy Container Rightsizing:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Multi-Policy-Container-Rightsizing.md
+- Object Patches:
+https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Object-Patches.md
 - Cluster Automation Strategies:
 https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Cluster-Automation-Strategies.md
 - Cluster Proactive Policies:
