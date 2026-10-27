@@ -1,0 +1,31 @@
+---
+title: "Cluster Data Interface (CDI)"
+---
+
+The Cluster Data Interface (CDI) provides Kubex with access to live Kubernetes cluster state and configuration. This helps Kubex make decisions using current information rather than relying only on the data collection job that runs hourly.
+
+<Frame caption="Figure: Automation Tab">
+![](/images/CDI_overview.png)
+</Frame>
+
+## Cluster Data Access
+
+Depending on the Kubernetes RBAC permissions granted to the CDI, it can read cluster resources and configuration such as:
+
+- Karpenter NodePool configuration
+- OpenShift autoscaler consolidation thresholds
+- Kubernetes resource specifications, including Pods and Deployments
+
+The CDI does not read Kubernetes Secret resources. However, if sensitive values are embedded in non-Secret resources, the CDI may be able to read those values when its RBAC permissions allow access to the containing resource. Embedding secrets in other Kubernetes resources is not recommended.
+
+Customers control the CDI's Kubernetes RBAC permissions and can grant more or less access to cluster resources. This keeps customers in control of which cluster information is exposed to Kubex.
+
+## The Connector
+
+<Frame caption="Figure: Automation Tab">
+![](/images/CDI_Connector.png)
+</Frame>
+
+The connector establishes an outbound connection from the cluster to Kubex. It allows Kubex to request current cluster data on demand, without waiting for the hourly data collection job.
+
+The connector uses reverse tunneling for this on-demand access. It does not open inbound firewall ports or initiate an inbound connection to the cluster. If a customer removes the connector, Kubex can no longer use it to access cluster data on demand.
