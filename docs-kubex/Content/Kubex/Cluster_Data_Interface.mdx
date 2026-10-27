@@ -18,7 +18,7 @@ Depending on the Kubernetes RBAC permissions granted to the CDI, it can read clu
 
 The CDI does not read Kubernetes Secret resources. However, if sensitive values are embedded in non-Secret resources, the CDI may be able to read those values when its RBAC permissions allow access to the containing resource. Embedding secrets in other Kubernetes resources is not recommended.
 
-Customers control the CDI's Kubernetes RBAC permissions and can grant more or less access to cluster resources. This keeps customers in control of which cluster information is exposed to Kubex.
+The end user control the CDI's Kubernetes RBAC permissions and can grant more or less access to cluster resources. This keeps users in control of which cluster information is exposed to Kubex.
 
 ## The Connector
 
@@ -28,4 +28,4 @@ Customers control the CDI's Kubernetes RBAC permissions and can grant more or le
 
 The connector establishes an outbound connection from the cluster to Kubex. It allows Kubex to request current cluster data on demand, without waiting for the hourly data collection job.
 
-The connector uses reverse tunneling for this on-demand access. It does not open inbound firewall ports or initiate an inbound connection to the cluster. If a customer removes the connector, Kubex can no longer use it to access cluster data on demand.
+The connector uses reverse tunneling for this on-demand access. It does not open inbound firewall ports or initiate an inbound connection to the cluster. If the user removes the connector, Kubex can no longer use it to access cluster data on demand.
