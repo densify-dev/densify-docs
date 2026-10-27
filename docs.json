@@ -101,7 +101,13 @@
                         ]
                     },
                     "docs-kubex/Content/General/supported_platforms",
-                    "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/MCP"
+                    {
+                        "group": "AI Tools",
+                        "pages": [
+                            "docs-api/WebHelp_Densify_API_Cloud/Content/API_Guide/MCP",
+                            "docs-kubex/Content/Kubex/Cluster_Data_Interface"
+                        ]
+                    }
                 ]
             },
             {
