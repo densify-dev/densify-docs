@@ -1,6 +1,30 @@
 ---
 title: "Kubex Automation Engine"
 ---
+<Accordion title="1.16.1 - October 22, 2026">
+  **Changed:**
+  - The gateway image is updated from 1.7 to 1.9.
+  
+  **Fixed:**
+  - Pod admission no longer applies automation changes before the global configuration is ready.
+  ### Security
+  - The gateway 1.9 image is built with Go 1.27.3 and updated `golang.org/x/net` and `klauspost/compress` dependencies that fix published CVEs.
+</Accordion>
+
+<Accordion title="1.16.0 - October 22, 2026">
+  **Added:**
+  - Ephemeral-storage right-sizing automation for container requests and limits. It is off by default. See [Proactive Policies](./docs/Proactive-Policies.md#ephemeral-storage) for more details.
+  
+  **Changed:**
+  - The dry-run webhook probe Pod now runs with secure default security contexts that satisfy restricted pod security settings; see the configuration reference for the new values.
+  
+  **Fixed:**
+  - A resize that leaves a workload crash-looping can now be rolled back. Rollback restore no longer waits on readiness and max-unavailable checks for pods that are already unavailable, so a single-replica workload stuck in CrashLoopBackOff recovers instead of staying blocked.
+  - Proposals for managed resources can now change proposal IDs without being blocked by the reconciler.
+  ### Security
+  - The controller is built with Go 1.27.3 to pick up updated certificate distrust handling.
+</Accordion>
+
 <Accordion title="1.15.2 - October 09, 2026">
   **Fixed:**
   - Values schema now accepts `null` for CPU resource limits, preserving the option to explicitly disable CPU limits for the controller and gateway.
@@ -504,6 +528,7 @@ The Kubex Automation Controller automatically implemented Kubex's optimization r
   - **Selective Automation**--Ability to include or exclude specific workload types (e.g., Deployment, StatefulSet) from automation.
   - **Offline Resilience**--Mutations are cached locally during connectivity issues and synchronized when connection is restored.
 </Accordion>
+
 
 
 
