@@ -53,13 +53,7 @@
                 "group": "Getting Started",
                 "pages": [
                     "docs-kubex/Content/General/Kubex_Overview",
-                    {
-                        "group": "Connect Your Kubernetes Clusters",
-                        "pages": [
-                            "docs-kubex/Content/Kubex/Data_Collection_Overview",
-                            "docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods"
-                        ]
-                    },
+                    "docs-kubex/Content/Kubex/Data_Collection_Overview",
                     {
                         "group": "Connect Your Public Cloud Accounts",
                         "pages": [
