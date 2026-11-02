@@ -1,13 +1,3 @@
-/* Hide only the table-of-contents/right docs panel; avoid global layout overrides. */
-[data-testid="toc"],
-[data-testid="table-of-contents"],
-.toc,
-.table-of-contents,
-aside[class*="toc"],
-nav[aria-label="Table of contents"] {
-  display: none !important;
-}
-
 .home_card_container {
   padding-top: 2rem;
   padding-bottom: 8rem;
