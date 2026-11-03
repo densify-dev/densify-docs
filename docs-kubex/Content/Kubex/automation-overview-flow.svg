@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Kubex Automation Engine Overview</title>
+  <desc id="desc">Workflow showing how Kubex analyzes workloads, generates recommendations, evaluates them through policies and safety controls, and applies optimizations to containers</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4b5563"/>
+    </marker>
+    <style>
+      .box { fill: #ffffff; stroke: #1f2937; stroke-width: 2; rx: 12; ry: 12; }
+      .kubex-box { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; rx: 12; ry: 12; }
+      .policy-box { fill: #fef3c7; stroke: #f59e0b; stroke-width: 2; rx: 12; ry: 12; }
+      .safety-box { fill: #fecaca; stroke: #dc2626; stroke-width: 2; rx: 12; ry: 12; }
+      .success-box { fill: #d1fae5; stroke: #10b981; stroke-width: 2; rx: 12; ry: 12; }
+      .label { fill: #111827; font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: 700; }
+      .sub { fill: #374151; font-family: Arial, Helvetica, sans-serif; font-size: 14px; }
+      .arrow { stroke: #4b5563; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .note { fill: #f9fafb; stroke: #d1d5db; stroke-width: 1.5; rx: 10; ry: 10; }
+      .section-label { fill: #6b7280; font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 600; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect class="note" x="18" y="18" width="1164" height="484"/>
+
+  <!-- Section Labels -->
+  <text class="section-label" x="40" y="50">Data Collection</text>
+  <text class="section-label" x="340" y="50">Analysis</text>
+  <text class="section-label" x="640" y="50">Policy Evaluation</text>
+  <text class="section-label" x="940" y="50">Optimization</text>
+
+  <!-- Step 1: Kubernetes Cluster -->
+  <rect class="box" x="40" y="80" width="200" height="100"/>
+  <text class="label" x="140" y="115" text-anchor="middle">Kubernetes</text>
+  <text class="label" x="140" y="138" text-anchor="middle">Cluster</text>
+  <text class="sub" x="140" y="162" text-anchor="middle">Container workloads</text>
+
+  <!-- Step 2: Kubex Analysis -->
+  <rect class="kubex-box" x="300" y="80" width="220" height="100"/>
+  <text class="label" x="410" y="115" text-anchor="middle">Kubex Analysis</text>
+  <text class="sub" x="410" y="138" text-anchor="middle">Usage pattern analysis</text>
+  <text class="sub" x="410" y="158" text-anchor="middle">Generate recommendations</text>
+
+  <!-- Step 3: Automation Strategy -->
+  <rect class="policy-box" x="580" y="80" width="220" height="100"/>
+  <text class="label" x="690" y="115" text-anchor="middle">Strategy Rules</text>
+  <text class="sub" x="690" y="138" text-anchor="middle">Targeting & scopes</text>
+  <text class="sub" x="690" y="158" text-anchor="middle">Policy selection</text>
+
+  <!-- Step 4: Policy Evaluation -->
+  <rect class="policy-box" x="860" y="80" width="220" height="100"/>
+  <text class="label" x="970" y="115" text-anchor="middle">Policy Check</text>
+  <text class="sub" x="970" y="138" text-anchor="middle">Upsize/downsize rules</text>
+  <text class="sub" x="970" y="158" text-anchor="middle">Constraint validation</text>
+
+  <!-- Step 5: Safety Controls -->
+  <rect class="safety-box" x="580" y="250" width="220" height="130"/>
+  <text class="label" x="690" y="290" text-anchor="middle">Safety Controls</text>
+  <text class="sub" x="690" y="313" text-anchor="middle">HPA awareness</text>
+  <text class="sub" x="690" y="333" text-anchor="middle">PDB validation</text>
+  <text class="sub" x="690" y="353" text-anchor="middle">Resource quota check</text>
+  <text class="sub" x="690" y="373" text-anchor="middle">Node capacity check</text>
+
+  <!-- Step 6: Apply Optimization -->
+  <rect class="success-box" x="860" y="280" width="220" height="100"/>
+  <text class="label" x="970" y="315" text-anchor="middle">Apply Changes</text>
+  <text class="sub" x="970" y="338" text-anchor="middle">In-place resize (K8s 1.33+)</text>
+  <text class="sub" x="970" y="358" text-anchor="middle">or Pod eviction</text>
+
+  <!-- Step 7: Optimized Workload -->
+  <rect class="success-box" x="300" y="280" width="220" height="100"/>
+  <text class="label" x="410" y="315" text-anchor="middle">Optimized</text>
+  <text class="label" x="410" y="338" text-anchor="middle">Workload</text>
+  <text class="sub" x="410" y="362" text-anchor="middle">Right-sized resources</text>
+
+  <!-- Monitoring/Feedback Loop -->
+  <rect class="box" x="40" y="430" width="520" height="60"/>
+  <text class="label" x="300" y="455" text-anchor="middle">Continuous Monitoring</text>
+  <text class="sub" x="300" y="475" text-anchor="middle">Track performance, rollback if needed, learn from changes</text>
+
+  <!-- Arrows -->
+  <!-- Cluster to Analysis -->
+  <path class="arrow" d="M240 130 L300 130"/>
+
+  <!-- Analysis to Strategy -->
+  <path class="arrow" d="M520 130 L580 130"/>
+
+  <!-- Strategy to Policy -->
+  <path class="arrow" d="M800 130 L860 130"/>
+
+  <!-- Policy to Safety -->
+  <path class="arrow" d="M970 180 L970 250"/>
+  <path class="arrow" d="M860 300 L800 300"/>
+
+  <!-- Safety to Apply -->
+  <path class="arrow" d="M800 320 L860 320"/>
+
+  <!-- Apply to Optimized -->
+  <path class="arrow" d="M860 330 L520 330"/>
+
+  <!-- Optimized back to Cluster -->
+  <path class="arrow" d="M300 330 L140 280"/>
+  <path class="arrow" d="M140 280 L140 180"/>
+
+  <!-- Monitoring feedback -->
+  <path class="arrow" d="M140 380 L140 430"/>
+  <path class="arrow" d="M410 380 L410 430"/>
+
+  <!-- Flow labels -->
+  <text class="sub" x="270" y="120" text-anchor="middle">metrics</text>
+  <text class="sub" x="550" y="120" text-anchor="middle">recommendations</text>
+  <text class="sub" x="830" y="120" text-anchor="middle">evaluate</text>
+  <text class="sub" x="1000" y="220" text-anchor="middle">validate</text>
+  <text class="sub" x="830" y="290" text-anchor="middle">approved</text>
+  <text class="sub" x="1000" y="310" text-anchor="middle">optimize</text>
+  <text class="sub" x="640" y="340" text-anchor="middle">updated resources</text>
+  <text class="sub" x="90" y="270" text-anchor="middle">deploy</text>
+  <text class="sub" x="90" y="410" text-anchor="middle">monitor</text>
+  <text class="sub" x="450" y="410" text-anchor="middle">verify</text>
+</svg>

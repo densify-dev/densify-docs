@@ -6,60 +6,54 @@ description: "Policy-driven Kubernetes rightsizing automation with continuous op
 
 Kubex Automation Engine is the Kubernetes rightsizing automation component that applies Kubex recommendations safely and continuously. It uses policy-driven controls to automatically optimize CPU, memory, ephemeral storage, and GPU resources while preserving workload stability and platform controls.
 
-## Why Automation Engine
+<img className="block dark:hidden" src="/images/docs-kubex/Content/Kubex/kubex-automation-workflow-light.png" alt="Automation Engine workflow - light mode" />
+<img className="hidden dark:block" src="/images/docs-kubex/Content/Kubex/kubex-automation-workflow-dark.png" alt="Automation Engine workflow - dark mode" />
 
-Manual rightsizing doesn't scale. Automation Engine reduces operational overhead while improving resource efficiency across your Kubernetes clusters.
+## How It Works
 
-**Key benefits:**
+Automation Engine operates within your Kubernetes cluster and works with Kubex Analytics in a continuous cycle:
+
+1. **Kubex Analytics** analyzes workload utilization and generates rightsizing recommendations
+2. **Automation Engine** retrieves recommendations through the Gateway API and evaluates them against your policies
+3. **Policy matching** identifies applicable AutomationStrategy and ProactivePolicy resources for each workload
+4. **Safety validation** checks Kubernetes constraints (ResourceQuota, HPA, node capacity) before proceeding
+5. **Resource changes** are applied using in-place resize, pod eviction, or admission-time mutation
+6. **Continuous monitoring** watches for rollback conditions and updates recommendations as workload patterns evolve
+
+Not every recommendation is applied automatically—changes must pass policy evaluation and safety checks. When automation is blocked, the engine records the reason for visibility and troubleshooting.
+
+## Key Capabilities
 
 - **Continuous optimization**: Automatically applies rightsizing recommendations as workload patterns evolve
-- **Safety-first approach**: Built-in guardrails prevent disruptive changes with health checks, scheduling windows, and resource quotas
+- **Safety-first approach**: Pre-flight validation for ResourceQuota, LimitRange, HPA/VPA conflicts, and node capacity
 - **Policy-driven control**: Declarative CRD-based configuration defines what, when, and how automation happens
 - **Zero-downtime updates**: In-place resize on Kubernetes 1.33+ with eviction fallback for older versions
+- **Rollback protection**: Automatic rollback detection and backoff for changes that cause pod failures
+- **Resource dimension control**: Configure which resources can be changed (CPU, memory, ephemeral storage, GPU) and by how much
 - **Team autonomy**: Namespaced and cluster-scoped policies support both platform-wide and team-specific controls
 
-## What Automation Engine Does
+## Architecture
 
-Automation Engine continuously evaluates Kubex recommendations and applies approved changes based on your policies:
-
-- **Proactive rightsizing**: Automatically adjusts CPU and memory requests/limits based on observed usage patterns
-- **Resource dimension control**: Configure which resources can be changed (CPU, memory, ephemeral storage, GPU) and by how much
-- **Execution strategies**: In-place resize for zero-downtime updates, eviction-based fallback when needed
-- **Safety checks**: Pre-flight validation for ResourceQuota, LimitRange, HPA/VPA conflicts, and node capacity
-- **Rollback protection**: Automatic rollback detection and backoff for changes that cause pod failures
-- **Scheduling controls**: Time-based windows for when automation is allowed to execute
-
-## Supported Workload Types
-
-Automation Engine can optimize these Kubernetes resources:
-
-- Deployment
-- StatefulSet
-- CronJob
-- Rollout (Argo Rollouts)
-- Job
-- AnalysisRun
-- StrimziPodSet
-- DaemonSet
-
-## Architecture Overview
-
-A standard deployment includes:
+Automation Engine runs within your Kubernetes cluster and consists of:
 
 - **Automation Engine controller**: Evaluates policies, performs safety checks, and applies changes
 - **Mutating admission webhook**: Enables admission-time pod mutation for immediate enforcement
-- **Gateway sidecar**: Retrieves recommendations from Kubex
-- **Custom Resources**: Define global configuration, strategies, policies, and runtime state
+- **Gateway sidecar**: Retrieves recommendations from Kubex Analytics
+- **Custom Resources**: Declarative CRDs define automation behavior, including core policies, specialized policies for GPU and node optimization, and rollback rules
 
 ### Policy Model
 
-Automation Engine separates *behavior* from *scope*:
+Policies separate *behavior* from *scope* for flexible control:
 
-- **AutomationStrategy / ClusterAutomationStrategy**: Define *how* rightsizing happens (which dimensions, safety thresholds, execution methods)
-- **ProactivePolicy / ClusterProactivePolicy**: Define *where* recommendation-driven automation applies (namespace, workload selectors)
-- **GlobalConfiguration**: Cluster-wide runtime settings (reconciliation intervals, webhook behavior, pause controls)
+- **AutomationStrategy**: Defines *how* automation happens (resource dimensions, safety thresholds, execution methods)
+- **ProactivePolicy**: Defines *where* automation applies (namespace/workload selectors)
+- **RollbackPolicy**: Defines *when* to revert changes (failure conditions, backoff behavior)
 
-This separation allows platform teams to standardize automation behavior while giving namespace teams control over which workloads are automated.
+Most policies support both namespaced and cluster-scoped variants, allowing platform teams to standardize automation behavior while giving application teams control over their workloads. See [Configuration Reference](/docs-kubex/Content/Kubex/automation-engine/configuration-reference) for the complete list of Custom Resources.
+
+## Supported Workloads
+
+Automation Engine optimizes Deployment, StatefulSet, CronJob, DaemonSet, Job, AnalysisRun, Rollout (Argo), and StrimziPodSet resources.
 
 ## Getting Started
 
@@ -67,107 +61,24 @@ This separation allows platform teams to standardize automation behavior while g
   <Card title="Installation" icon="download" href="/docs-kubex/Content/Kubex/automation-engine/getting-started">
     Install Automation Engine with Helm and configure basic policies
   </Card>
-  <Card title="Configuration Reference" icon="gear" href="/docs-kubex/Content/Kubex/automation-engine/configuration-reference">
-    Complete Helm chart configuration options and values
+  <Card title="Automation Strategies" icon="sliders" href="/docs-kubex/Content/Kubex/automation-engine/automation-strategies">
+    Define how automation happens with resource dimensions and safety controls
   </Card>
-  <Card title="Strategies" icon="sliders" href="/docs-kubex/Content/Kubex/automation-engine/automation-strategies">
-    Control how automation happens with AutomationStrategy CRDs
+  <Card title="Proactive Policies" icon="file-shield" href="/docs-kubex/Content/Kubex/automation-engine/proactive-policies">
+    Configure which workloads are automated using selectors and policies
   </Card>
-  <Card title="Policies" icon="file-shield" href="/docs-kubex/Content/Kubex/automation-engine/proactive-policies">
-    Define which workloads are automated with ProactivePolicy CRDs
+  <Card title="Safety Controls" icon="shield-check" href="/docs-kubex/Content/Kubex/automation-engine/safety-controls">
+    Understand pre-flight checks and validation rules
   </Card>
 </CardGroup>
 
-## Core Capabilities
+## Additional Resources
 
-### Installation and Configuration
-
-- [Getting Started](/docs-kubex/Content/Kubex/automation-engine/getting-started): Install with Helm and configure your first policies
-- [Configuration Reference](/docs-kubex/Content/Kubex/automation-engine/configuration-reference): Complete Helm chart values and options
-- [Advanced Configuration](/docs-kubex/Content/Kubex/automation-engine/advanced-configuration): Webhook settings, advanced tuning, and deployment patterns
-- [Global Configuration](/docs-kubex/Content/Kubex/automation-engine/global-configuration): Cluster-wide runtime behavior and controller settings
-- [GitOps Integration](/docs-kubex/Content/Kubex/automation-engine/gitops-integration): Manage policies with GitOps workflows
-- [RBAC Guide](/docs-kubex/Content/Kubex/automation-engine/rbac-guide): Required permissions and role configuration
-- [Migrating from Helm-Managed Config](/docs-kubex/Content/Kubex/automation-engine/migrating-from-helm-managed-config): Move from Helm values to CRD-based policies
-
-### Strategies and Policies
-
-- [Automation Strategies](/docs-kubex/Content/Kubex/automation-engine/automation-strategies): Namespaced strategy definitions for how automation happens
-- [Cluster Automation Strategies](/docs-kubex/Content/Kubex/automation-engine/cluster-automation-strategies): Cluster-scoped strategies for platform-wide policies
-- [Policy Configuration](/docs-kubex/Content/Kubex/automation-engine/policy-configuration): Configure policies via Helm or direct CRD management
-- [Policy Evaluation](/docs-kubex/Content/Kubex/automation-engine/policy-evaluation): How policies are matched and applied to workloads
-- [Proactive Policies](/docs-kubex/Content/Kubex/automation-engine/proactive-policies): Recommendation-driven automation for namespaced workloads
-- [Cluster Proactive Policies](/docs-kubex/Content/Kubex/automation-engine/cluster-proactive-policies): Cluster-scoped proactive automation
-- [Static Policies](/docs-kubex/Content/Kubex/automation-engine/static-policies): Apply fixed resource values without recommendations
-- [Multi-Policy Container Rightsizing](/docs-kubex/Content/Kubex/automation-engine/multi-policy-container-rightsizing): How multiple policies combine for multi-container pods
-- [Object Patches](/docs-kubex/Content/Kubex/automation-engine/object-patches): Apply custom patches during automation
-- [Cluster Compaction Policies](/docs-kubex/Content/Kubex/automation-engine/cluster-compaction-policies): Node consolidation and workload packing
-
-### Safety, Rollback, and Operations
-
-- [Safety Controls](/docs-kubex/Content/Kubex/automation-engine/safety-controls): Pre-flight checks, resource quotas, HPA/VPA detection
-- [Rollback Policies](/docs-kubex/Content/Kubex/automation-engine/rollback-policies): Automatic detection and handling of failed changes
-- [Rollback Backoff](/docs-kubex/Content/Kubex/automation-engine/rollback-backoff): Exponential backoff for problematic workloads
-- [Tuning Guide](/docs-kubex/Content/Kubex/automation-engine/tuning-guide): Performance tuning and optimization recommendations
-
-### GPU Optimization
-
-- [GPU Reactive Policies](/docs-kubex/Content/Kubex/automation-engine/gpu-reactive-policies): GPU allocation based on observed usage
-- [GPU Consolidation Policy](/docs-kubex/Content/Kubex/automation-engine/gpu-consolidation-policy): Consolidate GPU workloads for better utilization
-- [GPU Sharing with KAI](/docs-kubex/Content/Kubex/automation-engine/gpu-sharing-with-kai): Enable GPU sharing with KAI scheduler integration
-
-### Troubleshooting
-
-- [Troubleshooting](/docs-kubex/Content/Kubex/automation-engine/troubleshooting): Diagnose common issues and debugging techniques
+- [Configuration Reference](/docs-kubex/Content/Kubex/automation-engine/configuration-reference): Complete Helm chart options and Custom Resources
+- [Troubleshooting](/docs-kubex/Content/Kubex/automation-engine/troubleshooting): Diagnose common issues
 - [FAQ](/docs-kubex/Content/Kubex/automation-engine/faq): Frequently asked questions
-- [Known Issues](/docs-kubex/Content/Kubex/automation-engine/known-issues): Current limitations and workarounds
+- [Helm Chart Repository](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-engine): Official installation source
 
-## Key Features in Detail
-
-### Declarative Automation Model
-
-All automation behavior is defined using Kubernetes Custom Resources. This makes configuration version-controlled, auditable, and GitOps-friendly.
-
-### Recommendation-Driven Policy
-
-Automation Engine retrieves recommendations from Kubex and applies them according to your policies. Recommendations are continuously updated as workload patterns change.
-
-### Zero-Downtime Optimization
-
-On Kubernetes 1.33+, in-place resize updates CPU and memory without restarting containers. For older versions or when in-place resize isn't available, eviction-based fallback ensures changes still happen safely.
-
-### Namespaced and Cluster-Scoped Control
-
-- **Cluster-scoped policies**: Platform teams define standard automation behavior across namespaces
-- **Namespaced policies**: Teams own automation decisions within their namespaces
-- Mix and match both patterns based on your organizational needs
-
-### Fail-Closed Safety Model
-
-Automation Engine uses a fail-closed approach: if a safety check fails, the action is blocked. This includes:
-
-- Health checks: Pod must be Ready for minimum duration
-- Resource quota validation: Changes can't violate namespace quotas
-- LimitRange validation: New values must comply with constraints
-- HPA/VPA detection: Avoid conflicts with other autoscalers
-- Node capacity checks: Upsizes must fit on current or available nodes
-
-### Smart Pause Control
-
-Per-pod annotations let you pause automation temporarily without changing policies:
-
-```yaml
-rightsizing.kubex.ai/pause-until: "2026-11-10T15:00:00Z"
-```
-
-Automation automatically resumes after the timestamp.
-
-## Deprecation Notice
-
-The older **Kubex Automation Controller** chart has been deprecated and replaced by **Kubex Automation Engine**. If you're using the older chart, see the migration guide.
-
-## Official Resources
-
-- [Automation Engine Helm Chart](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-engine)
-- [Chart README](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/README.md)
-- [Release Notes](/docs/WebHelp_Densify_Cloud/Content/Release_Notes/release_notes_k8s_automation_engine)
+<Note>
+The older **Kubex Automation Controller** chart has been deprecated. If you're using it, see [Migrating from Helm-Managed Config](/docs-kubex/Content/Kubex/automation-engine/migrating-from-helm-managed-config).
+</Note>
