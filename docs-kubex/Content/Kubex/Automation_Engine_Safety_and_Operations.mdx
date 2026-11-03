@@ -3,21 +3,22 @@ title: "Automation Safety and Operations"
 sidebarTitle: "Safety and Operations"
 ---
 
-Kubex Automation Engine uses a fail-closed safety model so recommendations are only applied when runtime checks pass.
+The Kubex Automation Engine uses layered safety controls to ensure that recommendation-driven resource changes are applied only when the relevant policy and runtime checks pass. Controller-side proactive execution is fail-closed when required safety checks or webhook health conditions are not satisfied. If the admission webhook is unavailable, Kubernetes can continue pod creation without Kubex mutation.
 
 ## Safety Controls
 
 The engine combines multiple protections:
 
-- Webhook health gating
-- HPA and VPA compatibility filters
-- LimitRange and ResourceQuota checks
-- Node headroom checks
-- Readiness and rollout safety checks
+- Webhook health gating for controller-side automation
+- `HPA` and `VPA` compatibility filters
+- `LimitRange` and `ResourceQuota` checks
+- Node allocatable capacity and headroom checks
+- Pod readiness and workload availability checks
 - Protected namespace patterns
-- Policy- and scope-based workload inclusion checks
+- Policy scope, selectors, and workload-type filters
+- Pause and container-exclusion annotations
 
-When checks fail, mutations are blocked and reasons are surfaced through events and logs.
+When a check fails, the affected resize action is blocked or filtered, and the reason is surfaced through workload events, controller logs, rightsizing summaries and in the Kubex UI.
 
 ## Global Runtime Controls
 
@@ -25,7 +26,7 @@ When checks fail, mutations are blocked and reasons are surfaced through events 
 
 - Recommendation refresh cadence
 - Pod rescan cadence
-- Mutation and snapshot upload intervals
+- Mutation log and snapshot upload intervals
 - Automation on/off switch
 - Webhook health thresholds
 - Protected namespace patterns
@@ -34,17 +35,16 @@ When checks fail, mutations are blocked and reasons are surfaced through events 
 
 Operational pause options include:
 
-- Global disable through `globalConfiguration.automationEnabled`
-- Targeted exclusions via scope and selectors
-- Annotation-based per-pod pause behaviors
-- Temporary learning-window pauses after workload changes
+- Global disable through `globalConfiguration.automationEnabled`.
+- Targeted workload inclusion and exclusion through policy scopes, selectors, workload types, and pause controls.
+- Annotation-based pause: pause automation for a pod, workload, or namespace during a learning or stabilization period using `rightsizing.kubex.ai/pause-until`.
 
 ## Execution Paths
 
 The engine can apply rightsizing via:
 
 - In-place resize when supported by cluster version and policy
-- Eviction/restart fallback path when in-place resize cannot be applied
+- Eviction-based resize fallback when in-place resizing is unavailable or not allowed
 
 ## Diagnostics for Runtime Safety
 
@@ -58,13 +58,8 @@ kubectl logs -n kubex -l control-plane=controller-manager -c manager --since=10m
 
 ## Source References
 
-- Advanced Configuration:
-https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Advanced-Configuration.md
-- Safety Controls Reference:
-https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Safety-Controls.md
-- Global Configuration:
-https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Global-Configuration.md
-- RBAC Permissions:
-https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/RBAC-Guide.md
-- Tuning Guide:
-https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Tuning-Guide.md
+- [Advanced Configuration](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Advanced-Configuration.md)
+- [Safety Controls Reference](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Safety-Controls.md)
+- [Global Configuration](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Global-Configuration.md)
+- [RBAC Permissions](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/RBAC-Guide.md)
+- [Tuning Guide](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Tuning-Guide.md)

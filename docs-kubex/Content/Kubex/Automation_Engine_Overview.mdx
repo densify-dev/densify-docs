@@ -34,14 +34,14 @@ A standard deployment includes:
 
 ## Key Features
 
-- Declarative automation model using CRDs or Helm-generated resources
-- Recommendation-driven and static policy support
+- Declarative automation model using CRDs
+- Recommendation-driven policy support
 - Zero-downtime optimization with in-place resize on Kubernetes 1.33+ and eviction fallback when required
 - Namespaced and cluster-scoped control patterns
 - Admission-time and proactive enforcement paths
 - Fail-closed safety model with health gating and prechecks
 - Smart pause control with per-pod annotations
-- GitOps-friendly adoption path with backward compatibility for values-based settings
+- GitOps-friendly adoption path with declarative CR configuration
 
 ## Supported Workload Owners
 
@@ -62,15 +62,13 @@ The Automation Engine separates behavior from scope:
 
 - `AutomationStrategy` and `ClusterAutomationStrategy`: Define how rightsizing is allowed to happen
 - `ProactivePolicy` and `ClusterProactivePolicy`: Define where recommendation-driven automation applies
-- `StaticPolicy` and `ClusterStaticPolicy`: Define fixed resource behavior when recommendations are not used
 - `GlobalConfiguration`: Defines cluster-wide runtime behavior
 
 This makes automation easier to standardize across teams while still allowing namespace-level exceptions.
 
 Important:
 
-- Helm-managed `scope` and `policy.policies` preserve the existing values-driven flow by generating cluster-scoped strategy and proactive policy resources
-- `ProactivePolicy`, `StaticPolicy`, `ClusterStaticPolicy`, `PodAffinityPolicy`, and namespaced `AutomationStrategy` are supported by the controller and managed independently through CR manifests
+- `ProactivePolicy` and namespaced `AutomationStrategy` are supported by the controller and managed through CR manifests
 
 ## Deprecation Note
 
@@ -78,5 +76,5 @@ The older Kubex Automation Controller chart has been deprecated and replaced by 
 
 ## Official Source Documentation
 
-- Helm chart root: https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-engine
-- Chart README: https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-engine/README.md
+- [Automation Engine chart](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-engine)
+- [Automation Engine chart README](https://github.com/densify-dev/helm-charts/tree/master/charts/kubex-automation-engine/README.md)

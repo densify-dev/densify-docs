@@ -22,7 +22,7 @@ The Kubex Automation Engine provides intelligent, policy-driven automation for m
 ### Getting Started
 
 
-Use the Helm chart to deploy the [Kubex Automation Engine Helm Chart](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Getting-Started.md).
+Follow the [Data Collection Overview](/docs-kubex/Content/Kubex/Data_Collection_Overview) to install the Kubex Collection Stack. Enable the Automation Engine by adding `--set kubex-automation-engine.enabled=true` to the stack's Helm install command.
 
 ### Monitoring Automation Activity
 
@@ -67,10 +67,10 @@ Each metric is interactive—clicking any of the numbers drills into the filtere
 
 ### Automation Policies and Configuration
 
-Automation policies define how the Kubex Automation Engine optimizes your workloads. These policies are configured through the Helm chart values and determine which resources are automatically optimized, under what conditions, and with what constraints.
+Automation policies define how the Kubex Automation Engine optimizes your workloads. These policies determine which resources are automatically optimized, under what conditions, and with what constraints.
 
 **Creating Automation Strategies and Policies:**
-- See the [Configuration Reference](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Configuration-Reference.md) for complete details on policy structure, targeting rules, and optimization strategies.
+- Manage strategy and policy custom resources directly with `kubectl` or GitOps. See the [Configuration Reference](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Configuration-Reference.md) for complete details on policy structure, targeting rules, and optimization strategies.
 
 **Safety Controls and Advanced Configuration:**
 - The [Advanced Configuration Guide](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Advanced-Configuration.md) covers safety controls, pausing automation, and advanced deployment scenarios.

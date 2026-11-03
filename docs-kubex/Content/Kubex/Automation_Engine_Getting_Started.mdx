@@ -3,85 +3,28 @@ title: "Getting Started with Automation Engine"
 sidebarTitle: "Getting Started"
 ---
 
-This page summarizes the installation flow for Kubex Automation Engine.
+This page summarizes the installation flow for Kubex Automation Engine through the Kubex Collection Stack.
 
 For the full workflow, use the upstream guide:
 
-https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Getting-Started.md
+[Kubex Collection Stack README](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-stack/README.md)
 
-## Prerequisites
+## Installation
 
-Before installing:
+The Automation Engine is installed as part of the Kubex Automation Stack. If the stack is not installed yet, follow the [Data Collection Overview](/docs-kubex/Content/Kubex/Data_Collection_Overview) installation steps and add `--set kubex-automation-engine.enabled=true` to the stack's Helm install command.
 
-- You have access to your Kubex instance details
-- You have Helm access to your cluster
-- You can install CRDs in the target cluster
-- You can create required cluster-scoped RBAC and admission webhook resources
-
-## Step 1: Prepare Required Values
-
-Start from the chart template:
-
-https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/kubex-automation-values.yaml
-
-At minimum, set:
-
-```yaml
-kubex:
-  url:
-    host: your-instance.kubex.ai
-  clusterName: my-cluster
-
-kubexCredentials:
-  username: your-username
-  epassword: your-encrypted-password
-```
-
-If credentials are managed externally:
-
-```yaml
-createSecrets: false
-
-gateway:
-  configSecretName: kubex-gateway-config
-
-kubex:
-  url:
-    host: your-instance.kubex.ai
-  clusterName: my-cluster
-```
-
-## Step 2: Add Helm Repo
+If the stack is already installed with the Automation Engine disabled, enable it on the existing release with:
 
 ```bash
-helm repo add kubex https://densify-dev.github.io/helm-charts
-helm repo update
-```
-
-## Step 3: Install CRDs
-
-```bash
-helm install kubex-crds kubex/kubex-crds \
+helm upgrade kubex kubex/kubex-automation-stack \
   --namespace kubex \
-  --create-namespace
+  --reset-then-reuse-values \
+  --set kubex-automation-engine.enabled=true
 ```
 
-## Step 4: Install Automation Engine
+The `--reset-then-reuse-values` option preserves the existing release values while applying the current chart defaults and the Automation Engine override.
 
-```bash
-helm install kubex-automation-engine kubex/kubex-automation-engine \
-  --namespace kubex \
-  --create-namespace \
-  -f kubex-automation-values.yaml
-```
-
-OpenShift note:
-
-- Installation still requires cluster-scoped permissions for RBAC and admission webhook resources
-- Set `openshift.enabled=true` for arbitrary-UID-compatible controller, cleanup, scheduler, and descheduler Pods under the `restricted-v2` Security Context Constraint
-- Set `openshift.fsGroup` only if your cluster policy requires it
-
-## Step 5: Verify Health
+## Verify Health
 
 ```bash
 kubectl get deployment kubex-automation-engine -n kubex
@@ -89,32 +32,21 @@ kubectl get pods -n kubex -l control-plane=controller-manager
 kubectl get validatingwebhookconfigurations,mutatingwebhookconfigurations | grep kubex
 ```
 
-## Step 6: Create First Strategy and Policy
+## Create First Strategy and Policy
 
 You can either:
 
-- Use Helm-managed values (`scope` and `policy.policies`) for generated cluster-scoped resources
-- Manage CR manifests directly with `kubectl` or GitOps
+- Manage strategy and policy CR manifests directly with `kubectl` or GitOps
 
 Also validate:
 
 - Policy resolution in controller logs
 - Recommendation ingestion and rightsizing application for targeted workloads
 
-## Step 7: Apply Configuration Updates
-
-After changing values or policy configuration, re-run:
-
-```bash
-helm upgrade kubex-automation-engine kubex/kubex-automation-engine \
-  --namespace kubex \
-  -f kubex-automation-values.yaml
-```
-
 ## Uninstall Notes
 
-When uninstalling, remove chart resources and clean up any remaining finalizers for externally managed CRs.
+When uninstalling, remove the stack resources and clean up any remaining finalizers for externally managed CRs.
 
 For full guided steps, see:
 
-https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Getting-Started.md
+[Kubex Collection Stack README](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-stack/README.md)

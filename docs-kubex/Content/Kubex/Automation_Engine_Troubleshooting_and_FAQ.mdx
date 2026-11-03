@@ -19,7 +19,7 @@ This page consolidates common operational checks and FAQ topics for Kubex Automa
 kubectl get deployment kubex-automation-engine -n kubex
 kubectl get pods -n kubex -l control-plane=controller-manager
 kubectl get globalconfiguration global-config -o yaml
-kubectl get clusterproactivepolicy,proactivepolicy,clusterstaticpolicy,staticpolicy,clusterautomationstrategy,automationstrategy -A
+kubectl get clusterproactivepolicy,proactivepolicy,clusterautomationstrategy,automationstrategy -A
 kubectl get events -A --field-selector reason=PrecheckFailed
 kubectl logs -n kubex -l control-plane=controller-manager -c manager --since=10m | grep 'rightsizing summary'
 ```
@@ -31,16 +31,12 @@ kubectl logs -n kubex -l control-plane=controller-manager -c manager --since=10m
 - Strategy defines how changes are allowed.
 - Policy defines where those changes apply.
 
-### Can Helm-managed and manual CRs coexist?
-
-Yes. A common pattern is Helm-managed baseline with manually managed exception policies.
-
 ### What FAQ topics should I review first?
 
 Start with FAQ coverage for:
 
 - Getting started and prerequisites
-- Helm-managed versus manual CR management
+- Manual CR management
 - Safety controls and emergency stop options
 - Troubleshooting and verification steps
 
@@ -56,13 +52,8 @@ Set `globalConfiguration.automationEnabled: false` and run `helm upgrade`, or sc
 
 ## Detailed References
 
-- Troubleshooting Guide:
-https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Troubleshooting.md
-- Known Issues:
-https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Known-Issues.md
-- FAQ:
-https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/FAQ.md
-- Advanced Configuration:
-https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Advanced-Configuration.md#backward-compatibility-and-migration
-- Breaking Changes and Upgrade Migration:
-https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/BREAKING.md
+- [Troubleshooting Guide](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Troubleshooting.md)
+- [Known Issues](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Known-Issues.md)
+- [FAQ](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/FAQ.md)
+- [Advanced Configuration](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/docs/Advanced-Configuration.md#backward-compatibility-and-migration)
+- [Breaking Changes and Upgrade Migration](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/BREAKING.md)
