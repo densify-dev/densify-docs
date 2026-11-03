@@ -21,7 +21,7 @@ If you are not using an organizational account structure you can provide a list
 
 This template creates the IAM role and access policy and assigns the policy to the role using native CloudFormation capabilities. The template then uses a Lambda function to make an API call to Kubex to create the cloud connections required to collect resource utilization data.
 
-If you need to update the IAM role or policy after they have been created, see [Editing the Stackset](#editing-the-stackset) . This may be necessary if the IAM access policy needs additional permissions.
+If you need to update the IAM role or policy after they have been created, see [Editing the StackSet](#editing-the-stackset) . This may be necessary if the IAM access policy needs additional permissions.
 
 ## Supported Regions
 
@@ -67,7 +67,7 @@ You can run the Kubex CloudFormation template in any of the following regions;
 </table>
 
 
-Kubex CloudFormation template can must be run in a single region even if the target accounts span multiple regions. The template creates an IAM role and permission policy which are both global and are not region-specific.
+The Kubex CloudFormation template must be run in a single region, even if the target accounts span multiple regions. The template creates an IAM role and permission policy which are both global and are not region-specific.
 
 Please contact [Support@Kubex.ai](mailto:Support@Kubex.ai) if you need to run the template in regions, not listed above.
 
@@ -77,11 +77,11 @@ When you create the StackSet, you need to specify a region from where the stack 
 
 If you try to re-run the template in a different region it will fail as the IAM role and the permission policy already exist.
 
-The Lambda function is region-specific but it only runs once to create the cloud connections within Kubex. The StackSet and the CloudWatch logs that result from running the template are also region-specific and are defined within a specific region. You need to log into the specified region to manage your Stack and view its related log files. These log files will be required by the Kubex support team, if troubleshooting any data collection issues.
+The Lambda function is region-specific and creates the cloud connections within Kubex during deployment. CloudFormation can also invoke it when its custom resources are updated or deleted. The StackSet and the CloudWatch logs that result from running the template are also region-specific and are defined within a specific region. You need to log into the specified region to manage your Stack and view its related log files. These log files will be required by the Kubex support team, if troubleshooting any data collection issues.
 
 ## Using the CloudFormation Template
 
-If your AWS accounts are setup using an organizational structure, in which many accounts are linked to one master account, you can use the CloudFormation template to create, update and delete stacks across multiple accounts and also create the cloud connection within Kubex for each of the linked accounts. If you are using the organizational account structure, you need an IAM user that has sufficient execute permissions to create the required roles and IAM policies in each linked account.
+If your AWS accounts are setup using an organizational structure, in which many accounts are linked to one management account, you can use the CloudFormation template to create, update and delete stacks across multiple accounts and also create the cloud connection within Kubex for each of the linked accounts. If you are using this organizational structure, your AWS sign-in must have sufficient permissions to deploy the StackSet and create the required IAM roles and policies in the linked accounts.
 
 If you are not using an organizational account, you can provide a list of accounts in which the CloudFormation template will run and create the required prerequisites for data collection.
 
@@ -93,7 +93,7 @@ Obtain the following required inputs for the template before starting:
 
 * External ID for IAM Role--This value is similar to a password and should be unique and difficult to guess. Kubex recommends using a password generator to create a random, alphanumeric string (e.g. ae73mcf4ldjpet96) for the external ID.
 * Both the URL and user credentials for your Kubex instance--Contact your Kubex Account Manager for details if you do not have this information.
-* IAM User with Execute Permissions--If you are using an AWS Organization/management account structure with many linked accounts, you need an IAM user that has sufficient execute permissions to create the required roles and IAM policies in each linked account.
+* **AWS permissions**—If you are using an AWS Organization with multiple linked accounts, your AWS sign-in must have sufficient permissions to deploy the StackSet and create the required IAM roles and policies in those accounts.
 
 ### Considerations when Working with Large Environments
 
@@ -117,14 +117,20 @@ In large environments, Kubex highly recommends batching your accounts into small
 Your selection, here depends on the nature of your organizational structure and your specific requirements for managing permissions across accounts.
 
 * Service-managed permissions--Use this option when you want the AWS Organization to automatically manage permissions. This is useful if you have a large number of accounts under an organization and you want to simplify the management of permissions across these accounts.
-* Self-service permissions--Use this option when you need more granular control over permissions or when you are working in an environment where accounts are not part of the same AWS organizational structure.
+* Self-managed permissions--Use this option when you need more granular control over permissions or when you are working in an environment where accounts are not part of the same AWS organizational structure.
 
-5. If you selected "Self-service permissions", then specify an IAM role that has execute privileges in your target linked accounts.
+5. If you selected "Self-managed permissions", then specify an IAM role that has execute privileges in your target linked accounts.
 <Accordion title="Figure: Specify CloudFormation Permissions ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000069.png)</Frame>
 </Accordion>
 6. In the next section, Prerequisite - Prepare template, select Template is ready
-7. In the next section, Specify template copy and then paste the following URL into the Amazon S3 URL field: https://densify-cf-template.s3.us-east-2.amazonaws.com/Densify_CloudFormation.yml
+7. In the next section, Specify template, copy and paste the [latest Kubex template](https://kubex-cf-template.s3.us-east-2.amazonaws.com/Kubex_CloudFormation.yml) URL into the Amazon S3 URL field:
+
+   https://kubex-cf-template.s3.us-east-2.amazonaws.com/Kubex_CloudFormation.yml
+
+   <Note>
+   Already using the Densify template? Continue using it. See [Editing the StackSet](#editing-the-stackset) for the latest template and update guidance.
+   </Note>
 
 8. Click Next to proceed with creating the stack.
 <Accordion title="Figure: Specify CloudFormation Template ">
@@ -134,7 +140,7 @@ Your selection, here depends on the nature of your organizational structure and 
 
 #### Step 2: Specify StackSet Details
 
-1. Enter the following Stackset details:
+1. Enter the following StackSet details:
 
 * Stack name--Kubex-Data-Collection, as an example.
 * Stack description--Optionally enter a description for this StackSet
@@ -151,8 +157,9 @@ Your selection, here depends on the nature of your organizational structure and 
 <Accordion title="Figure: Specify Kubex Instance Details ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000072.png)</Frame>
 </Accordion>
-3. The values for IAM Role Name and the Permission Policy Name fields are provided. You do not need to enter any values here.
-4. Click Next to proceed with creating the stack.
+3. Enter the **External ID for IAM Role** that you prepared in the prerequisites.
+4. The values for IAM Role Name and the Permission Policy Name fields are provided. You do not need to enter any values here.
+5. Click Next to proceed with creating the stack.
 
 #### Step 3: Configure StackSet Options
 
@@ -186,9 +193,9 @@ Do not set this value greater than 10. Kubex highly recommends batching your acc
 
 Setting a higher number is faster for AWS operations, but creating the cloud environments and initiating data collection within Kubex is negatively impacted if more than 10 accounts are run concurrently.
 
-* Failure Tolerance (Optional)--Set this to an absolute number or a percentage of the total number of accounts being updated. If this value is exceeded, all resource changes will be rolled back.
+* **Failure Tolerance (Optional)**—Specify the maximum number or percentage of stack operation failures allowed per region. If this threshold is exceeded, CloudFormation stops the operation.
 <Note>
-When setting this value you must set Failure Tolerance to a value that is ≥ (Maximum Concurrent Accounts – 1). So, if Maximum Concurrent Accounts = 10, then Failure Tolerance should be set to 9 or higher.
+When using **Strict failure tolerance** with account counts, **Maximum Concurrent Accounts** cannot exceed **Failure Tolerance + 1**. For example, a concurrency setting of 10 requires a failure tolerance of at least 9.
 </Note>
 
 * Region Concurrency--Select the desired option. As long as Maximum Concurrent Accounts is specified, parallel is preferred.
@@ -212,11 +219,11 @@ When setting this value you must set Failure Tolerance to a value that is ≥ (M
 #### Step 6: Run the Template
 
 1. Click Submit to begin the process. The CloudFormation dashboard displays the stack creation progress.
-2. Click on the Events tab to see both the progress and status of the stack creation process. Click the Refresh button to show the latest events.
-3. Once the StackSet has been created successfully, you can review the results.
-
-* Click the Resources tab to see the list of created resources (e.g. IAM role, policies).
-* Click the Outputs tab to see the version of both the CloudFormation template and Lambda function that were run. You will need this version information if you need to upgrade the stackset or the template.
+2. Open the StackSet's **Operations** tab to monitor deployment progress and status.
+3. After deployment succeeds, open the **Stack instances** tab and follow a stack ID link to view an individual stack:
+   - Open **Events** to review that stack's deployment events.
+   - Open **Resources** to review the created resources.
+   - Open **Outputs** to review the template and Lambda version information.
 
 4. You can also log into your Kubex instance and verify that the cloud connections are listed in the Cloud Connection wizard.
 
@@ -232,7 +239,9 @@ If this is a new or trial deployment, you will be contacted, once your data has 
 ## Other StackSet Operations
 
 <Note>
-When pushing changes to an existing StackSet, you must use the same version of the CloudFormation template that was used to create the stack, and then choose “Actions > Edit StackSet details” to update the existing stack.
+To update an existing StackSet, choose **Actions > Edit StackSet details** and use the appropriate Kubex template update.
+
+**Existing Densify deployments:** Continue using the Densify template; switching to the Kubex template is not supported.
 </Note>
 
 
@@ -245,17 +254,28 @@ After the initial StackSet deployment you can do the following:
 * Add the stack to additional accounts.
 * Delete the stack from the accounts.
 
-### Editing the Stackset
+### Editing the StackSet
 
 In most cases you will only need to edit the set of minimum required permissions. The list of [minimum required permissions](./AWS_Data_Collection_Prerequisites_for_an_IAM_Role__CloudWatch_only_#creating-an-iam-policy-with-minimum-permissions-for-the-cloudwatch-data-collection) changes as Kubex adds new features and functionality,
 
 1. Log into the AWS Management Console and navigate to CloudFormation and select StackSets.
 2. Select the StackSet you want to edit and then choose Actions > Edit StackSet details from the dropdown menu at the top of the page.
 
-<Note>
-When pushing changes to an existing StackSet, you must use the same version of the CloudFormation template that was used to create the stack, and then choose “Actions > Edit StackSet details” to update the existing stack.
-</Note>
+For Kubex template updates, use the [latest Kubex template](https://kubex-cf-template.s3.us-east-2.amazonaws.com/Kubex_CloudFormation.yml):
 
+https://kubex-cf-template.s3.us-east-2.amazonaws.com/Kubex_CloudFormation.yml
+
+The [Kubex release manifest](https://kubex-cf-template.s3.us-east-2.amazonaws.com/kubex-cloudformation-version-manifest.json) lists the current template, Lambda function, and package versions, along with release history and changes.
+
+<Accordion title="Existing Densify deployments">
+If your StackSet was created using the Densify template, continue using it for updates and deployments to additional accounts. Switching to the Kubex template is not supported.
+
+Use the [latest Densify template](https://densify-cf-template.s3.us-east-2.amazonaws.com/Densify_CloudFormation.yml):
+
+https://densify-cf-template.s3.us-east-2.amazonaws.com/Densify_CloudFormation.yml
+
+The [Densify release manifest](https://densify-cf-template.s3.us-east-2.amazonaws.com/densify-cloudformation-version-manifest.json) lists the current template, Lambda function, and package versions, along with release history and changes.
+</Accordion>
 
 <Accordion title="Figure: Edit StackSet Details ">
 <Frame>![](/images/docs/WebHelp_Densify_Cloud/Content/Resources/Images/Cirba_DC_for_Public_Cloud/03000065.png)</Frame>
@@ -264,18 +284,18 @@ When pushing changes to an existing StackSet, you must use the same version of t
 
 Refer to the AWS documentation for additional details on modifying a StackSet after it has been deployed.
 
-### Adding the Stackset to New Accounts
+### Adding the StackSet to New Accounts
 
 1. Log into the AWS Management Console and navigate to CloudFormation and select StackSets.
 2. Select the StackSet you want to add and then choose Actions > Add new stacks to StackSet then specify the new accounts as outlined in [Step 4](#Step4).
 
 <Note>
-When deploying the StackSet, to new accounts use the same version of the CloudFormation template that was used to create the stack initially. The same version of the StackSet must be deployed in all accounts.
+When adding accounts, deploy the template currently associated with your StackSet.
 </Note>
 
 
 
-### Deleting a Stackset from Accounts
+### Deleting a StackSet from Accounts
 
 1. Log into the AWS Management Console and navigate to CloudFormation and select StackSets.
 2. Select the StackSet you want to delete and then choose Actions > Delete stacks from StackSet
