@@ -1,0 +1,77 @@
+---
+title: "Cluster Proactive Policies"
+---
+
+{/* Generated from automation-controller charts/kubex-automation-engine/docs/Cluster-Proactive-Policies.md. Edit the source file, not this page. */}
+
+`ClusterProactivePolicy` applies Kubex recommendations to matching workloads across one or more namespaces.
+
+Use it when a platform team wants recommendation-driven automation with shared scope rules and a reusable `ClusterAutomationStrategy`.
+
+For the namespaced variant, see [Proactive Policies](/docs-kubex/Content/Kubex/automation-engine/proactive-policies). For the referenced strategy resource, see [Cluster Automation Strategies](/docs-kubex/Content/Kubex/automation-engine/cluster-automation-strategies).
+
+## Reference Rules
+
+- `ClusterProactivePolicy` is cluster-scoped and references a `ClusterAutomationStrategy`.
+- Helm can generate `ClusterProactivePolicy` resources from `scope`, but they can also be managed directly with manifests or GitOps.
+- By default, only one same-kind cluster proactive policy contributes to a workload. With `globalConfiguration.multiPolicyContainerRightsizingEnabled: true`, different container/resource targets can come from different policies; `PolicyEvaluation` resolves overlapping targets. See [Multi-Policy Container Rightsizing](/docs-kubex/Content/Kubex/automation-engine/multi-policy-container-rightsizing).
+
+## Field Reference
+
+| Field | Default | Description |
+| --- | --- | --- |
+| `spec.scope.labelSelector` | none | Kubernetes label selector for matching workloads. |
+| `spec.scope.workloadTypes` | `[Deployment, StatefulSet, CronJob, Rollout, Job, AnalysisRun, DaemonSet, Model]` | Workload kinds this policy applies to. Default excludes `StrimziPodSet` only. |
+| `spec.scope.containers` | all automatable containers | Exact container names to retain from external recommendations. Unknown names are allowed. |
+| `spec.scope.namespaceSelector.operator` | none | Namespace selector operator: `In` or `NotIn`. |
+| `spec.scope.namespaceSelector.values` | none | Namespace patterns to include or exclude (supports `*` wildcards, e.g. "prod-*"). Wildcard patterns must be enclosed in double quotes. |
+| `spec.automationStrategyRef.name` | none | Required cluster strategy name. |
+| `spec.weight` | `0` | Higher weight takes precedence when same-kind policies compete. |
+| `spec.safetyChecks.maxAnalysisAgeDays` | `5` | Rejects old recommendations. |
+
+## Example
+
+```yaml
+apiVersion: rightsizing.kubex.ai/v1alpha1
+kind: ClusterProactivePolicy
+metadata:
+  name: platform-prod-proactive
+spec:
+  scope:
+    containers:
+      - api
+      - worker
+    labelSelector:
+      matchLabels:
+        team: platform
+      matchExpressions:
+        - key: environment
+          operator: In
+          values:
+            - production
+            - staging
+    workloadTypes:
+      - Deployment
+      - StatefulSet
+      - Rollout
+    namespaceSelector:
+      operator: NotIn
+      values:
+        - kube-system
+        - kubex
+  automationStrategyRef:
+    name: platform-conservative
+  weight: 50
+  safetyChecks:
+    maxAnalysisAgeDays: 5
+```
+
+## Notes
+
+- Use cluster proactive policies when a platform team needs one recommendation-driven policy across many namespaces.
+- Helm-managed policies accept the same list through `scope[].containers`.
+- Start with narrow namespace and label selectors, then widen scope after verifying the selected-policy behavior in events and controller logs.
+- `Model` is included in default workload types. Use `spec.scope.workloadTypes: [Model]` when you want to restrict scope to KubeAI `Model` objects only. Recommendations and rollback state are stored on the `Model` owner, then inherited by model-owned pods.
+- GPU scheduler behavior still comes from the referenced `ClusterAutomationStrategy`; proactive recommendations only supply the desired GPU request value.
+- If you need per-namespace ownership instead, use namespaced `ProactivePolicy`.
+- EXPERIMENTAL: Recommendations can now include `gpu.gpuOverallOptimal`, which is applied as a proactive `requests.gpu` target. See the [GPU Sharing with KAI](/docs-kubex/Content/Kubex/automation-engine/gpu-sharing-with-kai) guide for more information.

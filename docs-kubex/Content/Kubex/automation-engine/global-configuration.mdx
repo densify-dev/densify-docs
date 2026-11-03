@@ -1,0 +1,207 @@
+---
+title: "Global Configuration"
+---
+
+{/* Generated from automation-controller charts/kubex-automation-engine/docs/Global-Configuration.md. Edit the source file, not this page. */}
+
+> Experimental: GPU/KAI-related fields in this resource are subject to breaking changes. When using them, set `spec.experimental.gpuKaiContract: v1alpha1-2026-07`.
+
+`GlobalConfiguration` defines cluster-wide controller behavior that applies across strategies and policies.
+
+Use it to control recommendation refresh timing, proactive rescans, heartbeat reporting, global automation switches, protected namespaces, and webhook health thresholds.
+
+## Field Reference
+
+| Field | Default | Description |
+| --- | --- | --- |
+| `spec.recommendationReloadInterval` | `1h` | How often recommendations are reloaded from Kubex. |
+| `spec.rescanInterval` | `6h` | How often workloads are rescanned for proactive evaluation. |
+| `spec.mutationLogInterval` | `5m` | How often mutation logs are sent. |
+| `spec.snapshotInterval` | `30m` | How often snapshots containing all supported `rightsizing.kubex.ai` custom resources are sent. |
+| `spec.heartbeatInterval` | `5m` | How often controller heartbeat status is sent to Kubex. |
+| `spec.proposalSyncInterval` | `1m` | How often proposal sync runs. |
+| `spec.proposalSyncEnabled` | `false` | Controls proposal sync. When omitted or set to `false`, the controller stops syncing proposals and deletes proposal-managed resources. |
+| `spec.kubexAPIRequestTimeout` | `60s` | Timeout for Kubex API requests. |
+| `spec.webhookOwnerResolutionRetryTimeout` | `1s` | How long the pod admission webhook retries owner recommendation resolution before continuing without owner annotations. |
+| `spec.automationEnabled` | `true` | Global on or off switch for automation behavior. |
+| `spec.multiPolicyContainerRightsizingEnabled` | `false` | When true, same-kind resource policies use separate keys and can contribute to different container/resource targets. See [Multi-Policy Container Rightsizing](/docs-kubex/Content/Kubex/automation-engine/multi-policy-container-rightsizing). |
+| `spec.suppressFetchRecommendations` | `false` | Testing-oriented switch to suppress recommendation fetches. |
+| `spec.respectKubexAutomation` | `true` | Ignores recommendations marked with `KubexAutomation=false`. |
+| `spec.protectedNamespacePatterns` | `["kube-*","openshift-*","gmp-*"]` | Namespace glob patterns protected from automation. |
+| `spec.webhookHealth.failureThreshold` | `2` | Failed probes required before webhook health becomes unhealthy. |
+| `spec.webhookHealth.successThreshold` | `3` | Successful probes required before webhook health becomes healthy. |
+| `spec.webhookHealth.transitionCheckInterval` | `10s` | Probe interval used during webhook health transitions. |
+| `spec.webhookProbe.image` | controller image | Container image used by the dry-run webhook probe Pod. |
+| `spec.webhookProbe.labels` | `{}` | Additional labels applied to the dry-run webhook probe Pod. |
+| `spec.webhookProbe.annotations` | `{}` | Additional annotations applied to the dry-run webhook probe Pod. |
+| `spec.webhookProbe.resources` | `{}` | Resource requests and limits for the dry-run webhook probe container. |
+| `spec.webhookProbe.podSecurityContext` | `{}`; Helm sets `runAsNonRoot: true` and `seccompProfile.type: RuntimeDefault` | Pod security context for the dry-run webhook probe Pod. |
+| `spec.webhookProbe.securityContext` | `{}`; Helm sets `allowPrivilegeEscalation: false`, `readOnlyRootFilesystem: true`, and `capabilities.drop: ["ALL"]` | Container security context for the dry-run webhook probe container. |
+
+The probe uses dry-run Pod admission, so no container runs. The secure probe defaults are supplied by Helm, not by the CRD or controller. Directly managed `GlobalConfiguration` resources must specify them under `spec.webhookProbe`, as in the example below. Partial Helm security settings retain other chart defaults; explicit overrides remain supported.
+
+## Status Reference
+
+| Field | Description |
+| --- | --- |
+| `status.recommendationReload.lastTime` | Timestamp of the most recent successful recommendation reload. |
+| `status.recommendationReload.lastCount` | Number of recommendations loaded by the most recent successful recommendation reload. |
+| `status.recommendationReload.lastError` | Last recommendation reload error message, if any. |
+| `status.recommendationReload.lastErrorTime` | Timestamp of the most recent recommendation reload failure. |
+| `status.recommendationReload.proactiveRescanPending` | Whether a proactive rescan is pending because recommendations changed. |
+| `status.recommendationReload.proactiveRescanPendingTime` | When the pending proactive rescan was requested. |
+| `status.rescan.lastTime` | Timestamp of the most recent policy rescan. |
+| `status.outcome` | `Success` or `Failure` for the current `metadata.generation`. An omitted value means setup is still in progress. |
+| `status.reason` | Human-readable detail for the outcome. Proposal sync sends this as the proposal message. |
+| `status.observedGeneration` | Generation used to calculate the common outcome. |
+| `status.webhookHealth.*` | Current webhook probe streaks and last probe metadata. |
+
+Global configuration remains `IN_PROGRESS` while webhook health transitions or a required reload or rescan is pending. A completed setup reports `Success`; a failed required operation reports `Failure`. Proposal sync maps current `Success` to `APPLIED` and current `Failure` to `FAILED`.
+
+## Example
+
+```yaml
+apiVersion: rightsizing.kubex.ai/v1alpha1
+kind: GlobalConfiguration
+metadata:
+  name: global-config
+spec:
+  recommendationReloadInterval: 1h
+  rescanInterval: 6h
+  mutationLogInterval: 5m
+  snapshotInterval: 30m
+  heartbeatInterval: 5m
+  proposalSyncInterval: 1m
+  proposalSyncEnabled: false
+  kubexAPIRequestTimeout: 60s
+  webhookOwnerResolutionRetryTimeout: 1s
+  automationEnabled: true
+  multiPolicyContainerRightsizingEnabled: false
+  suppressFetchRecommendations: false
+  respectKubexAutomation: true
+  protectedNamespacePatterns:
+    - "kube-*"
+    - "openshift-*"
+    - "gmp-*"
+    - "kubex-*"
+  webhookHealth:
+    failureThreshold: 2
+    successThreshold: 3
+    transitionCheckInterval: 10s
+  webhookProbe:
+    image: densify/automation-controller:0.1.3
+    labels:
+      team: platform
+    annotations:
+      example.com/custom: "true"
+    resources:
+      requests:
+        cpu: 5m
+        memory: 16Mi
+    podSecurityContext:
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop:
+          - ALL
+```
+
+## Helm-Managed Mapping
+
+The chart creates a default `GlobalConfiguration` when `globalConfiguration.enabled=true`.
+
+| Helm value | Renders to | Notes |
+| --- | --- | --- |
+| `globalConfiguration.enabled` | resource creation toggle | Helm-only switch, not a CR field |
+| `globalConfiguration.recommendationReloadInterval` | `spec.recommendationReloadInterval` | Falls back to legacy value if unset |
+| `globalConfiguration.rescanInterval` | `spec.rescanInterval` | Falls back to legacy value if unset |
+| `globalConfiguration.mutationLogInterval` | `spec.mutationLogInterval` | Direct mapping |
+| `globalConfiguration.snapshotInterval` | `spec.snapshotInterval` | Direct mapping |
+| `globalConfiguration.heartbeatInterval` | `spec.heartbeatInterval` | Direct mapping |
+| `globalConfiguration.proposalSyncInterval` | `spec.proposalSyncInterval` | Defaults to `1m` and controls how often proposal sync runs |
+| `globalConfiguration.proposalSyncEnabled` | `spec.proposalSyncEnabled` | Enabled by default in the Helm chart. Set to `false` to disable it; disabling also deletes proposal-managed resources |
+| `globalConfiguration.kubexAPIRequestTimeout` | `spec.kubexAPIRequestTimeout` | Falls back to legacy value if unset |
+| `globalConfiguration.webhookOwnerResolutionRetryTimeout` | `spec.webhookOwnerResolutionRetryTimeout` | Direct mapping |
+| `globalConfiguration.automationEnabled` | `spec.automationEnabled` | Direct mapping |
+| `globalConfiguration.multiPolicyContainerRightsizingEnabled` | `spec.multiPolicyContainerRightsizingEnabled` | Disabled by default. Changing it rescans all static, proactive, and GPU reactive policies. |
+| `globalConfiguration.suppressFetchRecommendations` | `spec.suppressFetchRecommendations` | Direct mapping |
+| `globalConfiguration.respectKubexAutomation` | `spec.respectKubexAutomation` | Direct mapping |
+| `globalConfiguration.protectedNamespacePatterns` | `spec.protectedNamespacePatterns` | Supports `*` wildcard matching. Wildcard patterns must be enclosed in double quotes (e.g., "kube-*"). |
+| `globalConfiguration.webhookHealth.failureThreshold` | `spec.webhookHealth.failureThreshold` | Direct mapping |
+| `globalConfiguration.webhookHealth.successThreshold` | `spec.webhookHealth.successThreshold` | Direct mapping |
+| `globalConfiguration.webhookHealth.transitionCheckInterval` | `spec.webhookHealth.transitionCheckInterval` | Direct mapping |
+| `globalConfiguration.webhookProbe.image` | `spec.webhookProbe.image` | Defaults to the controller image when empty |
+| `globalConfiguration.webhookProbe.labels` | `spec.webhookProbe.labels` | Direct mapping |
+| `globalConfiguration.webhookProbe.annotations` | `spec.webhookProbe.annotations` | Direct mapping |
+| `globalConfiguration.webhookProbe.resources` | `spec.webhookProbe.resources` | Direct mapping |
+| `globalConfiguration.webhookProbe.podSecurityContext` | `spec.webhookProbe.podSecurityContext` | Direct mapping |
+| `globalConfiguration.webhookProbe.securityContext` | `spec.webhookProbe.securityContext` | Direct mapping |
+
+Legacy `deployment.controllerEnv` values still act as fallbacks for the default `GlobalConfiguration`:
+
+| Legacy value | Effective field |
+| --- | --- |
+| `deployment.controllerEnv.recommendationsFetchInterval` | `spec.recommendationReloadInterval` |
+| `deployment.controllerEnv.podScanInterval` | `spec.rescanInterval` |
+| `deployment.controllerEnv.apiRequestTimeout` | `spec.kubexAPIRequestTimeout` |
+
+If both the new `globalConfiguration.*` value and the legacy value are set, the `globalConfiguration.*` value wins.
+
+## Multi-policy annotation keys
+
+When `multiPolicyContainerRightsizingEnabled` is false, resource policies use their fixed legacy request and limit annotation keys. When true, each policy writes keys shaped like `<policy-prefix>/h<digest>-desired-resource-requests` and `<policy-prefix>/h<digest>-desired-resource-limits`. GPU reactive policies use the same digest for baseline state.
+
+A flag change converts each workload in one Kubernetes patch. Conversion across the cluster is eventual because policy reconcilers process workloads independently. Readers accept fixed and hashed keys throughout the transition. A selected recommendation that changes key restarts rollback monitoring because rollback fingerprints remain key-sensitive.
+
+Each matching policy adds up to two annotations, or three for GPU reactive state. Kubernetes limits total annotation data on an object to 256 KiB. Keep the number and payload size of overlapping policies within that limit.
+
+## Heartbeat Reporting
+
+## Proposal Sync Toggle
+
+`spec.proposalSyncEnabled` is top-level operational switch for proposal-backed resource management.
+
+When the field is omitted from a directly managed `GlobalConfiguration`, proposal sync is disabled. The Helm chart sets it to `true` by default.
+
+- When `true`, the controller continues syncing proposals on the configured proposal sync interval.
+- When `false`, the controller skips proposal sync and deletes all controller-managed proposal-backed resources.
+- Re-enabling triggers immediate proposal sync on next reconcile.
+- For local dev, `PROPOSALS_PATH=... make local-deploy` opts proposal sync in automatically in helper flow.
+
+Proposal sync accepts every CR registered in the controller's runtime scheme under `rightsizing.kubex.ai/v1alpha1`, including both namespaced and cluster-scoped resources.
+
+The controller periodically sends health and activity status to Kubex. This allows the Kubex platform to monitor controller health, display the running version, and track automation activity across your clusters.
+
+The controller version included in heartbeat payloads is read from the `IMAGE_TAG` environment variable, which the Helm chart automatically injects into the manager container from the `image.tag` Helm value. In airgapped environments, ensure this value matches your mirrored image tag so Kubex can accurately report the running version.
+
+## Webhook Probe Pod Settings
+
+The pod admission webhook health probe creates a dry-run Pod using `spec.webhookProbe`.
+
+- `spec.webhookProbe.image` controls the probe Pod container image
+- `spec.webhookProbe.labels` and `spec.webhookProbe.annotations` allow cluster-specific admission labels and annotations
+- `spec.webhookProbe.resources`, `spec.webhookProbe.podSecurityContext`, and `spec.webhookProbe.securityContext` help satisfy admission policies that require explicit resource or security settings
+
+When `spec.webhookProbe.image` is unset, the Helm chart defaults it to the controller image (`image.repository:image.tag`). This allows airgapped environments to mirror only the controller image and have probe admissions use that same image by default.
+
+On EKS clusters, the probe pod is labeled with `eks.amazonaws.com/skip-pod-identity-webhook: "true"` so the AWS-managed pod identity webhook skips this dry-run probe admission.
+
+## Verification
+
+Use these commands to inspect the rendered and live resource:
+
+```bash
+helm template kubex-automation . | sed -n '/^kind: GlobalConfiguration/,+25p'
+kubectl get globalconfiguration global-config -o yaml
+```
+
+## Related
+
+- For cluster-wide operating guidance, see [Advanced Configuration](/docs-kubex/Content/Kubex/automation-engine/advanced-configuration).
+- For Helm values, see [Configuration Reference](/docs-kubex/Content/Kubex/automation-engine/configuration-reference).
+- For same-kind policies with separate container scopes, see [Multi-Policy Container Rightsizing](/docs-kubex/Content/Kubex/automation-engine/multi-policy-container-rightsizing).
+- For protected namespaces and recommendation filtering, see [Safety Controls Reference](/docs-kubex/Content/Kubex/automation-engine/safety-controls).

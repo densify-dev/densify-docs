@@ -1,0 +1,99 @@
+---
+title: "Frequently Asked Questions"
+---
+
+{/* Generated from automation-controller charts/kubex-automation-engine/docs/FAQ.md. Edit the source file, not this page. */}
+
+Common questions about the current Kubex Automation Controller architecture and chart behavior.
+
+# Quick Links
+
+- [Frequently Asked Questions](#frequently-asked-questions)
+- [Quick Links](#quick-links)
+  - [Getting Started Questions](#getting-started-questions)
+  - [Configuration Questions](#configuration-questions)
+  - [Security and Safety Questions](#security-and-safety-questions)
+  - [Troubleshooting Questions](#troubleshooting-questions)
+
+---
+
+## Getting Started Questions
+
+### What is the minimum setup?
+
+You need a Kubernetes cluster, Helm, Kubex connection details, and at least one workload with valid Kubex recommendations.
+
+### Do I have to use CRDs directly?
+
+No. You can start with Helm-managed `scope` and `policy.policies`, then move to direct CR management only if you need the full resource model.
+
+### Can I keep my old values file?
+
+Yes, selected legacy `deployment.controllerEnv` settings are still honored for backward compatibility.
+
+### How do I uninstall without leaving CRs stuck in `Terminating`?
+
+Delete externally managed policies and strategies before uninstalling the Helm release so the running controller can process their cleanup.
+
+Helm-managed rightsizing resources are handled by the chart's pre-delete hook; external CRs still need to be deleted first if you want controller cleanup to run.
+
+If any external CRs remain stuck, manually patch away their finalizers, then run `helm uninstall`. For the full sequence and example commands, see [Getting Started](/docs-kubex/Content/Kubex/automation-engine/getting-started#uninstall).
+
+## Configuration Questions
+
+### What is the difference between strategy and policy?
+
+- strategy defines how changes are allowed to happen
+- policy defines where the strategy applies and which recommendations are considered
+
+### How does rollback recommendation lifecycle work?
+
+Rollback recommendation state is scoped to a single turn. The controller keeps the rollback state annotation while an owner is in `backingOff`, and clears only the rollback recommendation annotations when that turn completes in `backedOff` or `failedPermanent`. A clean monitoring window ends in `monitoringSucceeded` and remains visible until a new recommendation or failure appears. Turn timing is controlled by `spec.backoff`, which sets the base duration, turn multiplier, and max attempts. When the same fingerprint is applied again after the prior turn has completed, it starts a fresh turn.
+
+### Can Helm-managed and manual CRs coexist?
+
+Yes. A common pattern is Helm for the baseline and externally managed CRs for workload-specific automation. This includes managing strategy and policy resources through GitOps. See [GitOps Integration](/docs-kubex/Content/Kubex/automation-engine/gitops-integration) for the ownership model and how pod-level resizing avoids changing workload templates.
+
+### Does Kubex conflict with GitOps when it resizes workloads?
+
+No, not with the workload template. Kubex resizes individual live pods and does not modify the resource requests or limits in the owner workload's `spec.template`. GitOps continues to reconcile the declared workload baseline. Replacement pods are created from that unchanged template and can receive the recommendation again during admission. See [GitOps Integration](/docs-kubex/Content/Kubex/automation-engine/gitops-integration).
+
+### How do I stop automation quickly?
+
+Set `globalConfiguration.automationEnabled: false` and run `helm upgrade`, or scale down the controller as an emergency action.
+
+### Where do I tune behavior for slow or constrained clusters?
+
+Use the [Tuning Guide](/docs-kubex/Content/Kubex/automation-engine/tuning-guide) for leader election tolerance, webhook/API latency, probe pod admission constraints, cluster throttling, and HA placement.
+
+## Security and Safety Questions
+
+### What prevents unsafe resizes?
+
+The controller filters or blocks actions based on webhook health, protected namespaces, pause annotations, HPA/VPA detection, quota and LimitRange checks, node headroom, and workload readiness checks. Pod-level `rightsizing.kubex.ai/pause-until` blocks whole pod. `rightsizing.kubex.ai/skip-containers` removes only matching container actions and still allows sibling container actions to proceed. Pod annotation key beats owner annotation. If pod key is present with an empty value, that pod skips no containers and does not fall back to owners. If pod key is absent, nearest supported owner with non-empty value wins. Values are never merged. Namespace pause supports pod-level keys only.
+
+For the complete safety model and where each control is configured, see [Safety Controls](/docs-kubex/Content/Kubex/automation-engine/safety-controls).
+
+### When does Kubex resize, and when does it roll back?
+
+For existing pods, Kubex checks node capacity and safety controls before taking action—it can resize in place, evict and recreate, or filter the recommendation. Filtering due to insufficient capacity is not a rollback; the pod is not deleted and no resources are restored.
+
+For newly created pods, Kubex applies recommendations during admission, then Kubernetes schedules them. When a rollback policy matches, Kubex monitors health: healthy pods keep the new resources, while failing pods trigger a rollback turn to restore either `manifest` or `lastSuccessful` resources.
+
+See [Understanding Resize vs. Rollback Behavior](/docs-kubex/Content/Kubex/automation-engine/rollback-policies#understanding-resize-vs-rollback-behavior) for detailed decision flows.
+
+### Does the controller mutate system namespaces?
+
+Not by default. Protected namespace patterns exclude well-known platform namespaces unless you intentionally change that configuration.
+
+## Troubleshooting Questions
+
+### Where should I look first if nothing happens?
+
+Check `GlobalConfiguration`, policy objects, events, and `rightsizing summary` logs in that order. If new pods are being created but expected mutation is missing, also review the webhook fail-open notes in the [Tuning Guide](/docs-kubex/Content/Kubex/automation-engine/tuning-guide#admission-webhook-fail-open-semantics).
+
+For multi-container pods, also check whether only some actions were filtered. `failedChecks` means whole pod blocked. `appliedFilters` with `container-skip-active`, `hpa-resource-managed`, or similar means only specific container/resource actions were removed.
+
+### Why is a matching policy not enough?
+
+Because the controller still needs a valid recommendation and a plan that survives all strategy and safety filters.

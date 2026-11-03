@@ -1,0 +1,116 @@
+---
+title: "Safety Controls Reference"
+---
+
+{/* Generated from automation-controller charts/kubex-automation-engine/docs/Safety-Controls.md. Edit the source file, not this page. */}
+
+Use this reference to interpret pre-checks and filters shown in logs, events, and recommendation payload summaries.
+
+Until global configuration is ready, ordinary pod admission skips all automation mutations, including compaction, recommendation inheritance, runtime hooks, and resizing. Pod creation and webhook health probes continue normally.
+
+# Quick Links
+
+- [Safety Controls Reference](#safety-controls-reference)
+- [Quick Links](#quick-links)
+  - [How To Read Outcomes](#how-to-read-outcomes)
+  - [Pre-Checks](#pre-checks)
+  - [Filters](#filters)
+  - [Evaluation Order](#evaluation-order)
+  - [Reading `failedChecks` and `appliedFilters`](#reading-failedchecks-and-appliedfilters)
+  - [Related Guides](#related-guides)
+
+---
+
+## How To Read Outcomes
+
+- `precheck` means execution is gated. A failed pre-check blocks the current resizing attempt.
+- `filter` means action pruning. A filter removes one or more resize resource actions.
+
+Where you will see the various pre-checks and filters:
+
+- `rightsizing summary` contains the summary and logs `failedChecks` and `appliedFilters`
+- Warning events with reason `PrecheckFailed` for failed pre-checks
+- Normal workload events with reason `ActionFilteredByAutoscaler` when HPA or VPA filters suppress resize actions
+- Recommendation payload summaries in `precheckSummary` and `filterSummary`
+
+How to interpret `retry` in the context of this document:
+
+- When a resize action will be retried, it means the condition that caused the pre-check failure is expected to resolve itself, for example when a pod becomes Ready.
+- This is independent from `GlobalConfiguration.spec.rescanInterval`, which controls the regular interval for checking whether pods require resizing.
+
+## Pre-Checks
+
+| Runtime name | Stage | Controlled by | Behavior | Retry behavior | Typical message |
+| --- | --- | --- | --- | --- | --- |
+| `pod-terminating` | controller pod pre-check | always on (controller path) | Blocks if pod has `deletionTimestamp` | no retry from check itself | `pod is terminating` |
+| `namespace-protected` | pre-check | `GlobalConfiguration.spec.protectedNamespacePatterns` | Blocks if pod namespace matches a protected namespace pattern | no retry from check itself | `namespace "<namespace>" is protected` |
+| `pause-active` | pre-check | `spec.safetyChecks.enablePauseUntilAnnotationCheck` | Blocks whole pod when pod-scoped `rightsizing.kubex.ai/pause-until` is active (`infinite` or future RFC3339 time) on pod or pod namespace. New pods can inherit pod-scoped pause annotations from supported workload owners, and existing owned pods are reconciled to same inherited pause state. Namespace pause annotations are evaluated at runtime only and are not copied onto pods. Pod-local pause annotations remain valid and take precedence over namespace pauses. | no retry from check itself | `automation paused by annotation` or `automation paused: <pause-reason>` |
+| `resource-quota-exceeded` | pre-check | `spec.safetyChecks.enableResourceQuotaFilter` | Blocks if projected pod resources would exceed applicable `ResourceQuota` | no retry from check itself | `resource quota exceeded (ResourceQuota/<name>)` |
+| `requests-exceed-limits` | final plan consistency pre-check | always on | Blocks when the filtered resize plan would leave a desired request above the effective desired/current limit | no retry from check itself | `desired request <x> exceeds limit <y> (container=<name>, resource=<resource>)` |
+| `common-resize-method` | controller plan pre-check | always on (controller path) | Blocks the entire controller resize plan when its remaining actions share neither in-place resize nor eviction. For example, a remaining in-place-only action and an eviction-only action have no common method. | non-retryable; no requeue from check itself | `selected actions have no common in-place resize or eviction method` |
+| `min-ready-duration-not-met` | final health pre-check | `spec.safetyChecks.minReadyDuration` | Blocks until pod has been Ready for at least `minReadyDuration` | retryable: uses remaining ready time when pod is Ready but elapsed Ready time is below `spec.safetyChecks.minReadyDuration`; uses `spec.safetyChecks.resizeRetryInterval` when pod is not Ready or ready transition time is unknown | `pod not ready` or `pod ready for ... (<...)` |
+| `owner-pods-not-ready` | final health pre-check | `spec.safetyChecks.requireOwnerPodsReady` | Blocks when any owner pod is not Ready | retryable: uses `spec.safetyChecks.resizeRetryInterval` | `owner pod <name> not ready` |
+| `max-unavailable-exceeded` | final health pre-check | `spec.safetyChecks.respectWorkloadMaxUnavailable` | Blocks when another unavailable pod would exceed owner workload `maxUnavailable`. In-place resizes that don't restart a container keep the pod available, so they proceed even at `maxUnavailable: 0` and never fall back to eviction. If the pod can't be resized in place, the resize stays blocked and retries | retryable: uses `spec.safetyChecks.resizeRetryInterval` | `maxUnavailable <n> exceeded` or `maxUnavailable <n> reached; resizing in place only` |
+| `too-many-requests` | execution retry guard | `spec.podEviction.retryPodDisruptionBudget` | Blocks when eviction is rejected with API `429 TooManyRequests`, for example PodDisruptionBudget rejection or API throttling | retryable only when every strategy in the final eviction plan enables it | `resize blocked by too many requests (...)` |
+| `recommendation-too-old` | proactive recommendation guard | `ProactivePolicy.spec.safetyChecks.maxAnalysisAgeDays` / `ClusterProactivePolicy.spec.safetyChecks.maxAnalysisAgeDays` | Strips out recommendations coming from Kubex when they are too old | not a pod requeue check; summary guard | `recommendation too old` |
+
+For hook-only `ContainerArgsPolicy` convergence, when no `AutomationStrategy` resolves, the controller uses a 30-second fallback for `safetyChecks.resizeRetryInterval`. A resolved strategy interval remains authoritative.
+
+## Filters
+
+| Runtime name | Stage | Controlled by | Behavior | Targets / metadata | Typical message |
+| --- | --- | --- | --- | --- | --- |
+| `no-resize-needed` | plan build | always on | Marks resources where desired equals current and no action is needed | target list only | n/a (summary marker) |
+| `floor-clamped` | plan build | `spec.enablement.*.(requests\|limits).floor` | Clamps a desired value up to the configured floor before execution | filter metadata includes `value`, `originalDesired`, `clampedDesired`, and `rule` | n/a (summary marker) |
+| `ceiling-clamped` | plan build | `spec.enablement.*.(requests\|limits).ceiling` | Clamps a desired value down to the configured ceiling before execution | filter metadata includes `value`, `originalDesired`, `clampedDesired`, and `rule` | n/a (summary marker) |
+| `ephemeral-storage-restart-pending` | plan build | `spec.enablement.ephemeralStorage.restartStrategy`, `spec.podEviction.enabled` | Reports an ephemeral-storage change that waits until the pod is next recreated, because the restart strategy is `OnNextRestart` or pod eviction is disabled. The reason clears once the change is applied | filter metadata includes `restartStrategy` | n/a (informational reason) |
+| `automation-strategy-disabled` | action filter | `spec.enablement.*` fields in the referenced strategy | Removes actions disallowed by direction such as `upsize`, `downsize`, or `setFromUnspecified` | filter metadata may include `direction` | `upsize disabled`, `downsize disabled`, or `setFromUnspecified disabled` |
+| `change-below-threshold` | pod action filter | `spec.safetyChecks.minCpuChangePercent`, `spec.safetyChecks.minMemoryChangePercent`, `spec.safetyChecks.minEphemeralStorageChangePercent` | Removes actions whose percent delta is below threshold | target list only | `delta ... below minimum ...` |
+| `container-skip-active` | pod action filter | always on | Removes actions for containers listed in `rightsizing.kubex.ai/skip-containers`. Pod annotation key wins over owners; empty pod value means skip none for that pod. If pod key is absent, nearest supported owner with non-empty value wins. Empty owner values are ignored. No merges across pod/owners or multiple owners. Namespace scope is not supported. | filter metadata includes `scope=container` and `container=<name>` | `container skipped by annotation` |
+| `hpa-resource-managed` | pod action filter | `spec.safetyChecks.enableHpaFilter` | Removes actions for CPU or memory managed by a matching HPA, including KEDA-managed HPA handling | filter metadata may include `source=hpa` and `hpaMode` | `HPA targets <resource>` |
+| `vpa-resource-managed` | pod action filter | `spec.safetyChecks.enableVpaFilter`, `spec.safetyChecks.blockResizeOnVpaControlledResources` | Two-stage filter: (1) when `enableVpaFilter=true`, removes actions for resources with active VPA recommendations (requires updateMode enabled and RecommendationProvided status); (2) when `blockResizeOnVpaControlledResources=true`, and only after stage 1 has run, also removes actions for resources declared in VPA resourcePolicy regardless of VPA state. Stage 2 is more defensive and blocks even when VPA is Off or has no recommendations. See VPA Filter Behavior section in Automation Strategies docs for details. | target list only; stage 1 produces no metadata; stage 2 adds `source=vpa`, `vpaName`, `updateMode`, and `ownership=resourcePolicy` metadata | Stage 1: `VPA manages <resource>`. Stage 2: `VPA <name> (updateMode=<mode>) owns <resource>.<request\|limit>` |
+| `node-capacity-insufficient` | pod action filter | `spec.safetyChecks.requireNodeAllocatable`, `spec.safetyChecks.nodeCpuHeadroom`, `spec.safetyChecks.nodeMemoryHeadroom` | Removes request increase actions when remaining allocatable capacity, after headroom reservation, is insufficient. Applies to ephemeral-storage requests as well as CPU and memory | target list only | `remaining <x> < delta <y>` |
+| `limit-range-violated` | policy recommendation filter | `spec.safetyChecks.enableLimitRangeFilter` | Removes recommendation actions that violate namespace `LimitRange` container min or max | filter metadata may include `name` | `desired ... below ... (LimitRange/<name>)` or `desired ... exceeds ... (LimitRange/<name>)` |
+| `pod-limit-range-violated` | pod action filter | `spec.safetyChecks.enablePodLimitRangeFilter` | Removes actions when resulting pod-level totals violate `LimitRange` pod min or max | filter metadata may include `name` | `total desired ... requests below ... (LimitRange/<name>)` or `total desired ... limits exceeds ... (LimitRange/<name>)` |
+| `kubex-automation-disabled` | proactive recommendation filter | `GlobalConfiguration.spec.respectKubexAutomation` | Removes recommendations coming from Kubex with `KubexAutomation=false` | target list only | n/a (summary marker) |
+
+## Evaluation Order
+
+1. Build candidate actions from selected recommendations.
+2. Apply `automation-strategy-disabled`.
+3. Run early pre-checks: `pod-terminating`, `namespace-protected`, optional `pause-active`, optional `resource-quota-exceeded`.
+4. Apply pod action filters: `change-below-threshold`, `container-skip-active`, `hpa-resource-managed`, `vpa-resource-managed`, `node-capacity-insufficient`, `pod-limit-range-violated`.
+5. Run final non-retryable plan consistency checks: `requests-exceed-limits`, `gpu-plan-consistency`, and controller-only `common-resize-method`.
+6. If any remaining action is outside its scheduling window, retain the filter summary, block the full controller plan, and requeue for the earliest allowed time.
+7. Run final retryable health checks: `min-ready-duration-not-met`, `owner-pods-not-ready`, `max-unavailable-exceeded`.
+8. Execute in-place resize or eviction if actions remain.
+
+Notes:
+
+- Workload policy recommendation generation also applies `limit-range-violated` before owner annotations are written.
+- The webhook evaluation path runs `namespace-protected`, `pause-active`, and `resource-quota-exceeded`.
+- `pod-terminating`, scheduling windows, `common-resize-method`, and the final retryable health checks are controller-side.
+- Pod-wide safety settings use the strictest value among strategies that supplied selected actions. Boolean checks use logical OR, minimum percentages and readiness durations use the larger value, and losing candidates do not contribute.
+
+## Reading `failedChecks` and `appliedFilters`
+
+- `failedChecks` contains check failures with `name`, optional `message`, and optional `metadata`.
+- `appliedFilters` contains pruned actions with `name`, optional filter `metadata`, and `targets` with `container`, `usage`, and `resource`.
+- Bounds enforcement also appears in `appliedFilters`: `floor-clamped` and `ceiling-clamped` indicate the controller adjusted the desired value before deciding whether any resize action still remained.
+- `pause-active` sets `failedChecks[].metadata.scope` to `pod` or `namespace`; namespace pauses also include `failedChecks[].metadata.namespace`.
+- `container-skip-active` sets `appliedFilters[].metadata.scope=container` and `appliedFilters[].metadata.container=<name>`.
+
+Example interpretation:
+
+- `{"name":"min-ready-duration-not-met","message":"pod not ready"}` in `failedChecks` means execution is blocked for now and retried.
+- `{"name":"resource-quota-exceeded","message":"resource quota exceeded (ResourceQuota/team-quota)","metadata":{"name":"team-quota"}}` in `failedChecks` identifies the specific blocking quota.
+- `{"name":"container-skip-active","metadata":{"scope":"container","container":"app"},"targets":[{"container":"app","usage":"requests","resource":"cpu"}]}` in `appliedFilters` means only that container action was removed because `skip-containers` matched that container.
+- `{"name":"hpa-resource-managed","targets":[{"container":"app","usage":"requests","resource":"cpu"}]}` in `appliedFilters` means that resize action was removed because HPA controls that resource.
+- `{"name":"floor-clamped","metadata":{"value":"200Mi","originalDesired":"128Mi","clampedDesired":"200Mi","rule":"AutomationStrategy/example-rule"},"targets":[{"container":"app","usage":"requests","resource":"memory"}]}` in `appliedFilters` means the recommendation was raised to the strategy floor before execution.
+
+## Related Guides
+
+- For cluster-wide operating controls, see [Advanced Configuration](/docs-kubex/Content/Kubex/automation-engine/advanced-configuration).
+- For strategy field reference, see [Automation Strategies](/docs-kubex/Content/Kubex/automation-engine/automation-strategies) and [Cluster Automation Strategies](/docs-kubex/Content/Kubex/automation-engine/cluster-automation-strategies).
+- For recommendation freshness on policies, see [Proactive Policies](/docs-kubex/Content/Kubex/automation-engine/proactive-policies) and [Cluster Proactive Policies](/docs-kubex/Content/Kubex/automation-engine/cluster-proactive-policies).
+- For debugging blocked actions, see [Troubleshooting](/docs-kubex/Content/Kubex/automation-engine/troubleshooting).
