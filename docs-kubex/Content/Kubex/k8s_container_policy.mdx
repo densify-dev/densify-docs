@@ -102,6 +102,13 @@ Choose an HPA Recommendation Mode:
 
 When configuring headroom, the dialog provides **HPA Target Headroom (%)** values for CPU and Memory. Default value is 10% for each.
 
+### JVM Optimization Settings
+
+- **Preserve**: no Request recommendations (default)
+- **Standard**: assume no JVM, and provide regular right-sizing recommendations
+- **JVM-aware**: consider JVM Garbage Collector activity, and only provide recommendation if is it below the safety threshold (default =3%)
+
+
 ## Policy Constraints and Allocation
 
 The resource policy sections include these additional controls where shown:
