@@ -8,7 +8,7 @@ This topic summarizes both new and updated features introduced in Kubex
     The following changes have been made to Kubex in this release:
 
     - **JVM Analysis**
-      - With this release, you have the option to get CPU/Memory Request recommendation if it is safe. 
+      - With this release, you have the option to get CPU/Memory Request recommendation for JVM container if it is safe. 
         - Safety is based on how active the JVM Garbage Collector is
         - Higher activity points to JVM pressure, and for safety, Kubex wont recommend downsizing Requests. 
         - Kubex will still not recommend any downsizing for CPU/Memory Limits, which will be in a future release.
@@ -16,6 +16,7 @@ This topic summarizes both new and updated features introduced in Kubex
         - Preserve: no Request recommendations (default)
         - Standard: assume no JVM, and provide regular right-sizing recommendations
         - JVM-aware: consider JVM Garbage Collector activity, and only provide recommendation if is it below the safety threshold (default =3%)
+      - Kubex will also display JVM heap metrics, if data is available.
 
       <Frame caption="Figure: JVM Analysis Policy">
         <img src="/images/docs/ReleaseNotes/v5.x/jvm_analysis_policies.png" width="100%" />
@@ -29,6 +30,12 @@ This topic summarizes both new and updated features introduced in Kubex
 
     - **Policy setting for HPA CPU & Memory overhead**
       - Updates to split this setting into CPU and Memory HPA overhead (previously it was one setting)
+
+    - **Proactive Proposals for Node Optimization**
+
+    - **Flag for "current" containers**
+      - Kubex analyzes all containers discovered in the last 7 days.
+      - There is a new flag in the Container details table called "current", which will be "yes" if that container was discovered in the latest hourly discovery.
 
 </Accordion>
 
