@@ -51,3 +51,13 @@ The workflow syncs from this URL:
 https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/CHANGELOG.md
 
 To change the source, update the `CHANGELOG_URL` variable in `scripts/sync-changelog.py`.
+
+## Sync Kubex Collection Stack Installation
+
+**File:** `workflows/sync-kubex-installation.yml`
+
+This workflow runs daily at 3 AM UTC, or manually from the Actions tab. It extracts the `Installation` section from the upstream Kubex Collection Stack README and creates a pull request when the documentation changes.
+
+The sync script is `.github/scripts/sync-kubex-installation.py`, and the generated content is delimited by markers in `docs-kubex/Content/Kubex/Data_Collection_Overview.mdx`.
+
+**Source:** https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-stack/README.md#installation

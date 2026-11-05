@@ -53,13 +53,7 @@
                 "group": "Getting Started",
                 "pages": [
                     "docs-kubex/Content/General/Kubex_Overview",
-                    {
-                        "group": "Connect Your Kubernetes Clusters",
-                        "pages": [
-                            "docs-kubex/Content/Kubex/Data_Collection_Overview",
-                            "docs-kubex/Content/Kubex/Data_Collection_Alternate_Methods"
-                        ]
-                    },
+                    "docs-kubex/Content/Kubex/Data_Collection_Overview",
                     {
                         "group": "Connect Your Public Cloud Accounts",
                         "pages": [
@@ -133,11 +127,58 @@
                         "group": "Automation",
                         "pages": [
                             "docs-kubex/Content/Kubex/Automation_Engine_Overview",
-                            "docs-kubex/Content/Kubex/Automation_Engine_Getting_Started",
-                            "docs-kubex/Content/Kubex/Automation_Engine_Configuration_Reference",
-                            "docs-kubex/Content/Kubex/Automation_Engine_Policy_Model",
-                            "docs-kubex/Content/Kubex/Automation_Engine_Safety_and_Operations",
-                            "docs-kubex/Content/Kubex/Automation_Engine_Troubleshooting_and_FAQ"
+                            {
+                                "group": "Installation and Configuration",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/automation-engine/getting-started",
+                                    "docs-kubex/Content/Kubex/automation-engine/gitops-integration",
+                                    "docs-kubex/Content/Kubex/automation-engine/configuration-reference",
+                                    "docs-kubex/Content/Kubex/automation-engine/advanced-configuration",
+                                    "docs-kubex/Content/Kubex/automation-engine/global-configuration",
+                                    "docs-kubex/Content/Kubex/automation-engine/rbac-guide",
+                                    "docs-kubex/Content/Kubex/automation-engine/migrating-from-helm-managed-config"
+                                ]
+                            },
+                            {
+                                "group": "Strategies and Policies",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/automation-engine/automation-strategies",
+                                    "docs-kubex/Content/Kubex/automation-engine/cluster-automation-strategies",
+                                    "docs-kubex/Content/Kubex/automation-engine/policy-configuration",
+                                    "docs-kubex/Content/Kubex/automation-engine/policy-evaluation",
+                                    "docs-kubex/Content/Kubex/automation-engine/proactive-policies",
+                                    "docs-kubex/Content/Kubex/automation-engine/cluster-proactive-policies",
+                                    "docs-kubex/Content/Kubex/automation-engine/static-policies",
+                                    "docs-kubex/Content/Kubex/automation-engine/multi-policy-container-rightsizing",
+                                    "docs-kubex/Content/Kubex/automation-engine/object-patches",
+                                    "docs-kubex/Content/Kubex/automation-engine/cluster-compaction-policies"
+                                ]
+                            },
+                            {
+                                "group": "Safety, Rollback, and Operations",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/automation-engine/safety-controls",
+                                    "docs-kubex/Content/Kubex/automation-engine/rollback-policies",
+                                    "docs-kubex/Content/Kubex/automation-engine/rollback-backoff",
+                                    "docs-kubex/Content/Kubex/automation-engine/tuning-guide"
+                                ]
+                            },
+                            {
+                                "group": "GPU Optimization",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/automation-engine/gpu-reactive-policies",
+                                    "docs-kubex/Content/Kubex/automation-engine/gpu-consolidation-policy",
+                                    "docs-kubex/Content/Kubex/automation-engine/gpu-sharing-with-kai"
+                                ]
+                            },
+                            {
+                                "group": "Troubleshooting",
+                                "pages": [
+                                    "docs-kubex/Content/Kubex/automation-engine/troubleshooting",
+                                    "docs-kubex/Content/Kubex/automation-engine/faq",
+                                    "docs-kubex/Content/Kubex/automation-engine/known-issues"
+                                ]
+                            }
                         ]
                     },
                     {

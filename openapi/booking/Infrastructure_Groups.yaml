@@ -202,4 +202,26 @@ paths:
                   # Add other properties as needed
 components:
   schemas:
-    # Define reusable schemas here if needed
+    InfrastructureGroup:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        platform:
+          type: string
+        platform_category:
+          type: string
+        href:
+          type: string
+        hardware_name:
+          type: string
+        hardware_icon:
+          type: string
+        control_type:
+          type: string
+        color_code_selected:
+          type: string
+        color_code_unselected:
+          type: string
