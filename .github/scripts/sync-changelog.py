@@ -3,6 +3,7 @@
 Sync Kubex Automation Engine CHANGELOG from upstream repository.
 """
 
+import posixpath
 import re
 import requests
 from pathlib import Path
@@ -10,6 +11,40 @@ from pathlib import Path
 # Configuration
 CHANGELOG_URL = "https://raw.githubusercontent.com/densify-dev/helm-charts/master/charts/kubex-automation-engine/CHANGELOG.md"
 RELEASE_NOTES_FILE = "docs/WebHelp_Densify_Cloud/Content/Release_Notes/release_notes_k8s_automation_engine.mdx"
+
+# Relative links in the CHANGELOG are relative to the chart directory. Chart
+# docs are published on this site (by the automation-controller docs sync) at
+# DOCS_PAGE_DIR/<lowercased file name>; anything else points to GitHub.
+CHART_BLOB_BASE = "https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine"
+DOCS_PAGE_DIR = "docs-kubex/Content/Kubex/automation-engine"
+
+MD_LINK = re.compile(r'(\[[^\]]*\])\(([^)\s]+)((?:\s+"[^"]*")?)\)')
+
+
+def rewrite_link(target):
+    """Map a CHANGELOG link target to a URL that works on the docs site."""
+    if (not target or target.startswith(('#', '/', 'mailto:')) or '://' in target):
+        return target
+
+    file_part, _, fragment = target.partition('#')
+    fragment = '#' + fragment if fragment else ''
+    clean = posixpath.normpath(file_part)
+    if clean.startswith('..'):
+        raise ValueError(f"link {target!r} points outside the chart directory")
+
+    directory, name = posixpath.split(clean)
+    if directory == 'docs' and name.endswith('.md'):
+        slug = name[:-len('.md')].lower()
+        if Path(DOCS_PAGE_DIR, slug + '.mdx').exists():
+            return f"/{DOCS_PAGE_DIR}/{slug}{fragment}"
+        print(f"Warning: no docs page for {target!r}, linking to GitHub")
+
+    return f"{CHART_BLOB_BASE}/{clean}{fragment}"
+
+
+def rewrite_links(text):
+    """Rewrite relative Markdown links so they resolve on the docs site."""
+    return MD_LINK.sub(lambda m: f"{m.group(1)}({rewrite_link(m.group(2))}{m.group(3)})", text)
 
 # Markers to identify the section to replace
 START_MARKER = "## Kubex Automation Engine"
@@ -64,7 +99,7 @@ def parse_changelog_entry(version_block):
             content_lines.append('**Fixed:**')
         else:
             # Regular content line - keep list items as-is
-            content_lines.append(stripped)
+            content_lines.append(rewrite_links(stripped))
 
     # Join with proper indentation - preserve empty lines for spacing
     formatted_lines = []
@@ -132,7 +167,7 @@ def update_release_notes(new_content):
         legacy_section = "\n" + current_content[legacy_idx:]
 
     # Build new content with frontmatter + new changelog + legacy section
-    updated_content = frontmatter + new_content + legacy_section + '\n'
+    updated_content = (frontmatter + new_content + legacy_section).rstrip() + '\n'
 
     # Write back
     file_path.write_text(updated_content, encoding='utf-8')
