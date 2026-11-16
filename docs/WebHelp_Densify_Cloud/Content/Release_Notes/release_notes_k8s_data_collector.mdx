@@ -11,6 +11,38 @@ Refer to [Github repository](https://github.com/densify-dev/container-data-colle
 
 When deploying the Container Data Collector ensure that the same version is deployed for all of your clusters. See [Data Collection for Containers](../Data_Collection_for_Public_Cloud_Systems/Container_Data_Collection_Overview)
 
+<Accordion title="4.8.0 - October 21, 2026">
+  This release includes the initial implementation of JVM metrics collection for JVM applications. Customers must update their application Helm charts so the Kubex Collection Stack can scrape these metrics. See the [application-specific metrics configuration](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-stack/app-specific-metrics.md) for instructions.
+</Accordion>
+
+<Accordion title="4.7.0 - July 21, 2026">
+  This release improves the accuracy of average and peak container CPU and memory metric collection.
+</Accordion>
+
+<Accordion title="4.6.0 - June 6, 2026">
+  <Accordion title="Application Runtime Detection">
+    The All-In-One (AIO) Helm chart now deploys [Grafana Beyla](https://grafana.com/oss/beyla-ebpf/) to detect application runtimes and report them to Kubex SaaS. Kubex analyses can use runtime information to tailor container rightsizing recommendations, such as avoiding memory-limit recommendations for JVM applications.
+
+    This phase reports the runtime only. Runtime versions and relevant parameters may be supported in a future release. See the [OpenTelemetry eBPF instrumentation discussion](https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/issues/2285) for related community work.
+  </Accordion>
+  <Accordion title="Native Sidecar Init Containers">
+    The data collector now collects data for native sidecar containers, which are init containers with a restart policy of `Always`. This supports workloads such as service meshes transitioning from regular sidecars to native sidecars. Upgrade the Helm chart to make the required init-container Prometheus metrics available.
+  </Accordion>
+  <Accordion title="Ephemeral Storage Exporter">
+    The ephemeral storage exporter is enabled by default in AIO Helm chart version 1.0.16. Customers can opt out if they do not want to deploy it.
+  </Accordion>
+</Accordion>
+
+<Accordion title="4.5.0 - May 20, 2026">
+  <Accordion title="GPU Process Exporter">
+    NVIDIA's [DCGM Exporter](https://github.com/NVIDIA/dcgm-exporter) has limitations in reporting container-level GPU metrics, particularly with GPU sharing strategies such as time-slicing and MPS, and with schedulers such as [KAI Scheduler](https://github.com/kai-scheduler/KAI-Scheduler).
+
+    The new GPU Process Exporter retrieves metrics from the NVIDIA driver and associates them with the containers using each GPU. The data collector uses these metrics when the new exporter is available, and falls back to DCGM Exporter metrics when it is not.
+
+    The All-In-One (AIO) Helm chart now includes the GPU Process Exporter by default. Customers can opt out of deploying it.
+  </Accordion>
+</Accordion>
+
 <Accordion title="4.4.0 - March 23, 2026">
   <Accordion title="Ephemeral Storage metrics">
     Introduced ephemeral storage metrics collection (opt-in)
