@@ -1,6 +1,20 @@
 ---
 title: "Kubex Automation Engine"
 ---
+<Accordion title="1.19.0 - November 26, 2026">
+  **Added:**
+  - The controller exposes `kubex_automation_controller_build_info`, and the gateway sidecar exposes `kubex_automation_gateway_build_info` on a new `gateway-metrics` port set by `gateway.metricsPort` (default `8182`). Both report the component's version and Git commit. The metrics Service and the optional ServiceMonitor include the gateway port. See [Build Information Metrics](/docs-kubex/Content/Kubex/automation-engine/configuration-reference#build-information-metrics).
+  - The controller exposes `kubex_pod_owner{namespace, pod, owner_kind, owner_name}`, which maps each pod to its owning workload (looking through ReplicaSet, Job and ReplicationController parents). Only the elected leader emits it. Set `metrics.podOwnerEnabled` to `false` to turn it off. The controller role gains `list` and `watch` on `replicationcontrollers`, and the ServiceMonitor sets `honorLabels: true` on the controller endpoint. See [Pod Ownership Metric](/docs-kubex/Content/Kubex/automation-engine/configuration-reference#pod-ownership-metric).
+  
+  **Changed:**
+  - The gateway sidecar image is now `densify/automation-gateway:1.11`, which serves the gateway build information metric.
+  
+  **Fixed:**
+  - Setting `spec.automationEnabled` to `false` in the global configuration now also stops rightsizing at pod admission, not only new automation by the controller. No restart is needed, and changes already applied are not reverted.
+  - Automation reasons reported to Kubex are now cleared when a workload is deleted or its recommendations are removed, so stale reasons no longer remain.
+  - `webhook.port` now sets the port the controller's webhook server binds to. Before, the server always listened on `9443`, so any other value left the `webhook` container port and Service pointing at a port nothing served.
+</Accordion>
+
 <Accordion title="1.18.0 - November 06, 2026">
   ### Breaking
   - **[Rollback recovery may bypass PodDisruptionBudgets](https://github.com/densify-dev/helm-charts/blob/master/charts/kubex-automation-engine/BREAKING.md#upgrading-to-1180-or-later-rollback-recovery-may-bypass-poddisruptionbudgets)**: when a resize fails and a rollback policy restores the previous resources, pods still running the failed resize are recreated one at a time. If a PodDisruptionBudget would block that eviction and leave the workload stuck on the failed resize, the pod is deleted gracefully so the rollback can finish. This applies only to rollback recovery; normal automation still respects PodDisruptionBudgets. See [Rollback Policies](/docs-kubex/Content/Kubex/automation-engine/rollback-policies#rollback-recovery-behavior-breaking-change).
